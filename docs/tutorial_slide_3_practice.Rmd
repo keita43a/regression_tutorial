@@ -1,0 +1,310 @@
+---
+title: "第三章　練習問題"
+subtitle: "<small>A tutorial for regression analysis</small>"
+author: "阿部景太"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default,ninjutsu,useR-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      coutIncrementalSlides: false
+      ratio: 16:9
+      
+---
+
+<style type="text/css">
+.remark-slide-content {
+    font-size: 30px;
+    font-family: "メイリオ" ;
+    padding: 1em 4em 1em 4em;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+pacman::p_load(
+  tidyverse,
+  knitr,
+  kableExtra,
+  patchwork
+)
+```
+
+# 練習問題 3-1
+
+1. 「修学年数が12年以上」 「修学年数が16年未満」排反事象？
+
+2. 「修学年数が12年以上16年未満」「修学年数が12年未満」排反事象？
+
+3. 「修学年数が12年以上16年未満」「修学年数が12年未満」和事象？
+
+4. 「修学年数が12年以上」 「修学年数が16年未満」積事象？
+
+---
+
+# 練習問題 3-2
+
+(1) 標本空間?
+
+(2) 公理? 
+
+## 公理
+
+- どのような事象についても、事象が起きる確率は0以上1以下
+- 標本空間の事象のうちいずれかが起きる確率は1
+- 排反事象の和事象が起きる確率は、それぞれの事象が起きる確率の和となる
+
+---
+
+# 練習問題 3-3
+
+## 公理
+
+- どのような事象についても、事象が起きる確率は0以上1以下
+- 標本空間の事象のうちいずれかが起きる確率は1
+- 排反事象の和事象が起きる確率は、それぞれの事象が起きる確率の和となる
+
+---
+
+# 練習問題 3-4
+
+```{r}
+
+dat3_4=tibble(
+  朝食 = c("はい","いいえ"),
+  はい = c(0.65,0.05),
+  いいえ = c(0.25,0.05)
+)
+
+kable(dat3_4, align = "c") %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T) %>%
+  # collapse_rows(columns = 1, valign = "middle") %>% # セルの縦方向結合を指定
+  add_header_above(c(" " = 1, "算数A正答率75%以上" = ncol(dat3_4)-1))
+
+```
+
+--
+
+(1) 周辺確率 = $0.65 +0.25 = 0.90$
+
+--
+
+(2) $P(算数A正答率75\%以上\vert朝食食べてる) = 0.65/0.90 = 0.722$ 
+
+---
+
+# 練習問題 3-4
+
+(3) 算数A正答率が75%以上の条件なし確率は $0.65+0.05=0.70$ 。これは条件付き確率と同じではないので、独立ではない。
+
+---
+
+# 練習問題 3-5 (1)
+
+```{r, fig.width=8, fig.height=6,fig.align='center'}
+
+dat3_5 = tibble(
+  count=c(rep(1,10),rep(2,10),rep(3,10))
+)
+
+ggplot(dat3_5,aes(x=count))+
+  stat_ecdf(pad = TRUE) + 
+  ylim(0,1) +
+  xlim(0,4) + 
+  labs(x="確率変数 X",y="累積確率") +
+  theme_bw(base_family = "HiraKakuPro-W3") + 
+  theme(text = element_text(size=20))
+
+```
+
+---
+
+# 練習問題 3-5 (2)
+
+```{r, fig.width=8, fig.height=6,fig.align='center'}
+
+dat3_5_2 = tibble(
+  count=c(rep(-1,10),rep(0,20),rep(1,10))
+)
+
+ggplot(dat3_5_2,aes(x=count))+
+  stat_ecdf(pad = TRUE) + 
+  ylim(0,1) +
+  xlim(-2,2) + 
+  labs(x="確率変数 X",y="累積確率") +
+  theme_bw(base_family = "HiraKakuPro-W3") + 
+  theme(text = element_text(size=20))
+
+```
+
+---
+
+# 練習問題 3-6
+
+--
+
+期待値
+
+$$
+  E[X] = -1\times\frac{1}{4} + 0\times\frac{1}{2} + 1\times\frac{1}{4} = 0
+$$
+
+--
+
+分散
+$$
+  Var[X] = (-1-0)^2\times\frac{1}{4} + (0-0)^2\times\frac{1}{2} + (1-0)^2\times\frac{1}{4}
+$$
+
+---
+
+# 練習問題 3-7
+
+
+
+---
+
+# 練習問題 3-8
+
+$$
+ V[X] = E[X^2]-\mu^2
+$$
+--
+
+分散の期待値で表した定義　→　展開
+
+$$
+  V[X] = E[(X-\mu)^2] = E[X^2 - X\mu - X\mu + \mu^2]
+$$
+
+--
+
+期待値の性質を使う。定数の期待値は定数： $E[\mu] = \mu$ 
+
+$$
+ = E[X^2] - E[X]\mu - E[X]\mu + \mu^2
+$$
+---
+
+# 練習問題 3-8
+
+$E[X] = \mu$を代入する
+
+$$
+ = E[X^2] - \mu^2 - \mu^2 + \mu^2 \\ = E[X^2] - \mu^2
+$$
+
+---
+
+# 練習問題 3-9
+
+$$
+ Cov[X,Y] = E[(X-E[X])(Y-E[Y])] = E[XY] - E[X]E[Y]
+$$
+--
+
+２つ目の式（期待値で表した共分散の定義）を展開する
+
+$$
+= E\left[XY- XE[Y] -E[X]Y + E[X]E[Y]\right]
+$$
+
+--
+
+期待値の性質を使う
+
+$$
+  =E[XY] - E[XE[Y]] - E[E[X]Y] + E\left[E[X]E[Y]\right]
+$$
+
+---
+
+# 練習問題 3-9
+
+$E[X], E[Y]$は定数（確率変数ではない）ので、期待値の性質 $E[aX]=aE[X]$ が適用できる
+
+$$
+ = E[XY] - E[XE[Y]] - E[E[X]Y] + E\left[E[X]E[Y]\right]
+$$
+
+$$
+ = E[XY] - E[X]E[Y] - E[X]E[Y] + E[X]E[Y]
+$$
+$$
+ = E[XY] - E[X]E[Y]
+$$
+
+---
+
+# 練習問題 3-10
+
+```{r}
+dat3_10=tibble(
+  `国語` = c("0点","5点","10点"),
+  `0点` = c(0.1,0.1,0.1),
+  `5点` = c(0.1,0.2,0.1),
+  `10点` = c(0.1,0.1,0.1)
+)
+
+kable(dat3_10, align = "c") %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T) %>%
+  # collapse_rows(columns = 1, valign = "middle") %>% # セルの縦方向結合を指定
+  add_header_above(c(" " = 1, "算数" = ncol(dat3_10)-1))
+
+```
+---
+
+# 練習問題 3-10
+
+(1)周辺確率
+
+
+```{r}
+dat3_10_2=tibble(
+  `国語` = c("0点","5点","10点",""),
+  `0点` = c(0.1,0.1,0.1,0.3),
+  `5点` = c(0.1,0.2,0.1,0.4),
+  `10点` = c(0.1,0.1,0.1,0.3),
+  `合計` = c(0.3,0.4,0.3,NA) 
+)
+
+kable(dat3_10_2, align = "c") %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T) %>%
+  # collapse_rows(columns = 1, valign = "middle") %>% # セルの縦方向結合を指定
+  add_header_above(c(" " = 1, "算数" = ncol(dat3_10_2)-1))
+```
+
+---
+
+# 練習問題 3-10
+
+(2) $P(国語=0点) = 0.3$
+
+$P(算数=0点|国語=0点) = 0.1/0.3 = 0.33$
+
+$P(算数=5点|国語=0点) = 0.1/0.3 = 0.33$
+
+$P(算数=10点|国語=0点) = 0.1/0.3 = 0.33$
+
+$E[算数の点数|国語=0点] = 0\times0.33 + 5\times0.33 + 10\times0.33 = 5$
+
+---
+
+# 練習問題 3-10
+
+(3) $P(国語=5点) = 0.4$
+
+$P(算数=0点|国語=5点) = 0.1/0.4 = 0.25$
+
+$P(算数=5点|国語=5点) = 0.2/0.4 = 0.50$
+
+$P(算数=10点|国語=5点) = 0.1/0.4 = 0.25$
+
+
+$E[算数の点数|国語=5点] = 0\times0.25 + 5\times0.50 + 10\times0.25 = 5$
