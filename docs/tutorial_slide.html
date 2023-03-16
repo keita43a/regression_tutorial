@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>なぜ俺達は回帰分析をするのか？</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="阿部景太" />
+    <meta name="date" content="2023-03-07" />
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/useR-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# なぜ俺達は回帰分析をするのか？
+## <small>A tutorial for regression analysis</small>
+### 阿部景太
+### 2023-03-07
+
+---
+
+
+&lt;style type="text/css"&gt;
+.remark-slide-content {
+    font-size: 30px;
+    font-family: "メイリオ" ;
+    padding: 1em 4em 1em 4em;
+}
+&lt;/style&gt;
+
+
+
+# 俺たちは何に興味があるのか？
+
+- 研究や分析をするとき、何に興味があるか？
+
+--
+
+  - 魚のサイズは価格に影響するのか？
+  - 魚の重さと魚の体長にはどのような関係があるか？
+  - 漁獲の多様性は所得の安定に寄与するのか？
+
+--
+
+- 「関係」「影響」「効果」
+
+
+---
+
+# 関係の例
+
+.pull-left[
+- 魚のサイズと価格に関係はあるのか？
+
+- サイズが大きいほど、単価が高い？
+]
+
+.pull-right[
+&lt;img src="figs/zimmerman_2013.png" alt="drawing" style="width:80%;"/&gt;
+
+]
+
+
+
+---
+
+# データにおける関係
+
+![](tutorial_slide_files/figure-html/corr-1.png)&lt;!-- --&gt;
+
+- `\(x\)` と `\(y\)` の関係は？
+
+---
+
+# データにおける関係
+
+&lt;img src="tutorial_slide_files/figure-html/reg1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# データにおける関係
+
+- では次のような場合はどういう関係があるか？
+tempdataの散布図
+
+---
+
+# データにおける線形的な関係
+
+- 線形的な関係はあるか？
+
+tempdataの線形の図  
+
+---
+
+# データにおける非線形的な関係
+
+- 非線形的な関係？
+  - アイデア：一時間ごとに分けて平均を取り、線でつなぐ
+
+
+--
+
+- このような手法をノンパラメトリック回帰という。
+
+---
+
+# なぜ回帰するのか？
+
+- データから、事象に関係があるのか？どんな関係があるのか？を分析する
+  - 「関係がある」ということを突き止める（識別）
+  - 「どんな関係があるか」を突き止める（関数形の特定）
+  - 「得られた関係から、データ外の事象を予測する」（予測）
+
+---
+
+# 関係？
+
+- 関係とはなにか？
+
+--
+
+  - 高い身長の人は、体重が重い
+  - 養殖場の餌の量を増やすと、魚の成長が早くなる
+
+--
+
+  - ゲーム時間が長いほど、学業成績が低い
+
+--
+
+- では、ある子供のゲーム時間を短縮させると、学業成績が向上するのだろうか？
+
+---
+
+# ゲームと成績の関係
+
+- ゲームとテストの成績には_相関関係_がある
+
+<div id="htmlwidget-194b889a796645a083e6" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-194b889a796645a083e6">{"x":{"diagram":"\n                  digraph wage_educ {\n                  \n                  graph [overlap = true, fontsize = 10, rankdir=LR]\n                  \n                  node [shape = circle,\n                  fixedsize = true,\n                  width = 0.9] \n                  ゲーム; 成績;\n                  \n                  \n                  # edge statement\n                  ゲーム->成績\n                  \n                  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+---
+
+# ゲームと成績の関係
+
+- ゲームとテストの成績には_相関関係_がある
+
+ゲームとテスト成績の相関関係散布図
+
+---
+
+# ゲームと成績の関係
+
+- ゲームとテストの成績には_相関関係_がある
+
+家庭環境を第3の因子としていれたDAG
+
+---
+
+# 因果関係と相関関係
+
+
+---
+
+# 社会科学における因果関係発見の難しさ
+
+- 人々はXを与えられたらYを選ぶのではなく、様々な情報に基づいてXとYの両方を選んでいる。
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"coutIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
