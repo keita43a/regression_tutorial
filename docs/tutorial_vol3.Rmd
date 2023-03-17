@@ -1,0 +1,162 @@
+---
+title: "第三章　計量経済学のための確率論"
+subtitle: "<small>A tutorial for regression analysis</small>"
+author: "阿部景太"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default,ninjutsu,useR-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      coutIncrementalSlides: false
+      ratio: 16:9
+      
+---
+
+<style type="text/css">
+.remark-slide-content {
+    font-size: 30px;
+    font-family: "メイリオ" ;
+    padding: 1em 4em 1em 4em;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+pacman::p_load(
+  tidyverse,
+  patchwork,
+  knitr
+)
+```
+
+
+
+# 実証分析問題 3-A
+
+- t分布表：両側検定
+
+```{r, echo = FALSE}
+ t_table_two_tailed <- tibble(
+   df = c(1:30,seq(40,100,10),1000,Inf),
+   p.2= qt(1-0.2/2,df),
+   p.15 = qt(1-0.15/2,df),
+   p.1 = qt(1-0.1/2,df),
+   p.05 = qt(1-0.05/2,df),
+   p.025 = qt(1-0.025/2,df),
+   p.01 = qt(1-0.01/2,df),
+   p.005 = qt(1-0.005/2,df),
+   p.001 = qt(1-0.001/2,df)
+   )
+
+kable(head(t_table_two_tailed,7))
+
+```
+
+---
+
+# 実証分析問題 3-A
+
+- Rで書ける
+
+```{r, echo=TRUE, eval = FALSE}
+
+ t_table_two_tailed <- tibble(
+   df = c(1:30,seq(40,100,10),1000,Inf),
+   p.2= qt(1-0.2/2,df),
+   p.15 = qt(1-0.15/2,df),
+   p.1 = qt(1-0.1/2,df),
+   p.05 = qt(1-0.05/2,df),
+   p.025 = qt(1-0.025/2,df),
+   p.01 = qt(1-0.01/2,df),
+   p.005 = qt(1-0.005/2,df),
+   p.001 = qt(1-0.001/2,df)
+   )
+
+```
+
+
+
+---
+
+
+# 実証分析問題 3-B (1)
+
+```{r, echo=TRUE, results='asis'}
+
+nenshu_mean = 150*(0.38+0.08) + 450*(0.28+0.18) + 700*(0.03+0.05)
+
+nenshu_var = (150-nenshu_mean)^2*(0.38+0.08) + (450-nenshu_mean)^2*(0.28+0.18) + (700-nenshu_mean)^2*(0.03+0.05)
+
+nenshu_mean
+
+nenshu_var
+
+```
+
+
+
+
+---
+
+# 実証分析問題 3-B (2)
+
+```{r, echo=TRUE, results='asis'}
+
+grad_mean = 0*(0.38+0.28+0.03) + 1*(0.08+0.18+0.05)
+
+grad_var = (0-grad_mean)^2*(0.38+0.28+0.03) + (1-grad_mean)^2*(0.08+0.18+0.05)
+
+nenshu_grad_cov = (150-nenshu_mean)*(0-grad_mean)*0.38+(150-nenshu_mean)*(1-grad_mean)*0.08+(450-nenshu_mean)*(0-grad_mean)*0.28+(450-nenshu_mean)*(1-grad_mean)*0.18+(700-nenshu_mean)*(0-grad_mean)*0.03+(700-nenshu_mean)*(1-grad_mean)*0.05
+
+nenshu_grad_cov
+
+nenshu_grad_cor = nenshu_grad_cov/(sqrt(grad_var)*sqrt(nenshu_var))
+
+nenshu_grad_cor
+
+```
+
+
+
+
+---
+
+# 実証分析問題 3-B (3)
+
+```{r, echo=TRUE, results='asis'}
+
+#大卒の条件付き確率 P(Y|X=1)
+
+p_x1 = 0.08+0.18+0.05
+
+nenshu_joken_exp_x1 = 150*(0.08/p_x1) + 450*(0.18/p_x1) + 700*(0.05/p_x1)
+
+nenshu_joken_exp_x1
+
+```
+
+
+
+---
+
+# 実証分析問題 3-B (4)
+
+```{r, echo=TRUE, results='asis'}
+
+#大卒の条件付き確率 P(Y|X=1)
+
+p_x0 = 0.38+0.28+0.03
+
+nenshu_joken_exp_x0 = 150*(0.38/p_x0) + 450*(0.28/p_x0) + 700*(0.03/p_x0)
+
+nenshu_joken_exp_x0
+
+```
+
+
+
+
+
