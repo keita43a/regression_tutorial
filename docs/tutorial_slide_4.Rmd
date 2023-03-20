@@ -1,0 +1,762 @@
+---
+title: "第四章"
+subtitle: "<small>A tutorial for regression analysis</small>"
+author: "阿部景太"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default,ninjutsu,useR-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      coutIncrementalSlides: false
+      ratio: 16:9
+      
+---
+
+<style type="text/css">
+.remark-slide-content {
+    font-size: 30px;
+    font-family: "メイリオ" ;
+    padding: 1em 4em 1em 4em;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+pacman::p_load(
+  tidyverse,
+  knitr,
+  kableExtra,
+  patchwork,
+  cols4all
+)
+
+options(scipen=999)
+```
+
+# i.i.d.のイメージ (1)
+
+- 確率変数 $X$ はi.i.d.であるとし、平均が10, 標準偏差が5の正規分布にしたがっているとする。
+
+$$
+   X \sim N(\mu = 10,\sigma = 5)
+$$
+
+**i.i.d.**
+$X_1$ も $X_2$ も $X_n$ もみんな同じ母集団から得られた標本だが、お互いに独立している。
+
+---
+
+# i.i.d.のイメージ (2)
+
+母集団 $N(50,5)$ からランダムに$X_1$を抽出してみる
+
+```{r, echo =TRUE}
+set.seed(3)
+x1 = rnorm(n=1,mean=10,sd=5)
+
+print(x1)
+```
+
+---
+
+# i.i.d.のイメージ (3)
+
+母集団から $n=100$ の標本を抽出してみる
+
+```{r, echo=TRUE}
+set.seed(634)
+x_100 = rnorm(n=100,mean=10, sd= 5)
+```
+
+```{r, fig.height=5,fig.align='center'}
+hist(x_100, breaks=10)
+```
+---
+
+# i.i.d.のイメージ (4)
+
+母集団から $n=1000$ の標本を抽出してみる
+
+```{r, echo=TRUE}
+set.seed(634)
+
+x_1000 = rnorm(n=1000,mean=10, sd= 5)
+```
+
+```{r, fig.height=5,fig.align='center'}
+hist(x_1000, breaks=20)
+```
+
+---
+
+# 標本平均
+
+$$
+  \bar{X} = \frac{1}{n}\sum^{n}_{i=1}X_i
+$$
+
+```{r,echo=TRUE}
+
+mean(x1)
+mean(x_100)
+mean(x_1000)
+```
+
+---
+
+# 推定量と推定値
+
+- 標本平均 $\bar{X}$ は母集団の平均(母平均)の*推定量* (estimator) である
+  - 推定方法
+  
+- $\bar{X} = 10.1872$ は母平均の*推定値* (estimate)
+  - 実際にデータを与えて推定された値
+  
+---
+
+# 不偏性
+
+$$
+ E[\bar{X}]=\mu,\  V[\bar{X}] = \frac{\sigma^2}{n}
+$$
+
+--
+- 平均的に正しく母集団のパラメータを推測できる
+
+--
+- $n \rightarrow \infty$ になったら？
+
+---
+
+# 不偏推定量
+
+$\theta$を母集団分布のパラメターとし、$\hat$をその推定量とする。そのとき
+
+$$
+  E[\hat{\theta}]=\theta
+$$
+
+となるとき、$\hat{theta}$を**不偏推定量**と呼ぶ
+
+---
+
+# 一致性
+
+- 標本サイズが大きくなる( $n\rightarrow\infty$ となる)と標本平均の分散が０に近づく
+- 標本平均が母平均に近づく
+- このような推定量を**一致推定量と呼ぶ**
+
+---
+
+# 一致推定量のイメージ (1)
+
+```{r, echo=TRUE}
+set.seed(634)
+
+# シミュレーション：各標本サイズで５０回ずつサンプル抽出→平均を計算を繰り返す
+# つまり50回 x 6種類のサンプルサイズ
+
+# 50回の試行と10から10万までの６つのサンプルサイズのデータを作成
+mean_df = expand_grid(trial = 1:50,sample_size = c(10^(1:6)))
+# map関数で、rnormでサンプル抽出→平均を計算、を繰り返す
+mean_vec = map_dbl(mean_df$sample_size,~mean(rnorm(n=.x,mean=10,sd=5)))
+# mapの結果がベクターで返されるので、データフレームに統合
+mean_df = bind_cols(mean_df,means = mean_vec)
+
+# plot
+fig_means = ggplot(mean_df,aes(x=factor(sample_size), y=means)) + geom_jitter(width=0.1) + 
+  geom_hline(yintercept=10,col="red",size=0.5) +
+  labs(x="標本サイズ",y="標本平均",caption ="それぞれの標本サイズで50回ずつ標本抽出して平均を計算") +
+  theme_bw(base_family="HiraKakuPro-W3") +
+  theme(text = element_text(size=20))
+
+```
+
+---
+
+# 一致推定量のイメージ (2)
+
+```{r, fig.align='center',fig.height=6,fig.width=8}
+fig_means
+```
+
+
+---
+
+# 確率収束
+
+$$
+ \lim_{n\rightarrow\infty}P(|\hat{\theta}_n-\theta|>\varepsilon)=0
+$$
+標本サイズが十分に大きければ、推定量 $\hat{\theta}_n$ と $\theta$の距離（差の絶対値）が$\varepsilon$ より大きくなる確率は0になる。
+$\varepsilon$は0より大きいがものすごく小さい任意の数を表す。
+
+---
+
+# 大数の法則
+
+標本サイズがおおきくなると、標本平均がどんどん母平均に近づいていくという性質
+
+---
+
+# 標本分散
+
+
+$X_i$ が i.i.d.のとき
+
+$$
+ S^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2
+$$
+
+母分散の不偏推定量：$E[S^2] = \sigma^2$
+
+---
+
+# 効率性
+
+$\theta$ を母集団分布のパラメターとし、 $\hat{\theta}$ をその不偏推定量とする。 $\hat{\theta}$ の分散が、他のどんな不偏推定量 $\hat{\theta}^*$ の分散以下となるとき、 $\hat{\theta}$ を*最小分散不偏推定量*と呼ぶ。
+
+$$
+ V[\hat{\theta}] \leq V[\hat{\theta}^*]
+$$
+
+つまりもっとも効率的な推定量といえる。
+
+---
+
+# 仮説検定 (1)
+
+**仮説** 
+
+--
+
+真理は未解明である、現象や法則に関する命題　（仮の答え）
+
+--
+
+**仮説検定**
+
+--
+
+データを利用して統計的に仮説の真偽を判断すること
+
+
+---
+
+# 仮説検定 (2)
+
+**帰無仮説**
+
+--
+
+否定して「無に帰す」ような仮説（◯◯はXXに効果がない）
+
+--
+
+**対立仮説**
+
+--
+
+帰無仮説に対立するような仮説。
+帰無仮説が統計的に棄却されれば、採択される仮説。
+
+---
+
+# 悪魔の証明
+
+何かが無いことを証明するのは難しい  
+
+「ツチノコは存在するか？」
+
+- ツチノコを捕まえ見せれば、「ツチノコは存在する」という証明
+- 「ツチノコは存在しない」ということを証明するには？
+
+---
+
+# 仮説検定のイメージ
+
+.pull-left[
+- 帰無仮説：夏期講習の効果はゼロである： $\mu=0$
+
+- 対立仮説：夏期講習の効果はゼロより大きい： $\mu > 0$
+
+- もしデータが $\bar{X}=0.5$ だったら？
+]
+
+.pull-right[
+
+```{r}
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1),col="navy") +
+  geom_vline(xintercept=0.5, col="red") + 
+  theme_minimal() +
+  theme(text = element_text(size=25))
+```
+
+
+]
+
+---
+
+# 仮説検定のイメージ
+
+.pull-left[
+- 帰無仮説( $\mu=0$ )の下で、 $\bar{X}=0.5$ がたまたま出る確率は？
+
+- 0.5以上の数値が出る確率は0.31 (この確率を**p値**と呼ぶ)
+
+- そんなに低くない。たまたまじゃね？
+- 「帰無仮説を棄却できない」
+]
+
+.pull-right[
+
+```{r}
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1),col="navy") +
+  stat_function(fun=dnorm, geom="area",
+                xlim = c(0.5, 3), fill="grey",alpha=0.5) + 
+  geom_vline(xintercept=0.5, col="red") + 
+  annotate(geom = "text", x = 1,y=0.08, label=1-round(pnorm(0.5,lower.tail="FALSE"),digits=2), size=10) +
+  labs(y ="確率密度") + 
+  theme_minimal(base_family = "HiraKakuPro-W3") +
+  theme(text = element_text(size=25))
+```
+
+
+]
+
+---
+
+# 仮説検定のイメージ
+
+.pull-left[
+- 帰無仮説( $\mu=0$ )の下で、 $\bar{X}=2.1$ がたまたま出る確率は？
+
+- 2.1のp値は0.02
+
+- 低い。帰無仮説が間違ってるんじゃね？
+- 「帰無仮説を棄却し、対立仮説を採択」
+]
+
+.pull-right[
+
+```{r}
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1),col="navy") +
+  stat_function(fun=dnorm, geom="area",
+                xlim = c(2.1, 3), fill="grey",alpha=0.5) + 
+  geom_vline(xintercept=2.1, col="red") + 
+  annotate(geom = "text", x = 2.1,y=0.03, label=1-round(pnorm(2.1,lower.tail="FALSE"),digits=2), size=10) +
+  labs(y ="確率密度") + 
+  theme_minimal(base_family = "HiraKakuPro-W3") +
+  theme(text = element_text(size=25))
+```
+]
+
+---
+
+# 標準化
+
+- 帰無仮説が正しいとした時の分布をどう設定する？
+
+--
+  - 理想的には標準正規分布 $N(0,1)$
+  
+--
+- 帰無仮説の $\mu$ と $\sigma^2$ で標準化する
+
+$$
+ \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}}
+$$
+
+- 標準正規分布を使って確率を計算できるようになる
+
+---
+
+# t検定
+
+- 理想的には標準正規分布、しかし現実は難しい
+ - 我々は $\mu$ は「知ってる」
+ - しかし $\sigma^2$ は知らない
+
+--
+- では代わりに $S^2$ を使おう
+  - でも $S^2$ を使うと標準正規分布にならない
+  - しかし自由度が $n-1$ の $t$ 分布に従うことが知られている
+  
+$$
+ \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim t(n-1)
+$$
+
+---
+
+# 有意水準
+
+- 「帰無仮説下で偶然起こる現象」と「帰無仮説下では起こりにくすぎるので、帰無仮説がおかしい」の判断をそこで下すのか？
+
+--
+
+**有意水準**
+
+もしp値がある基準 $\alpha$ より小さいのなら帰無仮説を棄却する、という判断基準
+
+この基準 $\alpha$ を有意水準と呼ぶ。慣習的に有意水準は0.05が使われることが社会科学では多い。
+
+---
+
+# p値と有意水準について (1)
+
+研究では統計的に有意な結果が出たほうが「面白い」
+
+--
+
+様々な方法で、p値を有意にすることをp-hackingと呼ぶ。
+これは研究倫理的に間違い。
+
+**例**
+ - 様々な変数を入れてみて、有意になったモデルだけを示す
+ - データ数を多くする (サンプルサイズが大きくなるとp値が低くなりやすい。)
+ - 理由なく異常値を削除する
+
+
+---
+
+# p値と有意水準について (2)
+
+アメリカ統計学会は2016年に以下のような指摘を行う声明を発表
+
+1. P値は、指定された統計モデルとデータがどの程度相容れないかを示すことができる
+
+2. P値は、研究した仮説が真である確率や、データが偶然に作られたものである確率を測定するものではない
+
+3. 科学的な結論や、ビジネス、政策における決定は、 P値がある値（有意水準）を超えたかどうかにのみ基づくべきではない
+
+---
+
+# p値と有意水準について (3)
+
+4. 適正な推測のためには、すべてを報告する透明性が必要である
+
+5. P値や統計的有意性は、効果の大きさや結果の重要性を意味しない
+
+6. それ自体では、P値はモデルや仮説に関する証拠の良い尺度を提供しない
+
+---
+
+# 両側/片側検定
+
+.pull-left[
+- 両側検定：対立仮説が $\mu \neq 0$
+
+- 片側検定：対立仮説が $\mu > 0$ もしくは $\mu < 0$
+
+]
+
+.pull-right[
+
+```{r}
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1),col="navy") +
+  stat_function(fun=dnorm, geom="area",
+                xlim = c(1.644854, 3), fill="red",alpha=0.2) + 
+    stat_function(fun=dnorm, geom="area",
+                xlim = c(1.959964, 3), fill="blue",alpha=0.2) + 
+    stat_function(fun=dnorm, geom="area",
+                xlim = c(-3,-1.959964), fill="blue",alpha=0.2) +
+  annotate(geom="text",x=2,y=0.1,label="0.5", col="red",alpha=0.7,hjust=0,size=10) + 
+  annotate(geom="text",x=2,y=0.05,label="0.25", col="blue",alpha=0.7,hjust=0,size=10) + 
+  annotate(geom="text",x=-2,y=0.05,label="0.25", col="blue",alpha=0.7,hjust=1,size=10) + 
+  labs(y ="確率密度") + 
+  theme_minimal(base_family = "HiraKakuPro-W3") +
+  theme(text = element_text(size=25))
+```
+]
+
+
+---
+# 練習問題 4-1 (1)
+
+まず定義を確認
+
+$$
+  E[\bar{X}] = E\left[\frac{1}{n}\sum_{i=1}^{n} X_i \right]
+$$
+
+期待値の性質によって入れ替える
+
+$$
+ = \frac{1}{n}\sum_{i=1}^{n} E[X_i]
+$$
+
+---
+
+# 練習問題 4-1 (2) 
+
+$X_i$は母平均 $\mu$ の母集団を持つ確率変数なので、 $E[X_i]=\mu$
+
+$$
+ = \frac{1}{n}\sum^{n}_{i=1}\mu = \frac{1}{n}n\mu = \mu
+$$
+よって、不偏性を満たす。
+
+---
+
+# 練習問題 4-1 (3)
+
+一致性は、$V[\bar{X}] = \frac{\sigma^2}{n}$ から、 $n$  を大きくすると分散がゼロに近づくことから確認できる。
+
+---
+
+# 練習問題 4-2 (1)
+
+まず定義
+
+$$
+ E[S^2] = E\left[\frac{1}{n-1}\sum (X_i-\bar{X})^2\right]
+$$
+
+$$
+ = \frac{1}{n-1}\sum E\left[(X_i-\bar{X})^2\right] \ \ \ ☆
+$$
+
+---
+
+# 練習問題 4-2 (2)
+
+シグマの中身だけ取り出す。母平均を足し引きする。
+
+$$
+ E\left[(X_i-\bar{X})^2\right] = E\left[(X_i-\mu + \mu -\bar{X})^2\right]
+$$
+代数的に展開する
+
+$$
+ = E\left[(X_i-\mu) - (\bar{X} - \mu ))^2\right]
+$$
+
+$$
+ = E\left[(X_i-\mu)^2 - 2(X_i-\mu)(\bar{X} - \mu ) + (\bar{X} - \mu )^2\right]
+$$
+---
+
+期待値の性質を使う
+
+$$
+ = E\left[(X_i-\mu)^2\right] - 2E\left[(X_i-\mu)(\bar{X} - \mu )\right] + E\left[(\bar{X} - \mu )^2\right]
+$$
+第１項は、母分散の定義なので $E\left[(X_i-\mu)^2\right] = \sigma^2$  .  
+第２項は、標本平均の定義を代入する
+
+
+$$
+ = E\left[(X_i-\mu)^2\right] - 2E\left[(X_i-\mu)(\bar{X} - \mu )\right] + E\left[(\bar{X} - \mu )^2\right]
+$$
+
+$$
+ = \sigma^2 - 2E\left[(X_i-\mu)(\frac{1}{n}\sum X_j-\mu)\right] + E\left[(\bar{X} - \mu )^2\right]  \ \ \ \ ★
+$$
+
+---
+
+# 練習問題 4-2 (3)
+
+第２項は以下の形になる
+
+$$
+ 2\frac{1}{n}E\left[(X_i-\mu)(X_1 - \mu) + \ldots + (X_i-\mu)(X_n - \mu)\right]
+$$
+
+$X_i$ と $X_{j\neq i}$ は互いに独立なので、共分散の期待値はゼロ。jの数値がi番目のものだけ全く同じ確率変数なので、分散が取れる。  
+
+$$
+ 2\frac{1}{n}E\left[(X_i-\mu)(X_i-\mu)\right] = \frac{1}{n}\sigma^2
+$$
+
+---
+
+# 練習問題 4-2 (4)
+
+第３項も同じ考え方で以下のようになる
+
+$$
+ E\left[(\bar{X} - \mu )^2\right] = E\left[(\frac{1}{n}\sum X_j - \mu )^2\right] = \frac{1}{n^2}E\left[(\sum X_j - n\mu )^2\right] 
+$$
+すべての項の組み合わせを二乗するが、違うi同士は共分散がゼロ
+$$
+ = \frac{1}{n^2}E\left[\sum (X_j - \mu )^2\right] = \frac{1}{n^2}\sum E\left[(X_j - \mu )^2\right]
+$$
+
+---
+
+# 練習問題 4-2 (5)
+
+$$
+ = \frac{1}{n^2}n\sigma^2 = \frac{1}{n}\sigma^2
+$$
+
+すべての項を★式に代入すると
+
+$$
+ E\left[(X_i-\bar{X})^2\right] = \sigma^2 - \frac{2}{n}\sigma^2 + \frac{1}{n}\sigma^2  = \frac{n-1}{n}\sigma^2
+$$
+
+
+---
+
+# 練習問題 4-2 (6)
+
+これを☆式に代入する
+
+$$
+ E[S^2] = \frac{1}{n}\sum E\left[(X_i-\bar{X})^2\right] = \frac{n}{n-1}\frac{n-1}{n}\sigma^2 = \sigma^2
+$$
+
+
+
+---
+
+# 練習問題 4-3 (1)
+
+分散
+
+```{r, echo=TRUE}
+
+xbar = (0-4+2+3-2+3)/6
+varx = ((0-xbar)^2+(-4-xbar)^2+(2-xbar)^2+(3-xbar)^2+(-2-xbar)^2+(3-xbar)^2)/(6-1)
+
+## var(c(0,-4,2,3,-2,3))
+
+varx
+```
+
+---
+
+# 練習問題 4-3 (2)
+
+$$
+ t = \frac{\bar{X}- \mu}{\sqrt{S^2/n}} \sim t(df)
+$$
+
+```{r, echo=TRUE}
+
+ tval = (xbar - 0)/sqrt(varx/6)
+
+ tval
+
+```
+
+
+---
+
+# 実証分析問題 4-A (1)
+
+
+```{r}
+
+dat4_a = tibble(
+  school = LETTERS[1:11],
+  before = c(55,52,61,55,63,47,45,54,59,50,43),
+  after= c(55,58,63,59,62,55,51,52,62,49,50),
+  change = c(0,6,2,4,-1,8,6,-2,3,-1,7)
+)
+  
+dat4_a_tab <- dat4_a |> t() |>
+  janitor::row_to_names(row_number = 1) |>
+  as_tibble() |>
+  mutate(across(.fns=~as.numeric(.x))) |>
+  bind_cols("学校" = c("前","後","変化")) |>
+  relocate(学校, .before=A)
+
+knitr::kable(dat4_a_tab)
+
+```
+
+---
+
+# 実証分析問題 4-A (2)
+
+```{r, echo=TRUE}
+ 
+ n_4a = length(dat4_a$change)
+
+ xbar_4a =  mean(dat4_a$change)
+ varx_4a = var(dat4_a$change)    # var() calculates unbiased variance
+ 
+ tval_4a = (xbar_4a-0)/sqrt(varx_4a/n_4a)
+ 
+ pt(q = tval_4a, df = n_4a-1, lower.tail = FALSE)
+ 
+ qt(p=0.05,df = n_4a-1, lower.tail = FALSE)
+ qt(p=0.05/2,df = n_4a-1, lower.tail = FALSE)
+
+
+```
+
+---
+
+# 実証分析問題 4-A (3)
+
+t検定を行う関数 `t.test()`
+
+```{r, echo=TRUE}
+ # function for t-test
+ t.test(dat4_a$change, alternative ="greater")
+```
+
+
+---
+
+# 実証分析問題 4-B (1)
+
+```{r, echo=TRUE}
+
+ # 正規分布
+ qnorm(p=0.025, lower.tail = FALSE)
+
+ # t分布 自由度 5
+ qt(p=0.025, df = 5, lower.tail = FALSE)
+ 
+  # t分布 自由度 10
+ qt(p=0.025, df = 10, lower.tail = FALSE)
+ 
+```
+
+---
+
+# 実証分析問題 4-B (2)
+
+```{r, echo=TRUE}
+  # t分布 自由度 100
+ qt(p=0.025, df = 100, lower.tail = FALSE)
+ 
+  # t分布 自由度 1000
+ qt(p=0.025, df = 1000, lower.tail = FALSE)
+ 
+```
+
+
+---
+
+# 実証分析問題 4-B (3)
+
+```{r, fig.align='center'}
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1),col="red") + 
+  stat_function(fun = dt, n = 101, args = list(df=5),col=c4a("hcl.blues3",4)[1]) + 
+  stat_function(fun = dt, n = 101, args = list(df=10),col=c4a("hcl.blues3",4)[2]) + 
+  stat_function(fun = dt, n = 101, args = list(df=100),col=c4a("hcl.blues3",4)[3],lty=2) + 
+  stat_function(fun = dt, n = 101, args = list(df=1000),col=c4a("hcl.blues3",4)[4],lty=2) + 
+ # ylab("") +
+  annotate("text",x=2,y=0.35,label="正規分布", hjust=0, col="red",family = "HiraKakuProN-W3") + 
+  annotate("text",x=2,y=0.33,label="t分布 自由度 5", hjust=0, col=c4a("hcl.blues3",4)[1],family = "HiraKakuProN-W3") + 
+  annotate("text",x=2,y=0.31,label="t分布 自由度 10", hjust=0, col=c4a("hcl.blues3",4)[2],family = "HiraKakuProN-W3") + 
+  annotate("text",x=2,y=0.29,label="t分布 自由度 100", hjust=0, col=c4a("hcl.blues3",4)[3],family = "HiraKakuProN-W3") + 
+  annotate("text",x=2,y=0.27,label="t分布 自由度 1000", hjust=0, col=c4a("hcl.blues3",4)[4],family = "HiraKakuProN-W3") + 
+  scale_y_continuous(breaks = NULL) + 
+  theme_minimal(base_family = "HiraKakuPro-W3")
+```
+
