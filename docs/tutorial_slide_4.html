@@ -4,7 +4,7 @@
     <title>第四章</title>
     <meta charset="utf-8" />
     <meta name="author" content="阿部景太" />
-    <meta name="date" content="2023-03-20" />
+    <meta name="date" content="2023-03-21" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
@@ -24,7 +24,7 @@ class: center, middle, inverse, title-slide
 ### 阿部景太
 ]
 .date[
-### 2023-03-20
+### 2023-03-21
 ]
 
 ---
@@ -214,8 +214,8 @@ fig_means = ggplot(mean_df,aes(x=factor(sample_size), y=means)) + geom_jitter(wi
 $$
  \lim_{n\rightarrow\infty}P(|\hat{\theta}_n-\theta|&gt;\varepsilon)=0
 $$
-標本サイズが十分に大きければ、推定量 `\(\hat{\theta}_n\)` と `\(\theta\)`の距離（差の絶対値）が$\varepsilon$ より大きくなる確率は0になる。
-`\(\varepsilon\)`は0より大きいがものすごく小さい任意の数を表す。
+標本サイズが十分に大きければ、推定量 `\(\hat{\theta}_n\)` と `\(\theta\)` の距離（差の絶対値）が `\(\varepsilon\)` より大きくなる確率は0になる。
+`\(\varepsilon\)` は0より大きいがものすごく小さい任意の数を表す。
 
 ---
 
@@ -234,7 +234,7 @@ $$
  S^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2
 $$
 
-母分散の不偏推定量：$E[S^2] = \sigma^2$
+母分散の不偏推定量： `\(E[S^2] = \sigma^2\)`
 
 ---
 
@@ -419,6 +419,16 @@ $$
  - データ数を多くする (サンプルサイズが大きくなるとp値が低くなりやすい。)
  - 理由なく異常値を削除する
 
+---
+
+# p-hacking?
+
+&lt;div class="figure"&gt;
+&lt;img src="figs/pub_bias.png" alt="Publication bias in Nature. From: https://twitter.com/mc_hankins/status/505087647476621312" width="80%" /&gt;
+&lt;p class="caption"&gt;Publication bias in Nature. From: https://twitter.com/mc_hankins/status/505087647476621312&lt;/p&gt;
+&lt;/div&gt;
+
+[Twitter@mc_hankins](https://twitter.com/mc_hankins/status/505087647476621312)
 
 ---
 
@@ -443,6 +453,7 @@ $$
 6. それ自体では、P値はモデルや仮説に関する証拠の良い尺度を提供しない
 
 ---
+
 
 # 両側/片側検定
 
@@ -489,7 +500,7 @@ $$
 
 # 練習問題 4-1 (3)
 
-一致性は、$V[\bar{X}] = \frac{\sigma^2}{n}$ から、 `\(n\)`  を大きくすると分散がゼロに近づくことから確認できる。
+一致性は、 `\(V[\bar{X}] = \frac{\sigma^2}{n}\)` から、 `\(n\)`  を大きくすると分散がゼロに近づくことから確認できる。
 
 ---
 
