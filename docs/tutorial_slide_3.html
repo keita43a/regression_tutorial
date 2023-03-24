@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>第三章　練習問題</title>
+    <title>第三章　計量経済学のための確率</title>
     <meta charset="utf-8" />
     <meta name="author" content="阿部景太" />
-    <meta name="date" content="2023-03-16" />
+    <meta name="date" content="2023-03-24" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
@@ -17,7 +17,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# 第三章　練習問題
+# 第三章　計量経済学のための確率
 ]
 .subtitle[
 ## <small>A tutorial for regression analysis</small>
@@ -26,7 +26,7 @@ class: center, middle, inverse, title-slide
 ### 阿部景太
 ]
 .date[
-### 2023-03-16
+### 2023-03-24
 ]
 
 ---
@@ -124,13 +124,13 @@ class: center, middle, inverse, title-slide
 
 # 練習問題 3-5 (1)
 
-&lt;img src="tutorial_slide_3_practice_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="tutorial_slide_3_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # 練習問題 3-5 (2)
 
-&lt;img src="tutorial_slide_3_practice_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="tutorial_slide_3_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -348,6 +348,220 @@ $$
 
 
 `\(E[算数の点数|国語=5点] = 0\times0.25 + 5\times0.50 + 10\times0.25 = 5\)`
+
+---
+
+# 実証分析問題 3-A
+
+- t分布表：両側検定
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.15 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.05 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.025 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.01 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.005 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.001 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.077684 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.165300 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.313752 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.706205 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25.451700 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 63.656741 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 127.321337 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 636.619249 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.885618 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.281931 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.919986 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.302653 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.205347 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.924843 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14.089047 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31.599055 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.637744 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.924320 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.353363 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.182446 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.176535 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.840909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.453318 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.923979 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.533206 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.778192 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.131847 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.776445 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.495406 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.604095 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.597568 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.610302 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.475884 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.699363 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.015048 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.570582 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.163381 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.032143 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.773341 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.868827 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.439756 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.650173 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.943180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.446912 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.968687 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.707428 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.316827 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.958816 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.414924 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.616592 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.894579 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.364624 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.841244 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.499483 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.029337 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.407883 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# 実証分析問題 3-A
+
+- Rで書ける
+
+
+```r
+ t_table_two_tailed &lt;- tibble(
+   df = c(1:30,seq(40,100,10),1000,Inf),
+   p.2= qt(1-0.2/2,df),
+   p.15 = qt(1-0.15/2,df),
+   p.1 = qt(1-0.1/2,df),
+   p.05 = qt(1-0.05/2,df),
+   p.025 = qt(1-0.025/2,df),
+   p.01 = qt(1-0.01/2,df),
+   p.005 = qt(1-0.005/2,df),
+   p.001 = qt(1-0.001/2,df)
+   )
+```
+
+
+
+---
+
+
+# 実証分析問題 3-B (1)
+
+
+```r
+nenshu_mean = 150*(0.38+0.08) + 450*(0.28+0.18) + 700*(0.03+0.05)
+
+nenshu_var = (150-nenshu_mean)^2*(0.38+0.08) + (450-nenshu_mean)^2*(0.28+0.18) + (700-nenshu_mean)^2*(0.03+0.05)
+
+nenshu_mean
+```
+
+[1] 332
+
+```r
+nenshu_var
+```
+
+[1] 32476
+
+
+
+
+---
+
+# 実証分析問題 3-B (2)
+
+
+```r
+grad_mean = 0*(0.38+0.28+0.03) + 1*(0.08+0.18+0.05)
+
+grad_var = (0-grad_mean)^2*(0.38+0.28+0.03) + (1-grad_mean)^2*(0.08+0.18+0.05)
+
+nenshu_grad_cov = (150-nenshu_mean)*(0-grad_mean)*0.38+(150-nenshu_mean)*(1-grad_mean)*0.08+(450-nenshu_mean)*(0-grad_mean)*0.28+(450-nenshu_mean)*(1-grad_mean)*0.18+(700-nenshu_mean)*(0-grad_mean)*0.03+(700-nenshu_mean)*(1-grad_mean)*0.05
+
+nenshu_grad_cov
+```
+
+[1] 25.08
+
+```r
+nenshu_grad_cor = nenshu_grad_cov/(sqrt(grad_var)*sqrt(nenshu_var))
+
+nenshu_grad_cor
+```
+
+[1] 0.3009129
+
+
+
+
+---
+
+# 実証分析問題 3-B (3)
+
+
+```r
+#大卒の条件付き確率 P(Y|X=1)
+
+p_x1 = 0.08+0.18+0.05
+
+nenshu_joken_exp_x1 = 150*(0.08/p_x1) + 450*(0.18/p_x1) + 700*(0.05/p_x1)
+
+nenshu_joken_exp_x1
+```
+
+[1] 412.9032
+
+
+
+---
+
+# 実証分析問題 3-B (4)
+
+
+```r
+#大卒の条件付き確率 P(Y|X=1)
+
+p_x0 = 0.38+0.28+0.03
+
+nenshu_joken_exp_x0 = 150*(0.38/p_x0) + 450*(0.28/p_x0) + 700*(0.03/p_x0)
+
+nenshu_joken_exp_x0
+```
+
+[1] 295.6522
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
