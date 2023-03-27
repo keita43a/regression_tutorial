@@ -15,13 +15,15 @@
 第１章〜第７章を対象に、各自予習と練習問題に取り組んでくる。
 わからない場合は、何がわからないか？を言語化した状態で勉強会で臨むよう準備。
 
+実証分析問題の使用言語：R
+
 
 ## スライド
 
-第１章
-第２章
-第３章
-第４章 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_4.html)
+第１回 [スライド](https://github.com/gakulab/regression_tutorial/blob/main/docs/tutorial_slide_1.pdf)  
+第２回  
+第３回 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_3.html)
+第４回 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_4.html)
 
 ## フォルダ構成
 
