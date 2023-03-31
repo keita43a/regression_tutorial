@@ -20,10 +20,16 @@
 
 ## スライド
 
-第１回 [スライド](https://github.com/gakulab/regression_tutorial/blob/main/docs/tutorial_slide_1.pdf)  
-第２回  
-第３回 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_3.html)
-第４回 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_4.html)
+第１回 なぜ回帰分析をするのか？ [スライド](https://github.com/gakulab/regression_tutorial/blob/main/docs/tutorial_slide_1.pdf)  
+
+第２回 データの扱い方 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_2.html)
+
+第３回 確率論 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_3.html)
+
+第４回統計的推論 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_4.html)
+
+第５回 単回帰分析 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_5.html)
+
 
 ## フォルダ構成
 
