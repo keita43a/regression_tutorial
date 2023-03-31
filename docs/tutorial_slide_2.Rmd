@@ -1,0 +1,128 @@
+---
+title: "第２章 データの扱い方"
+subtitle: "<small>A tutorial for regression analysis</small>"
+author: "阿部景太"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default,ninjutsu,useR-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      coutIncrementalSlides: false
+      ratio: 16:9
+      
+---
+
+<style type="text/css">
+.remark-slide-content {
+    font-size: 30px;
+    font-family: "メイリオ" ;
+    padding: 1em 4em 1em 4em;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+pacman::p_load(
+  tidyverse,
+  knitr,
+  kableExtra,
+  patchwork,
+  cols4all
+)
+
+options(scipen=999)
+```
+
+
+
+# データ
+
+- **個票データ/マイクロデータ**
+
+- **集計データ**
+
+- **クロスセクションデータ**
+
+- **時系列データ**
+
+- **パネルデータ**
+
+---
+
+# 度数分布表とヒストグラム
+
+
+---
+
+# 平均
+
+
+$$
+ \bar{x} = \frac{1}{n}(x_1 + \cdots + x_n)
+$$
+
+$$
+\bar{x} = \frac{1}{n}\sum^{n}_{i=1}x_i
+$$
+
+---
+
+# 分散
+
+$$
+ \sigma^2 = \frac{1}{n}\{( x_1 - \bar{x})^2 + \cdots + ( x_n - \bar{x})^2\} 
+$$
+
+$$
+ \sigma^2 = \frac{1}{n}\sum^{n}_{i=1}( x_i - \bar{x})^2
+$$
+
+---
+
+# もう一つの分散
+
+$$
+ s^2 = \frac{1}{n-1}\sum^{n}_{i=1}( x_i - \bar{x})^2
+$$
+
+---
+
+# 母集団と標本
+
+- **母集団**
+
+  - 母数？
+
+- **サンプルサイズ**
+
+  - サンプル数？
+
+---
+
+# サンプリング
+
+- 無作為抽出 (ランダムサンプリング)
+  - 多段抽出法
+  - 層化抽出法
+
+---
+
+# 共分散
+
+$$
+ \sigma_{xy} = \frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})
+$$
+
+---
+
+# 相関係数
+
+$$
+ \rho = \frac{\sigma_{xy}}{\sigma_x \sigma_y} 
+$$
+
+---
+

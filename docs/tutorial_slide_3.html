@@ -4,8 +4,8 @@
     <title>第三章　計量経済学のための確率</title>
     <meta charset="utf-8" />
     <meta name="author" content="阿部景太" />
-    <meta name="date" content="2023-03-24" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <meta name="date" content="2023-03-31" />
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/useR-fonts.css" rel="stylesheet" />
@@ -16,18 +16,10 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-.title[
 # 第三章　計量経済学のための確率
-]
-.subtitle[
 ## <small>A tutorial for regression analysis</small>
-]
-.author[
 ### 阿部景太
-]
-.date[
-### 2023-03-24
-]
+### 2023-03-31
 
 ---
 
@@ -41,6 +33,81 @@ class: center, middle, inverse, title-slide
 &lt;/style&gt;
 
 
+
+# 確率の公理
+
+1. どのような事象についても、その事象が起きる確率は0以上１以下となる
+
+2. 標本空間の事象のうち**いずれか**が起きる確率は1となる
+
+3. 排反事象の和事象が起きる確率は、それぞれの事象が起きる確率の和となる
+
+---
+
+# 条件付き確率
+
+- ある現象Aが起こっているとわかっている状態での現象Bの確率は？
+
+$$
+  P(B|A)=\frac{P(A\cap B)}{P(A)}
+$$
+
+例：大卒であるとわかっている状態でのその人の収入が1000万円以上である確率 (例3.1) 
+
+$$
+ P(1000万円以上|大卒)=\frac{P(1000万円以上\cap 大卒)}{P(大卒)}=\frac{0.1}{0.5}=0.2
+$$
+---
+
+# 確率関数
+
+$$
+ P(X=x)
+$$
+`\(X\)` は確率変数、 `\(x\)` は実現値。 `\(p_{x}(x)\)` と書くことも。
+
+例：
+
+$$
+ P(X=1) = 0.5
+$$
+
+---
+
+# 定義3.3
+
+- `\(0 &lt; p_{x}(x_i)\leq 1 \ i=1,\ldots,M\)`
+- $\sum_{i=1}^{M} p_{X}(x_i) = 1 $
+
+確率の公理を確認
+
+---
+
+# 累積分布関数
+
+$$
+ F_{X}(x) = P(X\leq x)=p_X(x_1) + p_X(x_2) + \cdots + p_X(x_J)
+$$
+
+ただし、 `\(x_J \leq x \leq x_{J+1}\)`
+
+---
+
+# 期待値
+
+$$
+ E[X] = x_1\times p_X(x_1) + \cdots + x_M\times p_X(x_M) = \sum_{i=1}^{M}x_{i}\times p_X(x_i)
+$$
+
+---
+
+# 確率変数の分散
+
+$$
+ V[X] = E[(X-\mu)^2] = \sum_{i=1}^M (x_i - \mu)^2\times p_X(x_i)
+$$
+
+---
 
 # 練習問題 3-1
 
@@ -610,19 +677,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
