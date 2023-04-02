@@ -4,20 +4,30 @@
     <title>第五章 単回帰分析</title>
     <meta charset="utf-8" />
     <meta name="author" content="阿部景太" />
-    <meta name="date" content="2023-03-24" />
-    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <meta name="date" content="2023-04-02" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/useR-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # 第五章 単回帰分析
+]
+.subtitle[
 ## <small>A tutorial for regression analysis</small>
+]
+.author[
 ### 阿部景太
-### 2023-03-24
+]
+.date[
+### 2023-04-02
+]
 
 ---
 
@@ -57,7 +67,17 @@ $$
 
 ---
 
-# 関係のモデル化
+# 回帰分析
+
+**回帰分析**は、成果変数の期待値 `\(E[Y|X]\)` を説明変数の関数として**モデル化**
+
+$$
+ E[Y|X] = f(X)
+$$
+
+---
+
+# 回帰分析：単回帰モデル
 
 単回帰モデルは、政策変数の実現値で条件付けした成果変数の期待値を次のようにモデル化する
 
@@ -129,9 +149,9 @@ $$
 
 # 因果関係を示すための条件
 
-外的条件が完全に制御されている（例：実験）状況から得られたデータであれば、得られたパラメター `\(beta_1\)` を因果効果として解釈することは可能
+外的条件が完全に制御されている状況から得られたデータ（例：実験）であれば、得られたパラメター `\(beta_1\)` を**因果効果**として解釈することは可能
 
-しかし、外的条件が制御されていない場合は、単なる相関関係を表しているに過ぎない。
+しかし、外的条件が制御されていない場合は、単なる**相関関係**を表しているに過ぎない。
 
 これが因果効果であると示すにはいくつかの条件を満たす必要
 
@@ -141,7 +161,7 @@ $$
 
 説明変数 `\(X\)` と 誤差項 `\(U\)` は平均独立 : E[U|X]=E[U]
 
-例：朝ごはんを食べてないグループの誤差項が食べたグループの誤差項より低いなら、外的条件が揃っているとはいえないのでは。
+例：朝ごはんを食べてないグループの誤差項が食べたグループの誤差項より低いなら、外的条件が揃っているとはいえない。
 
 $$
  E[U_i | X_i = 1] &gt; E[U_i | X_i = 0]
@@ -182,15 +202,609 @@ $$
  = \beta_0 + \beta_1 X + E[U] = \beta_0 + \beta_1 X
 $$
 
+
 ---
 
-# 確認問題 5-1 
+# 最小二乗法
+
+- パラメター化されたモデルのパラメターを**推定**する。  
+  - どうやって？
+  - **最小二乗法** (OLS: ordinary least squares) 
+
+- データ：標本サイズが `\(n\)` 
+  - 分析したい母集団からの無作為抽出データ
+  - `\(\{(x_i, y_i)\}\)` for `\(i=1,\ldots,n\)`
+
+- 仮定1と2が成立している仮定
+
+---
+
+# 最小二乗法の２つの考え方
+
+２つの考え方があるが、実質的には同じことをしている
+
+- モーメント法
+
+- 残差二乗和の最小化
+
+---
+
+# モーメント法
+
+モーメント条件という方程式を解くことで、パラメターを推定する方法
+
+**考え方**
+
+- 仮定が成り立っているならば、期待値で構成されるモーメント条件が成り立
+- モーメント条件から、パラメターを解ける
+- モーメント条件をデータの標本平均で置き換えて推定
+
+---
+
+# モーメント条件
+
+仮定1と2より
+
+$$
+ E[U|X] = E[U] = 0
+$$
+
+また、平均独立であれば、相関（共分散）もゼロになる
+
+$$
+ Cov[X,U] = 0
+$$
+
+これらの仮定より、 `\(X\)` と `\(U\)` をかけ合わせたものの期待値もゼロになる
+
+$$
+ E[XU] = 0
+$$
+
+---
+
+# モーメント条件 2
+
+`\(E[U] = 0\)` と `\(E[XU] = 0\)` という条件に、単回帰モデルを代入する。単回帰モデル `\(Y=\beta_0 + \beta_1 X + U\)` を変形すると
+
+$$
+ U = Y-\beta_0 - \beta_1 X
+$$
+なので、代入して**モーメント条件**を導出する。
+
+$$
+ E[Y-\beta_0 - \beta_1 X] = 0 \ \ \ (5.3)
+$$
+$$
+ E[X(Y-\beta_0 - \beta_1 X)] = 0 \ \ \ (5.4)
+$$
+
+---
+
+# モーメント条件の解
+
+モーメント条件を、データを所与、パラメターを未知数として解く
+
+式(5.3)を期待値の性質( `\(E[X+Y] = E[X] + E[Y]\)` )を使うと、
+
+$$
+ E[Y] - \beta_0 - \beta_1 E[X]
+$$
+
+となり、変形すると
+
+$$
+ \beta_0 = E[Y] - \beta_1 E[X] \ \ \ ★
+$$
+
+となる。
+
+---
+
+# モーメント条件の解 2
+
+式5.4の左辺を展開して期待値の性質を適用
+
+$$
+ E[X(Y-\beta_0 - \beta_1 X)] = E[XY] - \beta_0E[X] - \beta_1E[XX]
+$$
+
+そして、前スライドの★を `\(\beta_0\)` 代入する。 
+なんで？ 未知数２つのうち、一つを"消す"
+
+
+$$
+ = E[XY] - (E[Y] - \beta_1 E[X])E[X] - \beta_1E[XX] \\\\ 
+ = E[XY] - E[Y]E[X] - \beta_1(E[XX] - E[X]E[Y]) \\\\
+ = Cov[X,Y] - \beta_1V[X]
+$$
+
+---
+
+# モーメント条件の解 3
+
+式5.4を見返すと、この式の値が０であるので、
+
+$$
+ Cov[X,Y] - \beta_1V[X] = 0
+$$
+
+すなわち、
+
+$$
+ \beta_1V[X] = Cov[X,Y]
+$$
+
+これを `\(\beta_1\)` について解くと
+
+$$
+ \beta_1 = \frac{Cov[X,Y]}{V[X]}
+$$
+
+---
+
+# モーメント条件の解 4
+
+`\(\beta_1\)` が解けた（=所与であるデータのみで書き表せた）ので、これもう一つのモーメント条件(式5.3)から得られた式★に代入する
+
+$$
+ \beta_0 = E[Y]-\frac{Cov[X,Y]}{V[X]}E[X]
+$$
+
+このように、母集団分布の期待値（分散・共分散）の関係から、回帰パラメターを計算することができる。
+
+---
+
+# モーメント法による推定
+
+実際には、期待値をデータからの標本分散で置き換える
+  - 例： `\(E[X]\)` を `\(\bar{X}\)` で置き換え
+
+$$
+ \hat{\beta_1} = \frac{\frac{1}{n}\sum(x_i-\bar{x})(y_i-\bar{y})}{\frac{1}{n}\sum(x_i-\bar{x})^2}
+$$
+
+$$
+ \hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x}
+$$
+
+---
+
+# パラメターの解釈
+
+`\(\beta_1\)` は１次関数の傾き
+
+例：修学年数( `\(X\)` 年)が増えると、年収( `\(Y\)` 万円)がどれだけ増えるか？
+
+「修学年数が１年増えると、年収が `\(\beta_1\)` 万円増える」
+--
+
+年収の単位に依存するので、 `\(Y\)` が千円単位で集計されていれば、解釈が変わる
+
+--
+単位に依存しない方法があるとすれば？
+
+---
+
+# パラメターの解釈：ログレベルモデル
+
+被説明変数を自然対数に変換すると、Xが１単位増えるとYが何%増えるか？を調べることができる
+
+$$
+ \ln Y = \beta_0 + \beta_1 X + U
+$$
+
+もしXが `\(\Delta X\)` 分増加すると、
+
+$$
+ \ln (Y + \Delta Y) = \beta_0 + \beta_1 (X + \Delta X) + U
+$$
+
+---
+
+# パラメターの解釈：ログレベルモデル 2
+
+差分を取ると、 `\(\beta_1 \Delta X\)` が差となる
+
+$$
+  \ln (Y + \Delta Y) -  \ln Y = \beta_1 \Delta X
+$$
+
+この左辺は
+
+$$
+   \ln (Y + \Delta Y) -  \ln Y = \ln\left(1 + \frac{\Delta Y}{Y} \right) \fallingdotseq  \frac{\Delta Y}{Y}
+$$
+つまり、％変化として近似できる。
+
+ログ-レベルモデルでは、「Xの微小な変化(1単位の変化)が、 `\(\beta_1 \times 100\)` %増える」という解釈ができる 
+
+---
+
+# 例 5.1. レベルモデル
+
+
+```r
+dat_income &lt;- read_csv("../data/tanaka_data/csv/5_1_income.csv")
+reg5.1 = lm(income ~ yeduc, data=dat_income)
+```
+
+$$
+  Y = \beta_0 + \beta_1 X + U
+$$
+
+`\(\hat{\beta_1} = 23.151\)` → 修学年数が１年伸びると、年収が23.2万円増加
+
+---
+
+# 例 5.1. レベルモデル
+
+
+```r
+summary(reg5.1)
+```
+
+```
+## 
+## Call:
+## lm(formula = income ~ yeduc, data = dat_income)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -330.42 -117.22  -13.52   86.48 1177.23 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -56.893     19.357  -2.939  0.00331 ** 
+## yeduc         23.151      1.384  16.725  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 171.1 on 4325 degrees of freedom
+## Multiple R-squared:  0.06074,	Adjusted R-squared:  0.06053 
+## F-statistic: 279.7 on 1 and 4325 DF,  p-value: &lt; 2.2e-16
+```
+
+
+---
+
+# 例 5.1. ログレベルモデル
+
+
+
+```r
+reg5.1_log = lm(lincome ~ yeduc, data=dat_income)
+```
+
+$$
+  \ln Y = \beta_0 + \beta_1 X + U
+$$
+
+`\(\hat{\beta_1} = 0.065\)` → 修学年数が１年伸びると、年収が6.5%増加
+
+---
+
+# 例 5.1. ログレベルモデル
+
+
+```r
+summary(reg5.1_log)
+```
+
+```
+## 
+## Call:
+## lm(formula = lincome ~ yeduc, data = dat_income)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.6607 -0.3391  0.2237  0.5634  2.1240 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 4.385204   0.100312  43.716   &lt;2e-16 ***
+## yeduc       0.065180   0.007174   9.086   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.8868 on 4325 degrees of freedom
+## Multiple R-squared:  0.01873,	Adjusted R-squared:  0.0185 
+## F-statistic: 82.56 on 1 and 4325 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+
+# 例 5.1. ログログモデル
+
+
+
+```r
+reg5.1_loglog = lm(lincome ~ lyeduc, data=dat_income)
+```
+
+$$
+  \ln Y = \beta_0 + \beta_1 \ln X + U
+$$
+
+`\(\hat{\beta_1} = 0.8127\)` → 修学年数が１%伸びると、年収が0.81%増加
+
+---
+
+# 例 5.1. ログレベルモデル
+
+
+```r
+summary(reg5.1_loglog)
+```
+
+```
+## 
+## Call:
+## lm(formula = lincome ~ lyeduc, data = dat_income)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.6295 -0.3400  0.2172  0.5786  2.1179 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.15946    0.25869  12.213  &lt; 2e-16 ***
+## lyeduc       0.81273    0.09862   8.241 2.24e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.8883 on 4325 degrees of freedom
+## Multiple R-squared:  0.01546,	Adjusted R-squared:  0.01523 
+## F-statistic: 67.91 on 1 and 4325 DF,  p-value: 2.241e-16
+```
+
+
+---
+
+# 最小二乗法の別解
+
+残差の二乗和を最小にするパラメターを求める
+
+&lt;img src="tutorial_slide_5_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+赤で示された部分が残差: `\(\hat{u} = y-\hat{y}\)`
+
+---
+
+# 最小二乗法
+
+残差の二乗和の最小化問題を解くと、回帰パラメターを得られる
+
+$$
+ \min_{\hat{\beta_0},\hat{\beta_1}}\sum^{n} \hat{u}_i^2 = \sum^{n} (y_i -\hat{\beta_0} - \hat{\beta_1} x_i)^2 \ \ \ ☆
+$$
+
+---
+
+# 最適化問題
+
+.pull-left[
+
+**最小化問題**？
+
+ある関数が最小値を取る状態を解析する問題
+
+微分してゼロ（フラット）なところが(局所的に)最小
+
+]
+
+.pull-right[
+
+![](tutorial_slide_5_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+
+# 最小二乗法 2
+
+式☆を `\(\hat{\beta_0},\hat{\beta_1}\)` について微分してゼロと置くと、
+
+$$
+ \sum^n (y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0 \\\\
+ \sum^n x_i(y_i - \hat{\beta_0} - \hat{\beta_1}x_i) = 0
+ 
+$$
+となり、これはモーメント条件をデータで置き換えたものと同じものとなる。(実際には `\(n\)` を両辺に掛けたものと同じ)
+
+---
+
+# 決定係数 (1)
+
+単回帰で求めた１次関数がどの程度データを説明しているのか？
+
+.pull-left[
+
+![](tutorial_slide_5_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+![](tutorial_slide_5_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+
+# 決定係数 (2)
+
+被説明変数 `\(Y\)` のばらつき（**総変動**）のうち、どれぐらいが説明変数 `\(X\)` によって説明されるのか？
+
+説明される度合いが高ければ、当てはまりが良い
+
+→総変動にたいする残差二乗和の変動の割合が低い
+
+**決定係数**: 総変動に占める残差変動の割合
+
+$$
+ R^2 = 1 - \frac{\sum\hat{u}^2_i}{\sum (y_i - \bar{y})^2}
+$$
+
+---
+
+# 例 5.1 決定係数
+
+
+
+```r
+summary(reg5.1)
+```
+
+```
+## 
+## Call:
+## lm(formula = income ~ yeduc, data = dat_income)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -330.42 -117.22  -13.52   86.48 1177.23 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -56.893     19.357  -2.939  0.00331 ** 
+## yeduc         23.151      1.384  16.725  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 171.1 on 4325 degrees of freedom
+## Multiple R-squared:  0.06074,	Adjusted R-squared:  0.06053 
+## F-statistic: 279.7 on 1 and 4325 DF,  p-value: &lt; 2.2e-16
+```
+
+
+---
+
+# 最小二乗法はよい推定量か？
+
+よい推定量とは？
+
+--
+
+**不偏性** : `\(E[\hat{\beta}]=\beta\)`
+
+--
+
+**一致性** : `\(\hat{\beta}_n \rightarrow_p \beta\)`
+
+--
+
+**効率性** : `\(V[\hat{\beta}] &lt; V[\hat{\beta}^*]\)`
+
+
+
+---
+
+# 不偏性のための4つの仮定
+
+1. **真のモデル** : 母集団分布において、確率変数 `\((Y,X,U)\)` の間には次のような関係がある: `\(Y=\beta_0 + \beta_1X+U\)`
+
+2. **無作為抽出** : 母集団から標本サイズ `\(n\)` の無作為抽出標本 `\(\{(x_i,y_i)\}\)`が得られる
+
+3. **平均独立** : `\(E[U|X] = 0\)`
+
+4. **識別条件** : 説明 `\(X\)` に変動がある
+
+---
+
+# 最小二乗推定量の分散 (1)
+
+誤差項が分散均一の場合を仮定
+
+$$
+ V[U|X] = V[U] = s^2
+$$
+
+傾きパラメターの条件付き分散は誤差項の分散を説明変数の変動で割ったもの
+
+$$
+ V[\hat{\beta_1}|x_1,\ldots,x_n] = \frac{n^2}{\sum (x_i - \bar{x})^2}
+$$
+
+---
+
+# 最小二乗推定量の分散 (2)
+
+切片パラメターの条件付き分散は
+
+$$
+ V[\hat{\beta_0}|x_1,\ldots,x_n] = s^2\left(\frac{1}{n} + \frac{\bar{x}^2}{\sum (x_i - \bar{x})^2}\right)
+$$
+
+- 誤差項の分散 `\(s^2\)` が大きいと、推定量の分散が大きくなる
+- 説明変数の変動が大きいと、推定量の分散は小さくなる
+- 標本サイズが大きいと説明変数の変動が大きくなるので、推定量の分散は小さくなる傾向
+
+---
+
+# 誤差項の分散の推定
+
+誤差項 `\(U\)` は観察されないが、残差 `\(u_i\)` は推定の結果として観察されるため、これを推定値として使う
+
+誤差項の不偏分散は
+
+$$
+ \hat{s}^2 = \frac{1}{n-2}\sum\hat{u_i}^2
+$$
+
+パラメータが2つあるため、標本サイズ `\(n\)` から2引いたものが、自由度となる
+
+---
+
+# 例 5.3  誤差項の分散
+
+
+
+```r
+res = sum(residuals(reg5.1)^2)
+print(res)
+```
+
+```
+## [1] 126657674
+```
+
+```r
+var = res/(nrow(dat_income)-2)
+print(var)
+```
+
+```
+## [1] 29285.01
+```
+
+
+
+
+---
+
+# OLS is BLUE
+
+最小二乗法(OLS: Ordinary Least Square)はBLUE
+
+**B**est **L**inear **U**nbiased **E**stimator
+
+つまり最良線形不偏推定量
+
+最良とは最も効率的であるということ。
+
+回帰分析の中で最も効率的な線形の推定量であることが、ガウス=マルコフ定理という定理で証明されている
+
+---
+
+# 確認問題 5-1
 
 .pull-left[
  (1) y = -5 + 2x
-
-![](tutorial_slide_5_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
-
+ 
+![](tutorial_slide_5_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -198,13 +812,147 @@ $$
 
  (2) y = 2 - x
 
-![](tutorial_slide_5_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
-
+![](tutorial_slide_5_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ]
 
+---
+
+# 実証分析問題 5-A
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 3 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -56.893 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.385 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.159 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (19.357) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.100) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.259) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; yeduc &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 23.151 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.065 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (1.384) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; lyeduc &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.813 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.099) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4327 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4327 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4327 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.061 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.019 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.015 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 Adj. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.061 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.019 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.015 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# 実証分析問題 5-B
 
 
+```r
+dat_sleep = read_csv("../data/tanaka_data/csv/5_2_sleep.csv")
+reg_5.2 = lm(sleep~commute,dat=dat_sleep)
+summary(reg_5.2)
+```
+
+```
+## 
+## Call:
+## lm(formula = sleep ~ commute, data = dat_sleep)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -145.18  -31.09   -1.88   27.32  191.53 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 431.76526    1.29258  334.03   &lt;2e-16 ***
+## commute      -0.55300    0.03147  -17.57   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 44.86 on 3724 degrees of freedom
+## Multiple R-squared:  0.07655,	Adjusted R-squared:  0.0763 
+## F-statistic: 308.7 on 1 and 3724 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+
+# 実証分析問題 5-C
+
+
+```r
+dat_abe = read_csv("../data/tanaka_data/csv/5_3_abe.csv")
+reg_5.3 = lm(abe~income,dat=dat_abe)
+summary(reg_5.3)
+```
+
+```
+## 
+## Call:
+## lm(formula = abe ~ income, data = dat_abe)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -43.437  -9.231   2.175   8.093  46.601 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 43.4371610  0.3277382 132.536  &lt; 2e-16 ***
+## income      -0.0030593  0.0009287  -3.294 0.000995 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 14.38 on 4274 degrees of freedom
+## Multiple R-squared:  0.002533,	Adjusted R-squared:  0.002299 
+## F-statistic: 10.85 on 1 and 4274 DF,  p-value: 0.0009945
+```
+
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -253,6 +1001,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
