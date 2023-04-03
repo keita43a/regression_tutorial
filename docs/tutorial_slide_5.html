@@ -4,8 +4,8 @@
     <title>第五章 単回帰分析</title>
     <meta charset="utf-8" />
     <meta name="author" content="阿部景太" />
-    <meta name="date" content="2023-04-02" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <meta name="date" content="2023-04-03" />
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/useR-fonts.css" rel="stylesheet" />
@@ -16,18 +16,10 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-.title[
 # 第五章 単回帰分析
-]
-.subtitle[
 ## <small>A tutorial for regression analysis</small>
-]
-.author[
 ### 阿部景太
-]
-.date[
-### 2023-04-02
-]
+### 2023-04-03
 
 ---
 
@@ -818,6 +810,150 @@ print(var)
 
 ---
 
+# 確認問題 5-2 (1) 標本平均
+
+(1) `\(x\)` と$y$ の平均
+
+
+```r
+xbar5_2 = (-2-1+0+1+2)/5; xbar5_2
+```
+
+```
+## [1] 0
+```
+
+
+```r
+ybar5_2 = (-4-2+3+1+2)/5; ybar5_2
+```
+
+```
+## [1] 0
+```
+
+---
+
+# 確認問題 5-2 (2) 標本分散と共分散
+
+
+```r
+varx5_2= ((-2)^2+(-1)^2+0^2+1^2+2^2)/(5-1); varx5_2
+```
+
+```
+## [1] 2.5
+```
+
+
+```r
+covxy5_2= ((-2)*(-4)+(-1)*(-2)+0*3+1*1+2*2)/(5-1); covxy5_2
+```
+
+```
+## [1] 3.75
+```
+
+---
+
+# 確認問題 5-2 (3) パラメター推定値
+
+
+```r
+beta1 = covxy5_2/varx5_2; beta1
+```
+
+```
+## [1] 1.5
+```
+
+
+```r
+beta0 = ybar5_2 - (covxy5_2/varx5_2)*xbar5_2; beta0
+```
+
+```
+## [1] 0
+```
+
+---
+
+# 確認問題 5-2 (4) 残差
+
+
+```r
+x = c(-2,-1,0,1,2)
+y = c(-4,-2,3,1,2)
+
+res = y - beta1*x;res
+```
+
+```
+## [1] -1.0 -0.5  3.0 -0.5 -1.0
+```
+
+---
+
+# 確認問題 5-2 (5) 決定係数
+
+
+```r
+# 残差二乗和
+SSR = sum(res^2);SSR
+```
+
+```
+## [1] 11.5
+```
+
+```r
+# yの総変動
+SVY = sum((y-ybar5_2)^2);SVY
+```
+
+```
+## [1] 34
+```
+
+```r
+# 決定係数
+R2 = 1-SSR/SVY; R2
+```
+
+```
+## [1] 0.6617647
+```
+
+---
+
+# 確認問題 5-2 (6) 誤差項の分散
+
+
+```r
+s2 = SSR/(5-2);s2
+```
+
+```
+## [1] 3.833333
+```
+
+---
+
+# 確認問題 5-2 (7) パラメターの分散
+
+
+```r
+V_beta1 = s2/sum((x-xbar5_2)^2);V_beta1
+```
+
+```
+## [1] 0.3833333
+```
+
+
+
+---
+
 # 実証分析問題 5-A
 
 &lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
@@ -832,7 +968,7 @@ print(var)
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; -56.893 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −56.893 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 4.385 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 3.159 &lt;/td&gt;
   &lt;/tr&gt;
@@ -883,6 +1019,12 @@ print(var)
    &lt;td style="text-align:center;"&gt; 0.061 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 0.019 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 0.015 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; RMSE &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 171.13 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.89 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.89 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1001,19 +1143,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
