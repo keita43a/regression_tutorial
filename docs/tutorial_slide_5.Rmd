@@ -685,7 +685,7 @@ $$
 傾きパラメターの条件付き分散は誤差項の分散を説明変数の変動で割ったもの
 
 $$
- V[\hat{\beta_1}|x_1,\ldots,x_n] = \frac{n^2}{\sum (x_i - \bar{x})^2}
+ V[\hat{\beta_1}|x_1,\ldots,x_n] = \frac{s^2}{\sum (x_i - \bar{x})^2}
 $$
 
 ---
