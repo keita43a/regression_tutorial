@@ -30,6 +30,8 @@
 
 第５回 単回帰分析 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_5.html)
 
+第６回 重回帰分析 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_6.html)
+
 
 ## フォルダ構成
 
