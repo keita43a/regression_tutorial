@@ -228,7 +228,7 @@ summary(rei6.2)
 真のモデルが
 
 $$
- Y=\beta_0 + \beta_1X + \beta2_C + U
+ Y=\beta_0 + \beta_1X + \beta_2C + U
 $$
 
 なのに、単回帰モデルを推定してしまったら？
@@ -262,10 +262,10 @@ $$
  \hat{\beta_1} = \frac{\frac{1}{n}\sum(x_i-\bar{x})(y_i-\bar{y})}{\frac{1}{n}\sum(x_i-\bar{x})^2}
 $$
 
-だが、真のモデルは $ Y=\beta_0 + \beta_1X + \beta2_C + U$ なので、代入してして期待値を取ると
+だが、真のモデルは $Y=\beta_0 + \beta_1X + \beta_2C + U$  なので、代入してして期待値を取ると
 
 $$
- E[\hat{\beta}_1] = \beta_1 + \beta_2\gamma
+ E[\hat{\beta}_1] = \beta_1 + \beta_2\gamma_1
 $$
 
 つまりどういうことか？
@@ -441,7 +441,7 @@ $$
 $$
 
 
-この帰無仮説の下で、$\hat{\beta_1}$が得られる確率が有意水準より低ければ、「効果がない」という仮説を棄却して、対立仮説である「効果がある」という結論を採択する
+この帰無仮説の下で、 $\hat{\beta_1}$ が得られる確率が有意水準より低ければ、「効果がない」という仮説を棄却して、対立仮説である「効果がある」という結論を採択する
 
 ---
 
@@ -633,7 +633,7 @@ ex6_B = lm(mocograd ~ pacograd, data=dat6_2_yeduc); summary(ex6_B)
 
 残差をデータに統合
 
-```{r}
+```{r,echo=TRUE}
 dat6_2_yeduc$res = residuals(ex6_B)
 ```
 
