@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R入門</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="阿部景太" />
+    <meta name="date" content="2023-05-10" />
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/useR-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R入門
+## <small>A tutorial for R</small>
+### 阿部景太
+### 2023-05-10
+
+---
+
+
+&lt;style type="text/css"&gt;
+.remark-slide-content {
+    font-size: 30px;
+    font-family: "メイリオ" ;
+    padding: 1em 4em 1em 4em;
+}
+&lt;/style&gt;
+
+
+
+
+
+# R?
+
+- 　**R** は統計、データ分析、作図のためのインタープリタープログラミング言語
+
+- 統計やデータ分析を行うアプリ
+  - 他にはSPSS, Stata
+  - Pythonもよく使われる
+
+---
+
+# Rのよいところ
+
+- 無料
+- 多くにプラットフォーム（MacOS, Windows, Linux)で使用可能
+- たくさんの資料がネット上に存在する
+- 分析結果をプレゼンテーションするツールが充実している
+ - Rstudio: 統合開発環境(IDE)
+ - Shiny: 相互的な作図などができるアプリ [例](https://keita43a.shinyapps.io/easter_island/)
+- 豊富なパッケージ
+  - 多くのエンジニアや研究者が公開
+
+---
+
+# Rの欠点
+
+- Rは進化が早い
+- 遅い
+  - 一般的なデータ分析をするのには問題がない
+  - ビッグデータや複雑な統計モデルを走らせると、遅かったりメモリ消費が激しい
+- CUIなので、最初の学習が難しい
+  
+---
+
+# CUIとGUI
+
+- CUI: Character User Interface
+  - 命令を文字で行う（キーボードを使う）操作環境
+
+- GUI: Graphic User Interface
+  - マウスでクリックしながら使う操作環境
+
+---
+
+# GUIの方が楽？
+
+- GUIの方が楽では？
+  - マウスで操作ができる方がよさそう？
+
+--
+
+- CUIは記録ができる
+  - 何度も同じ操作を覚えている
+  - 人が書いた一連の操作（コード）をコピー・参考にできる
+  - 柔軟性が高い
+
+---
+
+# 統合開発環境 IDE
+
+- IDE: Integrated Development Environment
+  - ソフトウェア開発や、データ分析のプロセスをワンストップで行える環境
+ - 一部GUIを導入したり、CUIによる操作をアシストする
+- 特に強い好みがない限り、**Rstudio**をおすすめ
+
+---
+
+# RとRstudioのインストール
+
+- 学校のパソコンにはすでにインストールされている
+- 自分のパソコンに導入したい人は[このスライド](https://speakerdeck.com/s_uryu/introduction-to-r)か[ここ](https://yukiyanai.github.io/jp/resources/)にある「RとRStudioのインストール方法の解説」を参照
+
+---
+
+# コンピュータのディレクトリ構造
+
+&lt;div class="figure"&gt;
+&lt;img src="fig/directory_structure.png" alt="ディレクトリ構造" width="90%" /&gt;
+&lt;p class="caption"&gt;ディレクトリ構造&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# ゼミフォルダ
+
+ゼミフォルダを作る
+
+- 自分の学生番号のドライブ(例 s1234567)の下に abezemi フォルダを作成
+
+---
+
+# 作業スペース
+
+コンピューター上では、どこかのディレクトリ（フォルダ）が作業場所になっている。
+今の作業場所は`getwd()`で表示できる。
+
+
+```r
+getwd()
+```
+
+これを変更するには`setwd(path)`で変更できる
+
+
+```r
+setwd("j:/abezemi/r_renshu")
+```
+
+もう一度`getwd()`すると変更されているはず
+
+---
+
+# プロジェクトの作成
+
+作業場所を指定しても、ファイルの管理が面倒だったりする。
+
+RStudioのRプロジェクトという機能を使うと、以下のメリットがある
+
+- データやスクリプト（コード）へのアクセスが容易
+- Git によるバージョン管理のベースにもなる
+- 異なる環境でも同じ作業スペースが設定される
+
+---
+
+# Rプロジェクトの作成
+
+- File -&gt; "New Project"
+  -もしくは右上の "Project (none)"
+
+- New Directoryでプロジェクトを作成
+
+- "New Project"を選択
+
+- プロジェクト名を入力: r_renshu 
+ - 英語で。日本語は使えない（もしくはトラブルの元になる）
+
+---
+
+# スクリプトの作成
+
+Rとの"対話"は、Rstudioの左下の区画(Console)で行われる。
+そのままConsoleに入力しても機能するが、**スクリプト**に書くことで、
+記録を残しながらRに命令を与えることができる。
+
+**作成**
+- File -&gt; New File -&gt; R script
+- もしくは左上の区画の白い資格に緑の＋マークのところから、R Script
+
+**保存**
+- File -&gt; Save
+- フロッピーのアイコン
+
+
+---
+
+# 実行してみる
+
+R scriptに以下のように書く
+
+
+```r
+print("Hello World!")
+```
+
+```
+## [1] "Hello World!"
+```
+
+カーソルが同じ行にあることを確認して、Runをクリック
+もしくは、Ctrlを押しながらEnter
+
+"Hello World!"と表示されれば成功。
+
+---
+
+# スクリプトの書く際の注意点
+
+R script上では\#から始まる行は、コメントとして認識され、実行するとコンソールには表示されるが、何も起こらない。メモなどを書く際に使う。
+
+
+```r
+# これは初めてのRのコードです。
+print("Hello World")
+```
+
+```
+## [1] "Hello World"
+```
+
+もしくは一度使ったが、今は実行したくないコードを一時的に向こうにする（コメントアウト）
+
+
+```r
+# print("Good Evening")
+```
+
+
+---
+
+# 計算機としてのR
+
+
+```r
+# 足し算
+1 + 1
+```
+
+```
+## [1] 2
+```
+
+
+```r
+#掛け算は * 
+2 * 3
+```
+
+```
+## [1] 6
+```
+
+---
+
+# 計算機としてのR
+
+
+```r
+# 割り算は /
+(2+7)/3
+```
+
+```
+## [1] 3
+```
+
+
+```r
+# 割り切れない場合はある程度まで桁が表示
+10/3
+```
+
+```
+## [1] 3.333333
+```
+
+---
+
+# 論理演算
+
+書いてあることが真か偽か？
+
+
+```r
+# 「10は5より大きい」という命題は正しい？
+10 &gt; 5
+```
+
+```
+## [1] TRUE
+```
+
+
+```r
+# 「等しい」は=が2つ == 
+"musashi" == "musashi"
+```
+
+```
+## [1] TRUE
+```
+
+
+```r
+"musashi" == "634"
+```
+
+```
+## [1] FALSE
+```
+
+
+---
+
+# 変数へのオブジェクトの代入
+
+
+```r
+# x や yという「入れ物」に数字を代入
+x &lt;- 8
+y &lt;- 3
+
+z &lt;- x + y
+z
+```
+
+```
+## [1] 11
+```
+
+---
+
+# データ型
+
+Rのオブジェクトにはいくつかの「型」がある
+
+
+```r
+# 実数
+x &lt;- 8
+mode(x)
+```
+
+```
+## [1] "numeric"
+```
+
+
+```r
+# 文字列
+y &lt;- "musashi"
+mode(y)
+```
+
+```
+## [1] "character"
+```
+
+---
+
+# データ型：注意点
+
+数字であっても文字列として扱われていると、計算ができない
+
+
+```r
+# 数字だが文字列
+z &lt;- "5"
+mode(z)
+```
+
+```
+## [1] "character"
+```
+
+
+```r
+z + 6
+```
+
+```
+## Error in z + 6: non-numeric argument to binary operator
+```
+
+---
+
+# データ型の変換
+
+
+```r
+# データ型のチェック
+mode(z)
+```
+
+```
+## [1] "character"
+```
+
+```r
+# 実数かどうか？
+is.numeric(z)
+```
+
+```
+## [1] FALSE
+```
+
+
+```r
+# データ型を実数に変換して再度zに代入
+z &lt;- as.numeric(z)
+# 再度チェック
+is.numeric(z)
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+# ベクトル
+
+順序のある要素の集まりをベクトルと呼ぶ。
+`c()`関数で作成することができる。
+
+
+```r
+v1 &lt;- c(1,2,3,4,5)
+v1
+```
+
+```
+## [1] 1 2 3 4 5
+```
+
+ベクトルは、文字や論理値など取ることができる。
+
+
+```r
+v2 &lt;- c("musashi","nerima","ekoda")
+v2
+```
+
+```
+## [1] "musashi" "nerima"  "ekoda"
+```
+
+
+```r
+v3 &lt;- c(FALSE,TRUE,TRUE,FALSE)
+v3
+```
+
+```
+## [1] FALSE  TRUE  TRUE FALSE
+```
+
+
+---
+
+# ベクトルの型
+
+異なるデータ型を同じベクトルに混ぜることはできない。
+混ぜると、一定のルールに基づいてある型が他の型より優先される
+
+
+
+```r
+# 数値と論理値を混ぜると、数値になる。(FALSE-&gt;0, TRUE-&gt;1)
+v4 &lt;- c(FALSE,1,TRUE)
+v4 
+```
+
+```
+## [1] 0 1 1
+```
+
+
+```r
+# 数値と論理値と文字列を混ぜると、全部文字列になる
+
+v5 &lt;- c(FALSE,1,"musashi")
+v5
+```
+
+```
+## [1] "FALSE"   "1"       "musashi"
+```
+
+---
+
+# ベクトル：連続した数値
+
+連続した数値を入力したい場合はコロン`:`を使う
+
+
+```r
+v6 &lt;- c(1:10)
+v6
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+nずつ増える数列を作りたい場合は、`seq()`関数を使う
+
+
+```r
+# 例：2から50まで２ずつ増える数列
+v7 &lt;- seq(2,50,by=2)
+```
+
+**練習問題**：3から60まで3ずつ増える数列ベクトルを作りなさい
+
+---
+
+# ベクトル：連続した数値
+
+同じ数値がたくさんあるベクトルを作りたい場合は`rep()`関数を使う
+
+
+```r
+# 5が100個ならぶベクトル
+v8 &lt;- rep(5,100)
+v8
+```
+
+```
+##   [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+##  [38] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+##  [75] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+```
+
+本当に100個出てるか？
+ベクトルの要素の数を数える関数は`length`
+
+
+```r
+length(v8)
+```
+
+```
+## [1] 100
+```
+
+---
+
+# 参照
+
+ベクトルのn個目の要素を参照したいときは角カッコを使う`[]`
+
+
+```r
+# v7の3つ目の要素は6
+v7[3]
+```
+
+```
+## [1] 6
+```
+
+
+```r
+# v7の2,3,5つ目の要素
+v7[c(2,3,5)]
+```
+
+```
+## [1]  4  6 10
+```
+
+---
+
+# リスト
+
+様々なベクトルやデータなどのオブジェクトをひとまとめにして扱うことができるのがリスト
+リストは`list()`関数で作成する
+
+
+```r
+# ここでは、カンマ, の後に改行しているが、listのかっこが閉じるまではひとまとまりだと扱われる。
+
+a &lt;- list(
+  c("a", "b", NA, "d"),
+  num = c(3, 1.1, 5),
+  data = head(mtcars, 1))
+
+a
+```
+
+```
+## [[1]]
+## [1] "a" "b" NA  "d"
+## 
+## $num
+## [1] 3.0 1.1 5.0
+## 
+## $data
+##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4
+```
+
+---
+
+# リストの参照
+
+リストの参照も角カッコでできる
+
+```r
+# リストの参照
+a[1]
+```
+
+```
+## [[1]]
+## [1] "a" "b" NA  "d"
+```
+
+```r
+a[2]
+```
+
+```
+## $num
+## [1] 3.0 1.1 5.0
+```
+
+---
+
+# リストの参照
+
+リストの中身のみを取り出したい場合は、二重括角カッコを使う`[[]]`
+
+
+```r
+a[[3]]
+```
+
+```
+##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4
+```
+
+---
+
+# データフレーム
+
+Rではデータをデータフレームという形で扱う
+例として、Rに入っているmtcarsというデータを見てみよう
+
+
+```r
+data1 &lt;- mtcars
+```
+
+
+
+---
+
+# データを見てみる
+
+右上のEnvironment区画にdata1というオブジェクトが生成される
+クリックしてみると、エクセルのような画面が現れる
+
+また`View()`という関数をつかっても、同じようにデータを見ることができる。
+
+
+```r
+View(data1)
+```
+---
+
+# データを見てみる
+
+また、データの最初だけみたいときは、`head()`, また後ろだけ見たいときは`tail()`関数を使う。
+デフォルトでは、6行だけ表示されるが、行数は引数nで調整できる。
+
+
+```r
+head(data1, n=10)
+```
+
+```
+##                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360        14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230          22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280          19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+```
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"coutIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
