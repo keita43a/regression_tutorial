@@ -4,8 +4,8 @@
     <title>R入門</title>
     <meta charset="utf-8" />
     <meta name="author" content="阿部景太" />
-    <meta name="date" content="2023-05-10" />
-    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <meta name="date" content="2023-05-14" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/useR-fonts.css" rel="stylesheet" />
@@ -14,10 +14,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # R入門
+]
+.subtitle[
 ## <small>A tutorial for R</small>
+]
+.author[
 ### 阿部景太
-### 2023-05-10
+]
+.date[
+### 2023-05-14
+]
 
 ---
 
@@ -580,11 +588,13 @@ v7[c(2,3,5)]
 # リスト
 
 様々なベクトルやデータなどのオブジェクトをひとまとめにして扱うことができるのがリスト
+
 リストは`list()`関数で作成する
 
 
 ```r
-# ここでは、カンマ, の後に改行しているが、listのかっこが閉じるまではひとまとまりだと扱われる。
+# aというオブジェクトに、文字列ベクトル、数値ベクトル、データが混ざって入っている。
+# カンマ, の後に改行しているが、listのかっこが閉じるまではひとまとまりだと扱われる。
 
 a &lt;- list(
   c("a", "b", NA, "d"),
@@ -656,6 +666,7 @@ Rではデータをデータフレームという形で扱う
 
 
 ```r
+# mtvarsというデータをdata1というオブジェクト(入れ物)に入れる
 data1 &lt;- mtcars
 ```
 
@@ -672,8 +683,10 @@ data1 &lt;- mtcars
 
 
 ```r
+# data1を見るビューワーがRstudio上で開く
 View(data1)
 ```
+
 ---
 
 # データを見てみる
@@ -683,6 +696,7 @@ View(data1)
 
 
 ```r
+# data1の最初の10行がコンソールに表示される
 head(data1, n=10)
 ```
 
@@ -700,6 +714,431 @@ head(data1, n=10)
 ## Merc 280          19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
 ```
 
+---
+
+# データの「大きさ」
+
+データの行数や列数を調べる。
+
+
+```r
+dim(mtcars)
+```
+
+```
+## [1] 32 11
+```
+
+32行、11列
+
+---
+
+# 列の名前一覧
+
+
+```r
+names(mtcars)
+```
+
+```
+##  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
+## [11] "carb"
+```
+
+---
+
+# mtcarsの変数
+
+
+[, 1]	mpg	Miles/(US) gallon  
+[, 2]	cyl	Number of cylinders  
+[, 3]	disp	Displacement (cu.in.)  
+[, 4]	hp	Gross horsepower  
+[, 5]	drat	Rear axle ratio  
+[, 6]	wt	Weight (1000 lbs)  
+[, 7]	qsec	1/4 mile time  
+[, 8]	vs	Engine (0 = V-shaped, 1 = straight)  
+[, 9]	am	Transmission (0 = automatic, 1 = manual)  
+[,10]	gear	Number of forward gears  
+[,11]	carb	Number of carburetors  
+
+---
+
+# 変数の要約
+
+
+```r
+summary(mtcars)
+```
+
+```
+##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000
+```
+
+---
+
+# 変数の要約
+
+| Min. | nth Qu. | Median | Mean | Max. |
+|------|---------|--------|------|------|
+| 最小 |  n分位  | 中央値 | 平均 | 最大 |
+
+
+---
+
+# 変数の取り出し
+
+データから変数を一つ取り出す
+
+```r
+# データフレーム$変数 で変数の列をベクトルとして取り出す
+ data1$mpg
+```
+
+```
+##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4
+```
+
+---
+
+# 変数の取り出しと計算
+
+
+```r
+# 平均 mean()関数
+mean(data1$mpg)
+```
+
+```
+## [1] 20.09062
+```
+
+```r
+# 中央値 median()関数
+median(data1$mpg)
+```
+
+```
+## [1] 19.2
+```
+
+```r
+# 分散 var()関数
+var(data1$mpg)
+```
+
+```
+## [1] 36.3241
+```
+
+---
+
+# 変数の取り出しと計算
+
+
+```r
+# 合計 sum()関数
+sum(data1$mpg)
+```
+
+```
+## [1] 642.9
+```
+
+
+---
+
+# Vizualization (図示): hist()関数
+
+データを理解するためには図示が効果的。  
+データの分布(散らばり方)を理解するのに
+
+
+```r
+# ヒストグラム hist()関数
+hist(data1$mpg)
+```
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-43-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# hist()の設定
+
+
+```r
+hist(data1$mpg,
+     col = "steelblue",         # ヒストグラムの色
+     main = "Histogram of mpg", # タイトル
+     xlab = "Mile per gallon",  # X軸のラベル
+     ylab = "Frequency",        # Y軸のラベル
+     breaks = 10                # 区切りの数
+     )
+```
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-44-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# boxplot()関数
+
+
+```r
+boxplot(mtcars$mpg,
+        main='Distribution of mpg values',
+        ylab='mpg',
+        col='steelblue',
+        border='black')
+```
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-45-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# 2つの変数の関係
+
+
+```r
+plot(mtcars$mpg, mtcars$wt,
+     col='blue',            # 色
+     main='mpg and weight',   # タイトル
+     xlab='mpg',           # X軸のラベル
+     ylab='wt',            # Y軸のラベル
+     pch=19)               # 点の形
+```
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-46-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# パッケージについて
+
+Rはデフォルト(初期状態)でインストールされている関数がたくさんある。
+
+平均を`mean()`や、散布図を描く`plot()`などは関数であり、もともとRをインストールした時点で入っている。
+
+--
+
+しかし、さらにRを拡張して機能を強化することができる。  
+それが**パッケージ**のインストールである。
+
+たとえばスマホにはもともとアプリが入っているが、さらにいろんなアプリをダウンロードしてインストールできることに似ている。
+
+---
+
+# パッケージのインストール
+
+パッケージのインストールをする方法は二つある。
+
+1. `install.packages()`関数を使う方法
+
+
+```r
+install.packages("ggplot2")
+```
+
+2. Rstudioの右下の区画の[Packages]タブから、[Install]ボタンを押して、ダイアログに従ってインストール
+
+---
+
+# よく使うパッケージのインストール
+
+`tidyverse`と呼ばれるパッケージをインストールしてみよう。
+
+```r
+install.packages("tidyverse")
+```
+
+実はこのパッケージはパッケージ**群**であり、複数のパッケージがインストールされる。
+
+---
+
+# Tidyverseについて
+
+Tidyverseというパッケージ群は`ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`, `stringr`, `forcats`, `lubridate`という複数のパッケージを含む
+
+たとえば`ggplot2`は図を描くためのパッケージであり、`plot()`関数などとかぶる。実際に、`ggplot2`では`plot()`と同じような図を出力することができる。Tidyverseシリーズは、データをより直感的に扱うための哲学に基づいて開発されており、Rオリジナルの関数ではないが、多くの人が使うパッケージ群となっておりRを学ぶならばほぼ必須といえる状態になりつつある。
+
+---
+
+# パッケージの読み込み
+
+パッケージを読み込まないと、パッケージに入っている関数は使えない
+
+
+```r
+library(tidyverse)
+```
+
+
+---
+
+# データの読み込み
+
+今度はデータをファイルから読み込む。
+
+ファイルの形式は、CSV形式（`.csv`), エクセル形式(`.xlsx`,`.xls`), Stataデータ形式(`.dta`)など色々ある。
+
+ここではCSV形式について説明するが、その他のその他のファイル形式については[私達のRの第8章](https://www.jaysong.net/RBook/io.html#sec-io-read)を参照してほしい
+
+
+---
+
+# データの読み込み
+
+`read_csv()`関数を使う。この関数は`readr`パッケージ含まれており、tidyverseパッケージ群の一つである。
+
+
+
+
+```r
+data2 &lt;- read_csv("data/gapminder.csv")
+```
+
+---
+
+# データの要約
+
+
+```r
+# 変数の一覧
+names(data2)
+```
+
+```
+## [1] "country"   "continent" "year"      "lifeExp"   "pop"       "gdpPercap"
+```
+
+---
+
+# データの要約
+
+
+```r
+summary(data2)
+```
+
+```
+##         country        continent        year         lifeExp     
+##  Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  
+##  Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  
+##  Algeria    :  12   Asia    :396   Median :1980   Median :60.71  
+##  Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  
+##  Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  
+##  Australia  :  12                  Max.   :2007   Max.   :82.60  
+##  (Other)    :1632                                                
+##       pop               gdpPercap       
+##  Min.   :     60011   Min.   :   241.2  
+##  1st Qu.:   2793664   1st Qu.:  1202.1  
+##  Median :   7023596   Median :  3531.8  
+##  Mean   :  29601212   Mean   :  7215.3  
+##  3rd Qu.:  19585222   3rd Qu.:  9325.5  
+##  Max.   :1318683096   Max.   :113523.1  
+## 
+```
+---
+
+# ggplot2
+
+ggplot2とは、グラフィックの文法 (**g**rammar of **g**raphics)という概念に基づいて作図するパッケージ
+
+それぞれのグラフの要素をlayer (層) として捉えて、重ねていくイメージ
+
+---
+
+# ggplot2 による作図 1
+
+まず、作図に使うデータを指定し、キャンバスを作成する
+
+
+```r
+ggplot(data=data2)
+```
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-54-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# ggplot2 による作図 2 : 本体作図
+
+次に、グラフ本体を作図する。
+
+
+```r
+ggplot(data=data2) + 
+  # `geom_point()`関数で、散布図を作成
+  geom_point(aes(x=gdpPercap,y=lifeExp,col=continent),size=0.5)
+```
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-55-1.png" style="display: block; margin: auto;" /&gt;
+---
+
+# ggplot2 による作図 3 : ラベル
+
+
+```r
+ggplot(data=data2) + 
+  geom_point(aes(x=gdpPercap,y=lifeExp,col=continent),size=0.5) +
+    # `lab()`関数で、ラベルを設定
+  labs(x = "一人あたりGDP", y = "平均余命", color = "大陸") +
+  theme_bw(base_family="HiraKakuPro-W3") # Mac使っていると、これがないと文字化けする
+```
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-56-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# ggplot2による図の保存
+
+
+```r
+# ggplotの図をオブジェクトに代入
+
+plot1 &lt;- ggplot(data=data2) + 
+  geom_point(aes(x=gdpPercap,y=lifeExp,col=continent),size=0.5) +
+  labs(x = "一人あたりGDP", y = "平均余命", color = "大陸") +
+  theme_bw(base_family="HiraKakuPro-W3")
+
+# ggsave()関数を使って、図を保存
+ggsave(file="figure/life_expectany.png",plot=plot1,device="png")
+```
+
+---
+
+# 課題
+
+- [私たちのR](https://www.jaysong.net/RBook/visualization1.html)の18章の18.1と18.2を読む
+ - 必要に応じてそれよりも前の章も読む
+ 
+- 説明にしたがって、図18.11を再現する
+ - コードのコピペは禁止（意味がない）
+
+- Rコードと保存した図(.png形式)をGoogle Classroomで提出
+ - 2023年5月29日(月)締切
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -748,6 +1187,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
