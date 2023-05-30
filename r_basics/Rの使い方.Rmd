@@ -119,11 +119,22 @@ knitr::include_graphics("fig/directory_structure.png")
 
 ---
 
+## path: コンピュータ上の住所
+
+`j:`というドライブの下の`abezemi`というフォルダの下にある`r_renshu`というフォルダにある`kadai1.R`というファイルがあるとする。
+
+そのファイルのpathは`j:/abezemi/r_renshu/kadai1.R`となる。
+
+コンピュータ上では、このように文字でファイルの場所と名前を指定することがよくある。
+
+---
+
 # ゼミフォルダ
 
 ゼミフォルダを作る
 
 - 自分の学生番号のドライブ(例 s1234567)の下に abezemi フォルダを作成
+- ドライブ上で右クリック→新規作成→フォルダ
 
 ---
 
@@ -136,13 +147,14 @@ knitr::include_graphics("fig/directory_structure.png")
 getwd()
 ```
 
-これを変更するには`setwd(path)`で変更できる
+これを変更するには`setwd(path)`で変更できる。
 
 ```{r,eval=FALSE}
 setwd("j:/abezemi/r_renshu")
 ```
 
-もう一度`getwd()`すると変更されているはず
+ここでは`j:`ドライブの下の`abezemi`フォルダの下の`r_renshu`フォルダに設定。
+もう一度`getwd()`して変更されたか確認しよう。
 
 ---
 
@@ -175,16 +187,23 @@ RStudioのRプロジェクトという機能を使うと、以下のメリット
 # スクリプトの作成
 
 Rとの"対話"は、Rstudioの左下の区画(Console)で行われる。
-そのままConsoleに入力しても機能するが、**スクリプト**に書くことで、
-記録を残しながらRに命令を与えることができる。
+そのままConsoleに入力しても機能するが、**スクリプト**(コード)に書くことで、記録を残しながらRに命令を与えることができる。
 
 **作成**
 - File -> New File -> R script
 - もしくは左上の区画の白い資格に緑の＋マークのところから、R Script
 
+
+
+---
+
+# スクリプトの保存
+
+Rスクリプトは.Rで終わるファイルとして保存される (例：kadai1.R)
+
 **保存**
-- File -> Save
-- フロッピーのアイコン
+- File -> Save -> 名前をつける
+- もしくはフロッピーのアイコン
 
 
 ---
@@ -829,3 +848,121 @@ ggsave(file="figure/life_expectany.png",plot=plot1,device="png")
 
 - Rコードと保存した図(.png形式)をGoogle Classroomで提出
  - 2023年5月29日(月)締切
+ 
+---
+
+# 課題のレビュー
+ 
+---
+
+### よくあるエラー
+
+`Error in read_csv("data/Countries.csv") :
+could not find function "read_csv"`
+
+`XXX`という関数が見つかりません、というエラー
+
+**考えられるケース**
+
+- `library()`で必要なパッケージを読み込めてない
+- 関数のつづりが間違っている
+
+---
+
+### よくあるエラー2
+
+
+Error: 'data/Countris.csv' does not exist in current working directory
+
+XXX.csvというファイルが作業場所にありません。
+
+**考えられるケース**
+- そもそもファイルがない
+- ファイルの指定場所が間違っている
+- つづりが間違っている
+
+---
+
+# 課題２
+
+- [政府統計の総合窓口e-stat](https://www.e-stat.go.jp/)へアクセス
+- 「分野」-> 「農林水産業」-> 「漁業センサス」-> 「データベース」
+- データを一つ選ぶ-> 「DB」
+- ダウンロード
+  - CSV形式(クロス集計表形式・UTF-8(BOM無し))
+  - すべて「出力しない」
+  
+---
+
+### 課題２
+
+```{r, fig.height=4, fig.align='center'}
+dataves2 <- read_csv("data/FEH_00500210_230529214946.csv")
+ggplot(data=dataves2) + 
+  geom_bar(aes(x=`(J117-30-2-001)経営体階層`,y=`漁業経営体数【経営体】`),stat="identity") + 
+  theme_bw(base_family = "HiraKakuPro-W3")
+```
+
+---
+
+### 課題２
+
+```{r, fig.height=4, fig.align='center'}
+dataves3 <- dataves2 %>% slice(2:17)
+ggplot(data=dataves3) + 
+  geom_bar(aes(x=`(J117-30-2-001)経営体階層`,y=`漁業経営体数【経営体】`),stat="identity") + 
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  theme(axis.text.x = element_text(angle=45,hjust=1))
+```
+
+---
+
+### 課題２
+
+```{r, fig.height=7, fig.align='center',echo=FALSE}
+dataves3 <- dataves2 %>% slice(2:17) %>% 
+  mutate(ves_size = str_remove(`(J117-30-2-001)経営体階層`,"漁船使用_動力漁船使用_"),
+         ves_size = str_remove(ves_size,"漁船使用_"))
+
+ves_order <- dataves3$ves_size
+
+dataves3 <- dataves3 %>% mutate(ves_size = factor(ves_size,levels=ves_order))
+
+ggplot(data=dataves3) + 
+  geom_bar(aes(x=ves_size,y=`漁業経営体数【経営体】`),stat="identity",fill="blue") + 
+  labs(x="漁船のサイズ別経営体層",y="経営体数") +
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  theme(axis.text.x = element_text(angle=45,hjust=1))
+```
+
+---
+
+### 課題２
+
+- 漁業センサスの中から自分の描きたいデータを選ぶ
+  - 一人１データ、かぶりなし
+  - 早いもの勝ち。Google Classroomに書き込む。
+  - 締切：６月５日(月) 23:59
+- データを適した形で描く
+  - 第１締切：６月12日(月)23:59
+  - 最終締切：６月19日(月)23:59
+
+---
+
+### 適した形？
+
+```{r pressure, echo=FALSE, fig.cap="A caption", fig.align='center',out.width = '50%'}
+knitr::include_graphics("figure/IMG_3452.jpg")
+```
+
+---
+
+## 適した形？
+
+- 棒グラフ：データの大きさを比較する
+- 折れ線グラフ：時系列での変化をみる
+- 円グラフ：全体に占める割合をみる
+- 積み上げ棒グラフ：累積データから内訳を比較する
+- 散布図：2つのデータの相関関係をみる
+
+例：[グラフの種類と使い分け、間違った使い方](https://www.tableau.com/ja-jp/learn/articles/graph-type)(Tableau)

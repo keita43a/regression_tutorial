@@ -4,8 +4,8 @@
     <title>R入門</title>
     <meta charset="utf-8" />
     <meta name="author" content="阿部景太" />
-    <meta name="date" content="2023-05-14" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <meta name="date" content="2023-05-30" />
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/useR-fonts.css" rel="stylesheet" />
@@ -14,18 +14,10 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-.title[
 # R入門
-]
-.subtitle[
 ## <small>A tutorial for R</small>
-]
-.author[
 ### 阿部景太
-]
-.date[
-### 2023-05-14
-]
+### 2023-05-30
 
 ---
 
@@ -124,11 +116,22 @@ class: center, middle, inverse, title-slide
 
 ---
 
+## path: コンピュータ上の住所
+
+`j:`というドライブの下の`abezemi`というフォルダの下にある`r_renshu`というフォルダにある`kadai1.R`というファイルがあるとする。
+
+そのファイルのpathは`j:/abezemi/r_renshu/kadai1.R`となる。
+
+コンピュータ上では、このように文字でファイルの場所と名前を指定することがよくある。
+
+---
+
 # ゼミフォルダ
 
 ゼミフォルダを作る
 
 - 自分の学生番号のドライブ(例 s1234567)の下に abezemi フォルダを作成
+- ドライブ上で右クリック→新規作成→フォルダ
 
 ---
 
@@ -142,14 +145,15 @@ class: center, middle, inverse, title-slide
 getwd()
 ```
 
-これを変更するには`setwd(path)`で変更できる
+これを変更するには`setwd(path)`で変更できる。
 
 
 ```r
 setwd("j:/abezemi/r_renshu")
 ```
 
-もう一度`getwd()`すると変更されているはず
+ここでは`j:`ドライブの下の`abezemi`フォルダの下の`r_renshu`フォルダに設定。
+もう一度`getwd()`して変更されたか確認しよう。
 
 ---
 
@@ -182,16 +186,23 @@ RStudioのRプロジェクトという機能を使うと、以下のメリット
 # スクリプトの作成
 
 Rとの"対話"は、Rstudioの左下の区画(Console)で行われる。
-そのままConsoleに入力しても機能するが、**スクリプト**に書くことで、
-記録を残しながらRに命令を与えることができる。
+そのままConsoleに入力しても機能するが、**スクリプト**(コード)に書くことで、記録を残しながらRに命令を与えることができる。
 
 **作成**
 - File -&gt; New File -&gt; R script
 - もしくは左上の区画の白い資格に緑の＋マークのところから、R Script
 
+
+
+---
+
+# スクリプトの保存
+
+Rスクリプトは.Rで終わるファイルとして保存される (例：kadai1.R)
+
 **保存**
-- File -&gt; Save
-- フロッピーのアイコン
+- File -&gt; Save -&gt; 名前をつける
+- もしくはフロッピーのアイコン
 
 
 ---
@@ -1139,6 +1150,117 @@ ggsave(file="figure/life_expectany.png",plot=plot1,device="png")
 
 - Rコードと保存した図(.png形式)をGoogle Classroomで提出
  - 2023年5月29日(月)締切
+ 
+---
+
+# 課題のレビュー
+ 
+---
+
+### よくあるエラー
+
+`Error in read_csv("data/Countries.csv") :
+could not find function "read_csv"`
+
+`XXX`という関数が見つかりません、というエラー
+
+**考えられるケース**
+
+- `library()`で必要なパッケージを読み込めてない
+- 関数のつづりが間違っている
+
+---
+
+### よくあるエラー2
+
+
+Error: 'data/Countris.csv' does not exist in current working directory
+
+XXX.csvというファイルが作業場所にありません。
+
+**考えられるケース**
+- そもそもファイルがない
+- ファイルの指定場所が間違っている
+- つづりが間違っている
+
+---
+
+# 課題２
+
+- [政府統計の総合窓口e-stat](https://www.e-stat.go.jp/)へアクセス
+- 「分野」-&gt; 「農林水産業」-&gt; 「漁業センサス」-&gt; 「データベース」
+- データを一つ選ぶ-&gt; 「DB」
+- ダウンロード
+  - CSV形式(クロス集計表形式・UTF-8(BOM無し))
+  - すべて「出力しない」
+  
+---
+
+### 課題２
+
+
+```r
+dataves2 &lt;- read_csv("data/FEH_00500210_230529214946.csv")
+ggplot(data=dataves2) + 
+  geom_bar(aes(x=`(J117-30-2-001)経営体階層`,y=`漁業経営体数【経営体】`),stat="identity") + 
+  theme_bw(base_family = "HiraKakuPro-W3")
+```
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-58-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 課題２
+
+
+```r
+dataves3 &lt;- dataves2 %&gt;% slice(2:17)
+ggplot(data=dataves3) + 
+  geom_bar(aes(x=`(J117-30-2-001)経営体階層`,y=`漁業経営体数【経営体】`),stat="identity") + 
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  theme(axis.text.x = element_text(angle=45,hjust=1))
+```
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-59-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 課題２
+
+&lt;img src="Rの使い方_files/figure-html/unnamed-chunk-60-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 課題２
+
+- 漁業センサスの中から自分の描きたいデータを選ぶ
+  - 一人１データ、かぶりなし
+  - 早いもの勝ち。Google Classroomに書き込む。
+  - 締切：６月５日(月) 23:59
+- データを適した形で描く
+  - 第１締切：６月12日(月)23:59
+  - 最終締切：６月19日(月)23:59
+
+---
+
+### 適した形？
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="figure/IMG_3452.jpg" alt="A caption" width="50%" /&gt;
+&lt;p class="caption"&gt;A caption&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 適した形？
+
+- 棒グラフ：データの大きさを比較する
+- 折れ線グラフ：時系列での変化をみる
+- 円グラフ：全体に占める割合をみる
+- 積み上げ棒グラフ：累積データから内訳を比較する
+- 散布図：2つのデータの相関関係をみる
+
+例：[グラフの種類と使い分け、間違った使い方](https://www.tableau.com/ja-jp/learn/articles/graph-type)(Tableau)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -1187,19 +1309,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
