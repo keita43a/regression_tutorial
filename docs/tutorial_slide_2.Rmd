@@ -112,9 +112,7 @@ $$
 
 # 共分散
 
-$$
- \sigma_{xy} = \frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})
-$$
+$$\sigma_{xy} = \frac{1}{n}\sum^{n}_{i=1}(x_i - \bar{x})(y_i - \bar{y})$$
 
 ---
 

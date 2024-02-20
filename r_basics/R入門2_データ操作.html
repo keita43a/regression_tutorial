@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R入門2 データ操作</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="阿部景太" />
+    <meta name="date" content="2024-02-20" />
+    <script src="libs/header-attrs-2.24/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/useR-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R入門2 データ操作
+## <small>A tutorial for R part 2: data manipulation</small>
+### 阿部景太
+### 2024-02-20
+
+---
+
+
+&lt;style type="text/css"&gt;
+.remark-slide-content {
+    font-size: 30px;
+    font-family: "メイリオ" ;
+    padding: 1em 4em 1em 4em;
+}
+&lt;/style&gt;
+
+
+
+
+
+# 前回
+
+- Rとはなにか？
+- Rで何ができるか？
+  - 統計解析
+  - 描画・作図
+  - ウェブアプリ
+  - 地図
+- Rの基本的な概念と使い方
+  
+---
+
+# パッケージについて
+
+Rはデフォルト(初期状態)でインストールされている関数がたくさんある。
+
+ベクトルの長さを測る`length()`や、散布図を描く`plot()`などは**関数**であり、もともとRをインストールした時点で入っている。
+
+--
+
+しかし、さらにRを拡張して機能を強化することができる。  
+それが**パッケージ**のインストールである。
+
+たとえばスマホにはもともと基本アプリが入っているが、さらにいろんなアプリをダウンロードしてインストールできることに似ている。
+しかしパッケージは無料である。
+
+---
+
+# パッケージのインストール
+
+パッケージのインストールをする方法は二つある。
+
+1. `install.packages()`関数を使う方法
+
+
+```r
+install.packages("ggplot2")
+```
+
+2. Rstudioの右下の区画の[Packages]タブから、[Install]ボタンを押して、ダイアログに従ってインストール
+
+---
+
+# よく使うパッケージのインストール
+
+`tidyverse`と呼ばれるパッケージをインストールしてみよう。
+
+```r
+install.packages("tidyverse")
+```
+
+実はこの`tidyverse`はパッケージ**群**であり、複数のパッケージがインストールされる。
+
+---
+
+# Tidyverseについて
+
+Tidyverseというパッケージ群は`ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`, `stringr`, `forcats`, `lubridate`という複数のパッケージを含む
+
+たとえば`ggplot2`は図を描くためのパッケージであり、`plot()`関数などとかぶる。実際に、`ggplot2`では`plot()`と同じような図を出力することができる。Tidyverseシリーズは、データをより直感的に扱うための哲学に基づいて開発されており、Rオリジナルの関数ではないが、多くの人が使うパッケージ群となっておりRを学ぶならばほぼ必須といえる状態になりつつある。
+
+---
+
+# パッケージの使い方1
+
+パッケージの使い方は２通りある。
+パッケージに入っている関数を使うためには、パッケージを読み込む
+
+
+```r
+# library()でパッケージの読み込み
+library(tidyverse)
+```
+
+読み込んだ後は、パッケージに含まれている関数が普通に使える。
+
+
+```r
+# read_csvはtidyverseに入っているreadrというパッケージに含まれる
+data1 &lt;- read_csv("data/data1.csv")
+```
+
+
+---
+
+# パッケージの使い方2
+
+
+
+読み込んでいないパッケージの関数を使おうとするとエラーが出る。
+
+
+```r
+# read_csvはtidyverseに入っているreadrというパッケージに含まれる
+data1 &lt;- read_csv("data/data1.csv")
+```
+
+```
+## Error in read_csv("data/data1.csv"): could not find function "read_csv"
+```
+
+パッケージ名と関数名を`::`で繋ぐと、読み込んでいなくても使える。
+
+
+```r
+data1 &lt;- readr::read_csv("data/data1.csv")
+```
+
+これが２つ目のパッケージの使い方である。
+
+
+
+---
+
+# データ
+
+- Rはデータ分析（統計解析）を行うのが主な機能
+  - それ以外も色々できるが…
+
+---
+
+# データとは？
+
+- 構造化データと非構造化データ
+  - 構造化：定義済みの形式に整理されている（行列で定義できる）
+  - 非構造化：形式化が難しい（テキストデータ、音声データなど）
+  - 半構造化データ：ある程度の構造は持つが、データベースのような形式になっていないもの（例：xml, json) 
+--
+
+- Rでは基本的に構造化データを扱う
+  - テキストデータなども扱えるが、授業では扱わない
+
+---
+
+# データフレーム
+
+- Rでは基本的にデータをデータフレームという形で扱う
+- データフレームは行と列を持つ形式
+
+---
+
+# 行列
+
+&lt;img src="fig/gyoretsu.png" width="90%" /&gt;
+
+---
+
+# 行列
+
+行と列の覚え方
+
+&lt;img src="fig/gyoretsu2.png" width="80%" /&gt;
+
+---
+
+# きれいなデータ？
+
+- 人間の見やすいデータ形式(表)とコンピュータが処理しやすいデータ形式は異なる。
+- 同じ情報をもつデータフレームであっても、形式が異なるものがあることを理解しよう。
+- 冒頭で出た武蔵大学経済学部の学生数のデータを見てみよう。
+
+---
+
+# データの読み込み
+
+- データはデータファイルから読み込む
+  - ファイルがある場所のpathを指定する。
+- データファイルの形式はExcelや`.csv`, `.dta`, `.rds`など様々
+  - 形式によって使う関数が異なる。
+- 例えば
+  - Excelなら、`readxl`パッケージの`read_excel`
+  - csvなら、`readr`パッケージの`read_csv`
+
+ここではCSV形式について説明するが、その他のファイル形式については[私達のRの第8章](https://www.jaysong.net/RBook/io.html#sec-io-read)を参照してほしい
+  
+  
+---
+
+# データの読み込み
+
+`read_csv()`関数を使う。この関数は`readr`パッケージ含まれており、tidyverseパッケージ群の一つである。
+
+
+```r
+data2 &lt;- gapminder::gapminder
+## write_csv(data2,"../data/gapminder.csv")
+```
+
+
+```r
+data2 &lt;- read_csv("data/gapminder.csv")
+```
+
+- 先ほどと違い、readとcsvの間が.ではなく_になっている。
+
+---
+
+# 日本語のデータを読み込む際の注意点
+
+
+
+日本語のファイルを読み込む時に、問題になる可能性があるのがエンコーディングである。
+
+エンコーディングとは、データを一定の規則に従って目的の情報に変換することで、とくに文字を扱う上で、それぞれの文字に番号を割り当てる符号化を行っている。
+
+最近ではよりグローバルなUnicodeが使われており、tidyverseのパッケージもunicodeあるUTF-8をデフォルトとして使用する。しかし、日本語のファイルの中にはShift-JISというエンコーディングで作成されているファイルもある。
+
+---
+
+# 日本語のデータを読み込む際の注意点
+
+例えば、以下のファイルをそのまま読み込んで見る。
+
+
+```r
+product_cp932 = read_csv("data/Products_cp932.csv")
+product_cp932
+```
+
+```
+## # A tibble: 6 × 6
+##    ...1 ProductID ProductName Price Category                         CreatedDate
+##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                            &lt;date&gt;     
+## 1     1         1 YKDJw        1122 "\x83w\x83\x8b\x83X&amp;\x83r\x83\x… 2005-08-30 
+## 2     2         2 ftKQ7        1877 "\x83w\x83\x8b\x83X&amp;\x83r\x83\x… 2006-07-01 
+## 3     3         3 l8lqm        3754 "\x89\xc6\x8b\xef\x81E\x83C\x83… 2005-05-26 
+## 4     4         4 8ntvc        8242 "\x89\xd4\x81E\x83O\x83\x8a\x81… 2005-09-06 
+## 5     5         5 HhDBS        4461 "\x90H\x95i"                     2010-12-28 
+## 6     6         6 PKIs3        4963 "\x8eG\x89\xdd\x81E\x93\xfa\x97… 2005-02-09
+```
+
+`Category`という変数が文字化けしてしまっているのがわかる。
+
+---
+
+# 日本語のデータを読み込む際の注意点
+
+ファイルのエンコーディングを調べることができる。
+`readr`パッケージもに入っている`guess_encoding`を使うと、Shift-JISである可能性が高いことがわかる。
+
+
+```r
+guess_encoding("data/Products_cp932.csv")
+```
+
+```
+## # A tibble: 3 × 2
+##   encoding     confidence
+##   &lt;chr&gt;             &lt;dbl&gt;
+## 1 Shift_JIS          1   
+## 2 windows-1252       0.31
+## 3 windows-1250       0.31
+```
+
+---
+
+# 日本語のデータを読み込む際の注意点
+
+`read_csv`のオプションを使って、encodingを指定する。Shift-JISはCP932というエンコーディングになっている。
+
+
+```r
+product_enc = read_csv("data/Products_cp932.csv", locale=locale(encoding="CP932"))
+product_enc
+```
+
+```
+## # A tibble: 6 × 6
+##    ...1 ProductID ProductName Price Category               CreatedDate
+##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                  &lt;date&gt;     
+## 1     1         1 YKDJw        1122 ヘルス&amp;ビューティー    2005-08-30 
+## 2     2         2 ftKQ7        1877 ヘルス&amp;ビューティー    2006-07-01 
+## 3     3         3 l8lqm        3754 家具・インテリア・家電 2005-05-26 
+## 4     4         4 8ntvc        8242 花・グリーン           2005-09-06 
+## 5     5         5 HhDBS        4461 食品                   2010-12-28 
+## 6     6         6 PKIs3        4963 雑貨・日用品           2005-02-09
+```
+
+文字化けなく読み込めた。
+
+---
+
+# readrのその他のオプション
+
+readrでは以下のオプションを引数に指定することで設定できる。
+
+|引数|デフォルトの値|意味|
+|----|--------------|----|
+|col_names| TRUE |1行目を列名にするか|
+|na  | c("","NA") | 欠損値を表す文字列|
+|comment |""|コメント開始文字|
+|skip| 0 | 先頭何行を無視するか|
+|n_max | Inf |何行目までを読み込むか|
+|trim_ws | TRUE | 前後の空白文字を無視するか|
+
+
+---
+
+
+```r
+# エクセルからデータを読み込み
+data_634 &lt;- readxl::read_excel("data/musashi_keizai_students_2023.xlsx") 
+
+knitr::kable(data_634) # kableは見やすい表を出力する関数
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 学科 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 性別 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 4年 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 3年 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 2年 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 1年 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経済学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 男 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 121 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 139 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 133 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経済学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 女 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経営学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 男 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 117 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 111 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 121 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 129 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経営学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 女 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 52 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 53 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 62 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 金融学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 男 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 107 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 金融学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 女 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- `Error: path does not exist:’`というエラーが出る場合は、ファイルの相対パスが間違っている可能性がある
+  - `getwd()`で自分がr_renshuフォルダにいることを確認する
+  - `gapminder.csv`がきちんとdataフォルダに入っていることを確認する
+
+---
+
+- コンピューターによって処理しやすい形式
+- ベクトルの処理が得意なRでは縦長の形式が扱いやすい
+
+
+
+
+```r
+print(as.data.frame(data_634_long))
+```
+
+```
+##        学科 性別 学年 学生数
+## 1  経済学科   男  1年    133
+## 2  経済学科   男  2年    139
+## 3  経済学科   男  3年    121
+## 4  経済学科   男  4年    140
+## 5  経済学科   女  1年     38
+## 6  経済学科   女  2年     50
+## 7  経済学科   女  3年     46
+## 8  経済学科   女  4年     38
+## 9  経営学科   男  1年    129
+## 10 経営学科   男  2年    121
+## 11 経営学科   男  3年    111
+## 12 経営学科   男  4年    117
+## 13 経営学科   女  1年     62
+## 14 経営学科   女  2年     53
+## 15 経営学科   女  3年     62
+## 16 経営学科   女  4年     52
+## 17 金融学科   男  1年     93
+## 18 金融学科   男  2年     90
+## 19 金融学科   男  3年    107
+## 20 金融学科   男  4年    108
+## 21 金融学科   女  1年     36
+## 22 金融学科   女  2年     29
+## 23 金融学科   女  3年     33
+## 24 金融学科   女  4年     24
+```
+
+---
+
+# tidy data (整然データ)
+
+- この縦長形式のデータを**tidy data**と呼ぶ
+
+- tidy dataの定義
+  - 一つの列が一つの変数を表す
+  - 一つの行が一つの観測を表す
+  - 一つのテーブルが一つのデータセットだけを含む
+  
+- Rの中でもtidy dataでないデータが好ましい場合もある
+  - tidy dataを基本にしておけば、そこから加工することは容易
+
+
+
+---
+
+# データフレームを扱うテクニック：パイプ
+
+データフレームを操作する関数の共通点
+- 第１引数がデータフレーム
+- 第２引数以降はそのデータフレームに対する操作
+- 結果がデータフレームとして返される
+
+---
+
+# パイプ
+
+パイプ(`|&gt;`)は「これまでの処理を次の第１引数として引き渡す」という機能を持つ。
+パイプは`%&gt;%`でも基本的に構わない。
+
+
+```r
+# 以下の２つは同じことを行っている。
+data_634_long &lt;- pivot_longer(data_634, cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+
+data_634_long &lt;- data_634 |&gt; # |&gt; はパイプと呼ばれるもの
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+```
+
+---
+
+# tidyでないデータとtidyデータの変換
+
+今から横型（wide型）のデータを縦長（long型）に変換する。
+
+.pull-left[
+&lt;table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 学科 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 男 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 女 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経済学科 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 533 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経営学科 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 478 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 229 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 金融学科 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 398 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 122 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 学科 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 性別 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 人数 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経済学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 男 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 533 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経済学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 女 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経営学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 男 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 478 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経営学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 女 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 229 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 金融学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 男 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 398 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 金融学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 女 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 122 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+# long型データへの変換
+
+`tidyr`というパッケージの`pivot_longer`という関数はtidyでないデータ(wide型)をtidyなデータ(long型)に変換する。
+
+
+```r
+data_634_long &lt;- data_634 |&gt; 
+  # long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+```
+
+---
+
+# long型データへの変換
+
+まずパイプ(`|&gt;`)で`data_634`というwide型のデータを関数に引き渡す。
+
+
+```r
+data_634_long &lt;- data_634 |&gt; 
+  # long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+```
+
+---
+
+# long型データへの変換
+
+`pivot_longer()` 関数の引数
+- `cols`は、どの列(column)の変数を使うかを指定する。
+- `names_to`は、新たに生成されるカテゴリ用の列の名前を指定する。
+- `values_to`は、数値が入る列の名前を指定する。
+
+
+```r
+data_634_long &lt;- data_634 |&gt; 
+  # long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+```
+
+
+---
+
+# long型データへの変換
+
+さらにパイプで結果を次に引き渡して、学科名の順番を指定している。
+これらの変数は後で説明する。
+
+
+```r
+data_634_long &lt;- data_634 |&gt; 
+  # long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数")
+```
+
+---
+
+# データを見てみる
+
+右上のEnvironmentペーンに`data_634_long`というオブジェクトが生成される。
+クリックしてみると、エクセルのような画面が現れる
+
+また`View()`という関数をつかっても、同じようにデータを見ることができる。
+
+
+```r
+# data_634_longを見るビューワーがRstudio上で開く
+View(data_634_long)
+```
+
+---
+
+# データを見てみる
+
+また、データの最初だけみたいときは、`head()`, また後ろだけ見たいときは`tail()`関数を使う。
+デフォルトでは、6行だけ表示されるが、行数は引数nで調整できる。
+
+
+```r
+# data1の最初の10行がコンソールに表示される
+head(data_634_long, n=10)
+```
+
+```
+## # A tibble: 10 × 4
+##    学科     性別  学年  学生数
+##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
+##  1 経済学科 男    1年      133
+##  2 経済学科 男    2年      139
+##  3 経済学科 男    3年      121
+##  4 経済学科 男    4年      140
+##  5 経済学科 女    1年       38
+##  6 経済学科 女    2年       50
+##  7 経済学科 女    3年       46
+##  8 経済学科 女    4年       38
+##  9 経営学科 男    1年      129
+## 10 経営学科 男    2年      121
+```
+
+---
+
+# データの「大きさ」
+
+データの行数や列数を調べる。
+
+
+```r
+dim(data_634_long)
+```
+
+```
+## [1] 24  4
+```
+
+24行、4列
+
+---
+
+# 列の名前一覧
+
+- データの各変数名（列名）
+
+
+```r
+names(data_634_long)
+```
+
+```
+## [1] "学科"   "性別"   "学年"   "学生数"
+```
+
+
+---
+
+# 変数の要約
+
+
+```r
+summary(data_634_long)
+```
+
+```
+##        学科   性別     学年       学生数     
+##  経済学科:8   男:12   1年:6   Min.   : 24.0  
+##  経営学科:8   女:12   2年:6   1st Qu.: 44.0  
+##  金融学科:8           3年:6   Median : 76.0  
+##                       4年:6   Mean   : 80.5  
+##                               3rd Qu.:118.0  
+##                               Max.   :140.0
+```
+
+---
+
+# 変数の要約
+
+- 定性的なデータ（カテゴリ変数）は、入っているカテゴリとその数
+  - もし`character`と表示されていたら、単なる文字列と認識されている
+- 定量的なデータは以下のような**統計量**が計算される。
+
+| Min. | nth Qu. | Median | Mean | Max. |
+|------|---------|--------|------|------|
+| 最小 |  n分位  | 中央値 | 平均 | 最大 |
+
+
+---
+
+# 変数の取り出し
+
+データから変数を一つ取り出すときは$マークを使う。
+
+
+```r
+# データフレーム$変数 で変数の列をベクトルとして取り出す
+ data_634_long$学年
+```
+
+```
+##  [1] 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年
+## [20] 4年 1年 2年 3年 4年
+## Levels: 1年 2年 3年 4年
+```
+
+---
+
+# 変数の取り出しと計算
+
+
+```r
+# 平均 mean()関数
+mean(data_634_long$学生数)
+```
+
+```
+## [1] 80.5
+```
+
+```r
+# 中央値 median()関数
+median(data_634_long$学生数)
+```
+
+```
+## [1] 76
+```
+
+```r
+# 分散 var()関数
+var(data_634_long$学生数)
+```
+
+```
+## [1] 1625.478
+```
+
+---
+
+# 変数の取り出しと計算
+
+
+```r
+# 合計 sum()関数
+sum(data_634_long$学生数)
+```
+
+```
+## [1] 1932
+```
+
+---
+
+# データフレームとtibble
+
+
+---
+
+# データの操作
+
+データを編集したいことはたくさん出てくる。
+
+- 列の名前を変えたい
+- データの特定の列だけ抽出したい
+- データの特定の行だけ提出したい
+  - 例：男性だけのデータ
+- データの順番を並び替えたい
+- データの列を並び替えたい
+- 新しい変数を作りたい
+- データを集計したい
+
+---
+
+# データの操作
+
+.pull-left[
+`tidyverse`シリーズである`dplyr`パッケージに入っている関数で操作することができる。
+]
+
+.pull-right[
+&lt;img src="fig/dplyr_logo.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# 元のデータの見た目確認
+
+
+```r
+print(data_634_long)
+```
+
+```
+## # A tibble: 24 × 4
+##    学科     性別  学年  学生数
+##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
+##  1 経済学科 男    1年      133
+##  2 経済学科 男    2年      139
+##  3 経済学科 男    3年      121
+##  4 経済学科 男    4年      140
+##  5 経済学科 女    1年       38
+##  6 経済学科 女    2年       50
+##  7 経済学科 女    3年       46
+##  8 経済学科 女    4年       38
+##  9 経営学科 男    1年      129
+## 10 経営学科 男    2年      121
+## # ℹ 14 more rows
+```
+
+---
+
+# 列の名前を変えたい: rename()
+
+列（変数）の名前を変更する
+
+
+```r
+data_634_long_eng &lt;- data_634_long |&gt;
+  rename(department = 学科, 
+         grade = 学年,
+         gender = 性別,
+         stu_num = 学生数)
+
+print(data_634_long_eng)
+```
+
+```
+## # A tibble: 24 × 4
+##    department gender grade stu_num
+##    &lt;fct&gt;      &lt;fct&gt;  &lt;fct&gt;   &lt;dbl&gt;
+##  1 経済学科   男     1年       133
+##  2 経済学科   男     2年       139
+##  3 経済学科   男     3年       121
+##  4 経済学科   男     4年       140
+##  5 経済学科   女     1年        38
+##  6 経済学科   女     2年        50
+##  7 経済学科   女     3年        46
+##  8 経済学科   女     4年        38
+##  9 経営学科   男     1年       129
+## 10 経営学科   男     2年       121
+## # ℹ 14 more rows
+```
+
+
+---
+
+# 特定の列だけ抽出する: select()
+
+データのうち、学科と性別という変数だけ抽出したいとする
+
+
+```r
+data_634_long_select &lt;- data_634_long |&gt; 
+  select(学科, 性別)
+
+print(data_634_long_select)
+```
+
+```
+## # A tibble: 24 × 2
+##    学科     性別 
+##    &lt;fct&gt;    &lt;fct&gt;
+##  1 経済学科 男   
+##  2 経済学科 男   
+##  3 経済学科 男   
+##  4 経済学科 男   
+##  5 経済学科 女   
+##  6 経済学科 女   
+##  7 経済学科 女   
+##  8 経済学科 女   
+##  9 経営学科 男   
+## 10 経営学科 男   
+## # ℹ 14 more rows
+```
+
+---
+
+# 特定の列だけ抽出する: filter()
+
+データのうち、女性のデータだけを抽出したいとする
+
+
+```r
+data_634_long_filter &lt;- data_634_long |&gt; 
+  filter(性別 == "女")
+
+print(data_634_long_filter)
+```
+
+```
+## # A tibble: 12 × 4
+##    学科     性別  学年  学生数
+##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
+##  1 経済学科 女    1年       38
+##  2 経済学科 女    2年       50
+##  3 経済学科 女    3年       46
+##  4 経済学科 女    4年       38
+##  5 経営学科 女    1年       62
+##  6 経営学科 女    2年       53
+##  7 経営学科 女    3年       62
+##  8 経営学科 女    4年       52
+##  9 金融学科 女    1年       36
+## 10 金融学科 女    2年       29
+## 11 金融学科 女    3年       33
+## 12 金融学科 女    4年       24
+```
+
+---
+
+# データの順番を並び替える: arrange()
+
+データの順番を学年-&gt;性別の順番で並び替える
+
+
+```r
+data_634_long_arrange &lt;- data_634_long |&gt; 
+  arrange(学年, 性別)
+
+print(data_634_long_arrange)
+```
+
+```
+## # A tibble: 24 × 4
+##    学科     性別  学年  学生数
+##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
+##  1 経済学科 男    1年      133
+##  2 経営学科 男    1年      129
+##  3 金融学科 男    1年       93
+##  4 経済学科 女    1年       38
+##  5 経営学科 女    1年       62
+##  6 金融学科 女    1年       36
+##  7 経済学科 男    2年      139
+##  8 経営学科 男    2年      121
+##  9 金融学科 男    2年       90
+## 10 経済学科 女    2年       50
+## # ℹ 14 more rows
+```
+
+---
+
+# データの順番を並び替える: arrange()
+
+デフォルトは昇順だが、desc()で降順で並び変えることもできる
+
+
+```r
+data_634_long_arrange2 &lt;- data_634_long |&gt; 
+  arrange(desc(学年), 性別)
+
+print(data_634_long_arrange2)
+```
+
+```
+## # A tibble: 24 × 4
+##    学科     性別  学年  学生数
+##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
+##  1 経済学科 男    4年      140
+##  2 経営学科 男    4年      117
+##  3 金融学科 男    4年      108
+##  4 経済学科 女    4年       38
+##  5 経営学科 女    4年       52
+##  6 金融学科 女    4年       24
+##  7 経済学科 男    3年      121
+##  8 経営学科 男    3年      111
+##  9 金融学科 男    3年      107
+## 10 経済学科 女    3年       46
+## # ℹ 14 more rows
+```
+
+---
+
+# データの列を並び替える: relocate()
+
+学年の列を性別の前に持ってくる
+
+
+```r
+data_634_long_relocate &lt;- data_634_long |&gt; 
+  relocate(学年, .before=性別)
+
+print(data_634_long_relocate)
+```
+
+```
+## # A tibble: 24 × 4
+##    学科     学年  性別  学生数
+##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
+##  1 経済学科 1年   男       133
+##  2 経済学科 2年   男       139
+##  3 経済学科 3年   男       121
+##  4 経済学科 4年   男       140
+##  5 経済学科 1年   女        38
+##  6 経済学科 2年   女        50
+##  7 経済学科 3年   女        46
+##  8 経済学科 4年   女        38
+##  9 経営学科 1年   男       129
+## 10 経営学科 2年   男       121
+## # ℹ 14 more rows
+```
+
+---
+
+# データの列を並び替える: relocate()
+
+学年の列を学科の後に持ってくる
+
+
+```r
+data_634_long_relocate2 &lt;- data_634_long |&gt; 
+  relocate(学年, .after=学科)
+
+print(data_634_long_relocate2)
+```
+
+```
+## # A tibble: 24 × 4
+##    学科     学年  性別  学生数
+##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
+##  1 経済学科 1年   男       133
+##  2 経済学科 2年   男       139
+##  3 経済学科 3年   男       121
+##  4 経済学科 4年   男       140
+##  5 経済学科 1年   女        38
+##  6 経済学科 2年   女        50
+##  7 経済学科 3年   女        46
+##  8 経済学科 4年   女        38
+##  9 経営学科 1年   男       129
+## 10 経営学科 2年   男       121
+## # ℹ 14 more rows
+```
+
+---
+# データの列を追加/編集する: mutate()
+
+新しく、学生数を100で割った数値を作るとする
+
+
+```r
+data_634_long_mutate &lt;- data_634_long |&gt; 
+  mutate(学生数100 = 学生数/100)
+
+print(data_634_long_mutate)
+```
+
+```
+## # A tibble: 24 × 5
+##    学科     性別  学年  学生数 学生数100
+##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+##  1 経済学科 男    1年      133      1.33
+##  2 経済学科 男    2年      139      1.39
+##  3 経済学科 男    3年      121      1.21
+##  4 経済学科 男    4年      140      1.4 
+##  5 経済学科 女    1年       38      0.38
+##  6 経済学科 女    2年       50      0.5 
+##  7 経済学科 女    3年       46      0.46
+##  8 経済学科 女    4年       38      0.38
+##  9 経営学科 男    1年      129      1.29
+## 10 経営学科 男    2年      121      1.21
+## # ℹ 14 more rows
+```
+
+---
+
+# データの列を追加/編集する: mutate()
+
+存在する変数名にすると、新しく変数(列)を作らずに上書きする
+
+
+```r
+data_634_long_mutate2 &lt;- data_634_long |&gt; 
+  mutate(学生数 = 学生数/100)
+
+print(data_634_long_mutate2)
+```
+
+```
+## # A tibble: 24 × 4
+##    学科     性別  学年  学生数
+##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
+##  1 経済学科 男    1年     1.33
+##  2 経済学科 男    2年     1.39
+##  3 経済学科 男    3年     1.21
+##  4 経済学科 男    4年     1.4 
+##  5 経済学科 女    1年     0.38
+##  6 経済学科 女    2年     0.5 
+##  7 経済学科 女    3年     0.46
+##  8 経済学科 女    4年     0.38
+##  9 経営学科 男    1年     1.29
+## 10 経営学科 男    2年     1.21
+## # ℹ 14 more rows
+```
+
+---
+
+# データを集計する
+
+任意を列を集計したり統計量を計算する。
+
+
+
+```r
+data_634_long_summarise &lt;- data_634_long |&gt; 
+  summarise(学生数合計 = sum(学生数),
+            学生数平均 = mean(学生数))
+
+print(data_634_long_summarise)
+```
+
+```
+## # A tibble: 1 × 2
+##   学生数合計 学生数平均
+##        &lt;dbl&gt;      &lt;dbl&gt;
+## 1       1932       80.5
+```
+
+---
+
+# データ操作の応用：パイプによる引き渡し
+
+ある操作を行った結果をパイプで次の関数に引き渡す。
+
+
+```r
+# 女性の合計だけを知りたい
+data_634_long_female &lt;- data_634_long |&gt;
+  filter(性別=="女") |&gt;
+  summarise(女性学生数合計 = sum(学生数))
+
+print(data_634_long_female)
+```
+
+```
+## # A tibble: 1 × 1
+##   女性学生数合計
+##            &lt;dbl&gt;
+## 1            523
+```
+
+---
+
+# データ操作の応用：グループごとの集計
+
+グループごとに集計したい場合は`group_by`でグループ情報を与える
+
+
+```r
+# 学科ごとに合計を計算
+data_634_long_dept &lt;- data_634_long |&gt;
+  group_by(学科) |&gt;
+  summarise(学生数合計 = sum(学生数))
+
+print(data_634_long_dept)
+```
+
+```
+## # A tibble: 3 × 2
+##   学科     学生数合計
+##   &lt;fct&gt;         &lt;dbl&gt;
+## 1 経済学科        705
+## 2 経営学科        707
+## 3 金融学科        520
+```
+
+---
+
+# データ操作：練習問題
+
+1. 武蔵大学経済学部の学生数データを使って、女性のみの合計学生数を学年別で計算せよ。
+
+2. 同じデータを使って、１,２年生のみ合計学生数を男女別・学年別で計算せよ。
+
+---
+
+# データ操作：練習問題
+
+1. 武蔵大学経済学部の学生数データを使って、女性のみの合計学生数を学年別で計算せよ。
+
+
+```r
+# 女性のみの学年ごとの学生数
+data_634_long_female_grade &lt;- data_634_long |&gt;
+  filter(性別=="女")|&gt;
+  group_by(学年) |&gt;
+  summarise(学生数合計 = sum(学生数))
+
+print(data_634_long_female_grade)
+```
+
+```
+## # A tibble: 4 × 2
+##   学年  学生数合計
+##   &lt;fct&gt;      &lt;dbl&gt;
+## 1 1年          136
+## 2 2年          132
+## 3 3年          141
+## 4 4年          114
+```
+
+---
+
+# データ操作：練習問題
+
+2. 同じデータを使って、１,２年生のみ合計学生数を男女別・学年別で計算せよ。
+
+
+```r
+# 女性のみの学年ごとの学生数
+data_634_long_1_2_grade &lt;- data_634_long |&gt;
+  filter(学年=="1年" | 学年 == "2年")|&gt; #数字が半角か、などに気をつける
+  group_by(性別, 学年) |&gt;  # ２つのカテゴリでグループ分け
+  summarise(学生数合計 = sum(学生数))
+
+print(data_634_long_1_2_grade)
+```
+
+```
+## # A tibble: 4 × 3
+## # Groups:   性別 [2]
+##   性別  学年  学生数合計
+##   &lt;fct&gt; &lt;fct&gt;      &lt;dbl&gt;
+## 1 男    1年          355
+## 2 男    2年          350
+## 3 女    1年          136
+## 4 女    2年          132
+```
+
+---
+
+# データの結合
+
+２つのデータフレームを結合したい場合
+
+1. 縦に結合したい場合
+2. 横に結合したい場合
+
+---
+
+# データの縦の結合
+
+例えば人文学部のデータと結合したい
+
+
+```r
+# エクセルからデータを読み込み
+data_634_jinbun &lt;- readxl::read_excel("data/musashi_jinbun_students_2023.xlsx") 
+
+knitr::kable(data_634_jinbun) # kableは見やすい表を出力する関数
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 学科 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 性別 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 4年 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 3年 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 2年 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 1年 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 英語英米文化学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 男 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 53 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 73 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 51 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 英語英米文化学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 女 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ヨーロッパ文化学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 男 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 47 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 68 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ヨーロッパ文化学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 女 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 63 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 56 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 日本・東アジア文化学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 男 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 日本・東アジア文化学科 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 女 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 78 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 74 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# データの縦の結合
+
+変数の順番などが同じことを確認した上で、`bind_rows()`を使う
+
+
+```r
+data_634_keizai_jinbun &lt;- bind_rows(data_634,data_634_jinbun)
+
+print(data_634_keizai_jinbun)
+```
+
+```
+## # A tibble: 12 × 6
+##    学科                   性別  `4年` `3年` `2年` `1年`
+##    &lt;chr&gt;                  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 経済学科               男      140   121   139   133
+##  2 経済学科               女       38    46    50    38
+##  3 経営学科               男      117   111   121   129
+##  4 経営学科               女       52    62    53    62
+##  5 金融学科               男      108   107    90    93
+##  6 金融学科               女       24    33    29    36
+##  7 英語英米文化学科       男       53    73    65    51
+##  8 英語英米文化学科       女       74    72    77    55
+##  9 ヨーロッパ文化学科     男       43    47    37    68
+## 10 ヨーロッパ文化学科     女       60    66    63    56
+## 11 日本・東アジア文化学科 男       50    46    48    45
+## 12 日本・東アジア文化学科 女       61    78    75    74
+```
+
+---
+
+# データを横に統合
+
+新しい変数を含んだデータを既存のデータに統合したい
+
+
+```r
+# エクセルからデータを読み込み
+data_634_keizai_teiin &lt;- readxl::read_excel("data/musashi_keizai_teiin_2023.xlsx") 
+
+knitr::kable(data_634_keizai_teiin) # kableは見やすい表を出力する関数
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 学科 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 定員 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経済学科 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 580 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 経営学科 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 580 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 金融学科 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 440 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# データを横に統合：join()関数
+
+ここでは`left_join`を使う
+
+
+```r
+# 学科の人数と学科の定員を統合する
+data_634_long_keizai &lt;- data_634_long |&gt;
+  left_join(data_634_keizai_teiin, by=c("学科"="学科"))
+
+print(data_634_long_keizai)
+```
+
+```
+## # A tibble: 24 × 5
+##    学科     性別  学年  学生数  定員
+##    &lt;chr&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 経済学科 男    1年      133   580
+##  2 経済学科 男    2年      139   580
+##  3 経済学科 男    3年      121   580
+##  4 経済学科 男    4年      140   580
+##  5 経済学科 女    1年       38   580
+##  6 経済学科 女    2年       50   580
+##  7 経済学科 女    3年       46   580
+##  8 経済学科 女    4年       38   580
+##  9 経営学科 男    1年      129   580
+## 10 経営学科 男    2年      121   580
+## # ℹ 14 more rows
+```
+
+---
+
+# その他のjoin関数
+
+| 関数名       | 説明                                               |
+|--------------|------------------------------------------------------|
+|`inner_join()`|  どちらのデータフレームにも存在するキーの行のみ返す  |
+|`left_join()`|  左のデータフレームに存在するキーの行を返す  |
+|`right_join()`|  右のデータフレームにも存在するキーの行を返す  |
+|`full_join()`|  いずれかのデータフレームに存在するキーの行を返す  |
+
+
+---
+
+# Rにおける描画
+
+データを可視化するビジュアリゼーションは、プレゼンテーションだけではなく分析者自身がデータを理解するためにも有効で重要なテクニック。
+
+Rにはデフォルトの描画関数も用意されているが、`tidyverse`シリーズのggplot2というパッケージの関数が強力であり昨今はスタンダードになっていることから、こちらを紹介する。
+
+ggplot2とは、グラフィックの文法 (**g**rammar of **g**raphics)という概念に基づいて作図するパッケージ
+
+---
+
+# 描画をしてみよう
+
+- 冒頭の武蔵大学経済学部の学生数のデータを作ってみよう。
+
+
+---
+
+# 描画の前に
+
+- データに少し工夫を加える
+  - データは文字列（カテゴリ）の順番を勝手に決めてしまう。
+- 文字列をファクター型に変換する。
+  - 描画するときにカテゴリの順番を揃えたいので、順番の情報を与える。
+
+
+
+---
+
+# キャンバスを用意する
+
+- まずキャンバスを用意するイメージでggplot()関数を呼び出す
+
+
+```r
+plot_634 &lt;- ggplot()
+
+print(plot_634)
+```
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-53-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# グラフのレイヤーを追加する
+
+- グラフの種類ごとにデータを表現する幾何学的オブジェクト`geom_`が用意されている
+- `geom_bar`は棒グラフで表現する。
+- 引数として、用いるデータ(`data`), X軸などにデータを割り当てる`mapping`,そして、変数をどう扱うかという`stat`がある。
+  - `mapping`には`aes`という関数を使ってデータを当てはめる。
+  - x軸は学年、y軸は学生数とする。
+  - `stat`にはデータそのものの数値を使うため、"identity"を指定する。
+
+---
+
+# グラフのレイヤーを追加する
+
+
+```r
+plot_634 &lt;- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数),stat="identity")  # &lt;- 追加！
+
+print(plot_634)
+```
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-54-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 文字化けに対処する
+
+- Macを使っていると、ggplotで日本語を使うと文字化けすることが知られている
+  - **豆腐化現象**と呼ばれている
+- 文字化けに対処するため、日本語のフォントを指定する。
+- 新しく`theme_grey`というレイヤーを作り、その中の`base_family`という引数でフォント名`"HiraKakuPro-W3"`を指定する。
+
+---
+
+# 文字化けに対処する
+
+
+```r
+plot_634 &lt;- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数),stat="identity") +
+  theme_grey(base_family="HiraKakuPro-W3")  # &lt;- 追加！
+
+print(plot_634)
+```
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-55-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# aesに色を追加する
+
+- 男女別に表示したいので、男女を色で分けたい
+- マッピングでaesの中に色の変数として性別を指定する。
+- 色のマッピングには二種類あり、点・線・枠の色を指定する`color`と、面の色を指定する`fill`がある。
+ - この場合は塗りつぶしたいので、`fill`を指定する。
+ - 色は指定しなければ自動的に決められる。
+
+---
+
+# aesに色を追加する
+
+
+```r
+plot_634 &lt;- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別),stat="identity")+  # &lt;- 追加！
+  theme_grey(base_family="HiraKakuPro-W3")
+
+print(plot_634)
+```
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-56-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 男女の置き方を変えたい
+
+- 男女を縦に積むのではなく、横に置くことで対比がしやすくなりそう。
+- geom_bar()の引数の`position`を`dodge`に指定する。
+  - デフォルトは`stack`になっている（文字通り「積む」）
+
+---
+
+# aesに色を追加する
+
+
+```r
+plot_634 &lt;- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), # &lt;- 追加！
+           stat="identity", position="dodge")+ 
+  theme_grey(base_family="HiraKakuPro-W3") 
+
+print(plot_634)
+```
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-57-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 色を変えたい
+
+- 色は指定しなければ自動的に決まる
+- わかりやすい、おしゃれな色を使いたい場合はマニュアルで変えられる
+- `scale_fill_manual()`の中で`value`という色で変えることが可能。
+  - 複数指定する場合は`c()`の中に並べてベクトルとして扱う
+  - 色の順番に注意
+  - 簡単な色の名前(例：`"blue"`, `"red"`)でも指定できるし、RGB値でも決められる
+    - RGB値はネットで検索してみよう
+- ここでは、武蔵大学のロゴの緑と黄色を使う。
+
+---
+
+# 色を変えたい
+
+
+
+```r
+plot_634 &lt;- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) + # &lt;- 追加！
+  theme_grey(base_family="HiraKakuPro-W3")
+
+print(plot_634)
+```
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-58-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 学科別に分けたい
+
+- 現状では、学科の人数がすべて積算されてしまっているが、データとしては分かれている
+- せっかくなので別で表示したいが、もうx軸もy軸も色も使ってしまっている。
+--
+- では、グラフ自体を分けてしまおう
+- `facet_wrap()`というレイヤーを使う
+  - `~`の後に分割に使うカテゴリを指定することで、分割した図を作ってくれる
+
+---
+
+# 学科別に分けたい
+
+
+```r
+plot_634 &lt;- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) +
+  theme_grey(base_family="HiraKakuPro-W3") +
+  facet_wrap(~ 学科) # &lt;- 追加！
+
+print(plot_634)
+```
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-59-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# ラベルを変更する・タイトルを追加する
+
+- 通常はラベルを明示する
+- lab()レイヤーの中で、X軸なら`x=`, Y軸なら`y=`で変更する
+  - 色の凡例のタイトルも`fill=`
+  - 今回は学年は明らか、学生数もタイトルで明示するので空欄とする
+  - 空欄としたい場合は`""`
+- タイトルを追加する場合は、`title=`
+  - サブタイトルも`subtitle=`で追加できる
+- 右下のノートも`caption=`で追加できる
+
+---
+
+# ラベルを変更する・タイトルを追加する
+
+
+```r
+plot_634 &lt;- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) +
+  labs(fill="",x="",y="",                                # &lt;- 追加!
+       title="武蔵大学経済学部の学科別・男女別学生数",   # &lt;- 追加!
+       subtitle="2023年5月1日時点",                      # &lt;- 追加!
+       caption = "データ元：武蔵大学公式ウェブサイト") + # &lt;- 追加!
+  theme_grey(base_family="HiraKakuPro-W3") +
+  facet_wrap(~ 学科) # &lt;- 追加！
+```
+
+---
+
+# テーマを変更する1
+
+- **テーマ** (`theme`)はggplotの細かい見た目を設定する
+  - 背景、軸の有無、グリッドの数や濃さ、軸ラベルの字の大きさなどなど
+- ggplotは背景がグレーのテーマがデフォルト
+- `theme`レイヤーで細かい設定を行う
+- `theme_***`でデフォルトテーマを使うこともできる
+  - [ここ](https://ggplot2.tidyverse.org/reference/ggtheme.html)でどんなテーマがあるか見られる
+--
+
+- まずは見た目をスッキリさせるデフォルトテーマ`theme_minimal`を使ってみる
+  
+---
+
+# テーマを変更する1
+
+
+```r
+plot_634 &lt;- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) +
+  labs(fill="",x="",y="",                                
+       title="武蔵大学経済学部の学科別・男女別学生数",   
+       subtitle="2023年5月1日時点",                      
+       caption = "データ元：武蔵大学公式ウェブサイト") + 
+  theme_minimal(base_family="HiraKakuPro-W3") +     # &lt;- 変更!
+  facet_wrap(~ 学科) # &lt;- 追加！
+```
+
+---
+
+# テーマを変更する1
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-62-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# テーマを変更する2
+
+- 細かいテーマ設定を`theme`レイヤーの中で行う
+  - `panel.grid.major.x`はメインのグリッドの設定
+    - element_blank()は、「空」にするという設定
+  - `legend.position`で、凡例を右ではなく下`"bottom"`に
+  - `text`で図の中の文字を設定
+    - `element_text()`で設定する
+    - `size=15`としてフォントサイズを15にする。
+
+---
+
+# テーマを変更する2
+
+
+```r
+plot_634 &lt;- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) +
+  labs(fill="",x="",y="",                                
+       title="武蔵大学経済学部の学科別・男女別学生数",   
+       subtitle="2023年5月1日時点",                      
+       caption = "データ元：武蔵大学公式ウェブサイト") + 
+  theme_minimal(base_family="HiraKakuPro-W3") +
+  theme(panel.grid.major.x = element_blank(),   # &lt;- 追加!
+        legend.position = "bottom",             # &lt;- 追加!
+        text = element_text(size=15)) +         # &lt;- 追加!
+  facet_wrap(~ 学科) 
+```
+
+
+---
+
+# 完成形
+
+&lt;img src="R入門2_データ操作_files/figure-html/musashi_comp-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# ggplot2による図の保存
+
+- ggplotで作図した結果をオブジェクトに保存
+  - ここの例では`plot_634`に保存
+
+- `ggsave`という関数で、ファイルパスを指定して保存
+
+
+```r
+# ggsave()関数を使って、図を保存
+# file: 保存する場所, plot: 図のオブジェクト, device: 保存する形式
+ggsave(file="figure/musashi_students_2023.png", plot=plot_634, device="png")
+```
+
+---
+
+# 他の描画レイヤー
+
+|`geom_point`|散布図|
+|`geom_line`|折れ線グラフ|
+|`geom_boxplot`|箱ひげ図|
+|`geom_violin`|バイオリンプロット|
+|`geom_map`|地図を描く|
+
+- 他にも多くの描画レイヤーが存在する
+ - [参考](https://ggplot2.tidyverse.org/reference/)
+
+---
+
+# 散布図
+
+.pull-left[
+
+- `geom_point`で散布図を描く
+- XとYの変数を指定する
+- ここでは`diamonds`というggplotに付属しているデータセットを使う
+- ダイアモンドのカラットをx軸, 価格をy軸, ダイアモンドの色を色で表現
+
+
+```r
+plot_scatter &lt;- ggplot(data=diamonds) + 
+  geom_point(aes(x=carat,y=price, 
+                 color=color))
+```
+]
+
+.pull-right[
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-66-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# 折れ線グラフ
+
+.pull-left[
+
+- `geom_line`で折れ線グラフを描く
+  -時系列データに有効
+- XとYの変数を指定する
+- ここでは`economics`というggplotに付属しているデータセットを使う
+- 日付をx軸, アメリカの失業数をy軸
+
+
+]
+
+.pull-right[
+
+```r
+plot_line &lt;- ggplot(data=economics) + 
+  geom_line(aes(x=date,y=unemploy))
+```
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-68-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# 箱ひげ図
+
+.pull-left[
+
+- `geom_boxplot`で箱ひげ図を描く
+  - 変数の分布を確認するのに有効
+- XとYの変数を指定する
+- ここでは`mpg`というggplotに付属しているデータセットを使う
+- 車の種類をx軸, 各自動車の燃費をy軸
+
+
+]
+
+.pull-right[
+
+```r
+plot_boxplot &lt;- ggplot(data=mpg) + 
+  geom_boxplot(aes(x=class,y=hwy))
+```
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-70-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# ヴァイオリンプロット
+
+.pull-left[
+
+- `geom_violin`でヴァイオリンプロットを描く
+  - 変数の分布を確認するのに有効
+- XとYの変数を指定する
+- ここでは`mpg`というggplotに付属しているデータセットを使う
+- 車の種類をx軸, 各自動車の燃費をy軸
+
+
+]
+
+.pull-right[
+
+```r
+plot_violin &lt;- ggplot(data=mpg) + 
+  geom_violin(aes(x=class,y=hwy))
+```
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-72-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# 適した描画？
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="figure/IMG_3452.jpg" alt="A caption" width="50%" /&gt;
+&lt;p class="caption"&gt;A caption&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# 適した描画？
+
+- 棒グラフ：データの大きさを比較する
+- 折れ線グラフ：時系列での変化をみる
+- 円グラフ：全体に占める割合をみる
+- 積み上げ棒グラフ：累積データから内訳を比較する
+- 散布図：2つのデータの相関関係をみる
+
+例：[グラフの種類と使い分け、間違った使い方](https://www.tableau.com/ja-jp/learn/articles/graph-type)(Tableau)
+
+
+---
+
+# 課題
+
+- [私たちのR](https://www.jaysong.net/RBook/visualization1.html)の18章の18.1と18.2を読む
+ - 必要に応じてそれよりも前の章も読む
+ 
+- 説明にしたがって、図18.11を再現する
+ - コードのコピペは禁止（意味がない）
+
+- Rコードと保存した図(.png形式)をGoogle Classroomで提出
+ - 2023年5月29日(月)締切
+ 
+---
+
+# 課題のレビュー
+ 
+---
+
+# 課題２
+
+- [政府統計の総合窓口e-stat](https://www.e-stat.go.jp/)へアクセス
+- 「分野」-&gt; 「農林水産業」-&gt; 「漁業センサス」-&gt; 「データベース」
+- データを一つ選ぶ-&gt; 「DB」
+- ダウンロード
+  - CSV形式(クロス集計表形式・UTF-8(BOM無し))
+  - すべて「出力しない」
+  
+---
+
+### 課題２
+
+
+```r
+dataves2 &lt;- read_csv("data/FEH_00500210_230529214946.csv")
+ggplot(data=dataves2) + 
+  geom_bar(aes(x=`(J117-30-2-001)経営体階層`,y=`漁業経営体数【経営体】`),stat="identity") + 
+  theme_bw(base_family = "HiraKakuPro-W3")
+```
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-73-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 課題２
+
+
+```r
+dataves3 &lt;- dataves2 %&gt;% slice(2:17)
+ggplot(data=dataves3) + 
+  geom_bar(aes(x=`(J117-30-2-001)経営体階層`,y=`漁業経営体数【経営体】`),stat="identity") + 
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  theme(axis.text.x = element_text(angle=45,hjust=1))
+```
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-74-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 課題２
+
+&lt;img src="R入門2_データ操作_files/figure-html/unnamed-chunk-75-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"coutIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

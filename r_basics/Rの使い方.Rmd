@@ -6,7 +6,7 @@ date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default,ninjutsu,useR-fonts]
+    css: [default,metropolis,useR-fonts]
     nature:
       highlightStyle: github
       highlightLines: true
@@ -38,6 +38,14 @@ options(scipen=999)
 
 
 
+# データ分析?
+
+```{r  label = data_analysis, echo = FALSE, fig.align = "center", fig.cap = "データ分析", out.width = '80%'}
+knitr::include_graphics("fig/pexels-fauxels-3183131.png")
+```
+
+---
+
 # R?
 
 - 　**R** は統計、データ分析、作図のためのインタープリタープログラミング言語
@@ -45,6 +53,44 @@ options(scipen=999)
 - 統計やデータ分析を行うアプリ
   - 他にはSPSS, Stata
   - Pythonもよく使われる
+  
+---
+
+# Excelじゃだめなのか
+
+- **Excel** は表計算ソフトで多くの機能を有している
+
+- Excelでできること
+  - 計算する
+  - 図を描く
+  - 基本的な統計分析
+
+--
+
+- じゃあExcelでよくね？
+
+---
+
+```{r, label = complexity, echo = FALSE, fig.align = "center", fig.cap = "", fig.width = 12,fig.height = 7}
+data.frame(complexity = seq(0,5,by=0.1)) %>%
+  mutate(
+       R = 25+5*complexity - 0.2*complexity^2,
+       Excel = exp(complexity)) %>%
+ggplot(aes(x=complexity)) + 
+  geom_line(aes(y=R),col="blue",size=2) +
+  geom_line(aes(y=Excel),col="forestgreen",size=2) +
+  annotate("text",x=4.5,y=55,label="R",col="blue",size=10) +
+  annotate("text",x=4.5,y=130,label="Excel",col="forestgreen",size=10) + 
+  labs(x="分析の複雑さや高度さ",y="作業の複雑さや大変さ") +
+  theme_bw(base_family="HiraKakuPro-W3") +
+  theme(panel.grid = element_blank(),
+        panel.border = element_blank(),
+        axis.line=element_line(color="black"),
+        axis.title = element_text(size=20),
+        axis.ticks = element_blank(),
+        axis.text = element_blank()) 
+```
+
 
 ---
 
@@ -55,9 +101,55 @@ options(scipen=999)
 - たくさんの資料がネット上に存在する
 - 分析結果をプレゼンテーションするツールが充実している
  - Rstudio: 統合開発環境(IDE)
- - Shiny: 相互的な作図などができるアプリ [例](https://keita43a.shinyapps.io/easter_island/)
 - 豊富なパッケージ
   - 多くのエンジニアや研究者が公開
+  
+
+---
+
+# 例えばRでできること：図表
+
+
+```{r, echo =FALSE}
+data_634_long = readxl::read_excel("data/musashi_keizai_students_2023.xlsx") %>%
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") %>%
+  mutate(学科 = factor(学科, levels=c("経済学科","経営学科","金融学科")),　# order of departments
+         性別 = factor(性別, levels=c("男","女")),
+         学年 = factor(学年, levels=c("1年","2年","3年","4年")))
+```
+
+
+```{r label = musashi1, echo = FALSE, fig.align = "center", fig.cap = "", fig.width = 10,fig.height = 6}
+ggplot(data_634_long, aes(x=`学年`,y=`学生数`, fill=`性別`)) +
+  geom_bar(stat="identity",position="dodge") +
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) +
+  labs(fill="",x="",y="",
+       title="武蔵大学経済学部の学科別・男女別学生数",
+       subtitle="2023年5月1日時点") +
+  facet_wrap(~`学科`) +
+  theme_minimal(base_family="HiraKakuPro-W3") +
+  theme(panel.grid.major.x = element_blank(),
+        legend.position = "bottom",
+        text = element_text(size=15))
+```
+
+---
+
+# 例えばRでできること：ウェブアプリ
+
+ [例](https://keita43a.shinyapps.io/easter_island/)
+
+
+---
+
+# 例えばRでできること：ウェブスクレイピング
+
+
+```{r  label = suumo1, echo = FALSE, fig.align = "center", fig.cap = "", out.width = '80%'}
+knitr::include_graphics("fig/suumo1.png")
+
+# suumo_repで中身を見せられる
+```
 
 ---
 
@@ -66,6 +158,7 @@ options(scipen=999)
 - Rは進化が早い
 - 遅い
   - 一般的なデータ分析をするのには問題がない
+  - Excelよりは早い
   - ビッグデータや複雑な統計モデルを走らせると、遅かったりメモリ消費が激しい
 - CUIなので、最初の学習が難しい
   
@@ -89,25 +182,73 @@ options(scipen=999)
 --
 
 - CUIは記録ができる
-  - 何度も同じ操作を覚えている
+  - 何度も同じ操作ができる
   - 人が書いた一連の操作（コード）をコピー・参考にできる
   - 柔軟性が高い
 
 ---
 
-# 統合開発環境 IDE
+# プログラミング
 
-- IDE: Integrated Development Environment
+- やることはプログラミング
+--
+
+- PythonもJavaも、まずはプログラミングを理解すると学べるようになる
+- Rは比較的わかりやすい言語
+--
+
+- ゼミでは基本的なデータ描画と統計解析をできるようになることが目標
+
+
+---
+
+# Rをどうやって使う？
+
+- Rを使うにはいくつか方法がある。
+- 統合開発環境 IDE: Integrated Development Environment
   - ソフトウェア開発や、データ分析のプロセスをワンストップで行える環境
  - 一部GUIを導入したり、CUIによる操作をアシストする
 - 特に強い好みがない限り、**Rstudio**をおすすめ
+
+
+---
+
+# Rstudioを使う2つの方法
+
+
+1. posit.Cloudの無料プランを使う
+  - クラウド上でRstudiを使う
+  - コンピューター上の設定が不要
+  - ファイルをアップロードして使う
+
+2. PCにインストール
+  - 自分のPCにインストール
+  - ネット環境がなくても使える
+  - 自分のPCにファイルにアクセスして使える
 
 ---
 
 # RとRstudioのインストール
 
 - 学校のパソコンにはすでにインストールされている
-- 自分のパソコンに導入したい人は[このスライド](https://speakerdeck.com/s_uryu/introduction-to-r)か[ここ](https://yukiyanai.github.io/jp/resources/)にある「RとRStudioのインストール方法の解説」を参照
+- 自分のパソコンに導入する人は[このスライド](https://speakerdeck.com/s_uryu/introduction-to-r)か[ここ](https://yukiyanai.github.io/jp/resources/)にある「RとRStudioのインストール方法の解説」を参照
+
+
+---
+
+# Rstudioのインターフェース
+
+```{r  label = rstudio, echo = FALSE, fig.cap = "Rstudio見た目", out.width = '90%'}
+knitr::include_graphics("fig/Rstudio_look.png")
+```
+
+---
+
+# Rstudioのインターフェース
+
+```{r  label = rstudio2, echo = FALSE, fig.cap = "Rstudio見た目2", out.width = '90%'}
+knitr::include_graphics("fig/Rstudio_look-2.png")
+```
 
 ---
 
@@ -129,18 +270,19 @@ knitr::include_graphics("fig/directory_structure.png")
 
 ---
 
-# ゼミフォルダ
+# 作業フォルダを作ろう
 
-ゼミフォルダを作る
-
-- 自分の学生番号のドライブ(例 s1234567)の下に abezemi フォルダを作成
+- 学校のパソコン
+  - 自分の学生番号のドライブ(例 s1234567)の下に abezemi フォルダを作成
+- 自分のパソコン (Windows)
+  - 例えば「ドキュメント」の下にabezemiフォルダを作成
 - ドライブ上で右クリック→新規作成→フォルダ
 
 ---
 
 # 作業スペース
 
-コンピューター上では、どこかのディレクトリ（フォルダ）が作業場所になっている。
+コンピューター上では、どこかのディレクトリ（フォルダ）がRの作業場所になっている。
 今の作業場所は`getwd()`で表示できる。
 
 ```{r, eval=FALSE}
@@ -150,10 +292,10 @@ getwd()
 これを変更するには`setwd(path)`で変更できる。
 
 ```{r,eval=FALSE}
-setwd("j:/abezemi/r_renshu")
+setwd("j:/abezemi")
 ```
 
-ここでは`j:`ドライブの下の`abezemi`フォルダの下の`r_renshu`フォルダに設定。
+ここでは`j:`ドライブの下の`abezemi`フォルダに設定。
 もう一度`getwd()`して変更されたか確認しよう。
 
 ---
@@ -181,17 +323,25 @@ RStudioのRプロジェクトという機能を使うと、以下のメリット
 
 - プロジェクト名を入力: r_renshu 
  - 英語で。日本語は使えない（もしくはトラブルの元になる）
+ 
+---
+
+# Rプロジェクトの作成
+
+- プロジェクトが作成されると、作成したディレクトリにはプロジェクト名.Rprojという名前のファイルが作成される
+ - 今回はr_renshu.Rproj
+- プロジェクトの設定などを保存
 
 ---
 
 # スクリプトの作成
 
-Rとの"対話"は、Rstudioの左下の区画(Console)で行われる。
+Rとの"対話"は、Rstudioの左下のペイン(Console)で行われる。
 そのままConsoleに入力しても機能するが、**スクリプト**(コード)に書くことで、記録を残しながらRに命令を与えることができる。
 
 **作成**
 - File -> New File -> R script
-- もしくは左上の区画の白い資格に緑の＋マークのところから、R Script
+- もしくは左上の区画の![](fig/newfile.png)から、「R Script」
 
 
 
@@ -216,8 +366,8 @@ R scriptに以下のように書く
 print("Hello World!")
 ```
 
-カーソルが同じ行にあることを確認して、Runをクリック
-もしくは、Ctrlを押しながらEnter
+カーソルが同じ行にあることを確認して、![](fig/run_button.png)をクリック  
+もしくは、[Ctrl]を押しながら[Enter] (MacならCommand+Enter)
 
 "Hello World!"と表示されれば成功。
 
@@ -225,19 +375,137 @@ print("Hello World!")
 
 # スクリプトの書く際の注意点
 
-R script上では\#から始まる行は、コメントとして認識され、実行するとコンソールには表示されるが、何も起こらない。メモなどを書く際に使う。
+R script上では\#から始まる行は、コメントとして認識され、実行するとコンソールには表示されるが、何も起こらない。  
+メモなどを書く際に使う。
 
 ```{r}
 # これは初めてのRのコードです。
 print("Hello World")
 ```
 
-もしくは一度使ったが、今は実行したくないコードを一時的に向こうにする（コメントアウト）
+もしくは一度使ったが、今は実行したくないコードを一時的に無効にする（コメントアウト）
 
 ```{r}
 # print("Good Evening")
 ```
 
+---
+
+# スクリプトは読みやすく
+
+コメントや改行を活用して読みやすいコード（スクリプト）を書く。
+Rのコードでは空行は意味をなさないのでいくらでも空けてよい。
+
+```{r, eval=FALSE}
+# Rの練習１
+# 2024年4月15日
+
+# ------ ライブラリ ---------
+library(tidyverse)
+
+# ------ コード本体 ---------
+# はじめまして
+print("Hello World!")
+
+# 足し算
+x <- 1 + 1
+
+# データを読み込む
+# このデータはXXでダウンロードした
+data <- read_csv("data/data1.csv")
+
+
+```
+
+---
+
+# スクリプトは読みやすく
+
+よくない例
+
+```{r, eval=FALSE}
+
+library(tidyverse)
+print("Hello World!")
+x <- 1 + 1
+data <- read_csv("data/data1.csv")
+
+```
+
+---
+
+# エラーを恐れるな！
+
+- 間違ったコマンドを入力すると赤字でエラーが出る。
+- 怖がらなくてよい。間違ってると教えてくれてるだけ。
+- .(ドット)と,(コンマ)を間違えただけでもうまくいかないのがプログラミング。注意深く書こう。
+
+```{r, error=TRUE}
+# これは間違ったコード(tを忘れてる)
+prin("Hello World")
+```
+
+---
+
+# よくあるエラー1
+
+`Error in read_csv("data/Countries.csv") :
+could not find function "read_csv"`
+
+`XXX`という関数が見つかりません、というエラー
+
+**考えられるケース**
+
+- `library()`で必要なパッケージを読み込めてない
+- 関数のつづりが間違っている
+
+---
+
+# よくあるエラー2
+
+
+`Error: 'data/Countris.csv' does not exist in current working directory`
+
+XXX.csvというファイルが作業場所にありません。
+
+**考えられるケース**
+- そもそもファイルがない（保存した場所を間違えた）
+- ファイルの指定場所が間違っている
+- つづりが間違っている
+
+---
+
+
+# Rstudioの補完機能
+
+オブジェクト内の要素や、ファイル名などを補完してくれる機能
+
+```{r  label = hokan, echo = FALSE, fig.cap = "", out.width = '30%',fig.align='center'}
+knitr::include_graphics("fig/hokan.png")
+```
+
+---
+
+# Rstudioのオプション
+
+Rstudioを自分好みにカスタマイズすることが可能  
+[Tools]->[Global Options...]
+
+- Rstudio全般
+- コーディング
+- 外観
+- ターミナル
+- キーボードショートカット
+
+---
+
+# Rstudioのオプション
+
+例えば外観の変更
+
+```{r  label = option, echo = FALSE, fig.cap = "", out.width = '60%'}
+knitr::include_graphics("fig/option.png")
+```
 
 ---
 
@@ -303,13 +571,24 @@ z
 
 ---
 
+# プログラミング：繰り返し
+
+```{r}
+for(i in 1:10){
+  print(i+1)
+}
+```
+
+
+---
+
 # データ型
 
 Rのオブジェクトにはいくつかの「型」がある
 
 ```{r}
 # 実数
-x <- 8
+x <- 634
 mode(x)
 ```
 
@@ -327,7 +606,7 @@ mode(y)
 
 ```{r}
 # 数字だが文字列
-z <- "5"
+z <- "634"
 mode(z)
 ```
 
@@ -362,19 +641,19 @@ is.numeric(z)
 
 ```{r}
 v1 <- c(1,2,3,4,5)
-v1
+print(v1)
 ```
 
 ベクトルは、文字や論理値など取ることができる。
 
 ```{r}
 v2 <- c("musashi","nerima","ekoda")
-v2
+print(v2)
 ```
 
 ```{r}
 v3 <- c(FALSE,TRUE,TRUE,FALSE)
-v3
+print(v3)
 ```
 
 
@@ -389,14 +668,14 @@ v3
 ```{r}
 # 数値と論理値を混ぜると、数値になる。(FALSE->0, TRUE->1)
 v4 <- c(FALSE,1,TRUE)
-v4 
+print(v4) 
 ```
 
 ```{r}
 # 数値と論理値と文字列を混ぜると、全部文字列になる
 
 v5 <- c(FALSE,1,"musashi")
-v5
+print(v5)
 ```
 
 ---
@@ -407,7 +686,7 @@ v5
 
 ```{r}
 v6 <- c(1:10)
-v6
+print(v6)
 ```
 
 nずつ増える数列を作りたい場合は、`seq()`関数を使う
@@ -417,7 +696,21 @@ nずつ増える数列を作りたい場合は、`seq()`関数を使う
 v7 <- seq(2,50,by=2)
 ```
 
+---
+
+# ベクトル：連続した数値
+
 **練習問題**：3から60まで3ずつ増える数列ベクトルを作りなさい
+
+--
+
+```{r}
+# 3から60まで3ずつ増える数列
+v7_ex <- seq(3,60,by=3)
+
+print(v7_ex)
+
+```
 
 ---
 
@@ -428,8 +721,9 @@ v7 <- seq(2,50,by=2)
 ```{r}
 # 5が100個ならぶベクトル
 v8 <- rep(5,100)
-v8
+print(v8)
 ```
+--
 
 本当に100個出てるか？
 ベクトルの要素の数を数える関数は`length`
@@ -440,7 +734,7 @@ length(v8)
 
 ---
 
-# 参照
+# ベクトル要素の参照
 
 ベクトルのn個目の要素を参照したいときは角カッコを使う`[]`
 
@@ -461,6 +755,10 @@ v7[c(2,3,5)]
 様々なベクトルやデータなどのオブジェクトをひとまとめにして扱うことができるのがリスト
 
 リストは`list()`関数で作成する
+
+---
+
+# リスト
 
 ```{r}
 # aというオブジェクトに、文字列ベクトル、数値ベクトル、データが混ざって入っている。
@@ -497,199 +795,19 @@ a[[3]]
 
 ---
 
-# データフレーム
-
-Rではデータをデータフレームという形で扱う
-例として、Rに入っているmtcarsというデータを見てみよう
-
-```{r}
-# mtvarsというデータをdata1というオブジェクト(入れ物)に入れる
-data1 <- mtcars
-```
-
-
-
----
-
-# データを見てみる
-
-右上のEnvironment区画にdata1というオブジェクトが生成される
-クリックしてみると、エクセルのような画面が現れる
-
-また`View()`という関数をつかっても、同じようにデータを見ることができる。
-
-```{r eval=FALSE}
-# data1を見るビューワーがRstudio上で開く
-View(data1)
-```
-
----
-
-# データを見てみる
-
-また、データの最初だけみたいときは、`head()`, また後ろだけ見たいときは`tail()`関数を使う。
-デフォルトでは、6行だけ表示されるが、行数は引数nで調整できる。
-
-```{r}
-# data1の最初の10行がコンソールに表示される
-head(data1, n=10)
-```
-
----
-
-# データの「大きさ」
-
-データの行数や列数を調べる。
-
-```{r}
-dim(mtcars)
-```
-
-32行、11列
-
----
-
-# 列の名前一覧
-
-```{r}
-names(mtcars)
-```
-
----
-
-# mtcarsの変数
-
-
-[, 1]	mpg	Miles/(US) gallon  
-[, 2]	cyl	Number of cylinders  
-[, 3]	disp	Displacement (cu.in.)  
-[, 4]	hp	Gross horsepower  
-[, 5]	drat	Rear axle ratio  
-[, 6]	wt	Weight (1000 lbs)  
-[, 7]	qsec	1/4 mile time  
-[, 8]	vs	Engine (0 = V-shaped, 1 = straight)  
-[, 9]	am	Transmission (0 = automatic, 1 = manual)  
-[,10]	gear	Number of forward gears  
-[,11]	carb	Number of carburetors  
-
----
-
-# 変数の要約
-
-```{r}
-summary(mtcars)
-```
-
----
-
-# 変数の要約
-
-| Min. | nth Qu. | Median | Mean | Max. |
-|------|---------|--------|------|------|
-| 最小 |  n分位  | 中央値 | 平均 | 最大 |
-
-
----
-
-# 変数の取り出し
-
-データから変数を一つ取り出す
-```{r}
-# データフレーム$変数 で変数の列をベクトルとして取り出す
- data1$mpg
-```
-
----
-
-# 変数の取り出しと計算
-
-```{r}
-# 平均 mean()関数
-mean(data1$mpg)
-
-# 中央値 median()関数
-median(data1$mpg)
-
-# 分散 var()関数
-var(data1$mpg)
-```
-
----
-
-# 変数の取り出しと計算
-
-```{r}
-# 合計 sum()関数
-sum(data1$mpg)
-```
-
-
----
-
-# Vizualization (図示): hist()関数
-
-データを理解するためには図示が効果的。  
-データの分布(散らばり方)を理解するのに
-
-```{r, fig.height=4,fig.align='center'}
-# ヒストグラム hist()関数
-hist(data1$mpg)
-```
-
----
-
-# hist()の設定
-
-```{r, fig.height=4, fig.align='center'}
-hist(data1$mpg,
-     col = "steelblue",         # ヒストグラムの色
-     main = "Histogram of mpg", # タイトル
-     xlab = "Mile per gallon",  # X軸のラベル
-     ylab = "Frequency",        # Y軸のラベル
-     breaks = 10                # 区切りの数
-     )
-```
-
----
-
-# boxplot()関数
-
-```{r,fig.height=4, fig.align='center'}
-boxplot(mtcars$mpg,
-        main='Distribution of mpg values',
-        ylab='mpg',
-        col='steelblue',
-        border='black')
-```
-
-
----
-
-# 2つの変数の関係
-
-```{r,fig.height=4, fig.align='center'}
-plot(mtcars$mpg, mtcars$wt,
-     col='blue',            # 色
-     main='mpg and weight',   # タイトル
-     xlab='mpg',           # X軸のラベル
-     ylab='wt',            # Y軸のラベル
-     pch=19)               # 点の形
-```
-
----
-
 # パッケージについて
 
 Rはデフォルト(初期状態)でインストールされている関数がたくさんある。
 
-平均を`mean()`や、散布図を描く`plot()`などは関数であり、もともとRをインストールした時点で入っている。
+ベクトルの長さを測る`length()`や、散布図を描く`plot()`などは**関数**であり、もともとRをインストールした時点で入っている。
 
 --
 
 しかし、さらにRを拡張して機能を強化することができる。  
 それが**パッケージ**のインストールである。
 
-たとえばスマホにはもともとアプリが入っているが、さらにいろんなアプリをダウンロードしてインストールできることに似ている。
+たとえばスマホにはもともと基本アプリが入っているが、さらにいろんなアプリをダウンロードしてインストールできることに似ている。
+しかしパッケージは無料である。
 
 ---
 
@@ -714,7 +832,7 @@ install.packages("ggplot2")
 install.packages("tidyverse")
 ```
 
-実はこのパッケージはパッケージ**群**であり、複数のパッケージがインストールされる。
+実はこの`tidyverse`はパッケージ**群**であり、複数のパッケージがインストールされる。
 
 ---
 
@@ -726,33 +844,128 @@ Tidyverseというパッケージ群は`ggplot2`, `dplyr`, `tidyr`, `readr`, `pu
 
 ---
 
-# パッケージの読み込み
+# パッケージの使い方1
 
-パッケージを読み込まないと、パッケージに入っている関数は使えない
+パッケージの使い方は２通りある。
+パッケージに入っている関数を使うためには、パッケージを読み込む
 
 ```{r}
+# library()でパッケージの読み込み
 library(tidyverse)
+```
+
+読み込んだ後は、パッケージに含まれている関数が普通に使える。
+
+```{r, eval=FALSE}
+# read_csvはtidyverseに入っているreadrというパッケージに含まれる
+data1 <- read_csv("data/data1.csv")
 ```
 
 
 ---
 
-# データの読み込み
+# パッケージの使い方2
 
-今度はデータをファイルから読み込む。
+```{r, echo=FALSE}
+# パッケージを一時的にunload
+detach(package:readr, unload=TRUE)
+```
 
-ファイルの形式は、CSV形式（`.csv`), エクセル形式(`.xlsx`,`.xls`), Stataデータ形式(`.dta`)など色々ある。
+読み込んでいないパッケージの関数を使おうとするとエラーが出る。
 
-ここではCSV形式について説明するが、その他のその他のファイル形式については[私達のRの第8章](https://www.jaysong.net/RBook/io.html#sec-io-read)を参照してほしい
+```{r, error=TRUE}
+# read_csvはtidyverseに入っているreadrというパッケージに含まれる
+data1 <- read_csv("data/data1.csv")
+```
 
+パッケージ名と関数名を`::`で繋ぐと、読み込んでいなくても使える。
+
+```{r, eval=FALSE}
+data1 <- readr::read_csv("data/data1.csv")
+```
+
+これが２つ目のパッケージの使い方である。
+
+```{r, echo=FALSE, message=FALSE}
+# 再度readrをloadする。
+library(readr)
+```
+
+---
+
+# データ
+
+- Rはデータ分析（統計解析）を行うのが主な機能
+  - それ以外も色々できるが…
+
+---
+
+# データとは？
+
+- 構造化データと非構造化データ
+  - 構造化：定義済みの形式に整理されている（行列で定義できる）
+  - 非構造化：形式化が難しい（テキストデータ、音声データなど）
+  - 半構造化データ：ある程度の構造は持つが、データベースのような形式になっていないもの（例：xml, json) 
+--
+
+- Rでは基本的に構造化データを扱う
+  - テキストデータなども扱えるが、授業では扱わない
+
+---
+
+# データフレーム
+
+- Rでは基本的にデータをデータフレームという形で扱う
+- データフレームは行と列を持つ形式
+
+---
+
+# 行列
+
+```{r  label = gyouretsu, echo = FALSE, fig.cap = "", out.width = '90%'}
+knitr::include_graphics("fig/gyoretsu.png")
+```
+
+---
+
+# 行列
+
+行と列の覚え方
+
+```{r  label = gyouretsu2, echo = FALSE, fig.cap = "", out.width = '80%'}
+knitr::include_graphics("fig/gyoretsu2.png")
+```
+
+---
+
+# きれいなデータ？
+
+- 人間の見やすいデータ形式(表)とコンピュータが処理しやすいデータ形式は異なる。
+- 同じ情報をもつデータフレームであっても、形式が異なるものがあることを理解しよう。
+- 冒頭で出た武蔵大学経済学部の学生数のデータを見てみよう。
 
 ---
 
 # データの読み込み
 
+- データはデータファイルから読み込む
+  - ファイルがある場所のpathを指定する。
+- データファイルの形式はExcelや`.csv`, `.dta`, `.rds`など様々
+  - 形式によって使う関数が異なる。
+- 例えば
+  - Excelなら、`readxl`パッケージの`read_excel`
+  - csvなら、`readr`パッケージの`read_csv`
+
+ここではCSV形式について説明するが、その他のファイル形式については[私達のRの第8章](https://www.jaysong.net/RBook/io.html#sec-io-read)を参照してほしい
+  
+  
+---
+
+## データの読み込み
+
 `read_csv()`関数を使う。この関数は`readr`パッケージ含まれており、tidyverseパッケージ群の一つである。
 
-```{r, echo =FALSE}
+```{r}
 data2 <- gapminder::gapminder
 ## write_csv(data2,"../data/gapminder.csv")
 ```
@@ -761,80 +974,1095 @@ data2 <- gapminder::gapminder
 data2 <- read_csv("data/gapminder.csv")
 ```
 
+- 先ほどと違い、readとcsvの間が.ではなく_になっている。
+
 ---
 
-# データの要約
+## 日本語のデータを読み込む際の注意点
+
+```{r, echo=FALSE}
+
+product_make = tibble(
+  ProductID=1:6,
+  ProductName = c("YKDJw","ftKQ7","l8lqm","8ntvc","HhDBS","PKIs3"),
+  Price = c(1122,1877,3754,8242,4461,4963),
+  Category = c("ヘルス&ビューティー","ヘルス&ビューティー","家具・インテリア・家電","花・グリーン","食品","雑貨・日用品"),
+  CreatedDate = as.Date(c("2005-08-30","2006-07-01","2005-05-26","2005-09-06","2010-12-28","2005-02-09"))
+)
+
+write.csv(product_make,"data/Products_cp932.csv",fileEncoding="shift-jis")
+
+```
+
+日本語のファイルを読み込む時に、問題になる可能性があるのがエンコーディングである。
+
+エンコーディングとは、データを一定の規則に従って目的の情報に変換することで、とくに文字を扱う上で、それぞれの文字に番号を割り当てる符号化を行っている。
+
+最近ではよりグローバルなUnicodeが使われており、tidyverseのパッケージもunicodeあるUTF-8をデフォルトとして使用する。しかし、日本語のファイルの中にはShift-JISというエンコーディングで作成されているファイルもある。
+
+---
+
+## 日本語のデータを読み込む際の注意点
+
+例えば、以下のファイルをそのまま読み込んで見る。
 
 ```{r}
-# 変数の一覧
-names(data2)
+product_cp932 = read_csv("data/Products_cp932.csv")
+product_cp932
+```
+
+`Category`という変数が文字化けしてしまっているのがわかる。
+
+---
+
+## 日本語のデータを読み込む際の注意点
+
+ファイルのエンコーディングを調べることができる。
+`readr`パッケージもに入っている`guess_encoding`を使うと、Shift-JISである可能性が高いことがわかる。
+
+```{r}
+guess_encoding("data/Products_cp932.csv")
 ```
 
 ---
 
-# データの要約
+## 日本語のデータを読み込む際の注意点
+
+`read_csv`のオプションを使って、encodingを指定する。Shift-JISはCP932というエンコーディングになっている。
 
 ```{r}
-summary(data2)
+product_enc = read_csv("data/Products_cp932.csv", locale=locale(encoding="CP932"))
+product_enc
 ```
+
+文字化けなく読み込めた。
+
 ---
 
-# ggplot2
+## readrのその他のオプション
+
+readrでは以下のオプションを引数に指定することで設定できる。
+
+|引数|デフォルトの値|意味|
+|----|--------------|----|
+|col_names| TRUE |1行目を列名にするか|
+|na  | c("","NA") | 欠損値を表す文字列|
+|comment |""|コメント開始文字|
+|skip| 0 | 先頭何行を無視するか|
+|n_max | Inf |何行目までを読み込むか|
+|trim_ws | TRUE | 前後の空白文字を無視するか|
+
+
+---
+
+```{r}
+# エクセルからデータを読み込み
+data_634 <- readxl::read_excel("data/musashi_keizai_students_2023.xlsx") 
+
+knitr::kable(data_634) # kableは見やすい表を出力する関数
+```
+
+- `Error: path does not exist:’`というエラーが出る場合は、ファイルの相対パスが間違っている可能性がある
+  - `getwd()`で自分がr_renshuフォルダにいることを確認する
+  - `gapminder.csv`がきちんとdataフォルダに入っていることを確認する
+
+---
+
+- コンピューターによって処理しやすい形式
+- ベクトルの処理が得意なRでは縦長の形式が扱いやすい
+
+```{r}
+print(as.data.frame(data_634_long))
+```
+
+---
+
+# tidy data (整然データ)
+
+- この縦長形式のデータを**tidy data**と呼ぶ
+
+- tidy dataの定義
+  - 一つの列が一つの変数を表す
+  - 一つの行が一つの観測を表す
+  - 一つのテーブルが一つのデータセットだけを含む
+  
+- Rの中でもtidy dataでないデータが好ましい場合もある
+  - tidy dataを基本にしておけば、そこから加工することは容易
+
+
+
+---
+
+# データフレームを扱うテクニック：パイプ
+
+データフレームを操作する関数の共通点
+- 第１引数がデータフレーム
+- 第２引数以降はそのデータフレームに対する操作
+- 結果がデータフレームとして返される
+
+---
+
+# パイプ
+
+パイプ(`|>`)は「これまでの処理を次の第１引数として引き渡す」という機能を持つ。
+パイプは`%>%`でも基本的に構わない。
+
+```{r, eval=FALSE}
+# 以下の２つは同じことを行っている。
+data_634_long <- pivot_longer(data_634, cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+
+data_634_long <- data_634 |> # |> はパイプと呼ばれるもの
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+```
+
+---
+
+# tidyでないデータとtidyデータの変換
+
+今から横型（wide型）のデータを縦長（long型）に変換する。
+
+.pull-left[
+```{r, echo = FALSE}
+
+data_temp <- data_634_long |>
+  group_by(`学科`,`性別`) |>
+  summarise(`学生数`=sum(`学生数`),.groups = "drop") |>
+  pivot_wider(id_cols=`学科`,names_from=`性別`,values_from=`学生数`)
+
+kable(data_temp) %>% kableExtra::kable_styling(font_size = 18)
+
+```
+]
+
+.pull-right[
+```{r, echo = FALSE}
+
+data_temp2 <- data_temp |> 
+  pivot_longer(cols=c("男","女"), names_to ="性別",values_to="人数")
+
+kable(data_temp2) %>% kableExtra::kable_styling(font_size = 18)
+
+```
+]
+
+---
+
+# long型データへの変換
+
+`tidyr`というパッケージの`pivot_longer`という関数はtidyでないデータ(wide型)をtidyなデータ(long型)に変換する。
+
+```{r, eval=FALSE}
+data_634_long <- data_634 |> 
+  # long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+```
+
+---
+
+# long型データへの変換
+
+まずパイプ(`|>`)で`data_634`というwide型のデータを関数に引き渡す。
+
+```{r, eval=FALSE}
+data_634_long <- data_634 |> 
+  # long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+```
+
+---
+
+# long型データへの変換
+
+`pivot_longer()` 関数の引数
+- `cols`は、どの列(column)の変数を使うかを指定する。
+- `names_to`は、新たに生成されるカテゴリ用の列の名前を指定する。
+- `values_to`は、数値が入る列の名前を指定する。
+
+```{r, eval=FALSE}
+data_634_long <- data_634 |> 
+  # long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+```
+
+
+---
+
+# long型データへの変換
+
+さらにパイプで結果を次に引き渡して、学科名の順番を指定している。
+これらの変数は後で説明する。
+
+```{r, eval=FALSE}
+data_634_long <- data_634 |> 
+  # long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
+  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数")
+```
+
+---
+
+# データを見てみる
+
+右上のEnvironmentペーンに`data_634_long`というオブジェクトが生成される。
+クリックしてみると、エクセルのような画面が現れる
+
+また`View()`という関数をつかっても、同じようにデータを見ることができる。
+
+```{r eval=FALSE}
+# data_634_longを見るビューワーがRstudio上で開く
+View(data_634_long)
+```
+
+---
+
+# データを見てみる
+
+また、データの最初だけみたいときは、`head()`, また後ろだけ見たいときは`tail()`関数を使う。
+デフォルトでは、6行だけ表示されるが、行数は引数nで調整できる。
+
+```{r}
+# data1の最初の10行がコンソールに表示される
+head(data_634_long, n=10)
+```
+
+---
+
+# データの「大きさ」
+
+データの行数や列数を調べる。
+
+```{r}
+dim(data_634_long)
+```
+
+24行、4列
+
+---
+
+# 列の名前一覧
+
+- データの各変数名（列名）
+
+```{r}
+names(data_634_long)
+```
+
+
+---
+
+# 変数の要約
+
+```{r}
+summary(data_634_long)
+```
+
+---
+
+# 変数の要約
+
+- 定性的なデータ（カテゴリ変数）は、入っているカテゴリとその数
+  - もし`character`と表示されていたら、単なる文字列と認識されている
+- 定量的なデータは以下のような**統計量**が計算される。
+
+| Min. | nth Qu. | Median | Mean | Max. |
+|------|---------|--------|------|------|
+| 最小 |  n分位  | 中央値 | 平均 | 最大 |
+
+
+---
+
+# 変数の取り出し
+
+データから変数を一つ取り出すときは$マークを使う。
+
+```{r}
+# データフレーム$変数 で変数の列をベクトルとして取り出す
+ data_634_long$学年
+```
+
+---
+
+# 変数の取り出しと計算
+
+```{r}
+# 平均 mean()関数
+mean(data_634_long$学生数)
+
+# 中央値 median()関数
+median(data_634_long$学生数)
+
+# 分散 var()関数
+var(data_634_long$学生数)
+```
+
+---
+
+# 変数の取り出しと計算
+
+```{r}
+# 合計 sum()関数
+sum(data_634_long$学生数)
+```
+
+---
+
+# データフレームとtibble
+
+
+---
+
+# データの操作
+
+データを編集したいことはたくさん出てくる。
+
+- 列の名前を変えたい
+- データの特定の列だけ抽出したい
+- データの特定の行だけ提出したい
+  - 例：男性だけのデータ
+- データの順番を並び替えたい
+- データの列を並び替えたい
+- 新しい変数を作りたい
+- データを集計したい
+
+---
+
+# データの操作
+
+.pull-left[
+`tidyverse`シリーズである`dplyr`パッケージに入っている関数で操作することができる。
+]
+
+.pull-right[
+```{r  label = dplyr_logo, echo = FALSE, fig.cap = "", out.width = '70%',fig.align='center'}
+knitr::include_graphics("fig/dplyr_logo.png")
+```
+]
+
+---
+
+# 元のデータの見た目確認
+
+```{r}
+print(data_634_long)
+```
+
+---
+
+# 列の名前を変えたい: rename()
+
+列（変数）の名前を変更する
+
+```{r}
+data_634_long_eng <- data_634_long |>
+  rename(department = 学科, 
+         grade = 学年,
+         gender = 性別,
+         stu_num = 学生数)
+
+print(data_634_long_eng)
+
+```
+
+
+---
+
+# 特定の列だけ抽出する: select()
+
+データのうち、学科と性別という変数だけ抽出したいとする
+
+```{r}
+data_634_long_select <- data_634_long |> 
+  select(学科, 性別)
+
+print(data_634_long_select)
+```
+
+---
+
+# 特定の列だけ抽出する: filter()
+
+データのうち、女性のデータだけを抽出したいとする
+
+```{r}
+data_634_long_filter <- data_634_long |> 
+  filter(性別 == "女")
+
+print(data_634_long_filter)
+```
+
+---
+
+# データの順番を並び替える: arrange()
+
+データの順番を学年->性別の順番で並び替える
+
+```{r}
+data_634_long_arrange <- data_634_long |> 
+  arrange(学年, 性別)
+
+print(data_634_long_arrange)
+```
+
+---
+
+# データの順番を並び替える: arrange()
+
+デフォルトは昇順だが、desc()で降順で並び変えることもできる
+
+```{r}
+data_634_long_arrange2 <- data_634_long |> 
+  arrange(desc(学年), 性別)
+
+print(data_634_long_arrange2)
+```
+
+---
+
+# データの列を並び替える: relocate()
+
+学年の列を性別の前に持ってくる
+
+```{r}
+data_634_long_relocate <- data_634_long |> 
+  relocate(学年, .before=性別)
+
+print(data_634_long_relocate)
+```
+
+---
+
+# データの列を並び替える: relocate()
+
+学年の列を学科の後に持ってくる
+
+```{r}
+data_634_long_relocate2 <- data_634_long |> 
+  relocate(学年, .after=学科)
+
+print(data_634_long_relocate2)
+```
+
+---
+# データの列を追加/編集する: mutate()
+
+新しく、学生数を100で割った数値を作るとする
+
+```{r}
+data_634_long_mutate <- data_634_long |> 
+  mutate(学生数100 = 学生数/100)
+
+print(data_634_long_mutate)
+```
+
+---
+
+# データの列を追加/編集する: mutate()
+
+存在する変数名にすると、新しく変数(列)を作らずに上書きする
+
+```{r}
+data_634_long_mutate2 <- data_634_long |> 
+  mutate(学生数 = 学生数/100)
+
+print(data_634_long_mutate2)
+```
+
+---
+
+# データを集計する
+
+任意を列を集計したり統計量を計算する。
+
+
+```{r}
+data_634_long_summarise <- data_634_long |> 
+  summarise(学生数合計 = sum(学生数),
+            学生数平均 = mean(学生数))
+
+print(data_634_long_summarise)
+```
+
+---
+
+# データ操作の応用：パイプによる引き渡し
+
+ある操作を行った結果をパイプで次の関数に引き渡す。
+
+```{r}
+# 女性の合計だけを知りたい
+data_634_long_female <- data_634_long |>
+  filter(性別=="女") |>
+  summarise(女性学生数合計 = sum(学生数))
+
+print(data_634_long_female)
+```
+
+---
+
+# データ操作の応用：グループごとの集計
+
+グループごとに集計したい場合は`group_by`でグループ情報を与える
+
+```{r}
+# 学科ごとに合計を計算
+data_634_long_dept <- data_634_long |>
+  group_by(学科) |>
+  summarise(学生数合計 = sum(学生数))
+
+print(data_634_long_dept)
+```
+
+---
+
+# データ操作：練習問題
+
+1. 武蔵大学経済学部の学生数データを使って、女性のみの合計学生数を学年別で計算せよ。
+
+2. 同じデータを使って、１,２年生のみ合計学生数を男女別・学年別で計算せよ。
+
+---
+
+# データ操作：練習問題
+
+1. 武蔵大学経済学部の学生数データを使って、女性のみの合計学生数を学年別で計算せよ。
+
+```{r}
+# 女性のみの学年ごとの学生数
+data_634_long_female_grade <- data_634_long |>
+  filter(性別=="女")|>
+  group_by(学年) |>
+  summarise(学生数合計 = sum(学生数))
+
+print(data_634_long_female_grade)
+```
+
+---
+
+# データ操作：練習問題
+
+2. 同じデータを使って、１,２年生のみ合計学生数を男女別・学年別で計算せよ。
+
+```{r}
+# 女性のみの学年ごとの学生数
+data_634_long_1_2_grade <- data_634_long |>
+  filter(学年=="1年" | 学年 == "2年")|> #数字が半角か、などに気をつける
+  group_by(性別, 学年) |>  # ２つのカテゴリでグループ分け
+  summarise(学生数合計 = sum(学生数))
+
+print(data_634_long_1_2_grade)
+```
+
+---
+
+# データの結合
+
+２つのデータフレームを結合したい場合
+
+1. 縦に結合したい場合
+2. 横に結合したい場合
+
+---
+
+# データの縦の結合
+
+例えば人文学部のデータと結合したい
+
+```{r}
+# エクセルからデータを読み込み
+data_634_jinbun <- readxl::read_excel("data/musashi_jinbun_students_2023.xlsx") 
+
+knitr::kable(data_634_jinbun) # kableは見やすい表を出力する関数
+```
+
+---
+
+# データの縦の結合
+
+変数の順番などが同じことを確認した上で、`bind_rows()`を使う
+
+```{r}
+data_634_keizai_jinbun <- bind_rows(data_634,data_634_jinbun)
+
+print(data_634_keizai_jinbun)
+```
+
+---
+
+# データを横に統合
+
+新しい変数を含んだデータを既存のデータに統合したい
+
+```{r}
+# エクセルからデータを読み込み
+data_634_keizai_teiin <- readxl::read_excel("data/musashi_keizai_teiin_2023.xlsx") 
+
+knitr::kable(data_634_keizai_teiin) # kableは見やすい表を出力する関数
+```
+
+---
+
+# データを横に統合：join()関数
+
+ここでは`left_join`を使う
+
+```{r}
+# 学科の人数と学科の定員を統合する
+data_634_long_keizai <- data_634_long |>
+  left_join(data_634_keizai_teiin, by=c("学科"="学科"))
+
+print(data_634_long_keizai)
+```
+
+---
+
+# その他のjoin関数
+
+| 関数名       | 説明                                               |
+|--------------|------------------------------------------------------|
+|`inner_join()`|  どちらのデータフレームにも存在するキーの行のみ返す  |
+|`left_join()`|  左のデータフレームに存在するキーの行を返す  |
+|`right_join()`|  右のデータフレームにも存在するキーの行を返す  |
+|`full_join()`|  いずれかのデータフレームに存在するキーの行を返す  |
+
+
+---
+
+# Rにおける描画
+
+データを可視化するビジュアリゼーションは、プレゼンテーションだけではなく分析者自身がデータを理解するためにも有効で重要なテクニック。
+
+Rにはデフォルトの描画関数も用意されているが、`tidyverse`シリーズのggplot2というパッケージの関数が強力であり昨今はスタンダードになっていることから、こちらを紹介する。
 
 ggplot2とは、グラフィックの文法 (**g**rammar of **g**raphics)という概念に基づいて作図するパッケージ
 
-それぞれのグラフの要素をlayer (層) として捉えて、重ねていくイメージ
+---
+
+# 描画をしてみよう
+
+- 冒頭の武蔵大学経済学部の学生数のデータを作ってみよう。
+
 
 ---
 
-# ggplot2 による作図 1
+# 描画の前に
 
-まず、作図に使うデータを指定し、キャンバスを作成する
+- データに少し工夫を加える
+  - データは文字列（カテゴリ）の順番を勝手に決めてしまう。
+- 文字列をファクター型に変換する。
+  - 描画するときにカテゴリの順番を揃えたいので、順番の情報を与える。
 
-```{r,fig.height=4,fig.align='center'}
-ggplot(data=data2)
+```{r, echo=FALSE, eval=FALSE}
+data_634_long = data_634_long %>%%>%
+  mutate(学科 = factor(学科, levels=c("経済学科","経営学科","金融学科")),　# 学科の順番
+         性別 = factor(性別, levels=c("女","男")),                         # 性別の順番
+         学年 = factor(学年, levels=c("1年","2年","3年","4年")))           # 学年の順番
+```
+
+---
+
+# キャンバスを用意する
+
+- まずキャンバスを用意するイメージでggplot()関数を呼び出す
+
+```{r, fig.align='center', fig.height=6, fig.width=10}
+plot_634 <- ggplot()
+
+print(plot_634)
+```
+
+---
+
+# グラフのレイヤーを追加する
+
+- グラフの種類ごとにデータを表現する幾何学的オブジェクト`geom_`が用意されている
+- `geom_bar`は棒グラフで表現する。
+- 引数として、用いるデータ(`data`), X軸などにデータを割り当てる`mapping`,そして、変数をどう扱うかという`stat`がある。
+  - `mapping`には`aes`という関数を使ってデータを当てはめる。
+  - x軸は学年、y軸は学生数とする。
+  - `stat`にはデータそのものの数値を使うため、"identity"を指定する。
+
+---
+
+# グラフのレイヤーを追加する
+
+```{r, fig.align='center', fig.height=6, fig.width=10}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数),stat="identity")  # <- 追加！
+
+print(plot_634)
+```
+
+---
+
+# 文字化けに対処する
+
+- Macを使っていると、ggplotで日本語を使うと文字化けすることが知られている
+  - **豆腐化現象**と呼ばれている
+- 文字化けに対処するため、日本語のフォントを指定する。
+- 新しく`theme_grey`というレイヤーを作り、その中の`base_family`という引数でフォント名`"HiraKakuPro-W3"`を指定する。
+
+---
+
+# 文字化けに対処する
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数),stat="identity") +
+  theme_grey(base_family="HiraKakuPro-W3")  # <- 追加！
+
+print(plot_634)
+```
+
+---
+
+# aesに色を追加する
+
+- 男女別に表示したいので、男女を色で分けたい
+- マッピングでaesの中に色の変数として性別を指定する。
+- 色のマッピングには二種類あり、点・線・枠の色を指定する`color`と、面の色を指定する`fill`がある。
+ - この場合は塗りつぶしたいので、`fill`を指定する。
+ - 色は指定しなければ自動的に決められる。
+
+---
+
+# aesに色を追加する
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別),stat="identity")+  # <- 追加！
+  theme_grey(base_family="HiraKakuPro-W3")
+
+print(plot_634)
+```
+
+---
+
+# 男女の置き方を変えたい
+
+- 男女を縦に積むのではなく、横に置くことで対比がしやすくなりそう。
+- geom_bar()の引数の`position`を`dodge`に指定する。
+  - デフォルトは`stack`になっている（文字通り「積む」）
+
+---
+
+# aesに色を追加する
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), # <- 追加！
+           stat="identity", position="dodge")+ 
+  theme_grey(base_family="HiraKakuPro-W3") 
+
+print(plot_634)
+```
+
+---
+
+# 色を変えたい
+
+- 色は指定しなければ自動的に決まる
+- わかりやすい、おしゃれな色を使いたい場合はマニュアルで変えられる
+- `scale_fill_manual()`の中で`value`という色で変えることが可能。
+  - 複数指定する場合は`c()`の中に並べてベクトルとして扱う
+  - 色の順番に注意
+  - 簡単な色の名前(例：`"blue"`, `"red"`)でも指定できるし、RGB値でも決められる
+    - RGB値はネットで検索してみよう
+- ここでは、武蔵大学のロゴの緑と黄色を使う。
+
+---
+
+# 色を変えたい
+
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) + # <- 追加！
+  theme_grey(base_family="HiraKakuPro-W3")
+
+print(plot_634)
+```
+
+---
+
+# 学科別に分けたい
+
+- 現状では、学科の人数がすべて積算されてしまっているが、データとしては分かれている
+- せっかくなので別で表示したいが、もうx軸もy軸も色も使ってしまっている。
+--
+- では、グラフ自体を分けてしまおう
+- `facet_wrap()`というレイヤーを使う
+  - `~`の後に分割に使うカテゴリを指定することで、分割した図を作ってくれる
+
+---
+
+# 学科別に分けたい
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) +
+  theme_grey(base_family="HiraKakuPro-W3") +
+  facet_wrap(~ 学科) # <- 追加！
+
+print(plot_634)
+```
+
+---
+
+# ラベルを変更する・タイトルを追加する
+
+- 通常はラベルを明示する
+- lab()レイヤーの中で、X軸なら`x=`, Y軸なら`y=`で変更する
+  - 色の凡例のタイトルも`fill=`
+  - 今回は学年は明らか、学生数もタイトルで明示するので空欄とする
+  - 空欄としたい場合は`""`
+- タイトルを追加する場合は、`title=`
+  - サブタイトルも`subtitle=`で追加できる
+- 右下のノートも`caption=`で追加できる
+
+---
+
+# ラベルを変更する・タイトルを追加する
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) +
+  labs(fill="",x="",y="",                                # <- 追加!
+       title="武蔵大学経済学部の学科別・男女別学生数",   # <- 追加!
+       subtitle="2023年5月1日時点",                      # <- 追加!
+       caption = "データ元：武蔵大学公式ウェブサイト") + # <- 追加!
+  theme_grey(base_family="HiraKakuPro-W3") +
+  facet_wrap(~ 学科) # <- 追加！
+```
+
+---
+
+# テーマを変更する1
+
+- **テーマ** (`theme`)はggplotの細かい見た目を設定する
+  - 背景、軸の有無、グリッドの数や濃さ、軸ラベルの字の大きさなどなど
+- ggplotは背景がグレーのテーマがデフォルト
+- `theme`レイヤーで細かい設定を行う
+- `theme_***`でデフォルトテーマを使うこともできる
+  - [ここ](https://ggplot2.tidyverse.org/reference/ggtheme.html)でどんなテーマがあるか見られる
+--
+
+- まずは見た目をスッキリさせるデフォルトテーマ`theme_minimal`を使ってみる
+  
+---
+
+# テーマを変更する1
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) +
+  labs(fill="",x="",y="",                                
+       title="武蔵大学経済学部の学科別・男女別学生数",   
+       subtitle="2023年5月1日時点",                      
+       caption = "データ元：武蔵大学公式ウェブサイト") + 
+  theme_minimal(base_family="HiraKakuPro-W3") +     # <- 変更!
+  facet_wrap(~ 学科) # <- 追加！
+```
+
+---
+
+# テーマを変更する1
+
+```{r, echo=FALSE,fig.height=6, fig.width=10,fig.align='center'}
+print(plot_634)
+```
+
+---
+
+# テーマを変更する2
+
+- 細かいテーマ設定を`theme`レイヤーの中で行う
+  - `panel.grid.major.x`はメインのグリッドの設定
+    - element_blank()は、「空」にするという設定
+  - `legend.position`で、凡例を右ではなく下`"bottom"`に
+  - `text`で図の中の文字を設定
+    - `element_text()`で設定する
+    - `size=15`としてフォントサイズを15にする。
+
+---
+
+# テーマを変更する2
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
+  scale_fill_manual(values =c("#0A6648","#F6B21B")) +
+  labs(fill="",x="",y="",                                
+       title="武蔵大学経済学部の学科別・男女別学生数",   
+       subtitle="2023年5月1日時点",                      
+       caption = "データ元：武蔵大学公式ウェブサイト") + 
+  theme_minimal(base_family="HiraKakuPro-W3") +
+  theme(panel.grid.major.x = element_blank(),   # <- 追加!
+        legend.position = "bottom",             # <- 追加!
+        text = element_text(size=15)) +         # <- 追加!
+  facet_wrap(~ 学科) 
 ```
 
 
 ---
 
-# ggplot2 による作図 2 : 本体作図
+# 完成形
 
-次に、グラフ本体を作図する。
-
-```{r,fig.height=4,fig.align='center'}
-ggplot(data=data2) + 
-  # `geom_point()`関数で、散布図を作成
-  geom_point(aes(x=gdpPercap,y=lifeExp,col=continent),size=0.5)
-```
----
-
-# ggplot2 による作図 3 : ラベル
-
-```{r,fig.height=4,fig.align='center'}
-ggplot(data=data2) + 
-  geom_point(aes(x=gdpPercap,y=lifeExp,col=continent),size=0.5) +
-    # `lab()`関数で、ラベルを設定
-  labs(x = "一人あたりGDP", y = "平均余命", color = "大陸") +
-  theme_bw(base_family="HiraKakuPro-W3") # Mac使っていると、これがないと文字化けする
+```{r label = musashi_comp, echo = FALSE, fig.align = "center", fig.cap = "", fig.width = 12,fig.height = 7}
+plot_634
 ```
 
 ---
 
 # ggplot2による図の保存
 
-```{r}
-# ggplotの図をオブジェクトに代入
+- ggplotで作図した結果をオブジェクトに保存
+  - ここの例では`plot_634`に保存
 
-plot1 <- ggplot(data=data2) + 
-  geom_point(aes(x=gdpPercap,y=lifeExp,col=continent),size=0.5) +
-  labs(x = "一人あたりGDP", y = "平均余命", color = "大陸") +
-  theme_bw(base_family="HiraKakuPro-W3")
+- `ggsave`という関数で、ファイルパスを指定して保存
+
+```{r}
 
 # ggsave()関数を使って、図を保存
-ggsave(file="figure/life_expectany.png",plot=plot1,device="png")
+# file: 保存する場所, plot: 図のオブジェクト, device: 保存する形式
+ggsave(file="figure/musashi_students_2023.png", plot=plot_634, device="png")
 
 ```
+
+---
+
+# 他の描画レイヤー
+
+|`geom_point`|散布図|
+|`geom_line`|折れ線グラフ|
+|`geom_boxplot`|箱ひげ図|
+|`geom_violin`|バイオリンプロット|
+|`geom_map`|地図を描く|
+
+- 他にも多くの描画レイヤーが存在する
+ - [参考](https://ggplot2.tidyverse.org/reference/)
+
+---
+
+# 散布図
+
+.pull-left[
+
+- `geom_point`で散布図を描く
+- XとYの変数を指定する
+- ここでは`diamonds`というggplotに付属しているデータセットを使う
+- ダイアモンドのカラットをx軸, 価格をy軸, ダイアモンドの色を色で表現
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_scatter <- ggplot(data=diamonds) + 
+  geom_point(aes(x=carat,y=price, 
+                 color=color))
+```
+]
+
+.pull-right[
+```{r, echo=FALSE, fig.align='center', fig.height=5, fig.width=5}
+print(plot_scatter)
+```
+]
+
+---
+
+# 折れ線グラフ
+
+.pull-left[
+
+- `geom_line`で折れ線グラフを描く
+  -時系列データに有効
+- XとYの変数を指定する
+- ここでは`economics`というggplotに付属しているデータセットを使う
+- 日付をx軸, アメリカの失業数をy軸
+
+
+]
+
+.pull-right[
+```{r}
+plot_line <- ggplot(data=economics) + 
+  geom_line(aes(x=date,y=unemploy))
+```
+```{r, echo=FALSE, fig.align='center', fig.height=5, fig.width=5}
+print(plot_line)
+```
+]
+
+---
+
+# 箱ひげ図
+
+.pull-left[
+
+- `geom_boxplot`で箱ひげ図を描く
+  - 変数の分布を確認するのに有効
+- XとYの変数を指定する
+- ここでは`mpg`というggplotに付属しているデータセットを使う
+- 車の種類をx軸, 各自動車の燃費をy軸
+
+
+]
+
+.pull-right[
+```{r}
+plot_boxplot <- ggplot(data=mpg) + 
+  geom_boxplot(aes(x=class,y=hwy))
+```
+```{r, echo=FALSE, fig.align='center', fig.height=5, fig.width=5}
+print(plot_boxplot)
+```
+]
+
+---
+
+# ヴァイオリンプロット
+
+.pull-left[
+
+- `geom_violin`でヴァイオリンプロットを描く
+  - 変数の分布を確認するのに有効
+- XとYの変数を指定する
+- ここでは`mpg`というggplotに付属しているデータセットを使う
+- 車の種類をx軸, 各自動車の燃費をy軸
+
+
+]
+
+.pull-right[
+```{r}
+plot_violin <- ggplot(data=mpg) + 
+  geom_violin(aes(x=class,y=hwy))
+```
+```{r, echo=FALSE, fig.align='center', fig.height=5, fig.width=5}
+print(plot_violin)
+```
+]
+
+---
+
+# 適した描画？
+
+```{r pressure, echo=FALSE, fig.cap="A caption", fig.align='center',out.width = '50%'}
+knitr::include_graphics("figure/IMG_3452.jpg")
+```
+
+---
+
+# 適した描画？
+
+- 棒グラフ：データの大きさを比較する
+- 折れ線グラフ：時系列での変化をみる
+- 円グラフ：全体に占める割合をみる
+- 積み上げ棒グラフ：累積データから内訳を比較する
+- 散布図：2つのデータの相関関係をみる
+
+例：[グラフの種類と使い分け、間違った使い方](https://www.tableau.com/ja-jp/learn/articles/graph-type)(Tableau)
+
 
 ---
 
@@ -853,34 +2081,6 @@ ggsave(file="figure/life_expectany.png",plot=plot1,device="png")
 
 # 課題のレビュー
  
----
-
-### よくあるエラー
-
-`Error in read_csv("data/Countries.csv") :
-could not find function "read_csv"`
-
-`XXX`という関数が見つかりません、というエラー
-
-**考えられるケース**
-
-- `library()`で必要なパッケージを読み込めてない
-- 関数のつづりが間違っている
-
----
-
-### よくあるエラー2
-
-
-Error: 'data/Countris.csv' does not exist in current working directory
-
-XXX.csvというファイルが作業場所にありません。
-
-**考えられるケース**
-- そもそもファイルがない
-- ファイルの指定場所が間違っている
-- つづりが間違っている
-
 ---
 
 # 課題２
@@ -935,34 +2135,6 @@ ggplot(data=dataves3) +
   theme(axis.text.x = element_text(angle=45,hjust=1))
 ```
 
----
 
-### 課題２
 
-- 漁業センサスの中から自分の描きたいデータを選ぶ
-  - 一人１データ、かぶりなし
-  - 早いもの勝ち。Google Classroomに書き込む。
-  - 締切：６月５日(月) 23:59
-- データを適した形で描く
-  - 第１締切：６月12日(月)23:59
-  - 最終締切：６月19日(月)23:59
 
----
-
-### 適した形？
-
-```{r pressure, echo=FALSE, fig.cap="A caption", fig.align='center',out.width = '50%'}
-knitr::include_graphics("figure/IMG_3452.jpg")
-```
-
----
-
-## 適した形？
-
-- 棒グラフ：データの大きさを比較する
-- 折れ線グラフ：時系列での変化をみる
-- 円グラフ：全体に占める割合をみる
-- 積み上げ棒グラフ：累積データから内訳を比較する
-- 散布図：2つのデータの相関関係をみる
-
-例：[グラフの種類と使い分け、間違った使い方](https://www.tableau.com/ja-jp/learn/articles/graph-type)(Tableau)
