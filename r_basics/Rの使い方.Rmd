@@ -153,6 +153,18 @@ knitr::include_graphics("fig/suumo1.png")
 
 ---
 
+# 地図の分析・活用
+
+
+```{r, echo=FALSE, out.width='100%', fig.height=6}
+library(leaflet)
+leaflet() %>% addTiles() %>% setView(lat = 35.7366, lng = 139.6673, zoom = 17)
+```
+
+
+
+---
+
 # Rの欠点
 
 - Rは進化が早い
