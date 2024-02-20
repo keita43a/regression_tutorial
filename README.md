@@ -12,6 +12,16 @@ Rの入門、および計量経済学の入門編としての回帰分析の資�
 
 ## 説明
 
+### R入門編
+
+R入門1：Rとは [Link]()
+
+R入門2：データ操作 [Link]()
+
+R入門3：データ描画 [Link]()
+
+### 回帰分析編
+
 教科書：
 田中隆一『計量経済学の第一歩　実証分析のススメ』有斐閣ストゥディア
 
@@ -23,17 +33,27 @@ Rの入門、および計量経済学の入門編としての回帰分析の資�
 
 ## スライド
 
-第１回 なぜ回帰分析をするのか？ [スライド](https://github.com/gakulab/regression_tutorial/blob/main/docs/tutorial_slide_1.pdf)  
+### R入門編
 
-第２回 データの扱い方 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_2.html)
+第１回 Rとは [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/r_basics/R%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9.html)
 
-第３回 確率論 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_3.html)
+第２回 データ操作 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/r_basics/R%E5%85%A5%E9%96%802_%E3%83%87%E3%83%BC%E3%82%BF%E6%93%8D%E4%BD%9C.html)
 
-第４回統計的推論 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_4.html)
+第３回 データ描画 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/r_basics/R%E5%85%A5%E9%96%803_%E3%83%87%E3%83%BC%E3%82%BF%E6%8F%8F%E7%94%BB.html)
 
-第５回 単回帰分析 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_5.html)
+### 回帰分析編
 
-第６回 重回帰分析 [スライド](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_6.html)
+第１回 なぜ回帰分析をするのか？ [Slides](https://github.com/gakulab/regression_tutorial/blob/main/docs/tutorial_slide_1.pdf)  
+
+第２回 データの扱い方 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_2.html)
+
+第３回 確率論 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_3.html)
+
+第４回統計的推論 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_4.html)
+
+第５回 単回帰分析 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_5.html)
+
+第６回 重回帰分析 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/docs/tutorial_slide_6.html)
 
 
 ## フォルダ構成
