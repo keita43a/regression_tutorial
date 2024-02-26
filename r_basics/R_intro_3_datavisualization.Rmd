@@ -104,7 +104,7 @@ data_634_long = data_634_long %>%%>%
 
 - まずキャンバスを用意するイメージでggplot()関数を呼び出す
 
-```{r, fig.align='center', fig.height=6, fig.width=10}
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
 plot_634 <- ggplot()
 
 print(plot_634)
@@ -125,7 +125,7 @@ print(plot_634)
 
 # グラフのレイヤーを追加する
 
-```{r, fig.align='center', fig.height=6, fig.width=10}
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
 plot_634 <- ggplot() +
   geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数),stat="identity")  # <- 追加！
 
@@ -139,6 +139,7 @@ print(plot_634)
 - Macを使っていると、ggplotで日本語を使うと文字化けすることが知られている
   - **豆腐化現象**と呼ばれている
 - 文字化けに対処するため、日本語のフォントを指定する。
+  - Windowsは多分不要。
 - 新しく`theme_grey`というレイヤーを作り、その中の`base_family`という引数でフォント名`"HiraKakuPro-W3"`を指定する。
 
 ---

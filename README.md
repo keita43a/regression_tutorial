@@ -33,11 +33,11 @@ Rの使い方、データ操作、基本的なデータ描画を解説。
 
 ### R入門編
 
-第１回 Rとは [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/r_basics/R%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9.html)
+第１回 Rとは [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/r_basics/R_intro_1_howtouseR.html)
 
-第２回 データ操作 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/r_basics/R%E5%85%A5%E9%96%802_%E3%83%87%E3%83%BC%E3%82%BF%E6%93%8D%E4%BD%9C.html)
+第２回 データ操作 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/r_basics/R_intro_2_datamanipulation.html)
 
-第３回 データ描画 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/r_basics/R%E5%85%A5%E9%96%803_%E3%83%87%E3%83%BC%E3%82%BF%E6%8F%8F%E7%94%BB.html)
+第３回 データ描画 [Slides](https://raw.githack.com/gakulab/regression_tutorial/main/r_basics/R_intro_3_datavisualization.html)
 
 ### 回帰分析編
 
