@@ -4,7 +4,7 @@
     <title>R入門3 データ描画</title>
     <meta charset="utf-8" />
     <meta name="author" content="阿部景太" />
-    <meta name="date" content="2024-02-20" />
+    <meta name="date" content="2024-02-26" />
     <script src="libs/header-attrs-2.24/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 # R入門3 データ描画
 ## <small>A tutorial for R part 3: Data Visualization</small>
 ### 阿部景太
-### 2024-02-20
+### 2024-02-26
 
 ---
 
@@ -103,7 +103,7 @@ plot_634 &lt;- ggplot()
 print(plot_634)
 ```
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -128,7 +128,7 @@ plot_634 &lt;- ggplot() +
 print(plot_634)
 ```
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -152,7 +152,7 @@ plot_634 &lt;- ggplot() +
 print(plot_634)
 ```
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -177,7 +177,7 @@ plot_634 &lt;- ggplot() +
 print(plot_634)
 ```
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -201,7 +201,7 @@ plot_634 &lt;- ggplot() +
 print(plot_634)
 ```
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -231,7 +231,7 @@ plot_634 &lt;- ggplot() +
 print(plot_634)
 ```
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -259,7 +259,7 @@ plot_634 &lt;- ggplot() +
 print(plot_634)
 ```
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -326,7 +326,7 @@ plot_634 &lt;- ggplot() +
 
 # テーマを変更する1
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -365,7 +365,7 @@ plot_634 &lt;- ggplot() +
 
 # 完成形
 
-&lt;img src="R入門3_データ描画_files/figure-html/musashi_comp-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/musashi_comp-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -416,7 +416,7 @@ plot_scatter &lt;- ggplot(data=diamonds) +
 ]
 
 .pull-right[
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -440,7 +440,7 @@ plot_scatter &lt;- ggplot(data=diamonds) +
 plot_line &lt;- ggplot(data=economics) + 
   geom_line(aes(x=date,y=unemploy))
 ```
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -464,7 +464,7 @@ plot_line &lt;- ggplot(data=economics) +
 plot_boxplot &lt;- ggplot(data=mpg) + 
   geom_boxplot(aes(x=class,y=hwy))
 ```
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -488,7 +488,7 @@ plot_boxplot &lt;- ggplot(data=mpg) +
 plot_violin &lt;- ggplot(data=mpg) + 
   geom_violin(aes(x=class,y=hwy))
 ```
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -553,7 +553,7 @@ ggplot(data=dataves2) +
   theme_bw(base_family = "HiraKakuPro-W3")
 ```
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -568,13 +568,13 @@ ggplot(data=dataves3) +
   theme(axis.text.x = element_text(angle=45,hjust=1))
 ```
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # 課題２
 
-&lt;img src="R入門3_データ描画_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="R_intro_3_datavisualization_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
 
 
 
