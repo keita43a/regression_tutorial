@@ -490,7 +490,7 @@ print(plot_violin)
 # 適した描画？
 
 ```{r pressure, echo=FALSE, fig.cap="A caption", fig.align='center',out.width = '50%'}
-knitr::include_graphics("fig/IMG_3452.jpg")
+knitr::include_graphics("fig/IMG_3452.png")
 ```
 
 ---
