@@ -1,0 +1,44 @@
+--- 
+title: "Rと実証分析入門"
+author: "Keita Abe"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    fig_caption: true
+    number_sections: true
+documentclass: book
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Rと計量経済学を用いた基本的な実証分析を説明する資料"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+pacman::p_load(
+  tidyverse,
+  knitr,
+  kableExtra,
+  patchwork,
+  cols4all
+)
+
+options(scipen=999)
+```
+
+# Rによる実証分析入門
+
+この武蔵大学経済学部でのRを用いた実証分析入門の資料です。
+武蔵大学経済学部の学生の状況を背景に、最低限でなんとか実証分析を行うところまで学ぶことを意図した資料になっています。
+Rの入門については、より詳しい以下の資料やウェブサイトが存在しますので、詳しい説明が知りたい学生はそちらを参照することをおすすめします。
+
+- [わたしたちのR](https://www.jaysong.net/RBook/)
+- [R言語入門](https://speakerdeck.com/s_uryu/introduction-to-r)
+
+
+
+
+
+
