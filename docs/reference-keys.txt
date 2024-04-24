@@ -1,7 +1,15 @@
+fig:downloadwin-1
+fig:downloadwin-2
+fig:downloadwin-3
 fig:terminal
 fig:xcode
+fig:downloadmac-1
+fig:downloadmac-2
+fig:launchpad
+fig:rstudioinstall
 fig:rstudio2
 fig:directory
+fig:projectmake
 この資料について
 whatsr
 r
@@ -52,6 +60,7 @@ rstudioのオプション
 例外観の変更
 letsuse
 計算機としてのr
+演習r-scriptの作成
 足し算
 かけ算
 論理演算

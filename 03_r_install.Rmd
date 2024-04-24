@@ -45,7 +45,7 @@
   - R-4.3.3-win.exeがダウンロードされる
   - この資料が更新されていなければ4.3.3.より新しいバージョンになっているかもしれない。
 
-```{r  label = r_download_win, echo = FALSE, fig.cap = "Rのダウンロード。Windowsの場合", out.width = '90%'}
+```{r  label = downloadwin, echo = FALSE, fig.cap = "Rのダウンロード。Windowsの場合", out.width = '60%'}
 knitr::include_graphics("fig/download_R.png")
 knitr::include_graphics("fig/download_R_win.png")
 knitr::include_graphics("fig/download_R_win2.png")
@@ -85,15 +85,16 @@ $ xcode-select --install
 
 もし`error: command line tools are already installed, use "Software Update" to install updates`というメッセージが出たらCommand Line Toolsはすでにインストールされている。
 
-もしこれで、うまくいかない場合は以下のXcodeをインストールすることでCommand Line Toolsをインストールする。
+もしこれで、うまくいかない場合は次のXcodeをインストールすることでCommand Line Toolsをインストールする。
 
 #### Xcodeのインストール
+
+Xcodeは上のCommand Line Toolsがインストールできればとりあえず不要（のはず）である。もしできばければ、インストールしよう。ここではApple IDが必要となる。Xcodeは非常に大きいので、WiFiなどのインターネット接続が安定しているところで、**時間のあるとき**にやりましょう。
 
 MacのApp Storeから、Xcodeをインストールする。
 
 App Storeを開いて、Xcodeを検索する。下のようなハンマーのアイコンのアプリである。これをインストールする。
 
-Xcodeは非常に大きいので、WiFiなどのインターネット接続が安定しているところで、**時間のあるとき**にやりましょう。
 
 ```{r label = xcode, echo = FALSE, fig.cap = "Xcode", out.width = '70%'}
 knitr::include_graphics("fig/Xcode.png")
@@ -115,7 +116,7 @@ XQuartzの<a href="https://www.xquartz.org/" target="_blank">ウェブサイト<
   - Apple Siliconの場合は、R-4.3.3-arm64.pkgをダウンロード
   - Intelの場合は、R-4.3.3-x86_64.pkgをダウンロード
 
-```{r label = r_download_mac, echo = FALSE, fig.cap = "Rのダウンロード。MacOSの場合", out.width = '80%'}
+```{r label = downloadmac, echo = FALSE, fig.cap = "Rのダウンロード。MacOSの場合", out.width = '80%'}
 knitr::include_graphics("fig/download_R.png")
 knitr::include_graphics("fig/download_R_mac.png")
 ```
@@ -127,7 +128,7 @@ knitr::include_graphics("fig/download_R_mac.png")
   - 標準インストール
 - 完了したら、アプリ一覧にRがあるかどうかチェック
 
-```{r  label = r_download_mac_launchpad, echo = FALSE, fig.cap = "MacのLaunchpad上に表示されているR", out.width = '90%'}
+```{r  label = launchpad, echo = FALSE, fig.cap = "MacのLaunchpad上に表示されているR", out.width = '70%'}
 knitr::include_graphics("fig/launchpad_R.png")
 ```
 
@@ -137,7 +138,7 @@ knitr::include_graphics("fig/launchpad_R.png")
 
 "2. Install RStudio"の青いボタンをクリック
 
-```{r  label = rstudio_install, echo = FALSE, fig.cap = "RStudioのダウンロード。図はMacOSの場合", out.width = '60%'}
+```{r  label = rstudioinstall, echo = FALSE, fig.align='center',fig.cap = "RStudioのダウンロード。図はMacOSの場合", out.width = '50%'}
 knitr::include_graphics("fig/install_rstudio.png")
 ```
 
@@ -245,7 +246,7 @@ RStudioの**Rプロジェクト**という機能を使うと、以下のメリ�
     - 今回はabezemiの下につくるので、Browseを開いて上で作ったabezemiフォルダを指定してOpenをクリック。
 
  
-```{r  label = project_make, echo = FALSE, fig.cap = "Rプロジェクトの作成", out.width = '90%'}
+```{r  label = projectmake, echo = FALSE, fig.cap = "Rプロジェクトの作成", out.width = '90%'}
 knitr::include_graphics("fig/r_project_make.png")
 ```
 

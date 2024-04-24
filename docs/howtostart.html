@@ -214,9 +214,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="letsuse.html#計算機としてのr" id="toc-計算機としてのr"><span class="toc-section-number">4.1</span> 計算機としてのR</a>
 <ul>
-<li><a href="letsuse.html#足し算" id="toc-足し算"><span class="toc-section-number">4.1.1</span> 足し算</a></li>
-<li><a href="letsuse.html#かけ算" id="toc-かけ算"><span class="toc-section-number">4.1.2</span> かけ算</a></li>
-<li><a href="letsuse.html#論理演算" id="toc-論理演算"><span class="toc-section-number">4.1.3</span> 論理演算</a></li>
+<li><a href="letsuse.html#演習r-scriptの作成" id="toc-演習r-scriptの作成"><span class="toc-section-number">4.1.1</span> 演習：R Scriptの作成</a></li>
+<li><a href="letsuse.html#足し算" id="toc-足し算"><span class="toc-section-number">4.1.2</span> 足し算</a></li>
+<li><a href="letsuse.html#かけ算" id="toc-かけ算"><span class="toc-section-number">4.1.3</span> かけ算</a></li>
+<li><a href="letsuse.html#論理演算" id="toc-論理演算"><span class="toc-section-number">4.1.4</span> 論理演算</a></li>
 </ul></li>
 <li><a href="letsuse.html#プログラミング言語としてのr" id="toc-プログラミング言語としてのr"><span class="toc-section-number">4.2</span> プログラミング言語としてのR</a>
 <ul>
@@ -413,22 +414,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>この資料が更新されていなければ4.3.3.より新しいバージョンになっているかもしれない。</li>
 </ul></li>
 </ul>
-<div class="figure">
-<img src="fig/download_R.png" alt="Rのダウンロード。Windowsの場合" width="90%" />
+<div class="figure"><span style="display:block;" id="fig:downloadwin-1"></span>
+<img src="fig/download_R.png" alt="Rのダウンロード。Windowsの場合" width="60%" />
 <p class="caption">
-(#fig:r_download_win-1)Rのダウンロード。Windowsの場合
+Figure 3.1: Rのダウンロード。Windowsの場合
 </p>
 </div>
-<div class="figure">
-<img src="fig/download_R_win.png" alt="Rのダウンロード。Windowsの場合" width="90%" />
+<div class="figure"><span style="display:block;" id="fig:downloadwin-2"></span>
+<img src="fig/download_R_win.png" alt="Rのダウンロード。Windowsの場合" width="60%" />
 <p class="caption">
-(#fig:r_download_win-2)Rのダウンロード。Windowsの場合
+Figure 3.2: Rのダウンロード。Windowsの場合
 </p>
 </div>
-<div class="figure">
-<img src="fig/download_R_win2.png" alt="Rのダウンロード。Windowsの場合" width="90%" />
+<div class="figure"><span style="display:block;" id="fig:downloadwin-3"></span>
+<img src="fig/download_R_win2.png" alt="Rのダウンロード。Windowsの場合" width="60%" />
 <p class="caption">
-(#fig:r_download_win-3)Rのダウンロード。Windowsの場合
+Figure 3.3: Rのダウンロード。Windowsの場合
 </p>
 </div>
 <ul>
@@ -460,24 +461,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure"><span style="display:block;" id="fig:terminal"></span>
 <img src="fig/terminal.png" alt="ターミナル" width="70%" />
 <p class="caption">
-Figure 3.1: ターミナル
+Figure 3.4: ターミナル
 </p>
 </div>
 <p>ターミナルで自分のユーザー名の隣の$マークの後ろに以下のように入力する。</p>
 <pre class="bash{cmd}"><code>$ xcode-select --install</code></pre>
 <p>あとは指示に従う。</p>
 <p>もし<code>error: command line tools are already installed, use "Software Update" to install updates</code>というメッセージが出たらCommand Line Toolsはすでにインストールされている。</p>
-<p>もしこれで、うまくいかない場合は以下のXcodeをインストールすることでCommand Line Toolsをインストールする。</p>
+<p>もしこれで、うまくいかない場合は次のXcodeをインストールすることでCommand Line Toolsをインストールする。</p>
 </div>
 <div id="xcodeのインストール" class="section level4" number="3.3.2.3">
 <h4><span class="header-section-number">3.3.2.3</span> Xcodeのインストール</h4>
+<p>Xcodeは上のCommand Line Toolsがインストールできればとりあえず不要（のはず）である。もしできばければ、インストールしよう。ここではApple IDが必要となる。Xcodeは非常に大きいので、WiFiなどのインターネット接続が安定しているところで、<strong>時間のあるとき</strong>にやりましょう。</p>
 <p>MacのApp Storeから、Xcodeをインストールする。</p>
 <p>App Storeを開いて、Xcodeを検索する。下のようなハンマーのアイコンのアプリである。これをインストールする。</p>
-<p>Xcodeは非常に大きいので、WiFiなどのインターネット接続が安定しているところで、<strong>時間のあるとき</strong>にやりましょう。</p>
 <div class="figure"><span style="display:block;" id="fig:xcode"></span>
 <img src="fig/Xcode.png" alt="Xcode" width="70%" />
 <p class="caption">
-Figure 3.2: Xcode
+Figure 3.5: Xcode
 </p>
 </div>
 <p>App Storeの使い方がわからない人は、<a href="https://support.apple.com/ja-jp/guide/app-store/fir9b2ea074e/3.0/mac/10.15" target="_blank">App Storeユーザーガイド</a>を参照してください。</p>
@@ -500,16 +501,16 @@ Figure 3.2: Xcode
 <li>Intelの場合は、R-4.3.3-x86_64.pkgをダウンロード</li>
 </ul></li>
 </ul>
-<div class="figure">
+<div class="figure"><span style="display:block;" id="fig:downloadmac-1"></span>
 <img src="fig/download_R.png" alt="Rのダウンロード。MacOSの場合" width="80%" />
 <p class="caption">
-(#fig:r_download_mac-1)Rのダウンロード。MacOSの場合
+Figure 3.6: Rのダウンロード。MacOSの場合
 </p>
 </div>
-<div class="figure">
+<div class="figure"><span style="display:block;" id="fig:downloadmac-2"></span>
 <img src="fig/download_R_mac.png" alt="Rのダウンロード。MacOSの場合" width="80%" />
 <p class="caption">
-(#fig:r_download_mac-2)Rのダウンロード。MacOSの場合
+Figure 3.7: Rのダウンロード。MacOSの場合
 </p>
 </div>
 <ul>
@@ -521,10 +522,10 @@ Figure 3.2: Xcode
 </ul></li>
 <li>完了したら、アプリ一覧にRがあるかどうかチェック</li>
 </ul>
-<div class="figure">
-<img src="fig/launchpad_R.png" alt="MacのLaunchpad上に表示されているR" width="90%" />
+<div class="figure"><span style="display:block;" id="fig:launchpad"></span>
+<img src="fig/launchpad_R.png" alt="MacのLaunchpad上に表示されているR" width="70%" />
 <p class="caption">
-(#fig:r_download_mac_launchpad)MacのLaunchpad上に表示されているR
+Figure 3.8: MacのLaunchpad上に表示されているR
 </p>
 </div>
 </div>
@@ -534,10 +535,10 @@ Figure 3.2: Xcode
 <h2><span class="header-section-number">3.4</span> Rstudioのインストール</h2>
 <p><a href="https://posit.co/download/rstudio-desktop/" target="_blank">Posit社のウェブサイト</a>へアクセス</p>
 <p>“2. Install RStudio”の青いボタンをクリック</p>
-<div class="figure">
-<img src="fig/install_rstudio.png" alt="RStudioのダウンロード。図はMacOSの場合" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudioinstall"></span>
+<img src="fig/install_rstudio.png" alt="RStudioのダウンロード。図はMacOSの場合" width="50%" />
 <p class="caption">
-(#fig:rstudio_install)RStudioのダウンロード。図はMacOSの場合
+Figure 3.9: RStudioのダウンロード。図はMacOSの場合
 </p>
 </div>
 <p>ダウンロードされたファイルをクリックしてインストールする。基本的に「次へ」でよい。</p>
@@ -549,7 +550,7 @@ Figure 3.2: Xcode
 <div class="figure"><span style="display:block;" id="fig:rstudio2"></span>
 <img src="r_basics/fig/Rstudio_look-2.png" alt="Rstudio見た目" width="90%" />
 <p class="caption">
-Figure 3.3: Rstudio見た目
+Figure 3.10: Rstudio見た目
 </p>
 </div>
 </div>
@@ -562,7 +563,7 @@ Figure 3.3: Rstudio見た目
 <div class="figure"><span style="display:block;" id="fig:directory"></span>
 <img src="r_basics/fig/directory_structure.png" alt="ディレクトリ構造" width="90%" />
 <p class="caption">
-Figure 3.4: ディレクトリ構造
+Figure 3.11: ディレクトリ構造
 </p>
 </div>
 </div>
@@ -639,10 +640,10 @@ Figure 3.4: ディレクトリ構造
 <li>今回はabezemiの下につくるので、Browseを開いて上で作ったabezemiフォルダを指定してOpenをクリック。</li>
 </ul></li>
 </ul>
-<div class="figure">
+<div class="figure"><span style="display:block;" id="fig:projectmake"></span>
 <img src="fig/r_project_make.png" alt="Rプロジェクトの作成" width="90%" />
 <p class="caption">
-(#fig:project_make)Rプロジェクトの作成
+Figure 3.12: Rプロジェクトの作成
 </p>
 </div>
 <ul>
