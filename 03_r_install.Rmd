@@ -106,6 +106,10 @@ App Storeの使い方がわからない人は、<a href="https://support.apple.c
 
 XQuartzの<a href="https://www.xquartz.org/" target="_blank">ウェブサイト</a>にアクセスして、`Quartz-x.x.x.pkg`というファイルをダウンロードする。`x`にはバージョン名が入るので、2024年4月時点では2.8.5だが、それより新しいバージョンになっているかもしれない。
 
+```{r  label = xquartz, echo = FALSE, fig.cap = "XQuartzのダウンロード画面", out.width = '60%'}
+knitr::include_graphics("fig/xquartz.png")
+```
+
 ダウンロードされた`pkg`ファイルを開いて、インストールする。
 
 #### Rのダウンロード
