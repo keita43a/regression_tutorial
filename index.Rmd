@@ -1,5 +1,5 @@
 --- 
-title: "Rと実証分析入門"
+title: "武蔵大生のためのRによる実証分析入門"
 author: "Keita Abe"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -28,14 +28,28 @@ pacman::p_load(
 options(scipen=999)
 ```
 
-# Rによる実証分析入門
+# この資料について
 
 この武蔵大学経済学部でのRを用いた実証分析入門の資料です。
 武蔵大学経済学部の学生の状況を背景に、最低限でなんとか実証分析を行うところまで学ぶことを意図した資料になっています。
+
 Rの入門については、より詳しい以下の資料やウェブサイトが存在しますので、詳しい説明が知りたい学生はそちらを参照することをおすすめします。
 
-- [わたしたちのR](https://www.jaysong.net/RBook/)
-- [R言語入門](https://speakerdeck.com/s_uryu/introduction-to-r)
+
+- <a href = "https://www.jaysong.net/RBook/" target="_blank">わたしたちのR</a>
+- <a href = "https://speakerdeck.com/s_uryu/introduction-to-r" target="_blank">R言語入門</a>
+
+
+実証分析のベースとなる計量経済学についてはこれらの書籍がおすすめです。
+
+- <a href = "https://amzn.to/3xQvDWu" target="_blank">計量経済学の第一歩　実証分析のススメ</a>
+
+また、Rによる実証分析についても多くの書籍が出版されています。そちらも参照してください。
+
+- <a href = "https://amzn.to/4b5UzaK" target="_blank">Rによるデータ分析入門</a>
+- <a href = "https://amzn.to/3U5e9gg" target="_blank">Rによる実証分析 第2版</a>
+- <a href = "https://amzn.to/3JzIOxq" target="_blank">Rによる計量政治学</a>
+
 
 
 

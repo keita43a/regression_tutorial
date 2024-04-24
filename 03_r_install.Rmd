@@ -20,18 +20,18 @@
 2. 学校のパソコンを使う
   - 学校のパソコンにはRとRStudioがインストールされている
   - 学校に自分のPCを持ってこなくてもよいが家で勉強できない
-  - Rプロジェクト[^1]を用いた際にネットワークドライブに置いた場合、ワーキングディレクトリの挙動がおかしいので、パソコンのパスなどに詳しくない人は混乱するかもしれない。
+  - Rプロジェクトを用いた際にネットワークドライブに置いた場合、ワーキングディレクトリの挙動がおかしいので、パソコンのpathなどに詳しくない人は混乱するかもしれない。
 
 3. posit.Cloudの無料プランを使う
   - クラウド上でRstudioを使う
   - 利点：コンピューター上の設定が不要
   - 欠点：データファイルなどを毎回アップロードする必要がある。ファイル数などは限られる。
+  
+できれば1の方法でやってみよう。
 
 
-[^1] 後述します。
 
-
-## RとRstudioのインストール
+## Rのインストール
 
 - 学校のパソコンにはすでにインストールされている
 - 自分のパソコンに導入する人は[このスライド](https://speakerdeck.com/s_uryu/introduction-to-r)か[ここ](https://yukiyanai.github.io/jp/resources/)にある「RとRStudioのインストール方法の解説」を参照
@@ -39,8 +39,11 @@
 ### Windownsへのインストール
 
 - ブラウザから<a href="https://cran.r-project.org/" target="_blank">CLAN</a>へアクセスする
+  - もし繋がらなければ<a href="https://cran.ism.ac.jp/">こちら</a>から試してみる
+  - それでもだめならGoogleで"CLAN R"で検索
 - 「Download R for Windows」-> 「base」-> 「Download R-4.3.3 for Windows」
   - R-4.3.3-win.exeがダウンロードされる
+  - この資料が更新されていなければ4.3.3.より新しいバージョンになっているかもしれない。
 
 ```{r  label = r_download_win, echo = FALSE, fig.cap = "Rのダウンロード。Windowsの場合", out.width = '90%'}
 knitr::include_graphics("fig/download_R.png")
@@ -56,15 +59,63 @@ knitr::include_graphics("fig/download_R_win2.png")
 
 ### Mac OSへのインストール
 
+Mac OSへのインストールは少し大変である。一つずつ確認していこう。
+
+#### チップの種類を確認
+
 - まず自分のMacがIntelチップかApple Siliconかを確認する
 - 左上のリンゴマーク→「このMacについて」
   - 表示された情報の「チップ」が「Apple M1」やM2,M3であればApple silicon, IntelであればIntel
+
+#### Command Line Toolsのインストール
+
+Macのアプリ一覧から、「ターミナル」を開く。
+
+```{r  label = terminal, echo = FALSE, fig.cap = "ターミナル", out.width = '70%'}
+knitr::include_graphics("fig/terminal.png")
+```
+
+ターミナルで自分のユーザー名の隣の$マークの後ろに以下のように入力する。
+
+```bash{cmd}
+$ xcode-select --install
+```
+
+あとは指示に従う。
+
+もし`error: command line tools are already installed, use "Software Update" to install updates`というメッセージが出たらCommand Line Toolsはすでにインストールされている。
+
+もしこれで、うまくいかない場合は以下のXcodeをインストールすることでCommand Line Toolsをインストールする。
+
+#### Xcodeのインストール
+
+MacのApp Storeから、Xcodeをインストールする。
+
+App Storeを開いて、Xcodeを検索する。下のようなハンマーのアイコンのアプリである。これをインストールする。
+
+Xcodeは非常に大きいので、WiFiなどのインターネット接続が安定しているところで、**時間のあるとき**にやりましょう。
+
+```{r label = xcode, echo = FALSE, fig.cap = "Xcode", out.width = '70%'}
+knitr::include_graphics("fig/Xcode.png")
+```
+
+App Storeの使い方がわからない人は、<a href="https://support.apple.com/ja-jp/guide/app-store/fir9b2ea074e/3.0/mac/10.15" target="_blank">App Storeユーザーガイド</a>を参照してください。
+
+#### XQuartzのインストール
+
+XQuartzの<a href="https://www.xquartz.org/" target="_blank">ウェブサイト</a>にアクセスして、`Quartz-x.x.x.pkg`というファイルをダウンロードする。`x`にはバージョン名が入るので、2024年4月時点では2.8.5だが、それより新しいバージョンになっているかもしれない。
+
+ダウンロードされた`pkg`ファイルを開いて、インストールする。
+
+#### Rのダウンロード
+
 - ブラウザから<a href="https://cran.r-project.org/" target="_blank">CLAN</a>へアクセスする
+  - もし繋がらなければ<a href="https://cran.ism.ac.jp/">こちら</a>から試してみる
 - 「Download R for Mac OS」をクリック
   - Apple Siliconの場合は、R-4.3.3-arm64.pkgをダウンロード
   - Intelの場合は、R-4.3.3-x86_64.pkgをダウンロード
 
-```{r  label = r_download_mac, echo = FALSE, fig.cap = "Rのダウンロード。MacOSの場合", out.width = '90%'}
+```{r label = r_download_mac, echo = FALSE, fig.cap = "Rのダウンロード。MacOSの場合", out.width = '80%'}
 knitr::include_graphics("fig/download_R.png")
 knitr::include_graphics("fig/download_R_mac.png")
 ```
@@ -86,19 +137,18 @@ knitr::include_graphics("fig/launchpad_R.png")
 
 "2. Install RStudio"の青いボタンをクリック
 
-```{r  label = rstudio_install, echo = FALSE, fig.cap = "RStudioのダウンロード。図はMacOSの場合", out.width = '70%'}
+```{r  label = rstudio_install, echo = FALSE, fig.cap = "RStudioのダウンロード。図はMacOSの場合", out.width = '60%'}
 knitr::include_graphics("fig/install_rstudio.png")
 ```
 
 ダウンロードされたファイルをクリックしてインストールする。基本的に「次へ」でよい。
 
-完了したら、アプリ一覧に丸いロゴでRと書いてあるRStudioがあるかチェック
-
-
+完了したら、アプリ一覧に丸いロゴでRと書いてあるRStudioがあるかチェック。Windowsの場合はデスクトップにショートカットが生成されない可能性があるので、アプリ一覧でチェックしよう。
 
 
 ## Rstudioのインターフェース
 
+RStudioは４つのペーンに分割されている。もし３つしかない、という人は左上の白い四角に緑の＋マークが付いているところを押して"R Script"を選ぼう。すると左上のペーンが現れて新たなスクリプトファイルが生成される。
 
 ```{r  label = rstudio2, echo = FALSE, fig.cap = "Rstudio見た目", out.width = '90%'}
 knitr::include_graphics("r_basics/fig/Rstudio_look-2.png")
@@ -126,13 +176,14 @@ knitr::include_graphics("r_basics/fig/directory_structure.png")
 - (Windows) ドライブ上で右クリック→新規作成→フォルダ
 - (Mac) Finderの右上の◯に…のマークをクリック→新規フォルダ
 
-- 自分のパソコン
+### 自分のパソコン
   - 例えば「ドキュメント」(Windows)や「書類」(Mac)の下にabezemiフォルダを作成
   
-- 学校のパソコン
+### 学校のパソコン
   - 自分の学生番号のドライブ(例 s1234567)の下に abezemi フォルダを作成
 
-- Posit.cloudの場合は、
+### Posit.cloud
+  - Posit.clouの場合は、まだここでは何もする必要はない。
 
 ## 作業スペース
 
@@ -186,9 +237,12 @@ RStudioの**Rプロジェクト**という機能を使うと、以下のメリ�
 - "New Project"を選択
 
 - プロジェクト名を入力: r_renshu
-   - プロジェクト名は英語で。日本語は使えない（もしくはトラブルの元になる）
+   - プロジェクト名は英語で。
+   - 日本語は使えない（もしくはトラブルの元になる）
+   - スペースも使わない。アンダーバーやハイフンを代用できる。
+   
 - 2つ目の欄には、どのディレクトリの下にプロジェクトディレクトリを作るかを指定する。
-    - 今回はabezemiの下につくるので、Browseを開いてabezemiフォルダを指定する
+    - 今回はabezemiの下につくるので、Browseを開いて上で作ったabezemiフォルダを指定してOpenをクリック。
 
  
 ```{r  label = project_make, echo = FALSE, fig.cap = "Rプロジェクトの作成", out.width = '90%'}
