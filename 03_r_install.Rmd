@@ -72,6 +72,13 @@ Mac OSへのインストールは少し大変である。一つずつ確認し�
 Macのアプリ一覧から、「ターミナル」を開く。
 
 ```{r  label = terminal, echo = FALSE, fig.cap = "ターミナル", out.width = '70%'}
+knitr::include_graphics("fig/terminal_app.png")
+```
+
+
+ターミナルを開くと以下のような画面が出てくる。以下の画面は私のPCなのでkeitaになっているが、実際にはそれぞれのユーザーネームになっている。
+
+```{r  label = terminalscreen, echo = FALSE, fig.cap = "ターミナルの画面", out.width = '70%'}
 knitr::include_graphics("fig/terminal.png")
 ```
 

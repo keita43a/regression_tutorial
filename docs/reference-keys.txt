@@ -2,7 +2,9 @@ fig:downloadwin-1
 fig:downloadwin-2
 fig:downloadwin-3
 fig:terminal
+fig:terminalscreen
 fig:xcode
+fig:xquartz
 fig:downloadmac-1
 fig:downloadmac-2
 fig:launchpad
