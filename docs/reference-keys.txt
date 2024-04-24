@@ -1,6 +1,6 @@
 fig:rstudio2
 fig:directory
-rによる実証分析入門
+この資料について
 whatsr
 r
 excelじゃだめなのか
