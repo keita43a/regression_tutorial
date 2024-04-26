@@ -7,6 +7,9 @@ output:
   bookdown::gitbook:
     fig_caption: true
     number_sections: true
+    config:
+     fontsettings:
+       theme: white
 documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike

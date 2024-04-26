@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 推測統計のおさらい | 武蔵大生のためのRによる実証分析入門</title>
+  <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 推測統計のおさらい | 武蔵大生のためのRによる実証分析入門" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 推測統計のおさらい | 武蔵大生のためのRによる実証分析入門" />
+  
+  <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  
+
+<meta name="author" content="Keita Abe" />
+
+
+<meta name="date" content="2024-04-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rviz.html"/>
+<link rel="next" href="practiceanswer.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R入門</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#この資料について" id="toc-この資料について"><span class="toc-section-number">1</span> この資料について</a></li>
+<li><a href="whatsr.html#whatsr" id="toc-whatsr"><span class="toc-section-number">2</span> Rとはなにか？</a>
+<ul>
+<li><a href="whatsr.html#r" id="toc-r"><span class="toc-section-number">2.1</span> R?</a></li>
+<li><a href="whatsr.html#excelじゃだめなのか" id="toc-excelじゃだめなのか"><span class="toc-section-number">2.2</span> Excelじゃだめなのか</a></li>
+<li><a href="whatsr.html#rのよいところ" id="toc-rのよいところ"><span class="toc-section-number">2.3</span> Rのよいところ</a></li>
+<li><a href="whatsr.html#例えばrでできること図表" id="toc-例えばrでできること図表"><span class="toc-section-number">2.4</span> 例えばRでできること：図表</a></li>
+<li><a href="whatsr.html#例えばrでできることウェブアプリ" id="toc-例えばrでできることウェブアプリ"><span class="toc-section-number">2.5</span> 例えばRでできること：ウェブアプリ</a></li>
+<li><a href="whatsr.html#例えばrでできることウェブスクレイピング" id="toc-例えばrでできることウェブスクレイピング"><span class="toc-section-number">2.6</span> 例えばRでできること：ウェブスクレイピング</a></li>
+<li><a href="whatsr.html#地図の分析活用" id="toc-地図の分析活用"><span class="toc-section-number">2.7</span> 地図の分析・活用</a></li>
+<li><a href="whatsr.html#rの欠点" id="toc-rの欠点"><span class="toc-section-number">2.8</span> Rの欠点</a></li>
+<li><a href="whatsr.html#cuiとgui" id="toc-cuiとgui"><span class="toc-section-number">2.9</span> CUIとGUI</a>
+<ul>
+<li><a href="whatsr.html#guiの方が楽" id="toc-guiの方が楽"><span class="toc-section-number">2.9.1</span> GUIの方が楽？</a></li>
+</ul></li>
+<li><a href="whatsr.html#プログラミング" id="toc-プログラミング"><span class="toc-section-number">2.10</span> プログラミング</a></li>
+</ul></li>
+<li><a href="howtostart.html#howtostart" id="toc-howtostart"><span class="toc-section-number">3</span> Rのはじめかた</a>
+<ul>
+<li><a href="howtostart.html#rをどうやって使う" id="toc-rをどうやって使う"><span class="toc-section-number">3.1</span> Rをどうやって使う？</a></li>
+<li><a href="howtostart.html#rstudioを使う3つの方法" id="toc-rstudioを使う3つの方法"><span class="toc-section-number">3.2</span> Rstudioを使う3つの方法</a></li>
+<li><a href="howtostart.html#rのインストール" id="toc-rのインストール"><span class="toc-section-number">3.3</span> Rのインストール</a>
+<ul>
+<li><a href="howtostart.html#windownsへのインストール" id="toc-windownsへのインストール"><span class="toc-section-number">3.3.1</span> Windownsへのインストール</a></li>
+<li><a href="howtostart.html#mac-osへのインストール" id="toc-mac-osへのインストール"><span class="toc-section-number">3.3.2</span> Mac OSへのインストール</a></li>
+</ul></li>
+<li><a href="howtostart.html#rstudioのインストール" id="toc-rstudioのインストール"><span class="toc-section-number">3.4</span> Rstudioのインストール</a></li>
+<li><a href="howtostart.html#rstudioのインターフェース" id="toc-rstudioのインターフェース"><span class="toc-section-number">3.5</span> Rstudioのインターフェース</a></li>
+<li><a href="howtostart.html#コンピュータのディレクトリ構造" id="toc-コンピュータのディレクトリ構造"><span class="toc-section-number">3.6</span> コンピュータのディレクトリ構造</a></li>
+<li><a href="howtostart.html#演習作業フォルダを作ろう" id="toc-演習作業フォルダを作ろう"><span class="toc-section-number">3.7</span> <strong>演習</strong>：作業フォルダを作ろう</a>
+<ul>
+<li><a href="howtostart.html#自分のパソコン" id="toc-自分のパソコン"><span class="toc-section-number">3.7.1</span> 自分のパソコン</a></li>
+<li><a href="howtostart.html#学校のパソコン" id="toc-学校のパソコン"><span class="toc-section-number">3.7.2</span> 学校のパソコン</a></li>
+<li><a href="howtostart.html#posit.cloud" id="toc-posit.cloud"><span class="toc-section-number">3.7.3</span> Posit.cloud</a></li>
+</ul></li>
+<li><a href="howtostart.html#作業スペース" id="toc-作業スペース"><span class="toc-section-number">3.8</span> 作業スペース</a></li>
+<li><a href="howtostart.html#プロジェクトの作成" id="toc-プロジェクトの作成"><span class="toc-section-number">3.9</span> プロジェクトの作成</a></li>
+<li><a href="howtostart.html#演習-rプロジェクトを作成してみよう" id="toc-演習-rプロジェクトを作成してみよう"><span class="toc-section-number">3.10</span> <strong>演習</strong>: Rプロジェクトを作成してみよう</a></li>
+<li><a href="howtostart.html#とりあえず触ってみる" id="toc-とりあえず触ってみる"><span class="toc-section-number">3.11</span> とりあえず触ってみる</a></li>
+<li><a href="howtostart.html#scriptmake" id="toc-scriptmake"><span class="toc-section-number">3.12</span> スクリプトの作成</a>
+<ul>
+<li><a href="howtostart.html#演習スクリプトを作成してみる" id="toc-演習スクリプトを作成してみる"><span class="toc-section-number">3.12.1</span> <strong>演習</strong>：スクリプトを作成してみる</a></li>
+</ul></li>
+<li><a href="howtostart.html#実行してみる" id="toc-実行してみる"><span class="toc-section-number">3.13</span> 実行してみる</a>
+<ul>
+<li><a href="howtostart.html#コードを実行する際のポイント" id="toc-コードを実行する際のポイント"><span class="toc-section-number">3.13.1</span> コードを実行する際のポイント</a></li>
+</ul></li>
+<li><a href="howtostart.html#スクリプトを書く際の注意点" id="toc-スクリプトを書く際の注意点"><span class="toc-section-number">3.14</span> スクリプトを書く際の注意点</a>
+<ul>
+<li><a href="howtostart.html#コメント" id="toc-コメント"><span class="toc-section-number">3.14.1</span> コメント</a></li>
+<li><a href="howtostart.html#スクリプトは読みやすく" id="toc-スクリプトは読みやすく"><span class="toc-section-number">3.14.2</span> スクリプトは読みやすく</a></li>
+</ul></li>
+<li><a href="howtostart.html#エラーを恐れるな" id="toc-エラーを恐れるな"><span class="toc-section-number">3.15</span> エラーを恐れるな！</a>
+<ul>
+<li><a href="howtostart.html#よくあるエラー1" id="toc-よくあるエラー1"><span class="toc-section-number">3.15.1</span> よくあるエラー1</a></li>
+<li><a href="howtostart.html#よくあるエラー2" id="toc-よくあるエラー2"><span class="toc-section-number">3.15.2</span> よくあるエラー2</a></li>
+</ul></li>
+<li><a href="howtostart.html#rstudioの補完機能" id="toc-rstudioの補完機能"><span class="toc-section-number">3.16</span> Rstudioの補完機能</a></li>
+<li><a href="howtostart.html#rstudioのオプション" id="toc-rstudioのオプション"><span class="toc-section-number">3.17</span> Rstudioのオプション</a>
+<ul>
+<li><a href="howtostart.html#例外観の変更" id="toc-例外観の変更"><span class="toc-section-number">3.17.1</span> 例：外観の変更</a></li>
+</ul></li>
+</ul></li>
+<li><a href="letsuse.html#letsuse" id="toc-letsuse"><span class="toc-section-number">4</span> Rを使ってみる</a>
+<ul>
+<li><a href="letsuse.html#計算機としてのr" id="toc-計算機としてのr"><span class="toc-section-number">4.1</span> 計算機としてのR</a>
+<ul>
+<li><a href="letsuse.html#演習r-scriptの作成" id="toc-演習r-scriptの作成"><span class="toc-section-number">4.1.1</span> 演習：R Scriptの作成</a></li>
+<li><a href="letsuse.html#足し算引き算" id="toc-足し算引き算"><span class="toc-section-number">4.1.2</span> 足し算・引き算</a></li>
+<li><a href="letsuse.html#かけ算割り算" id="toc-かけ算割り算"><span class="toc-section-number">4.1.3</span> かけ算・割り算</a></li>
+<li><a href="letsuse.html#practicecalc" id="toc-practicecalc"><span class="toc-section-number">4.1.4</span> <strong>練習問題</strong>：以下の演算をRを使ってやってみよう</a></li>
+<li><a href="letsuse.html#論理演算" id="toc-論理演算"><span class="toc-section-number">4.1.5</span> 論理演算</a></li>
+</ul></li>
+<li><a href="letsuse.html#プログラミング言語としてのr" id="toc-プログラミング言語としてのr"><span class="toc-section-number">4.2</span> プログラミング言語としてのR</a>
+<ul>
+<li><a href="letsuse.html#変数へのオブジェクトの代入" id="toc-変数へのオブジェクトの代入"><span class="toc-section-number">4.2.1</span> 変数へのオブジェクトの代入</a></li>
+<li><a href="letsuse.html#プログラミング繰り返し" id="toc-プログラミング繰り返し"><span class="toc-section-number">4.2.2</span> プログラミング：繰り返し</a></li>
+<li><a href="letsuse.html#practiceloop" id="toc-practiceloop"><span class="toc-section-number">4.2.3</span> <strong>練習問題</strong>：ループを用いた計算</a></li>
+<li><a href="letsuse.html#プログラミングif文" id="toc-プログラミングif文"><span class="toc-section-number">4.2.4</span> プログラミング：if文</a></li>
+</ul></li>
+<li><a href="letsuse.html#データ型" id="toc-データ型"><span class="toc-section-number">4.3</span> データ型</a>
+<ul>
+<li><a href="letsuse.html#データ型注意点" id="toc-データ型注意点"><span class="toc-section-number">4.3.1</span> データ型：注意点</a></li>
+<li><a href="letsuse.html#データ型の変換" id="toc-データ型の変換"><span class="toc-section-number">4.3.2</span> データ型の変換</a></li>
+</ul></li>
+<li><a href="letsuse.html#ベクトル" id="toc-ベクトル"><span class="toc-section-number">4.4</span> ベクトル</a>
+<ul>
+<li><a href="letsuse.html#ベクトルの型" id="toc-ベクトルの型"><span class="toc-section-number">4.4.1</span> ベクトルの型</a></li>
+<li><a href="letsuse.html#ベクトル連続した数値" id="toc-ベクトル連続した数値"><span class="toc-section-number">4.4.2</span> ベクトル：連続した数値</a></li>
+<li><a href="letsuse.html#練習問題" id="toc-練習問題"><span class="toc-section-number">4.4.3</span> 練習問題</a></li>
+<li><a href="letsuse.html#ベクトルを作る関数1" id="toc-ベクトルを作る関数1"><span class="toc-section-number">4.4.4</span> ベクトルを作る関数1</a></li>
+<li><a href="letsuse.html#ベクトル要素の参照" id="toc-ベクトル要素の参照"><span class="toc-section-number">4.4.5</span> ベクトル要素の参照</a></li>
+</ul></li>
+<li><a href="letsuse.html#リスト" id="toc-リスト"><span class="toc-section-number">4.5</span> リスト</a>
+<ul>
+<li><a href="letsuse.html#リストの参照" id="toc-リストの参照"><span class="toc-section-number">4.5.1</span> リストの参照</a></li>
+<li><a href="letsuse.html#リストの参照-1" id="toc-リストの参照-1"><span class="toc-section-number">4.5.2</span> リストの参照</a></li>
+</ul></li>
+</ul></li>
+<li><a href="packages.html#packages" id="toc-packages"><span class="toc-section-number">5</span> パッケージとは</a>
+<ul>
+<li><a href="packages.html#パッケージについて" id="toc-パッケージについて"><span class="toc-section-number">5.1</span> パッケージについて</a></li>
+<li><a href="packages.html#パッケージのインストール" id="toc-パッケージのインストール"><span class="toc-section-number">5.2</span> パッケージのインストール</a></li>
+<li><a href="packages.html#よく使うパッケージのインストール" id="toc-よく使うパッケージのインストール"><span class="toc-section-number">5.3</span> よく使うパッケージのインストール</a>
+<ul>
+<li><a href="packages.html#tidyverseについて" id="toc-tidyverseについて"><span class="toc-section-number">5.3.1</span> Tidyverseについて</a></li>
+</ul></li>
+<li><a href="packages.html#パッケージの使い方1" id="toc-パッケージの使い方1"><span class="toc-section-number">5.4</span> パッケージの使い方1</a></li>
+<li><a href="packages.html#パッケージの使い方2" id="toc-パッケージの使い方2"><span class="toc-section-number">5.5</span> パッケージの使い方2</a></li>
+</ul></li>
+<li><a href="datahandling.html#datahandling" id="toc-datahandling"><span class="toc-section-number">6</span> データのハンドリング</a>
+<ul>
+<li><a href="datahandling.html#データ" id="toc-データ"><span class="toc-section-number">6.1</span> データ</a>
+<ul>
+<li><a href="datahandling.html#データとは" id="toc-データとは"><span class="toc-section-number">6.1.1</span> データとは？</a></li>
+<li><a href="datahandling.html#データフレーム" id="toc-データフレーム"><span class="toc-section-number">6.1.2</span> データフレーム</a></li>
+<li><a href="datahandling.html#行と列" id="toc-行と列"><span class="toc-section-number">6.1.3</span> 行と列</a></li>
+<li><a href="datahandling.html#きれいなデータ" id="toc-きれいなデータ"><span class="toc-section-number">6.1.4</span> きれいなデータ？</a></li>
+<li><a href="datahandling.html#データの読み込み" id="toc-データの読み込み"><span class="toc-section-number">6.1.5</span> データの読み込み</a></li>
+<li><a href="datahandling.html#演習-データの読み込み" id="toc-演習-データの読み込み"><span class="toc-section-number">6.1.6</span> <strong>演習</strong>: データの読み込み</a></li>
+<li><a href="datahandling.html#日本語のデータを読み込む際の注意点" id="toc-日本語のデータを読み込む際の注意点"><span class="toc-section-number">6.1.7</span> 日本語のデータを読み込む際の注意点</a></li>
+<li><a href="datahandling.html#readrのその他のオプション" id="toc-readrのその他のオプション"><span class="toc-section-number">6.1.8</span> readrのその他のオプション</a></li>
+</ul></li>
+<li><a href="datahandling.html#tidy-data-整然データ" id="toc-tidy-data-整然データ"><span class="toc-section-number">6.2</span> tidy data (整然データ)</a></li>
+<li><a href="datahandling.html#データフレームを扱うテクニックパイプ" id="toc-データフレームを扱うテクニックパイプ"><span class="toc-section-number">6.3</span> データフレームを扱うテクニック：パイプ</a>
+<ul>
+<li><a href="datahandling.html#パイプ" id="toc-パイプ"><span class="toc-section-number">6.3.1</span> パイプ</a></li>
+</ul></li>
+<li><a href="datahandling.html#tidyでないデータとtidyデータの変換" id="toc-tidyでないデータとtidyデータの変換"><span class="toc-section-number">6.4</span> tidyでないデータとtidyデータの変換</a>
+<ul>
+<li><a href="datahandling.html#long型データへの変換" id="toc-long型データへの変換"><span class="toc-section-number">6.4.1</span> long型データへの変換</a></li>
+<li><a href="datahandling.html#データを見てみる" id="toc-データを見てみる"><span class="toc-section-number">6.4.2</span> データを見てみる</a></li>
+<li><a href="datahandling.html#データを一部だけみたい場合" id="toc-データを一部だけみたい場合"><span class="toc-section-number">6.4.3</span> データを一部だけみたい場合</a></li>
+</ul></li>
+<li><a href="datahandling.html#データの大きさ" id="toc-データの大きさ"><span class="toc-section-number">6.5</span> データの「大きさ」</a></li>
+<li><a href="datahandling.html#列の名前一覧" id="toc-列の名前一覧"><span class="toc-section-number">6.6</span> 列の名前一覧</a></li>
+<li><a href="datahandling.html#変数の要約" id="toc-変数の要約"><span class="toc-section-number">6.7</span> 変数の要約</a></li>
+<li><a href="datahandling.html#変数の取り出し" id="toc-変数の取り出し"><span class="toc-section-number">6.8</span> 変数の取り出し</a></li>
+<li><a href="datahandling.html#変数の取り出しと計算" id="toc-変数の取り出しと計算"><span class="toc-section-number">6.9</span> 変数の取り出しと計算</a></li>
+<li><a href="datahandling.html#データフレームとtibble" id="toc-データフレームとtibble"><span class="toc-section-number">6.10</span> データフレームとtibble</a></li>
+<li><a href="datahandling.html#データの操作" id="toc-データの操作"><span class="toc-section-number">6.11</span> データの操作</a>
+<ul>
+<li><a href="datahandling.html#データの操作-1" id="toc-データの操作-1"><span class="toc-section-number">6.11.1</span> データの操作</a></li>
+<li><a href="datahandling.html#元のデータの見た目確認" id="toc-元のデータの見た目確認"><span class="toc-section-number">6.11.2</span> 元のデータの見た目確認</a></li>
+<li><a href="datahandling.html#列の名前を変えたい-rename" id="toc-列の名前を変えたい-rename"><span class="toc-section-number">6.11.3</span> 列の名前を変えたい: rename()</a></li>
+<li><a href="datahandling.html#特定の列だけ抽出する-select" id="toc-特定の列だけ抽出する-select"><span class="toc-section-number">6.11.4</span> 特定の列だけ抽出する: select()</a></li>
+<li><a href="datahandling.html#特定の列だけ抽出する-filter" id="toc-特定の列だけ抽出する-filter"><span class="toc-section-number">6.11.5</span> 特定の列だけ抽出する: filter()</a></li>
+<li><a href="datahandling.html#データの順番を並び替える-arrange" id="toc-データの順番を並び替える-arrange"><span class="toc-section-number">6.11.6</span> データの順番を並び替える: arrange()</a></li>
+<li><a href="datahandling.html#データの順番を並び替える-arrange-1" id="toc-データの順番を並び替える-arrange-1"><span class="toc-section-number">6.11.7</span> データの順番を並び替える: arrange()</a></li>
+<li><a href="datahandling.html#データの列を並び替える-relocate" id="toc-データの列を並び替える-relocate"><span class="toc-section-number">6.11.8</span> データの列を並び替える: relocate()</a></li>
+<li><a href="datahandling.html#データの列を並び替える-relocate-1" id="toc-データの列を並び替える-relocate-1"><span class="toc-section-number">6.11.9</span> データの列を並び替える: relocate()</a></li>
+<li><a href="datahandling.html#データの列を追加編集する-mutate" id="toc-データの列を追加編集する-mutate"><span class="toc-section-number">6.11.10</span> データの列を追加/編集する: mutate()</a></li>
+<li><a href="datahandling.html#データの列を追加編集する-mutate-1" id="toc-データの列を追加編集する-mutate-1"><span class="toc-section-number">6.11.11</span> データの列を追加/編集する: mutate()</a></li>
+<li><a href="datahandling.html#データを集計する" id="toc-データを集計する"><span class="toc-section-number">6.11.12</span> データを集計する</a></li>
+<li><a href="datahandling.html#データ操作の応用パイプによる引き渡し" id="toc-データ操作の応用パイプによる引き渡し"><span class="toc-section-number">6.11.13</span> データ操作の応用：パイプによる引き渡し</a></li>
+<li><a href="datahandling.html#データ操作の応用グループごとの集計" id="toc-データ操作の応用グループごとの集計"><span class="toc-section-number">6.11.14</span> データ操作の応用：グループごとの集計</a></li>
+</ul></li>
+<li><a href="datahandling.html#datamgtpractice" id="toc-datamgtpractice"><span class="toc-section-number">6.12</span> <strong>練習問題</strong>: データ操作</a></li>
+<li><a href="datahandling.html#データの結合" id="toc-データの結合"><span class="toc-section-number">6.13</span> データの結合</a>
+<ul>
+<li><a href="datahandling.html#データの縦の結合" id="toc-データの縦の結合"><span class="toc-section-number">6.13.1</span> データの縦の結合</a></li>
+<li><a href="datahandling.html#データを横に統合" id="toc-データを横に統合"><span class="toc-section-number">6.13.2</span> データを横に統合</a></li>
+<li><a href="datahandling.html#データを横に統合join関数" id="toc-データを横に統合join関数"><span class="toc-section-number">6.13.3</span> データを横に統合：join()関数</a></li>
+<li><a href="datahandling.html#join関数一覧" id="toc-join関数一覧"><span class="toc-section-number">6.13.4</span> join関数一覧</a></li>
+</ul></li>
+</ul></li>
+<li><a href="rstats.html#rstats" id="toc-rstats"><span class="toc-section-number">7</span> 記述統計のおさらい</a>
+<ul>
+<li><a href="rstats.html#統計とは" id="toc-統計とは"><span class="toc-section-number">7.1</span> 統計とは</a>
+<ul>
+<li><a href="rstats.html#記述統計" id="toc-記述統計"><span class="toc-section-number">7.1.1</span> 記述統計</a></li>
+<li><a href="rstats.html#推測統計" id="toc-推測統計"><span class="toc-section-number">7.1.2</span> 推測統計</a></li>
+</ul></li>
+<li><a href="rstats.html#データとは-1" id="toc-データとは-1"><span class="toc-section-number">7.2</span> データとは</a></li>
+<li><a href="rstats.html#代表的な統計量" id="toc-代表的な統計量"><span class="toc-section-number">7.3</span> 代表的な統計量</a>
+<ul>
+<li><a href="rstats.html#数式" id="toc-数式"><span class="toc-section-number">7.3.1</span> 数式</a></li>
+<li><a href="rstats.html#平均" id="toc-平均"><span class="toc-section-number">7.3.2</span> 平均</a></li>
+<li><a href="rstats.html#中央値" id="toc-中央値"><span class="toc-section-number">7.3.3</span> 中央値</a></li>
+<li><a href="rstats.html#最大値最小値" id="toc-最大値最小値"><span class="toc-section-number">7.3.4</span> 最大値・最小値</a></li>
+<li><a href="rstats.html#分散" id="toc-分散"><span class="toc-section-number">7.3.5</span> 分散</a></li>
+<li><a href="rstats.html#標準偏差" id="toc-標準偏差"><span class="toc-section-number">7.3.6</span> 標準偏差</a></li>
+</ul></li>
+</ul></li>
+<li><a href="rviz.html#rviz" id="toc-rviz"><span class="toc-section-number">8</span> ビジュアライゼーションの基本</a>
+<ul>
+<li><a href="rviz.html#rにおける描画" id="toc-rにおける描画"><span class="toc-section-number">8.1</span> Rにおける描画</a></li>
+<li><a href="rviz.html#描画をしてみよう" id="toc-描画をしてみよう"><span class="toc-section-number">8.2</span> 描画をしてみよう</a></li>
+<li><a href="rviz.html#復習データ読み込み" id="toc-復習データ読み込み"><span class="toc-section-number">8.3</span> 復習：データ読み込み</a></li>
+<li><a href="rviz.html#描画の前に" id="toc-描画の前に"><span class="toc-section-number">8.4</span> 描画の前に</a></li>
+<li><a href="rviz.html#キャンバスを用意する" id="toc-キャンバスを用意する"><span class="toc-section-number">8.5</span> キャンバスを用意する</a></li>
+<li><a href="rviz.html#グラフのレイヤーを追加する" id="toc-グラフのレイヤーを追加する"><span class="toc-section-number">8.6</span> グラフのレイヤーを追加する</a></li>
+<li><a href="rviz.html#文字化けに対処する" id="toc-文字化けに対処する"><span class="toc-section-number">8.7</span> 文字化けに対処する</a></li>
+<li><a href="rviz.html#aesに色を追加する" id="toc-aesに色を追加する"><span class="toc-section-number">8.8</span> aesに色を追加する</a></li>
+<li><a href="rviz.html#男女の置き方を変えたい" id="toc-男女の置き方を変えたい"><span class="toc-section-number">8.9</span> 男女の置き方を変えたい</a></li>
+<li><a href="rviz.html#aesに色を追加する-1" id="toc-aesに色を追加する-1"><span class="toc-section-number">8.10</span> aesに色を追加する</a></li>
+<li><a href="rviz.html#色を変えたい" id="toc-色を変えたい"><span class="toc-section-number">8.11</span> 色を変えたい</a></li>
+<li><a href="rviz.html#学科別に分けたい" id="toc-学科別に分けたい"><span class="toc-section-number">8.12</span> 学科別に分けたい</a></li>
+<li><a href="rviz.html#ラベルを変更するタイトルを追加する" id="toc-ラベルを変更するタイトルを追加する"><span class="toc-section-number">8.13</span> ラベルを変更する・タイトルを追加する</a></li>
+<li><a href="rviz.html#ラベルを変更するタイトルを追加する-1" id="toc-ラベルを変更するタイトルを追加する-1"><span class="toc-section-number">8.14</span> ラベルを変更する・タイトルを追加する</a></li>
+<li><a href="rviz.html#テーマを変更する1" id="toc-テーマを変更する1"><span class="toc-section-number">8.15</span> テーマを変更する1</a></li>
+<li><a href="rviz.html#テーマを変更する2" id="toc-テーマを変更する2"><span class="toc-section-number">8.16</span> テーマを変更する2</a></li>
+<li><a href="rviz.html#完成形" id="toc-完成形"><span class="toc-section-number">8.17</span> 完成形</a></li>
+<li><a href="rviz.html#ggplot2による図の保存" id="toc-ggplot2による図の保存"><span class="toc-section-number">8.18</span> ggplot2による図の保存</a></li>
+<li><a href="rviz.html#他の描画レイヤー" id="toc-他の描画レイヤー"><span class="toc-section-number">8.19</span> 他の描画レイヤー</a></li>
+<li><a href="rviz.html#散布図" id="toc-散布図"><span class="toc-section-number">8.20</span> 散布図</a></li>
+<li><a href="rviz.html#折れ線グラフ" id="toc-折れ線グラフ"><span class="toc-section-number">8.21</span> 折れ線グラフ</a></li>
+<li><a href="rviz.html#箱ひげ図" id="toc-箱ひげ図"><span class="toc-section-number">8.22</span> 箱ひげ図</a></li>
+<li><a href="rviz.html#ヴァイオリンプロット" id="toc-ヴァイオリンプロット"><span class="toc-section-number">8.23</span> ヴァイオリンプロット</a></li>
+<li><a href="rviz.html#適した描画" id="toc-適した描画"><span class="toc-section-number">8.24</span> 適した描画？</a></li>
+</ul></li>
+<li><a href="rstatsinfe.html#rstatsinfe" id="toc-rstatsinfe"><span class="toc-section-number">9</span> 推測統計のおさらい</a>
+<ul>
+<li><a href="rstatsinfe.html#不偏分散" id="toc-不偏分散"><span class="toc-section-number">9.0.1</span> 不偏分散</a></li>
+<li><a href="rstatsinfe.html#母集団と標本" id="toc-母集団と標本"><span class="toc-section-number">9.0.2</span> 母集団と標本</a></li>
+<li><a href="rstatsinfe.html#サンプリング" id="toc-サンプリング"><span class="toc-section-number">9.0.3</span> サンプリング</a></li>
+<li><a href="rstatsinfe.html#共分散" id="toc-共分散"><span class="toc-section-number">9.0.4</span> 共分散</a></li>
+<li><a href="rstatsinfe.html#相関係数" id="toc-相関係数"><span class="toc-section-number">9.0.5</span> 相関係数</a></li>
+</ul></li>
+<li><a href="practiceanswer.html#practiceanswer" id="toc-practiceanswer"><span class="toc-section-number">10</span> 練習問題解答</a>
+<ul>
+<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a></li>
+<li><a href="practiceanswer.html#ch.-6" id="toc-ch.-6"><span class="toc-section-number">10.2</span> Ch. 6</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">武蔵大生のためのRによる実証分析入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rstatsinfe" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> 推測統計のおさらい</h1>
+<div id="不偏分散" class="section level3" number="9.0.1">
+<h3><span class="header-section-number">9.0.1</span> 不偏分散</h3>
+<p>不偏分散は、分散と同じくデータのばらつきを示している。これは、</p>
+<p><span class="math display">\[
+s^2 = \frac{1}{n-1}\sum^{n}_{i=1}( x_i - \bar{x})^2
+\]</span></p>
+</div>
+<div id="母集団と標本" class="section level3" number="9.0.2">
+<h3><span class="header-section-number">9.0.2</span> 母集団と標本</h3>
+<ul>
+<li><p><strong>母集団</strong></p>
+<ul>
+<li>母数？</li>
+</ul></li>
+<li><p><strong>サンプルサイズ</strong></p>
+<ul>
+<li>サンプル数？</li>
+</ul></li>
+</ul>
+</div>
+<div id="サンプリング" class="section level3" number="9.0.3">
+<h3><span class="header-section-number">9.0.3</span> サンプリング</h3>
+<ul>
+<li>無作為抽出 (ランダムサンプリング)
+<ul>
+<li>多段抽出法</li>
+<li>層化抽出法</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="共分散" class="section level3" number="9.0.4">
+<h3><span class="header-section-number">9.0.4</span> 共分散</h3>
+<p><span class="math display">\[\sigma_{xy} = \frac{1}{n}\sum^{n}_{i=1}(x_i - \bar{x})(y_i - \bar{y})\]</span></p>
+<hr />
+</div>
+<div id="相関係数" class="section level3" number="9.0.5">
+<h3><span class="header-section-number">9.0.5</span> 相関係数</h3>
+<p><span class="math display">\[
+\rho = \frac{\sigma_{xy}}{\sigma_x \sigma_y}
+\]</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rviz.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="practiceanswer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/09_r_stats_inf.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r_basics_musashi.pdf", "r_basics_musashi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

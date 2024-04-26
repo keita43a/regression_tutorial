@@ -24,7 +24,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-04-24" />
+<meta name="date" content="2024-04-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -186,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="howtostart.html#プロジェクトの作成" id="toc-プロジェクトの作成"><span class="toc-section-number">3.9</span> プロジェクトの作成</a></li>
 <li><a href="howtostart.html#演習-rプロジェクトを作成してみよう" id="toc-演習-rプロジェクトを作成してみよう"><span class="toc-section-number">3.10</span> <strong>演習</strong>: Rプロジェクトを作成してみよう</a></li>
 <li><a href="howtostart.html#とりあえず触ってみる" id="toc-とりあえず触ってみる"><span class="toc-section-number">3.11</span> とりあえず触ってみる</a></li>
-<li><a href="howtostart.html#スクリプトの作成" id="toc-スクリプトの作成"><span class="toc-section-number">3.12</span> スクリプトの作成</a>
+<li><a href="howtostart.html#scriptmake" id="toc-scriptmake"><span class="toc-section-number">3.12</span> スクリプトの作成</a>
 <ul>
 <li><a href="howtostart.html#演習スクリプトを作成してみる" id="toc-演習スクリプトを作成してみる"><span class="toc-section-number">3.12.1</span> <strong>演習</strong>：スクリプトを作成してみる</a></li>
 </ul></li>
@@ -215,14 +215,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="letsuse.html#計算機としてのr" id="toc-計算機としてのr"><span class="toc-section-number">4.1</span> 計算機としてのR</a>
 <ul>
 <li><a href="letsuse.html#演習r-scriptの作成" id="toc-演習r-scriptの作成"><span class="toc-section-number">4.1.1</span> 演習：R Scriptの作成</a></li>
-<li><a href="letsuse.html#足し算" id="toc-足し算"><span class="toc-section-number">4.1.2</span> 足し算</a></li>
-<li><a href="letsuse.html#かけ算" id="toc-かけ算"><span class="toc-section-number">4.1.3</span> かけ算</a></li>
-<li><a href="letsuse.html#論理演算" id="toc-論理演算"><span class="toc-section-number">4.1.4</span> 論理演算</a></li>
+<li><a href="letsuse.html#足し算引き算" id="toc-足し算引き算"><span class="toc-section-number">4.1.2</span> 足し算・引き算</a></li>
+<li><a href="letsuse.html#かけ算割り算" id="toc-かけ算割り算"><span class="toc-section-number">4.1.3</span> かけ算・割り算</a></li>
+<li><a href="letsuse.html#practicecalc" id="toc-practicecalc"><span class="toc-section-number">4.1.4</span> <strong>練習問題</strong>：以下の演算をRを使ってやってみよう</a></li>
+<li><a href="letsuse.html#論理演算" id="toc-論理演算"><span class="toc-section-number">4.1.5</span> 論理演算</a></li>
 </ul></li>
 <li><a href="letsuse.html#プログラミング言語としてのr" id="toc-プログラミング言語としてのr"><span class="toc-section-number">4.2</span> プログラミング言語としてのR</a>
 <ul>
 <li><a href="letsuse.html#変数へのオブジェクトの代入" id="toc-変数へのオブジェクトの代入"><span class="toc-section-number">4.2.1</span> 変数へのオブジェクトの代入</a></li>
 <li><a href="letsuse.html#プログラミング繰り返し" id="toc-プログラミング繰り返し"><span class="toc-section-number">4.2.2</span> プログラミング：繰り返し</a></li>
+<li><a href="letsuse.html#practiceloop" id="toc-practiceloop"><span class="toc-section-number">4.2.3</span> <strong>練習問題</strong>：ループを用いた計算</a></li>
+<li><a href="letsuse.html#プログラミングif文" id="toc-プログラミングif文"><span class="toc-section-number">4.2.4</span> プログラミング：if文</a></li>
 </ul></li>
 <li><a href="letsuse.html#データ型" id="toc-データ型"><span class="toc-section-number">4.3</span> データ型</a>
 <ul>
@@ -301,11 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="datahandling.html#データ操作の応用パイプによる引き渡し" id="toc-データ操作の応用パイプによる引き渡し"><span class="toc-section-number">6.11.13</span> データ操作の応用：パイプによる引き渡し</a></li>
 <li><a href="datahandling.html#データ操作の応用グループごとの集計" id="toc-データ操作の応用グループごとの集計"><span class="toc-section-number">6.11.14</span> データ操作の応用：グループごとの集計</a></li>
 </ul></li>
-<li><a href="datahandling.html#演習-データ操作" id="toc-演習-データ操作"><span class="toc-section-number">6.12</span> <strong>演習</strong>: データ操作</a>
-<ul>
-<li><a href="datahandling.html#データ操作練習問題" id="toc-データ操作練習問題"><span class="toc-section-number">6.12.1</span> データ操作：練習問題</a></li>
-<li><a href="datahandling.html#データ操作練習問題-1" id="toc-データ操作練習問題-1"><span class="toc-section-number">6.12.2</span> データ操作：練習問題</a></li>
-</ul></li>
+<li><a href="datahandling.html#datamgtpractice" id="toc-datamgtpractice"><span class="toc-section-number">6.12</span> <strong>練習問題</strong>: データ操作</a></li>
 <li><a href="datahandling.html#データの結合" id="toc-データの結合"><span class="toc-section-number">6.13</span> データの結合</a>
 <ul>
 <li><a href="datahandling.html#データの縦の結合" id="toc-データの縦の結合"><span class="toc-section-number">6.13.1</span> データの縦の結合</a></li>
@@ -314,20 +313,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="datahandling.html#join関数一覧" id="toc-join関数一覧"><span class="toc-section-number">6.13.4</span> join関数一覧</a></li>
 </ul></li>
 </ul></li>
-<li><a href="rstats.html#rstats" id="toc-rstats"><span class="toc-section-number">7</span> 統計のおさらい</a>
+<li><a href="rstats.html#rstats" id="toc-rstats"><span class="toc-section-number">7</span> 記述統計のおさらい</a>
 <ul>
-<li><a href="rstats.html#データとは-1" id="toc-データとは-1"><span class="toc-section-number">7.1</span> データとは？</a></li>
-<li><a href="rstats.html#統計量とはなにか" id="toc-統計量とはなにか"><span class="toc-section-number">7.2</span> 統計量とはなにか</a>
+<li><a href="rstats.html#統計とは" id="toc-統計とは"><span class="toc-section-number">7.1</span> 統計とは</a>
 <ul>
-<li><a href="rstats.html#統計量" id="toc-統計量"><span class="toc-section-number">7.2.1</span> 統計量</a></li>
-<li><a href="rstats.html#平均" id="toc-平均"><span class="toc-section-number">7.2.2</span> 平均</a></li>
-<li><a href="rstats.html#分散" id="toc-分散"><span class="toc-section-number">7.2.3</span> 分散</a></li>
-<li><a href="rstats.html#もう一つの分散" id="toc-もう一つの分散"><span class="toc-section-number">7.2.4</span> もう一つの分散</a></li>
-<li><a href="rstats.html#母集団と標本" id="toc-母集団と標本"><span class="toc-section-number">7.2.5</span> 母集団と標本</a></li>
-<li><a href="rstats.html#サンプリング" id="toc-サンプリング"><span class="toc-section-number">7.2.6</span> サンプリング</a></li>
-<li><a href="rstats.html#共分散" id="toc-共分散"><span class="toc-section-number">7.2.7</span> 共分散</a></li>
-<li><a href="rstats.html#相関係数" id="toc-相関係数"><span class="toc-section-number">7.2.8</span> 相関係数</a></li>
+<li><a href="rstats.html#記述統計" id="toc-記述統計"><span class="toc-section-number">7.1.1</span> 記述統計</a></li>
+<li><a href="rstats.html#推測統計" id="toc-推測統計"><span class="toc-section-number">7.1.2</span> 推測統計</a></li>
 </ul></li>
+<li><a href="rstats.html#データとは-1" id="toc-データとは-1"><span class="toc-section-number">7.2</span> データとは</a></li>
+<li><a href="rstats.html#代表的な統計量" id="toc-代表的な統計量"><span class="toc-section-number">7.3</span> 代表的な統計量</a>
+<ul>
+<li><a href="rstats.html#数式" id="toc-数式"><span class="toc-section-number">7.3.1</span> 数式</a></li>
+<li><a href="rstats.html#平均" id="toc-平均"><span class="toc-section-number">7.3.2</span> 平均</a></li>
+<li><a href="rstats.html#中央値" id="toc-中央値"><span class="toc-section-number">7.3.3</span> 中央値</a></li>
+<li><a href="rstats.html#最大値最小値" id="toc-最大値最小値"><span class="toc-section-number">7.3.4</span> 最大値・最小値</a></li>
+<li><a href="rstats.html#分散" id="toc-分散"><span class="toc-section-number">7.3.5</span> 分散</a></li>
+<li><a href="rstats.html#標準偏差" id="toc-標準偏差"><span class="toc-section-number">7.3.6</span> 標準偏差</a></li>
+</ul></li>
+</ul></li>
+<li><a href="rviz.html#rviz" id="toc-rviz"><span class="toc-section-number">8</span> ビジュアライゼーションの基本</a>
+<ul>
+<li><a href="rviz.html#rにおける描画" id="toc-rにおける描画"><span class="toc-section-number">8.1</span> Rにおける描画</a></li>
+<li><a href="rviz.html#描画をしてみよう" id="toc-描画をしてみよう"><span class="toc-section-number">8.2</span> 描画をしてみよう</a></li>
+<li><a href="rviz.html#復習データ読み込み" id="toc-復習データ読み込み"><span class="toc-section-number">8.3</span> 復習：データ読み込み</a></li>
+<li><a href="rviz.html#描画の前に" id="toc-描画の前に"><span class="toc-section-number">8.4</span> 描画の前に</a></li>
+<li><a href="rviz.html#キャンバスを用意する" id="toc-キャンバスを用意する"><span class="toc-section-number">8.5</span> キャンバスを用意する</a></li>
+<li><a href="rviz.html#グラフのレイヤーを追加する" id="toc-グラフのレイヤーを追加する"><span class="toc-section-number">8.6</span> グラフのレイヤーを追加する</a></li>
+<li><a href="rviz.html#文字化けに対処する" id="toc-文字化けに対処する"><span class="toc-section-number">8.7</span> 文字化けに対処する</a></li>
+<li><a href="rviz.html#aesに色を追加する" id="toc-aesに色を追加する"><span class="toc-section-number">8.8</span> aesに色を追加する</a></li>
+<li><a href="rviz.html#男女の置き方を変えたい" id="toc-男女の置き方を変えたい"><span class="toc-section-number">8.9</span> 男女の置き方を変えたい</a></li>
+<li><a href="rviz.html#aesに色を追加する-1" id="toc-aesに色を追加する-1"><span class="toc-section-number">8.10</span> aesに色を追加する</a></li>
+<li><a href="rviz.html#色を変えたい" id="toc-色を変えたい"><span class="toc-section-number">8.11</span> 色を変えたい</a></li>
+<li><a href="rviz.html#学科別に分けたい" id="toc-学科別に分けたい"><span class="toc-section-number">8.12</span> 学科別に分けたい</a></li>
+<li><a href="rviz.html#ラベルを変更するタイトルを追加する" id="toc-ラベルを変更するタイトルを追加する"><span class="toc-section-number">8.13</span> ラベルを変更する・タイトルを追加する</a></li>
+<li><a href="rviz.html#ラベルを変更するタイトルを追加する-1" id="toc-ラベルを変更するタイトルを追加する-1"><span class="toc-section-number">8.14</span> ラベルを変更する・タイトルを追加する</a></li>
+<li><a href="rviz.html#テーマを変更する1" id="toc-テーマを変更する1"><span class="toc-section-number">8.15</span> テーマを変更する1</a></li>
+<li><a href="rviz.html#テーマを変更する2" id="toc-テーマを変更する2"><span class="toc-section-number">8.16</span> テーマを変更する2</a></li>
+<li><a href="rviz.html#完成形" id="toc-完成形"><span class="toc-section-number">8.17</span> 完成形</a></li>
+<li><a href="rviz.html#ggplot2による図の保存" id="toc-ggplot2による図の保存"><span class="toc-section-number">8.18</span> ggplot2による図の保存</a></li>
+<li><a href="rviz.html#他の描画レイヤー" id="toc-他の描画レイヤー"><span class="toc-section-number">8.19</span> 他の描画レイヤー</a></li>
+<li><a href="rviz.html#散布図" id="toc-散布図"><span class="toc-section-number">8.20</span> 散布図</a></li>
+<li><a href="rviz.html#折れ線グラフ" id="toc-折れ線グラフ"><span class="toc-section-number">8.21</span> 折れ線グラフ</a></li>
+<li><a href="rviz.html#箱ひげ図" id="toc-箱ひげ図"><span class="toc-section-number">8.22</span> 箱ひげ図</a></li>
+<li><a href="rviz.html#ヴァイオリンプロット" id="toc-ヴァイオリンプロット"><span class="toc-section-number">8.23</span> ヴァイオリンプロット</a></li>
+<li><a href="rviz.html#適した描画" id="toc-適した描画"><span class="toc-section-number">8.24</span> 適した描画？</a></li>
+</ul></li>
+<li><a href="rstatsinfe.html#rstatsinfe" id="toc-rstatsinfe"><span class="toc-section-number">9</span> 推測統計のおさらい</a>
+<ul>
+<li><a href="rstatsinfe.html#不偏分散" id="toc-不偏分散"><span class="toc-section-number">9.0.1</span> 不偏分散</a></li>
+<li><a href="rstatsinfe.html#母集団と標本" id="toc-母集団と標本"><span class="toc-section-number">9.0.2</span> 母集団と標本</a></li>
+<li><a href="rstatsinfe.html#サンプリング" id="toc-サンプリング"><span class="toc-section-number">9.0.3</span> サンプリング</a></li>
+<li><a href="rstatsinfe.html#共分散" id="toc-共分散"><span class="toc-section-number">9.0.4</span> 共分散</a></li>
+<li><a href="rstatsinfe.html#相関係数" id="toc-相関係数"><span class="toc-section-number">9.0.5</span> 相関係数</a></li>
+</ul></li>
+<li><a href="practiceanswer.html#practiceanswer" id="toc-practiceanswer"><span class="toc-section-number">10</span> 練習問題解答</a>
+<ul>
+<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a></li>
+<li><a href="practiceanswer.html#ch.-6" id="toc-ch.-6"><span class="toc-section-number">10.2</span> Ch. 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -366,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><code>install.packages()</code>関数を使う方法</li>
 </ol>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="packages.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="packages.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Rstudioの右下の区画の[Packages]タブから、[Install]ボタンを押して、ダイアログに従ってインストール</li>
 </ol>
@@ -374,7 +416,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="よく使うパッケージのインストール" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> よく使うパッケージのインストール</h2>
 <p><code>tidyverse</code>と呼ばれるパッケージをインストールしてみよう。</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="packages.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="packages.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>実はこの<code>tidyverse</code>はパッケージ<strong>群</strong>であり、複数のパッケージがインストールされる。</p>
 <div id="tidyverseについて" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Tidyverseについて</h3>
@@ -386,20 +428,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.4</span> パッケージの使い方1</h2>
 <p>パッケージの使い方は２通りある。
 パッケージに入っている関数を使うためには、パッケージを読み込む</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="packages.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="do">## library()でパッケージの読み込み</span></span>
-<span id="cb80-2"><a href="packages.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="packages.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="do">## library()でパッケージの読み込み</span></span>
+<span id="cb91-2"><a href="packages.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>読み込んだ後は、パッケージに含まれている関数が普通に使える。</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="packages.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read_csvはtidyverseに入っているreadrというパッケージに含まれる</span></span>
-<span id="cb81-2"><a href="packages.html#cb81-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="packages.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read_csvはtidyverseに入っているreadrというパッケージに含まれる</span></span>
+<span id="cb92-2"><a href="packages.html#cb92-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="パッケージの使い方2" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> パッケージの使い方2</h2>
 <p>読み込んでいないパッケージの関数を使おうとするとエラーが出る。</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="packages.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read_csvはtidyverseに入っているreadrというパッケージに含まれる</span></span>
-<span id="cb82-2"><a href="packages.html#cb82-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="packages.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read_csvはtidyverseに入っているreadrというパッケージに含まれる</span></span>
+<span id="cb93-2"><a href="packages.html#cb93-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Error in read_csv(&quot;data/data1.csv&quot;): could not find function &quot;read_csv&quot;</code></pre>
 <p>パッケージ名と関数名を<code>::</code>で繋ぐと、読み込んでいなくても使える。</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="packages.html#cb84-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="packages.html#cb95-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 <p>これが２つ目のパッケージの使い方である。そのスクリプトであまり使わないが一回だけ使いたいケースや、一般的でないパッケージや関数なので何のパッケージに入っている関数なのかを明示したい際に使う。</p>
 
 </div>

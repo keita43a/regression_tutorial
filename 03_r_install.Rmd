@@ -84,8 +84,14 @@ knitr::include_graphics("fig/terminal.png")
 
 ターミナルで自分のユーザー名の隣の$マークの後ろに以下のように入力する。
 
-```bash{cmd}
+```
 $ xcode-select --install
+```
+
+もし\$マークがなくて、%になっていたら、%のあとに`xcode`から始めて入力する。
+
+```
+% xcode-select --install
 ```
 
 あとは指示に従う。
@@ -163,7 +169,7 @@ knitr::include_graphics("fig/install_rstudio.png")
 RStudioは４つのペーンに分割されている。もし３つしかない、という人は左上の白い四角に緑の＋マークが付いているところを押して"R Script"を選ぼう。すると左上のペーンが現れて新たなスクリプトファイルが生成される。
 
 ```{r  label = rstudio2, echo = FALSE, fig.cap = "Rstudio見た目", out.width = '90%'}
-knitr::include_graphics("r_basics/fig/Rstudio_look-2.png")
+knitr::include_graphics("docs/r_basics/fig/Rstudio_look-2.png")
 ```
 
 
@@ -179,7 +185,7 @@ knitr::include_graphics("r_basics/fig/Rstudio_look-2.png")
 コンピュータ上では、このように文字でファイルの場所と名前を指定することがよくある。
 
 ```{r  label = directory, echo = FALSE, fig.cap = "ディレクトリ構造", out.width = '90%'}
-knitr::include_graphics("r_basics/fig/directory_structure.png")
+knitr::include_graphics("docs/r_basics/fig/directory_structure.png")
 ```
 
 
@@ -276,7 +282,7 @@ Rとの"対話"は、Rstudioの左下のペイン(コンソール)で行われ�
 1 + 1
 ```
 
-## スクリプトの作成
+## スクリプトの作成 {#scriptmake}
 
 そのままConsoleに入力していってもよいが、**スクリプト**(コード)に書くことで、記録を残しながらRに命令を与えることができる。
 
@@ -418,7 +424,7 @@ XXX.csvというファイルが作業場所にありません。
 オブジェクト内の要素や、ファイル名などを補完してくれる機能
 
 ```{r  label = hokan, echo = FALSE, fig.cap = "", out.width = '30%',fig.align='center'}
-knitr::include_graphics("r_basics/fig/hokan.png")
+knitr::include_graphics("docs/r_basics/fig/hokan.png")
 ```
 
 
@@ -439,5 +445,5 @@ Rstudioを自分好みにカスタマイズすることが可能
 ### 例：外観の変更
 
 ```{r  label = option, echo = FALSE, fig.cap = "", out.width = '60%'}
-knitr::include_graphics("r_basics/fig/option.png")
+knitr::include_graphics("docs/r_basics/fig/option.png")
 ```

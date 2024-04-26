@@ -24,7 +24,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-04-24" />
+<meta name="date" content="2024-04-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -186,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="howtostart.html#プロジェクトの作成" id="toc-プロジェクトの作成"><span class="toc-section-number">3.9</span> プロジェクトの作成</a></li>
 <li><a href="howtostart.html#演習-rプロジェクトを作成してみよう" id="toc-演習-rプロジェクトを作成してみよう"><span class="toc-section-number">3.10</span> <strong>演習</strong>: Rプロジェクトを作成してみよう</a></li>
 <li><a href="howtostart.html#とりあえず触ってみる" id="toc-とりあえず触ってみる"><span class="toc-section-number">3.11</span> とりあえず触ってみる</a></li>
-<li><a href="howtostart.html#スクリプトの作成" id="toc-スクリプトの作成"><span class="toc-section-number">3.12</span> スクリプトの作成</a>
+<li><a href="howtostart.html#scriptmake" id="toc-scriptmake"><span class="toc-section-number">3.12</span> スクリプトの作成</a>
 <ul>
 <li><a href="howtostart.html#演習スクリプトを作成してみる" id="toc-演習スクリプトを作成してみる"><span class="toc-section-number">3.12.1</span> <strong>演習</strong>：スクリプトを作成してみる</a></li>
 </ul></li>
@@ -215,14 +215,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="letsuse.html#計算機としてのr" id="toc-計算機としてのr"><span class="toc-section-number">4.1</span> 計算機としてのR</a>
 <ul>
 <li><a href="letsuse.html#演習r-scriptの作成" id="toc-演習r-scriptの作成"><span class="toc-section-number">4.1.1</span> 演習：R Scriptの作成</a></li>
-<li><a href="letsuse.html#足し算" id="toc-足し算"><span class="toc-section-number">4.1.2</span> 足し算</a></li>
-<li><a href="letsuse.html#かけ算" id="toc-かけ算"><span class="toc-section-number">4.1.3</span> かけ算</a></li>
-<li><a href="letsuse.html#論理演算" id="toc-論理演算"><span class="toc-section-number">4.1.4</span> 論理演算</a></li>
+<li><a href="letsuse.html#足し算引き算" id="toc-足し算引き算"><span class="toc-section-number">4.1.2</span> 足し算・引き算</a></li>
+<li><a href="letsuse.html#かけ算割り算" id="toc-かけ算割り算"><span class="toc-section-number">4.1.3</span> かけ算・割り算</a></li>
+<li><a href="letsuse.html#practicecalc" id="toc-practicecalc"><span class="toc-section-number">4.1.4</span> <strong>練習問題</strong>：以下の演算をRを使ってやってみよう</a></li>
+<li><a href="letsuse.html#論理演算" id="toc-論理演算"><span class="toc-section-number">4.1.5</span> 論理演算</a></li>
 </ul></li>
 <li><a href="letsuse.html#プログラミング言語としてのr" id="toc-プログラミング言語としてのr"><span class="toc-section-number">4.2</span> プログラミング言語としてのR</a>
 <ul>
 <li><a href="letsuse.html#変数へのオブジェクトの代入" id="toc-変数へのオブジェクトの代入"><span class="toc-section-number">4.2.1</span> 変数へのオブジェクトの代入</a></li>
 <li><a href="letsuse.html#プログラミング繰り返し" id="toc-プログラミング繰り返し"><span class="toc-section-number">4.2.2</span> プログラミング：繰り返し</a></li>
+<li><a href="letsuse.html#practiceloop" id="toc-practiceloop"><span class="toc-section-number">4.2.3</span> <strong>練習問題</strong>：ループを用いた計算</a></li>
+<li><a href="letsuse.html#プログラミングif文" id="toc-プログラミングif文"><span class="toc-section-number">4.2.4</span> プログラミング：if文</a></li>
 </ul></li>
 <li><a href="letsuse.html#データ型" id="toc-データ型"><span class="toc-section-number">4.3</span> データ型</a>
 <ul>
@@ -301,11 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="datahandling.html#データ操作の応用パイプによる引き渡し" id="toc-データ操作の応用パイプによる引き渡し"><span class="toc-section-number">6.11.13</span> データ操作の応用：パイプによる引き渡し</a></li>
 <li><a href="datahandling.html#データ操作の応用グループごとの集計" id="toc-データ操作の応用グループごとの集計"><span class="toc-section-number">6.11.14</span> データ操作の応用：グループごとの集計</a></li>
 </ul></li>
-<li><a href="datahandling.html#演習-データ操作" id="toc-演習-データ操作"><span class="toc-section-number">6.12</span> <strong>演習</strong>: データ操作</a>
-<ul>
-<li><a href="datahandling.html#データ操作練習問題" id="toc-データ操作練習問題"><span class="toc-section-number">6.12.1</span> データ操作：練習問題</a></li>
-<li><a href="datahandling.html#データ操作練習問題-1" id="toc-データ操作練習問題-1"><span class="toc-section-number">6.12.2</span> データ操作：練習問題</a></li>
-</ul></li>
+<li><a href="datahandling.html#datamgtpractice" id="toc-datamgtpractice"><span class="toc-section-number">6.12</span> <strong>練習問題</strong>: データ操作</a></li>
 <li><a href="datahandling.html#データの結合" id="toc-データの結合"><span class="toc-section-number">6.13</span> データの結合</a>
 <ul>
 <li><a href="datahandling.html#データの縦の結合" id="toc-データの縦の結合"><span class="toc-section-number">6.13.1</span> データの縦の結合</a></li>
@@ -314,20 +313,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="datahandling.html#join関数一覧" id="toc-join関数一覧"><span class="toc-section-number">6.13.4</span> join関数一覧</a></li>
 </ul></li>
 </ul></li>
-<li><a href="rstats.html#rstats" id="toc-rstats"><span class="toc-section-number">7</span> 統計のおさらい</a>
+<li><a href="rstats.html#rstats" id="toc-rstats"><span class="toc-section-number">7</span> 記述統計のおさらい</a>
 <ul>
-<li><a href="rstats.html#データとは-1" id="toc-データとは-1"><span class="toc-section-number">7.1</span> データとは？</a></li>
-<li><a href="rstats.html#統計量とはなにか" id="toc-統計量とはなにか"><span class="toc-section-number">7.2</span> 統計量とはなにか</a>
+<li><a href="rstats.html#統計とは" id="toc-統計とは"><span class="toc-section-number">7.1</span> 統計とは</a>
 <ul>
-<li><a href="rstats.html#統計量" id="toc-統計量"><span class="toc-section-number">7.2.1</span> 統計量</a></li>
-<li><a href="rstats.html#平均" id="toc-平均"><span class="toc-section-number">7.2.2</span> 平均</a></li>
-<li><a href="rstats.html#分散" id="toc-分散"><span class="toc-section-number">7.2.3</span> 分散</a></li>
-<li><a href="rstats.html#もう一つの分散" id="toc-もう一つの分散"><span class="toc-section-number">7.2.4</span> もう一つの分散</a></li>
-<li><a href="rstats.html#母集団と標本" id="toc-母集団と標本"><span class="toc-section-number">7.2.5</span> 母集団と標本</a></li>
-<li><a href="rstats.html#サンプリング" id="toc-サンプリング"><span class="toc-section-number">7.2.6</span> サンプリング</a></li>
-<li><a href="rstats.html#共分散" id="toc-共分散"><span class="toc-section-number">7.2.7</span> 共分散</a></li>
-<li><a href="rstats.html#相関係数" id="toc-相関係数"><span class="toc-section-number">7.2.8</span> 相関係数</a></li>
+<li><a href="rstats.html#記述統計" id="toc-記述統計"><span class="toc-section-number">7.1.1</span> 記述統計</a></li>
+<li><a href="rstats.html#推測統計" id="toc-推測統計"><span class="toc-section-number">7.1.2</span> 推測統計</a></li>
 </ul></li>
+<li><a href="rstats.html#データとは-1" id="toc-データとは-1"><span class="toc-section-number">7.2</span> データとは</a></li>
+<li><a href="rstats.html#代表的な統計量" id="toc-代表的な統計量"><span class="toc-section-number">7.3</span> 代表的な統計量</a>
+<ul>
+<li><a href="rstats.html#数式" id="toc-数式"><span class="toc-section-number">7.3.1</span> 数式</a></li>
+<li><a href="rstats.html#平均" id="toc-平均"><span class="toc-section-number">7.3.2</span> 平均</a></li>
+<li><a href="rstats.html#中央値" id="toc-中央値"><span class="toc-section-number">7.3.3</span> 中央値</a></li>
+<li><a href="rstats.html#最大値最小値" id="toc-最大値最小値"><span class="toc-section-number">7.3.4</span> 最大値・最小値</a></li>
+<li><a href="rstats.html#分散" id="toc-分散"><span class="toc-section-number">7.3.5</span> 分散</a></li>
+<li><a href="rstats.html#標準偏差" id="toc-標準偏差"><span class="toc-section-number">7.3.6</span> 標準偏差</a></li>
+</ul></li>
+</ul></li>
+<li><a href="rviz.html#rviz" id="toc-rviz"><span class="toc-section-number">8</span> ビジュアライゼーションの基本</a>
+<ul>
+<li><a href="rviz.html#rにおける描画" id="toc-rにおける描画"><span class="toc-section-number">8.1</span> Rにおける描画</a></li>
+<li><a href="rviz.html#描画をしてみよう" id="toc-描画をしてみよう"><span class="toc-section-number">8.2</span> 描画をしてみよう</a></li>
+<li><a href="rviz.html#復習データ読み込み" id="toc-復習データ読み込み"><span class="toc-section-number">8.3</span> 復習：データ読み込み</a></li>
+<li><a href="rviz.html#描画の前に" id="toc-描画の前に"><span class="toc-section-number">8.4</span> 描画の前に</a></li>
+<li><a href="rviz.html#キャンバスを用意する" id="toc-キャンバスを用意する"><span class="toc-section-number">8.5</span> キャンバスを用意する</a></li>
+<li><a href="rviz.html#グラフのレイヤーを追加する" id="toc-グラフのレイヤーを追加する"><span class="toc-section-number">8.6</span> グラフのレイヤーを追加する</a></li>
+<li><a href="rviz.html#文字化けに対処する" id="toc-文字化けに対処する"><span class="toc-section-number">8.7</span> 文字化けに対処する</a></li>
+<li><a href="rviz.html#aesに色を追加する" id="toc-aesに色を追加する"><span class="toc-section-number">8.8</span> aesに色を追加する</a></li>
+<li><a href="rviz.html#男女の置き方を変えたい" id="toc-男女の置き方を変えたい"><span class="toc-section-number">8.9</span> 男女の置き方を変えたい</a></li>
+<li><a href="rviz.html#aesに色を追加する-1" id="toc-aesに色を追加する-1"><span class="toc-section-number">8.10</span> aesに色を追加する</a></li>
+<li><a href="rviz.html#色を変えたい" id="toc-色を変えたい"><span class="toc-section-number">8.11</span> 色を変えたい</a></li>
+<li><a href="rviz.html#学科別に分けたい" id="toc-学科別に分けたい"><span class="toc-section-number">8.12</span> 学科別に分けたい</a></li>
+<li><a href="rviz.html#ラベルを変更するタイトルを追加する" id="toc-ラベルを変更するタイトルを追加する"><span class="toc-section-number">8.13</span> ラベルを変更する・タイトルを追加する</a></li>
+<li><a href="rviz.html#ラベルを変更するタイトルを追加する-1" id="toc-ラベルを変更するタイトルを追加する-1"><span class="toc-section-number">8.14</span> ラベルを変更する・タイトルを追加する</a></li>
+<li><a href="rviz.html#テーマを変更する1" id="toc-テーマを変更する1"><span class="toc-section-number">8.15</span> テーマを変更する1</a></li>
+<li><a href="rviz.html#テーマを変更する2" id="toc-テーマを変更する2"><span class="toc-section-number">8.16</span> テーマを変更する2</a></li>
+<li><a href="rviz.html#完成形" id="toc-完成形"><span class="toc-section-number">8.17</span> 完成形</a></li>
+<li><a href="rviz.html#ggplot2による図の保存" id="toc-ggplot2による図の保存"><span class="toc-section-number">8.18</span> ggplot2による図の保存</a></li>
+<li><a href="rviz.html#他の描画レイヤー" id="toc-他の描画レイヤー"><span class="toc-section-number">8.19</span> 他の描画レイヤー</a></li>
+<li><a href="rviz.html#散布図" id="toc-散布図"><span class="toc-section-number">8.20</span> 散布図</a></li>
+<li><a href="rviz.html#折れ線グラフ" id="toc-折れ線グラフ"><span class="toc-section-number">8.21</span> 折れ線グラフ</a></li>
+<li><a href="rviz.html#箱ひげ図" id="toc-箱ひげ図"><span class="toc-section-number">8.22</span> 箱ひげ図</a></li>
+<li><a href="rviz.html#ヴァイオリンプロット" id="toc-ヴァイオリンプロット"><span class="toc-section-number">8.23</span> ヴァイオリンプロット</a></li>
+<li><a href="rviz.html#適した描画" id="toc-適した描画"><span class="toc-section-number">8.24</span> 適した描画？</a></li>
+</ul></li>
+<li><a href="rstatsinfe.html#rstatsinfe" id="toc-rstatsinfe"><span class="toc-section-number">9</span> 推測統計のおさらい</a>
+<ul>
+<li><a href="rstatsinfe.html#不偏分散" id="toc-不偏分散"><span class="toc-section-number">9.0.1</span> 不偏分散</a></li>
+<li><a href="rstatsinfe.html#母集団と標本" id="toc-母集団と標本"><span class="toc-section-number">9.0.2</span> 母集団と標本</a></li>
+<li><a href="rstatsinfe.html#サンプリング" id="toc-サンプリング"><span class="toc-section-number">9.0.3</span> サンプリング</a></li>
+<li><a href="rstatsinfe.html#共分散" id="toc-共分散"><span class="toc-section-number">9.0.4</span> 共分散</a></li>
+<li><a href="rstatsinfe.html#相関係数" id="toc-相関係数"><span class="toc-section-number">9.0.5</span> 相関係数</a></li>
+</ul></li>
+<li><a href="practiceanswer.html#practiceanswer" id="toc-practiceanswer"><span class="toc-section-number">10</span> 練習問題解答</a>
+<ul>
+<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a></li>
+<li><a href="practiceanswer.html#ch.-6" id="toc-ch.-6"><span class="toc-section-number">10.2</span> Ch. 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -472,7 +514,9 @@ Figure 3.5: ターミナルの画面
 </p>
 </div>
 <p>ターミナルで自分のユーザー名の隣の$マークの後ろに以下のように入力する。</p>
-<pre class="bash{cmd}"><code>$ xcode-select --install</code></pre>
+<pre><code>$ xcode-select --install</code></pre>
+<p>もし$マークがなくて、%になっていたら、%のあとに<code>xcode</code>から始めて入力する。</p>
+<pre><code>% xcode-select --install</code></pre>
 <p>あとは指示に従う。</p>
 <p>もし<code>error: command line tools are already installed, use "Software Update" to install updates</code>というメッセージが出たらCommand Line Toolsはすでにインストールされている。</p>
 <p>もしこれで、うまくいかない場合は次のXcodeをインストールすることでCommand Line Toolsをインストールする。</p>
@@ -561,7 +605,7 @@ Figure 3.11: RStudioのダウンロード。図はMacOSの場合
 <h2><span class="header-section-number">3.5</span> Rstudioのインターフェース</h2>
 <p>RStudioは４つのペーンに分割されている。もし３つしかない、という人は左上の白い四角に緑の＋マークが付いているところを押して”R Script”を選ぼう。すると左上のペーンが現れて新たなスクリプトファイルが生成される。</p>
 <div class="figure"><span style="display:block;" id="fig:rstudio2"></span>
-<img src="r_basics/fig/Rstudio_look-2.png" alt="Rstudio見た目" width="90%" />
+<img src="docs/r_basics/fig/Rstudio_look-2.png" alt="Rstudio見た目" width="90%" />
 <p class="caption">
 Figure 3.12: Rstudio見た目
 </p>
@@ -574,7 +618,7 @@ Figure 3.12: Rstudio見た目
 <p><code>j:</code>というドライブの下の<code>abezemi</code>というフォルダの下にある<code>r_renshu</code>というフォルダにある<code>kadai1.R</code>というファイルがあるとする。そのファイルのpathは<code>j:/abezemi/r_renshu/kadai1.R</code>となる。</p>
 <p>コンピュータ上では、このように文字でファイルの場所と名前を指定することがよくある。</p>
 <div class="figure"><span style="display:block;" id="fig:directory"></span>
-<img src="r_basics/fig/directory_structure.png" alt="ディレクトリ構造" width="90%" />
+<img src="docs/r_basics/fig/directory_structure.png" alt="ディレクトリ構造" width="90%" />
 <p class="caption">
 Figure 3.13: ディレクトリ構造
 </p>
@@ -609,18 +653,18 @@ Figure 3.13: ディレクトリ構造
 <h2><span class="header-section-number">3.8</span> 作業スペース</h2>
 <p>コンピューター上では、どこかのディレクトリ（フォルダ）がRの作業場所になっている。
 今の作業場所は<code>getwd()</code>で表示できる。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="howtostart.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="howtostart.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <p>これを変更するには<code>setwd(path)</code>で変更できる。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="howtostart.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windowsの場合 </span></span>
-<span id="cb3-2"><a href="howtostart.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># keitaを自分のユーザー名に変える</span></span>
-<span id="cb3-3"><a href="howtostart.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/keita/Documents/abezemi&quot;</span>)</span>
-<span id="cb3-4"><a href="howtostart.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="howtostart.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac OSの場合</span></span>
-<span id="cb3-6"><a href="howtostart.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># keitaを自分のユーザー名に変える</span></span>
-<span id="cb3-7"><a href="howtostart.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Users/keita/Documents/abezemi&quot;</span>)</span>
-<span id="cb3-8"><a href="howtostart.html#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="howtostart.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 学校のPCの場合</span></span>
-<span id="cb3-10"><a href="howtostart.html#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;j:/abezemi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="howtostart.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windowsの場合 </span></span>
+<span id="cb4-2"><a href="howtostart.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># keitaを自分のユーザー名に変える</span></span>
+<span id="cb4-3"><a href="howtostart.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/keita/Documents/abezemi&quot;</span>)</span>
+<span id="cb4-4"><a href="howtostart.html#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="howtostart.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac OSの場合</span></span>
+<span id="cb4-6"><a href="howtostart.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># keitaを自分のユーザー名に変える</span></span>
+<span id="cb4-7"><a href="howtostart.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Users/keita/Documents/abezemi&quot;</span>)</span>
+<span id="cb4-8"><a href="howtostart.html#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="howtostart.html#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 学校のPCの場合</span></span>
+<span id="cb4-10"><a href="howtostart.html#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;j:/abezemi&quot;</span>)</span></code></pre></div>
 <p>ここでは<code>j:</code>ドライブの下の<code>abezemi</code>フォルダに設定。
 もう一度<code>getwd()</code>して変更されたか確認しよう。</p>
 </div>
@@ -670,10 +714,10 @@ Figure 3.14: Rプロジェクトの作成
 <p>Rとの”対話”は、Rstudioの左下のペイン(コンソール)で行われる。
 コンソールに、<code>1+1</code>と打ってみる。
 すると、<code>2</code>と表示される。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="howtostart.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="howtostart.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 </div>
-<div id="スクリプトの作成" class="section level2" number="3.12">
+<div id="scriptmake" class="section level2" number="3.12">
 <h2><span class="header-section-number">3.12</span> スクリプトの作成</h2>
 <p>そのままConsoleに入力していってもよいが、<strong>スクリプト</strong>(コード)に書くことで、記録を残しながらRに命令を与えることができる。</p>
 <div id="演習スクリプトを作成してみる" class="section level3" number="3.12.1">
@@ -697,7 +741,7 @@ Figure 3.14: Rプロジェクトの作成
 <div id="実行してみる" class="section level2" number="3.13">
 <h2><span class="header-section-number">3.13</span> 実行してみる</h2>
 <p>R scriptに以下のように書く</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="howtostart.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="howtostart.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello World!&quot;</code></pre>
 <p>カーソルが同じ行にあることを確認して、<img src="fig/run_button.png" />をクリック<br />
 もしくは、[Ctrl]を押しながら[Enter] (MacならCommand+Enter)</p>
@@ -714,38 +758,38 @@ Figure 3.14: Rプロジェクトの作成
 <h3><span class="header-section-number">3.14.1</span> コメント</h3>
 <p>R script上では#から始まる行は、コメントとして認識され、実行するとコンソールには表示されるが、何も起こらない。<br />
 メモなどを書く際に使う。</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="howtostart.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># これは初めてのRのコードです。</span></span>
-<span id="cb8-2"><a href="howtostart.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="howtostart.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># これは初めてのRのコードです。</span></span>
+<span id="cb9-2"><a href="howtostart.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello World&quot;</code></pre>
 <p>もしくは一度使ったが、今は実行したくないコードを一時的に無効にする。これはコメントアウトというプログラミングにおける基本的なテクニック。</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="howtostart.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print(&quot;Good Evening&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="howtostart.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print(&quot;Good Evening&quot;)</span></span></code></pre></div>
 </div>
 <div id="スクリプトは読みやすく" class="section level3" number="3.14.2">
 <h3><span class="header-section-number">3.14.2</span> スクリプトは読みやすく</h3>
 <p>コメントや改行を活用して読みやすいコード（スクリプト）を書く。
 Rのコードでは空行は意味をなさないのでいくらでも空けてよい。</p>
 <p><strong>良い例</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="howtostart.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rの練習１</span></span>
-<span id="cb11-2"><a href="howtostart.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2024年4月15日</span></span>
-<span id="cb11-3"><a href="howtostart.html#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="howtostart.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  ライブラリ </span></span>
-<span id="cb11-5"><a href="howtostart.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb11-6"><a href="howtostart.html#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="howtostart.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  コード本体 </span></span>
-<span id="cb11-8"><a href="howtostart.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># はじめまして</span></span>
-<span id="cb11-9"><a href="howtostart.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
-<span id="cb11-10"><a href="howtostart.html#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="howtostart.html#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 足し算</span></span>
-<span id="cb11-12"><a href="howtostart.html#cb11-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb11-13"><a href="howtostart.html#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-14"><a href="howtostart.html#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
-<span id="cb11-15"><a href="howtostart.html#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># このデータはXXでダウンロードした</span></span>
-<span id="cb11-16"><a href="howtostart.html#cb11-16" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="howtostart.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rの練習１</span></span>
+<span id="cb12-2"><a href="howtostart.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2024年4月15日</span></span>
+<span id="cb12-3"><a href="howtostart.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="howtostart.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  ライブラリ </span></span>
+<span id="cb12-5"><a href="howtostart.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-6"><a href="howtostart.html#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="howtostart.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  コード本体 </span></span>
+<span id="cb12-8"><a href="howtostart.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># はじめまして</span></span>
+<span id="cb12-9"><a href="howtostart.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
+<span id="cb12-10"><a href="howtostart.html#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="howtostart.html#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 足し算</span></span>
+<span id="cb12-12"><a href="howtostart.html#cb12-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb12-13"><a href="howtostart.html#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="howtostart.html#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
+<span id="cb12-15"><a href="howtostart.html#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># このデータはXXでダウンロードした</span></span>
+<span id="cb12-16"><a href="howtostart.html#cb12-16" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 <p><strong>良くない例</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="howtostart.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb12-2"><a href="howtostart.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
-<span id="cb12-3"><a href="howtostart.html#cb12-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb12-4"><a href="howtostart.html#cb12-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="howtostart.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-2"><a href="howtostart.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
+<span id="cb13-3"><a href="howtostart.html#cb13-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb13-4"><a href="howtostart.html#cb13-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="エラーを恐れるな" class="section level2" number="3.15">
@@ -755,8 +799,8 @@ Rのコードでは空行は意味をなさないのでいくらでも空けて�
 <li>怖がらなくてよい。間違ってると教えてくれてるだけ。</li>
 <li>.(ドット)と,(コンマ)を間違えただけでもうまくいかないのがプログラミング。注意深く書こう。</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="howtostart.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># これは間違ったコード(tを忘れてる)</span></span>
-<span id="cb13-2"><a href="howtostart.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prin</span>(<span class="st">&quot;Hello World&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="howtostart.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># これは間違ったコード(tを忘れてる)</span></span>
+<span id="cb14-2"><a href="howtostart.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prin</span>(<span class="st">&quot;Hello World&quot;</span>)</span></code></pre></div>
 <pre><code>## Error in prin(&quot;Hello World&quot;): could not find function &quot;prin&quot;</code></pre>
 <div id="よくあるエラー1" class="section level3" number="3.15.1">
 <h3><span class="header-section-number">3.15.1</span> よくあるエラー1</h3>
@@ -781,7 +825,7 @@ Rのコードでは空行は意味をなさないのでいくらでも空けて�
 <div id="rstudioの補完機能" class="section level2" number="3.16">
 <h2><span class="header-section-number">3.16</span> Rstudioの補完機能</h2>
 <p>オブジェクト内の要素や、ファイル名などを補完してくれる機能</p>
-<p><img src="r_basics/fig/hokan.png" width="30%" style="display: block; margin: auto;" /></p>
+<p><img src="docs/r_basics/fig/hokan.png" width="30%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="rstudioのオプション" class="section level2" number="3.17">
 <h2><span class="header-section-number">3.17</span> Rstudioのオプション</h2>
@@ -796,7 +840,7 @@ Rのコードでは空行は意味をなさないのでいくらでも空けて�
 </ul>
 <div id="例外観の変更" class="section level3" number="3.17.1">
 <h3><span class="header-section-number">3.17.1</span> 例：外観の変更</h3>
-<p><img src="r_basics/fig/option.png" width="60%" /></p>
+<p><img src="docs/r_basics/fig/option.png" width="60%" /></p>
 
 </div>
 </div>

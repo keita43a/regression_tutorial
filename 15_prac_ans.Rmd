@@ -1,0 +1,60 @@
+# 練習問題解答 {#practiceanswer}
+
+
+## Ch.4
+
+**練習問題** \@ref(practicecalc)
+
+```{r}
+# 1
+9179/67
+
+# 2
+(256*43+54)/8
+
+# 3
+1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12
+
+```
+
+**練習問題** \@ref(practiceloop)
+
+```{r}
+# まずgoukeiに0を入れる
+goukei = 0
+
+for(i in 1:50){
+  goukei = goukei + i
+}
+
+print(goukei)
+```
+
+
+## Ch. 6
+
+**練習問題** \@ref{datamgtpractice}
+
+1. 武蔵大学経済学部の学生数データを使って、女性のみの合計学生数を学年別で計算せよ。`data_634_long_1_2_grade`というオブジェクトに格納し、同様に結果を表示せよ。
+
+```{r}
+## 女性のみの学年ごとの学生数
+data_634_long_female_grade <- data_634_long |>
+  filter(性別=="女")|>
+  group_by(学年) |>
+  summarise(学生数合計 = sum(学生数))
+
+print(data_634_long_female_grade)
+```
+
+2. 同じデータを使って、１,２年生のみ合計学生数を男女別・学年別で計算せよ。
+
+```{r}
+## 女性のみの学年ごとの学生数
+data_634_long_1_2_grade <- data_634_long |>
+  filter(学年=="1年" | 学年 == "2年")|> #数字が半角か、などに気をつける
+  group_by(性別, 学年) |>  ## ２つのカテゴリでグループ分け
+  summarise(学生数合計 = sum(学生数))
+
+print(data_634_long_1_2_grade)
+```
