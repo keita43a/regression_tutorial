@@ -79,7 +79,7 @@ practiceloop
 ベクトル
 ベクトルの型
 ベクトル連続した数値
-練習問題
+vectormake
 ベクトルを作る関数1
 ベクトル要素の参照
 リスト
@@ -181,4 +181,5 @@ rstatsinfe
 相関係数
 practiceanswer
 ch.4
+練習問題-refvectormake
 ch.-6

@@ -236,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="letsuse.html#ベクトルの型" id="toc-ベクトルの型"><span class="toc-section-number">4.4.1</span> ベクトルの型</a></li>
 <li><a href="letsuse.html#ベクトル連続した数値" id="toc-ベクトル連続した数値"><span class="toc-section-number">4.4.2</span> ベクトル：連続した数値</a></li>
-<li><a href="letsuse.html#練習問題" id="toc-練習問題"><span class="toc-section-number">4.4.3</span> 練習問題</a></li>
+<li><a href="letsuse.html#vectormake" id="toc-vectormake"><span class="toc-section-number">4.4.3</span> <strong>練習問題</strong>: 数列の作成</a></li>
 <li><a href="letsuse.html#ベクトルを作る関数1" id="toc-ベクトルを作る関数1"><span class="toc-section-number">4.4.4</span> ベクトルを作る関数1</a></li>
 <li><a href="letsuse.html#ベクトル要素の参照" id="toc-ベクトル要素の参照"><span class="toc-section-number">4.4.5</span> ベクトル要素の参照</a></li>
 </ul></li>
@@ -368,7 +368,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="practiceanswer.html#practiceanswer" id="toc-practiceanswer"><span class="toc-section-number">10</span> 練習問題解答</a>
 <ul>
-<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a></li>
+<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a>
+<ul>
+<li><a href="practiceanswer.html#練習問題-refvectormake" id="toc-練習問題-refvectormake"><span class="toc-section-number">10.1.1</span> 練習問題 @ref{vectormake}</a></li>
+</ul></li>
 <li><a href="practiceanswer.html#ch.-6" id="toc-ch.-6"><span class="toc-section-number">10.2</span> Ch. 6</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -467,7 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Rスクリプトを作成し、<code>data_mgt.R</code>という名前をつけて保存する。</p></li>
 <li><p>Rスクリプトに以下のコードを書きこみ、データを読み込む。</p></li>
 </ol>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="datahandling.html#cb96-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gapminder.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="datahandling.html#cb94-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gapminder.csv&quot;</span>)</span></code></pre></div>
 <ul>
 <li><p>先ほどと違い、readとcsvの間が.ではなく_になっている。</p></li>
 <li><p><code>Error: path does not exist:’</code>というエラーが出る場合は、ファイルの相対パスが間違っている可能性がある</p>
@@ -483,21 +486,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>エンコーディングとは、データを一定の規則に従って目的の情報に変換することで、とくに文字を扱う上で、それぞれの文字に番号を割り当てる符号化を行っている。</p>
 <p>最近ではよりグローバルなUnicodeが使われており、tidyverseのパッケージもunicodeあるUTF-8をデフォルトとして使用する。しかし、日本語のファイルの中にはShift-JISというエンコーディングで作成されているファイルもある。</p>
 <p>例えば、以下のファイルをそのまま読み込んで見る。</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="datahandling.html#cb97-1" aria-hidden="true" tabindex="-1"></a>product_cp932 <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Products_cp932.csv&quot;</span>)</span>
-<span id="cb97-2"><a href="datahandling.html#cb97-2" aria-hidden="true" tabindex="-1"></a>product_cp932</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="datahandling.html#cb95-1" aria-hidden="true" tabindex="-1"></a>product_cp932 <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Products_cp932.csv&quot;</span>)</span>
+<span id="cb95-2"><a href="datahandling.html#cb95-2" aria-hidden="true" tabindex="-1"></a>product_cp932</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
-##    ...1 ProductID ProductName Price Category                             CreatedDate
-##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                                &lt;date&gt;     
-## 1     1         1 YKDJw        1122 &quot;\x83w\x83\x8b\x83X&amp;\x83r\x83\x85\x… 2005-08-30 
-## 2     2         2 ftKQ7        1877 &quot;\x83w\x83\x8b\x83X&amp;\x83r\x83\x85\x… 2006-07-01 
-## 3     3         3 l8lqm        3754 &quot;\x89\xc6\x8b\xef\x81E\x83C\x83\x93… 2005-05-26 
-## 4     4         4 8ntvc        8242 &quot;\x89\xd4\x81E\x83O\x83\x8a\x81[\x8… 2005-09-06 
-## 5     5         5 HhDBS        4461 &quot;\x90H\x95i&quot;                         2010-12-28 
-## 6     6         6 PKIs3        4963 &quot;\x8eG\x89\xdd\x81E\x93\xfa\x97p\x9… 2005-02-09</code></pre>
+##    ...1 ProductID ProductName Price Category                              CreatedDate
+##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                                 &lt;date&gt;     
+## 1     1         1 YKDJw        1122 &quot;\x83w\x83\x8b\x83X&amp;\x83r\x83\x85\x8… 2005-08-30 
+## 2     2         2 ftKQ7        1877 &quot;\x83w\x83\x8b\x83X&amp;\x83r\x83\x85\x8… 2006-07-01 
+## 3     3         3 l8lqm        3754 &quot;\x89\xc6\x8b\xef\x81E\x83C\x83\x93\… 2005-05-26 
+## 4     4         4 8ntvc        8242 &quot;\x89\xd4\x81E\x83O\x83\x8a\x81[\x83… 2005-09-06 
+## 5     5         5 HhDBS        4461 &quot;\x90H\x95i&quot;                          2010-12-28 
+## 6     6         6 PKIs3        4963 &quot;\x8eG\x89\xdd\x81E\x93\xfa\x97p\x95… 2005-02-09</code></pre>
 <p><code>Category</code>という変数が文字化けしてしまっているのがわかる。</p>
 <p>ファイルのエンコーディングを調べることができる。
 <code>readr</code>パッケージもに入っている<code>guess_encoding</code>を使うと、Shift-JISである可能性が高いことがわかる。</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="datahandling.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">&quot;data/Products_cp932.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="datahandling.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">&quot;data/Products_cp932.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   encoding     confidence
 ##   &lt;chr&gt;             &lt;dbl&gt;
@@ -505,8 +508,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 windows-1252       0.31
 ## 3 windows-1250       0.31</code></pre>
 <p><code>read_csv</code>のオプションを使って、encodingを指定する。Shift-JISはCP932というエンコーディングになっている。</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="datahandling.html#cb101-1" aria-hidden="true" tabindex="-1"></a>product_enc <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Products_cp932.csv&quot;</span>, <span class="at">locale=</span><span class="fu">locale</span>(<span class="at">encoding=</span><span class="st">&quot;CP932&quot;</span>))</span>
-<span id="cb101-2"><a href="datahandling.html#cb101-2" aria-hidden="true" tabindex="-1"></a>product_enc</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="datahandling.html#cb99-1" aria-hidden="true" tabindex="-1"></a>product_enc <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Products_cp932.csv&quot;</span>, <span class="at">locale=</span><span class="fu">locale</span>(<span class="at">encoding=</span><span class="st">&quot;CP932&quot;</span>))</span>
+<span id="cb99-2"><a href="datahandling.html#cb99-2" aria-hidden="true" tabindex="-1"></a>product_enc</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##    ...1 ProductID ProductName Price Category               CreatedDate
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                  &lt;date&gt;     
@@ -567,10 +570,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidy-data-整然データ" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> tidy data (整然データ)</h2>
 <p>武蔵大学経済学部の学生数データを見てみよう。</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="datahandling.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="do">## エクセルからデータを読み込み</span></span>
-<span id="cb103-2"><a href="datahandling.html#cb103-2" aria-hidden="true" tabindex="-1"></a>data_634 <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;docs/r_basics/data/musashi_keizai_students_2023.xlsx&quot;</span>) </span>
-<span id="cb103-3"><a href="datahandling.html#cb103-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb103-4"><a href="datahandling.html#cb103-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(data_634) <span class="do">## kableは見やすい表を出力する関数</span></span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -717,9 +716,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="datahandling.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="do">## エクセルからデータを読み込み</span></span>
+<span id="cb101-2"><a href="datahandling.html#cb101-2" aria-hidden="true" tabindex="-1"></a>data_634 <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;data/musashi_keizai_students_2023.xlsx&quot;</span>) </span>
+<span id="cb101-3"><a href="datahandling.html#cb101-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-4"><a href="datahandling.html#cb101-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(data_634) <span class="do">## kableは見やすい表を出力する関数</span></span></code></pre></div>
 <p>このデータは、人間の目に見やすい形式になっている。学科・性別と学年がクロス表形式になっているため、何年生の何学科の男女が何人いるか見やすい表になっている。このような形のデータは横型(wide型)と呼ばれる。</p>
 <p>同じデータを、異なる形式で表示したものが以下である。</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="datahandling.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">as.data.frame</span>(data_634_long))</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="datahandling.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">as.data.frame</span>(data_634_long))</span></code></pre></div>
 <pre><code>##        学科 性別 学年 学生数
 ## 1  経済学科   男  1年    133
 ## 2  経済学科   男  2年    139
@@ -747,10 +750,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 24 金融学科   女  4年     24</code></pre>
 <p>このデータでは「人数」という一つの変数のみの列があり、その他の属性もすべて縦の項目で表されている。これは、コンピューターによって処理しやすい形式であり、ベクトルの処理が得意なRでは縦長の形式が扱いやすい。</p>
 <p>この縦長形式のデータを<strong>tidy data</strong>(整然データ)と呼ぶ</p>
-<p>tidy dataの定義
-- 一つの列が一つの変数を表す
-- 一つの行が一つの観測を表す
-- 一つのテーブルが一つのデータセットだけを含む</p>
+<p>tidy dataの定義</p>
+<ul>
+<li>一つの列が一つの変数を表す</li>
+<li>一つの行が一つの観測を表す</li>
+<li>一つのテーブルが一つのデータセットだけを含む</li>
+</ul>
 <p>Rの中でもtidy dataでないデータが好ましい場合もある。しかし、tidy dataを基本にしておけば、そこから加工することは容易である。</p>
 </div>
 <div id="データフレームを扱うテクニックパイプ" class="section level2" number="6.3">
@@ -763,12 +768,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.3.1</span> パイプ</h3>
 <p>パイプ(<code>|&gt;</code>)は「これまでの処理を次の第１引数として引き渡す」という機能を持つ。
 パイプはかつて<code>%&gt;%</code>と書かれていて、tidyverse群の一つである<code>magrittr</code>パッケージの関数であった。新しい<code>|&gt;</code>という演算子はRにネイティブで入っているため、パッケージをロードしなくても使える。少し前のコードだと未だに<code>%&gt;%</code>と書いてあるかもしれないが基本的に同じ意味である（阿部はまだ癖で書いてしまう時がある）。</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="datahandling.html#cb106-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb106-2"><a href="datahandling.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-3"><a href="datahandling.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 以下の２つは同じことを行っている。</span></span>
-<span id="cb106-4"><a href="datahandling.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x1)</span>
-<span id="cb106-5"><a href="datahandling.html#cb106-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-6"><a href="datahandling.html#cb106-6" aria-hidden="true" tabindex="-1"></a>x1 <span class="sc">|&gt;</span> <span class="fu">mean</span>() <span class="do">## |&gt; はパイプと呼ばれるもの</span></span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="datahandling.html#cb104-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb104-2"><a href="datahandling.html#cb104-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="datahandling.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 以下の２つは同じことを行っている。</span></span>
+<span id="cb104-4"><a href="datahandling.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x1)</span>
+<span id="cb104-5"><a href="datahandling.html#cb104-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-6"><a href="datahandling.html#cb104-6" aria-hidden="true" tabindex="-1"></a>x1 <span class="sc">|&gt;</span> <span class="fu">mean</span>() <span class="do">## |&gt; はパイプと呼ばれるもの</span></span></code></pre></div>
 </div>
 </div>
 <div id="tidyでないデータとtidyデータの変換" class="section level2" number="6.4">
@@ -910,40 +915,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="long型データへの変換" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> long型データへの変換</h3>
 <p><code>tidyr</code>というパッケージの<code>pivot_longer</code>という関数はtidyでないデータ(wide型)をtidyなデータ(long型)に変換する。</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="datahandling.html#cb107-1" aria-hidden="true" tabindex="-1"></a>data_634_long <span class="ot">&lt;-</span> data_634 <span class="sc">|&gt;</span> </span>
-<span id="cb107-2"><a href="datahandling.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。</span></span>
-<span id="cb107-3"><a href="datahandling.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(<span class="st">&quot;1年&quot;</span>,<span class="st">&quot;2年&quot;</span>,<span class="st">&quot;3年&quot;</span>,<span class="st">&quot;4年&quot;</span>),<span class="at">names_to =</span><span class="st">&quot;学年&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;学生数&quot;</span>) </span></code></pre></div>
 <p>まずパイプ(<code>|&gt;</code>)で<code>data_634</code>というwide型のデータを関数に引き渡す。</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="datahandling.html#cb108-1" aria-hidden="true" tabindex="-1"></a>data_634_long <span class="ot">&lt;-</span> data_634 <span class="sc">|&gt;</span> </span>
-<span id="cb108-2"><a href="datahandling.html#cb108-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。</span></span>
-<span id="cb108-3"><a href="datahandling.html#cb108-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(<span class="st">&quot;1年&quot;</span>,<span class="st">&quot;2年&quot;</span>,<span class="st">&quot;3年&quot;</span>,<span class="st">&quot;4年&quot;</span>),<span class="at">names_to =</span><span class="st">&quot;学年&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;学生数&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="datahandling.html#cb105-1" aria-hidden="true" tabindex="-1"></a>data_634_long <span class="ot">&lt;-</span> data_634 <span class="sc">|&gt;</span> </span>
+<span id="cb105-2"><a href="datahandling.html#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>() </span></code></pre></div>
 <p><code>pivot_longer()</code> 関数の引数
 - <code>cols</code>は、どの列(column)の変数を使うかを指定する。
 - <code>names_to</code>は、新たに生成されるカテゴリ用の列の名前を指定する。
 - <code>values_to</code>は、数値が入る列の名前を指定する。</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="datahandling.html#cb109-1" aria-hidden="true" tabindex="-1"></a>data_634_long <span class="ot">&lt;-</span> data_634 <span class="sc">|&gt;</span> </span>
-<span id="cb109-2"><a href="datahandling.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。</span></span>
-<span id="cb109-3"><a href="datahandling.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(<span class="st">&quot;1年&quot;</span>,<span class="st">&quot;2年&quot;</span>,<span class="st">&quot;3年&quot;</span>,<span class="st">&quot;4年&quot;</span>),<span class="at">names_to =</span><span class="st">&quot;学年&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;学生数&quot;</span>) </span></code></pre></div>
-<p>さらにパイプで結果を次に引き渡して、学科名の順番を指定している。
-これらの変数は後で説明する。</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="datahandling.html#cb110-1" aria-hidden="true" tabindex="-1"></a>data_634_long <span class="ot">&lt;-</span> data_634 <span class="sc">|&gt;</span> </span>
-<span id="cb110-2"><a href="datahandling.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。</span></span>
-<span id="cb110-3"><a href="datahandling.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(<span class="st">&quot;1年&quot;</span>,<span class="st">&quot;2年&quot;</span>,<span class="st">&quot;3年&quot;</span>,<span class="st">&quot;4年&quot;</span>),<span class="at">names_to =</span><span class="st">&quot;学年&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;学生数&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="datahandling.html#cb106-1" aria-hidden="true" tabindex="-1"></a>data_634_long <span class="ot">&lt;-</span> data_634 <span class="sc">|&gt;</span> </span>
+<span id="cb106-2"><a href="datahandling.html#cb106-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。</span></span>
+<span id="cb106-3"><a href="datahandling.html#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb106-4"><a href="datahandling.html#cb106-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols=</span><span class="fu">c</span>(<span class="st">&quot;1年&quot;</span>,<span class="st">&quot;2年&quot;</span>,<span class="st">&quot;3年&quot;</span>,<span class="st">&quot;4年&quot;</span>),</span>
+<span id="cb106-5"><a href="datahandling.html#cb106-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span><span class="st">&quot;学年&quot;</span>,</span>
+<span id="cb106-6"><a href="datahandling.html#cb106-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;学生数&quot;</span>) </span></code></pre></div>
 </div>
 <div id="データを見てみる" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> データを見てみる</h3>
 <p>右上のEnvironmentペーンに<code>data_634_long</code>というオブジェクトが生成される。
 クリックしてみると、エクセルのような画面が現れる</p>
 <p>また<code>View()</code>という関数をつかっても、同じようにデータを見ることができる。</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="datahandling.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="do">## data_634_longを見るビューワーがRstudio上で開く</span></span>
-<span id="cb111-2"><a href="datahandling.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(data_634_long)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="datahandling.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="do">## data_634_longを見るビューワーがRstudio上で開く</span></span>
+<span id="cb107-2"><a href="datahandling.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(data_634_long)</span></code></pre></div>
 </div>
 <div id="データを一部だけみたい場合" class="section level3" number="6.4.3">
 <h3><span class="header-section-number">6.4.3</span> データを一部だけみたい場合</h3>
 <p>また、データの最初だけみたいときは、<code>head()</code>, また後ろだけ見たいときは<code>tail()</code>関数を使う。
 デフォルトでは、6行だけ表示されるが、行数は引数nで調整できる。</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="datahandling.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="do">## data1の最初の10行がコンソールに表示される</span></span>
-<span id="cb112-2"><a href="datahandling.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_634_long, <span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="datahandling.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="do">## data1の最初の10行がコンソールに表示される</span></span>
+<span id="cb108-2"><a href="datahandling.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_634_long, <span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 4
 ##    学科     性別  学年  学生数
 ##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -962,7 +961,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="データの大きさ" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> データの「大きさ」</h2>
 <p>データの行数や列数を調べるときには<code>dim()</code>関数を使う。</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="datahandling.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(data_634_long)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="datahandling.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(data_634_long)</span></code></pre></div>
 <pre><code>## [1] 24  4</code></pre>
 <p>24行、4列だとわかる。
 RStudioではdata.frameオブジェクトは右上ペーンにも表示されている。</p>
@@ -970,13 +969,13 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="列の名前一覧" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> 列の名前一覧</h2>
 <p>データの各変数名（列名）の一覧を見たい場合は<code>names()</code>か<code>colnames()</code></p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="datahandling.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data_634_long)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="datahandling.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data_634_long)</span></code></pre></div>
 <pre><code>## [1] &quot;学科&quot;   &quot;性別&quot;   &quot;学年&quot;   &quot;学生数&quot;</code></pre>
 </div>
 <div id="変数の要約" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> 変数の要約</h2>
 <p>含まれている変数の基本統計量を見たい場合は<code>summary()</code>関数を使う。</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="datahandling.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_634_long)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="datahandling.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_634_long)</span></code></pre></div>
 <pre><code>##        学科   性別     学年       学生数     
 ##  経済学科:8   男:12   1年:6   Min.   : 24.0  
 ##  経営学科:8   女:12   2年:6   1st Qu.: 44.0  
@@ -1015,25 +1014,25 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="変数の取り出し" class="section level2" number="6.8">
 <h2><span class="header-section-number">6.8</span> 変数の取り出し</h2>
 <p>データから変数を一つ取り出すときは$マークを使う。</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="datahandling.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="do">## データフレーム$変数 で変数の列をベクトルとして取り出す</span></span>
-<span id="cb120-2"><a href="datahandling.html#cb120-2" aria-hidden="true" tabindex="-1"></a> data_634_long<span class="sc">$</span>学年</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="datahandling.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="do">## データフレーム$変数 で変数の列をベクトルとして取り出す</span></span>
+<span id="cb116-2"><a href="datahandling.html#cb116-2" aria-hidden="true" tabindex="-1"></a> data_634_long<span class="sc">$</span>学年</span></code></pre></div>
 <pre><code>##  [1] 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年
 ## [21] 1年 2年 3年 4年
 ## Levels: 1年 2年 3年 4年</code></pre>
 </div>
 <div id="変数の取り出しと計算" class="section level2" number="6.9">
 <h2><span class="header-section-number">6.9</span> 変数の取り出しと計算</h2>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="datahandling.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 平均 mean()関数</span></span>
-<span id="cb122-2"><a href="datahandling.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_634_long<span class="sc">$</span>学生数)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="datahandling.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 平均 mean()関数</span></span>
+<span id="cb118-2"><a href="datahandling.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_634_long<span class="sc">$</span>学生数)</span></code></pre></div>
 <pre><code>## [1] 80.5</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="datahandling.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 中央値 median()関数</span></span>
-<span id="cb124-2"><a href="datahandling.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(data_634_long<span class="sc">$</span>学生数)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="datahandling.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 中央値 median()関数</span></span>
+<span id="cb120-2"><a href="datahandling.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(data_634_long<span class="sc">$</span>学生数)</span></code></pre></div>
 <pre><code>## [1] 76</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="datahandling.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 分散 var()関数</span></span>
-<span id="cb126-2"><a href="datahandling.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(data_634_long<span class="sc">$</span>学生数)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="datahandling.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 分散 var()関数</span></span>
+<span id="cb122-2"><a href="datahandling.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(data_634_long<span class="sc">$</span>学生数)</span></code></pre></div>
 <pre><code>## [1] 1625.478</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="datahandling.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 合計 sum()関数</span></span>
-<span id="cb128-2"><a href="datahandling.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(data_634_long<span class="sc">$</span>学生数)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="datahandling.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 合計 sum()関数</span></span>
+<span id="cb124-2"><a href="datahandling.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(data_634_long<span class="sc">$</span>学生数)</span></code></pre></div>
 <pre><code>## [1] 1932</code></pre>
 </div>
 <div id="データフレームとtibble" class="section level2" number="6.10">
@@ -1061,7 +1060,7 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 </div>
 <div id="元のデータの見た目確認" class="section level3" number="6.11.2">
 <h3><span class="header-section-number">6.11.2</span> 元のデータの見た目確認</h3>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="datahandling.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="datahandling.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 4
 ##    学科     性別  学年  学生数
 ##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -1080,13 +1079,13 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="列の名前を変えたい-rename" class="section level3" number="6.11.3">
 <h3><span class="header-section-number">6.11.3</span> 列の名前を変えたい: rename()</h3>
 <p>列（変数）の名前を変更する</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="datahandling.html#cb132-1" aria-hidden="true" tabindex="-1"></a>data_634_long_eng <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
-<span id="cb132-2"><a href="datahandling.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">department =</span> 学科, </span>
-<span id="cb132-3"><a href="datahandling.html#cb132-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">grade =</span> 学年,</span>
-<span id="cb132-4"><a href="datahandling.html#cb132-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">gender =</span> 性別,</span>
-<span id="cb132-5"><a href="datahandling.html#cb132-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">stu_num =</span> 学生数)</span>
-<span id="cb132-6"><a href="datahandling.html#cb132-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-7"><a href="datahandling.html#cb132-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_eng)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="datahandling.html#cb128-1" aria-hidden="true" tabindex="-1"></a>data_634_long_eng <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
+<span id="cb128-2"><a href="datahandling.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">department =</span> 学科, </span>
+<span id="cb128-3"><a href="datahandling.html#cb128-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">grade =</span> 学年,</span>
+<span id="cb128-4"><a href="datahandling.html#cb128-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">gender =</span> 性別,</span>
+<span id="cb128-5"><a href="datahandling.html#cb128-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">stu_num =</span> 学生数)</span>
+<span id="cb128-6"><a href="datahandling.html#cb128-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-7"><a href="datahandling.html#cb128-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_eng)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 4
 ##    department gender grade stu_num
 ##    &lt;fct&gt;      &lt;fct&gt;  &lt;fct&gt;   &lt;dbl&gt;
@@ -1105,10 +1104,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="特定の列だけ抽出する-select" class="section level3" number="6.11.4">
 <h3><span class="header-section-number">6.11.4</span> 特定の列だけ抽出する: select()</h3>
 <p>データのうち、学科と性別という変数だけ抽出したいとする</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="datahandling.html#cb134-1" aria-hidden="true" tabindex="-1"></a>data_634_long_select <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
-<span id="cb134-2"><a href="datahandling.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(学科, 性別)</span>
-<span id="cb134-3"><a href="datahandling.html#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-4"><a href="datahandling.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_select)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="datahandling.html#cb130-1" aria-hidden="true" tabindex="-1"></a>data_634_long_select <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
+<span id="cb130-2"><a href="datahandling.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(学科, 性別)</span>
+<span id="cb130-3"><a href="datahandling.html#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-4"><a href="datahandling.html#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_select)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 2
 ##    学科     性別 
 ##    &lt;fct&gt;    &lt;fct&gt;
@@ -1127,10 +1126,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="特定の列だけ抽出する-filter" class="section level3" number="6.11.5">
 <h3><span class="header-section-number">6.11.5</span> 特定の列だけ抽出する: filter()</h3>
 <p>データのうち、女性のデータだけを抽出したいとする</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="datahandling.html#cb136-1" aria-hidden="true" tabindex="-1"></a>data_634_long_filter <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
-<span id="cb136-2"><a href="datahandling.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(性別 <span class="sc">==</span> <span class="st">&quot;女&quot;</span>)</span>
-<span id="cb136-3"><a href="datahandling.html#cb136-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-4"><a href="datahandling.html#cb136-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_filter)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="datahandling.html#cb132-1" aria-hidden="true" tabindex="-1"></a>data_634_long_filter <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
+<span id="cb132-2"><a href="datahandling.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(性別 <span class="sc">==</span> <span class="st">&quot;女&quot;</span>)</span>
+<span id="cb132-3"><a href="datahandling.html#cb132-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-4"><a href="datahandling.html#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_filter)</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 4
 ##    学科     性別  学年  学生数
 ##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -1150,10 +1149,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データの順番を並び替える-arrange" class="section level3" number="6.11.6">
 <h3><span class="header-section-number">6.11.6</span> データの順番を並び替える: arrange()</h3>
 <p>データの順番を学年-&gt;性別の順番で並び替える</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="datahandling.html#cb138-1" aria-hidden="true" tabindex="-1"></a>data_634_long_arrange <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
-<span id="cb138-2"><a href="datahandling.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(学年, 性別)</span>
-<span id="cb138-3"><a href="datahandling.html#cb138-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-4"><a href="datahandling.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_arrange)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="datahandling.html#cb134-1" aria-hidden="true" tabindex="-1"></a>data_634_long_arrange <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
+<span id="cb134-2"><a href="datahandling.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(学年, 性別)</span>
+<span id="cb134-3"><a href="datahandling.html#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-4"><a href="datahandling.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_arrange)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 4
 ##    学科     性別  学年  学生数
 ##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -1172,10 +1171,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データの順番を並び替える-arrange-1" class="section level3" number="6.11.7">
 <h3><span class="header-section-number">6.11.7</span> データの順番を並び替える: arrange()</h3>
 <p>デフォルトは昇順だが、desc()で降順で並び変えることもできる</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="datahandling.html#cb140-1" aria-hidden="true" tabindex="-1"></a>data_634_long_arrange2 <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
-<span id="cb140-2"><a href="datahandling.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(学年), 性別)</span>
-<span id="cb140-3"><a href="datahandling.html#cb140-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-4"><a href="datahandling.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_arrange2)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="datahandling.html#cb136-1" aria-hidden="true" tabindex="-1"></a>data_634_long_arrange2 <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
+<span id="cb136-2"><a href="datahandling.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(学年), 性別)</span>
+<span id="cb136-3"><a href="datahandling.html#cb136-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-4"><a href="datahandling.html#cb136-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_arrange2)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 4
 ##    学科     性別  学年  学生数
 ##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -1194,10 +1193,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データの列を並び替える-relocate" class="section level3" number="6.11.8">
 <h3><span class="header-section-number">6.11.8</span> データの列を並び替える: relocate()</h3>
 <p>学年の列を性別の前に持ってくる</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="datahandling.html#cb142-1" aria-hidden="true" tabindex="-1"></a>data_634_long_relocate <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
-<span id="cb142-2"><a href="datahandling.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(学年, <span class="at">.before=</span>性別)</span>
-<span id="cb142-3"><a href="datahandling.html#cb142-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb142-4"><a href="datahandling.html#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_relocate)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="datahandling.html#cb138-1" aria-hidden="true" tabindex="-1"></a>data_634_long_relocate <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
+<span id="cb138-2"><a href="datahandling.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(学年, <span class="at">.before=</span>性別)</span>
+<span id="cb138-3"><a href="datahandling.html#cb138-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-4"><a href="datahandling.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_relocate)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 4
 ##    学科     学年  性別  学生数
 ##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -1216,10 +1215,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データの列を並び替える-relocate-1" class="section level3" number="6.11.9">
 <h3><span class="header-section-number">6.11.9</span> データの列を並び替える: relocate()</h3>
 <p>学年の列を学科の後に持ってくる</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="datahandling.html#cb144-1" aria-hidden="true" tabindex="-1"></a>data_634_long_relocate2 <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
-<span id="cb144-2"><a href="datahandling.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(学年, <span class="at">.after=</span>学科)</span>
-<span id="cb144-3"><a href="datahandling.html#cb144-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-4"><a href="datahandling.html#cb144-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_relocate2)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="datahandling.html#cb140-1" aria-hidden="true" tabindex="-1"></a>data_634_long_relocate2 <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
+<span id="cb140-2"><a href="datahandling.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(学年, <span class="at">.after=</span>学科)</span>
+<span id="cb140-3"><a href="datahandling.html#cb140-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-4"><a href="datahandling.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_relocate2)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 4
 ##    学科     学年  性別  学生数
 ##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -1238,10 +1237,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データの列を追加編集する-mutate" class="section level3" number="6.11.10">
 <h3><span class="header-section-number">6.11.10</span> データの列を追加/編集する: mutate()</h3>
 <p>新しく、学生数を100で割った数値を作るとする</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="datahandling.html#cb146-1" aria-hidden="true" tabindex="-1"></a>data_634_long_mutate <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
-<span id="cb146-2"><a href="datahandling.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(学生数100 <span class="ot">=</span> 学生数<span class="sc">/</span><span class="dv">100</span>)</span>
-<span id="cb146-3"><a href="datahandling.html#cb146-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-4"><a href="datahandling.html#cb146-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_mutate)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="datahandling.html#cb142-1" aria-hidden="true" tabindex="-1"></a>data_634_long_mutate <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
+<span id="cb142-2"><a href="datahandling.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(学生数100 <span class="ot">=</span> 学生数<span class="sc">/</span><span class="dv">100</span>)</span>
+<span id="cb142-3"><a href="datahandling.html#cb142-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-4"><a href="datahandling.html#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_mutate)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 5
 ##    学科     性別  学年  学生数 学生数100
 ##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;     &lt;dbl&gt;
@@ -1260,10 +1259,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データの列を追加編集する-mutate-1" class="section level3" number="6.11.11">
 <h3><span class="header-section-number">6.11.11</span> データの列を追加/編集する: mutate()</h3>
 <p>存在する変数名にすると、新しく変数(列)を作らずに上書きする</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="datahandling.html#cb148-1" aria-hidden="true" tabindex="-1"></a>data_634_long_mutate2 <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
-<span id="cb148-2"><a href="datahandling.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(学生数 <span class="ot">=</span> 学生数<span class="sc">/</span><span class="dv">100</span>)</span>
-<span id="cb148-3"><a href="datahandling.html#cb148-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-4"><a href="datahandling.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_mutate2)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="datahandling.html#cb144-1" aria-hidden="true" tabindex="-1"></a>data_634_long_mutate2 <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
+<span id="cb144-2"><a href="datahandling.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(学生数 <span class="ot">=</span> 学生数<span class="sc">/</span><span class="dv">100</span>)</span>
+<span id="cb144-3"><a href="datahandling.html#cb144-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-4"><a href="datahandling.html#cb144-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_mutate2)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 4
 ##    学科     性別  学年  学生数
 ##    &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -1282,11 +1281,11 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データを集計する" class="section level3" number="6.11.12">
 <h3><span class="header-section-number">6.11.12</span> データを集計する</h3>
 <p>任意を列を集計したり統計量を計算する。</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="datahandling.html#cb150-1" aria-hidden="true" tabindex="-1"></a>data_634_long_summarise <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
-<span id="cb150-2"><a href="datahandling.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数),</span>
-<span id="cb150-3"><a href="datahandling.html#cb150-3" aria-hidden="true" tabindex="-1"></a>            学生数平均 <span class="ot">=</span> <span class="fu">mean</span>(学生数))</span>
-<span id="cb150-4"><a href="datahandling.html#cb150-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb150-5"><a href="datahandling.html#cb150-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_summarise)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="datahandling.html#cb146-1" aria-hidden="true" tabindex="-1"></a>data_634_long_summarise <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
+<span id="cb146-2"><a href="datahandling.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数),</span>
+<span id="cb146-3"><a href="datahandling.html#cb146-3" aria-hidden="true" tabindex="-1"></a>            学生数平均 <span class="ot">=</span> <span class="fu">mean</span>(学生数))</span>
+<span id="cb146-4"><a href="datahandling.html#cb146-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-5"><a href="datahandling.html#cb146-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_summarise)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   学生数合計 学生数平均
 ##        &lt;dbl&gt;      &lt;dbl&gt;
@@ -1295,12 +1294,12 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データ操作の応用パイプによる引き渡し" class="section level3" number="6.11.13">
 <h3><span class="header-section-number">6.11.13</span> データ操作の応用：パイプによる引き渡し</h3>
 <p>ある操作を行った結果をパイプで次の関数に引き渡す。</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="datahandling.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 女性の合計だけを知りたい</span></span>
-<span id="cb152-2"><a href="datahandling.html#cb152-2" aria-hidden="true" tabindex="-1"></a>data_634_long_female <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
-<span id="cb152-3"><a href="datahandling.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(性別<span class="sc">==</span><span class="st">&quot;女&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb152-4"><a href="datahandling.html#cb152-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(女性学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数))</span>
-<span id="cb152-5"><a href="datahandling.html#cb152-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-6"><a href="datahandling.html#cb152-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_female)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="datahandling.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 女性の合計だけを知りたい</span></span>
+<span id="cb148-2"><a href="datahandling.html#cb148-2" aria-hidden="true" tabindex="-1"></a>data_634_long_female <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
+<span id="cb148-3"><a href="datahandling.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(性別<span class="sc">==</span><span class="st">&quot;女&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb148-4"><a href="datahandling.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(女性学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数))</span>
+<span id="cb148-5"><a href="datahandling.html#cb148-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-6"><a href="datahandling.html#cb148-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_female)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   女性学生数合計
 ##            &lt;dbl&gt;
@@ -1309,12 +1308,12 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データ操作の応用グループごとの集計" class="section level3" number="6.11.14">
 <h3><span class="header-section-number">6.11.14</span> データ操作の応用：グループごとの集計</h3>
 <p>グループごとに集計したい場合は<code>group_by</code>でグループ情報を与える</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="datahandling.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 学科ごとに合計を計算</span></span>
-<span id="cb154-2"><a href="datahandling.html#cb154-2" aria-hidden="true" tabindex="-1"></a>data_634_long_dept <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
-<span id="cb154-3"><a href="datahandling.html#cb154-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(学科) <span class="sc">|&gt;</span></span>
-<span id="cb154-4"><a href="datahandling.html#cb154-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数))</span>
-<span id="cb154-5"><a href="datahandling.html#cb154-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb154-6"><a href="datahandling.html#cb154-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_dept)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="datahandling.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 学科ごとに合計を計算</span></span>
+<span id="cb150-2"><a href="datahandling.html#cb150-2" aria-hidden="true" tabindex="-1"></a>data_634_long_dept <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
+<span id="cb150-3"><a href="datahandling.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(学科) <span class="sc">|&gt;</span></span>
+<span id="cb150-4"><a href="datahandling.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数))</span>
+<span id="cb150-5"><a href="datahandling.html#cb150-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-6"><a href="datahandling.html#cb150-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_dept)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   学科     学生数合計
 ##   &lt;fct&gt;         &lt;dbl&gt;
@@ -1340,10 +1339,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データの縦の結合" class="section level3" number="6.13.1">
 <h3><span class="header-section-number">6.13.1</span> データの縦の結合</h3>
 <p>例えば人文学部のデータと結合したい</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="datahandling.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="do">## エクセルからデータを読み込み</span></span>
-<span id="cb156-2"><a href="datahandling.html#cb156-2" aria-hidden="true" tabindex="-1"></a>data_634_jinbun <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;docs/r_basics/data/musashi_jinbun_students_2023.xlsx&quot;</span>) </span>
-<span id="cb156-3"><a href="datahandling.html#cb156-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-4"><a href="datahandling.html#cb156-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(data_634_jinbun) <span class="do">## kableは見やすい表を出力する関数</span></span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="datahandling.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="do">## エクセルからデータを読み込み</span></span>
+<span id="cb152-2"><a href="datahandling.html#cb152-2" aria-hidden="true" tabindex="-1"></a>data_634_jinbun <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;docs/r_basics/data/musashi_jinbun_students_2023.xlsx&quot;</span>) </span>
+<span id="cb152-3"><a href="datahandling.html#cb152-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-4"><a href="datahandling.html#cb152-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(data_634_jinbun) <span class="do">## kableは見やすい表を出力する関数</span></span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1491,9 +1490,9 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 </tbody>
 </table>
 <p>変数の順番などが同じことを確認した上で、<code>bind_rows()</code>を使う</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="datahandling.html#cb157-1" aria-hidden="true" tabindex="-1"></a>data_634_keizai_jinbun <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(data_634,data_634_jinbun)</span>
-<span id="cb157-2"><a href="datahandling.html#cb157-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-3"><a href="datahandling.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_keizai_jinbun)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="datahandling.html#cb153-1" aria-hidden="true" tabindex="-1"></a>data_634_keizai_jinbun <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(data_634,data_634_jinbun)</span>
+<span id="cb153-2"><a href="datahandling.html#cb153-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-3"><a href="datahandling.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_keizai_jinbun)</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 6
 ##    学科                   性別  `4年` `3年` `2年` `1年`
 ##    &lt;chr&gt;                  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1513,10 +1512,10 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データを横に統合" class="section level3" number="6.13.2">
 <h3><span class="header-section-number">6.13.2</span> データを横に統合</h3>
 <p>新しい変数を含んだデータを既存のデータに統合したい</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="datahandling.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="do">## エクセルからデータを読み込み</span></span>
-<span id="cb159-2"><a href="datahandling.html#cb159-2" aria-hidden="true" tabindex="-1"></a>data_634_keizai_teiin <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;docs/r_basics/data/musashi_keizai_teiin_2023.xlsx&quot;</span>) </span>
-<span id="cb159-3"><a href="datahandling.html#cb159-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-4"><a href="datahandling.html#cb159-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(data_634_keizai_teiin) <span class="do">## kableは見やすい表を出力する関数</span></span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="datahandling.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="do">## エクセルからデータを読み込み</span></span>
+<span id="cb155-2"><a href="datahandling.html#cb155-2" aria-hidden="true" tabindex="-1"></a>data_634_keizai_teiin <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;docs/r_basics/data/musashi_keizai_teiin_2023.xlsx&quot;</span>) </span>
+<span id="cb155-3"><a href="datahandling.html#cb155-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-4"><a href="datahandling.html#cb155-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(data_634_keizai_teiin) <span class="do">## kableは見やすい表を出力する関数</span></span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1559,11 +1558,11 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データを横に統合join関数" class="section level3" number="6.13.3">
 <h3><span class="header-section-number">6.13.3</span> データを横に統合：join()関数</h3>
 <p>ここでは<code>left_join</code>を使う。学科という変数をキーとして、左側に存在するすべての行にデータを統合する。</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="datahandling.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 学科の人数と学科の定員を統合する</span></span>
-<span id="cb160-2"><a href="datahandling.html#cb160-2" aria-hidden="true" tabindex="-1"></a>data_634_long_keizai <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
-<span id="cb160-3"><a href="datahandling.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data_634_keizai_teiin, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;学科&quot;</span><span class="ot">=</span><span class="st">&quot;学科&quot;</span>))</span>
-<span id="cb160-4"><a href="datahandling.html#cb160-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-5"><a href="datahandling.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_keizai)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="datahandling.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 学科の人数と学科の定員を統合する</span></span>
+<span id="cb156-2"><a href="datahandling.html#cb156-2" aria-hidden="true" tabindex="-1"></a>data_634_long_keizai <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
+<span id="cb156-3"><a href="datahandling.html#cb156-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data_634_keizai_teiin, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;学科&quot;</span><span class="ot">=</span><span class="st">&quot;学科&quot;</span>))</span>
+<span id="cb156-4"><a href="datahandling.html#cb156-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-5"><a href="datahandling.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_634_long_keizai)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 5
 ##    学科     性別  学年  学生数  定員
 ##    &lt;chr&gt;    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt;

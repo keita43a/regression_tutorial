@@ -236,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="letsuse.html#ベクトルの型" id="toc-ベクトルの型"><span class="toc-section-number">4.4.1</span> ベクトルの型</a></li>
 <li><a href="letsuse.html#ベクトル連続した数値" id="toc-ベクトル連続した数値"><span class="toc-section-number">4.4.2</span> ベクトル：連続した数値</a></li>
-<li><a href="letsuse.html#練習問題" id="toc-練習問題"><span class="toc-section-number">4.4.3</span> 練習問題</a></li>
+<li><a href="letsuse.html#vectormake" id="toc-vectormake"><span class="toc-section-number">4.4.3</span> <strong>練習問題</strong>: 数列の作成</a></li>
 <li><a href="letsuse.html#ベクトルを作る関数1" id="toc-ベクトルを作る関数1"><span class="toc-section-number">4.4.4</span> ベクトルを作る関数1</a></li>
 <li><a href="letsuse.html#ベクトル要素の参照" id="toc-ベクトル要素の参照"><span class="toc-section-number">4.4.5</span> ベクトル要素の参照</a></li>
 </ul></li>
@@ -368,7 +368,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="practiceanswer.html#practiceanswer" id="toc-practiceanswer"><span class="toc-section-number">10</span> 練習問題解答</a>
 <ul>
-<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a></li>
+<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a>
+<ul>
+<li><a href="practiceanswer.html#練習問題-refvectormake" id="toc-練習問題-refvectormake"><span class="toc-section-number">10.1.1</span> 練習問題 @ref{vectormake}</a></li>
+</ul></li>
 <li><a href="practiceanswer.html#ch.-6" id="toc-ch.-6"><span class="toc-section-number">10.2</span> Ch. 6</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -408,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><code>install.packages()</code>関数を使う方法</li>
 </ol>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="packages.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="packages.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Rstudioの右下の区画の[Packages]タブから、[Install]ボタンを押して、ダイアログに従ってインストール</li>
 </ol>
@@ -416,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="よく使うパッケージのインストール" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> よく使うパッケージのインストール</h2>
 <p><code>tidyverse</code>と呼ばれるパッケージをインストールしてみよう。</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="packages.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="packages.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>実はこの<code>tidyverse</code>はパッケージ<strong>群</strong>であり、複数のパッケージがインストールされる。</p>
 <div id="tidyverseについて" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Tidyverseについて</h3>
@@ -428,20 +431,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.4</span> パッケージの使い方1</h2>
 <p>パッケージの使い方は２通りある。
 パッケージに入っている関数を使うためには、パッケージを読み込む</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="packages.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="do">## library()でパッケージの読み込み</span></span>
-<span id="cb91-2"><a href="packages.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="packages.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="do">## library()でパッケージの読み込み</span></span>
+<span id="cb89-2"><a href="packages.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>読み込んだ後は、パッケージに含まれている関数が普通に使える。</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="packages.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read_csvはtidyverseに入っているreadrというパッケージに含まれる</span></span>
-<span id="cb92-2"><a href="packages.html#cb92-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="packages.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read_csvはtidyverseに入っているreadrというパッケージに含まれる</span></span>
+<span id="cb90-2"><a href="packages.html#cb90-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="パッケージの使い方2" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> パッケージの使い方2</h2>
 <p>読み込んでいないパッケージの関数を使おうとするとエラーが出る。</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="packages.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read_csvはtidyverseに入っているreadrというパッケージに含まれる</span></span>
-<span id="cb93-2"><a href="packages.html#cb93-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="packages.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read_csvはtidyverseに入っているreadrというパッケージに含まれる</span></span>
+<span id="cb91-2"><a href="packages.html#cb91-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Error in read_csv(&quot;data/data1.csv&quot;): could not find function &quot;read_csv&quot;</code></pre>
 <p>パッケージ名と関数名を<code>::</code>で繋ぐと、読み込んでいなくても使える。</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="packages.html#cb95-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="packages.html#cb93-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 <p>これが２つ目のパッケージの使い方である。そのスクリプトであまり使わないが一回だけ使いたいケースや、一般的でないパッケージや関数なので何のパッケージに入っている関数なのかを明示したい際に使う。</p>
 
 </div>

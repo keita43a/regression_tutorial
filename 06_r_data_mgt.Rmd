@@ -199,6 +199,7 @@ print(as.data.frame(data_634_long))
 この縦長形式のデータを**tidy data**(整然データ)と呼ぶ
 
 tidy dataの定義
+
 - 一つの列が一つの変数を表す
 - 一つの行が一つの観測を表す
 - 一つのテーブルが一つのデータセットだけを含む
@@ -266,19 +267,11 @@ kable(data_temp2) %>% kableExtra::kable_styling(font_size = 18)
 
 `tidyr`というパッケージの`pivot_longer`という関数はtidyでないデータ(wide型)をtidyなデータ(long型)に変換する。
 
-```{r, eval=FALSE}
-data_634_long <- data_634 |> 
-  ## long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
-  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
-```
-
-
 まずパイプ(`|>`)で`data_634`というwide型のデータを関数に引き渡す。
 
 ```{r, eval=FALSE}
 data_634_long <- data_634 |> 
-  ## long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
-  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+  pivot_longer() 
 ```
 
 
@@ -290,18 +283,12 @@ data_634_long <- data_634 |>
 ```{r, eval=FALSE}
 data_634_long <- data_634 |> 
   ## long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
-  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") 
+  pivot_longer(
+    cols=c("1年","2年","3年","4年"),
+    names_to ="学年",
+    values_to = "学生数") 
 ```
 
-
-さらにパイプで結果を次に引き渡して、学科名の順番を指定している。
-これらの変数は後で説明する。
-
-```{r, eval=FALSE}
-data_634_long <- data_634 |> 
-  ## long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
-  pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数")
-```
 
 
 

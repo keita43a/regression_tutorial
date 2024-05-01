@@ -236,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="letsuse.html#ベクトルの型" id="toc-ベクトルの型"><span class="toc-section-number">4.4.1</span> ベクトルの型</a></li>
 <li><a href="letsuse.html#ベクトル連続した数値" id="toc-ベクトル連続した数値"><span class="toc-section-number">4.4.2</span> ベクトル：連続した数値</a></li>
-<li><a href="letsuse.html#練習問題" id="toc-練習問題"><span class="toc-section-number">4.4.3</span> 練習問題</a></li>
+<li><a href="letsuse.html#vectormake" id="toc-vectormake"><span class="toc-section-number">4.4.3</span> <strong>練習問題</strong>: 数列の作成</a></li>
 <li><a href="letsuse.html#ベクトルを作る関数1" id="toc-ベクトルを作る関数1"><span class="toc-section-number">4.4.4</span> ベクトルを作る関数1</a></li>
 <li><a href="letsuse.html#ベクトル要素の参照" id="toc-ベクトル要素の参照"><span class="toc-section-number">4.4.5</span> ベクトル要素の参照</a></li>
 </ul></li>
@@ -368,7 +368,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="practiceanswer.html#practiceanswer" id="toc-practiceanswer"><span class="toc-section-number">10</span> 練習問題解答</a>
 <ul>
-<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a></li>
+<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a>
+<ul>
+<li><a href="practiceanswer.html#練習問題-refvectormake" id="toc-練習問題-refvectormake"><span class="toc-section-number">10.1.1</span> 練習問題 @ref{vectormake}</a></li>
+</ul></li>
 <li><a href="practiceanswer.html#ch.-6" id="toc-ch.-6"><span class="toc-section-number">10.2</span> Ch. 6</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -414,16 +417,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.2</span> データとは</h2>
 <p>統計において分析する対象はデータである。データには様々な形があるが、一般的には数値や文字情報の集まりである。</p>
 <p>以下のコードを実行してみよう。すると、100個の数値が並ぶ。これをランダムにサンプリングして計測した日本人男性の身長だとしよう。</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="rstats.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
-<span id="cb162-2"><a href="rstats.html#cb162-2" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="at">mean=</span><span class="dv">170</span>,<span class="at">sd=</span><span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>()</span>
-<span id="cb162-3"><a href="rstats.html#cb162-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-4"><a href="rstats.html#cb162-4" aria-hidden="true" tabindex="-1"></a>height</span></code></pre></div>
-<pre><code>##   [1] 160 167 173 158 172 170 171 181 158 183 163 159 163 173 172 167 160 164 182
-##  [20] 172 164 161 168 153 165 163 182 180 169 159 179 179 177 177 166 177 183 170
-##  [39] 160 178 178 167 187 162 173 147 168 181 165 161 177 162 173 153 156 165 160
-##  [58] 184 179 162 176 179 173 174 182 165 166 180 157 172 170 175 180 173 172 177
-##  [77] 182 174 160 168 187 166 177 182 178 170 172 161 174 161 161 160 163 181 166
-##  [96] 169 165 175 179 168</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="rstats.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb158-2"><a href="rstats.html#cb158-2" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="at">mean=</span><span class="dv">170</span>,<span class="at">sd=</span><span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>()</span>
+<span id="cb158-3"><a href="rstats.html#cb158-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-4"><a href="rstats.html#cb158-4" aria-hidden="true" tabindex="-1"></a>height</span></code></pre></div>
+<pre><code>##   [1] 160 167 173 158 172 170 171 181 158 183 163 159 163 173 172 167 160 164 182 172
+##  [21] 164 161 168 153 165 163 182 180 169 159 179 179 177 177 166 177 183 170 160 178
+##  [41] 178 167 187 162 173 147 168 181 165 161 177 162 173 153 156 165 160 184 179 162
+##  [61] 176 179 173 174 182 165 166 180 157 172 170 175 180 173 172 177 182 174 160 168
+##  [81] 187 166 177 182 178 170 172 161 174 161 161 160 163 181 166 169 165 175 179 168</code></pre>
 <p>この数字を見てどう思うか？</p>
 <p>「ああ、数字が並んでいるなぁ」</p>
 <p>「自分はこの中では高いほうかな」</p>
@@ -456,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>上の左辺のシグマ記号で書かれたものは、右辺と同じ意味である。
 つまり上のシグマ記号<span class="math inline">\(\sum\)</span>は、「<span class="math inline">\(i=1\)</span>から、<span class="math inline">\(100\)</span>までの<span class="math inline">\(x_i\)</span>を足し合わせる」という意味を持つ。</p>
 <p>合計をRで計算するときには、<code>sum()</code>という関数を使って以下のようになる。ここではheightというオブジェクトに100個の数値を持つベクトルが入っているため、<code>sum()</code>はベクトルのすべての数値を足し合わせる。</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="rstats.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="rstats.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(height)</span></code></pre></div>
 <pre><code>## [1] 17008</code></pre>
 </div>
 <div id="平均" class="section level3" number="7.3.2">
@@ -467,7 +469,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \bar{x} = \frac{1}{n}\sum^{n}_{i=1}x_i
 \]</span></p>
 <p>これをRで計算するときには、<code>mean()</code>という関数が用意されている。</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="rstats.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="rstats.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(height)</span></code></pre></div>
 <pre><code>## [1] 170.08</code></pre>
 </div>
 <div id="中央値" class="section level3" number="7.3.3">
@@ -484,18 +486,18 @@ x_{\frac{n}{2}} &amp; \text{もし } n \text{が奇数の場合} \\
 <p>難しく見えるかもしれないが、単純なことを行っている。<span class="math inline">\(n\)</span>,つまりデータの個数が奇数ならば、「真ん中」の数値が中央値となる。データの個数が5なら3番目, 99なら50番目である。
 もし、データが偶数ならば、「真ん中」の数値はない。そこで、ちょうど真ん中を挟む二つの数字の平均を取る。100個のデータがあるならば、50番目と51番目の数字の平均を取ることで中央値とする。</p>
 <p>Rでの計算は<code>median()</code>関数を用いる。medianは文字通り英語で中央値という意味である。</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="rstats.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="rstats.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(height)</span></code></pre></div>
 <pre><code>## [1] 170</code></pre>
 </div>
 <div id="最大値最小値" class="section level3" number="7.3.4">
 <h3><span class="header-section-number">7.3.4</span> 最大値・最小値</h3>
 <p>データの中で最も大きい数値、小さい数値もデータの特徴を表す。</p>
 <p>Rでは<code>max()</code>関数, <code>min()</code>関数で算出できる。</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="rstats.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データの最大値</span></span>
-<span id="cb170-2"><a href="rstats.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="rstats.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データの最大値</span></span>
+<span id="cb166-2"><a href="rstats.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(height)</span></code></pre></div>
 <pre><code>## [1] 187</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="rstats.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データの最小値</span></span>
-<span id="cb172-2"><a href="rstats.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="rstats.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データの最小値</span></span>
+<span id="cb168-2"><a href="rstats.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(height)</span></code></pre></div>
 <pre><code>## [1] 147</code></pre>
 </div>
 <div id="分散" class="section level3" number="7.3.5">
@@ -506,12 +508,12 @@ x_{\frac{n}{2}} &amp; \text{もし } n \text{が奇数の場合} \\
 \]</span></p>
 <p>Rで分散を計算する関数はデフォルトでは<strong>用意されていない</strong>。なぜないのかは、Section <a href="rstatsinfe.html#rstatsinfe">9</a>の不偏分散の項で説明する。</p>
 <p>分散をRで計算すると、自分で数式を表現する必要があるが以下のようになる。</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="rstats.html#cb174-1" aria-hidden="true" tabindex="-1"></a>height_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(height) <span class="co"># heightの平均値</span></span>
-<span id="cb174-2"><a href="rstats.html#cb174-2" aria-hidden="true" tabindex="-1"></a>height_n <span class="ot">&lt;-</span> <span class="fu">length</span>(height)  <span class="co"># heightのデータの個数</span></span>
-<span id="cb174-3"><a href="rstats.html#cb174-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-4"><a href="rstats.html#cb174-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-5"><a href="rstats.html#cb174-5" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="ot">=</span> <span class="fu">sum</span>((height<span class="sc">-</span>height_mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>height_n</span>
-<span id="cb174-6"><a href="rstats.html#cb174-6" aria-hidden="true" tabindex="-1"></a>sigma2</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="rstats.html#cb170-1" aria-hidden="true" tabindex="-1"></a>height_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(height) <span class="co"># heightの平均値</span></span>
+<span id="cb170-2"><a href="rstats.html#cb170-2" aria-hidden="true" tabindex="-1"></a>height_n <span class="ot">&lt;-</span> <span class="fu">length</span>(height)  <span class="co"># heightのデータの個数</span></span>
+<span id="cb170-3"><a href="rstats.html#cb170-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-4"><a href="rstats.html#cb170-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-5"><a href="rstats.html#cb170-5" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="ot">=</span> <span class="fu">sum</span>((height<span class="sc">-</span>height_mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>height_n</span>
+<span id="cb170-6"><a href="rstats.html#cb170-6" aria-hidden="true" tabindex="-1"></a>sigma2</span></code></pre></div>
 <pre><code>## [1] 72.9936</code></pre>
 </div>
 <div id="標準偏差" class="section level3" number="7.3.6">
@@ -523,7 +525,7 @@ x_{\frac{n}{2}} &amp; \text{もし } n \text{が奇数の場合} \\
 そこで、標準偏差は分散の平方根（ルート）を取ることで、計算される。
 二乗のルートなので、単位がもとに戻って解釈しやすくなるのである。</p>
 <p>標準偏差は<code>sd()</code>という関数があるのだが、こちらも分散と同様不偏標準偏差を計算するため、ここでは単純に上で計算した分散のルートを計算しよう。ルートは<code>sqrt()</code>という関数で計算できる。</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="rstats.html#cb176-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fu">sqrt</span>(sigma2)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="rstats.html#cb172-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fu">sqrt</span>(sigma2)</span></code></pre></div>
 
 </div>
 </div>

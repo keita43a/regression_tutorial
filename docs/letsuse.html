@@ -236,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="letsuse.html#ベクトルの型" id="toc-ベクトルの型"><span class="toc-section-number">4.4.1</span> ベクトルの型</a></li>
 <li><a href="letsuse.html#ベクトル連続した数値" id="toc-ベクトル連続した数値"><span class="toc-section-number">4.4.2</span> ベクトル：連続した数値</a></li>
-<li><a href="letsuse.html#練習問題" id="toc-練習問題"><span class="toc-section-number">4.4.3</span> 練習問題</a></li>
+<li><a href="letsuse.html#vectormake" id="toc-vectormake"><span class="toc-section-number">4.4.3</span> <strong>練習問題</strong>: 数列の作成</a></li>
 <li><a href="letsuse.html#ベクトルを作る関数1" id="toc-ベクトルを作る関数1"><span class="toc-section-number">4.4.4</span> ベクトルを作る関数1</a></li>
 <li><a href="letsuse.html#ベクトル要素の参照" id="toc-ベクトル要素の参照"><span class="toc-section-number">4.4.5</span> ベクトル要素の参照</a></li>
 </ul></li>
@@ -368,7 +368,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="practiceanswer.html#practiceanswer" id="toc-practiceanswer"><span class="toc-section-number">10</span> 練習問題解答</a>
 <ul>
-<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a></li>
+<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a>
+<ul>
+<li><a href="practiceanswer.html#練習問題-refvectormake" id="toc-練習問題-refvectormake"><span class="toc-section-number">10.1.1</span> 練習問題 @ref{vectormake}</a></li>
+</ul></li>
 <li><a href="practiceanswer.html#ch.-6" id="toc-ch.-6"><span class="toc-section-number">10.2</span> Ch. 6</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -597,39 +600,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="letsuse.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例：2から50まで２ずつ増える数列</span></span>
 <span id="cb70-2"><a href="letsuse.html#cb70-2" aria-hidden="true" tabindex="-1"></a>v7 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">50</span>,<span class="at">by=</span><span class="dv">2</span>)</span></code></pre></div>
 </div>
-<div id="練習問題" class="section level3" number="4.4.3">
-<h3><span class="header-section-number">4.4.3</span> 練習問題</h3>
+<div id="vectormake" class="section level3" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> <strong>練習問題</strong>: 数列の作成</h3>
 <p>3から60まで3ずつ増える数列ベクトルを作りなさい</p>
-<p>–</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="letsuse.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3から60まで3ずつ増える数列</span></span>
-<span id="cb71-2"><a href="letsuse.html#cb71-2" aria-hidden="true" tabindex="-1"></a>v7_ex <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">3</span>,<span class="dv">60</span>,<span class="at">by=</span><span class="dv">3</span>)</span>
-<span id="cb71-3"><a href="letsuse.html#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-4"><a href="letsuse.html#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(v7_ex)</span></code></pre></div>
-<pre><code>##  [1]  3  6  9 12 15 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60</code></pre>
 </div>
 <div id="ベクトルを作る関数1" class="section level3" number="4.4.4">
 <h3><span class="header-section-number">4.4.4</span> ベクトルを作る関数1</h3>
 <p>同じ数値がたくさんあるベクトルを作りたい場合は<code>rep()</code>関数を使う</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="letsuse.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5が100個ならぶベクトル</span></span>
-<span id="cb73-2"><a href="letsuse.html#cb73-2" aria-hidden="true" tabindex="-1"></a>v8 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">5</span>,<span class="dv">100</span>)</span>
-<span id="cb73-3"><a href="letsuse.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(v8)</span></code></pre></div>
-<pre><code>##   [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
-##  [40] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
-##  [79] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="letsuse.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5が100個ならぶベクトル</span></span>
+<span id="cb71-2"><a href="letsuse.html#cb71-2" aria-hidden="true" tabindex="-1"></a>v8 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">5</span>,<span class="dv">100</span>)</span>
+<span id="cb71-3"><a href="letsuse.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(v8)</span></code></pre></div>
+<pre><code>##   [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+##  [41] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+##  [81] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5</code></pre>
 <p>–</p>
 <p>本当に100個出てるか？
 ベクトルの要素の数を数える関数は<code>length</code></p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="letsuse.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(v8)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="letsuse.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(v8)</span></code></pre></div>
 <pre><code>## [1] 100</code></pre>
 </div>
 <div id="ベクトル要素の参照" class="section level3" number="4.4.5">
 <h3><span class="header-section-number">4.4.5</span> ベクトル要素の参照</h3>
 <p>ベクトルのn個目の要素を参照したいときは角カッコを使う<code>[]</code></p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="letsuse.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># v7の3つ目の要素は6</span></span>
-<span id="cb77-2"><a href="letsuse.html#cb77-2" aria-hidden="true" tabindex="-1"></a>v7[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="letsuse.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># v7の3つ目の要素は6</span></span>
+<span id="cb75-2"><a href="letsuse.html#cb75-2" aria-hidden="true" tabindex="-1"></a>v7[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="letsuse.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># v7の2,3,5つ目の要素</span></span>
-<span id="cb79-2"><a href="letsuse.html#cb79-2" aria-hidden="true" tabindex="-1"></a>v7[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="letsuse.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># v7の2,3,5つ目の要素</span></span>
+<span id="cb77-2"><a href="letsuse.html#cb77-2" aria-hidden="true" tabindex="-1"></a>v7[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>)]</span></code></pre></div>
 <pre><code>## [1]  4  6 10</code></pre>
 </div>
 </div>
@@ -637,15 +634,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.5</span> リスト</h2>
 <p>様々なベクトルやデータなどのオブジェクトをひとまとめにして扱うことができるのがリスト</p>
 <p>リストは<code>list()</code>関数で作成する</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="letsuse.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aというオブジェクトに、文字列ベクトル、数値ベクトル、データが混ざって入っている。</span></span>
-<span id="cb81-2"><a href="letsuse.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co"># カンマ, の後に改行しているが、listのかっこが閉じるまではひとまとまりだと扱われる。</span></span>
-<span id="cb81-3"><a href="letsuse.html#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-4"><a href="letsuse.html#cb81-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb81-5"><a href="letsuse.html#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;d&quot;</span>),</span>
-<span id="cb81-6"><a href="letsuse.html#cb81-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">num =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="fl">1.1</span>, <span class="dv">5</span>),</span>
-<span id="cb81-7"><a href="letsuse.html#cb81-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">head</span>(mtcars, <span class="dv">1</span>))</span>
-<span id="cb81-8"><a href="letsuse.html#cb81-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-9"><a href="letsuse.html#cb81-9" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="letsuse.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aというオブジェクトに、文字列ベクトル、数値ベクトル、データが混ざって入っている。</span></span>
+<span id="cb79-2"><a href="letsuse.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co"># カンマ, の後に改行しているが、listのかっこが閉じるまではひとまとまりだと扱われる。</span></span>
+<span id="cb79-3"><a href="letsuse.html#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="letsuse.html#cb79-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb79-5"><a href="letsuse.html#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;d&quot;</span>),</span>
+<span id="cb79-6"><a href="letsuse.html#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">num =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="fl">1.1</span>, <span class="dv">5</span>),</span>
+<span id="cb79-7"><a href="letsuse.html#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">head</span>(mtcars, <span class="dv">1</span>))</span>
+<span id="cb79-8"><a href="letsuse.html#cb79-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-9"><a href="letsuse.html#cb79-9" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;a&quot; &quot;b&quot; NA  &quot;d&quot;
 ## 
@@ -658,18 +655,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="リストの参照" class="section level3" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> リストの参照</h3>
 <p>リストの参照も角カッコでできる</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="letsuse.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># リストの参照</span></span>
-<span id="cb83-2"><a href="letsuse.html#cb83-2" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="letsuse.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># リストの参照</span></span>
+<span id="cb81-2"><a href="letsuse.html#cb81-2" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;a&quot; &quot;b&quot; NA  &quot;d&quot;</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="letsuse.html#cb85-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="letsuse.html#cb83-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## $num
 ## [1] 3.0 1.1 5.0</code></pre>
 </div>
 <div id="リストの参照-1" class="section level3" number="4.5.2">
 <h3><span class="header-section-number">4.5.2</span> リストの参照</h3>
 <p>リストの中身のみを取り出したい場合は、二重括角カッコを使う<code>[[]]</code></p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="letsuse.html#cb87-1" aria-hidden="true" tabindex="-1"></a>a[[<span class="dv">3</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="letsuse.html#cb85-1" aria-hidden="true" tabindex="-1"></a>a[[<span class="dv">3</span>]]</span></code></pre></div>
 <pre><code>##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
 ## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
 
