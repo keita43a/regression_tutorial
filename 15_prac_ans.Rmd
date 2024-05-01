@@ -30,6 +30,16 @@ for(i in 1:50){
 print(goukei)
 ```
 
+### 練習問題 \@ref{vectormake}
+
+```{r}
+# 3から60まで3ずつ増える数列
+v7_ex <- seq(3,60,by=3)
+
+print(v7_ex)
+
+```
+
 
 ## Ch. 6
 

@@ -163,9 +163,16 @@ readrでは以下のオプションを引数に指定することで設定でき
 
 武蔵大学経済学部の学生数データを見てみよう。
 
-```{r}
+```{r, echo=FALSE}
 ## エクセルからデータを読み込み
 data_634 <- readxl::read_excel("docs/r_basics/data/musashi_keizai_students_2023.xlsx") 
+
+knitr::kable(data_634) ## kableは見やすい表を出力する関数
+```
+
+```{r, eval=FALSE}
+## エクセルからデータを読み込み
+data_634 <- readxl::read_excel("data/musashi_keizai_students_2023.xlsx") 
 
 knitr::kable(data_634) ## kableは見やすい表を出力する関数
 ```
