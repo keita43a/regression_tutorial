@@ -24,7 +24,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-04-26" />
+<meta name="date" content="2024-05-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -462,7 +462,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.1.6</span> <strong>演習</strong>: データの読み込み</h3>
 <p>csvを読み込むには<code>read_csv()</code>関数を使う。この関数は<code>readr</code>パッケージ含まれており、tidyverseパッケージ群の一つである。</p>
 <ol style="list-style-type: decimal">
-<li><code>gapminder.csv</code>というデータファイルをGoogle Classroomからダウンロードする。</li>
+<li><p><code>gapminder.csv</code>というデータファイルを<a href="https://keita43a.github.io/regression_tutorial/data/gapminder.csv" download="gapminder.csv">こちら</a>からダウンロードするか、阿部ゼミのGoogle Classroomからダウンロードする。</p></li>
+<li><p><code>r_renshu</code>フォルダに<code>data</code>フォルダを作成し、そこに<code>gapminder.csv</code>ファイルを保存する。</p></li>
+<li><p>Rスクリプトを作成し、<code>data_mgt.R</code>という名前をつけて保存する。</p></li>
+<li><p>Rスクリプトに以下のコードを書きこみ、データを読み込む。</p></li>
 </ol>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="datahandling.html#cb96-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gapminder.csv&quot;</span>)</span></code></pre></div>
 <ul>
@@ -1054,7 +1057,7 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <div id="データの操作-1" class="section level3" number="6.11.1">
 <h3><span class="header-section-number">6.11.1</span> データの操作</h3>
 <p><code>tidyverse</code>シリーズである<code>dplyr</code>パッケージに入っている関数で操作することができる。</p>
-<p><img src="docs/r_basics/fig/dplyr_logo.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="docs/r_basics/fig/dplyr_logo.png" width="40%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="元のデータの見た目確認" class="section level3" number="6.11.2">
 <h3><span class="header-section-number">6.11.2</span> 元のデータの見た目確認</h3>

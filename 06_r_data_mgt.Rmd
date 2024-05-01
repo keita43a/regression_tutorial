@@ -68,7 +68,13 @@ knitr::include_graphics("docs/r_basics/fig/gyoretsu2.png")
 
 csvを読み込むには`read_csv()`関数を使う。この関数は`readr`パッケージ含まれており、tidyverseパッケージ群の一つである。
 
-1. `gapminder.csv`というデータファイルをGoogle Classroomからダウンロードする。
+1. `gapminder.csv`というデータファイルを<a href="https://keita43a.github.io/regression_tutorial/data/gapminder.csv" download="gapminder.csv">こちら</a>からダウンロードするか、阿部ゼミのGoogle Classroomからダウンロードする。
+
+2. `r_renshu`フォルダに`data`フォルダを作成し、そこに`gapminder.csv`ファイルを保存する。
+
+3. Rスクリプトを作成し、`data_mgt.R`という名前をつけて保存する。
+
+4. Rスクリプトに以下のコードを書きこみ、データを読み込む。
 
 ```{r, echo=FALSE}
 data2 <- gapminder::gapminder
@@ -413,7 +419,7 @@ sum(data_634_long$学生数)
 `tidyverse`シリーズである`dplyr`パッケージに入っている関数で操作することができる。
 
 
-```{r  label = dplyr_logo, echo = FALSE, fig.cap = "", out.width = '70%',fig.align='center'}
+```{r  label = dplyr_logo, echo = FALSE, fig.cap = "", out.width = '40%',fig.align='center'}
 knitr::include_graphics("docs/r_basics/fig/dplyr_logo.png")
 ```
 
