@@ -38,9 +38,8 @@
 
 ### Windownsへのインストール
 
-- ブラウザから<a href="https://cran.r-project.org/" target="_blank">CLAN</a>へアクセスする
-  - もし繋がらなければ<a href="https://cran.ism.ac.jp/">こちら</a>から試してみる
-  - それでもだめならGoogleで"CLAN R"で検索
+- ブラウザから<a href="https://cran.ism.ac.jp/" target="_blank">CLAN</a>へアクセスする
+  - もし繋がらなければ<a href="https://ftp.yz.yamagata-u.ac.jp/pub/cran/">こちら</a>から試してみる
 - 「Download R for Windows」-> 「base」-> 「Download R-4.3.3 for Windows」
   - R-4.3.3-win.exeがダウンロードされる
   - この資料が更新されていなければ4.3.3.より新しいバージョンになっているかもしれない。
@@ -127,8 +126,8 @@ knitr::include_graphics("fig/xquartz.png")
 
 #### Rのダウンロード
 
-- ブラウザから<a href="https://cran.r-project.org/" target="_blank">CLAN</a>へアクセスする
-  - もし繋がらなければ<a href="https://cran.ism.ac.jp/">こちら</a>から試してみる
+- ブラウザから<a href="https://cran.ism.ac.jp/" target="_blank">CLAN</a>へアクセスする
+  - もし繋がらなければ<a href="https://ftp.yz.yamagata-u.ac.jp/pub/cran/">こちら</a>から試してみる
 - 「Download R for Mac OS」をクリック
   - Apple Siliconの場合は、R-4.3.3-arm64.pkgをダウンロード
   - Intelの場合は、R-4.3.3-x86_64.pkgをダウンロード

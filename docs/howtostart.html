@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Rのはじめかた | 武蔵大生のためのRによる実証分析入門</title>
   <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Rのはじめかた | 武蔵大生のためのRによる実証分析入門" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-01" />
+<meta name="date" content="2024-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="whatsr.html"/>
 <link rel="next" href="letsuse.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,16 +49,18 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -130,6 +130,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -147,232 +151,240 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R入門</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#この資料について" id="toc-この資料について"><span class="toc-section-number">1</span> この資料について</a></li>
-<li><a href="whatsr.html#whatsr" id="toc-whatsr"><span class="toc-section-number">2</span> Rとはなにか？</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> この資料について</a></li>
+<li class="chapter" data-level="2" data-path="whatsr.html"><a href="whatsr.html"><i class="fa fa-check"></i><b>2</b> Rとはなにか？</a>
 <ul>
-<li><a href="whatsr.html#r" id="toc-r"><span class="toc-section-number">2.1</span> R?</a></li>
-<li><a href="whatsr.html#excelじゃだめなのか" id="toc-excelじゃだめなのか"><span class="toc-section-number">2.2</span> Excelじゃだめなのか</a></li>
-<li><a href="whatsr.html#rのよいところ" id="toc-rのよいところ"><span class="toc-section-number">2.3</span> Rのよいところ</a></li>
-<li><a href="whatsr.html#例えばrでできること図表" id="toc-例えばrでできること図表"><span class="toc-section-number">2.4</span> 例えばRでできること：図表</a></li>
-<li><a href="whatsr.html#例えばrでできることウェブアプリ" id="toc-例えばrでできることウェブアプリ"><span class="toc-section-number">2.5</span> 例えばRでできること：ウェブアプリ</a></li>
-<li><a href="whatsr.html#例えばrでできることウェブスクレイピング" id="toc-例えばrでできることウェブスクレイピング"><span class="toc-section-number">2.6</span> 例えばRでできること：ウェブスクレイピング</a></li>
-<li><a href="whatsr.html#地図の分析活用" id="toc-地図の分析活用"><span class="toc-section-number">2.7</span> 地図の分析・活用</a></li>
-<li><a href="whatsr.html#rの欠点" id="toc-rの欠点"><span class="toc-section-number">2.8</span> Rの欠点</a></li>
-<li><a href="whatsr.html#cuiとgui" id="toc-cuiとgui"><span class="toc-section-number">2.9</span> CUIとGUI</a>
+<li class="chapter" data-level="2.1" data-path="whatsr.html"><a href="whatsr.html#r"><i class="fa fa-check"></i><b>2.1</b> R?</a></li>
+<li class="chapter" data-level="2.2" data-path="whatsr.html"><a href="whatsr.html#excelじゃだめなのか"><i class="fa fa-check"></i><b>2.2</b> Excelじゃだめなのか</a></li>
+<li class="chapter" data-level="2.3" data-path="whatsr.html"><a href="whatsr.html#rのよいところ"><i class="fa fa-check"></i><b>2.3</b> Rのよいところ</a></li>
+<li class="chapter" data-level="2.4" data-path="whatsr.html"><a href="whatsr.html#例えばrでできること図表"><i class="fa fa-check"></i><b>2.4</b> 例えばRでできること：図表</a></li>
+<li class="chapter" data-level="2.5" data-path="whatsr.html"><a href="whatsr.html#例えばrでできることウェブアプリ"><i class="fa fa-check"></i><b>2.5</b> 例えばRでできること：ウェブアプリ</a></li>
+<li class="chapter" data-level="2.6" data-path="whatsr.html"><a href="whatsr.html#例えばrでできることウェブスクレイピング"><i class="fa fa-check"></i><b>2.6</b> 例えばRでできること：ウェブスクレイピング</a></li>
+<li class="chapter" data-level="2.7" data-path="whatsr.html"><a href="whatsr.html#地図の分析活用"><i class="fa fa-check"></i><b>2.7</b> 地図の分析・活用</a></li>
+<li class="chapter" data-level="2.8" data-path="whatsr.html"><a href="whatsr.html#rの欠点"><i class="fa fa-check"></i><b>2.8</b> Rの欠点</a></li>
+<li class="chapter" data-level="2.9" data-path="whatsr.html"><a href="whatsr.html#cuiとgui"><i class="fa fa-check"></i><b>2.9</b> CUIとGUI</a>
 <ul>
-<li><a href="whatsr.html#guiの方が楽" id="toc-guiの方が楽"><span class="toc-section-number">2.9.1</span> GUIの方が楽？</a></li>
+<li class="chapter" data-level="2.9.1" data-path="whatsr.html"><a href="whatsr.html#guiの方が楽"><i class="fa fa-check"></i><b>2.9.1</b> GUIの方が楽？</a></li>
 </ul></li>
-<li><a href="whatsr.html#プログラミング" id="toc-プログラミング"><span class="toc-section-number">2.10</span> プログラミング</a></li>
+<li class="chapter" data-level="2.10" data-path="whatsr.html"><a href="whatsr.html#プログラミング"><i class="fa fa-check"></i><b>2.10</b> プログラミング</a></li>
 </ul></li>
-<li><a href="howtostart.html#howtostart" id="toc-howtostart"><span class="toc-section-number">3</span> Rのはじめかた</a>
+<li class="chapter" data-level="3" data-path="howtostart.html"><a href="howtostart.html"><i class="fa fa-check"></i><b>3</b> Rのはじめかた</a>
 <ul>
-<li><a href="howtostart.html#rをどうやって使う" id="toc-rをどうやって使う"><span class="toc-section-number">3.1</span> Rをどうやって使う？</a></li>
-<li><a href="howtostart.html#rstudioを使う3つの方法" id="toc-rstudioを使う3つの方法"><span class="toc-section-number">3.2</span> Rstudioを使う3つの方法</a></li>
-<li><a href="howtostart.html#rのインストール" id="toc-rのインストール"><span class="toc-section-number">3.3</span> Rのインストール</a>
+<li class="chapter" data-level="3.1" data-path="howtostart.html"><a href="howtostart.html#rをどうやって使う"><i class="fa fa-check"></i><b>3.1</b> Rをどうやって使う？</a></li>
+<li class="chapter" data-level="3.2" data-path="howtostart.html"><a href="howtostart.html#rstudioを使う3つの方法"><i class="fa fa-check"></i><b>3.2</b> Rstudioを使う3つの方法</a></li>
+<li class="chapter" data-level="3.3" data-path="howtostart.html"><a href="howtostart.html#rのインストール"><i class="fa fa-check"></i><b>3.3</b> Rのインストール</a>
 <ul>
-<li><a href="howtostart.html#windownsへのインストール" id="toc-windownsへのインストール"><span class="toc-section-number">3.3.1</span> Windownsへのインストール</a></li>
-<li><a href="howtostart.html#mac-osへのインストール" id="toc-mac-osへのインストール"><span class="toc-section-number">3.3.2</span> Mac OSへのインストール</a></li>
+<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windownsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windownsへのインストール</a></li>
+<li class="chapter" data-level="3.3.2" data-path="howtostart.html"><a href="howtostart.html#mac-osへのインストール"><i class="fa fa-check"></i><b>3.3.2</b> Mac OSへのインストール</a></li>
 </ul></li>
-<li><a href="howtostart.html#rstudioのインストール" id="toc-rstudioのインストール"><span class="toc-section-number">3.4</span> Rstudioのインストール</a></li>
-<li><a href="howtostart.html#rstudioのインターフェース" id="toc-rstudioのインターフェース"><span class="toc-section-number">3.5</span> Rstudioのインターフェース</a></li>
-<li><a href="howtostart.html#コンピュータのディレクトリ構造" id="toc-コンピュータのディレクトリ構造"><span class="toc-section-number">3.6</span> コンピュータのディレクトリ構造</a></li>
-<li><a href="howtostart.html#演習作業フォルダを作ろう" id="toc-演習作業フォルダを作ろう"><span class="toc-section-number">3.7</span> <strong>演習</strong>：作業フォルダを作ろう</a>
+<li class="chapter" data-level="3.4" data-path="howtostart.html"><a href="howtostart.html#rstudioのインストール"><i class="fa fa-check"></i><b>3.4</b> Rstudioのインストール</a></li>
+<li class="chapter" data-level="3.5" data-path="howtostart.html"><a href="howtostart.html#rstudioのインターフェース"><i class="fa fa-check"></i><b>3.5</b> Rstudioのインターフェース</a></li>
+<li class="chapter" data-level="3.6" data-path="howtostart.html"><a href="howtostart.html#コンピュータのディレクトリ構造"><i class="fa fa-check"></i><b>3.6</b> コンピュータのディレクトリ構造</a></li>
+<li class="chapter" data-level="3.7" data-path="howtostart.html"><a href="howtostart.html#演習作業フォルダを作ろう"><i class="fa fa-check"></i><b>3.7</b> <strong>演習</strong>：作業フォルダを作ろう</a>
 <ul>
-<li><a href="howtostart.html#自分のパソコン" id="toc-自分のパソコン"><span class="toc-section-number">3.7.1</span> 自分のパソコン</a></li>
-<li><a href="howtostart.html#学校のパソコン" id="toc-学校のパソコン"><span class="toc-section-number">3.7.2</span> 学校のパソコン</a></li>
-<li><a href="howtostart.html#posit.cloud" id="toc-posit.cloud"><span class="toc-section-number">3.7.3</span> Posit.cloud</a></li>
+<li class="chapter" data-level="3.7.1" data-path="howtostart.html"><a href="howtostart.html#自分のパソコン"><i class="fa fa-check"></i><b>3.7.1</b> 自分のパソコン</a></li>
+<li class="chapter" data-level="3.7.2" data-path="howtostart.html"><a href="howtostart.html#学校のパソコン"><i class="fa fa-check"></i><b>3.7.2</b> 学校のパソコン</a></li>
+<li class="chapter" data-level="3.7.3" data-path="howtostart.html"><a href="howtostart.html#posit.cloud"><i class="fa fa-check"></i><b>3.7.3</b> Posit.cloud</a></li>
 </ul></li>
-<li><a href="howtostart.html#作業スペース" id="toc-作業スペース"><span class="toc-section-number">3.8</span> 作業スペース</a></li>
-<li><a href="howtostart.html#プロジェクトの作成" id="toc-プロジェクトの作成"><span class="toc-section-number">3.9</span> プロジェクトの作成</a></li>
-<li><a href="howtostart.html#演習-rプロジェクトを作成してみよう" id="toc-演習-rプロジェクトを作成してみよう"><span class="toc-section-number">3.10</span> <strong>演習</strong>: Rプロジェクトを作成してみよう</a></li>
-<li><a href="howtostart.html#とりあえず触ってみる" id="toc-とりあえず触ってみる"><span class="toc-section-number">3.11</span> とりあえず触ってみる</a></li>
-<li><a href="howtostart.html#scriptmake" id="toc-scriptmake"><span class="toc-section-number">3.12</span> スクリプトの作成</a>
+<li class="chapter" data-level="3.8" data-path="howtostart.html"><a href="howtostart.html#作業スペース"><i class="fa fa-check"></i><b>3.8</b> 作業スペース</a></li>
+<li class="chapter" data-level="3.9" data-path="howtostart.html"><a href="howtostart.html#プロジェクトの作成"><i class="fa fa-check"></i><b>3.9</b> プロジェクトの作成</a></li>
+<li class="chapter" data-level="3.10" data-path="howtostart.html"><a href="howtostart.html#演習-rプロジェクトを作成してみよう"><i class="fa fa-check"></i><b>3.10</b> <strong>演習</strong>: Rプロジェクトを作成してみよう</a></li>
+<li class="chapter" data-level="3.11" data-path="howtostart.html"><a href="howtostart.html#とりあえず触ってみる"><i class="fa fa-check"></i><b>3.11</b> とりあえず触ってみる</a></li>
+<li class="chapter" data-level="3.12" data-path="howtostart.html"><a href="howtostart.html#scriptmake"><i class="fa fa-check"></i><b>3.12</b> スクリプトの作成</a>
 <ul>
-<li><a href="howtostart.html#演習スクリプトを作成してみる" id="toc-演習スクリプトを作成してみる"><span class="toc-section-number">3.12.1</span> <strong>演習</strong>：スクリプトを作成してみる</a></li>
+<li class="chapter" data-level="3.12.1" data-path="howtostart.html"><a href="howtostart.html#演習スクリプトを作成してみる"><i class="fa fa-check"></i><b>3.12.1</b> <strong>演習</strong>：スクリプトを作成してみる</a></li>
 </ul></li>
-<li><a href="howtostart.html#実行してみる" id="toc-実行してみる"><span class="toc-section-number">3.13</span> 実行してみる</a>
+<li class="chapter" data-level="3.13" data-path="howtostart.html"><a href="howtostart.html#実行してみる"><i class="fa fa-check"></i><b>3.13</b> 実行してみる</a>
 <ul>
-<li><a href="howtostart.html#コードを実行する際のポイント" id="toc-コードを実行する際のポイント"><span class="toc-section-number">3.13.1</span> コードを実行する際のポイント</a></li>
+<li class="chapter" data-level="3.13.1" data-path="howtostart.html"><a href="howtostart.html#コードを実行する際のポイント"><i class="fa fa-check"></i><b>3.13.1</b> コードを実行する際のポイント</a></li>
 </ul></li>
-<li><a href="howtostart.html#スクリプトを書く際の注意点" id="toc-スクリプトを書く際の注意点"><span class="toc-section-number">3.14</span> スクリプトを書く際の注意点</a>
+<li class="chapter" data-level="3.14" data-path="howtostart.html"><a href="howtostart.html#スクリプトを書く際の注意点"><i class="fa fa-check"></i><b>3.14</b> スクリプトを書く際の注意点</a>
 <ul>
-<li><a href="howtostart.html#コメント" id="toc-コメント"><span class="toc-section-number">3.14.1</span> コメント</a></li>
-<li><a href="howtostart.html#スクリプトは読みやすく" id="toc-スクリプトは読みやすく"><span class="toc-section-number">3.14.2</span> スクリプトは読みやすく</a></li>
+<li class="chapter" data-level="3.14.1" data-path="howtostart.html"><a href="howtostart.html#コメント"><i class="fa fa-check"></i><b>3.14.1</b> コメント</a></li>
+<li class="chapter" data-level="3.14.2" data-path="howtostart.html"><a href="howtostart.html#スクリプトは読みやすく"><i class="fa fa-check"></i><b>3.14.2</b> スクリプトは読みやすく</a></li>
 </ul></li>
-<li><a href="howtostart.html#エラーを恐れるな" id="toc-エラーを恐れるな"><span class="toc-section-number">3.15</span> エラーを恐れるな！</a>
+<li class="chapter" data-level="3.15" data-path="howtostart.html"><a href="howtostart.html#エラーを恐れるな"><i class="fa fa-check"></i><b>3.15</b> エラーを恐れるな！</a>
 <ul>
-<li><a href="howtostart.html#よくあるエラー1" id="toc-よくあるエラー1"><span class="toc-section-number">3.15.1</span> よくあるエラー1</a></li>
-<li><a href="howtostart.html#よくあるエラー2" id="toc-よくあるエラー2"><span class="toc-section-number">3.15.2</span> よくあるエラー2</a></li>
+<li class="chapter" data-level="3.15.1" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー1"><i class="fa fa-check"></i><b>3.15.1</b> よくあるエラー1</a></li>
+<li class="chapter" data-level="3.15.2" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー2"><i class="fa fa-check"></i><b>3.15.2</b> よくあるエラー2</a></li>
 </ul></li>
-<li><a href="howtostart.html#rstudioの補完機能" id="toc-rstudioの補完機能"><span class="toc-section-number">3.16</span> Rstudioの補完機能</a></li>
-<li><a href="howtostart.html#rstudioのオプション" id="toc-rstudioのオプション"><span class="toc-section-number">3.17</span> Rstudioのオプション</a>
+<li class="chapter" data-level="3.16" data-path="howtostart.html"><a href="howtostart.html#rstudioの補完機能"><i class="fa fa-check"></i><b>3.16</b> Rstudioの補完機能</a></li>
+<li class="chapter" data-level="3.17" data-path="howtostart.html"><a href="howtostart.html#rstudioのオプション"><i class="fa fa-check"></i><b>3.17</b> Rstudioのオプション</a>
 <ul>
-<li><a href="howtostart.html#例外観の変更" id="toc-例外観の変更"><span class="toc-section-number">3.17.1</span> 例：外観の変更</a></li>
-</ul></li>
-</ul></li>
-<li><a href="letsuse.html#letsuse" id="toc-letsuse"><span class="toc-section-number">4</span> Rを使ってみる</a>
-<ul>
-<li><a href="letsuse.html#計算機としてのr" id="toc-計算機としてのr"><span class="toc-section-number">4.1</span> 計算機としてのR</a>
-<ul>
-<li><a href="letsuse.html#演習r-scriptの作成" id="toc-演習r-scriptの作成"><span class="toc-section-number">4.1.1</span> 演習：R Scriptの作成</a></li>
-<li><a href="letsuse.html#足し算引き算" id="toc-足し算引き算"><span class="toc-section-number">4.1.2</span> 足し算・引き算</a></li>
-<li><a href="letsuse.html#かけ算割り算" id="toc-かけ算割り算"><span class="toc-section-number">4.1.3</span> かけ算・割り算</a></li>
-<li><a href="letsuse.html#practicecalc" id="toc-practicecalc"><span class="toc-section-number">4.1.4</span> <strong>練習問題</strong>：以下の演算をRを使ってやってみよう</a></li>
-<li><a href="letsuse.html#論理演算" id="toc-論理演算"><span class="toc-section-number">4.1.5</span> 論理演算</a></li>
-</ul></li>
-<li><a href="letsuse.html#プログラミング言語としてのr" id="toc-プログラミング言語としてのr"><span class="toc-section-number">4.2</span> プログラミング言語としてのR</a>
-<ul>
-<li><a href="letsuse.html#変数へのオブジェクトの代入" id="toc-変数へのオブジェクトの代入"><span class="toc-section-number">4.2.1</span> 変数へのオブジェクトの代入</a></li>
-<li><a href="letsuse.html#プログラミング繰り返し" id="toc-プログラミング繰り返し"><span class="toc-section-number">4.2.2</span> プログラミング：繰り返し</a></li>
-<li><a href="letsuse.html#practiceloop" id="toc-practiceloop"><span class="toc-section-number">4.2.3</span> <strong>練習問題</strong>：ループを用いた計算</a></li>
-<li><a href="letsuse.html#プログラミングif文" id="toc-プログラミングif文"><span class="toc-section-number">4.2.4</span> プログラミング：if文</a></li>
-</ul></li>
-<li><a href="letsuse.html#データ型" id="toc-データ型"><span class="toc-section-number">4.3</span> データ型</a>
-<ul>
-<li><a href="letsuse.html#データ型注意点" id="toc-データ型注意点"><span class="toc-section-number">4.3.1</span> データ型：注意点</a></li>
-<li><a href="letsuse.html#データ型の変換" id="toc-データ型の変換"><span class="toc-section-number">4.3.2</span> データ型の変換</a></li>
-</ul></li>
-<li><a href="letsuse.html#ベクトル" id="toc-ベクトル"><span class="toc-section-number">4.4</span> ベクトル</a>
-<ul>
-<li><a href="letsuse.html#ベクトルの型" id="toc-ベクトルの型"><span class="toc-section-number">4.4.1</span> ベクトルの型</a></li>
-<li><a href="letsuse.html#ベクトル連続した数値" id="toc-ベクトル連続した数値"><span class="toc-section-number">4.4.2</span> ベクトル：連続した数値</a></li>
-<li><a href="letsuse.html#vectormake" id="toc-vectormake"><span class="toc-section-number">4.4.3</span> <strong>練習問題</strong>: 数列の作成</a></li>
-<li><a href="letsuse.html#ベクトルを作る関数1" id="toc-ベクトルを作る関数1"><span class="toc-section-number">4.4.4</span> ベクトルを作る関数1</a></li>
-<li><a href="letsuse.html#ベクトル要素の参照" id="toc-ベクトル要素の参照"><span class="toc-section-number">4.4.5</span> ベクトル要素の参照</a></li>
-</ul></li>
-<li><a href="letsuse.html#リスト" id="toc-リスト"><span class="toc-section-number">4.5</span> リスト</a>
-<ul>
-<li><a href="letsuse.html#リストの参照" id="toc-リストの参照"><span class="toc-section-number">4.5.1</span> リストの参照</a></li>
-<li><a href="letsuse.html#リストの参照-1" id="toc-リストの参照-1"><span class="toc-section-number">4.5.2</span> リストの参照</a></li>
+<li class="chapter" data-level="3.17.1" data-path="howtostart.html"><a href="howtostart.html#例外観の変更"><i class="fa fa-check"></i><b>3.17.1</b> 例：外観の変更</a></li>
 </ul></li>
 </ul></li>
-<li><a href="packages.html#packages" id="toc-packages"><span class="toc-section-number">5</span> パッケージとは</a>
+<li class="chapter" data-level="4" data-path="letsuse.html"><a href="letsuse.html"><i class="fa fa-check"></i><b>4</b> Rを使ってみる</a>
 <ul>
-<li><a href="packages.html#パッケージについて" id="toc-パッケージについて"><span class="toc-section-number">5.1</span> パッケージについて</a></li>
-<li><a href="packages.html#パッケージのインストール" id="toc-パッケージのインストール"><span class="toc-section-number">5.2</span> パッケージのインストール</a></li>
-<li><a href="packages.html#よく使うパッケージのインストール" id="toc-よく使うパッケージのインストール"><span class="toc-section-number">5.3</span> よく使うパッケージのインストール</a>
+<li class="chapter" data-level="4.1" data-path="letsuse.html"><a href="letsuse.html#計算機としてのr"><i class="fa fa-check"></i><b>4.1</b> 計算機としてのR</a>
 <ul>
-<li><a href="packages.html#tidyverseについて" id="toc-tidyverseについて"><span class="toc-section-number">5.3.1</span> Tidyverseについて</a></li>
+<li class="chapter" data-level="4.1.1" data-path="letsuse.html"><a href="letsuse.html#演習r-scriptの作成"><i class="fa fa-check"></i><b>4.1.1</b> 演習：R Scriptの作成</a></li>
+<li class="chapter" data-level="4.1.2" data-path="letsuse.html"><a href="letsuse.html#足し算引き算"><i class="fa fa-check"></i><b>4.1.2</b> 足し算・引き算</a></li>
+<li class="chapter" data-level="4.1.3" data-path="letsuse.html"><a href="letsuse.html#かけ算割り算"><i class="fa fa-check"></i><b>4.1.3</b> かけ算・割り算</a></li>
+<li class="chapter" data-level="4.1.4" data-path="letsuse.html"><a href="letsuse.html#practicecalc"><i class="fa fa-check"></i><b>4.1.4</b> <strong>練習問題</strong>：以下の演算をRを使ってやってみよう</a></li>
+<li class="chapter" data-level="4.1.5" data-path="letsuse.html"><a href="letsuse.html#論理演算"><i class="fa fa-check"></i><b>4.1.5</b> 論理演算</a></li>
 </ul></li>
-<li><a href="packages.html#パッケージの使い方1" id="toc-パッケージの使い方1"><span class="toc-section-number">5.4</span> パッケージの使い方1</a></li>
-<li><a href="packages.html#パッケージの使い方2" id="toc-パッケージの使い方2"><span class="toc-section-number">5.5</span> パッケージの使い方2</a></li>
+<li class="chapter" data-level="4.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング言語としてのr"><i class="fa fa-check"></i><b>4.2</b> プログラミング言語としてのR</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="letsuse.html"><a href="letsuse.html#変数へのオブジェクトの代入"><i class="fa fa-check"></i><b>4.2.1</b> 変数へのオブジェクトの代入</a></li>
+<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング繰り返し"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
+<li class="chapter" data-level="4.2.3" data-path="letsuse.html"><a href="letsuse.html#practiceloop"><i class="fa fa-check"></i><b>4.2.3</b> <strong>練習問題</strong>：ループを用いた計算</a></li>
+<li class="chapter" data-level="4.2.4" data-path="letsuse.html"><a href="letsuse.html#プログラミングif文"><i class="fa fa-check"></i><b>4.2.4</b> プログラミング：if文</a></li>
 </ul></li>
-<li><a href="datahandling.html#datahandling" id="toc-datahandling"><span class="toc-section-number">6</span> データのハンドリング</a>
+<li class="chapter" data-level="4.3" data-path="letsuse.html"><a href="letsuse.html#データ型"><i class="fa fa-check"></i><b>4.3</b> データ型</a>
 <ul>
-<li><a href="datahandling.html#データ" id="toc-データ"><span class="toc-section-number">6.1</span> データ</a>
-<ul>
-<li><a href="datahandling.html#データとは" id="toc-データとは"><span class="toc-section-number">6.1.1</span> データとは？</a></li>
-<li><a href="datahandling.html#データフレーム" id="toc-データフレーム"><span class="toc-section-number">6.1.2</span> データフレーム</a></li>
-<li><a href="datahandling.html#行と列" id="toc-行と列"><span class="toc-section-number">6.1.3</span> 行と列</a></li>
-<li><a href="datahandling.html#きれいなデータ" id="toc-きれいなデータ"><span class="toc-section-number">6.1.4</span> きれいなデータ？</a></li>
-<li><a href="datahandling.html#データの読み込み" id="toc-データの読み込み"><span class="toc-section-number">6.1.5</span> データの読み込み</a></li>
-<li><a href="datahandling.html#演習-データの読み込み" id="toc-演習-データの読み込み"><span class="toc-section-number">6.1.6</span> <strong>演習</strong>: データの読み込み</a></li>
-<li><a href="datahandling.html#日本語のデータを読み込む際の注意点" id="toc-日本語のデータを読み込む際の注意点"><span class="toc-section-number">6.1.7</span> 日本語のデータを読み込む際の注意点</a></li>
-<li><a href="datahandling.html#readrのその他のオプション" id="toc-readrのその他のオプション"><span class="toc-section-number">6.1.8</span> readrのその他のオプション</a></li>
+<li class="chapter" data-level="4.3.1" data-path="letsuse.html"><a href="letsuse.html#データ型注意点"><i class="fa fa-check"></i><b>4.3.1</b> データ型：注意点</a></li>
+<li class="chapter" data-level="4.3.2" data-path="letsuse.html"><a href="letsuse.html#データ型の変換"><i class="fa fa-check"></i><b>4.3.2</b> データ型の変換</a></li>
 </ul></li>
-<li><a href="datahandling.html#tidy-data-整然データ" id="toc-tidy-data-整然データ"><span class="toc-section-number">6.2</span> tidy data (整然データ)</a></li>
-<li><a href="datahandling.html#データフレームを扱うテクニックパイプ" id="toc-データフレームを扱うテクニックパイプ"><span class="toc-section-number">6.3</span> データフレームを扱うテクニック：パイプ</a>
+<li class="chapter" data-level="4.4" data-path="letsuse.html"><a href="letsuse.html#ベクトル"><i class="fa fa-check"></i><b>4.4</b> ベクトル</a>
 <ul>
-<li><a href="datahandling.html#パイプ" id="toc-パイプ"><span class="toc-section-number">6.3.1</span> パイプ</a></li>
+<li class="chapter" data-level="4.4.1" data-path="letsuse.html"><a href="letsuse.html#ベクトルの型"><i class="fa fa-check"></i><b>4.4.1</b> ベクトルの型</a></li>
+<li class="chapter" data-level="4.4.2" data-path="letsuse.html"><a href="letsuse.html#ベクトル連続した数値"><i class="fa fa-check"></i><b>4.4.2</b> ベクトル：連続した数値</a></li>
+<li class="chapter" data-level="4.4.3" data-path="letsuse.html"><a href="letsuse.html#vectormake"><i class="fa fa-check"></i><b>4.4.3</b> <strong>練習問題</strong>: 数列の作成</a></li>
+<li class="chapter" data-level="4.4.4" data-path="letsuse.html"><a href="letsuse.html#ベクトル同じ数値が並ぶベクトル"><i class="fa fa-check"></i><b>4.4.4</b> ベクトル：同じ数値が並ぶベクトル</a></li>
+<li class="chapter" data-level="4.4.5" data-path="letsuse.html"><a href="letsuse.html#vectormake2"><i class="fa fa-check"></i><b>4.4.5</b> <strong>練習問題</strong>：ベクトルの作成</a></li>
+<li class="chapter" data-level="4.4.6" data-path="letsuse.html"><a href="letsuse.html#ベクトル要素の参照"><i class="fa fa-check"></i><b>4.4.6</b> ベクトル要素の参照</a></li>
 </ul></li>
-<li><a href="datahandling.html#tidyでないデータとtidyデータの変換" id="toc-tidyでないデータとtidyデータの変換"><span class="toc-section-number">6.4</span> tidyでないデータとtidyデータの変換</a>
+<li class="chapter" data-level="4.5" data-path="letsuse.html"><a href="letsuse.html#リスト"><i class="fa fa-check"></i><b>4.5</b> リスト</a>
 <ul>
-<li><a href="datahandling.html#long型データへの変換" id="toc-long型データへの変換"><span class="toc-section-number">6.4.1</span> long型データへの変換</a></li>
-<li><a href="datahandling.html#データを見てみる" id="toc-データを見てみる"><span class="toc-section-number">6.4.2</span> データを見てみる</a></li>
-<li><a href="datahandling.html#データを一部だけみたい場合" id="toc-データを一部だけみたい場合"><span class="toc-section-number">6.4.3</span> データを一部だけみたい場合</a></li>
-</ul></li>
-<li><a href="datahandling.html#データの大きさ" id="toc-データの大きさ"><span class="toc-section-number">6.5</span> データの「大きさ」</a></li>
-<li><a href="datahandling.html#列の名前一覧" id="toc-列の名前一覧"><span class="toc-section-number">6.6</span> 列の名前一覧</a></li>
-<li><a href="datahandling.html#変数の要約" id="toc-変数の要約"><span class="toc-section-number">6.7</span> 変数の要約</a></li>
-<li><a href="datahandling.html#変数の取り出し" id="toc-変数の取り出し"><span class="toc-section-number">6.8</span> 変数の取り出し</a></li>
-<li><a href="datahandling.html#変数の取り出しと計算" id="toc-変数の取り出しと計算"><span class="toc-section-number">6.9</span> 変数の取り出しと計算</a></li>
-<li><a href="datahandling.html#データフレームとtibble" id="toc-データフレームとtibble"><span class="toc-section-number">6.10</span> データフレームとtibble</a></li>
-<li><a href="datahandling.html#データの操作" id="toc-データの操作"><span class="toc-section-number">6.11</span> データの操作</a>
-<ul>
-<li><a href="datahandling.html#データの操作-1" id="toc-データの操作-1"><span class="toc-section-number">6.11.1</span> データの操作</a></li>
-<li><a href="datahandling.html#元のデータの見た目確認" id="toc-元のデータの見た目確認"><span class="toc-section-number">6.11.2</span> 元のデータの見た目確認</a></li>
-<li><a href="datahandling.html#列の名前を変えたい-rename" id="toc-列の名前を変えたい-rename"><span class="toc-section-number">6.11.3</span> 列の名前を変えたい: rename()</a></li>
-<li><a href="datahandling.html#特定の列だけ抽出する-select" id="toc-特定の列だけ抽出する-select"><span class="toc-section-number">6.11.4</span> 特定の列だけ抽出する: select()</a></li>
-<li><a href="datahandling.html#特定の列だけ抽出する-filter" id="toc-特定の列だけ抽出する-filter"><span class="toc-section-number">6.11.5</span> 特定の列だけ抽出する: filter()</a></li>
-<li><a href="datahandling.html#データの順番を並び替える-arrange" id="toc-データの順番を並び替える-arrange"><span class="toc-section-number">6.11.6</span> データの順番を並び替える: arrange()</a></li>
-<li><a href="datahandling.html#データの順番を並び替える-arrange-1" id="toc-データの順番を並び替える-arrange-1"><span class="toc-section-number">6.11.7</span> データの順番を並び替える: arrange()</a></li>
-<li><a href="datahandling.html#データの列を並び替える-relocate" id="toc-データの列を並び替える-relocate"><span class="toc-section-number">6.11.8</span> データの列を並び替える: relocate()</a></li>
-<li><a href="datahandling.html#データの列を並び替える-relocate-1" id="toc-データの列を並び替える-relocate-1"><span class="toc-section-number">6.11.9</span> データの列を並び替える: relocate()</a></li>
-<li><a href="datahandling.html#データの列を追加編集する-mutate" id="toc-データの列を追加編集する-mutate"><span class="toc-section-number">6.11.10</span> データの列を追加/編集する: mutate()</a></li>
-<li><a href="datahandling.html#データの列を追加編集する-mutate-1" id="toc-データの列を追加編集する-mutate-1"><span class="toc-section-number">6.11.11</span> データの列を追加/編集する: mutate()</a></li>
-<li><a href="datahandling.html#データを集計する" id="toc-データを集計する"><span class="toc-section-number">6.11.12</span> データを集計する</a></li>
-<li><a href="datahandling.html#データ操作の応用パイプによる引き渡し" id="toc-データ操作の応用パイプによる引き渡し"><span class="toc-section-number">6.11.13</span> データ操作の応用：パイプによる引き渡し</a></li>
-<li><a href="datahandling.html#データ操作の応用グループごとの集計" id="toc-データ操作の応用グループごとの集計"><span class="toc-section-number">6.11.14</span> データ操作の応用：グループごとの集計</a></li>
-</ul></li>
-<li><a href="datahandling.html#datamgtpractice" id="toc-datamgtpractice"><span class="toc-section-number">6.12</span> <strong>練習問題</strong>: データ操作</a></li>
-<li><a href="datahandling.html#データの結合" id="toc-データの結合"><span class="toc-section-number">6.13</span> データの結合</a>
-<ul>
-<li><a href="datahandling.html#データの縦の結合" id="toc-データの縦の結合"><span class="toc-section-number">6.13.1</span> データの縦の結合</a></li>
-<li><a href="datahandling.html#データを横に統合" id="toc-データを横に統合"><span class="toc-section-number">6.13.2</span> データを横に統合</a></li>
-<li><a href="datahandling.html#データを横に統合join関数" id="toc-データを横に統合join関数"><span class="toc-section-number">6.13.3</span> データを横に統合：join()関数</a></li>
-<li><a href="datahandling.html#join関数一覧" id="toc-join関数一覧"><span class="toc-section-number">6.13.4</span> join関数一覧</a></li>
+<li class="chapter" data-level="4.5.1" data-path="letsuse.html"><a href="letsuse.html#リストの参照"><i class="fa fa-check"></i><b>4.5.1</b> リストの参照</a></li>
+<li class="chapter" data-level="4.5.2" data-path="letsuse.html"><a href="letsuse.html#リストの参照-1"><i class="fa fa-check"></i><b>4.5.2</b> リストの参照</a></li>
 </ul></li>
 </ul></li>
-<li><a href="rstats.html#rstats" id="toc-rstats"><span class="toc-section-number">7</span> 記述統計のおさらい</a>
+<li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> パッケージとは</a>
 <ul>
-<li><a href="rstats.html#統計とは" id="toc-統計とは"><span class="toc-section-number">7.1</span> 統計とは</a>
+<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#パッケージについて"><i class="fa fa-check"></i><b>5.1</b> パッケージについて</a></li>
+<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#パッケージのインストール"><i class="fa fa-check"></i><b>5.2</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#よく使うパッケージのインストール"><i class="fa fa-check"></i><b>5.3</b> よく使うパッケージのインストール</a>
 <ul>
-<li><a href="rstats.html#記述統計" id="toc-記述統計"><span class="toc-section-number">7.1.1</span> 記述統計</a></li>
-<li><a href="rstats.html#推測統計" id="toc-推測統計"><span class="toc-section-number">7.1.2</span> 推測統計</a></li>
+<li class="chapter" data-level="5.3.1" data-path="packages.html"><a href="packages.html#tidyverseについて"><i class="fa fa-check"></i><b>5.3.1</b> Tidyverseについて</a></li>
 </ul></li>
-<li><a href="rstats.html#データとは-1" id="toc-データとは-1"><span class="toc-section-number">7.2</span> データとは</a></li>
-<li><a href="rstats.html#代表的な統計量" id="toc-代表的な統計量"><span class="toc-section-number">7.3</span> 代表的な統計量</a>
+<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#パッケージの使い方1"><i class="fa fa-check"></i><b>5.4</b> パッケージの使い方1</a></li>
+<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#パッケージの使い方2"><i class="fa fa-check"></i><b>5.5</b> パッケージの使い方2</a></li>
+<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#パッケージの注意点"><i class="fa fa-check"></i><b>5.6</b> パッケージの注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datahandling.html"><a href="datahandling.html"><i class="fa fa-check"></i><b>6</b> データのハンドリング</a>
 <ul>
-<li><a href="rstats.html#数式" id="toc-数式"><span class="toc-section-number">7.3.1</span> 数式</a></li>
-<li><a href="rstats.html#平均" id="toc-平均"><span class="toc-section-number">7.3.2</span> 平均</a></li>
-<li><a href="rstats.html#中央値" id="toc-中央値"><span class="toc-section-number">7.3.3</span> 中央値</a></li>
-<li><a href="rstats.html#最大値最小値" id="toc-最大値最小値"><span class="toc-section-number">7.3.4</span> 最大値・最小値</a></li>
-<li><a href="rstats.html#分散" id="toc-分散"><span class="toc-section-number">7.3.5</span> 分散</a></li>
-<li><a href="rstats.html#標準偏差" id="toc-標準偏差"><span class="toc-section-number">7.3.6</span> 標準偏差</a></li>
+<li class="chapter" data-level="6.1" data-path="datahandling.html"><a href="datahandling.html#データ"><i class="fa fa-check"></i><b>6.1</b> データ</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="datahandling.html"><a href="datahandling.html#データとは"><i class="fa fa-check"></i><b>6.1.1</b> データとは？</a></li>
+<li class="chapter" data-level="6.1.2" data-path="datahandling.html"><a href="datahandling.html#データフレーム"><i class="fa fa-check"></i><b>6.1.2</b> データフレーム</a></li>
+<li class="chapter" data-level="6.1.3" data-path="datahandling.html"><a href="datahandling.html#行と列"><i class="fa fa-check"></i><b>6.1.3</b> 行と列</a></li>
+<li class="chapter" data-level="6.1.4" data-path="datahandling.html"><a href="datahandling.html#きれいなデータ"><i class="fa fa-check"></i><b>6.1.4</b> きれいなデータ？</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="datahandling.html"><a href="datahandling.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="datahandling.html"><a href="datahandling.html#演習-データの読み込み"><i class="fa fa-check"></i><b>6.2.1</b> <strong>演習</strong>: データの読み込み</a></li>
+<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#日本語のデータを読み込む際の注意点"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
+<li class="chapter" data-level="6.2.3" data-path="datahandling.html"><a href="datahandling.html#readrのその他のオプション"><i class="fa fa-check"></i><b>6.2.3</b> readrのその他のオプション</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="datahandling.html"><a href="datahandling.html#tidy-data-整然データ"><i class="fa fa-check"></i><b>6.3</b> tidy data (整然データ)</a></li>
+<li class="chapter" data-level="6.4" data-path="datahandling.html"><a href="datahandling.html#データフレームを扱うテクニックパイプ"><i class="fa fa-check"></i><b>6.4</b> データフレームを扱うテクニック：パイプ</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="datahandling.html"><a href="datahandling.html#パイプ"><i class="fa fa-check"></i><b>6.4.1</b> パイプ</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="datahandling.html"><a href="datahandling.html#tidyでないデータとtidyデータの変換"><i class="fa fa-check"></i><b>6.5</b> tidyでないデータとtidyデータの変換</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="datahandling.html"><a href="datahandling.html#long型データへの変換"><i class="fa fa-check"></i><b>6.5.1</b> long型データへの変換</a></li>
+<li class="chapter" data-level="6.5.2" data-path="datahandling.html"><a href="datahandling.html#データを見てみる"><i class="fa fa-check"></i><b>6.5.2</b> データを見てみる</a></li>
+<li class="chapter" data-level="6.5.3" data-path="datahandling.html"><a href="datahandling.html#データを一部だけみたい場合"><i class="fa fa-check"></i><b>6.5.3</b> データを一部だけみたい場合</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="datahandling.html"><a href="datahandling.html#データの大きさ"><i class="fa fa-check"></i><b>6.6</b> データの「大きさ」</a></li>
+<li class="chapter" data-level="6.7" data-path="datahandling.html"><a href="datahandling.html#列の名前一覧"><i class="fa fa-check"></i><b>6.7</b> 列の名前一覧</a></li>
+<li class="chapter" data-level="6.8" data-path="datahandling.html"><a href="datahandling.html#変数の要約"><i class="fa fa-check"></i><b>6.8</b> 変数の要約</a></li>
+<li class="chapter" data-level="6.9" data-path="datahandling.html"><a href="datahandling.html#変数の取り出し"><i class="fa fa-check"></i><b>6.9</b> 変数の取り出し</a></li>
+<li class="chapter" data-level="6.10" data-path="datahandling.html"><a href="datahandling.html#変数の取り出しと計算"><i class="fa fa-check"></i><b>6.10</b> 変数の取り出しと計算</a></li>
+<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データフレームとtibble"><i class="fa fa-check"></i><b>6.11</b> データフレームとtibble</a></li>
+<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.12</b> データの操作</a>
+<ul>
+<li class="chapter" data-level="6.12.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.12.1</b> データの操作</a></li>
+<li class="chapter" data-level="6.12.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.12.2</b> 元のデータの見た目確認</a></li>
+<li class="chapter" data-level="6.12.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.12.3</b> 列の名前を変えたい: rename()</a></li>
+<li class="chapter" data-level="6.12.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.12.4</b> 特定の列だけ抽出する: select()</a></li>
+<li class="chapter" data-level="6.12.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.12.5</b> 特定の行だけ抽出する: filter()</a></li>
+<li class="chapter" data-level="6.12.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.12.6</b> データの順番を並び替える: arrange()</a></li>
+<li class="chapter" data-level="6.12.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.12.7</b> データの列を並び替える: relocate()</a></li>
+<li class="chapter" data-level="6.12.8" data-path="datahandling.html"><a href="datahandling.html#データの列を追加する-mutate"><i class="fa fa-check"></i><b>6.12.8</b> データの列を追加する: mutate()</a></li>
+<li class="chapter" data-level="6.12.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.12.9</b> データの列を編集する: mutate()</a></li>
+<li class="chapter" data-level="6.12.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.12.10</b> データを集計する</a></li>
+<li class="chapter" data-level="6.12.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.12.11</b> データ操作の応用：パイプによる引き渡し</a></li>
+<li class="chapter" data-level="6.12.12" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用グループごとの集計"><i class="fa fa-check"></i><b>6.12.12</b> データ操作の応用：グループごとの集計</a></li>
+</ul></li>
+<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.13</b> <strong>練習問題</strong>: データ操作</a></li>
+<li class="chapter" data-level="6.14" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.14</b> データの結合</a>
+<ul>
+<li class="chapter" data-level="6.14.1" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.14.1</b> データの縦の結合</a></li>
+<li class="chapter" data-level="6.14.2" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.14.2</b> データを横に統合</a></li>
+<li class="chapter" data-level="6.14.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.14.3</b> データを横に統合：join()関数</a></li>
+<li class="chapter" data-level="6.14.4" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.14.4</b> join関数一覧</a></li>
 </ul></li>
 </ul></li>
-<li><a href="rviz.html#rviz" id="toc-rviz"><span class="toc-section-number">8</span> ビジュアライゼーションの基本</a>
+<li class="chapter" data-level="7" data-path="rstats.html"><a href="rstats.html"><i class="fa fa-check"></i><b>7</b> 記述統計</a>
 <ul>
-<li><a href="rviz.html#rにおける描画" id="toc-rにおける描画"><span class="toc-section-number">8.1</span> Rにおける描画</a></li>
-<li><a href="rviz.html#描画をしてみよう" id="toc-描画をしてみよう"><span class="toc-section-number">8.2</span> 描画をしてみよう</a></li>
-<li><a href="rviz.html#復習データ読み込み" id="toc-復習データ読み込み"><span class="toc-section-number">8.3</span> 復習：データ読み込み</a></li>
-<li><a href="rviz.html#描画の前に" id="toc-描画の前に"><span class="toc-section-number">8.4</span> 描画の前に</a></li>
-<li><a href="rviz.html#キャンバスを用意する" id="toc-キャンバスを用意する"><span class="toc-section-number">8.5</span> キャンバスを用意する</a></li>
-<li><a href="rviz.html#グラフのレイヤーを追加する" id="toc-グラフのレイヤーを追加する"><span class="toc-section-number">8.6</span> グラフのレイヤーを追加する</a></li>
-<li><a href="rviz.html#文字化けに対処する" id="toc-文字化けに対処する"><span class="toc-section-number">8.7</span> 文字化けに対処する</a></li>
-<li><a href="rviz.html#aesに色を追加する" id="toc-aesに色を追加する"><span class="toc-section-number">8.8</span> aesに色を追加する</a></li>
-<li><a href="rviz.html#男女の置き方を変えたい" id="toc-男女の置き方を変えたい"><span class="toc-section-number">8.9</span> 男女の置き方を変えたい</a></li>
-<li><a href="rviz.html#aesに色を追加する-1" id="toc-aesに色を追加する-1"><span class="toc-section-number">8.10</span> aesに色を追加する</a></li>
-<li><a href="rviz.html#色を変えたい" id="toc-色を変えたい"><span class="toc-section-number">8.11</span> 色を変えたい</a></li>
-<li><a href="rviz.html#学科別に分けたい" id="toc-学科別に分けたい"><span class="toc-section-number">8.12</span> 学科別に分けたい</a></li>
-<li><a href="rviz.html#ラベルを変更するタイトルを追加する" id="toc-ラベルを変更するタイトルを追加する"><span class="toc-section-number">8.13</span> ラベルを変更する・タイトルを追加する</a></li>
-<li><a href="rviz.html#ラベルを変更するタイトルを追加する-1" id="toc-ラベルを変更するタイトルを追加する-1"><span class="toc-section-number">8.14</span> ラベルを変更する・タイトルを追加する</a></li>
-<li><a href="rviz.html#テーマを変更する1" id="toc-テーマを変更する1"><span class="toc-section-number">8.15</span> テーマを変更する1</a></li>
-<li><a href="rviz.html#テーマを変更する2" id="toc-テーマを変更する2"><span class="toc-section-number">8.16</span> テーマを変更する2</a></li>
-<li><a href="rviz.html#完成形" id="toc-完成形"><span class="toc-section-number">8.17</span> 完成形</a></li>
-<li><a href="rviz.html#ggplot2による図の保存" id="toc-ggplot2による図の保存"><span class="toc-section-number">8.18</span> ggplot2による図の保存</a></li>
-<li><a href="rviz.html#他の描画レイヤー" id="toc-他の描画レイヤー"><span class="toc-section-number">8.19</span> 他の描画レイヤー</a></li>
-<li><a href="rviz.html#散布図" id="toc-散布図"><span class="toc-section-number">8.20</span> 散布図</a></li>
-<li><a href="rviz.html#折れ線グラフ" id="toc-折れ線グラフ"><span class="toc-section-number">8.21</span> 折れ線グラフ</a></li>
-<li><a href="rviz.html#箱ひげ図" id="toc-箱ひげ図"><span class="toc-section-number">8.22</span> 箱ひげ図</a></li>
-<li><a href="rviz.html#ヴァイオリンプロット" id="toc-ヴァイオリンプロット"><span class="toc-section-number">8.23</span> ヴァイオリンプロット</a></li>
-<li><a href="rviz.html#適した描画" id="toc-適した描画"><span class="toc-section-number">8.24</span> 適した描画？</a></li>
+<li class="chapter" data-level="7.1" data-path="rstats.html"><a href="rstats.html#統計とは"><i class="fa fa-check"></i><b>7.1</b> 統計とは</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#推測統計"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
-<li><a href="rstatsinfe.html#rstatsinfe" id="toc-rstatsinfe"><span class="toc-section-number">9</span> 推測統計のおさらい</a>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.2</b> データとは</a></li>
+<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.3</b> 代表的な統計量</a>
 <ul>
-<li><a href="rstatsinfe.html#不偏分散" id="toc-不偏分散"><span class="toc-section-number">9.0.1</span> 不偏分散</a></li>
-<li><a href="rstatsinfe.html#母集団と標本" id="toc-母集団と標本"><span class="toc-section-number">9.0.2</span> 母集団と標本</a></li>
-<li><a href="rstatsinfe.html#サンプリング" id="toc-サンプリング"><span class="toc-section-number">9.0.3</span> サンプリング</a></li>
-<li><a href="rstatsinfe.html#共分散" id="toc-共分散"><span class="toc-section-number">9.0.4</span> 共分散</a></li>
-<li><a href="rstatsinfe.html#相関係数" id="toc-相関係数"><span class="toc-section-number">9.0.5</span> 相関係数</a></li>
+<li class="chapter" data-level="7.3.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.3.1</b> 数式</a></li>
+<li class="chapter" data-level="7.3.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.3.2</b> 平均</a></li>
+<li class="chapter" data-level="7.3.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.3.3</b> 中央値</a></li>
+<li class="chapter" data-level="7.3.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.3.4</b> 最大値・最小値</a></li>
+<li class="chapter" data-level="7.3.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.3.5</b> 分散</a></li>
+<li class="chapter" data-level="7.3.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.3.6</b> もう一つの分散：不偏分散</a></li>
+<li class="chapter" data-level="7.3.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.3.7</b> 標準偏差</a></li>
+<li class="chapter" data-level="7.3.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.3.8</b> 不偏標準偏差</a></li>
 </ul></li>
-<li><a href="practiceanswer.html#practiceanswer" id="toc-practiceanswer"><span class="toc-section-number">10</span> 練習問題解答</a>
+<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.4</b> Rによる記述統計のテクニック</a>
 <ul>
-<li><a href="practiceanswer.html#ch.4" id="toc-ch.4"><span class="toc-section-number">10.1</span> Ch.4</a>
-<ul>
-<li><a href="practiceanswer.html#練習問題-refvectormake" id="toc-練習問題-refvectormake"><span class="toc-section-number">10.1.1</span> 練習問題 @ref{vectormake}</a></li>
+<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.4.1</b> 使用するデータ</a></li>
+<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.4.2</b> <code>summary</code>関数</a></li>
+<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.4.3</b> <code>describe</code>関数</a></li>
+<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.4.4</b> <code>skim</code>関数</a></li>
 </ul></li>
-<li><a href="practiceanswer.html#ch.-6" id="toc-ch.-6"><span class="toc-section-number">10.2</span> Ch. 6</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.2</b> 描画をしてみよう</a></li>
+<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.3</b> 復習：データ読み込み</a></li>
+<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.4</b> 描画の前に</a></li>
+<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.5</b> キャンバスを用意する</a></li>
+<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.6</b> グラフのレイヤーを追加する</a></li>
+<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.7</b> 文字化けに対処する</a></li>
+<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.8</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.9</b> 男女の置き方を変えたい</a></li>
+<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#aesに色を追加する-1"><i class="fa fa-check"></i><b>8.10</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.11</b> 色を変えたい</a></li>
+<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.12</b> 学科別に分けたい</a></li>
+<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.13</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する-1"><i class="fa fa-check"></i><b>8.14</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.15</b> テーマを変更する1</a></li>
+<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#テーマを変更する2"><i class="fa fa-check"></i><b>8.16</b> テーマを変更する2</a></li>
+<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.17</b> 完成形</a></li>
+<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.18</b> ggplot2による図の保存</a></li>
+<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.19</b> 他の描画レイヤー</a></li>
+<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#散布図"><i class="fa fa-check"></i><b>8.20</b> 散布図</a></li>
+<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#折れ線グラフ"><i class="fa fa-check"></i><b>8.21</b> 折れ線グラフ</a></li>
+<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.22</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.23</b> ヴァイオリンプロット</a></li>
+<li class="chapter" data-level="8.24" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.24</b> 適した描画？</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
+<ul>
+<li class="chapter" data-level="9.0.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏分散"><i class="fa fa-check"></i><b>9.0.1</b> 不偏分散</a></li>
+<li class="chapter" data-level="9.0.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.0.2</b> 母集団と標本</a></li>
+<li class="chapter" data-level="9.0.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#サンプリング"><i class="fa fa-check"></i><b>9.0.3</b> サンプリング</a></li>
+<li class="chapter" data-level="9.0.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#共分散"><i class="fa fa-check"></i><b>9.0.4</b> 共分散</a></li>
+<li class="chapter" data-level="9.0.5" data-path="rstatsinfe.html"><a href="rstatsinfe.html#相関係数"><i class="fa fa-check"></i><b>9.0.5</b> 相関係数</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>10</b> 練習問題解答</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>10.1</b> Ch.4</a></li>
+<li class="chapter" data-level="10.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>10.2</b> Ch. 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -394,10 +406,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="howtostart" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Rのはじめかた</h1>
-<div id="rをどうやって使う" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Rをどうやって使う？</h2>
+<div id="howtostart" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Rのはじめかた<a href="howtostart.html#howtostart" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="rをどうやって使う" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Rをどうやって使う？<a href="howtostart.html#rをどうやって使う" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Rを使うにはいくつか方法がある。</li>
 <li>統合開発環境 IDE: Integrated Development Environment
@@ -411,8 +423,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="rstudioを使う3つの方法" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Rstudioを使う3つの方法</h2>
+<div id="rstudioを使う3つの方法" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Rstudioを使う3つの方法<a href="howtostart.html#rstudioを使う3つの方法" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li>PCにインストール</li>
 </ol>
@@ -439,19 +451,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>できれば1の方法でやってみよう。</p>
 </div>
-<div id="rのインストール" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Rのインストール</h2>
+<div id="rのインストール" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Rのインストール<a href="howtostart.html#rのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>学校のパソコンにはすでにインストールされている</li>
 <li>自分のパソコンに導入する人は<a href="https://speakerdeck.com/s_uryu/introduction-to-r">このスライド</a>か<a href="https://yukiyanai.github.io/jp/resources/">ここ</a>にある「RとRStudioのインストール方法の解説」を参照</li>
 </ul>
-<div id="windownsへのインストール" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Windownsへのインストール</h3>
+<div id="windownsへのインストール" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Windownsへのインストール<a href="howtostart.html#windownsへのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>ブラウザから<a href="https://cran.r-project.org/" target="_blank">CLAN</a>へアクセスする
+<li>ブラウザから<a href="https://cran.ism.ac.jp/" target="_blank">CLAN</a>へアクセスする
 <ul>
-<li>もし繋がらなければ<a href="https://cran.ism.ac.jp/">こちら</a>から試してみる</li>
-<li>それでもだめならGoogleで”CLAN R”で検索</li>
+<li>もし繋がらなければ<a href="https://ftp.yz.yamagata-u.ac.jp/pub/cran/">こちら</a>から試してみる</li>
 </ul></li>
 <li>「Download R for Windows」-&gt; 「base」-&gt; 「Download R-4.3.3 for Windows」
 <ul>
@@ -487,11 +498,11 @@ Figure 3.3: Rのダウンロード。Windowsの場合
 <li>完了したらデスクトップやアプリ一覧にR.4.3.3があるかどうかチェック</li>
 </ul>
 </div>
-<div id="mac-osへのインストール" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Mac OSへのインストール</h3>
+<div id="mac-osへのインストール" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Mac OSへのインストール<a href="howtostart.html#mac-osへのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Mac OSへのインストールは少し大変である。一つずつ確認していこう。</p>
-<div id="チップの種類を確認" class="section level4" number="3.3.2.1">
-<h4><span class="header-section-number">3.3.2.1</span> チップの種類を確認</h4>
+<div id="チップの種類を確認" class="section level4 hasAnchor" number="3.3.2.1">
+<h4><span class="header-section-number">3.3.2.1</span> チップの種類を確認<a href="howtostart.html#チップの種類を確認" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>まず自分のMacがIntelチップかApple Siliconかを確認する</li>
 <li>左上のリンゴマーク→「このMacについて」
@@ -500,8 +511,8 @@ Figure 3.3: Rのダウンロード。Windowsの場合
 </ul></li>
 </ul>
 </div>
-<div id="command-line-toolsのインストール" class="section level4" number="3.3.2.2">
-<h4><span class="header-section-number">3.3.2.2</span> Command Line Toolsのインストール</h4>
+<div id="command-line-toolsのインストール" class="section level4 hasAnchor" number="3.3.2.2">
+<h4><span class="header-section-number">3.3.2.2</span> Command Line Toolsのインストール<a href="howtostart.html#command-line-toolsのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Macのアプリ一覧から、「ターミナル」を開く。</p>
 <div class="figure"><span style="display:block;" id="fig:terminal"></span>
 <img src="fig/terminal_app.png" alt="ターミナル" width="70%" />
@@ -524,8 +535,8 @@ Figure 3.5: ターミナルの画面
 <p>もし<code>error: command line tools are already installed, use "Software Update" to install updates</code>というメッセージが出たらCommand Line Toolsはすでにインストールされている。</p>
 <p>もしこれで、うまくいかない場合は次のXcodeをインストールすることでCommand Line Toolsをインストールする。</p>
 </div>
-<div id="xcodeのインストール" class="section level4" number="3.3.2.3">
-<h4><span class="header-section-number">3.3.2.3</span> Xcodeのインストール</h4>
+<div id="xcodeのインストール" class="section level4 hasAnchor" number="3.3.2.3">
+<h4><span class="header-section-number">3.3.2.3</span> Xcodeのインストール<a href="howtostart.html#xcodeのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Xcodeは上のCommand Line Toolsがインストールできればとりあえず不要（のはず）である。もしできばければ、インストールしよう。ここではApple IDが必要となる。Xcodeは非常に大きいので、WiFiなどのインターネット接続が安定しているところで、<strong>時間のあるとき</strong>にやりましょう。</p>
 <p>MacのApp Storeから、Xcodeをインストールする。</p>
 <p>App Storeを開いて、Xcodeを検索する。下のようなハンマーのアイコンのアプリである。これをインストールする。</p>
@@ -537,8 +548,8 @@ Figure 3.6: Xcode
 </div>
 <p>App Storeの使い方がわからない人は、<a href="https://support.apple.com/ja-jp/guide/app-store/fir9b2ea074e/3.0/mac/10.15" target="_blank">App Storeユーザーガイド</a>を参照してください。</p>
 </div>
-<div id="xquartzのインストール" class="section level4" number="3.3.2.4">
-<h4><span class="header-section-number">3.3.2.4</span> XQuartzのインストール</h4>
+<div id="xquartzのインストール" class="section level4 hasAnchor" number="3.3.2.4">
+<h4><span class="header-section-number">3.3.2.4</span> XQuartzのインストール<a href="howtostart.html#xquartzのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>XQuartzの<a href="https://www.xquartz.org/" target="_blank">ウェブサイト</a>にアクセスして、<code>Quartz-x.x.x.pkg</code>というファイルをダウンロードする。<code>x</code>にはバージョン名が入るので、2024年4月時点では2.8.5だが、それより新しいバージョンになっているかもしれない。</p>
 <div class="figure"><span style="display:block;" id="fig:xquartz"></span>
 <img src="fig/xquartz.png" alt="XQuartzのダウンロード画面" width="60%" />
@@ -548,12 +559,12 @@ Figure 3.7: XQuartzのダウンロード画面
 </div>
 <p>ダウンロードされた<code>pkg</code>ファイルを開いて、インストールする。</p>
 </div>
-<div id="rのダウンロード" class="section level4" number="3.3.2.5">
-<h4><span class="header-section-number">3.3.2.5</span> Rのダウンロード</h4>
+<div id="rのダウンロード" class="section level4 hasAnchor" number="3.3.2.5">
+<h4><span class="header-section-number">3.3.2.5</span> Rのダウンロード<a href="howtostart.html#rのダウンロード" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
-<li>ブラウザから<a href="https://cran.r-project.org/" target="_blank">CLAN</a>へアクセスする
+<li>ブラウザから<a href="https://cran.ism.ac.jp/" target="_blank">CLAN</a>へアクセスする
 <ul>
-<li>もし繋がらなければ<a href="https://cran.ism.ac.jp/">こちら</a>から試してみる</li>
+<li>もし繋がらなければ<a href="https://ftp.yz.yamagata-u.ac.jp/pub/cran/">こちら</a>から試してみる</li>
 </ul></li>
 <li>「Download R for Mac OS」をクリック
 <ul>
@@ -591,8 +602,8 @@ Figure 3.10: MacのLaunchpad上に表示されているR
 </div>
 </div>
 </div>
-<div id="rstudioのインストール" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Rstudioのインストール</h2>
+<div id="rstudioのインストール" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Rstudioのインストール<a href="howtostart.html#rstudioのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="https://posit.co/download/rstudio-desktop/" target="_blank">Posit社のウェブサイト</a>へアクセス</p>
 <p>“2. Install RStudio”の青いボタンをクリック</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudioinstall"></span>
@@ -604,8 +615,8 @@ Figure 3.11: RStudioのダウンロード。図はMacOSの場合
 <p>ダウンロードされたファイルをクリックしてインストールする。基本的に「次へ」でよい。</p>
 <p>完了したら、アプリ一覧に丸いロゴでRと書いてあるRStudioがあるかチェック。Windowsの場合はデスクトップにショートカットが生成されない可能性があるので、アプリ一覧でチェックしよう。</p>
 </div>
-<div id="rstudioのインターフェース" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Rstudioのインターフェース</h2>
+<div id="rstudioのインターフェース" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Rstudioのインターフェース<a href="howtostart.html#rstudioのインターフェース" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>RStudioは４つのペーンに分割されている。もし３つしかない、という人は左上の白い四角に緑の＋マークが付いているところを押して”R Script”を選ぼう。すると左上のペーンが現れて新たなスクリプトファイルが生成される。</p>
 <div class="figure"><span style="display:block;" id="fig:rstudio2"></span>
 <img src="docs/r_basics/fig/Rstudio_look-2.png" alt="Rstudio見た目" width="90%" />
@@ -614,8 +625,8 @@ Figure 3.12: Rstudio見た目
 </p>
 </div>
 </div>
-<div id="コンピュータのディレクトリ構造" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> コンピュータのディレクトリ構造</h2>
+<div id="コンピュータのディレクトリ構造" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> コンピュータのディレクトリ構造<a href="howtostart.html#コンピュータのディレクトリ構造" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>コンピュータでファイルなどを扱う上で、pathという概念を理解しておく必要がある。パソコンを使っているとフォルダをよく使う。自分が作ったファイルをフォルダに保存するなどである。これはCUIでは<strong>ディレクトリ</strong>と呼ばれる。</p>
 <p>コンピュータ上においては、ファイルの場所はpathで表現される。これはコンピュータ上の住所のようなものである。</p>
 <p><code>j:</code>というドライブの下の<code>abezemi</code>というフォルダの下にある<code>r_renshu</code>というフォルダにある<code>kadai1.R</code>というファイルがあるとする。そのファイルのpathは<code>j:/abezemi/r_renshu/kadai1.R</code>となる。</p>
@@ -627,52 +638,52 @@ Figure 3.13: ディレクトリ構造
 </p>
 </div>
 </div>
-<div id="演習作業フォルダを作ろう" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> <strong>演習</strong>：作業フォルダを作ろう</h2>
+<div id="演習作業フォルダを作ろう" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> <strong>演習</strong>：作業フォルダを作ろう<a href="howtostart.html#演習作業フォルダを作ろう" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>(Windows) ドライブ上で右クリック→新規作成→フォルダ</li>
 <li>(Mac) Finderの右上の◯に…のマークをクリック→新規フォルダ</li>
 </ul>
-<div id="自分のパソコン" class="section level3" number="3.7.1">
-<h3><span class="header-section-number">3.7.1</span> 自分のパソコン</h3>
+<div id="自分のパソコン" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> 自分のパソコン<a href="howtostart.html#自分のパソコン" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>例えば「ドキュメント」(Windows)や「書類」(Mac)の下にabezemiフォルダを作成</li>
 </ul>
 </div>
-<div id="学校のパソコン" class="section level3" number="3.7.2">
-<h3><span class="header-section-number">3.7.2</span> 学校のパソコン</h3>
+<div id="学校のパソコン" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> 学校のパソコン<a href="howtostart.html#学校のパソコン" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>自分の学生番号のドライブ(例 s1234567)の下に abezemi フォルダを作成</li>
 </ul>
 </div>
-<div id="posit.cloud" class="section level3" number="3.7.3">
-<h3><span class="header-section-number">3.7.3</span> Posit.cloud</h3>
+<div id="posit.cloud" class="section level3 hasAnchor" number="3.7.3">
+<h3><span class="header-section-number">3.7.3</span> Posit.cloud<a href="howtostart.html#posit.cloud" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Posit.clouの場合は、まだここでは何もする必要はない。</li>
 </ul>
 </div>
 </div>
-<div id="作業スペース" class="section level2" number="3.8">
-<h2><span class="header-section-number">3.8</span> 作業スペース</h2>
+<div id="作業スペース" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> 作業スペース<a href="howtostart.html#作業スペース" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>コンピューター上では、どこかのディレクトリ（フォルダ）がRの作業場所になっている。
 今の作業場所は<code>getwd()</code>で表示できる。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="howtostart.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="howtostart.html#cb3-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <p>これを変更するには<code>setwd(path)</code>で変更できる。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="howtostart.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windowsの場合 </span></span>
-<span id="cb4-2"><a href="howtostart.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># keitaを自分のユーザー名に変える</span></span>
-<span id="cb4-3"><a href="howtostart.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/keita/Documents/abezemi&quot;</span>)</span>
-<span id="cb4-4"><a href="howtostart.html#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="howtostart.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac OSの場合</span></span>
-<span id="cb4-6"><a href="howtostart.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># keitaを自分のユーザー名に変える</span></span>
-<span id="cb4-7"><a href="howtostart.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Users/keita/Documents/abezemi&quot;</span>)</span>
-<span id="cb4-8"><a href="howtostart.html#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="howtostart.html#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 学校のPCの場合</span></span>
-<span id="cb4-10"><a href="howtostart.html#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;j:/abezemi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="howtostart.html#cb4-1" tabindex="-1"></a><span class="co"># Windowsの場合 </span></span>
+<span id="cb4-2"><a href="howtostart.html#cb4-2" tabindex="-1"></a><span class="co"># keitaを自分のユーザー名に変える</span></span>
+<span id="cb4-3"><a href="howtostart.html#cb4-3" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/keita/Documents/abezemi&quot;</span>)</span>
+<span id="cb4-4"><a href="howtostart.html#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="howtostart.html#cb4-5" tabindex="-1"></a><span class="co"># Mac OSの場合</span></span>
+<span id="cb4-6"><a href="howtostart.html#cb4-6" tabindex="-1"></a><span class="co"># keitaを自分のユーザー名に変える</span></span>
+<span id="cb4-7"><a href="howtostart.html#cb4-7" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Users/keita/Documents/abezemi&quot;</span>)</span>
+<span id="cb4-8"><a href="howtostart.html#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="howtostart.html#cb4-9" tabindex="-1"></a><span class="co"># 学校のPCの場合</span></span>
+<span id="cb4-10"><a href="howtostart.html#cb4-10" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;j:/abezemi&quot;</span>)</span></code></pre></div>
 <p>ここでは<code>j:</code>ドライブの下の<code>abezemi</code>フォルダに設定。
 もう一度<code>getwd()</code>して変更されたか確認しよう。</p>
 </div>
-<div id="プロジェクトの作成" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> プロジェクトの作成</h2>
+<div id="プロジェクトの作成" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> プロジェクトの作成<a href="howtostart.html#プロジェクトの作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>作業場所を指定しても、ファイルの管理が面倒だったりする。</p>
 <p>RStudioの<strong>Rプロジェクト</strong>という機能を使うと、以下のメリットがある</p>
 <ul>
@@ -682,8 +693,8 @@ Figure 3.13: ディレクトリ構造
 <li>一つのプロジェクトについてひとまとまりのファイルとして管理できる</li>
 </ul>
 </div>
-<div id="演習-rプロジェクトを作成してみよう" class="section level2" number="3.10">
-<h2><span class="header-section-number">3.10</span> <strong>演習</strong>: Rプロジェクトを作成してみよう</h2>
+<div id="演習-rプロジェクトを作成してみよう" class="section level2 hasAnchor" number="3.10">
+<h2><span class="header-section-number">3.10</span> <strong>演習</strong>: Rプロジェクトを作成してみよう<a href="howtostart.html#演習-rプロジェクトを作成してみよう" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>File -&gt; “New Project”
 -もしくは右上の “Project (none)”</p></li>
@@ -712,19 +723,19 @@ Figure 3.14: Rプロジェクトの作成
 <li>プロジェクトの設定などを保存</li>
 </ul>
 </div>
-<div id="とりあえず触ってみる" class="section level2" number="3.11">
-<h2><span class="header-section-number">3.11</span> とりあえず触ってみる</h2>
+<div id="とりあえず触ってみる" class="section level2 hasAnchor" number="3.11">
+<h2><span class="header-section-number">3.11</span> とりあえず触ってみる<a href="howtostart.html#とりあえず触ってみる" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Rとの”対話”は、Rstudioの左下のペイン(コンソール)で行われる。
 コンソールに、<code>1+1</code>と打ってみる。
 すると、<code>2</code>と表示される。</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="howtostart.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="howtostart.html#cb5-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 </div>
-<div id="scriptmake" class="section level2" number="3.12">
-<h2><span class="header-section-number">3.12</span> スクリプトの作成</h2>
+<div id="scriptmake" class="section level2 hasAnchor" number="3.12">
+<h2><span class="header-section-number">3.12</span> スクリプトの作成<a href="howtostart.html#scriptmake" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>そのままConsoleに入力していってもよいが、<strong>スクリプト</strong>(コード)に書くことで、記録を残しながらRに命令を与えることができる。</p>
-<div id="演習スクリプトを作成してみる" class="section level3" number="3.12.1">
-<h3><span class="header-section-number">3.12.1</span> <strong>演習</strong>：スクリプトを作成してみる</h3>
+<div id="演習スクリプトを作成してみる" class="section level3 hasAnchor" number="3.12.1">
+<h3><span class="header-section-number">3.12.1</span> <strong>演習</strong>：スクリプトを作成してみる<a href="howtostart.html#演習スクリプトを作成してみる" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Rスクリプトを作成する</li>
 </ol>
@@ -741,72 +752,72 @@ Figure 3.14: Rプロジェクトの作成
 </ul>
 </div>
 </div>
-<div id="実行してみる" class="section level2" number="3.13">
-<h2><span class="header-section-number">3.13</span> 実行してみる</h2>
+<div id="実行してみる" class="section level2 hasAnchor" number="3.13">
+<h2><span class="header-section-number">3.13</span> 実行してみる<a href="howtostart.html#実行してみる" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R scriptに以下のように書く</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="howtostart.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="howtostart.html#cb7-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello World!&quot;</code></pre>
 <p>カーソルが同じ行にあることを確認して、<img src="fig/run_button.png" />をクリック<br />
 もしくは、[Ctrl]を押しながら[Enter] (MacならCommand+Enter)</p>
 <p>“Hello World!”と表示されれば成功。</p>
-<div id="コードを実行する際のポイント" class="section level3" number="3.13.1">
-<h3><span class="header-section-number">3.13.1</span> コードを実行する際のポイント</h3>
+<div id="コードを実行する際のポイント" class="section level3 hasAnchor" number="3.13.1">
+<h3><span class="header-section-number">3.13.1</span> コードを実行する際のポイント<a href="howtostart.html#コードを実行する際のポイント" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>実行したい範囲を選択してRunを押すと実行されるが、[Ctrl]を押しながら[Enter] (Macなら[Command]+[Enter])でも実行される。</p>
 <p>また、範囲を選択しなくてもカーソルがあるところでRunか[Ctrl]+[Enter]を押すと、その行だけ（もしくはコードとして一つの命令になっている行数だけ）実行される。いちいち範囲選択しなくても良いので便利。</p>
 </div>
 </div>
-<div id="スクリプトを書く際の注意点" class="section level2" number="3.14">
-<h2><span class="header-section-number">3.14</span> スクリプトを書く際の注意点</h2>
-<div id="コメント" class="section level3" number="3.14.1">
-<h3><span class="header-section-number">3.14.1</span> コメント</h3>
+<div id="スクリプトを書く際の注意点" class="section level2 hasAnchor" number="3.14">
+<h2><span class="header-section-number">3.14</span> スクリプトを書く際の注意点<a href="howtostart.html#スクリプトを書く際の注意点" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="コメント" class="section level3 hasAnchor" number="3.14.1">
+<h3><span class="header-section-number">3.14.1</span> コメント<a href="howtostart.html#コメント" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R script上では#から始まる行は、コメントとして認識され、実行するとコンソールには表示されるが、何も起こらない。<br />
 メモなどを書く際に使う。</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="howtostart.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># これは初めてのRのコードです。</span></span>
-<span id="cb9-2"><a href="howtostart.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="howtostart.html#cb9-1" tabindex="-1"></a><span class="co"># これは初めてのRのコードです。</span></span>
+<span id="cb9-2"><a href="howtostart.html#cb9-2" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello World&quot;</code></pre>
 <p>もしくは一度使ったが、今は実行したくないコードを一時的に無効にする。これはコメントアウトというプログラミングにおける基本的なテクニック。</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="howtostart.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print(&quot;Good Evening&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="howtostart.html#cb11-1" tabindex="-1"></a><span class="co"># print(&quot;Good Evening&quot;)</span></span></code></pre></div>
 </div>
-<div id="スクリプトは読みやすく" class="section level3" number="3.14.2">
-<h3><span class="header-section-number">3.14.2</span> スクリプトは読みやすく</h3>
+<div id="スクリプトは読みやすく" class="section level3 hasAnchor" number="3.14.2">
+<h3><span class="header-section-number">3.14.2</span> スクリプトは読みやすく<a href="howtostart.html#スクリプトは読みやすく" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>コメントや改行を活用して読みやすいコード（スクリプト）を書く。
 Rのコードでは空行は意味をなさないのでいくらでも空けてよい。</p>
 <p><strong>良い例</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="howtostart.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rの練習１</span></span>
-<span id="cb12-2"><a href="howtostart.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2024年4月15日</span></span>
-<span id="cb12-3"><a href="howtostart.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="howtostart.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  ライブラリ </span></span>
-<span id="cb12-5"><a href="howtostart.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb12-6"><a href="howtostart.html#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="howtostart.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  コード本体 </span></span>
-<span id="cb12-8"><a href="howtostart.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># はじめまして</span></span>
-<span id="cb12-9"><a href="howtostart.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
-<span id="cb12-10"><a href="howtostart.html#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="howtostart.html#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 足し算</span></span>
-<span id="cb12-12"><a href="howtostart.html#cb12-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb12-13"><a href="howtostart.html#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="howtostart.html#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
-<span id="cb12-15"><a href="howtostart.html#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># このデータはXXでダウンロードした</span></span>
-<span id="cb12-16"><a href="howtostart.html#cb12-16" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="howtostart.html#cb12-1" tabindex="-1"></a><span class="co"># Rの練習１</span></span>
+<span id="cb12-2"><a href="howtostart.html#cb12-2" tabindex="-1"></a><span class="co"># 2024年4月15日</span></span>
+<span id="cb12-3"><a href="howtostart.html#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="howtostart.html#cb12-4" tabindex="-1"></a><span class="co">#  ライブラリ </span></span>
+<span id="cb12-5"><a href="howtostart.html#cb12-5" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-6"><a href="howtostart.html#cb12-6" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="howtostart.html#cb12-7" tabindex="-1"></a><span class="co">#  コード本体 </span></span>
+<span id="cb12-8"><a href="howtostart.html#cb12-8" tabindex="-1"></a><span class="co"># はじめまして</span></span>
+<span id="cb12-9"><a href="howtostart.html#cb12-9" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
+<span id="cb12-10"><a href="howtostart.html#cb12-10" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="howtostart.html#cb12-11" tabindex="-1"></a><span class="co"># 足し算</span></span>
+<span id="cb12-12"><a href="howtostart.html#cb12-12" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb12-13"><a href="howtostart.html#cb12-13" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="howtostart.html#cb12-14" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
+<span id="cb12-15"><a href="howtostart.html#cb12-15" tabindex="-1"></a><span class="co"># このデータはXXでダウンロードした</span></span>
+<span id="cb12-16"><a href="howtostart.html#cb12-16" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 <p><strong>良くない例</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="howtostart.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb13-2"><a href="howtostart.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
-<span id="cb13-3"><a href="howtostart.html#cb13-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb13-4"><a href="howtostart.html#cb13-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="howtostart.html#cb13-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-2"><a href="howtostart.html#cb13-2" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
+<span id="cb13-3"><a href="howtostart.html#cb13-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb13-4"><a href="howtostart.html#cb13-4" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data1.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="エラーを恐れるな" class="section level2" number="3.15">
-<h2><span class="header-section-number">3.15</span> エラーを恐れるな！</h2>
+<div id="エラーを恐れるな" class="section level2 hasAnchor" number="3.15">
+<h2><span class="header-section-number">3.15</span> エラーを恐れるな！<a href="howtostart.html#エラーを恐れるな" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>間違ったコマンドを入力すると赤字でエラーが出る。</li>
 <li>怖がらなくてよい。間違ってると教えてくれてるだけ。</li>
 <li>.(ドット)と,(コンマ)を間違えただけでもうまくいかないのがプログラミング。注意深く書こう。</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="howtostart.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># これは間違ったコード(tを忘れてる)</span></span>
-<span id="cb14-2"><a href="howtostart.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prin</span>(<span class="st">&quot;Hello World&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="howtostart.html#cb14-1" tabindex="-1"></a><span class="co"># これは間違ったコード(tを忘れてる)</span></span>
+<span id="cb14-2"><a href="howtostart.html#cb14-2" tabindex="-1"></a><span class="fu">prin</span>(<span class="st">&quot;Hello World&quot;</span>)</span></code></pre></div>
 <pre><code>## Error in prin(&quot;Hello World&quot;): could not find function &quot;prin&quot;</code></pre>
-<div id="よくあるエラー1" class="section level3" number="3.15.1">
-<h3><span class="header-section-number">3.15.1</span> よくあるエラー1</h3>
+<div id="よくあるエラー1" class="section level3 hasAnchor" number="3.15.1">
+<h3><span class="header-section-number">3.15.1</span> よくあるエラー1<a href="howtostart.html#よくあるエラー1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>Error in read_csv("data/Countries.csv") : could not find function "read_csv"</code></p>
 <p><code>XXX</code>という関数が見つかりません、というエラー</p>
 <p><strong>考えられるケース</strong></p>
@@ -815,8 +826,8 @@ Rのコードでは空行は意味をなさないのでいくらでも空けて�
 <li>関数のつづりが間違っている</li>
 </ul>
 </div>
-<div id="よくあるエラー2" class="section level3" number="3.15.2">
-<h3><span class="header-section-number">3.15.2</span> よくあるエラー2</h3>
+<div id="よくあるエラー2" class="section level3 hasAnchor" number="3.15.2">
+<h3><span class="header-section-number">3.15.2</span> よくあるエラー2<a href="howtostart.html#よくあるエラー2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>Error: 'data/Countris.csv' does not exist in current working directory</code></p>
 <p>XXX.csvというファイルが作業場所にありません。</p>
 <p><strong>考えられるケース</strong>
@@ -825,13 +836,13 @@ Rのコードでは空行は意味をなさないのでいくらでも空けて�
 - つづりが間違っている</p>
 </div>
 </div>
-<div id="rstudioの補完機能" class="section level2" number="3.16">
-<h2><span class="header-section-number">3.16</span> Rstudioの補完機能</h2>
+<div id="rstudioの補完機能" class="section level2 hasAnchor" number="3.16">
+<h2><span class="header-section-number">3.16</span> Rstudioの補完機能<a href="howtostart.html#rstudioの補完機能" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>オブジェクト内の要素や、ファイル名などを補完してくれる機能</p>
 <p><img src="docs/r_basics/fig/hokan.png" width="30%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rstudioのオプション" class="section level2" number="3.17">
-<h2><span class="header-section-number">3.17</span> Rstudioのオプション</h2>
+<div id="rstudioのオプション" class="section level2 hasAnchor" number="3.17">
+<h2><span class="header-section-number">3.17</span> Rstudioのオプション<a href="howtostart.html#rstudioのオプション" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Rstudioを自分好みにカスタマイズすることが可能<br />
 [Tools]-&gt;[Global Options…]</p>
 <ul>
@@ -841,8 +852,8 @@ Rのコードでは空行は意味をなさないのでいくらでも空けて�
 <li>ターミナル</li>
 <li>キーボードショートカット</li>
 </ul>
-<div id="例外観の変更" class="section level3" number="3.17.1">
-<h3><span class="header-section-number">3.17.1</span> 例：外観の変更</h3>
+<div id="例外観の変更" class="section level3 hasAnchor" number="3.17.1">
+<h3><span class="header-section-number">3.17.1</span> 例：外観の変更<a href="howtostart.html#例外観の変更" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="docs/r_basics/fig/option.png" width="60%" /></p>
 
 </div>
@@ -914,7 +925,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

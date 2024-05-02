@@ -21,16 +21,16 @@
 
 ```{r}
 # まずgoukeiに0を入れる
-goukei = 0
+goukei <- 0
 
 for(i in 1:50){
-  goukei = goukei + i
+  goukei <- goukei + i
 }
 
 print(goukei)
 ```
 
-### 練習問題 \@ref{vectormake}
+**練習問題** \@ref(vectormake)
 
 ```{r}
 # 3から60まで3ずつ増える数列
@@ -39,6 +39,19 @@ v7_ex <- seq(3,60,by=3)
 print(v7_ex)
 
 ```
+
+**練習問題** \@ref(#vectormake2)
+
+```{r}
+v9_ex <- rep(seq(2,10,by=2), 5)
+
+# パイプを使って以下のように書くこともできる(パイプは第6章を参照)
+
+v9_ex <- seq(2,10,by=2) |> rep(5)
+  
+```
+
+
 
 
 ## Ch. 6
@@ -50,7 +63,7 @@ print(v7_ex)
 ```{r}
 ## 女性のみの学年ごとの学生数
 data_634_long_female_grade <- data_634_long |>
-  filter(性別=="女")|>
+  filter(性別=="女") |>
   group_by(学年) |>
   summarise(学生数合計 = sum(学生数))
 
@@ -62,7 +75,7 @@ print(data_634_long_female_grade)
 ```{r}
 ## 女性のみの学年ごとの学生数
 data_634_long_1_2_grade <- data_634_long |>
-  filter(学年=="1年" | 学年 == "2年")|> #数字が半角か、などに気をつける
+  filter(学年=="1年" | 学年 == "2年") |> #数字が半角か、などに気をつける
   group_by(性別, 学年) |>  ## ２つのカテゴリでグループ分け
   summarise(学生数合計 = sum(学生数))
 

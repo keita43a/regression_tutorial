@@ -50,7 +50,7 @@ knitr::include_graphics("docs/r_basics/fig/gyoretsu2.png")
 - 冒頭で出た武蔵大学経済学部の学生数のデータを見てみよう。
 
 
-### データの読み込み
+## データの読み込み
 
 - データはデータファイルから読み込む
   - ファイルがある場所のpathを指定する。
@@ -74,6 +74,13 @@ csvを読み込むには`read_csv()`関数を使う。この関数は`readr`パ�
 
 3. Rスクリプトを作成し、`data_mgt.R`という名前をつけて保存する。
 
+4. Rスクリプトの冒頭でパッケージを読み込む
+
+```{r}
+library(tidyverse)
+```
+
+
 4. Rスクリプトに以下のコードを書きこみ、データを読み込む。
 
 ```{r, echo=FALSE}
@@ -85,9 +92,10 @@ data2 <- gapminder::gapminder
 data2 <- read_csv("data/gapminder.csv")
 ```
 
-- 先ほどと違い、readとcsvの間が.ではなく_になっている。
+- readとcsvの間が.ではなく_になっている。
 
 - `Error: path does not exist:’`というエラーが出る場合は、ファイルの相対パスが間違っている可能性がある
+  - `r_renshu`プロジェクトを開いていることを確認する
   - `getwd()`で自分がr_renshuフォルダにいることを確認する
   - `gapminder.csv`がきちんとdataフォルダに入っていることを確認する
 
@@ -116,7 +124,7 @@ write.csv(product_make,"data/Products_cp932.csv",fileEncoding="shift-jis")
 
 
 
-例えば、以下のファイルをそのまま読み込んで見る。
+例えば、<a href="https://keita43a.github.io/regression_tutorial/data/Products_cp932.csv" download="Products_cp932.csv">こちら</a>のファイルをそのまま読み込んで見る。
 
 ```{r}
 product_cp932 = read_csv("data/Products_cp932.csv")
@@ -163,16 +171,20 @@ readrでは以下のオプションを引数に指定することで設定でき
 
 武蔵大学経済学部の学生数データを見てみよう。
 
+武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx" download="musashi_keizai_students_2023.xlsx">こちら</a>からダウンロードして、`data`フォルダに保存する。
+
+以下のように、`readxl`パッケージに入っている`read_excel`関数でエクセルファイルを読み込む。`readxl`パッケージは`tidyverse`パッケージ群に入っている。
+
 ```{r, echo=FALSE}
 ## エクセルからデータを読み込み
-data_634 <- readxl::read_excel("docs/r_basics/data/musashi_keizai_students_2023.xlsx") 
+data_634 <- readxl::read_excel("docs/data/musashi_keizai_students_2023.xlsx") 
 
 knitr::kable(data_634) ## kableは見やすい表を出力する関数
 ```
 
 ```{r, eval=FALSE}
 ## エクセルからデータを読み込み
-data_634 <- readxl::read_excel("data/musashi_keizai_students_2023.xlsx") 
+data_634 <- read_excel("data/musashi_keizai_students_2023.xlsx") 
 
 knitr::kable(data_634) ## kableは見やすい表を出力する関数
 ```
@@ -276,9 +288,10 @@ data_634_long <- data_634 |>
 
 
 `pivot_longer()` 関数の引数
-- `cols`は、どの列(column)の変数を使うかを指定する。
-- `names_to`は、新たに生成されるカテゴリ用の列の名前を指定する。
-- `values_to`は、数値が入る列の名前を指定する。
+
+- `cols`は、どの列(column)の変数を使うかを指定する  
+- `names_to`は、新たに生成されるカテゴリ用の列の名前を指定する  
+- `values_to`は、数値が入る列の名前を指定する  
 
 ```{r, eval=FALSE}
 data_634_long <- data_634 |> 
@@ -458,7 +471,7 @@ print(data_634_long_select)
 
 
 
-### 特定の列だけ抽出する: filter()
+### 特定の行だけ抽出する: filter()
 
 データのうち、女性のデータだけを抽出したいとする
 
@@ -484,7 +497,7 @@ print(data_634_long_arrange)
 
 
 
-### データの順番を並び替える: arrange()
+#### 降順の並びにする
 
 デフォルトは昇順だが、desc()で降順で並び変えることもできる
 
@@ -510,7 +523,7 @@ print(data_634_long_relocate)
 
 
 
-### データの列を並び替える: relocate()
+#### 列の後ろに持ってくる場合
 
 学年の列を学科の後に持ってくる
 
@@ -522,7 +535,7 @@ print(data_634_long_relocate2)
 ```
 
 
-### データの列を追加/編集する: mutate()
+### データの列を追加する: mutate()
 
 新しく、学生数を100で割った数値を作るとする
 
@@ -535,7 +548,7 @@ print(data_634_long_mutate)
 
 
 
-### データの列を追加/編集する: mutate()
+### データの列を編集する: mutate()
 
 存在する変数名にすると、新しく変数(列)を作らずに上書きする
 
@@ -610,7 +623,8 @@ print(data_634_long_dept)
 
 ### データの縦の結合
 
-例えば人文学部のデータと結合したい
+例えば人文学部のデータと結合したいとする。
+人文学部のデータは<a href="https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2023.xlsx" download="musashi_jinbun_students_2023.xlsx">こちら</a>からダウンロードできる。
 
 ```{r}
 ## エクセルからデータを読み込み
