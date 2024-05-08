@@ -27,16 +27,3 @@ $$
   - 多段抽出法
   - 層化抽出法
 
----
-
-### 共分散
-
-$$\sigma_{xy} = \frac{1}{n}\sum^{n}_{i=1}(x_i - \bar{x})(y_i - \bar{y})$$
-
----
-
-### 相関係数
-
-$$
- \rho = \frac{\sigma_{xy}}{\sigma_x \sigma_y} 
-$$

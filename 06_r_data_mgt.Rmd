@@ -61,16 +61,18 @@ knitr::include_graphics("docs/r_basics/fig/gyoretsu2.png")
   - csvなら、`readr`パッケージの`read_csv`
   - いずれも`tidyverse`パッケージ群に含まれている
 
-ここではCSV形式について説明するが、その他のファイル形式については[私達のRの第8章](https://www.jaysong.net/RBook/io.html#sec-io-read)を参照してほしい
+ここではエクセル形式について説明するが、その他のファイル形式については[私達のRの第8章](https://www.jaysong.net/RBook/io.html#sec-io-read)を参照してほしい
   
   
 ### **演習**: データの読み込み
 
-csvを読み込むには`read_csv()`関数を使う。この関数は`readr`パッケージ含まれており、tidyverseパッケージ群の一つである。
+csvを読み込むには`read_excel()`関数を使う。この関数は`readxl`パッケージ含まれている。
 
-1. `gapminder.csv`というデータファイルを<a href="https://keita43a.github.io/regression_tutorial/data/gapminder.csv" download="gapminder.csv">こちら</a>からダウンロードするか、阿部ゼミのGoogle Classroomからダウンロードする。
+1. `readxl`パッケージをインストールする。
 
-2. `r_renshu`フォルダに`data`フォルダを作成し、そこに`gapminder.csv`ファイルを保存する。
+2. 武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx" download="musashi_keizai_students_2023.xlsx">こちら</a>からダウンロードする。
+
+2. `r_renshu`フォルダに`data`フォルダを作成し、そこに`musashi_keizai_students_2023.xlsx`ファイルを保存する。
 
 3. Rスクリプトを作成し、`data_mgt.R`という名前をつけて保存する。
 
@@ -78,26 +80,21 @@ csvを読み込むには`read_csv()`関数を使う。この関数は`readr`パ�
 
 ```{r}
 library(tidyverse)
+library(readxl)
 ```
 
 
 4. Rスクリプトに以下のコードを書きこみ、データを読み込む。
 
-```{r, echo=FALSE}
-data2 <- gapminder::gapminder
-### write_csv(data2,"../data/gapminder.csv")
-```
 
 ```{r,eval=FALSE}
-data2 <- read_csv("data/gapminder.csv")
+data_634 <- read_excel("data/musashi_keizai_students_2023.xlsx")
 ```
-
-- readとcsvの間が.ではなく_になっている。
 
 - `Error: path does not exist:’`というエラーが出る場合は、ファイルの相対パスが間違っている可能性がある
   - `r_renshu`プロジェクトを開いていることを確認する
   - `getwd()`で自分がr_renshuフォルダにいることを確認する
-  - `gapminder.csv`がきちんとdataフォルダに入っていることを確認する
+  - `musashi_keizai_students_2023.xlsx`がきちんとdataフォルダに入っていることを確認する
 
 
 ### 日本語のデータを読み込む際の注意点
@@ -171,9 +168,6 @@ readrでは以下のオプションを引数に指定することで設定でき
 
 武蔵大学経済学部の学生数データを見てみよう。
 
-武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx" download="musashi_keizai_students_2023.xlsx">こちら</a>からダウンロードして、`data`フォルダに保存する。
-
-以下のように、`readxl`パッケージに入っている`read_excel`関数でエクセルファイルを読み込む。`readxl`パッケージは`tidyverse`パッケージ群に入っている。
 
 ```{r, echo=FALSE}
 ## エクセルからデータを読み込み
@@ -223,6 +217,7 @@ Rの中でもtidy dataでないデータが好ましい場合もある。しか�
 ## データフレームを扱うテクニック：パイプ
 
 データフレームを操作する関数の共通点
+
 - 第１引数がデータフレーム
 - 第２引数以降はそのデータフレームに対する操作
 - 結果がデータフレームとして返される
@@ -258,7 +253,7 @@ data_temp <- data_634_long |>
   summarise(`学生数`=sum(`学生数`),.groups = "drop") |>
   pivot_wider(id_cols=`学科`,names_from=`性別`,values_from=`学生数`)
 
-kable(data_temp) %>% kableExtra::kable_styling(font_size = 18)
+kable(data_temp)
 
 ```
 
@@ -269,7 +264,7 @@ kable(data_temp) %>% kableExtra::kable_styling(font_size = 18)
 data_temp2 <- data_temp |> 
   pivot_longer(cols=c("男","女"), names_to ="性別",values_to="人数")
 
-kable(data_temp2) %>% kableExtra::kable_styling(font_size = 18)
+kable(data_temp2) 
 
 ```
 
@@ -397,11 +392,6 @@ var(data_634_long$学生数)
 ## 合計 sum()関数
 sum(data_634_long$学生数)
 ```
-
-
-
-## データフレームとtibble
-
 
 
 

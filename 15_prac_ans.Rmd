@@ -81,3 +81,26 @@ data_634_long_1_2_grade <- data_634_long |>
 
 print(data_634_long_1_2_grade)
 ```
+
+## Ch. 8
+
+**練習問題**\@ref(scatterpractice)：散布図
+
+```{r, fig.align='center', fig.height=4, fig.width=7.5}
+plot_scatter <- ggplot(data=diamonds) + 
+  geom_point(aes(x=carat,y=price, 
+                 color=color))
+
+print(plot_scatter)
+```
+
+**練習問題**\@ref(lineplotpractice)：折れ線グラフ
+
+```{r}
+plot_line <- ggplot(data=economics) + 
+  geom_line(aes(x=date,y=unemploy))
+```
+
+```{r, fig.align='center', fig.height=5, fig.width=5}
+print(plot_line)
+```

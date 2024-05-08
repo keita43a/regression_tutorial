@@ -286,13 +286,20 @@ plot_634
 - ggplotで作図した結果をオブジェクトに保存
   - ここの例では`plot_634`に保存
 
+- `fig`という名前のフォルダを作っておく。
 - `ggsave`という関数で、ファイルパスを指定して保存
+  - `file`という引数に、`"fig/musashi_students_2023.png"`と指定
+    - `fig`ディレクトリの下に`musashi_students_2023`という名前で`png`形式ファイルとして保存するという意味
+  - `plot`に保存したいggplotオブジェクト（描画したもの）を指定
+  - `device`に保存したい画像形式を指定。ここでは`png`を指定している。他には`tiff`,`pdf`,`jpg`など。
+  
+
 
 ```{r}
 
 # ggsave()関数を使って、図を保存
 # file: 保存する場所, plot: 図のオブジェクト, device: 保存する形式
-ggsave(file="docs/r_basics/fig/musashi_students_2023.png", plot=plot_634, device="png")
+ggsave(file="fig/musashi_students_2023.png", plot=plot_634, device="png")
 
 ```
 
@@ -300,56 +307,84 @@ ggsave(file="docs/r_basics/fig/musashi_students_2023.png", plot=plot_634, device
 
 ## 他の描画レイヤー
 
-|`geom_point`|散布図|
-|`geom_line`|折れ線グラフ|
-|`geom_boxplot`|箱ひげ図|
-|`geom_violin`|バイオリンプロット|
-|`geom_map`|地図を描く|
+
+|     関数       |     描画            |
+|----------------|---------------------|
+| `geom_point`   |  散布図             |
+| `geom_line`    |  折れ線グラフ       |
+| `geom_boxplot` |  箱ひげ図           |
+| `geom_violin`  |  バイオリンプロット |
+| `geom_map`     |  地図を描く         |
+
+
 
 - 他にも多くの描画レイヤーが存在する
  - [参考](https://ggplot2.tidyverse.org/reference/)
 
 
+### 演習：散布図 {#scatterpractice}
 
-## 散布図
+ここでは`diamonds`というggplotに付属しているデータセットを使う。
 
+このデータには、ダイヤモンドの一つ一つのクオリティとその価格が記録されている。クオリティはいやゆるダイヤモンドの4Cと言われるカラット(Carat), カット(Cut), 色(Color), 透明性(Clarity)で表されている。
 
-- `geom_point`で散布図を描く
-- XとYの変数を指定する
-- ここでは`diamonds`というggplotに付属しているデータセットを使う
-- ダイアモンドのカラットをx軸, 価格をy軸, ダイアモンドの色を色で表現
+ここでは、大きさであるカラットと価格の関係性、さらに色の影響を見てみる。
 
-```{r, fig.align='center', fig.height=4, fig.width=7.5}
+```{r}
+# diamondsというデータを読みこむ
+data(diamonds)
+
+# diamondsの変数を確認する
+names(diamonds)
+
+# diamondsのデータの冒頭を確認する
+head(diamonds)
+
+```
+
+**課題**：以下の画像を作成してみよう。
+
+```{r, echo=FALSE, fig.align='center', fig.height=4, fig.width=7.5}
 plot_scatter <- ggplot(data=diamonds) + 
   geom_point(aes(x=carat,y=price, 
                  color=color))
-```
 
-```{r, echo=FALSE, fig.align='center', fig.height=5, fig.width=5}
 print(plot_scatter)
 ```
 
 
 
 
-## 折れ線グラフ
+## **練習問題**: 折れ線グラフ {#lineplotpractice}
 
-- `geom_line`で折れ線グラフを描く
-  -時系列データに有効
-- XとYの変数を指定する
-- ここでは`economics`というggplotに付属しているデータセットを使う
-- 日付をx軸, アメリカの失業数をy軸
+
+ここでは`economics`というggplotに付属しているデータセットを使う。
+
+このデータには、アメリカの主要な経済指標が時系列データとして記録されている。`date`は年月、`pop`は人口(1000人)、`psavert`は個人貯蓄率、`unempmed`は失業期間の中央値（週）、unemployは失業数（1000人）である。
 
 
 ```{r}
+# economicsというデータを読みこむ
+data(economics)
+
+# diamondsの変数を確認する
+names(economics)
+
+# diamondsのデータの冒頭を確認する
+head(economics)
+
+```
+
+**課題**：アメリカの失業数の変遷の折れ線グラフを作成しよう。
+
+```{r, echo=FALSE}
 plot_line <- ggplot(data=economics) + 
   geom_line(aes(x=date,y=unemploy))
 ```
+
 ```{r, echo=FALSE, fig.align='center', fig.height=5, fig.width=5}
 print(plot_line)
 ```
-
-
 
 
 ## 箱ひげ図

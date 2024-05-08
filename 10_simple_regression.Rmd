@@ -1,0 +1,19 @@
+# 単回帰分析 {#simpleregression}
+
+
+## ２つの変数の関係
+
+### 共分散
+
+$$\sigma_{xy} = \frac{1}{n}\sum^{n}_{i=1}(x_i - \bar{x})(y_i - \bar{y})$$
+
+### 相関係数
+
+$$
+ \rho = \frac{\sigma_{xy}}{\sigma_x \sigma_y} 
+$$
+
+### 散布図
+
+
+## 回帰分析
