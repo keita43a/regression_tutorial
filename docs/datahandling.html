@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-08" />
+<meta name="date" content="2024-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -225,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング言語としてのr"><i class="fa fa-check"></i><b>4.2</b> プログラミング言語としてのR</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="letsuse.html"><a href="letsuse.html#変数へのオブジェクトの代入"><i class="fa fa-check"></i><b>4.2.1</b> 変数へのオブジェクトの代入</a></li>
-<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング繰り返し"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
+<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#loop"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
 <li class="chapter" data-level="4.2.3" data-path="letsuse.html"><a href="letsuse.html#practiceloop"><i class="fa fa-check"></i><b>4.2.3</b> <strong>練習問題</strong>：ループを用いた計算</a></li>
 <li class="chapter" data-level="4.2.4" data-path="letsuse.html"><a href="letsuse.html#プログラミングif文"><i class="fa fa-check"></i><b>4.2.4</b> プログラミング：if文</a></li>
 </ul></li>
@@ -292,29 +292,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8" data-path="datahandling.html"><a href="datahandling.html#変数の要約"><i class="fa fa-check"></i><b>6.8</b> 変数の要約</a></li>
 <li class="chapter" data-level="6.9" data-path="datahandling.html"><a href="datahandling.html#変数の取り出し"><i class="fa fa-check"></i><b>6.9</b> 変数の取り出し</a></li>
 <li class="chapter" data-level="6.10" data-path="datahandling.html"><a href="datahandling.html#変数の取り出しと計算"><i class="fa fa-check"></i><b>6.10</b> 変数の取り出しと計算</a></li>
-<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データフレームとtibble"><i class="fa fa-check"></i><b>6.11</b> データフレームとtibble</a></li>
-<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.12</b> データの操作</a>
+<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.11</b> データの操作</a>
 <ul>
-<li class="chapter" data-level="6.12.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.12.1</b> データの操作</a></li>
-<li class="chapter" data-level="6.12.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.12.2</b> 元のデータの見た目確認</a></li>
-<li class="chapter" data-level="6.12.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.12.3</b> 列の名前を変えたい: rename()</a></li>
-<li class="chapter" data-level="6.12.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.12.4</b> 特定の列だけ抽出する: select()</a></li>
-<li class="chapter" data-level="6.12.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.12.5</b> 特定の行だけ抽出する: filter()</a></li>
-<li class="chapter" data-level="6.12.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.12.6</b> データの順番を並び替える: arrange()</a></li>
-<li class="chapter" data-level="6.12.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.12.7</b> データの列を並び替える: relocate()</a></li>
-<li class="chapter" data-level="6.12.8" data-path="datahandling.html"><a href="datahandling.html#データの列を追加する-mutate"><i class="fa fa-check"></i><b>6.12.8</b> データの列を追加する: mutate()</a></li>
-<li class="chapter" data-level="6.12.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.12.9</b> データの列を編集する: mutate()</a></li>
-<li class="chapter" data-level="6.12.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.12.10</b> データを集計する</a></li>
-<li class="chapter" data-level="6.12.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.12.11</b> データ操作の応用：パイプによる引き渡し</a></li>
-<li class="chapter" data-level="6.12.12" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用グループごとの集計"><i class="fa fa-check"></i><b>6.12.12</b> データ操作の応用：グループごとの集計</a></li>
+<li class="chapter" data-level="6.11.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.11.1</b> データの操作</a></li>
+<li class="chapter" data-level="6.11.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.11.2</b> 元のデータの見た目確認</a></li>
+<li class="chapter" data-level="6.11.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.11.3</b> 列の名前を変えたい: rename()</a></li>
+<li class="chapter" data-level="6.11.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.11.4</b> 特定の列だけ抽出する: select()</a></li>
+<li class="chapter" data-level="6.11.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.11.5</b> 特定の行だけ抽出する: filter()</a></li>
+<li class="chapter" data-level="6.11.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.11.6</b> データの順番を並び替える: arrange()</a></li>
+<li class="chapter" data-level="6.11.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.11.7</b> データの列を並び替える: relocate()</a></li>
+<li class="chapter" data-level="6.11.8" data-path="datahandling.html"><a href="datahandling.html#データの列を追加する-mutate"><i class="fa fa-check"></i><b>6.11.8</b> データの列を追加する: mutate()</a></li>
+<li class="chapter" data-level="6.11.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.11.9</b> データの列を編集する: mutate()</a></li>
+<li class="chapter" data-level="6.11.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.11.10</b> データを集計する</a></li>
+<li class="chapter" data-level="6.11.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.11.11</b> データ操作の応用：パイプによる引き渡し</a></li>
+<li class="chapter" data-level="6.11.12" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用グループごとの集計"><i class="fa fa-check"></i><b>6.11.12</b> データ操作の応用：グループごとの集計</a></li>
 </ul></li>
-<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.13</b> <strong>練習問題</strong>: データ操作</a></li>
-<li class="chapter" data-level="6.14" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.14</b> データの結合</a>
+<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.12</b> <strong>練習問題</strong>: データ操作</a></li>
+<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.13</b> データの結合</a>
 <ul>
-<li class="chapter" data-level="6.14.1" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.14.1</b> データの縦の結合</a></li>
-<li class="chapter" data-level="6.14.2" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.14.2</b> データを横に統合</a></li>
-<li class="chapter" data-level="6.14.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.14.3</b> データを横に統合：join()関数</a></li>
-<li class="chapter" data-level="6.14.4" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.14.4</b> join関数一覧</a></li>
+<li class="chapter" data-level="6.13.1" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.13.1</b> データの縦の結合</a></li>
+<li class="chapter" data-level="6.13.2" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.13.2</b> データを横に統合</a></li>
+<li class="chapter" data-level="6.13.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.13.3</b> データを横に統合：join()関数</a></li>
+<li class="chapter" data-level="6.13.4" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.13.4</b> join関数一覧</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="rstats.html"><a href="rstats.html"><i class="fa fa-check"></i><b>7</b> 記述統計</a>
@@ -322,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="rstats.html"><a href="rstats.html#統計とは"><i class="fa fa-check"></i><b>7.1</b> 統計とは</a>
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
-<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#推測統計"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.2</b> データとは</a></li>
 <li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.3</b> 代表的な統計量</a>
@@ -375,37 +374,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
-<li class="chapter" data-level="9.0.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏分散"><i class="fa fa-check"></i><b>9.0.1</b> 不偏分散</a></li>
-<li class="chapter" data-level="9.0.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.0.2</b> 母集団と標本</a></li>
-<li class="chapter" data-level="9.0.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#サンプリング"><i class="fa fa-check"></i><b>9.0.3</b> サンプリング</a></li>
-<li class="chapter" data-level="9.0.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#共分散"><i class="fa fa-check"></i><b>9.0.4</b> 共分散</a></li>
-<li class="chapter" data-level="9.0.5" data-path="rstatsinfe.html"><a href="rstatsinfe.html#相関係数"><i class="fa fa-check"></i><b>9.0.5</b> 相関係数</a></li>
+<li class="chapter" data-level="9.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.1</b> 母集団と標本</a></li>
+<li class="chapter" data-level="9.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#推定量"><i class="fa fa-check"></i><b>9.2</b> 推定量</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏性"><i class="fa fa-check"></i><b>9.2.1</b> 不偏性</a></li>
+<li class="chapter" data-level="9.2.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#一致性"><i class="fa fa-check"></i><b>9.2.2</b> 一致性</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母平均の信頼区間"><i class="fa fa-check"></i><b>9.3</b> 母平均の信頼区間</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#標準誤差"><i class="fa fa-check"></i><b>9.3.1</b> 標準誤差</a></li>
+<li class="chapter" data-level="9.3.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#信頼区間"><i class="fa fa-check"></i><b>9.3.2</b> 信頼区間</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#統計的仮説検定"><i class="fa fa-check"></i><b>9.4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#仮説設定"><i class="fa fa-check"></i><b>9.4.1</b> 仮説設定</a></li>
+<li class="chapter" data-level="9.4.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#有意水準"><i class="fa fa-check"></i><b>9.4.2</b> 有意水準</a></li>
+<li class="chapter" data-level="9.4.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#棄却域"><i class="fa fa-check"></i><b>9.4.3</b> 棄却域</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="simpleregression.html"><a href="simpleregression.html"><i class="fa fa-check"></i><b>10</b> 単回帰分析</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="simpleregression.html"><a href="simpleregression.html#つの変数の関係"><i class="fa fa-check"></i><b>10.1</b> ２つの変数の関係</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="simpleregression.html"><a href="simpleregression.html#共分散-1"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
-<li class="chapter" data-level="10.1.2" data-path="simpleregression.html"><a href="simpleregression.html#相関係数-1"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="10.1.1" data-path="simpleregression.html"><a href="simpleregression.html#共分散"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="10.1.2" data-path="simpleregression.html"><a href="simpleregression.html#相関係数"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
 <li class="chapter" data-level="10.1.3" data-path="simpleregression.html"><a href="simpleregression.html#散布図"><i class="fa fa-check"></i><b>10.1.3</b> 散布図</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析"><i class="fa fa-check"></i><b>10.2</b> 回帰分析</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>11</b> 単回帰分析</a>
+<li class="chapter" data-level="11" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>11</b> 重回帰分析</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="multipleregression.html"><a href="multipleregression.html#section"><i class="fa fa-check"></i><b>11.1</b> </a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="multipleregression.html"><a href="multipleregression.html#共分散-2"><i class="fa fa-check"></i><b>11.1.1</b> 共分散</a></li>
-<li class="chapter" data-level="11.1.2" data-path="multipleregression.html"><a href="multipleregression.html#相関係数-2"><i class="fa fa-check"></i><b>11.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="11.1.1" data-path="multipleregression.html"><a href="multipleregression.html#共分散-1"><i class="fa fa-check"></i><b>11.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="11.1.2" data-path="multipleregression.html"><a href="multipleregression.html#相関係数-1"><i class="fa fa-check"></i><b>11.1.2</b> 相関係数</a></li>
 <li class="chapter" data-level="11.1.3" data-path="multipleregression.html"><a href="multipleregression.html#散布図-1"><i class="fa fa-check"></i><b>11.1.3</b> 散布図</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="multipleregression.html"><a href="multipleregression.html#回帰分析-1"><i class="fa fa-check"></i><b>11.2</b> 回帰分析</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>12</b> 練習問題解答</a>
+<li class="chapter" data-level="12" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>12</b> パネルデータ分析</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>12.1</b> Ch.4</a></li>
-<li class="chapter" data-level="12.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>12.2</b> Ch. 6</a></li>
-<li class="chapter" data-level="12.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>12.3</b> Ch. 8</a></li>
+<li class="chapter" data-level="12.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータ"><i class="fa fa-check"></i><b>12.1</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>12.1.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="12.1.2" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>12.1.2</b> データの準備</a></li>
+<li class="chapter" data-level="12.1.3" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>12.1.3</b> データの記述統計</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>13</b> 練習問題解答</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>13.1</b> Ch.4</a></li>
+<li class="chapter" data-level="13.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>13.2</b> Ch. 6</a></li>
+<li class="chapter" data-level="13.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>13.3</b> Ch. 8</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -528,14 +548,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="datahandling.html#cb109-1" tabindex="-1"></a>product_cp932 <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Products_cp932.csv&quot;</span>)</span>
 <span id="cb109-2"><a href="datahandling.html#cb109-2" tabindex="-1"></a>product_cp932</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
-##    ...1 ProductID ProductName Price Category                 CreatedDate
-##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                    &lt;date&gt;     
-## 1     1         1 YKDJw        1122 &quot;\x83w\x83\x8b\x83X&amp;\x8… 2005-08-30 
-## 2     2         2 ftKQ7        1877 &quot;\x83w\x83\x8b\x83X&amp;\x8… 2006-07-01 
-## 3     3         3 l8lqm        3754 &quot;\x89\xc6\x8b\xef\x81E\… 2005-05-26 
-## 4     4         4 8ntvc        8242 &quot;\x89\xd4\x81E\x83O\x83… 2005-09-06 
-## 5     5         5 HhDBS        4461 &quot;\x90H\x95i&quot;             2010-12-28 
-## 6     6         6 PKIs3        4963 &quot;\x8eG\x89\xdd\x81E\x93… 2005-02-09</code></pre>
+##    ...1 ProductID ProductName Price Category                                                                 CreatedDate
+##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                                                                    &lt;date&gt;     
+## 1     1         1 YKDJw        1122 &quot;\x83w\x83\x8b\x83X&amp;\x83r\x83\x85\x81[\x83e\x83B\x81[&quot;                   2005-08-30 
+## 2     2         2 ftKQ7        1877 &quot;\x83w\x83\x8b\x83X&amp;\x83r\x83\x85\x81[\x83e\x83B\x81[&quot;                   2006-07-01 
+## 3     3         3 l8lqm        3754 &quot;\x89\xc6\x8b\xef\x81E\x83C\x83\x93\x83e\x83\x8a\x83A\x81E\x89\xc6\x93d&quot; 2005-05-26 
+## 4     4         4 8ntvc        8242 &quot;\x89\xd4\x81E\x83O\x83\x8a\x81[\x83\x93&quot;                                2005-09-06 
+## 5     5         5 HhDBS        4461 &quot;\x90H\x95i&quot;                                                             2010-12-28 
+## 6     6         6 PKIs3        4963 &quot;\x8eG\x89\xdd\x81E\x93\xfa\x97p\x95i&quot;                                   2005-02-09</code></pre>
 <p><code>Category</code>という変数が文字化けしてしまっているのがわかる。</p>
 <p>ファイルのエンコーディングを調べることができる。
 <code>readr</code>パッケージもに入っている<code>guess_encoding</code>を使うと、Shift-JISである可能性が高いことがわかる。</p>
@@ -715,10 +735,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="データフレームを扱うテクニックパイプ" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> データフレームを扱うテクニック：パイプ<a href="datahandling.html#データフレームを扱うテクニックパイプ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>データフレームを操作する関数の共通点
-- 第１引数がデータフレーム
-- 第２引数以降はそのデータフレームに対する操作
-- 結果がデータフレームとして返される</p>
+<p>データフレームを操作する関数の共通点</p>
+<ul>
+<li>第１引数がデータフレーム</li>
+<li>第２引数以降はそのデータフレームに対する操作</li>
+<li>結果がデータフレームとして返される</li>
+</ul>
 <div id="パイプ" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> パイプ<a href="datahandling.html#パイプ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>パイプ(<code>|&gt;</code>)は「これまでの処理を次の第１引数として引き渡す」という機能を持つ。
@@ -909,8 +931,7 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <p>データから変数を一つ取り出すときは$マークを使う。</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="datahandling.html#cb130-1" tabindex="-1"></a><span class="do">## データフレーム$変数 で変数の列をベクトルとして取り出す</span></span>
 <span id="cb130-2"><a href="datahandling.html#cb130-2" tabindex="-1"></a> data_634_long<span class="sc">$</span>学年</span></code></pre></div>
-<pre><code>##  [1] 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年 1年
-## [18] 2年 3年 4年 1年 2年 3年 4年
+<pre><code>##  [1] 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年 1年 2年 3年 4年
 ## Levels: 1年 2年 3年 4年</code></pre>
 </div>
 <div id="変数の取り出しと計算" class="section level2 hasAnchor" number="6.10">
@@ -928,11 +949,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <span id="cb138-2"><a href="datahandling.html#cb138-2" tabindex="-1"></a><span class="fu">sum</span>(data_634_long<span class="sc">$</span>学生数)</span></code></pre></div>
 <pre><code>## [1] 1932</code></pre>
 </div>
-<div id="データフレームとtibble" class="section level2 hasAnchor" number="6.11">
-<h2><span class="header-section-number">6.11</span> データフレームとtibble<a href="datahandling.html#データフレームとtibble" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="データの操作" class="section level2 hasAnchor" number="6.12">
-<h2><span class="header-section-number">6.12</span> データの操作<a href="datahandling.html#データの操作" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="データの操作" class="section level2 hasAnchor" number="6.11">
+<h2><span class="header-section-number">6.11</span> データの操作<a href="datahandling.html#データの操作" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>データを編集したいことはたくさん出てくる。</p>
 <ul>
 <li>列の名前を変えたい</li>
@@ -946,13 +964,13 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <li>新しい変数を作りたい</li>
 <li>データを集計したい</li>
 </ul>
-<div id="データの操作-1" class="section level3 hasAnchor" number="6.12.1">
-<h3><span class="header-section-number">6.12.1</span> データの操作<a href="datahandling.html#データの操作-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの操作-1" class="section level3 hasAnchor" number="6.11.1">
+<h3><span class="header-section-number">6.11.1</span> データの操作<a href="datahandling.html#データの操作-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>tidyverse</code>シリーズである<code>dplyr</code>パッケージに入っている関数で操作することができる。</p>
 <p><img src="docs/r_basics/fig/dplyr_logo.png" width="40%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="元のデータの見た目確認" class="section level3 hasAnchor" number="6.12.2">
-<h3><span class="header-section-number">6.12.2</span> 元のデータの見た目確認<a href="datahandling.html#元のデータの見た目確認" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="元のデータの見た目確認" class="section level3 hasAnchor" number="6.11.2">
+<h3><span class="header-section-number">6.11.2</span> 元のデータの見た目確認<a href="datahandling.html#元のデータの見た目確認" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="datahandling.html#cb140-1" tabindex="-1"></a><span class="fu">print</span>(data_634_long)</span></code></pre></div>
 <pre><code>## # A tibble: 24 × 4
 ##    学科     性別  学年  学生数
@@ -969,8 +987,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## 10 経営学科 男    2年      121
 ## # ℹ 14 more rows</code></pre>
 </div>
-<div id="列の名前を変えたい-rename" class="section level3 hasAnchor" number="6.12.3">
-<h3><span class="header-section-number">6.12.3</span> 列の名前を変えたい: rename()<a href="datahandling.html#列の名前を変えたい-rename" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="列の名前を変えたい-rename" class="section level3 hasAnchor" number="6.11.3">
+<h3><span class="header-section-number">6.11.3</span> 列の名前を変えたい: rename()<a href="datahandling.html#列の名前を変えたい-rename" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>列（変数）の名前を変更する</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="datahandling.html#cb142-1" tabindex="-1"></a>data_634_long_eng <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
 <span id="cb142-2"><a href="datahandling.html#cb142-2" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">department =</span> 学科, </span>
@@ -994,8 +1012,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## 10 経営学科   男     2年       121
 ## # ℹ 14 more rows</code></pre>
 </div>
-<div id="特定の列だけ抽出する-select" class="section level3 hasAnchor" number="6.12.4">
-<h3><span class="header-section-number">6.12.4</span> 特定の列だけ抽出する: select()<a href="datahandling.html#特定の列だけ抽出する-select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="特定の列だけ抽出する-select" class="section level3 hasAnchor" number="6.11.4">
+<h3><span class="header-section-number">6.11.4</span> 特定の列だけ抽出する: select()<a href="datahandling.html#特定の列だけ抽出する-select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データのうち、学科と性別という変数だけ抽出したいとする</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="datahandling.html#cb144-1" tabindex="-1"></a>data_634_long_select <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
 <span id="cb144-2"><a href="datahandling.html#cb144-2" tabindex="-1"></a>  <span class="fu">select</span>(学科, 性別)</span>
@@ -1016,8 +1034,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## 10 経営学科 男   
 ## # ℹ 14 more rows</code></pre>
 </div>
-<div id="特定の行だけ抽出する-filter" class="section level3 hasAnchor" number="6.12.5">
-<h3><span class="header-section-number">6.12.5</span> 特定の行だけ抽出する: filter()<a href="datahandling.html#特定の行だけ抽出する-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="特定の行だけ抽出する-filter" class="section level3 hasAnchor" number="6.11.5">
+<h3><span class="header-section-number">6.11.5</span> 特定の行だけ抽出する: filter()<a href="datahandling.html#特定の行だけ抽出する-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データのうち、女性のデータだけを抽出したいとする</p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="datahandling.html#cb146-1" tabindex="-1"></a>data_634_long_filter <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
 <span id="cb146-2"><a href="datahandling.html#cb146-2" tabindex="-1"></a>  <span class="fu">filter</span>(性別 <span class="sc">==</span> <span class="st">&quot;女&quot;</span>)</span>
@@ -1039,8 +1057,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## 11 金融学科 女    3年       33
 ## 12 金融学科 女    4年       24</code></pre>
 </div>
-<div id="データの順番を並び替える-arrange" class="section level3 hasAnchor" number="6.12.6">
-<h3><span class="header-section-number">6.12.6</span> データの順番を並び替える: arrange()<a href="datahandling.html#データの順番を並び替える-arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの順番を並び替える-arrange" class="section level3 hasAnchor" number="6.11.6">
+<h3><span class="header-section-number">6.11.6</span> データの順番を並び替える: arrange()<a href="datahandling.html#データの順番を並び替える-arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データの順番を学年-&gt;性別の順番で並び替える</p>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="datahandling.html#cb148-1" tabindex="-1"></a>data_634_long_arrange <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
 <span id="cb148-2"><a href="datahandling.html#cb148-2" tabindex="-1"></a>  <span class="fu">arrange</span>(学年, 性別)</span>
@@ -1060,8 +1078,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ##  9 金融学科 男    2年       90
 ## 10 経済学科 女    2年       50
 ## # ℹ 14 more rows</code></pre>
-<div id="降順の並びにする" class="section level4 hasAnchor" number="6.12.6.1">
-<h4><span class="header-section-number">6.12.6.1</span> 降順の並びにする<a href="datahandling.html#降順の並びにする" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="降順の並びにする" class="section level4 hasAnchor" number="6.11.6.1">
+<h4><span class="header-section-number">6.11.6.1</span> 降順の並びにする<a href="datahandling.html#降順の並びにする" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>デフォルトは昇順だが、desc()で降順で並び変えることもできる</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="datahandling.html#cb150-1" tabindex="-1"></a>data_634_long_arrange2 <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
 <span id="cb150-2"><a href="datahandling.html#cb150-2" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(学年), 性別)</span>
@@ -1083,8 +1101,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## # ℹ 14 more rows</code></pre>
 </div>
 </div>
-<div id="データの列を並び替える-relocate" class="section level3 hasAnchor" number="6.12.7">
-<h3><span class="header-section-number">6.12.7</span> データの列を並び替える: relocate()<a href="datahandling.html#データの列を並び替える-relocate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの列を並び替える-relocate" class="section level3 hasAnchor" number="6.11.7">
+<h3><span class="header-section-number">6.11.7</span> データの列を並び替える: relocate()<a href="datahandling.html#データの列を並び替える-relocate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>学年の列を性別の前に持ってくる</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="datahandling.html#cb152-1" tabindex="-1"></a>data_634_long_relocate <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
 <span id="cb152-2"><a href="datahandling.html#cb152-2" tabindex="-1"></a>  <span class="fu">relocate</span>(学年, <span class="at">.before=</span>性別)</span>
@@ -1104,8 +1122,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ##  9 経営学科 1年   男       129
 ## 10 経営学科 2年   男       121
 ## # ℹ 14 more rows</code></pre>
-<div id="列の後ろに持ってくる場合" class="section level4 hasAnchor" number="6.12.7.1">
-<h4><span class="header-section-number">6.12.7.1</span> 列の後ろに持ってくる場合<a href="datahandling.html#列の後ろに持ってくる場合" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="列の後ろに持ってくる場合" class="section level4 hasAnchor" number="6.11.7.1">
+<h4><span class="header-section-number">6.11.7.1</span> 列の後ろに持ってくる場合<a href="datahandling.html#列の後ろに持ってくる場合" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>学年の列を学科の後に持ってくる</p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="datahandling.html#cb154-1" tabindex="-1"></a>data_634_long_relocate2 <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
 <span id="cb154-2"><a href="datahandling.html#cb154-2" tabindex="-1"></a>  <span class="fu">relocate</span>(学年, <span class="at">.after=</span>学科)</span>
@@ -1127,8 +1145,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## # ℹ 14 more rows</code></pre>
 </div>
 </div>
-<div id="データの列を追加する-mutate" class="section level3 hasAnchor" number="6.12.8">
-<h3><span class="header-section-number">6.12.8</span> データの列を追加する: mutate()<a href="datahandling.html#データの列を追加する-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの列を追加する-mutate" class="section level3 hasAnchor" number="6.11.8">
+<h3><span class="header-section-number">6.11.8</span> データの列を追加する: mutate()<a href="datahandling.html#データの列を追加する-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>新しく、学生数を100で割った数値を作るとする</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="datahandling.html#cb156-1" tabindex="-1"></a>data_634_long_mutate <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
 <span id="cb156-2"><a href="datahandling.html#cb156-2" tabindex="-1"></a>  <span class="fu">mutate</span>(学生数100 <span class="ot">=</span> 学生数<span class="sc">/</span><span class="dv">100</span>)</span>
@@ -1149,8 +1167,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## 10 経営学科 男    2年      121      1.21
 ## # ℹ 14 more rows</code></pre>
 </div>
-<div id="データの列を編集する-mutate" class="section level3 hasAnchor" number="6.12.9">
-<h3><span class="header-section-number">6.12.9</span> データの列を編集する: mutate()<a href="datahandling.html#データの列を編集する-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの列を編集する-mutate" class="section level3 hasAnchor" number="6.11.9">
+<h3><span class="header-section-number">6.11.9</span> データの列を編集する: mutate()<a href="datahandling.html#データの列を編集する-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>存在する変数名にすると、新しく変数(列)を作らずに上書きする</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="datahandling.html#cb158-1" tabindex="-1"></a>data_634_long_mutate2 <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
 <span id="cb158-2"><a href="datahandling.html#cb158-2" tabindex="-1"></a>  <span class="fu">mutate</span>(学生数 <span class="ot">=</span> 学生数<span class="sc">/</span><span class="dv">100</span>)</span>
@@ -1171,8 +1189,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## 10 経営学科 男    2年     1.21
 ## # ℹ 14 more rows</code></pre>
 </div>
-<div id="データを集計する" class="section level3 hasAnchor" number="6.12.10">
-<h3><span class="header-section-number">6.12.10</span> データを集計する<a href="datahandling.html#データを集計する" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データを集計する" class="section level3 hasAnchor" number="6.11.10">
+<h3><span class="header-section-number">6.11.10</span> データを集計する<a href="datahandling.html#データを集計する" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>任意を列を集計したり統計量を計算する。</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="datahandling.html#cb160-1" tabindex="-1"></a>data_634_long_summarise <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span> </span>
 <span id="cb160-2"><a href="datahandling.html#cb160-2" tabindex="-1"></a>  <span class="fu">summarise</span>(学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数),</span>
@@ -1184,8 +1202,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ##        &lt;dbl&gt;      &lt;dbl&gt;
 ## 1       1932       80.5</code></pre>
 </div>
-<div id="データ操作の応用パイプによる引き渡し" class="section level3 hasAnchor" number="6.12.11">
-<h3><span class="header-section-number">6.12.11</span> データ操作の応用：パイプによる引き渡し<a href="datahandling.html#データ操作の応用パイプによる引き渡し" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データ操作の応用パイプによる引き渡し" class="section level3 hasAnchor" number="6.11.11">
+<h3><span class="header-section-number">6.11.11</span> データ操作の応用：パイプによる引き渡し<a href="datahandling.html#データ操作の応用パイプによる引き渡し" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>ある操作を行った結果をパイプで次の関数に引き渡す。</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="datahandling.html#cb162-1" tabindex="-1"></a><span class="do">## 女性の合計だけを知りたい</span></span>
 <span id="cb162-2"><a href="datahandling.html#cb162-2" tabindex="-1"></a>data_634_long_female <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
@@ -1198,8 +1216,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ##            &lt;dbl&gt;
 ## 1            523</code></pre>
 </div>
-<div id="データ操作の応用グループごとの集計" class="section level3 hasAnchor" number="6.12.12">
-<h3><span class="header-section-number">6.12.12</span> データ操作の応用：グループごとの集計<a href="datahandling.html#データ操作の応用グループごとの集計" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データ操作の応用グループごとの集計" class="section level3 hasAnchor" number="6.11.12">
+<h3><span class="header-section-number">6.11.12</span> データ操作の応用：グループごとの集計<a href="datahandling.html#データ操作の応用グループごとの集計" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>グループごとに集計したい場合は<code>group_by</code>でグループ情報を与える</p>
 <div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="datahandling.html#cb164-1" tabindex="-1"></a><span class="do">## 学科ごとに合計を計算</span></span>
 <span id="cb164-2"><a href="datahandling.html#cb164-2" tabindex="-1"></a>data_634_long_dept <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
@@ -1215,22 +1233,22 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## 3 金融学科        520</code></pre>
 </div>
 </div>
-<div id="datamgtpractice" class="section level2 hasAnchor" number="6.13">
-<h2><span class="header-section-number">6.13</span> <strong>練習問題</strong>: データ操作<a href="datahandling.html#datamgtpractice" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="datamgtpractice" class="section level2 hasAnchor" number="6.12">
+<h2><span class="header-section-number">6.12</span> <strong>練習問題</strong>: データ操作<a href="datahandling.html#datamgtpractice" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>武蔵大学経済学部の学生数データを使って、女性のみの合計学生数を学年別で計算せよ。結果を<code>data_634_long_female_grade</code>というオブジェクトに格納し、結果をコンソールに表示せよ。</p></li>
 <li><p>同じデータを使って、１,２年生のみ合計学生数を男女別・学年別で計算せよ。結果を<code>data_634_long_1_2_grade</code>というオブジェクトに格納し、結果をコンソールに表示せよ。</p></li>
 </ol>
 </div>
-<div id="データの結合" class="section level2 hasAnchor" number="6.14">
-<h2><span class="header-section-number">6.14</span> データの結合<a href="datahandling.html#データの結合" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="データの結合" class="section level2 hasAnchor" number="6.13">
+<h2><span class="header-section-number">6.13</span> データの結合<a href="datahandling.html#データの結合" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>２つのデータフレームを結合したい場合</p>
 <ol style="list-style-type: decimal">
 <li>縦に結合したい場合</li>
 <li>横に結合したい場合</li>
 </ol>
-<div id="データの縦の結合" class="section level3 hasAnchor" number="6.14.1">
-<h3><span class="header-section-number">6.14.1</span> データの縦の結合<a href="datahandling.html#データの縦の結合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの縦の結合" class="section level3 hasAnchor" number="6.13.1">
+<h3><span class="header-section-number">6.13.1</span> データの縦の結合<a href="datahandling.html#データの縦の結合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>例えば人文学部のデータと結合したいとする。
 人文学部のデータは<a href="https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2023.xlsx" download="musashi_jinbun_students_2023.xlsx">こちら</a>からダウンロードできる。</p>
 <div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="datahandling.html#cb166-1" tabindex="-1"></a><span class="do">## エクセルからデータを読み込み</span></span>
@@ -1319,8 +1337,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## 11 日本・東アジア文化学科 男       50    46    48    45
 ## 12 日本・東アジア文化学科 女       61    78    75    74</code></pre>
 </div>
-<div id="データを横に統合" class="section level3 hasAnchor" number="6.14.2">
-<h3><span class="header-section-number">6.14.2</span> データを横に統合<a href="datahandling.html#データを横に統合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データを横に統合" class="section level3 hasAnchor" number="6.13.2">
+<h3><span class="header-section-number">6.13.2</span> データを横に統合<a href="datahandling.html#データを横に統合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>新しい変数を含んだデータを既存のデータに統合したい</p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="datahandling.html#cb169-1" tabindex="-1"></a><span class="do">## エクセルからデータを読み込み</span></span>
 <span id="cb169-2"><a href="datahandling.html#cb169-2" tabindex="-1"></a>data_634_keizai_teiin <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;docs/r_basics/data/musashi_keizai_teiin_2023.xlsx&quot;</span>) </span>
@@ -1349,8 +1367,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 </tbody>
 </table>
 </div>
-<div id="データを横に統合join関数" class="section level3 hasAnchor" number="6.14.3">
-<h3><span class="header-section-number">6.14.3</span> データを横に統合：join()関数<a href="datahandling.html#データを横に統合join関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データを横に統合join関数" class="section level3 hasAnchor" number="6.13.3">
+<h3><span class="header-section-number">6.13.3</span> データを横に統合：join()関数<a href="datahandling.html#データを横に統合join関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>ここでは<code>left_join</code>を使う。学科という変数をキーとして、左側に存在するすべての行にデータを統合する。</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="datahandling.html#cb170-1" tabindex="-1"></a><span class="do">## 学科の人数と学科の定員を統合する</span></span>
 <span id="cb170-2"><a href="datahandling.html#cb170-2" tabindex="-1"></a>data_634_long_keizai <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
@@ -1372,8 +1390,8 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 ## 10 経営学科 男    2年      121   580
 ## # ℹ 14 more rows</code></pre>
 </div>
-<div id="join関数一覧" class="section level3 hasAnchor" number="6.14.4">
-<h3><span class="header-section-number">6.14.4</span> join関数一覧<a href="datahandling.html#join関数一覧" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="join関数一覧" class="section level3 hasAnchor" number="6.13.4">
+<h3><span class="header-section-number">6.13.4</span> join関数一覧<a href="datahandling.html#join関数一覧" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>上で使用した<code>left_join</code>以外にもいくつかのjoin関数が用意されている。</p>
 <table>
 <thead>

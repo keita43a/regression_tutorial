@@ -1,4 +1,4 @@
-# 単回帰分析 {#multipleregression}
+# 重回帰分析 {#multipleregression}
 
 
 ## 

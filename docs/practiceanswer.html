@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 練習問題解答 | 武蔵大生のためのRによる実証分析入門</title>
+  <title>Chapter 13 練習問題解答 | 武蔵大生のためのRによる実証分析入門</title>
   <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 練習問題解答 | 武蔵大生のためのRによる実証分析入門" />
+  <meta property="og:title" content="Chapter 13 練習問題解答 | 武蔵大生のためのRによる実証分析入門" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 練習問題解答 | 武蔵大生のためのRによる実証分析入門" />
+  <meta name="twitter:title" content="Chapter 13 練習問題解答 | 武蔵大生のためのRによる実証分析入門" />
   
   <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   
@@ -23,14 +23,14 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-08" />
+<meta name="date" content="2024-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="multipleregression.html"/>
+<link rel="prev" href="paneldata.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -225,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング言語としてのr"><i class="fa fa-check"></i><b>4.2</b> プログラミング言語としてのR</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="letsuse.html"><a href="letsuse.html#変数へのオブジェクトの代入"><i class="fa fa-check"></i><b>4.2.1</b> 変数へのオブジェクトの代入</a></li>
-<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング繰り返し"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
+<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#loop"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
 <li class="chapter" data-level="4.2.3" data-path="letsuse.html"><a href="letsuse.html#practiceloop"><i class="fa fa-check"></i><b>4.2.3</b> <strong>練習問題</strong>：ループを用いた計算</a></li>
 <li class="chapter" data-level="4.2.4" data-path="letsuse.html"><a href="letsuse.html#プログラミングif文"><i class="fa fa-check"></i><b>4.2.4</b> プログラミング：if文</a></li>
 </ul></li>
@@ -292,29 +292,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8" data-path="datahandling.html"><a href="datahandling.html#変数の要約"><i class="fa fa-check"></i><b>6.8</b> 変数の要約</a></li>
 <li class="chapter" data-level="6.9" data-path="datahandling.html"><a href="datahandling.html#変数の取り出し"><i class="fa fa-check"></i><b>6.9</b> 変数の取り出し</a></li>
 <li class="chapter" data-level="6.10" data-path="datahandling.html"><a href="datahandling.html#変数の取り出しと計算"><i class="fa fa-check"></i><b>6.10</b> 変数の取り出しと計算</a></li>
-<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データフレームとtibble"><i class="fa fa-check"></i><b>6.11</b> データフレームとtibble</a></li>
-<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.12</b> データの操作</a>
+<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.11</b> データの操作</a>
 <ul>
-<li class="chapter" data-level="6.12.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.12.1</b> データの操作</a></li>
-<li class="chapter" data-level="6.12.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.12.2</b> 元のデータの見た目確認</a></li>
-<li class="chapter" data-level="6.12.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.12.3</b> 列の名前を変えたい: rename()</a></li>
-<li class="chapter" data-level="6.12.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.12.4</b> 特定の列だけ抽出する: select()</a></li>
-<li class="chapter" data-level="6.12.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.12.5</b> 特定の行だけ抽出する: filter()</a></li>
-<li class="chapter" data-level="6.12.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.12.6</b> データの順番を並び替える: arrange()</a></li>
-<li class="chapter" data-level="6.12.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.12.7</b> データの列を並び替える: relocate()</a></li>
-<li class="chapter" data-level="6.12.8" data-path="datahandling.html"><a href="datahandling.html#データの列を追加する-mutate"><i class="fa fa-check"></i><b>6.12.8</b> データの列を追加する: mutate()</a></li>
-<li class="chapter" data-level="6.12.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.12.9</b> データの列を編集する: mutate()</a></li>
-<li class="chapter" data-level="6.12.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.12.10</b> データを集計する</a></li>
-<li class="chapter" data-level="6.12.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.12.11</b> データ操作の応用：パイプによる引き渡し</a></li>
-<li class="chapter" data-level="6.12.12" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用グループごとの集計"><i class="fa fa-check"></i><b>6.12.12</b> データ操作の応用：グループごとの集計</a></li>
+<li class="chapter" data-level="6.11.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.11.1</b> データの操作</a></li>
+<li class="chapter" data-level="6.11.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.11.2</b> 元のデータの見た目確認</a></li>
+<li class="chapter" data-level="6.11.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.11.3</b> 列の名前を変えたい: rename()</a></li>
+<li class="chapter" data-level="6.11.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.11.4</b> 特定の列だけ抽出する: select()</a></li>
+<li class="chapter" data-level="6.11.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.11.5</b> 特定の行だけ抽出する: filter()</a></li>
+<li class="chapter" data-level="6.11.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.11.6</b> データの順番を並び替える: arrange()</a></li>
+<li class="chapter" data-level="6.11.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.11.7</b> データの列を並び替える: relocate()</a></li>
+<li class="chapter" data-level="6.11.8" data-path="datahandling.html"><a href="datahandling.html#データの列を追加する-mutate"><i class="fa fa-check"></i><b>6.11.8</b> データの列を追加する: mutate()</a></li>
+<li class="chapter" data-level="6.11.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.11.9</b> データの列を編集する: mutate()</a></li>
+<li class="chapter" data-level="6.11.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.11.10</b> データを集計する</a></li>
+<li class="chapter" data-level="6.11.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.11.11</b> データ操作の応用：パイプによる引き渡し</a></li>
+<li class="chapter" data-level="6.11.12" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用グループごとの集計"><i class="fa fa-check"></i><b>6.11.12</b> データ操作の応用：グループごとの集計</a></li>
 </ul></li>
-<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.13</b> <strong>練習問題</strong>: データ操作</a></li>
-<li class="chapter" data-level="6.14" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.14</b> データの結合</a>
+<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.12</b> <strong>練習問題</strong>: データ操作</a></li>
+<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.13</b> データの結合</a>
 <ul>
-<li class="chapter" data-level="6.14.1" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.14.1</b> データの縦の結合</a></li>
-<li class="chapter" data-level="6.14.2" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.14.2</b> データを横に統合</a></li>
-<li class="chapter" data-level="6.14.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.14.3</b> データを横に統合：join()関数</a></li>
-<li class="chapter" data-level="6.14.4" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.14.4</b> join関数一覧</a></li>
+<li class="chapter" data-level="6.13.1" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.13.1</b> データの縦の結合</a></li>
+<li class="chapter" data-level="6.13.2" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.13.2</b> データを横に統合</a></li>
+<li class="chapter" data-level="6.13.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.13.3</b> データを横に統合：join()関数</a></li>
+<li class="chapter" data-level="6.13.4" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.13.4</b> join関数一覧</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="rstats.html"><a href="rstats.html"><i class="fa fa-check"></i><b>7</b> 記述統計</a>
@@ -322,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="rstats.html"><a href="rstats.html#統計とは"><i class="fa fa-check"></i><b>7.1</b> 統計とは</a>
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
-<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#推測統計"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.2</b> データとは</a></li>
 <li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.3</b> 代表的な統計量</a>
@@ -375,37 +374,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
-<li class="chapter" data-level="9.0.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏分散"><i class="fa fa-check"></i><b>9.0.1</b> 不偏分散</a></li>
-<li class="chapter" data-level="9.0.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.0.2</b> 母集団と標本</a></li>
-<li class="chapter" data-level="9.0.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#サンプリング"><i class="fa fa-check"></i><b>9.0.3</b> サンプリング</a></li>
-<li class="chapter" data-level="9.0.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#共分散"><i class="fa fa-check"></i><b>9.0.4</b> 共分散</a></li>
-<li class="chapter" data-level="9.0.5" data-path="rstatsinfe.html"><a href="rstatsinfe.html#相関係数"><i class="fa fa-check"></i><b>9.0.5</b> 相関係数</a></li>
+<li class="chapter" data-level="9.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.1</b> 母集団と標本</a></li>
+<li class="chapter" data-level="9.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#推定量"><i class="fa fa-check"></i><b>9.2</b> 推定量</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏性"><i class="fa fa-check"></i><b>9.2.1</b> 不偏性</a></li>
+<li class="chapter" data-level="9.2.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#一致性"><i class="fa fa-check"></i><b>9.2.2</b> 一致性</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母平均の信頼区間"><i class="fa fa-check"></i><b>9.3</b> 母平均の信頼区間</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#標準誤差"><i class="fa fa-check"></i><b>9.3.1</b> 標準誤差</a></li>
+<li class="chapter" data-level="9.3.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#信頼区間"><i class="fa fa-check"></i><b>9.3.2</b> 信頼区間</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#統計的仮説検定"><i class="fa fa-check"></i><b>9.4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#仮説設定"><i class="fa fa-check"></i><b>9.4.1</b> 仮説設定</a></li>
+<li class="chapter" data-level="9.4.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#有意水準"><i class="fa fa-check"></i><b>9.4.2</b> 有意水準</a></li>
+<li class="chapter" data-level="9.4.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#棄却域"><i class="fa fa-check"></i><b>9.4.3</b> 棄却域</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="simpleregression.html"><a href="simpleregression.html"><i class="fa fa-check"></i><b>10</b> 単回帰分析</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="simpleregression.html"><a href="simpleregression.html#つの変数の関係"><i class="fa fa-check"></i><b>10.1</b> ２つの変数の関係</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="simpleregression.html"><a href="simpleregression.html#共分散-1"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
-<li class="chapter" data-level="10.1.2" data-path="simpleregression.html"><a href="simpleregression.html#相関係数-1"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="10.1.1" data-path="simpleregression.html"><a href="simpleregression.html#共分散"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="10.1.2" data-path="simpleregression.html"><a href="simpleregression.html#相関係数"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
 <li class="chapter" data-level="10.1.3" data-path="simpleregression.html"><a href="simpleregression.html#散布図"><i class="fa fa-check"></i><b>10.1.3</b> 散布図</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析"><i class="fa fa-check"></i><b>10.2</b> 回帰分析</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>11</b> 単回帰分析</a>
+<li class="chapter" data-level="11" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>11</b> 重回帰分析</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="multipleregression.html"><a href="multipleregression.html#section"><i class="fa fa-check"></i><b>11.1</b> </a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="multipleregression.html"><a href="multipleregression.html#共分散-2"><i class="fa fa-check"></i><b>11.1.1</b> 共分散</a></li>
-<li class="chapter" data-level="11.1.2" data-path="multipleregression.html"><a href="multipleregression.html#相関係数-2"><i class="fa fa-check"></i><b>11.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="11.1.1" data-path="multipleregression.html"><a href="multipleregression.html#共分散-1"><i class="fa fa-check"></i><b>11.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="11.1.2" data-path="multipleregression.html"><a href="multipleregression.html#相関係数-1"><i class="fa fa-check"></i><b>11.1.2</b> 相関係数</a></li>
 <li class="chapter" data-level="11.1.3" data-path="multipleregression.html"><a href="multipleregression.html#散布図-1"><i class="fa fa-check"></i><b>11.1.3</b> 散布図</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="multipleregression.html"><a href="multipleregression.html#回帰分析-1"><i class="fa fa-check"></i><b>11.2</b> 回帰分析</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>12</b> 練習問題解答</a>
+<li class="chapter" data-level="12" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>12</b> パネルデータ分析</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>12.1</b> Ch.4</a></li>
-<li class="chapter" data-level="12.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>12.2</b> Ch. 6</a></li>
-<li class="chapter" data-level="12.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>12.3</b> Ch. 8</a></li>
+<li class="chapter" data-level="12.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータ"><i class="fa fa-check"></i><b>12.1</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>12.1.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="12.1.2" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>12.1.2</b> データの準備</a></li>
+<li class="chapter" data-level="12.1.3" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>12.1.3</b> データの記述統計</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>13</b> 練習問題解答</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>13.1</b> Ch.4</a></li>
+<li class="chapter" data-level="13.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>13.2</b> Ch. 6</a></li>
+<li class="chapter" data-level="13.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>13.3</b> Ch. 8</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -427,56 +447,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="practiceanswer" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> 練習問題解答<a href="practiceanswer.html#practiceanswer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="ch.4" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Ch.4<a href="practiceanswer.html#ch.4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="practiceanswer" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> 練習問題解答<a href="practiceanswer.html#practiceanswer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ch.4" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Ch.4<a href="practiceanswer.html#ch.4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>練習問題</strong> <a href="letsuse.html#practicecalc">4.1.4</a></p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="practiceanswer.html#cb223-1" tabindex="-1"></a><span class="co"># 1</span></span>
-<span id="cb223-2"><a href="practiceanswer.html#cb223-2" tabindex="-1"></a><span class="dv">9179</span><span class="sc">/</span><span class="dv">67</span></span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="practiceanswer.html#cb241-1" tabindex="-1"></a><span class="co"># 1</span></span>
+<span id="cb241-2"><a href="practiceanswer.html#cb241-2" tabindex="-1"></a><span class="dv">9179</span><span class="sc">/</span><span class="dv">67</span></span></code></pre></div>
 <pre><code>## [1] 137</code></pre>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="practiceanswer.html#cb225-1" tabindex="-1"></a><span class="co"># 2</span></span>
-<span id="cb225-2"><a href="practiceanswer.html#cb225-2" tabindex="-1"></a>(<span class="dv">256</span><span class="sc">*</span><span class="dv">43</span><span class="sc">+</span><span class="dv">54</span>)<span class="sc">/</span><span class="dv">8</span></span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="practiceanswer.html#cb243-1" tabindex="-1"></a><span class="co"># 2</span></span>
+<span id="cb243-2"><a href="practiceanswer.html#cb243-2" tabindex="-1"></a>(<span class="dv">256</span><span class="sc">*</span><span class="dv">43</span><span class="sc">+</span><span class="dv">54</span>)<span class="sc">/</span><span class="dv">8</span></span></code></pre></div>
 <pre><code>## [1] 1382.75</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="practiceanswer.html#cb227-1" tabindex="-1"></a><span class="co"># 3</span></span>
-<span id="cb227-2"><a href="practiceanswer.html#cb227-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">6</span> <span class="sc">+</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">8</span> <span class="sc">+</span> <span class="dv">9</span> <span class="sc">+</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">11</span> <span class="sc">+</span> <span class="dv">12</span></span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="practiceanswer.html#cb245-1" tabindex="-1"></a><span class="co"># 3</span></span>
+<span id="cb245-2"><a href="practiceanswer.html#cb245-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">6</span> <span class="sc">+</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">8</span> <span class="sc">+</span> <span class="dv">9</span> <span class="sc">+</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">11</span> <span class="sc">+</span> <span class="dv">12</span></span></code></pre></div>
 <pre><code>## [1] 78</code></pre>
 <p><strong>練習問題</strong> <a href="letsuse.html#practiceloop">4.2.3</a></p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="practiceanswer.html#cb229-1" tabindex="-1"></a><span class="co"># まずgoukeiに0を入れる</span></span>
-<span id="cb229-2"><a href="practiceanswer.html#cb229-2" tabindex="-1"></a>goukei <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb229-3"><a href="practiceanswer.html#cb229-3" tabindex="-1"></a></span>
-<span id="cb229-4"><a href="practiceanswer.html#cb229-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>){</span>
-<span id="cb229-5"><a href="practiceanswer.html#cb229-5" tabindex="-1"></a>  goukei <span class="ot">&lt;-</span> goukei <span class="sc">+</span> i</span>
-<span id="cb229-6"><a href="practiceanswer.html#cb229-6" tabindex="-1"></a>}</span>
-<span id="cb229-7"><a href="practiceanswer.html#cb229-7" tabindex="-1"></a></span>
-<span id="cb229-8"><a href="practiceanswer.html#cb229-8" tabindex="-1"></a><span class="fu">print</span>(goukei)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="practiceanswer.html#cb247-1" tabindex="-1"></a><span class="co"># まずgoukeiに0を入れる</span></span>
+<span id="cb247-2"><a href="practiceanswer.html#cb247-2" tabindex="-1"></a>goukei <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb247-3"><a href="practiceanswer.html#cb247-3" tabindex="-1"></a></span>
+<span id="cb247-4"><a href="practiceanswer.html#cb247-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>){</span>
+<span id="cb247-5"><a href="practiceanswer.html#cb247-5" tabindex="-1"></a>  goukei <span class="ot">&lt;-</span> goukei <span class="sc">+</span> i</span>
+<span id="cb247-6"><a href="practiceanswer.html#cb247-6" tabindex="-1"></a>}</span>
+<span id="cb247-7"><a href="practiceanswer.html#cb247-7" tabindex="-1"></a></span>
+<span id="cb247-8"><a href="practiceanswer.html#cb247-8" tabindex="-1"></a><span class="fu">print</span>(goukei)</span></code></pre></div>
 <pre><code>## [1] 1275</code></pre>
 <p><strong>練習問題</strong> <a href="letsuse.html#vectormake">4.4.3</a></p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="practiceanswer.html#cb231-1" tabindex="-1"></a><span class="co"># 3から60まで3ずつ増える数列</span></span>
-<span id="cb231-2"><a href="practiceanswer.html#cb231-2" tabindex="-1"></a>v7_ex <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">3</span>,<span class="dv">60</span>,<span class="at">by=</span><span class="dv">3</span>)</span>
-<span id="cb231-3"><a href="practiceanswer.html#cb231-3" tabindex="-1"></a></span>
-<span id="cb231-4"><a href="practiceanswer.html#cb231-4" tabindex="-1"></a><span class="fu">print</span>(v7_ex)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="practiceanswer.html#cb249-1" tabindex="-1"></a><span class="co"># 3から60まで3ずつ増える数列</span></span>
+<span id="cb249-2"><a href="practiceanswer.html#cb249-2" tabindex="-1"></a>v7_ex <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">3</span>,<span class="dv">60</span>,<span class="at">by=</span><span class="dv">3</span>)</span>
+<span id="cb249-3"><a href="practiceanswer.html#cb249-3" tabindex="-1"></a></span>
+<span id="cb249-4"><a href="practiceanswer.html#cb249-4" tabindex="-1"></a><span class="fu">print</span>(v7_ex)</span></code></pre></div>
 <pre><code>##  [1]  3  6  9 12 15 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60</code></pre>
 <p><strong>練習問題</strong> @ref(#vectormake2)</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="practiceanswer.html#cb233-1" tabindex="-1"></a>v9_ex <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="dv">2</span>), <span class="dv">5</span>)</span>
-<span id="cb233-2"><a href="practiceanswer.html#cb233-2" tabindex="-1"></a></span>
-<span id="cb233-3"><a href="practiceanswer.html#cb233-3" tabindex="-1"></a><span class="co"># パイプを使って以下のように書くこともできる(パイプは第6章を参照)</span></span>
-<span id="cb233-4"><a href="practiceanswer.html#cb233-4" tabindex="-1"></a></span>
-<span id="cb233-5"><a href="practiceanswer.html#cb233-5" tabindex="-1"></a>v9_ex <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">rep</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="practiceanswer.html#cb251-1" tabindex="-1"></a>v9_ex <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="dv">2</span>), <span class="dv">5</span>)</span>
+<span id="cb251-2"><a href="practiceanswer.html#cb251-2" tabindex="-1"></a></span>
+<span id="cb251-3"><a href="practiceanswer.html#cb251-3" tabindex="-1"></a><span class="co"># パイプを使って以下のように書くこともできる(パイプは第6章を参照)</span></span>
+<span id="cb251-4"><a href="practiceanswer.html#cb251-4" tabindex="-1"></a></span>
+<span id="cb251-5"><a href="practiceanswer.html#cb251-5" tabindex="-1"></a>v9_ex <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">rep</span>(<span class="dv">5</span>)</span></code></pre></div>
 </div>
-<div id="ch.-6" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Ch. 6<a href="practiceanswer.html#ch.-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ch.-6" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Ch. 6<a href="practiceanswer.html#ch.-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>練習問題</strong> @ref{datamgtpractice}</p>
 <ol style="list-style-type: decimal">
 <li>武蔵大学経済学部の学生数データを使って、女性のみの合計学生数を学年別で計算せよ。<code>data_634_long_1_2_grade</code>というオブジェクトに格納し、同様に結果を表示せよ。</li>
 </ol>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="practiceanswer.html#cb234-1" tabindex="-1"></a><span class="do">## 女性のみの学年ごとの学生数</span></span>
-<span id="cb234-2"><a href="practiceanswer.html#cb234-2" tabindex="-1"></a>data_634_long_female_grade <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
-<span id="cb234-3"><a href="practiceanswer.html#cb234-3" tabindex="-1"></a>  <span class="fu">filter</span>(性別<span class="sc">==</span><span class="st">&quot;女&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb234-4"><a href="practiceanswer.html#cb234-4" tabindex="-1"></a>  <span class="fu">group_by</span>(学年) <span class="sc">|&gt;</span></span>
-<span id="cb234-5"><a href="practiceanswer.html#cb234-5" tabindex="-1"></a>  <span class="fu">summarise</span>(学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数))</span>
-<span id="cb234-6"><a href="practiceanswer.html#cb234-6" tabindex="-1"></a></span>
-<span id="cb234-7"><a href="practiceanswer.html#cb234-7" tabindex="-1"></a><span class="fu">print</span>(data_634_long_female_grade)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="practiceanswer.html#cb252-1" tabindex="-1"></a><span class="do">## 女性のみの学年ごとの学生数</span></span>
+<span id="cb252-2"><a href="practiceanswer.html#cb252-2" tabindex="-1"></a>data_634_long_female_grade <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
+<span id="cb252-3"><a href="practiceanswer.html#cb252-3" tabindex="-1"></a>  <span class="fu">filter</span>(性別<span class="sc">==</span><span class="st">&quot;女&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb252-4"><a href="practiceanswer.html#cb252-4" tabindex="-1"></a>  <span class="fu">group_by</span>(学年) <span class="sc">|&gt;</span></span>
+<span id="cb252-5"><a href="practiceanswer.html#cb252-5" tabindex="-1"></a>  <span class="fu">summarise</span>(学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数))</span>
+<span id="cb252-6"><a href="practiceanswer.html#cb252-6" tabindex="-1"></a></span>
+<span id="cb252-7"><a href="practiceanswer.html#cb252-7" tabindex="-1"></a><span class="fu">print</span>(data_634_long_female_grade)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 2
 ##   学年  学生数合計
 ##   &lt;chr&gt;      &lt;dbl&gt;
@@ -487,13 +507,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="2" style="list-style-type: decimal">
 <li>同じデータを使って、１,２年生のみ合計学生数を男女別・学年別で計算せよ。</li>
 </ol>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="practiceanswer.html#cb236-1" tabindex="-1"></a><span class="do">## 女性のみの学年ごとの学生数</span></span>
-<span id="cb236-2"><a href="practiceanswer.html#cb236-2" tabindex="-1"></a>data_634_long_1_2_grade <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
-<span id="cb236-3"><a href="practiceanswer.html#cb236-3" tabindex="-1"></a>  <span class="fu">filter</span>(学年<span class="sc">==</span><span class="st">&quot;1年&quot;</span> <span class="sc">|</span> 学年 <span class="sc">==</span> <span class="st">&quot;2年&quot;</span>) <span class="sc">|&gt;</span> <span class="co">#数字が半角か、などに気をつける</span></span>
-<span id="cb236-4"><a href="practiceanswer.html#cb236-4" tabindex="-1"></a>  <span class="fu">group_by</span>(性別, 学年) <span class="sc">|&gt;</span>  <span class="do">## ２つのカテゴリでグループ分け</span></span>
-<span id="cb236-5"><a href="practiceanswer.html#cb236-5" tabindex="-1"></a>  <span class="fu">summarise</span>(学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数))</span>
-<span id="cb236-6"><a href="practiceanswer.html#cb236-6" tabindex="-1"></a></span>
-<span id="cb236-7"><a href="practiceanswer.html#cb236-7" tabindex="-1"></a><span class="fu">print</span>(data_634_long_1_2_grade)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="practiceanswer.html#cb254-1" tabindex="-1"></a><span class="do">## 女性のみの学年ごとの学生数</span></span>
+<span id="cb254-2"><a href="practiceanswer.html#cb254-2" tabindex="-1"></a>data_634_long_1_2_grade <span class="ot">&lt;-</span> data_634_long <span class="sc">|&gt;</span></span>
+<span id="cb254-3"><a href="practiceanswer.html#cb254-3" tabindex="-1"></a>  <span class="fu">filter</span>(学年<span class="sc">==</span><span class="st">&quot;1年&quot;</span> <span class="sc">|</span> 学年 <span class="sc">==</span> <span class="st">&quot;2年&quot;</span>) <span class="sc">|&gt;</span> <span class="co">#数字が半角か、などに気をつける</span></span>
+<span id="cb254-4"><a href="practiceanswer.html#cb254-4" tabindex="-1"></a>  <span class="fu">group_by</span>(性別, 学年) <span class="sc">|&gt;</span>  <span class="do">## ２つのカテゴリでグループ分け</span></span>
+<span id="cb254-5"><a href="practiceanswer.html#cb254-5" tabindex="-1"></a>  <span class="fu">summarise</span>(学生数合計 <span class="ot">=</span> <span class="fu">sum</span>(学生数))</span>
+<span id="cb254-6"><a href="practiceanswer.html#cb254-6" tabindex="-1"></a></span>
+<span id="cb254-7"><a href="practiceanswer.html#cb254-7" tabindex="-1"></a><span class="fu">print</span>(data_634_long_1_2_grade)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ## # Groups:   性別 [2]
 ##   性別  学年  学生数合計
@@ -503,20 +523,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3 男    1年          355
 ## 4 男    2年          350</code></pre>
 </div>
-<div id="ch.-8" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> Ch. 8<a href="practiceanswer.html#ch.-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ch.-8" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Ch. 8<a href="practiceanswer.html#ch.-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>練習問題</strong><a href="rviz.html#scatterpractice">8.19.1</a>：散布図</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="practiceanswer.html#cb238-1" tabindex="-1"></a>plot_scatter <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>diamonds) <span class="sc">+</span> </span>
-<span id="cb238-2"><a href="practiceanswer.html#cb238-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price, </span>
-<span id="cb238-3"><a href="practiceanswer.html#cb238-3" tabindex="-1"></a>                 <span class="at">color=</span>color))</span>
-<span id="cb238-4"><a href="practiceanswer.html#cb238-4" tabindex="-1"></a></span>
-<span id="cb238-5"><a href="practiceanswer.html#cb238-5" tabindex="-1"></a><span class="fu">print</span>(plot_scatter)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-141-1.png" width="720" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="practiceanswer.html#cb256-1" tabindex="-1"></a>plot_scatter <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>diamonds) <span class="sc">+</span> </span>
+<span id="cb256-2"><a href="practiceanswer.html#cb256-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price, </span>
+<span id="cb256-3"><a href="practiceanswer.html#cb256-3" tabindex="-1"></a>                 <span class="at">color=</span>color))</span>
+<span id="cb256-4"><a href="practiceanswer.html#cb256-4" tabindex="-1"></a></span>
+<span id="cb256-5"><a href="practiceanswer.html#cb256-5" tabindex="-1"></a><span class="fu">print</span>(plot_scatter)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-169-1.png" width="720" style="display: block; margin: auto;" /></p>
 <p><strong>練習問題</strong><a href="rviz.html#lineplotpractice">8.20</a>：折れ線グラフ</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="practiceanswer.html#cb239-1" tabindex="-1"></a>plot_line <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>economics) <span class="sc">+</span> </span>
-<span id="cb239-2"><a href="practiceanswer.html#cb239-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>date,<span class="at">y=</span>unemploy))</span></code></pre></div>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="practiceanswer.html#cb240-1" tabindex="-1"></a><span class="fu">print</span>(plot_line)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-143-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="practiceanswer.html#cb257-1" tabindex="-1"></a>plot_line <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>economics) <span class="sc">+</span> </span>
+<span id="cb257-2"><a href="practiceanswer.html#cb257-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>date,<span class="at">y=</span>unemploy))</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="practiceanswer.html#cb258-1" tabindex="-1"></a><span class="fu">print</span>(plot_line)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-171-1.png" width="480" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
@@ -525,7 +545,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="multipleregression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="paneldata.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

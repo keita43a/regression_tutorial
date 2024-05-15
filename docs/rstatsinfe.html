@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-08" />
+<meta name="date" content="2024-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -225,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング言語としてのr"><i class="fa fa-check"></i><b>4.2</b> プログラミング言語としてのR</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="letsuse.html"><a href="letsuse.html#変数へのオブジェクトの代入"><i class="fa fa-check"></i><b>4.2.1</b> 変数へのオブジェクトの代入</a></li>
-<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング繰り返し"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
+<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#loop"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
 <li class="chapter" data-level="4.2.3" data-path="letsuse.html"><a href="letsuse.html#practiceloop"><i class="fa fa-check"></i><b>4.2.3</b> <strong>練習問題</strong>：ループを用いた計算</a></li>
 <li class="chapter" data-level="4.2.4" data-path="letsuse.html"><a href="letsuse.html#プログラミングif文"><i class="fa fa-check"></i><b>4.2.4</b> プログラミング：if文</a></li>
 </ul></li>
@@ -292,29 +292,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8" data-path="datahandling.html"><a href="datahandling.html#変数の要約"><i class="fa fa-check"></i><b>6.8</b> 変数の要約</a></li>
 <li class="chapter" data-level="6.9" data-path="datahandling.html"><a href="datahandling.html#変数の取り出し"><i class="fa fa-check"></i><b>6.9</b> 変数の取り出し</a></li>
 <li class="chapter" data-level="6.10" data-path="datahandling.html"><a href="datahandling.html#変数の取り出しと計算"><i class="fa fa-check"></i><b>6.10</b> 変数の取り出しと計算</a></li>
-<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データフレームとtibble"><i class="fa fa-check"></i><b>6.11</b> データフレームとtibble</a></li>
-<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.12</b> データの操作</a>
+<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.11</b> データの操作</a>
 <ul>
-<li class="chapter" data-level="6.12.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.12.1</b> データの操作</a></li>
-<li class="chapter" data-level="6.12.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.12.2</b> 元のデータの見た目確認</a></li>
-<li class="chapter" data-level="6.12.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.12.3</b> 列の名前を変えたい: rename()</a></li>
-<li class="chapter" data-level="6.12.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.12.4</b> 特定の列だけ抽出する: select()</a></li>
-<li class="chapter" data-level="6.12.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.12.5</b> 特定の行だけ抽出する: filter()</a></li>
-<li class="chapter" data-level="6.12.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.12.6</b> データの順番を並び替える: arrange()</a></li>
-<li class="chapter" data-level="6.12.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.12.7</b> データの列を並び替える: relocate()</a></li>
-<li class="chapter" data-level="6.12.8" data-path="datahandling.html"><a href="datahandling.html#データの列を追加する-mutate"><i class="fa fa-check"></i><b>6.12.8</b> データの列を追加する: mutate()</a></li>
-<li class="chapter" data-level="6.12.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.12.9</b> データの列を編集する: mutate()</a></li>
-<li class="chapter" data-level="6.12.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.12.10</b> データを集計する</a></li>
-<li class="chapter" data-level="6.12.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.12.11</b> データ操作の応用：パイプによる引き渡し</a></li>
-<li class="chapter" data-level="6.12.12" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用グループごとの集計"><i class="fa fa-check"></i><b>6.12.12</b> データ操作の応用：グループごとの集計</a></li>
+<li class="chapter" data-level="6.11.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.11.1</b> データの操作</a></li>
+<li class="chapter" data-level="6.11.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.11.2</b> 元のデータの見た目確認</a></li>
+<li class="chapter" data-level="6.11.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.11.3</b> 列の名前を変えたい: rename()</a></li>
+<li class="chapter" data-level="6.11.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.11.4</b> 特定の列だけ抽出する: select()</a></li>
+<li class="chapter" data-level="6.11.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.11.5</b> 特定の行だけ抽出する: filter()</a></li>
+<li class="chapter" data-level="6.11.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.11.6</b> データの順番を並び替える: arrange()</a></li>
+<li class="chapter" data-level="6.11.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.11.7</b> データの列を並び替える: relocate()</a></li>
+<li class="chapter" data-level="6.11.8" data-path="datahandling.html"><a href="datahandling.html#データの列を追加する-mutate"><i class="fa fa-check"></i><b>6.11.8</b> データの列を追加する: mutate()</a></li>
+<li class="chapter" data-level="6.11.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.11.9</b> データの列を編集する: mutate()</a></li>
+<li class="chapter" data-level="6.11.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.11.10</b> データを集計する</a></li>
+<li class="chapter" data-level="6.11.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.11.11</b> データ操作の応用：パイプによる引き渡し</a></li>
+<li class="chapter" data-level="6.11.12" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用グループごとの集計"><i class="fa fa-check"></i><b>6.11.12</b> データ操作の応用：グループごとの集計</a></li>
 </ul></li>
-<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.13</b> <strong>練習問題</strong>: データ操作</a></li>
-<li class="chapter" data-level="6.14" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.14</b> データの結合</a>
+<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.12</b> <strong>練習問題</strong>: データ操作</a></li>
+<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.13</b> データの結合</a>
 <ul>
-<li class="chapter" data-level="6.14.1" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.14.1</b> データの縦の結合</a></li>
-<li class="chapter" data-level="6.14.2" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.14.2</b> データを横に統合</a></li>
-<li class="chapter" data-level="6.14.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.14.3</b> データを横に統合：join()関数</a></li>
-<li class="chapter" data-level="6.14.4" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.14.4</b> join関数一覧</a></li>
+<li class="chapter" data-level="6.13.1" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.13.1</b> データの縦の結合</a></li>
+<li class="chapter" data-level="6.13.2" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.13.2</b> データを横に統合</a></li>
+<li class="chapter" data-level="6.13.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.13.3</b> データを横に統合：join()関数</a></li>
+<li class="chapter" data-level="6.13.4" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.13.4</b> join関数一覧</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="rstats.html"><a href="rstats.html"><i class="fa fa-check"></i><b>7</b> 記述統計</a>
@@ -322,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="rstats.html"><a href="rstats.html#統計とは"><i class="fa fa-check"></i><b>7.1</b> 統計とは</a>
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
-<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#推測統計"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.2</b> データとは</a></li>
 <li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.3</b> 代表的な統計量</a>
@@ -375,37 +374,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
-<li class="chapter" data-level="9.0.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏分散"><i class="fa fa-check"></i><b>9.0.1</b> 不偏分散</a></li>
-<li class="chapter" data-level="9.0.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.0.2</b> 母集団と標本</a></li>
-<li class="chapter" data-level="9.0.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#サンプリング"><i class="fa fa-check"></i><b>9.0.3</b> サンプリング</a></li>
-<li class="chapter" data-level="9.0.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#共分散"><i class="fa fa-check"></i><b>9.0.4</b> 共分散</a></li>
-<li class="chapter" data-level="9.0.5" data-path="rstatsinfe.html"><a href="rstatsinfe.html#相関係数"><i class="fa fa-check"></i><b>9.0.5</b> 相関係数</a></li>
+<li class="chapter" data-level="9.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.1</b> 母集団と標本</a></li>
+<li class="chapter" data-level="9.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#推定量"><i class="fa fa-check"></i><b>9.2</b> 推定量</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏性"><i class="fa fa-check"></i><b>9.2.1</b> 不偏性</a></li>
+<li class="chapter" data-level="9.2.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#一致性"><i class="fa fa-check"></i><b>9.2.2</b> 一致性</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母平均の信頼区間"><i class="fa fa-check"></i><b>9.3</b> 母平均の信頼区間</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#標準誤差"><i class="fa fa-check"></i><b>9.3.1</b> 標準誤差</a></li>
+<li class="chapter" data-level="9.3.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#信頼区間"><i class="fa fa-check"></i><b>9.3.2</b> 信頼区間</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#統計的仮説検定"><i class="fa fa-check"></i><b>9.4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#仮説設定"><i class="fa fa-check"></i><b>9.4.1</b> 仮説設定</a></li>
+<li class="chapter" data-level="9.4.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#有意水準"><i class="fa fa-check"></i><b>9.4.2</b> 有意水準</a></li>
+<li class="chapter" data-level="9.4.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#棄却域"><i class="fa fa-check"></i><b>9.4.3</b> 棄却域</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="simpleregression.html"><a href="simpleregression.html"><i class="fa fa-check"></i><b>10</b> 単回帰分析</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="simpleregression.html"><a href="simpleregression.html#つの変数の関係"><i class="fa fa-check"></i><b>10.1</b> ２つの変数の関係</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="simpleregression.html"><a href="simpleregression.html#共分散-1"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
-<li class="chapter" data-level="10.1.2" data-path="simpleregression.html"><a href="simpleregression.html#相関係数-1"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="10.1.1" data-path="simpleregression.html"><a href="simpleregression.html#共分散"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="10.1.2" data-path="simpleregression.html"><a href="simpleregression.html#相関係数"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
 <li class="chapter" data-level="10.1.3" data-path="simpleregression.html"><a href="simpleregression.html#散布図"><i class="fa fa-check"></i><b>10.1.3</b> 散布図</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析"><i class="fa fa-check"></i><b>10.2</b> 回帰分析</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>11</b> 単回帰分析</a>
+<li class="chapter" data-level="11" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>11</b> 重回帰分析</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="multipleregression.html"><a href="multipleregression.html#section"><i class="fa fa-check"></i><b>11.1</b> </a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="multipleregression.html"><a href="multipleregression.html#共分散-2"><i class="fa fa-check"></i><b>11.1.1</b> 共分散</a></li>
-<li class="chapter" data-level="11.1.2" data-path="multipleregression.html"><a href="multipleregression.html#相関係数-2"><i class="fa fa-check"></i><b>11.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="11.1.1" data-path="multipleregression.html"><a href="multipleregression.html#共分散-1"><i class="fa fa-check"></i><b>11.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="11.1.2" data-path="multipleregression.html"><a href="multipleregression.html#相関係数-1"><i class="fa fa-check"></i><b>11.1.2</b> 相関係数</a></li>
 <li class="chapter" data-level="11.1.3" data-path="multipleregression.html"><a href="multipleregression.html#散布図-1"><i class="fa fa-check"></i><b>11.1.3</b> 散布図</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="multipleregression.html"><a href="multipleregression.html#回帰分析-1"><i class="fa fa-check"></i><b>11.2</b> 回帰分析</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>12</b> 練習問題解答</a>
+<li class="chapter" data-level="12" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>12</b> パネルデータ分析</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>12.1</b> Ch.4</a></li>
-<li class="chapter" data-level="12.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>12.2</b> Ch. 6</a></li>
-<li class="chapter" data-level="12.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>12.3</b> Ch. 8</a></li>
+<li class="chapter" data-level="12.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータ"><i class="fa fa-check"></i><b>12.1</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>12.1.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="12.1.2" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>12.1.2</b> データの準備</a></li>
+<li class="chapter" data-level="12.1.3" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>12.1.3</b> データの記述統計</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>13</b> 練習問題解答</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>13.1</b> Ch.4</a></li>
+<li class="chapter" data-level="13.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>13.2</b> Ch. 6</a></li>
+<li class="chapter" data-level="13.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>13.3</b> Ch. 8</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -429,48 +449,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rstatsinfe" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Chapter 9</span> 推測統計のおさらい<a href="rstatsinfe.html#rstatsinfe" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="不偏分散" class="section level3 hasAnchor" number="9.0.1">
-<h3><span class="header-section-number">9.0.1</span> 不偏分散<a href="rstatsinfe.html#不偏分散" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>不偏分散は、分散と同じくデータのばらつきを示している。これは、</p>
-<p><span class="math display">\[
-s^2 = \frac{1}{n-1}\sum^{n}_{i=1}( x_i - \bar{x})^2
-\]</span></p>
+<div id="母集団と標本" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> 母集団と標本<a href="rstatsinfe.html#母集団と標本" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="rstats.html#infstats">7.1.2</a>で説明したように、各自が興味を持つ研究対象について、全体を知ることは難しくても一部を知ることで全体を推し量ることができる。この研究対象の全体を<strong>母集団</strong>と呼ぶ。例えば、「日本の漁業者の収入は一般の収入より高いか？」という問題に取り組むとしても、日本の漁業者全員分の収入を集めることは難しいし、一般の人の収入ならなおさらである。そこで、一部をサンプリングして<strong>サンプル（標本）</strong>による調査を行う。このサンプルの大きさを<strong>サンプルサイズ(標本サイズ)</strong>と呼ぶ。</p>
+<p><strong>言葉の誤用に注意</strong></p>
+<p>よくある統計学関係の言葉で、誤用されることが多いものを挙げておく。
+まず、<strong>母集団</strong>とよく間違えられるのが<strong>母数</strong>である。「母数が多いから…」などとしてよく使われるが、母数とは実はパラメータのことを表す。パラメータとは母集団の特徴を表す係数のことを指す。例えば、内閣支持率が40%である、などという報道を聞くことがある。これはもし１億人有権者がいるとして、その全員に聞いた結果4000万人が支持しているとするならば、この「本当の支持率」は母数の一つである母比率である。しかし、実際には全員に聞くことは難しい。報道なのでは1000人程度に電話で聞いた結果を、内閣支持率として発表するが、これは母比率を<strong>推定</strong>しているのである。母数は一般的に我々にとっては未知であり、だからこそサンプリングしたデータで<strong>推定</strong>するのである。</p>
+<p>　また、サンプルの大きさという意味でよく誤用されるのが<strong>サンプル数</strong>である。サンプル数とは、標本の数がいくつかあるか（標本のグループがいくつあるか）を表すため、サンプルの大きさという意味で使うのは間違いである。
+　
+## サンプリング</p>
+<p>母集団からサンプルを選ぶことを<strong>サンプリング（標本抽出）</strong>と呼ぶ。このサンプリングが適切でないと、母集団の特徴を適切に推定することはできない。例えば、日本人の平均身長を調査しようと思って、小学校ばかり回って計測していっても日本人全体を推定できると言えないことはわかるだろう。
+　サンプルを偏りなく選ぶ代表的な方法は<strong>単純無作為抽出</strong>もしくは<strong>シンプルランダムサンプリング(Simple random sampling)</strong>と呼ばれる。これは、母集団のうちどの個体も選ばれる確率が等しくなるように選ぶという意味である。その他には<strong>系統抽出法</strong>, <strong>多段抽出法</strong>, <strong>層化抽出法</strong>などがあるが、説明は省略する。興味がある学生はたとえば東京大学教養学部統計学教室編「人文・社会科学の統計学」（東京大学出版会）などを参照してほしい。</p>
 </div>
-<div id="母集団と標本" class="section level3 hasAnchor" number="9.0.2">
-<h3><span class="header-section-number">9.0.2</span> 母集団と標本<a href="rstatsinfe.html#母集団と標本" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p><strong>母集団</strong></p>
-<ul>
-<li>母数？</li>
-</ul></li>
-<li><p><strong>サンプルサイズ</strong></p>
-<ul>
-<li>サンプル数？</li>
-</ul></li>
-</ul>
+<div id="推定量" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> 推定量<a href="rstatsinfe.html#推定量" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>母数の推定に利用されるもの推定量という。例えば、日本人の平均身長が<span class="math inline">\(\mu\)</span>cmであるとする（<span class="math inline">\(\mu\)</span>はミューと読むギリシャ文字である）。この「本当の」平均身長は日本人全員の身長を測って平均を取ったものであり、母数の一つである<strong>母平均</strong>である。しかし、この母平均を実際に計測・計算するのは難しい。そこで、サンプリングを行って1000人を日本人全員の中から抜き出して、サンプルとして計測し、平均を計算する。このとき、計算した平均<span class="math inline">\(\bar{x}\)</span>cmは<strong>標本平均</strong>と呼ばれる。例えば<span class="math inline">\(\bar{x}=170\)</span>とすると、日本人の本当の平均身長は170cmかもしれないし、実は169cmかもしれない。でも185cmである可能性は低そうである。ドンピシャで当てられるかはわからないが、おそらく可能性が高い数値として<strong>推定量</strong>として用いられるのである。ここでは、標本平均という統計量は、母平均のよい推定量であるという。</p>
+<div id="不偏性" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> 不偏性<a href="rstatsinfe.html#不偏性" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>上では標本平均は母平均のよい推定量と書いたが、よい推定量とはなんだろうか？推定量としてよいかどうかにはいくつかの基準がある。</p>
+<p>まずひとつ目は<strong>不偏性 (unbiasedness)</strong>である。これは、もし仮に何度もサンプリングを行って標本平均をたくさんとったとき（例えば1000回サンプリングを繰り返して、1000個の標本平均が計算できたとき）、その標本平均の平均は、母平均と等しいという性質である。一回のサンプリングによる標本の標本平均は、実際には母平均とはズレがある可能性は否定できない。しかし、その推定プロセスでは、平均的に正しい（母平均と等しい）値が得られるという性質を持つ推定量は不偏性を持つといい、<strong>不偏推定量</strong>と呼ばれる。</p>
+<p>これをRにおけるシミュレーションで確認してみよう。</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="rstatsinfe.html#cb223-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20240509</span>) <span class="co"># ランダムなプロセスを再現するためにseedを設定する。</span></span>
+<span id="cb223-2"><a href="rstatsinfe.html#cb223-2" tabindex="-1"></a></span>
+<span id="cb223-3"><a href="rstatsinfe.html#cb223-3" tabindex="-1"></a><span class="co"># 母集団を決める（シミュレーションなので現実とは異なる）</span></span>
+<span id="cb223-4"><a href="rstatsinfe.html#cb223-4" tabindex="-1"></a>mu <span class="ot">=</span> <span class="dv">170</span></span>
+<span id="cb223-5"><a href="rstatsinfe.html#cb223-5" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb223-6"><a href="rstatsinfe.html#cb223-6" tabindex="-1"></a></span>
+<span id="cb223-7"><a href="rstatsinfe.html#cb223-7" tabindex="-1"></a><span class="co"># サンプルサイズを決める。今回は100人だとする。</span></span>
+<span id="cb223-8"><a href="rstatsinfe.html#cb223-8" tabindex="-1"></a>sample_size <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb223-9"><a href="rstatsinfe.html#cb223-9" tabindex="-1"></a></span>
+<span id="cb223-10"><a href="rstatsinfe.html#cb223-10" tabindex="-1"></a><span class="co"># rnorm(n,mean,sd)は、meanとsdという母数を持つ正規分布という確率分布を持つ母集団から、n個（今回はn人）をランダムにサンプリングするという関数である。</span></span>
+<span id="cb223-11"><a href="rstatsinfe.html#cb223-11" tabindex="-1"></a></span>
+<span id="cb223-12"><a href="rstatsinfe.html#cb223-12" tabindex="-1"></a>sample1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span>sample_size, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
+<span id="cb223-13"><a href="rstatsinfe.html#cb223-13" tabindex="-1"></a></span>
+<span id="cb223-14"><a href="rstatsinfe.html#cb223-14" tabindex="-1"></a><span class="co"># 平均を計算する</span></span>
+<span id="cb223-15"><a href="rstatsinfe.html#cb223-15" tabindex="-1"></a>sample1_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample1)</span>
+<span id="cb223-16"><a href="rstatsinfe.html#cb223-16" tabindex="-1"></a>sample1_mean</span></code></pre></div>
+<pre><code>## [1] 171.1845</code></pre>
+<p>まず、一度だけのサンプリングと標本平均の計算を行った。
+この結果、標本平均は171.18cmなので、母平均の170cmにまぁ近い。</p>
+<p>では、このコードを編集して、<code>for</code>関数を用いたループで1000回サンプリングしてみよう。<code>for</code>関数についてはセクション<a href="letsuse.html#loop">4.2.2</a>を参照。</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="rstatsinfe.html#cb225-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20240509</span>) <span class="co"># ランダムなプロセスを再現するためにseedを設定する。</span></span>
+<span id="cb225-2"><a href="rstatsinfe.html#cb225-2" tabindex="-1"></a></span>
+<span id="cb225-3"><a href="rstatsinfe.html#cb225-3" tabindex="-1"></a><span class="co"># 母集団を決める（シミュレーションなので現実とは異なる）</span></span>
+<span id="cb225-4"><a href="rstatsinfe.html#cb225-4" tabindex="-1"></a>mu <span class="ot">=</span> <span class="dv">170</span></span>
+<span id="cb225-5"><a href="rstatsinfe.html#cb225-5" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb225-6"><a href="rstatsinfe.html#cb225-6" tabindex="-1"></a></span>
+<span id="cb225-7"><a href="rstatsinfe.html#cb225-7" tabindex="-1"></a><span class="co"># サンプルサイズを決める。今回は1000人だとする。</span></span>
+<span id="cb225-8"><a href="rstatsinfe.html#cb225-8" tabindex="-1"></a>sample_size <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb225-9"><a href="rstatsinfe.html#cb225-9" tabindex="-1"></a></span>
+<span id="cb225-10"><a href="rstatsinfe.html#cb225-10" tabindex="-1"></a><span class="co"># 標本平均を格納するベクトルをつくっておく</span></span>
+<span id="cb225-11"><a href="rstatsinfe.html#cb225-11" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">vector</span>() </span>
+<span id="cb225-12"><a href="rstatsinfe.html#cb225-12" tabindex="-1"></a></span>
+<span id="cb225-13"><a href="rstatsinfe.html#cb225-13" tabindex="-1"></a><span class="co"># 繰り返しloop</span></span>
+<span id="cb225-14"><a href="rstatsinfe.html#cb225-14" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>){  <span class="co"># iという変数を1から1000まで繰り返す</span></span>
+<span id="cb225-15"><a href="rstatsinfe.html#cb225-15" tabindex="-1"></a></span>
+<span id="cb225-16"><a href="rstatsinfe.html#cb225-16" tabindex="-1"></a>  <span class="co"># サンプリングを行って、sample1というオブジェクトに格納する</span></span>
+<span id="cb225-17"><a href="rstatsinfe.html#cb225-17" tabindex="-1"></a>  sample1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span>sample_size, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
+<span id="cb225-18"><a href="rstatsinfe.html#cb225-18" tabindex="-1"></a></span>
+<span id="cb225-19"><a href="rstatsinfe.html#cb225-19" tabindex="-1"></a>  <span class="co"># 平均を計算して、それをsample_meanのi番目の要素に格納する</span></span>
+<span id="cb225-20"><a href="rstatsinfe.html#cb225-20" tabindex="-1"></a>  sample_mean[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample1)</span>
+<span id="cb225-21"><a href="rstatsinfe.html#cb225-21" tabindex="-1"></a>}</span>
+<span id="cb225-22"><a href="rstatsinfe.html#cb225-22" tabindex="-1"></a></span>
+<span id="cb225-23"><a href="rstatsinfe.html#cb225-23" tabindex="-1"></a><span class="co"># 繰り返しが終わったら、sample_meanの平均を獲る</span></span>
+<span id="cb225-24"><a href="rstatsinfe.html#cb225-24" tabindex="-1"></a><span class="fu">mean</span>(sample_mean)</span></code></pre></div>
+<pre><code>## [1] 169.9808</code></pre>
+<p>標本平均の平均を見てみると、限りなく170cmに近い数値が出ている。</p>
+<p>しかし、一回一回の標本平均がピッタリ170cmであるわけではない。1000回とった標本平均がどのような散らばりを持っているのか、ヒストグラムを描いてみよう。</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="rstatsinfe.html#cb227-1" tabindex="-1"></a><span class="co"># ヒストグラムを描画してみる</span></span>
+<span id="cb227-2"><a href="rstatsinfe.html#cb227-2" tabindex="-1"></a></span>
+<span id="cb227-3"><a href="rstatsinfe.html#cb227-3" tabindex="-1"></a>  <span class="co"># ggplot2はデータフレームかtibbleしか受け付けないので、tibbleに変換する。sample_meanという変数にする</span></span>
+<span id="cb227-4"><a href="rstatsinfe.html#cb227-4" tabindex="-1"></a>  data_sample_mean <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">sample_mean =</span> sample_mean)</span>
+<span id="cb227-5"><a href="rstatsinfe.html#cb227-5" tabindex="-1"></a></span>
+<span id="cb227-6"><a href="rstatsinfe.html#cb227-6" tabindex="-1"></a>  <span class="co"># ggplotのgeom_histogramで描画する。見やすいように枠線を青に、中身をグレーに変更している。</span></span>
+<span id="cb227-7"><a href="rstatsinfe.html#cb227-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> data_sample_mean) <span class="sc">+</span> </span>
+<span id="cb227-8"><a href="rstatsinfe.html#cb227-8" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sample_mean), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">fill=</span><span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p>標本平均一つ一つであれば、小さいもので167cmぐらい、大きいものだと173cmぐらいまでズレがあることがわかる。それぞれ170cmピッタリとは限らないが、平均的には170cmを推定できていることがわかる。</p>
+<p>このことから、標本平均が母平均を推定する推定量として、不偏性を持っているということがわかる。</p>
 </div>
-<div id="サンプリング" class="section level3 hasAnchor" number="9.0.3">
-<h3><span class="header-section-number">9.0.3</span> サンプリング<a href="rstatsinfe.html#サンプリング" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>無作為抽出 (ランダムサンプリング)
-<ul>
-<li>多段抽出法</li>
-<li>層化抽出法</li>
-</ul></li>
-</ul>
-<hr />
+<div id="一致性" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> 一致性<a href="rstatsinfe.html#一致性" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="共分散" class="section level3 hasAnchor" number="9.0.4">
-<h3><span class="header-section-number">9.0.4</span> 共分散<a href="rstatsinfe.html#共分散" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[\sigma_{xy} = \frac{1}{n}\sum^{n}_{i=1}(x_i - \bar{x})(y_i - \bar{y})\]</span></p>
-<hr />
 </div>
-<div id="相関係数" class="section level3 hasAnchor" number="9.0.5">
-<h3><span class="header-section-number">9.0.5</span> 相関係数<a href="rstatsinfe.html#相関係数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
-\rho = \frac{\sigma_{xy}}{\sigma_x \sigma_y}
-\]</span></p>
+<div id="母平均の信頼区間" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> 母平均の信頼区間<a href="rstatsinfe.html#母平均の信頼区間" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="標準誤差" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> 標準誤差<a href="rstatsinfe.html#標準誤差" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="信頼区間" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> 信頼区間<a href="rstatsinfe.html#信頼区間" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="統計的仮説検定" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> 統計的仮説検定<a href="rstatsinfe.html#統計的仮説検定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="仮説設定" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> 仮説設定<a href="rstatsinfe.html#仮説設定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="有意水準" class="section level3 hasAnchor" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> 有意水準<a href="rstatsinfe.html#有意水準" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="棄却域" class="section level3 hasAnchor" number="9.4.3">
+<h3><span class="header-section-number">9.4.3</span> 棄却域<a href="rstatsinfe.html#棄却域" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
+</div>
 </div>
 </div>
             </section>

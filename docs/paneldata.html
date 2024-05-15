@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | 武蔵大生のためのRによる実証分析入門</title>
+  <title>Chapter 12 パネルデータ分析 | 武蔵大生のためのRによる実証分析入門</title>
   <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | 武蔵大生のためのRによる実証分析入門" />
+  <meta property="og:title" content="Chapter 12 パネルデータ分析 | 武蔵大生のためのRによる実証分析入門" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | 武蔵大生のためのRによる実証分析入門" />
+  <meta name="twitter:title" content="Chapter 12 パネルデータ分析 | 武蔵大生のためのRによる実証分析入門" />
   
   <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="multipleregression.html"/>
+<link rel="next" href="practiceanswer.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -447,19 +447,672 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="paneldata" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> パネルデータ分析<a href="paneldata.html#paneldata" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="パネルデータ" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> パネルデータ<a href="paneldata.html#パネルデータ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>重回帰分析のセクションで扱ったデータは基本的にはクロスセクションデータであった。
+これは、データの変動が人であったり、県であったり、グループであったりするものであり、データでは添字<span class="math inline">\(i\)</span>で表現していた。</p>
+<p>これに加えて、時間の変動藻ある場合には、クロスセクションデータで分析するよりアドバンテージがある。時間変動がある場合にどのような形になるか見てみよう。</p>
+<div id="スクリプトの準備" class="section level3 hasAnchor" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> スクリプトの準備<a href="paneldata.html#スクリプトの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>新しいスクリプトにコードを書いていく。
+新しくスクリプトを作成し、<code>panel_data.R</code>という名前をつけて保存する。</p>
+</div>
+<div id="データの準備" class="section level3 hasAnchor" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> データの準備<a href="paneldata.html#データの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rパッケージに付属しているデータを使う。
+<code>AER</code>パッケージをインストールして読み込もう。</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="paneldata.html#cb228-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;AER&quot;</span>)</span></code></pre></div>
+<pre><code>## Error in install.packages : Updating loaded packages</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="paneldata.html#cb230-1" tabindex="-1"></a><span class="fu">library</span>(AER)</span></code></pre></div>
+<p>データを読み込む。データ名がながいので、 <code>data_f</code>に入れ替えよう。</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="paneldata.html#cb231-1" tabindex="-1"></a><span class="fu">data</span>(Fatalities)</span>
+<span id="cb231-2"><a href="paneldata.html#cb231-2" tabindex="-1"></a></span>
+<span id="cb231-3"><a href="paneldata.html#cb231-3" tabindex="-1"></a>data_f <span class="ot">&lt;-</span> Fatalities</span></code></pre></div>
+<p>データの中身を見てみる。
+まずは、どんなデータなのか<code>head()</code>で確認する。</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="paneldata.html#cb232-1" tabindex="-1"></a><span class="fu">head</span>(data_f)</span></code></pre></div>
+<pre><code>##   state year spirits unemp   income   emppop  beertax baptist  mormon drinkage     dry youngdrivers    miles breath jail
+## 1    al 1982    1.37  14.4 10544.15 50.69204 1.539379 30.3557 0.32829    19.00 25.0063     0.211572 7233.887     no   no
+## 2    al 1983    1.36  13.7 10732.80 52.14703 1.788991 30.3336 0.34341    19.00 22.9942     0.210768 7836.348     no   no
+## 3    al 1984    1.32  11.1 11108.79 54.16809 1.714286 30.3115 0.35924    19.00 24.0426     0.211484 8262.990     no   no
+## 4    al 1985    1.28   8.9 11332.63 55.27114 1.652542 30.2895 0.37579    19.67 23.6339     0.211140 8726.917     no   no
+## 5    al 1986    1.23   9.8 11661.51 56.51450 1.609907 30.2674 0.39311    21.00 23.4647     0.213400 8952.854     no   no
+## 6    al 1987    1.18   7.8 11944.00 57.50988 1.560000 30.2453 0.41123    21.00 23.7924     0.215527 9166.302     no   no
+##   service fatal nfatal sfatal fatal1517 nfatal1517 fatal1820 nfatal1820 fatal2124 nfatal2124  afatal     pop  pop1517
+## 1      no   839    146     99        53          9        99         34       120         32 309.438 3942002 208999.6
+## 2      no   930    154     98        71          8       108         26       124         35 341.834 3960008 202000.1
+## 3      no   932    165     94        49          7       103         25       118         34 304.872 3988992 197000.0
+## 4      no   882    146     98        66          9       100         23       114         45 276.742 4021008 194999.7
+## 5      no  1081    172    119        82         10       120         23       119         29 360.716 4049994 203999.9
+## 6      no  1110    181    114        94         11       127         31       138         30 368.421 4082999 204999.8
+##    pop1820  pop2124 milestot unempus emppopus         gsp
+## 1 221553.4 290000.1    28516     9.7     57.8 -0.02212476
+## 2 219125.5 290000.2    31032     9.6     57.9  0.04655825
+## 3 216724.1 288000.2    32961     7.5     59.5  0.06279784
+## 4 214349.0 284000.3    35091     7.2     60.1  0.02748997
+## 5 212000.0 263000.3    36259     7.0     60.7  0.03214295
+## 6 208998.5 258999.8    37426     6.2     61.5  0.04897637</code></pre>
+<p>このデータはアメリカの州×年ごとに、様々な変数が記録されているデータである。
+どんな変数が記録されているかは、helpファイルを見るとわかる。</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="paneldata.html#cb234-1" tabindex="-1"></a><span class="fu">help</span>(Fatalities)</span></code></pre></div>
+</div>
+<div id="データの記述統計" class="section level3 hasAnchor" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> データの記述統計<a href="paneldata.html#データの記述統計" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データの記述統計を確認しよう。一番基本的なものはsummary()関数を使う方法である。</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="paneldata.html#cb235-1" tabindex="-1"></a><span class="fu">summary</span>(data_f)</span></code></pre></div>
+<pre><code>##      state       year       spirits          unemp            income          emppop         beertax       
+##  al     :  7   1982:48   Min.   :0.790   Min.   : 2.400   Min.   : 9514   Min.   :42.99   Min.   :0.04331  
+##  az     :  7   1983:48   1st Qu.:1.300   1st Qu.: 5.475   1st Qu.:12086   1st Qu.:57.69   1st Qu.:0.20885  
+##  ar     :  7   1984:48   Median :1.670   Median : 7.000   Median :13763   Median :61.36   Median :0.35259  
+##  ca     :  7   1985:48   Mean   :1.754   Mean   : 7.347   Mean   :13880   Mean   :60.81   Mean   :0.51326  
+##  co     :  7   1986:48   3rd Qu.:2.013   3rd Qu.: 8.900   3rd Qu.:15175   3rd Qu.:64.41   3rd Qu.:0.65157  
+##  ct     :  7   1987:48   Max.   :4.900   Max.   :18.000   Max.   :22193   Max.   :71.27   Max.   :2.72076  
+##  (Other):294   1988:48                                                                                     
+##     baptist            mormon           drinkage          dry            youngdrivers         miles       breath   
+##  Min.   : 0.0000   Min.   : 0.1000   Min.   :18.00   Min.   : 0.00000   Min.   :0.07314   Min.   : 4576   no :181  
+##  1st Qu.: 0.6268   1st Qu.: 0.2722   1st Qu.:20.00   1st Qu.: 0.00000   1st Qu.:0.17037   1st Qu.: 7183   yes:155  
+##  Median : 1.7492   Median : 0.3931   Median :21.00   Median : 0.08681   Median :0.18539   Median : 7796            
+##  Mean   : 7.1569   Mean   : 2.8019   Mean   :20.46   Mean   : 4.26707   Mean   :0.18593   Mean   : 7891            
+##  3rd Qu.:13.1271   3rd Qu.: 0.6293   3rd Qu.:21.00   3rd Qu.: 2.42481   3rd Qu.:0.20219   3rd Qu.: 8504            
+##  Max.   :30.3557   Max.   :65.9165   Max.   :21.00   Max.   :45.79210   Max.   :0.28163   Max.   :26148            
+##                                                                                                                    
+##    jail     service        fatal            nfatal            sfatal        fatal1517        nfatal1517   
+##  no  :241   no  :273   Min.   :  79.0   Min.   :  13.00   Min.   :  8.0   Min.   :  3.00   Min.   : 0.00  
+##  yes : 94   yes : 62   1st Qu.: 293.8   1st Qu.:  53.75   1st Qu.: 35.0   1st Qu.: 25.75   1st Qu.: 4.00  
+##  NA&#39;s:  1   NA&#39;s:  1   Median : 701.0   Median : 135.00   Median : 81.0   Median : 49.00   Median :10.00  
+##                        Mean   : 928.7   Mean   : 182.58   Mean   :109.9   Mean   : 62.61   Mean   :12.26  
+##                        3rd Qu.:1063.5   3rd Qu.: 212.00   3rd Qu.:131.0   3rd Qu.: 77.00   3rd Qu.:15.25  
+##                        Max.   :5504.0   Max.   :1049.00   Max.   :603.0   Max.   :318.00   Max.   :76.00  
+##                                                                                                           
+##    fatal1820       nfatal1820       fatal2124       nfatal2124         afatal            pop              pop1517       
+##  Min.   :  7.0   Min.   :  0.00   Min.   : 12.0   Min.   :  1.00   Min.   :  24.6   Min.   :  479000   Min.   :  21000  
+##  1st Qu.: 38.0   1st Qu.: 11.00   1st Qu.: 42.0   1st Qu.: 13.00   1st Qu.:  90.5   1st Qu.: 1545251   1st Qu.:  71750  
+##  Median : 82.0   Median : 24.00   Median : 97.5   Median : 30.00   Median : 211.6   Median : 3310503   Median : 163000  
+##  Mean   :106.7   Mean   : 33.53   Mean   :126.9   Mean   : 41.38   Mean   : 293.3   Mean   : 4930272   Mean   : 230816  
+##  3rd Qu.:130.2   3rd Qu.: 44.00   3rd Qu.:150.5   3rd Qu.: 49.00   3rd Qu.: 364.0   3rd Qu.: 5751735   3rd Qu.: 270500  
+##  Max.   :601.0   Max.   :196.00   Max.   :770.0   Max.   :249.00   Max.   :2094.9   Max.   :28314028   Max.   :1172000  
+##                                                                                                                         
+##     pop1820           pop2124           milestot         unempus         emppopus          gsp           
+##  Min.   :  21000   Min.   :  30000   Min.   :  3993   Min.   :5.500   Min.   :57.80   Min.   :-0.123641  
+##  1st Qu.:  76962   1st Qu.: 103500   1st Qu.: 11692   1st Qu.:6.200   1st Qu.:57.90   1st Qu.: 0.001182  
+##  Median : 170982   Median : 241000   Median : 28484   Median :7.200   Median :60.10   Median : 0.032413  
+##  Mean   : 249090   Mean   : 336390   Mean   : 37101   Mean   :7.529   Mean   :59.97   Mean   : 0.025313  
+##  3rd Qu.: 308311   3rd Qu.: 413000   3rd Qu.: 44140   3rd Qu.:9.600   3rd Qu.:61.50   3rd Qu.: 0.056501  
+##  Max.   :1321004   Max.   :1892998   Max.   :241575   Max.   :9.700   Max.   :62.30   Max.   : 0.142361  
+## </code></pre>
+<p>Chapter @ref(#rstats)　で説明したように、他のパッケージを使う方法もある。</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="paneldata.html#cb237-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb237-2"><a href="paneldata.html#cb237-2" tabindex="-1"></a></span>
+<span id="cb237-3"><a href="paneldata.html#cb237-3" tabindex="-1"></a><span class="fu">describe</span>(data_f, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>##              vars   n       mean         sd     median       min         max       range        se
+## state*          1 336      24.50      13.87      24.50      1.00       48.00       47.00      0.76
+## year*           2 336       4.00       2.00       4.00      1.00        7.00        6.00      0.11
+## spirits         3 336       1.75       0.68       1.67      0.79        4.90        4.11      0.04
+## unemp           4 336       7.35       2.53       7.00      2.40       18.00       15.60      0.14
+## income          5 336   13880.18    2253.05   13763.13   9513.76    22193.46    12679.69    122.91
+## emppop          6 336      60.81       4.72      61.36     42.99       71.27       28.28      0.26
+## beertax         7 336       0.51       0.48       0.35      0.04        2.72        2.68      0.03
+## baptist         8 336       7.16       9.76       1.75      0.00       30.36       30.36      0.53
+## mormon          9 336       2.80       9.67       0.39      0.10       65.92       65.82      0.53
+## drinkage       10 336      20.46       0.90      21.00     18.00       21.00        3.00      0.05
+## dry            11 336       4.27       9.50       0.09      0.00       45.79       45.79      0.52
+## youngdrivers   12 336       0.19       0.02       0.19      0.07        0.28        0.21      0.00
+## miles          13 336    7890.75    1475.66    7796.22   4576.35    26148.27    21571.93     80.50
+## breath*        14 336       1.46       0.50       1.00      1.00        2.00        1.00      0.03
+## jail*          15 335       1.28       0.45       1.00      1.00        2.00        1.00      0.02
+## service*       16 335       1.19       0.39       1.00      1.00        2.00        1.00      0.02
+## fatal          17 336     928.66     934.05     701.00     79.00     5504.00     5425.00     50.96
+## nfatal         18 336     182.58     188.43     135.00     13.00     1049.00     1036.00     10.28
+## sfatal         19 336     109.95     108.54      81.00      8.00      603.00      595.00      5.92
+## fatal1517      20 336      62.61      55.73      49.00      3.00      318.00      315.00      3.04
+## nfatal1517     21 336      12.26      12.25      10.00      0.00       76.00       76.00      0.67
+## fatal1820      22 336     106.66     104.22      82.00      7.00      601.00      594.00      5.69
+## nfatal1820     23 336      33.53      33.24      24.00      0.00      196.00      196.00      1.81
+## fatal2124      24 336     126.87     131.79      97.50     12.00      770.00      758.00      7.19
+## nfatal2124     25 336      41.38      42.93      30.00      1.00      249.00      248.00      2.34
+## afatal         26 336     293.33     303.58     211.59     24.60     2094.90     2070.30     16.56
+## pop            27 336 4930271.50 5073703.89 3310503.25 478999.72 28314028.00 27835028.28 276793.24
+## pop1517        28 336  230815.48  229896.27  163000.17  21000.02  1172000.25  1151000.23  12541.87
+## pop1820        29 336  249090.42  249345.64  170982.34  20999.96  1321004.38  1300004.41  13602.92
+## pop2124        30 336  336389.89  345304.37  240999.90  30000.16  1892998.12  1862997.97  18837.90
+## milestot       31 336   37101.49   37454.37   28483.50   3993.00   241575.02   237582.02   2043.30
+## unempus        32 336       7.53       1.48       7.20      5.50        9.70        4.20      0.08
+## emppopus       33 336      59.97       1.59      60.10     57.80       62.30        4.50      0.09
+## gsp            34 336       0.03       0.04       0.03     -0.12        0.14        0.27      0.00</code></pre>
+<p>describeでは、カテゴリー変数も無理やり数値化して計算するのでおかしなことになっているものがあることである。例えば、stateは州なので、平均や標準偏差が計算されているのはおかしい。
+しかし、数値の変数を見るときには有用である。</p>
+<p>skimrパッケージの<code>skim()</code>関数は、カテゴリ変数と連続変数を区別して記述統計を示してくれる。</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="paneldata.html#cb239-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb239-2"><a href="paneldata.html#cb239-2" tabindex="-1"></a></span>
+<span id="cb239-3"><a href="paneldata.html#cb239-3" tabindex="-1"></a><span class="fu">skim</span>(data_f)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-161">Table 12.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">data_f</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">336</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">34</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factor</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">29</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="11%" />
+<col width="15%" />
+<col width="8%" />
+<col width="10%" />
+<col width="38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">state</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">48</td>
+<td align="left">al: 7, az: 7, ar: 7, ca: 7</td>
+</tr>
+<tr class="even">
+<td align="left">year</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">7</td>
+<td align="left">198: 48, 198: 48, 198: 48, 198: 48</td>
+</tr>
+<tr class="odd">
+<td align="left">breath</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">no: 181, yes: 155</td>
+</tr>
+<tr class="even">
+<td align="left">jail</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">no: 241, yes: 94</td>
+</tr>
+<tr class="odd">
+<td align="left">service</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">no: 273, yes: 62</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="11%" />
+<col width="8%" />
+<col width="11%" />
+<col width="9%" />
+<col width="9%" />
+<col width="8%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">spirits</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.75</td>
+<td align="right">0.68</td>
+<td align="right">0.79</td>
+<td align="right">1.30</td>
+<td align="right">1.67</td>
+<td align="right">2.01</td>
+<td align="right">4.90</td>
+<td align="left">▇▇▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">unemp</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">7.35</td>
+<td align="right">2.53</td>
+<td align="right">2.40</td>
+<td align="right">5.48</td>
+<td align="right">7.00</td>
+<td align="right">8.90</td>
+<td align="right">18.00</td>
+<td align="left">▅▇▃▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">income</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">13880.18</td>
+<td align="right">2253.05</td>
+<td align="right">9513.76</td>
+<td align="right">12085.85</td>
+<td align="right">13763.13</td>
+<td align="right">15175.12</td>
+<td align="right">22193.46</td>
+<td align="left">▅▇▅▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">emppop</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">60.81</td>
+<td align="right">4.72</td>
+<td align="right">42.99</td>
+<td align="right">57.69</td>
+<td align="right">61.36</td>
+<td align="right">64.41</td>
+<td align="right">71.27</td>
+<td align="left">▁▁▆▇▂</td>
+</tr>
+<tr class="odd">
+<td align="left">beertax</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.51</td>
+<td align="right">0.48</td>
+<td align="right">0.04</td>
+<td align="right">0.21</td>
+<td align="right">0.35</td>
+<td align="right">0.65</td>
+<td align="right">2.72</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">baptist</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">7.16</td>
+<td align="right">9.76</td>
+<td align="right">0.00</td>
+<td align="right">0.63</td>
+<td align="right">1.75</td>
+<td align="right">13.13</td>
+<td align="right">30.36</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">mormon</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.80</td>
+<td align="right">9.67</td>
+<td align="right">0.10</td>
+<td align="right">0.27</td>
+<td align="right">0.39</td>
+<td align="right">0.63</td>
+<td align="right">65.92</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">drinkage</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">20.46</td>
+<td align="right">0.90</td>
+<td align="right">18.00</td>
+<td align="right">20.00</td>
+<td align="right">21.00</td>
+<td align="right">21.00</td>
+<td align="right">21.00</td>
+<td align="left">▁▂▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">dry</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4.27</td>
+<td align="right">9.50</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.09</td>
+<td align="right">2.42</td>
+<td align="right">45.79</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">youngdrivers</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.19</td>
+<td align="right">0.02</td>
+<td align="right">0.07</td>
+<td align="right">0.17</td>
+<td align="right">0.19</td>
+<td align="right">0.20</td>
+<td align="right">0.28</td>
+<td align="left">▁▁▇▃▁</td>
+</tr>
+<tr class="odd">
+<td align="left">miles</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">7890.75</td>
+<td align="right">1475.66</td>
+<td align="right">4576.35</td>
+<td align="right">7182.54</td>
+<td align="right">7796.22</td>
+<td align="right">8504.02</td>
+<td align="right">26148.27</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">fatal</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">928.66</td>
+<td align="right">934.05</td>
+<td align="right">79.00</td>
+<td align="right">293.75</td>
+<td align="right">701.00</td>
+<td align="right">1063.50</td>
+<td align="right">5504.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">nfatal</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">182.58</td>
+<td align="right">188.43</td>
+<td align="right">13.00</td>
+<td align="right">53.75</td>
+<td align="right">135.00</td>
+<td align="right">212.00</td>
+<td align="right">1049.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">sfatal</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">109.95</td>
+<td align="right">108.54</td>
+<td align="right">8.00</td>
+<td align="right">35.00</td>
+<td align="right">81.00</td>
+<td align="right">131.00</td>
+<td align="right">603.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">fatal1517</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">62.61</td>
+<td align="right">55.73</td>
+<td align="right">3.00</td>
+<td align="right">25.75</td>
+<td align="right">49.00</td>
+<td align="right">77.00</td>
+<td align="right">318.00</td>
+<td align="left">▇▃▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">nfatal1517</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">12.26</td>
+<td align="right">12.25</td>
+<td align="right">0.00</td>
+<td align="right">4.00</td>
+<td align="right">10.00</td>
+<td align="right">15.25</td>
+<td align="right">76.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">fatal1820</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">106.66</td>
+<td align="right">104.22</td>
+<td align="right">7.00</td>
+<td align="right">38.00</td>
+<td align="right">82.00</td>
+<td align="right">130.25</td>
+<td align="right">601.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">nfatal1820</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">33.53</td>
+<td align="right">33.24</td>
+<td align="right">0.00</td>
+<td align="right">11.00</td>
+<td align="right">24.00</td>
+<td align="right">44.00</td>
+<td align="right">196.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">fatal2124</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">126.87</td>
+<td align="right">131.79</td>
+<td align="right">12.00</td>
+<td align="right">42.00</td>
+<td align="right">97.50</td>
+<td align="right">150.50</td>
+<td align="right">770.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">nfatal2124</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">41.38</td>
+<td align="right">42.93</td>
+<td align="right">1.00</td>
+<td align="right">13.00</td>
+<td align="right">30.00</td>
+<td align="right">49.00</td>
+<td align="right">249.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">afatal</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">293.33</td>
+<td align="right">303.58</td>
+<td align="right">24.60</td>
+<td align="right">90.50</td>
+<td align="right">211.59</td>
+<td align="right">363.96</td>
+<td align="right">2094.90</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">pop</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4930271.50</td>
+<td align="right">5073703.89</td>
+<td align="right">478999.72</td>
+<td align="right">1545251.47</td>
+<td align="right">3310503.25</td>
+<td align="right">5751734.88</td>
+<td align="right">28314028.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">pop1517</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">230815.48</td>
+<td align="right">229896.27</td>
+<td align="right">21000.02</td>
+<td align="right">71749.93</td>
+<td align="right">163000.17</td>
+<td align="right">270500.16</td>
+<td align="right">1172000.25</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">pop1820</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">249090.42</td>
+<td align="right">249345.64</td>
+<td align="right">20999.96</td>
+<td align="right">76962.12</td>
+<td align="right">170982.34</td>
+<td align="right">308311.35</td>
+<td align="right">1321004.38</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">pop2124</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">336389.89</td>
+<td align="right">345304.37</td>
+<td align="right">30000.16</td>
+<td align="right">103500.04</td>
+<td align="right">240999.90</td>
+<td align="right">413000.12</td>
+<td align="right">1892998.12</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">milestot</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">37101.49</td>
+<td align="right">37454.37</td>
+<td align="right">3993.00</td>
+<td align="right">11691.50</td>
+<td align="right">28483.50</td>
+<td align="right">44139.75</td>
+<td align="right">241575.02</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">unempus</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">7.53</td>
+<td align="right">1.48</td>
+<td align="right">5.50</td>
+<td align="right">6.20</td>
+<td align="right">7.20</td>
+<td align="right">9.60</td>
+<td align="right">9.70</td>
+<td align="left">▇▃▇▁▇</td>
+</tr>
+<tr class="even">
+<td align="left">emppopus</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">59.97</td>
+<td align="right">1.59</td>
+<td align="right">57.80</td>
+<td align="right">57.90</td>
+<td align="right">60.10</td>
+<td align="right">61.50</td>
+<td align="right">62.30</td>
+<td align="left">▇▃▃▃▇</td>
+</tr>
+<tr class="odd">
+<td align="left">gsp</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.03</td>
+<td align="right">0.04</td>
+<td align="right">-0.12</td>
+<td align="right">0.00</td>
+<td align="right">0.03</td>
+<td align="right">0.06</td>
+<td align="right">0.14</td>
+<td align="left">▁▂▆▇▁</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="paneldata.html#cb240-1" tabindex="-1"></a><span class="co"># https://www.econometrics-with-r.org/10.1-panel-data.html</span></span></code></pre></div>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="multipleregression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="practiceanswer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -490,7 +1143,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/%s",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/13_panel_data_regression.Rmd",
 "text": "Edit"
 },
 "history": {
