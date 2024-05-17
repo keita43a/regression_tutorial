@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-15" />
+<meta name="date" content="2024-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -414,11 +414,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>12</b> パネルデータ分析</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータ"><i class="fa fa-check"></i><b>12.1</b> パネルデータ</a>
+<li class="chapter" data-level="12.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータとは"><i class="fa fa-check"></i><b>12.1</b> パネルデータとは</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>12.1.1</b> スクリプトの準備</a></li>
-<li class="chapter" data-level="12.1.2" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>12.1.2</b> データの準備</a></li>
-<li class="chapter" data-level="12.1.3" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>12.1.3</b> データの記述統計</a></li>
+<li class="chapter" data-level="12.1.2" data-path="paneldata.html"><a href="paneldata.html#パッケージの準備"><i class="fa fa-check"></i><b>12.1.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="12.1.3" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>12.1.3</b> データの準備</a></li>
+<li class="chapter" data-level="12.1.4" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>12.1.4</b> データの記述統計</a></li>
+<li class="chapter" data-level="12.1.5" data-path="paneldata.html"><a href="paneldata.html#データの加工"><i class="fa fa-check"></i><b>12.1.5</b> データの加工</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="paneldata.html"><a href="paneldata.html#パネルデータ分析"><i class="fa fa-check"></i><b>12.2</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="paneldata.html"><a href="paneldata.html#事例交通事故死亡率とアルコール税の関係"><i class="fa fa-check"></i><b>12.2.1</b> 事例：交通事故死亡率とアルコール税の関係</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="paneldata.html"><a href="paneldata.html#固定効果モデル"><i class="fa fa-check"></i><b>12.3</b> 固定効果モデル</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="paneldata.html"><a href="paneldata.html#固定効果モデルのビジュアルイメージ"><i class="fa fa-check"></i><b>12.3.1</b> 固定効果モデルのビジュアルイメージ</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>13</b> 練習問題解答</a>
@@ -524,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb227-6"><a href="rstatsinfe.html#cb227-6" tabindex="-1"></a>  <span class="co"># ggplotのgeom_histogramで描画する。見やすいように枠線を青に、中身をグレーに変更している。</span></span>
 <span id="cb227-7"><a href="rstatsinfe.html#cb227-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> data_sample_mean) <span class="sc">+</span> </span>
 <span id="cb227-8"><a href="rstatsinfe.html#cb227-8" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sample_mean), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">fill=</span><span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
 <p>標本平均一つ一つであれば、小さいもので167cmぐらい、大きいものだと173cmぐらいまでズレがあることがわかる。それぞれ170cmピッタリとは限らないが、平均的には170cmを推定できていることがわかる。</p>
 <p>このことから、標本平均が母平均を推定する推定量として、不偏性を持っているということがわかる。</p>
 </div>

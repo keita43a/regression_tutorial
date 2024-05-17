@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-15" />
+<meta name="date" content="2024-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -414,11 +414,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>12</b> パネルデータ分析</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータ"><i class="fa fa-check"></i><b>12.1</b> パネルデータ</a>
+<li class="chapter" data-level="12.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータとは"><i class="fa fa-check"></i><b>12.1</b> パネルデータとは</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>12.1.1</b> スクリプトの準備</a></li>
-<li class="chapter" data-level="12.1.2" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>12.1.2</b> データの準備</a></li>
-<li class="chapter" data-level="12.1.3" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>12.1.3</b> データの記述統計</a></li>
+<li class="chapter" data-level="12.1.2" data-path="paneldata.html"><a href="paneldata.html#パッケージの準備"><i class="fa fa-check"></i><b>12.1.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="12.1.3" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>12.1.3</b> データの準備</a></li>
+<li class="chapter" data-level="12.1.4" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>12.1.4</b> データの記述統計</a></li>
+<li class="chapter" data-level="12.1.5" data-path="paneldata.html"><a href="paneldata.html#データの加工"><i class="fa fa-check"></i><b>12.1.5</b> データの加工</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="paneldata.html"><a href="paneldata.html#パネルデータ分析"><i class="fa fa-check"></i><b>12.2</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="paneldata.html"><a href="paneldata.html#事例交通事故死亡率とアルコール税の関係"><i class="fa fa-check"></i><b>12.2.1</b> 事例：交通事故死亡率とアルコール税の関係</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="paneldata.html"><a href="paneldata.html#固定効果モデル"><i class="fa fa-check"></i><b>12.3</b> 固定効果モデル</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="paneldata.html"><a href="paneldata.html#固定効果モデルのビジュアルイメージ"><i class="fa fa-check"></i><b>12.3.1</b> 固定効果モデルのビジュアルイメージ</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>13</b> 練習問題解答</a>
@@ -449,8 +459,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="paneldata" class="section level1 hasAnchor" number="12">
 <h1><span class="header-section-number">Chapter 12</span> パネルデータ分析<a href="paneldata.html#paneldata" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="パネルデータ" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> パネルデータ<a href="paneldata.html#パネルデータ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="パネルデータとは" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> パネルデータとは<a href="paneldata.html#パネルデータとは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>重回帰分析のセクションで扱ったデータは基本的にはクロスセクションデータであった。
 これは、データの変動が人であったり、県であったり、グループであったりするものであり、データでは添字<span class="math inline">\(i\)</span>で表現していた。</p>
 <p>これに加えて、時間の変動藻ある場合には、クロスセクションデータで分析するよりアドバンテージがある。時間変動がある場合にどのような形になるか見てみよう。</p>
@@ -459,20 +469,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>新しいスクリプトにコードを書いていく。
 新しくスクリプトを作成し、<code>panel_data.R</code>という名前をつけて保存する。</p>
 </div>
-<div id="データの準備" class="section level3 hasAnchor" number="12.1.2">
-<h3><span class="header-section-number">12.1.2</span> データの準備<a href="paneldata.html#データの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Rパッケージに付属しているデータを使う。
-<code>AER</code>パッケージをインストールして読み込もう。</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="paneldata.html#cb228-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;AER&quot;</span>)</span></code></pre></div>
-<pre><code>## Error in install.packages : Updating loaded packages</code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="paneldata.html#cb230-1" tabindex="-1"></a><span class="fu">library</span>(AER)</span></code></pre></div>
-<p>データを読み込む。データ名がながいので、 <code>data_f</code>に入れ替えよう。</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="paneldata.html#cb231-1" tabindex="-1"></a><span class="fu">data</span>(Fatalities)</span>
-<span id="cb231-2"><a href="paneldata.html#cb231-2" tabindex="-1"></a></span>
-<span id="cb231-3"><a href="paneldata.html#cb231-3" tabindex="-1"></a>data_f <span class="ot">&lt;-</span> Fatalities</span></code></pre></div>
+<div id="パッケージの準備" class="section level3 hasAnchor" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> パッケージの準備<a href="paneldata.html#パッケージの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>以下のパッケージを使うので読み込んでおく。
+インストールしてない場合は、インストールする。</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="paneldata.html#cb228-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
+<span id="cb228-2"><a href="paneldata.html#cb228-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb228-3"><a href="paneldata.html#cb228-3" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb228-4"><a href="paneldata.html#cb228-4" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb228-5"><a href="paneldata.html#cb228-5" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb228-6"><a href="paneldata.html#cb228-6" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
+</div>
+<div id="データの準備" class="section level3 hasAnchor" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> データの準備<a href="paneldata.html#データの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データを読み込む。データ名が長いので、 <code>data_f</code>に入れ替えよう。</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="paneldata.html#cb229-1" tabindex="-1"></a><span class="fu">data</span>(Fatalities)</span>
+<span id="cb229-2"><a href="paneldata.html#cb229-2" tabindex="-1"></a></span>
+<span id="cb229-3"><a href="paneldata.html#cb229-3" tabindex="-1"></a>data_f <span class="ot">&lt;-</span> Fatalities</span></code></pre></div>
 <p>データの中身を見てみる。
 まずは、どんなデータなのか<code>head()</code>で確認する。</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="paneldata.html#cb232-1" tabindex="-1"></a><span class="fu">head</span>(data_f)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="paneldata.html#cb230-1" tabindex="-1"></a><span class="fu">head</span>(data_f)</span></code></pre></div>
 <pre><code>##   state year spirits unemp   income   emppop  beertax baptist  mormon drinkage     dry youngdrivers    miles breath jail
 ## 1    al 1982    1.37  14.4 10544.15 50.69204 1.539379 30.3557 0.32829    19.00 25.0063     0.211572 7233.887     no   no
 ## 2    al 1983    1.36  13.7 10732.80 52.14703 1.788991 30.3336 0.34341    19.00 22.9942     0.210768 7836.348     no   no
@@ -496,12 +512,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 208998.5 258999.8    37426     6.2     61.5  0.04897637</code></pre>
 <p>このデータはアメリカの州×年ごとに、様々な変数が記録されているデータである。
 どんな変数が記録されているかは、helpファイルを見るとわかる。</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="paneldata.html#cb234-1" tabindex="-1"></a><span class="fu">help</span>(Fatalities)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="paneldata.html#cb232-1" tabindex="-1"></a><span class="fu">help</span>(Fatalities)</span></code></pre></div>
 </div>
-<div id="データの記述統計" class="section level3 hasAnchor" number="12.1.3">
-<h3><span class="header-section-number">12.1.3</span> データの記述統計<a href="paneldata.html#データの記述統計" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの記述統計" class="section level3 hasAnchor" number="12.1.4">
+<h3><span class="header-section-number">12.1.4</span> データの記述統計<a href="paneldata.html#データの記述統計" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データの記述統計を確認しよう。一番基本的なものはsummary()関数を使う方法である。</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="paneldata.html#cb235-1" tabindex="-1"></a><span class="fu">summary</span>(data_f)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="paneldata.html#cb233-1" tabindex="-1"></a><span class="fu">summary</span>(data_f)</span></code></pre></div>
 <pre><code>##      state       year       spirits          unemp            income          emppop         beertax       
 ##  al     :  7   1982:48   Min.   :0.790   Min.   : 2.400   Min.   : 9514   Min.   :42.99   Min.   :0.04331  
 ##  az     :  7   1983:48   1st Qu.:1.300   1st Qu.: 5.475   1st Qu.:12086   1st Qu.:57.69   1st Qu.:0.20885  
@@ -543,9 +559,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  Max.   :1321004   Max.   :1892998   Max.   :241575   Max.   :9.700   Max.   :62.30   Max.   : 0.142361  
 ## </code></pre>
 <p>Chapter @ref(#rstats)　で説明したように、他のパッケージを使う方法もある。</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="paneldata.html#cb237-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb237-2"><a href="paneldata.html#cb237-2" tabindex="-1"></a></span>
-<span id="cb237-3"><a href="paneldata.html#cb237-3" tabindex="-1"></a><span class="fu">describe</span>(data_f, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="paneldata.html#cb235-1" tabindex="-1"></a><span class="fu">describe</span>(data_f, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>##              vars   n       mean         sd     median       min         max       range        se
 ## state*          1 336      24.50      13.87      24.50      1.00       48.00       47.00      0.76
 ## year*           2 336       4.00       2.00       4.00      1.00        7.00        6.00      0.11
@@ -581,14 +595,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## unempus        32 336       7.53       1.48       7.20      5.50        9.70        4.20      0.08
 ## emppopus       33 336      59.97       1.59      60.10     57.80       62.30        4.50      0.09
 ## gsp            34 336       0.03       0.04       0.03     -0.12        0.14        0.27      0.00</code></pre>
-<p>describeでは、カテゴリー変数も無理やり数値化して計算するのでおかしなことになっているものがあることである。例えば、stateは州なので、平均や標準偏差が計算されているのはおかしい。
+<p><code>psych</code>パッケージの<code>describe()</code>では、カテゴリー変数も無理やり数値化して計算するのでおかしなことになっているものがあることである。例えば、stateは州なので、平均や標準偏差が計算されているのはおかしい。
 しかし、数値の変数を見るときには有用である。</p>
-<p>skimrパッケージの<code>skim()</code>関数は、カテゴリ変数と連続変数を区別して記述統計を示してくれる。</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="paneldata.html#cb239-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb239-2"><a href="paneldata.html#cb239-2" tabindex="-1"></a></span>
-<span id="cb239-3"><a href="paneldata.html#cb239-3" tabindex="-1"></a><span class="fu">skim</span>(data_f)</span></code></pre></div>
+<p><code>skimr</code>パッケージの<code>skim()</code>関数は、カテゴリ変数と連続変数を区別して記述統計を示してくれる。</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="paneldata.html#cb237-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb237-2"><a href="paneldata.html#cb237-2" tabindex="-1"></a></span>
+<span id="cb237-3"><a href="paneldata.html#cb237-3" tabindex="-1"></a><span class="fu">skim</span>(data_f)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-161">Table 12.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-175">Table 12.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -1101,7 +1115,168 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="paneldata.html#cb240-1" tabindex="-1"></a><span class="co"># https://www.econometrics-with-r.org/10.1-panel-data.html</span></span></code></pre></div>
+</div>
+<div id="データの加工" class="section level3 hasAnchor" number="12.1.5">
+<h3><span class="header-section-number">12.1.5</span> データの加工<a href="paneldata.html#データの加工" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データには、交通事故による死亡数<code>fatal</code>はあるが、死亡率がない。当然ながら各州によって人口が違い、人口が多い州は死亡数も多くなる。州の間で比較を行うためには、死亡数より死亡率が適切だろう。そこで、死亡率<code>fatal_rate</code>を死亡数<code>fatal</code>を人口<code>pop</code>で割ることで計算する。あまりに小さい数字になるため10000をかけて「１万人当たりの死亡者数」として死亡率を定義する。
+新たに追加したデータを<code>data_f2</code>に入れる。</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="paneldata.html#cb238-1" tabindex="-1"></a><span class="co"># データの加工</span></span>
+<span id="cb238-2"><a href="paneldata.html#cb238-2" tabindex="-1"></a>data_f2 <span class="ot">&lt;-</span> data_f <span class="sc">|&gt;</span> </span>
+<span id="cb238-3"><a href="paneldata.html#cb238-3" tabindex="-1"></a>  <span class="co"># 死亡率の計算</span></span>
+<span id="cb238-4"><a href="paneldata.html#cb238-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fatal_rate =</span> fatal<span class="sc">/</span>pop <span class="sc">*</span> <span class="dv">10000</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="パネルデータ分析" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> パネルデータ分析<a href="paneldata.html#パネルデータ分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="事例交通事故死亡率とアルコール税の関係" class="section level3 hasAnchor" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> 事例：交通事故死亡率とアルコール税の関係<a href="paneldata.html#事例交通事故死亡率とアルコール税の関係" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ここでは、アメリカの州（アラスカとハワイを除いた48州）の1982~1988年のデータを用いて、各州のアルコール税の税率と、交通事故死亡率の関係を分析する。</p>
+<p>ここで、日本とは異なる背景知識だが、アメリカは連邦制の国であり、州によって様々な法律が異なる。例えば消費税のない州もあれば、その税率が州で違ったりもする。この場合はアルコール、特にビールにかかる税率が州で異なる点に着目して、税率の違いが酒酔い運転などによっても引き起こされる交通事故死亡率に影響するかどうかを分析する。</p>
+<p>州<span class="math inline">\(i\)</span>の交通事故死亡率を<span class="math inline">\(y_{i}\)</span>とし、ビール税率を<span class="math inline">\(x_{i}\)</span>とすると、以下の単回帰式によって、影響が推定できそうだ。</p>
+<p><span class="math display">\[
+y_{i} = \alpha + \beta x_{i} +\varepsilon_{i}
+\]</span></p>
+<p>ビール税率を上げると交通事故死亡率が下がる、という仮説を検証したい場合、<span class="math inline">\(\beta\)</span>が負（マイナス）であると期待するだろう。</p>
+<p>まず、この単回帰式を推定するために、クロス・セクションのデータで推定を行ってみよう。
+データのうち、1982年と1988年をそれぞれ抽出してみよう。</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="paneldata.html#cb239-1" tabindex="-1"></a><span class="co"># クロスセクションデータの作成</span></span>
+<span id="cb239-2"><a href="paneldata.html#cb239-2" tabindex="-1"></a>data_f2_1982 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
+<span id="cb239-3"><a href="paneldata.html#cb239-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1982</span>)</span>
+<span id="cb239-4"><a href="paneldata.html#cb239-4" tabindex="-1"></a></span>
+<span id="cb239-5"><a href="paneldata.html#cb239-5" tabindex="-1"></a>data_f2_1988 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
+<span id="cb239-6"><a href="paneldata.html#cb239-6" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1988</span>)</span></code></pre></div>
+<p>このデータを用いて単位回帰分析を行う。</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="paneldata.html#cb240-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
+<span id="cb240-2"><a href="paneldata.html#cb240-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
+<span id="cb240-3"><a href="paneldata.html#cb240-3" tabindex="-1"></a></span>
+<span id="cb240-4"><a href="paneldata.html#cb240-4" tabindex="-1"></a><span class="co"># 1982年のデータ</span></span>
+<span id="cb240-5"><a href="paneldata.html#cb240-5" tabindex="-1"></a>reg1_1982 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1982)</span>
+<span id="cb240-6"><a href="paneldata.html#cb240-6" tabindex="-1"></a></span>
+<span id="cb240-7"><a href="paneldata.html#cb240-7" tabindex="-1"></a><span class="co"># 1988年のデータ</span></span>
+<span id="cb240-8"><a href="paneldata.html#cb240-8" tabindex="-1"></a>reg1_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
+<p>結果を表示する。</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="paneldata.html#cb241-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_1982,reg1_1988)</span></code></pre></div>
+<pre><code>##                         reg1_1982         reg1_1988
+## Dependent Var.:        fatal_rate        fatal_rate
+##                                                    
+## Constant        2.010*** (0.1391) 1.859*** (0.1060)
+## beertax           0.1485 (0.1884)  0.4388* (0.1645)
+## _______________ _________________ _________________
+## S.E. type                     IID               IID
+## Observations                   48                48
+## R2                        0.01332           0.13400
+## Adj. R2                  -0.00813           0.11518
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>この結果によれば、1982年ではビール税率が1%上がると、交通事故死亡率が0.1485上昇し、1988年では0.4388上昇する。
+このデータは州ごとのクロスセクションデータなので、もう少し正確に解釈すると、ビール税が1%高い州では交通事故死亡率が高い、ということになる。</p>
+<p>この結果をグラフでも見てみよう。縦軸を死亡率、横軸をビール税として散布図を描く。ここでは1988年のデータを見てみよう。</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="paneldata.html#cb243-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2_1988, <span class="fu">aes</span>(<span class="at">x=</span>beertax, <span class="at">y=</span>fatal_rate)) <span class="sc">+</span> </span>
+<span id="cb243-2"><a href="paneldata.html#cb243-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb243-3"><a href="paneldata.html#cb243-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb243-4"><a href="paneldata.html#cb243-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;交通事故死亡率(10000人当たり）&quot;</span>) <span class="sc">+</span></span>
+<span id="cb243-5"><a href="paneldata.html#cb243-5" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="co">#&lt;- このレイヤーはWindowsならいらない</span></span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p>むしろ税率と交通事故死亡率には正の関係がある。</p>
+<p>このアプローチには問題がないだろうか？なぜなら、クロスセクションデータでは州ごとの違いを見ているので、ビール税が高い州では交通事故死亡率が高いという結果であるが、交通事故死亡率が高い州ではビール税を上げているので高いという可能性もある。州による特性もある。</p>
+<p>では時間的な変動を含めたデータでは、どうなるだろうか？</p>
+<p>州<span class="math inline">\(i\)</span>の年<span class="math inline">\(t\)</span>における交通事故死亡率を<span class="math inline">\(y_{it}\)</span>とし、ビール税率を<span class="math inline">\(x_{it}\)</span>とすると、以下の単回帰式によって、影響が推定できそうだ。上の式と違うのは添字に<span class="math inline">\(t\)</span>が加わり、時間の変動も加味したデータを使っていることだ。</p>
+<p><span class="math display">\[
+y_{it} = \alpha + \beta x_{it} +\varepsilon_{it}
+\]</span></p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="paneldata.html#cb244-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
+<span id="cb244-2"><a href="paneldata.html#cb244-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
+<span id="cb244-3"><a href="paneldata.html#cb244-3" tabindex="-1"></a></span>
+<span id="cb244-4"><a href="paneldata.html#cb244-4" tabindex="-1"></a><span class="co"># 1982-1988年のデータ</span></span>
+<span id="cb244-5"><a href="paneldata.html#cb244-5" tabindex="-1"></a>reg1_panel <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2)</span></code></pre></div>
+<p>結果を表示する。</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="paneldata.html#cb245-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel)</span></code></pre></div>
+<pre><code>##                         reg1_panel
+## Dependent Var.:         fatal_rate
+##                                   
+## Constant         1.853*** (0.0436)
+## beertax         0.3646*** (0.0622)
+## _______________ __________________
+## S.E. type                      IID
+## Observations                   336
+## R2                         0.09336
+## Adj. R2                    0.09065
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>結果は、<span class="math inline">\(\beta\)</span>に当たるパラメータの推定値が0.3646となり、やはり正の符号となっている。
+時間変動を加えても結果は変わっていない、ということはやはりビール税を上げると交通事故死亡率が増えるのだろうか？</p>
+</div>
+</div>
+<div id="固定効果モデル" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> 固定効果モデル<a href="paneldata.html#固定効果モデル" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ここで、重要なのはデータを変えただけでは本質的な問題である「州の特性によって、死亡率が高い州ほどビール税が高い（上げている）」可能性の影響を推定値から排除できていないことである。</p>
+<p>この<span class="math inline">\(x_{it}\)</span>には、州によってはビール税が（年にかかわらず）高い、という特性も入ってしまっており、そのデータが推定値に影響している。ならば、その影響を分けて推定することはできないか。これが<strong>固定効果モデル</strong>のアイデアである。</p>
+<p>固定効果とは、データとしては直接観察されないが時間的に変化しない主体独特の効果である。この場合は時間的に変化しない州独特の効果と言える。ではデータとしては直接観察されないのに、どうやって回帰式に含めるのか？これは、州ごとのダミー変数を作成するという発想で解決する。</p>
+<p>固定効果モデルを式として書くと以下のように書くことができる。</p>
+<p><span class="math display">\[
+y_{it} = \gamma_{i} + \beta x_{it} + \varepsilon_{it}
+\]</span></p>
+<p>切片<span class="math inline">\(\alpha\)</span>の代わりに、添え字<span class="math inline">\(i\)</span>を持つパラメータ<span class="math inline">\(\gamma\)</span>が含まれている。これは州ごとに切片が異なる回帰式とも解釈することができる。ここで、州ごとの(交通事故死亡率の)特性の違いが捕捉されるため、ビール税率の係数の推定値はその州ごとの特性を除いた推定値となる。しかし、データではないパラメータに<span class="math inline">\(i\)</span>がついているのはなぜか？</p>
+<p>これは実質的には以下のような式を推定しているのと同じである。</p>
+<p><span class="math display">\[
+y_{it} = \beta x_{it} + \gamma_{AL} D_{AL} + \gamma_{AZ} D_{AZ} + \gamma_{AR} D_{AR} + \cdots + \gamma_{WY} D_{WY} +  + \varepsilon_{it}
+\]</span></p>
+<p>もしデータ<span class="math inline">\(i\)</span>がアラバマ州ならば<span class="math inline">\(D_{AL}\)</span>は1になり、それ以外は0になるので、<span class="math inline">\(\gamma_{AL}\)</span>が式に残る。もし<span class="math inline">\(i\)</span>がアリゾナ州ならば<span class="math inline">\(D_{AZ}\)</span>は1になり、それ以外は0になる。という形で、<span class="math inline">\(\gamma_{AL}\)</span>, <span class="math inline">\(\gamma_{AZ}\)</span> … <span class="math inline">\(\gamma_{WY}\)</span>のワイオミング州までを推定するのである。</p>
+<p>実際には、これを<code>feols</code>では簡単に推定できる。</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="paneldata.html#cb247-1" tabindex="-1"></a><span class="co"># |のあとに固定効果として推定したいカテゴリ（今回は州なのでstate)を入れる</span></span>
+<span id="cb247-2"><a href="paneldata.html#cb247-2" tabindex="-1"></a>reg1_panel_fe <span class="ot">=</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data =</span> data_f2)</span>
+<span id="cb247-3"><a href="paneldata.html#cb247-3" tabindex="-1"></a></span>
+<span id="cb247-4"><a href="paneldata.html#cb247-4" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel, reg1_panel_fe, <span class="at">se =</span> <span class="st">&quot;IID&quot;</span>)</span></code></pre></div>
+<pre><code>##                         reg1_panel       reg1_panel_fe
+## Dependent Var.:         fatal_rate          fatal_rate
+##                                                       
+## Constant         1.853*** (0.0436)                    
+## beertax         0.3646*** (0.0622) -0.6559*** (0.1878)
+## Fixed-Effects:  ------------------ -------------------
+## state                           No                 Yes
+## _______________ __________________ ___________________
+## S.E. type                      IID                 IID
+## Observations                   336                 336
+## R2                         0.09336             0.90501
+## Within R2                       --             0.04075
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>結果は、固定効果モデル（右）では単位回帰モデル（左）では正だった係数が負になっている。
+この結果を解釈すると、「ビール税率が上がると、交通事故死亡率が下がる」という解釈となる。</p>
+<p>このように、本当に推定したい効果が、データの特徴によって推定できない場合、それが主体独特の効果である場合は、固定効果モデルを用いることで分別して推定することができる。</p>
+<p>しかし、固定効果モデルはパネルデータではないと使うことができない。
+たとえば、上で作成したクロスセクションデータで固定効果モデルを推定してみよう。</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="paneldata.html#cb249-1" tabindex="-1"></a>reg1_panel_fe_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
+<pre><code>## Error: in feols(fatal_rate ~ beertax | state, data = data_f...: 
+## The only variable, &#39;beertax&#39;, is collinear with the fixed effects. Without doubt, your model is misspecified.</code></pre>
+<p>エラーが出る。これは、クロスセクションデータでは州ごとの変動しかないため、ダミー変数による固定効果の変動（州によって1か0か）と州ごとのビール税の変動のどちらが交通事故死亡率の変動を説明しているか識別ができないためである。</p>
+<div id="固定効果モデルのビジュアルイメージ" class="section level3 hasAnchor" number="12.3.1">
+<h3><span class="header-section-number">12.3.1</span> 固定効果モデルのビジュアルイメージ<a href="paneldata.html#固定効果モデルのビジュアルイメージ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>固定効果モデルをビジュアルイメージで理解してみよう。</p>
+<p>まず、パネルデータを使って散布図を書いてみよう。</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="paneldata.html#cb251-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
+<span id="cb251-2"><a href="paneldata.html#cb251-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb251-3"><a href="paneldata.html#cb251-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
+<span id="cb251-4"><a href="paneldata.html#cb251-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p>これだけを見ると、やはり右肩上がりの傾向があるように見える。
+<code>geom_smooth(method="lm")</code>というレイヤーを加えて、回帰線を描いてみよう。</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="paneldata.html#cb252-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
+<span id="cb252-2"><a href="paneldata.html#cb252-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb252-3"><a href="paneldata.html#cb252-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
+<span id="cb252-4"><a href="paneldata.html#cb252-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb252-5"><a href="paneldata.html#cb252-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p>やはり右肩あがりになっている。</p>
+<p>では、今度は州ごとに色分けしてみよう。<code>aes()</code>の中で色カテゴリに州を指定する<code>col=state</code>。</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="paneldata.html#cb253-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate,<span class="at">col=</span>state)) <span class="sc">+</span></span>
+<span id="cb253-2"><a href="paneldata.html#cb253-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb253-3"><a href="paneldata.html#cb253-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-4"><a href="paneldata.html#cb253-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb253-5"><a href="paneldata.html#cb253-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-6"><a href="paneldata.html#cb253-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># &lt;- もし凡例が大きすぎて図が見えない場合はこのレイヤーを追加して凡例を消す</span></span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-187-1.png" width="672" />
+すると、州ごと分けた点と線が描かれる。州ごとに見ると、州の中での時間的な変動ではビール税率が高いときに死亡率が下がっている傾向が見られるだろう。このように、州間の違いと州内の違いを分けて推定できるのが固定効果モデルである。</p>
 
 </div>
 </div>
