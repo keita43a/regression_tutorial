@@ -28,6 +28,9 @@ pacman::p_load(
   cols4all
 )
 
+# bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook", output_dir="./docs")
+# で製本
+
 options(scipen=999)
 ```
 

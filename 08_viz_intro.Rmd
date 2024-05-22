@@ -23,7 +23,7 @@ fig_musashi_students
 
 ```{r}
 # エクセルからデータを読み込み
-data_634 <- readxl::read_excel("docs/r_basics/data/musashi_keizai_students_2023.xlsx") 
+data_634 <- readxl::read_excel("docs/data/musashi_keizai_students_2023.xlsx") 
 
 # long型(tidy data)に変換
 data_634_long <- data_634 |> 
@@ -437,7 +437,7 @@ print(plot_violin)
 分析の目的やデータのタイプによって、用いたいグラフは異なる。どのような目的でデータ描画を行うのか考えてから描画に取りかかろう。
 
 ```{r pressure, echo=FALSE, fig.cap="データタイプ別のグラフ", fig.align='center',out.width = '80%'}
-knitr::include_graphics("docs/r_basics/fig/IMG_3452.png")
+knitr::include_graphics("docs/fig/IMG_3452.png")
 ```
 
 

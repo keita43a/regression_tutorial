@@ -32,13 +32,13 @@
 行と列は方向が決まっている。横が行(row)、縦が列(column)である。
 
 ```{r  label = gyouretsu, echo = FALSE, fig.cap = "", out.width = '90%'}
-knitr::include_graphics("docs/r_basics/fig/gyoretsu.png")
+knitr::include_graphics("docs/fig/gyoretsu.png")
 ```
 
 行と列の覚え方
 
 ```{r  label = gyouretsu2, echo = FALSE, fig.cap = "", out.width = '80%'}
-knitr::include_graphics("docs/r_basics/fig/gyoretsu2.png")
+knitr::include_graphics("docs/fig/gyoretsu2.png")
 ```
 
 
@@ -188,7 +188,7 @@ knitr::kable(data_634) ## kableは見やすい表を出力する関数
 同じデータを、異なる形式で表示したものが以下である。
 
 ```{r, echo =FALSE}
-data_634_long = readxl::read_excel("docs/r_basics/data/musashi_keizai_students_2023.xlsx") %>%
+data_634_long = readxl::read_excel("docs/data/musashi_keizai_students_2023.xlsx") %>%
   pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") %>%
   mutate(学科 = factor(学科, levels=c("経済学科","経営学科","金融学科")),　## order of departments
          性別 = factor(性別, levels=c("男","女")),
@@ -417,7 +417,7 @@ sum(data_634_long$学生数)
 
 
 ```{r  label = dplyr_logo, echo = FALSE, fig.cap = "", out.width = '40%',fig.align='center'}
-knitr::include_graphics("docs/r_basics/fig/dplyr_logo.png")
+knitr::include_graphics("docs/fig/dplyr_logo.png")
 ```
 
 
@@ -525,7 +525,7 @@ print(data_634_long_relocate2)
 ```
 
 
-### データの列を追加する: mutate()
+### データの列を追加する: mutate() {#datamgcolumnadd}
 
 新しく、学生数を100で割った数値を作るとする
 
@@ -618,7 +618,7 @@ print(data_634_long_dept)
 
 ```{r}
 ## エクセルからデータを読み込み
-data_634_jinbun <- readxl::read_excel("docs/r_basics/data/musashi_jinbun_students_2023.xlsx") 
+data_634_jinbun <- readxl::read_excel("docs/data/musashi_jinbun_students_2023.xlsx") 
 
 knitr::kable(data_634_jinbun) ## kableは見やすい表を出力する関数
 ```
@@ -640,7 +640,7 @@ print(data_634_keizai_jinbun)
 
 ```{r}
 ## エクセルからデータを読み込み
-data_634_keizai_teiin <- readxl::read_excel("docs/r_basics/data/musashi_keizai_teiin_2023.xlsx") 
+data_634_keizai_teiin <- readxl::read_excel("docs/data/musashi_keizai_teiin_2023.xlsx") 
 
 knitr::kable(data_634_keizai_teiin) ## kableは見やすい表を出力する関数
 ```

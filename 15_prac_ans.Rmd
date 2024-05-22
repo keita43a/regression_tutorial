@@ -104,3 +104,59 @@ plot_line <- ggplot(data=economics) +
 ```{r, fig.align='center', fig.height=5, fig.width=5}
 print(plot_line)
 ```
+
+## Ch 10
+
+1. `AER`パッケージを読み込む。インストールしていない場合はインストールする。
+
+```{r, eval=FALSE}
+library(AER)
+
+# もしインストールしてない場合は、Rstudioの右下ペーンのPackagesタブからインストールするか、以下のコード
+install.packages("AER")
+```
+
+2. `data()`関数を使って、`CASchools`という`AER`パッケージに付属しているデータを読み込む。これは、カリフォルニア州の学校ごとの学生数などのデータである。
+
+```{r}
+data("CASchools")
+```
+
+3. `tidyverse`パッケージの関数を使って、学生数`students`と教員数`teachers`の比を計算し、`STR`という変数にする。また、国語`read`と数学`math`を足して２で割ったスコアを`score`という変数にする。新たに作成したデータを`dat_school`として保存する。
+
+```{r}
+dat_school <- CASchools |>
+  mutate(STR = students/teachers,
+         score = (read+math)/2)
+```
+
+これがわからない場合は\@ref{datamgcolumnadd}参照。
+
+
+4. `ggplot`を用いて、x軸を`STR`, y軸を`score`とする散布図を描く。以下のような図になるはずである（背景色やラベルなどは同じでなくてよい）
+
+```{r, eval=FALSE}
+ggplot(data=dat_school, aes(x=STR, y=score)) + 
+  geom_point() + 
+  theme_bw()
+```
+
+
+
+5. `STR`を説明変数、`score`を目的変数とする単回帰分析を行い、summary()関数を用いて結果を表示しなさい。
+
+```{r}
+# chapter 10のexerciseなのでreg_ex10というオブジェクト名にしたが、オブジェクト名はなんでもよい。
+
+reg_ex10 <- lm(score ~ STR, data=dat_school)
+  
+summary(reg_ex10)  
+```
+
+
+6. 5.の結果を解釈しなさい。
+
+学生-教員比が1上がるごとに、国語と数学の平均スコアは-2.28点下がる。
+すなわち、教員に対する学生が多い学校では学生のテストスコアは低くなる傾向があるようである。
+
+

@@ -12,9 +12,9 @@ fig:rstudioinstall
 fig:rstudio2
 fig:directory
 fig:projectmake
-tab:unnamed-chunk-142
+tab:unnamed-chunk-111
 fig:pressure
-tab:unnamed-chunk-175
+tab:unnamed-chunk-164
 この資料について
 whatsr
 r
@@ -128,7 +128,7 @@ long型データへの変換
 降順の並びにする
 データの列を並び替える-relocate
 列の後ろに持ってくる場合
-データの列を追加する-mutate
+datamgcolumnadd
 データの列を編集する-mutate
 データを集計する
 データ操作の応用パイプによる引き渡し
@@ -200,13 +200,15 @@ simpleregression
 共分散
 相関係数
 散布図
+相関関係と因果関係
 回帰分析
+rによる単回帰モデルの推定
+回帰係数の統計的な推定
+見せかけの相関と単回帰分析
+回帰分析の推定方法
+演習問題単回帰分析
 multipleregression
-section
-共分散-1
-相関係数-1
-散布図-1
-回帰分析-1
+重回帰分析とは
 paneldata
 パネルデータとは
 スクリプトの準備
@@ -222,3 +224,4 @@ practiceanswer
 ch.4
 ch.-6
 ch.-8
+ch-10
