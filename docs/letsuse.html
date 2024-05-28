@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -273,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="datahandling.html"><a href="datahandling.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="datahandling.html"><a href="datahandling.html#演習-データの読み込み"><i class="fa fa-check"></i><b>6.2.1</b> <strong>演習</strong>: データの読み込み</a></li>
-<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#日本語のデータを読み込む際の注意点"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
+<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#datajpn"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
 <li class="chapter" data-level="6.2.3" data-path="datahandling.html"><a href="datahandling.html#readrのその他のオプション"><i class="fa fa-check"></i><b>6.2.3</b> readrのその他のオプション</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="datahandling.html"><a href="datahandling.html#tidy-data-整然データ"><i class="fa fa-check"></i><b>6.3</b> tidy data (整然データ)</a></li>
@@ -323,54 +323,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
 <li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.2</b> データとは</a></li>
-<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.3</b> 代表的な統計量</a>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
+<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.3.1</b> 数式</a></li>
-<li class="chapter" data-level="7.3.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.3.2</b> 平均</a></li>
-<li class="chapter" data-level="7.3.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.3.3</b> 中央値</a></li>
-<li class="chapter" data-level="7.3.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.3.4</b> 最大値・最小値</a></li>
-<li class="chapter" data-level="7.3.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.3.5</b> 分散</a></li>
-<li class="chapter" data-level="7.3.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.3.6</b> もう一つの分散：不偏分散</a></li>
-<li class="chapter" data-level="7.3.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.3.7</b> 標準偏差</a></li>
-<li class="chapter" data-level="7.3.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.3.8</b> 不偏標準偏差</a></li>
+<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.4.1</b> 数式</a></li>
+<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.4.2</b> 平均</a></li>
+<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.4.3</b> 中央値</a></li>
+<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.4.4</b> 最大値・最小値</a></li>
+<li class="chapter" data-level="7.4.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.4.5</b> 分散</a></li>
+<li class="chapter" data-level="7.4.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.4.6</b> もう一つの分散：不偏分散</a></li>
+<li class="chapter" data-level="7.4.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.4.7</b> 標準偏差</a></li>
+<li class="chapter" data-level="7.4.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.4.8</b> 不偏標準偏差</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.4</b> Rによる記述統計のテクニック</a>
+<li class="chapter" data-level="7.5" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.5</b> Rによる記述統計のテクニック</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.4.1</b> 使用するデータ</a></li>
-<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.4.2</b> <code>summary</code>関数</a></li>
-<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.4.3</b> <code>describe</code>関数</a></li>
-<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.4.4</b> <code>skim</code>関数</a></li>
+<li class="chapter" data-level="7.5.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.5.1</b> 使用するデータ</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.5.2</b> <code>summary</code>関数</a></li>
+<li class="chapter" data-level="7.5.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.5.3</b> <code>describe</code>関数</a></li>
+<li class="chapter" data-level="7.5.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.5.4</b> <code>skim</code>関数</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
-<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.2</b> 描画をしてみよう</a></li>
-<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.3</b> 復習：データ読み込み</a></li>
-<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.4</b> 描画の前に</a></li>
-<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.5</b> キャンバスを用意する</a></li>
-<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.6</b> グラフのレイヤーを追加する</a></li>
-<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.7</b> 文字化けに対処する</a></li>
-<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.8</b> aesに色を追加する</a></li>
-<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.9</b> 男女の置き方を変えたい</a></li>
-<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#aesに色を追加する-1"><i class="fa fa-check"></i><b>8.10</b> aesに色を追加する</a></li>
-<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.11</b> 色を変えたい</a></li>
-<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.12</b> 学科別に分けたい</a></li>
-<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.13</b> ラベルを変更する・タイトルを追加する</a></li>
-<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する-1"><i class="fa fa-check"></i><b>8.14</b> ラベルを変更する・タイトルを追加する</a></li>
-<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.15</b> テーマを変更する1</a></li>
-<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#テーマを変更する2"><i class="fa fa-check"></i><b>8.16</b> テーマを変更する2</a></li>
-<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.17</b> 完成形</a></li>
-<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.18</b> ggplot2による図の保存</a></li>
-<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.19</b> 他の描画レイヤー</a>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-1"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
+<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
+<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
+<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.6</b> キャンバスを用意する</a></li>
+<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.7</b> グラフのレイヤーを追加する</a></li>
+<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.8</b> 文字化けに対処する</a></li>
+<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.9</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.10</b> 男女の置き方を変えたい</a></li>
+<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#aesに色を追加する-1"><i class="fa fa-check"></i><b>8.11</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.12</b> 色を変えたい</a></li>
+<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.13</b> 学科別に分けたい</a></li>
+<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.14</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する-1"><i class="fa fa-check"></i><b>8.15</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.16</b> テーマを変更する1</a></li>
+<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#テーマを変更する2"><i class="fa fa-check"></i><b>8.17</b> テーマを変更する2</a></li>
+<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.18</b> 完成形</a></li>
+<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.19</b> ggplot2による図の保存</a></li>
+<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.20</b> 他の描画レイヤー</a>
 <ul>
-<li class="chapter" data-level="8.19.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.19.1</b> 演習：散布図</a></li>
+<li class="chapter" data-level="8.20.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.20.1</b> <strong>練習問題</strong>：散布図</a></li>
 </ul></li>
-<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.20</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
-<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.21</b> 箱ひげ図</a></li>
-<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.22</b> ヴァイオリンプロット</a></li>
-<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.23</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.21</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
+<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.22</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.23</b> ヴァイオリンプロット</a></li>
+<li class="chapter" data-level="8.24" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.24</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.25" data-path="rviz.html"><a href="rviz.html#ゼミ課題データの描画"><i class="fa fa-check"></i><b>8.25</b> <strong>ゼミ課題</strong>：データの描画</a>
+<ul>
+<li class="chapter" data-level="8.25.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.25.1</b> 例：SSDSE-B県別推移のデータ</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
@@ -451,6 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>13.2.5</b> データの記述統計</a></li>
 <li class="chapter" data-level="13.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>13.2.6</b> 政策変更の確認</a></li>
 <li class="chapter" data-level="13.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>13.2.7</b> 差の差法</a></li>
+<li class="chapter" data-level="13.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>13.2.8</b> 回帰分析による差の差法</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>14</b> 練習問題解答</a>
@@ -720,9 +727,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="letsuse.html#cb83-1" tabindex="-1"></a><span class="co"># 5が100個ならぶベクトル</span></span>
 <span id="cb83-2"><a href="letsuse.html#cb83-2" tabindex="-1"></a>v8 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">5</span>,<span class="dv">100</span>)</span>
 <span id="cb83-3"><a href="letsuse.html#cb83-3" tabindex="-1"></a><span class="fu">print</span>(v8)</span></code></pre></div>
-<pre><code>##   [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
-##  [27] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
-##  [53] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+<pre><code>##   [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
 ##  [79] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5</code></pre>
 <p>本当に100個出てるか？
 ベクトルの要素の数を数える関数は<code>length</code></p>
@@ -765,10 +770,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 3.0 1.1 5.0
 ## 
 ## $data
-##           mpg cyl disp  hp drat   wt  qsec vs am gear
-## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4
-##           carb
-## Mazda RX4    4</code></pre>
+##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
 <div id="リストの参照" class="section level3 hasAnchor" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> リストの参照<a href="letsuse.html#リストの参照" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>リストの参照も角カッコでできる</p>
@@ -784,10 +787,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.5.2</span> リストの参照<a href="letsuse.html#リストの参照-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>リストの中身のみを取り出したい場合は、二重括角カッコを使う<code>[[]]</code></p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="letsuse.html#cb97-1" tabindex="-1"></a>a[[<span class="dv">3</span>]]</span></code></pre></div>
-<pre><code>##           mpg cyl disp  hp drat   wt  qsec vs am gear
-## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4
-##           carb
-## Mazda RX4    4</code></pre>
+<pre><code>##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
 
 </div>
 </div>

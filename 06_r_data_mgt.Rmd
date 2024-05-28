@@ -70,9 +70,16 @@ csvを読み込むには`read_excel()`関数を使う。この関数は`readxl`�
 
 1. `readxl`パッケージをインストールする。
 
-2. 武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx" download="musashi_keizai_students_2023.xlsx">こちら</a>からダウンロードする。
+2. `r_renshu`フォルダに`data`フォルダを作成し、武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx" download="musashi_keizai_students_2023.xlsx">こちら</a>からダウンロードして保存するか、以下のコードを実行する。
 
-2. `r_renshu`フォルダに`data`フォルダを作成し、そこに`musashi_keizai_students_2023.xlsx`ファイルを保存する。
+```{r, eval=FALSE}
+# data ディレクトリの作成
+fs::dir_create("data")
+
+# データのダウンロードと保存
+download.file(url="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx",
+              destfile = "data/musashi_keizai_students_2023.xlsx")
+```
 
 3. Rスクリプトを作成し、`data_mgt.R`という名前をつけて保存する。
 
@@ -84,7 +91,7 @@ library(readxl)
 ```
 
 
-4. Rスクリプトに以下のコードを書きこみ、データを読み込む。
+5. Rスクリプトに以下のコードを書きこみ、データを読み込む。
 
 
 ```{r,eval=FALSE}
@@ -97,7 +104,7 @@ data_634 <- read_excel("data/musashi_keizai_students_2023.xlsx")
   - `musashi_keizai_students_2023.xlsx`がきちんとdataフォルダに入っていることを確認する
 
 
-### 日本語のデータを読み込む際の注意点
+### 日本語のデータを読み込む際の注意点 {#datajpn}
 
 ```{r, echo=FALSE}
 

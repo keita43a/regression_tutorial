@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -273,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="datahandling.html"><a href="datahandling.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="datahandling.html"><a href="datahandling.html#演習-データの読み込み"><i class="fa fa-check"></i><b>6.2.1</b> <strong>演習</strong>: データの読み込み</a></li>
-<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#日本語のデータを読み込む際の注意点"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
+<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#datajpn"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
 <li class="chapter" data-level="6.2.3" data-path="datahandling.html"><a href="datahandling.html#readrのその他のオプション"><i class="fa fa-check"></i><b>6.2.3</b> readrのその他のオプション</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="datahandling.html"><a href="datahandling.html#tidy-data-整然データ"><i class="fa fa-check"></i><b>6.3</b> tidy data (整然データ)</a></li>
@@ -323,54 +323,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
 <li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.2</b> データとは</a></li>
-<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.3</b> 代表的な統計量</a>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
+<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.3.1</b> 数式</a></li>
-<li class="chapter" data-level="7.3.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.3.2</b> 平均</a></li>
-<li class="chapter" data-level="7.3.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.3.3</b> 中央値</a></li>
-<li class="chapter" data-level="7.3.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.3.4</b> 最大値・最小値</a></li>
-<li class="chapter" data-level="7.3.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.3.5</b> 分散</a></li>
-<li class="chapter" data-level="7.3.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.3.6</b> もう一つの分散：不偏分散</a></li>
-<li class="chapter" data-level="7.3.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.3.7</b> 標準偏差</a></li>
-<li class="chapter" data-level="7.3.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.3.8</b> 不偏標準偏差</a></li>
+<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.4.1</b> 数式</a></li>
+<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.4.2</b> 平均</a></li>
+<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.4.3</b> 中央値</a></li>
+<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.4.4</b> 最大値・最小値</a></li>
+<li class="chapter" data-level="7.4.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.4.5</b> 分散</a></li>
+<li class="chapter" data-level="7.4.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.4.6</b> もう一つの分散：不偏分散</a></li>
+<li class="chapter" data-level="7.4.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.4.7</b> 標準偏差</a></li>
+<li class="chapter" data-level="7.4.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.4.8</b> 不偏標準偏差</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.4</b> Rによる記述統計のテクニック</a>
+<li class="chapter" data-level="7.5" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.5</b> Rによる記述統計のテクニック</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.4.1</b> 使用するデータ</a></li>
-<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.4.2</b> <code>summary</code>関数</a></li>
-<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.4.3</b> <code>describe</code>関数</a></li>
-<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.4.4</b> <code>skim</code>関数</a></li>
+<li class="chapter" data-level="7.5.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.5.1</b> 使用するデータ</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.5.2</b> <code>summary</code>関数</a></li>
+<li class="chapter" data-level="7.5.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.5.3</b> <code>describe</code>関数</a></li>
+<li class="chapter" data-level="7.5.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.5.4</b> <code>skim</code>関数</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
-<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.2</b> 描画をしてみよう</a></li>
-<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.3</b> 復習：データ読み込み</a></li>
-<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.4</b> 描画の前に</a></li>
-<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.5</b> キャンバスを用意する</a></li>
-<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.6</b> グラフのレイヤーを追加する</a></li>
-<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.7</b> 文字化けに対処する</a></li>
-<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.8</b> aesに色を追加する</a></li>
-<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.9</b> 男女の置き方を変えたい</a></li>
-<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#aesに色を追加する-1"><i class="fa fa-check"></i><b>8.10</b> aesに色を追加する</a></li>
-<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.11</b> 色を変えたい</a></li>
-<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.12</b> 学科別に分けたい</a></li>
-<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.13</b> ラベルを変更する・タイトルを追加する</a></li>
-<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する-1"><i class="fa fa-check"></i><b>8.14</b> ラベルを変更する・タイトルを追加する</a></li>
-<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.15</b> テーマを変更する1</a></li>
-<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#テーマを変更する2"><i class="fa fa-check"></i><b>8.16</b> テーマを変更する2</a></li>
-<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.17</b> 完成形</a></li>
-<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.18</b> ggplot2による図の保存</a></li>
-<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.19</b> 他の描画レイヤー</a>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-1"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
+<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
+<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
+<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.6</b> キャンバスを用意する</a></li>
+<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.7</b> グラフのレイヤーを追加する</a></li>
+<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.8</b> 文字化けに対処する</a></li>
+<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.9</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.10</b> 男女の置き方を変えたい</a></li>
+<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#aesに色を追加する-1"><i class="fa fa-check"></i><b>8.11</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.12</b> 色を変えたい</a></li>
+<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.13</b> 学科別に分けたい</a></li>
+<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.14</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する-1"><i class="fa fa-check"></i><b>8.15</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.16</b> テーマを変更する1</a></li>
+<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#テーマを変更する2"><i class="fa fa-check"></i><b>8.17</b> テーマを変更する2</a></li>
+<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.18</b> 完成形</a></li>
+<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.19</b> ggplot2による図の保存</a></li>
+<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.20</b> 他の描画レイヤー</a>
 <ul>
-<li class="chapter" data-level="8.19.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.19.1</b> 演習：散布図</a></li>
+<li class="chapter" data-level="8.20.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.20.1</b> <strong>練習問題</strong>：散布図</a></li>
 </ul></li>
-<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.20</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
-<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.21</b> 箱ひげ図</a></li>
-<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.22</b> ヴァイオリンプロット</a></li>
-<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.23</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.21</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
+<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.22</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.23</b> ヴァイオリンプロット</a></li>
+<li class="chapter" data-level="8.24" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.24</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.25" data-path="rviz.html"><a href="rviz.html#ゼミ課題データの描画"><i class="fa fa-check"></i><b>8.25</b> <strong>ゼミ課題</strong>：データの描画</a>
+<ul>
+<li class="chapter" data-level="8.25.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.25.1</b> 例：SSDSE-B県別推移のデータ</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
@@ -451,6 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>13.2.5</b> データの記述統計</a></li>
 <li class="chapter" data-level="13.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>13.2.6</b> 政策変更の確認</a></li>
 <li class="chapter" data-level="13.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>13.2.7</b> 差の差法</a></li>
+<li class="chapter" data-level="13.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>13.2.8</b> 回帰分析による差の差法</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>14</b> 練習問題解答</a>
@@ -488,23 +495,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Rにはデフォルトの描画関数も用意されているが、<code>tidyverse</code>シリーズのggplot2というパッケージの関数が強力であり昨今はスタンダードになっていることから、こちらを紹介する。</p>
 <p>ggplot2とは、グラフィックの文法 (<strong>g</strong>rammar of <strong>g</strong>raphics)という概念に基づいて作図するパッケージ</p>
 </div>
-<div id="描画をしてみよう" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> 描画をしてみよう<a href="rviz.html#描画をしてみよう" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="準備-1" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> 準備<a href="rviz.html#準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>あらたにRスクリプトを作成し、<code>data_viz.R</code>という名前をつけて保存する。</p>
+<p>そして、以下のライブラリを読み込んでおく。ライブラリがなくてエラーが出る場合はインストールしてから再度読み込む。</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="rviz.html#cb203-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<div id="描画をしてみよう" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> 描画をしてみよう<a href="rviz.html#描画をしてみよう" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ch.2の武蔵大学経済学部の学生数のデータを作ってみよう。</p>
 <p><img src="r_basics_musashi_files/figure-html/musashi8_1-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="復習データ読み込み" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> 復習：データ読み込み<a href="rviz.html#復習データ読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="rviz.html#cb201-1" tabindex="-1"></a><span class="co"># エクセルからデータを読み込み</span></span>
-<span id="cb201-2"><a href="rviz.html#cb201-2" tabindex="-1"></a>data_634 <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;docs/data/musashi_keizai_students_2023.xlsx&quot;</span>) </span>
-<span id="cb201-3"><a href="rviz.html#cb201-3" tabindex="-1"></a></span>
-<span id="cb201-4"><a href="rviz.html#cb201-4" tabindex="-1"></a><span class="co"># long型(tidy data)に変換</span></span>
-<span id="cb201-5"><a href="rviz.html#cb201-5" tabindex="-1"></a>data_634_long <span class="ot">&lt;-</span> data_634 <span class="sc">|&gt;</span> </span>
-<span id="cb201-6"><a href="rviz.html#cb201-6" tabindex="-1"></a>  <span class="co"># long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。</span></span>
-<span id="cb201-7"><a href="rviz.html#cb201-7" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(<span class="st">&quot;1年&quot;</span>,<span class="st">&quot;2年&quot;</span>,<span class="st">&quot;3年&quot;</span>,<span class="st">&quot;4年&quot;</span>),<span class="at">names_to =</span><span class="st">&quot;学年&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;学生数&quot;</span>)</span></code></pre></div>
+<div id="復習データ読み込み" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> 復習：データ読み込み<a href="rviz.html#復習データ読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>まずデータをダウンロードする。</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="rviz.html#cb204-1" tabindex="-1"></a><span class="co"># dataフォルダを作成していない場合はdataフォルダ（ディレクトリ）の作成</span></span>
+<span id="cb204-2"><a href="rviz.html#cb204-2" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb204-3"><a href="rviz.html#cb204-3" tabindex="-1"></a></span>
+<span id="cb204-4"><a href="rviz.html#cb204-4" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの保存</span></span>
+<span id="cb204-5"><a href="rviz.html#cb204-5" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/docs/data/musashi_keizai_students_2023.xlsx&quot;</span>,</span>
+<span id="cb204-6"><a href="rviz.html#cb204-6" tabindex="-1"></a>              <span class="at">destfile=</span><span class="st">&quot;data/musashi_keizai_students_2023.xlsx&quot;</span>)</span></code></pre></div>
+<p>ダウンロードしたデータを読み込む。</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="rviz.html#cb205-1" tabindex="-1"></a><span class="co"># エクセルからデータを読み込み</span></span>
+<span id="cb205-2"><a href="rviz.html#cb205-2" tabindex="-1"></a>data_634 <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;docs/data/musashi_keizai_students_2023.xlsx&quot;</span>) </span>
+<span id="cb205-3"><a href="rviz.html#cb205-3" tabindex="-1"></a></span>
+<span id="cb205-4"><a href="rviz.html#cb205-4" tabindex="-1"></a><span class="co"># long型(tidy data)に変換</span></span>
+<span id="cb205-5"><a href="rviz.html#cb205-5" tabindex="-1"></a>data_634_long <span class="ot">&lt;-</span> data_634 <span class="sc">|&gt;</span> </span>
+<span id="cb205-6"><a href="rviz.html#cb205-6" tabindex="-1"></a>  <span class="co"># long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。</span></span>
+<span id="cb205-7"><a href="rviz.html#cb205-7" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(<span class="st">&quot;1年&quot;</span>,<span class="st">&quot;2年&quot;</span>,<span class="st">&quot;3年&quot;</span>,<span class="st">&quot;4年&quot;</span>),<span class="at">names_to =</span><span class="st">&quot;学年&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;学生数&quot;</span>)</span></code></pre></div>
 </div>
-<div id="描画の前に" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> 描画の前に<a href="rviz.html#描画の前に" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="描画の前に" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> 描画の前に<a href="rviz.html#描画の前に" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>データに少し工夫を加える
 <ul>
@@ -516,18 +537,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="キャンバスを用意する" class="section level2 hasAnchor" number="8.5">
-<h2><span class="header-section-number">8.5</span> キャンバスを用意する<a href="rviz.html#キャンバスを用意する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="キャンバスを用意する" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> キャンバスを用意する<a href="rviz.html#キャンバスを用意する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>まずキャンバスを用意するイメージでggplot()関数を呼び出す</li>
 </ul>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="rviz.html#cb202-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span>
-<span id="cb202-2"><a href="rviz.html#cb202-2" tabindex="-1"></a></span>
-<span id="cb202-3"><a href="rviz.html#cb202-3" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-114-1.png" width="720" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="rviz.html#cb206-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span>
+<span id="cb206-2"><a href="rviz.html#cb206-2" tabindex="-1"></a></span>
+<span id="cb206-3"><a href="rviz.html#cb206-3" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-149-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
-<div id="グラフのレイヤーを追加する" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> グラフのレイヤーを追加する<a href="rviz.html#グラフのレイヤーを追加する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="グラフのレイヤーを追加する" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> グラフのレイヤーを追加する<a href="rviz.html#グラフのレイヤーを追加する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>グラフの種類ごとにデータを表現する幾何学的オブジェクト<code>geom_</code>が用意されている</li>
 <li><code>geom_bar</code>は棒グラフで表現する。</li>
@@ -538,14 +559,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>stat</code>にはデータそのものの数値を使うため、<code>"identity"</code>を指定する。</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="rviz.html#cb203-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb203-2"><a href="rviz.html#cb203-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数),<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)  <span class="co"># &lt;- 追加！</span></span>
-<span id="cb203-3"><a href="rviz.html#cb203-3" tabindex="-1"></a></span>
-<span id="cb203-4"><a href="rviz.html#cb203-4" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-115-1.png" width="720" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="rviz.html#cb207-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb207-2"><a href="rviz.html#cb207-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数),<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)  <span class="co"># &lt;- 追加！</span></span>
+<span id="cb207-3"><a href="rviz.html#cb207-3" tabindex="-1"></a></span>
+<span id="cb207-4"><a href="rviz.html#cb207-4" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-150-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
-<div id="文字化けに対処する" class="section level2 hasAnchor" number="8.7">
-<h2><span class="header-section-number">8.7</span> 文字化けに対処する<a href="rviz.html#文字化けに対処する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="文字化けに対処する" class="section level2 hasAnchor" number="8.8">
+<h2><span class="header-section-number">8.8</span> 文字化けに対処する<a href="rviz.html#文字化けに対処する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Macを使っていると、ggplotで日本語を使うと文字化けすることが知られている
 <ul>
@@ -557,15 +578,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>新しく<code>theme_grey</code>というレイヤーを作り、その中の<code>base_family</code>という引数でフォント名<code>"HiraKakuPro-W3"</code>を指定する。</li>
 </ul>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="rviz.html#cb204-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb204-2"><a href="rviz.html#cb204-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数),<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb204-3"><a href="rviz.html#cb204-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)  <span class="co"># &lt;- 追加！</span></span>
-<span id="cb204-4"><a href="rviz.html#cb204-4" tabindex="-1"></a></span>
-<span id="cb204-5"><a href="rviz.html#cb204-5" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-116-1.png" width="720" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="rviz.html#cb208-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb208-2"><a href="rviz.html#cb208-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数),<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb208-3"><a href="rviz.html#cb208-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)  <span class="co"># &lt;- 追加！</span></span>
+<span id="cb208-4"><a href="rviz.html#cb208-4" tabindex="-1"></a></span>
+<span id="cb208-5"><a href="rviz.html#cb208-5" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-151-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
-<div id="aesに色を追加する" class="section level2 hasAnchor" number="8.8">
-<h2><span class="header-section-number">8.8</span> aesに色を追加する<a href="rviz.html#aesに色を追加する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="aesに色を追加する" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> aesに色を追加する<a href="rviz.html#aesに色を追加する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>男女別に表示したいので、男女を色で分けたい</li>
 <li>マッピングでaesの中に色の変数として性別を指定する。</li>
@@ -573,15 +594,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>この場合は塗りつぶしたいので、<code>fill</code>を指定する。</li>
 <li>色は指定しなければ自動的に決められる。</li>
 </ul>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="rviz.html#cb205-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb205-2"><a href="rviz.html#cb205-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別),<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span>  <span class="co"># &lt;- 追加！</span></span>
-<span id="cb205-3"><a href="rviz.html#cb205-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
-<span id="cb205-4"><a href="rviz.html#cb205-4" tabindex="-1"></a></span>
-<span id="cb205-5"><a href="rviz.html#cb205-5" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-117-1.png" width="720" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rviz.html#cb209-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb209-2"><a href="rviz.html#cb209-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別),<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span>  <span class="co"># &lt;- 追加！</span></span>
+<span id="cb209-3"><a href="rviz.html#cb209-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
+<span id="cb209-4"><a href="rviz.html#cb209-4" tabindex="-1"></a></span>
+<span id="cb209-5"><a href="rviz.html#cb209-5" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-152-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
-<div id="男女の置き方を変えたい" class="section level2 hasAnchor" number="8.9">
-<h2><span class="header-section-number">8.9</span> 男女の置き方を変えたい<a href="rviz.html#男女の置き方を変えたい" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="男女の置き方を変えたい" class="section level2 hasAnchor" number="8.10">
+<h2><span class="header-section-number">8.10</span> 男女の置き方を変えたい<a href="rviz.html#男女の置き方を変えたい" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>男女を縦に積むのではなく、横に置くことで対比がしやすくなりそう。</li>
 <li>geom_bar()の引数の<code>position</code>を<code>dodge</code>に指定する。
@@ -590,18 +611,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="aesに色を追加する-1" class="section level2 hasAnchor" number="8.10">
-<h2><span class="header-section-number">8.10</span> aesに色を追加する<a href="rviz.html#aesに色を追加する-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="rviz.html#cb206-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb206-2"><a href="rviz.html#cb206-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="co"># &lt;- 追加！</span></span>
-<span id="cb206-3"><a href="rviz.html#cb206-3" tabindex="-1"></a>           <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
-<span id="cb206-4"><a href="rviz.html#cb206-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) </span>
-<span id="cb206-5"><a href="rviz.html#cb206-5" tabindex="-1"></a></span>
-<span id="cb206-6"><a href="rviz.html#cb206-6" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-118-1.png" width="720" style="display: block; margin: auto;" /></p>
+<div id="aesに色を追加する-1" class="section level2 hasAnchor" number="8.11">
+<h2><span class="header-section-number">8.11</span> aesに色を追加する<a href="rviz.html#aesに色を追加する-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="rviz.html#cb210-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb210-2"><a href="rviz.html#cb210-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="co"># &lt;- 追加！</span></span>
+<span id="cb210-3"><a href="rviz.html#cb210-3" tabindex="-1"></a>           <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb210-4"><a href="rviz.html#cb210-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) </span>
+<span id="cb210-5"><a href="rviz.html#cb210-5" tabindex="-1"></a></span>
+<span id="cb210-6"><a href="rviz.html#cb210-6" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-153-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
-<div id="色を変えたい" class="section level2 hasAnchor" number="8.11">
-<h2><span class="header-section-number">8.11</span> 色を変えたい<a href="rviz.html#色を変えたい" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="色を変えたい" class="section level2 hasAnchor" number="8.12">
+<h2><span class="header-section-number">8.12</span> 色を変えたい<a href="rviz.html#色を変えたい" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>色は指定しなければ自動的に決まる</li>
 <li>わかりやすい、おしゃれな色を使いたい場合はマニュアルで変えられる</li>
@@ -616,16 +637,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>ここでは、武蔵大学のロゴの緑と黄色を使う。</li>
 </ul>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="rviz.html#cb207-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb207-2"><a href="rviz.html#cb207-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span></span>
-<span id="cb207-3"><a href="rviz.html#cb207-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span> <span class="co"># &lt;- 追加！</span></span>
-<span id="cb207-4"><a href="rviz.html#cb207-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
-<span id="cb207-5"><a href="rviz.html#cb207-5" tabindex="-1"></a></span>
-<span id="cb207-6"><a href="rviz.html#cb207-6" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-119-1.png" width="720" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rviz.html#cb211-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb211-2"><a href="rviz.html#cb211-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span></span>
+<span id="cb211-3"><a href="rviz.html#cb211-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span> <span class="co"># &lt;- 追加！</span></span>
+<span id="cb211-4"><a href="rviz.html#cb211-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
+<span id="cb211-5"><a href="rviz.html#cb211-5" tabindex="-1"></a></span>
+<span id="cb211-6"><a href="rviz.html#cb211-6" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-154-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
-<div id="学科別に分けたい" class="section level2 hasAnchor" number="8.12">
-<h2><span class="header-section-number">8.12</span> 学科別に分けたい<a href="rviz.html#学科別に分けたい" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="学科別に分けたい" class="section level2 hasAnchor" number="8.13">
+<h2><span class="header-section-number">8.13</span> 学科別に分けたい<a href="rviz.html#学科別に分けたい" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>現状では、学科の人数がすべて積算されてしまっているが、データとしては分かれている</li>
 <li><h2 id="せっかくなので別で表示したいがもうx軸もy軸も色も使ってしまっている" class="hasAnchor">せっかくなので別で表示したいが、もうx軸もy軸も色も使ってしまっている。<a href="rviz.html#せっかくなので別で表示したいがもうx軸もy軸も色も使ってしまっている" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
@@ -635,17 +656,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>~</code>の後に分割に使うカテゴリを指定することで、分割した図を作ってくれる</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="rviz.html#cb208-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb208-2"><a href="rviz.html#cb208-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
-<span id="cb208-3"><a href="rviz.html#cb208-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb208-4"><a href="rviz.html#cb208-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
-<span id="cb208-5"><a href="rviz.html#cb208-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="co"># &lt;- 追加！</span></span>
-<span id="cb208-6"><a href="rviz.html#cb208-6" tabindex="-1"></a></span>
-<span id="cb208-7"><a href="rviz.html#cb208-7" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-120-1.png" width="720" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="rviz.html#cb212-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb212-2"><a href="rviz.html#cb212-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb212-3"><a href="rviz.html#cb212-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb212-4"><a href="rviz.html#cb212-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb212-5"><a href="rviz.html#cb212-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="co"># &lt;- 追加！</span></span>
+<span id="cb212-6"><a href="rviz.html#cb212-6" tabindex="-1"></a></span>
+<span id="cb212-7"><a href="rviz.html#cb212-7" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-155-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
-<div id="ラベルを変更するタイトルを追加する" class="section level2 hasAnchor" number="8.13">
-<h2><span class="header-section-number">8.13</span> ラベルを変更する・タイトルを追加する<a href="rviz.html#ラベルを変更するタイトルを追加する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ラベルを変更するタイトルを追加する" class="section level2 hasAnchor" number="8.14">
+<h2><span class="header-section-number">8.14</span> ラベルを変更する・タイトルを追加する<a href="rviz.html#ラベルを変更するタイトルを追加する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>通常はラベルを明示する</li>
 <li>lab()レイヤーの中で、X軸なら<code>x=</code>, Y軸なら<code>y=</code>で変更する
@@ -661,20 +682,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>右下のノートも<code>caption=</code>で追加できる</li>
 </ul>
 </div>
-<div id="ラベルを変更するタイトルを追加する-1" class="section level2 hasAnchor" number="8.14">
-<h2><span class="header-section-number">8.14</span> ラベルを変更する・タイトルを追加する<a href="rviz.html#ラベルを変更するタイトルを追加する-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rviz.html#cb209-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb209-2"><a href="rviz.html#cb209-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
-<span id="cb209-3"><a href="rviz.html#cb209-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb209-4"><a href="rviz.html#cb209-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;&quot;</span>,<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>,                                <span class="co"># &lt;- 追加!</span></span>
-<span id="cb209-5"><a href="rviz.html#cb209-5" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;武蔵大学経済学部の学科別・男女別学生数&quot;</span>,   <span class="co"># &lt;- 追加!</span></span>
-<span id="cb209-6"><a href="rviz.html#cb209-6" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;2023年5月1日時点&quot;</span>,                      <span class="co"># &lt;- 追加!</span></span>
-<span id="cb209-7"><a href="rviz.html#cb209-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> <span class="co"># &lt;- 追加!</span></span>
-<span id="cb209-8"><a href="rviz.html#cb209-8" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
-<span id="cb209-9"><a href="rviz.html#cb209-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="co"># &lt;- 追加！</span></span></code></pre></div>
+<div id="ラベルを変更するタイトルを追加する-1" class="section level2 hasAnchor" number="8.15">
+<h2><span class="header-section-number">8.15</span> ラベルを変更する・タイトルを追加する<a href="rviz.html#ラベルを変更するタイトルを追加する-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="rviz.html#cb213-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb213-2"><a href="rviz.html#cb213-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb213-3"><a href="rviz.html#cb213-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb213-4"><a href="rviz.html#cb213-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;&quot;</span>,<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>,                                <span class="co"># &lt;- 追加!</span></span>
+<span id="cb213-5"><a href="rviz.html#cb213-5" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;武蔵大学経済学部の学科別・男女別学生数&quot;</span>,   <span class="co"># &lt;- 追加!</span></span>
+<span id="cb213-6"><a href="rviz.html#cb213-6" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;2023年5月1日時点&quot;</span>,                      <span class="co"># &lt;- 追加!</span></span>
+<span id="cb213-7"><a href="rviz.html#cb213-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> <span class="co"># &lt;- 追加!</span></span>
+<span id="cb213-8"><a href="rviz.html#cb213-8" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb213-9"><a href="rviz.html#cb213-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="co"># &lt;- 追加！</span></span></code></pre></div>
 </div>
-<div id="テーマを変更する1" class="section level2 hasAnchor" number="8.15">
-<h2><span class="header-section-number">8.15</span> テーマを変更する1<a href="rviz.html#テーマを変更する1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="テーマを変更する1" class="section level2 hasAnchor" number="8.16">
+<h2><span class="header-section-number">8.16</span> テーマを変更する1<a href="rviz.html#テーマを変更する1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><strong>テーマ</strong> (<code>theme</code>)はggplotの細かい見た目を設定する
 <ul>
@@ -688,19 +709,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>ここではは見た目をスッキリさせるデフォルトテーマ<code>theme_minimal</code>を使ってみる</li>
 </ul>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="rviz.html#cb210-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb210-2"><a href="rviz.html#cb210-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
-<span id="cb210-3"><a href="rviz.html#cb210-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb210-4"><a href="rviz.html#cb210-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;&quot;</span>,<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>,                                </span>
-<span id="cb210-5"><a href="rviz.html#cb210-5" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;武蔵大学経済学部の学科別・男女別学生数&quot;</span>,   </span>
-<span id="cb210-6"><a href="rviz.html#cb210-6" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;2023年5月1日時点&quot;</span>,                      </span>
-<span id="cb210-7"><a href="rviz.html#cb210-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb210-8"><a href="rviz.html#cb210-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span>     <span class="co"># &lt;- 変更!</span></span>
-<span id="cb210-9"><a href="rviz.html#cb210-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="do">## &lt;- 追加！</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-123-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="rviz.html#cb214-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb214-2"><a href="rviz.html#cb214-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb214-3"><a href="rviz.html#cb214-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb214-4"><a href="rviz.html#cb214-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;&quot;</span>,<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>,                                </span>
+<span id="cb214-5"><a href="rviz.html#cb214-5" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;武蔵大学経済学部の学科別・男女別学生数&quot;</span>,   </span>
+<span id="cb214-6"><a href="rviz.html#cb214-6" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;2023年5月1日時点&quot;</span>,                      </span>
+<span id="cb214-7"><a href="rviz.html#cb214-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb214-8"><a href="rviz.html#cb214-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span>     <span class="co"># &lt;- 変更!</span></span>
+<span id="cb214-9"><a href="rviz.html#cb214-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="do">## &lt;- 追加！</span></span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-158-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="テーマを変更する2" class="section level2 hasAnchor" number="8.16">
-<h2><span class="header-section-number">8.16</span> テーマを変更する2<a href="rviz.html#テーマを変更する2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="テーマを変更する2" class="section level2 hasAnchor" number="8.17">
+<h2><span class="header-section-number">8.17</span> テーマを変更する2<a href="rviz.html#テーマを変更する2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>細かいテーマ設定を<code>theme</code>レイヤーの中で行う
 <ul>
@@ -716,25 +737,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rviz.html#cb211-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb211-2"><a href="rviz.html#cb211-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
-<span id="cb211-3"><a href="rviz.html#cb211-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb211-4"><a href="rviz.html#cb211-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;&quot;</span>,<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>,                                </span>
-<span id="cb211-5"><a href="rviz.html#cb211-5" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;武蔵大学経済学部の学科別・男女別学生数&quot;</span>,   </span>
-<span id="cb211-6"><a href="rviz.html#cb211-6" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;2023年5月1日時点&quot;</span>,                      </span>
-<span id="cb211-7"><a href="rviz.html#cb211-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb211-8"><a href="rviz.html#cb211-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
-<span id="cb211-9"><a href="rviz.html#cb211-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),   <span class="co"># &lt;- 追加!</span></span>
-<span id="cb211-10"><a href="rviz.html#cb211-10" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,             <span class="co"># &lt;- 追加!</span></span>
-<span id="cb211-11"><a href="rviz.html#cb211-11" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) <span class="sc">+</span>         <span class="co"># &lt;- 追加!</span></span>
-<span id="cb211-12"><a href="rviz.html#cb211-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) </span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rviz.html#cb215-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb215-2"><a href="rviz.html#cb215-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb215-3"><a href="rviz.html#cb215-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb215-4"><a href="rviz.html#cb215-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;&quot;</span>,<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>,                                </span>
+<span id="cb215-5"><a href="rviz.html#cb215-5" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;武蔵大学経済学部の学科別・男女別学生数&quot;</span>,   </span>
+<span id="cb215-6"><a href="rviz.html#cb215-6" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;2023年5月1日時点&quot;</span>,                      </span>
+<span id="cb215-7"><a href="rviz.html#cb215-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb215-8"><a href="rviz.html#cb215-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb215-9"><a href="rviz.html#cb215-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),   <span class="co"># &lt;- 追加!</span></span>
+<span id="cb215-10"><a href="rviz.html#cb215-10" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,             <span class="co"># &lt;- 追加!</span></span>
+<span id="cb215-11"><a href="rviz.html#cb215-11" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) <span class="sc">+</span>         <span class="co"># &lt;- 追加!</span></span>
+<span id="cb215-12"><a href="rviz.html#cb215-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) </span></code></pre></div>
 </div>
-<div id="完成形" class="section level2 hasAnchor" number="8.17">
-<h2><span class="header-section-number">8.17</span> 完成形<a href="rviz.html#完成形" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="完成形" class="section level2 hasAnchor" number="8.18">
+<h2><span class="header-section-number">8.18</span> 完成形<a href="rviz.html#完成形" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="r_basics_musashi_files/figure-html/musashi_comp-1.png" width="1152" style="display: block; margin: auto;" /></p>
 </div>
-<div id="ggplot2による図の保存" class="section level2 hasAnchor" number="8.18">
-<h2><span class="header-section-number">8.18</span> ggplot2による図の保存<a href="rviz.html#ggplot2による図の保存" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ggplot2による図の保存" class="section level2 hasAnchor" number="8.19">
+<h2><span class="header-section-number">8.19</span> ggplot2による図の保存<a href="rviz.html#ggplot2による図の保存" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>ggplotで作図した結果をオブジェクトに保存
 <ul>
@@ -751,12 +772,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>device</code>に保存したい画像形式を指定。ここでは<code>png</code>を指定している。他には<code>tiff</code>,<code>pdf</code>,<code>jpg</code>など。</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="rviz.html#cb212-1" tabindex="-1"></a><span class="co"># ggsave()関数を使って、図を保存</span></span>
-<span id="cb212-2"><a href="rviz.html#cb212-2" tabindex="-1"></a><span class="co"># file: 保存する場所, plot: 図のオブジェクト, device: 保存する形式</span></span>
-<span id="cb212-3"><a href="rviz.html#cb212-3" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">file=</span><span class="st">&quot;fig/musashi_students_2023.png&quot;</span>, <span class="at">plot=</span>plot_634, <span class="at">device=</span><span class="st">&quot;png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="rviz.html#cb216-1" tabindex="-1"></a><span class="co"># figフォルダ（ディレクトリ）の作成</span></span>
+<span id="cb216-2"><a href="rviz.html#cb216-2" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_create</span>(<span class="st">&quot;fig&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rviz.html#cb217-1" tabindex="-1"></a><span class="co"># ggsave()関数を使って、図を保存</span></span>
+<span id="cb217-2"><a href="rviz.html#cb217-2" tabindex="-1"></a><span class="co"># file: 保存する場所, plot: 図のオブジェクト, device: 保存する形式</span></span>
+<span id="cb217-3"><a href="rviz.html#cb217-3" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">file=</span><span class="st">&quot;fig/musashi_students_2023.png&quot;</span>, <span class="at">plot=</span>plot_634, <span class="at">device=</span><span class="st">&quot;png&quot;</span>)</span></code></pre></div>
 </div>
-<div id="他の描画レイヤー" class="section level2 hasAnchor" number="8.19">
-<h2><span class="header-section-number">8.19</span> 他の描画レイヤー<a href="rviz.html#他の描画レイヤー" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="他の描画レイヤー" class="section level2 hasAnchor" number="8.20">
+<h2><span class="header-section-number">8.20</span> 他の描画レイヤー<a href="rviz.html#他の描画レイヤー" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <thead>
 <tr class="header">
@@ -791,47 +814,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>他にも多くの描画レイヤーが存在する</li>
 <li><a href="https://ggplot2.tidyverse.org/reference/">参考</a></li>
 </ul>
-<div id="scatterpractice" class="section level3 hasAnchor" number="8.19.1">
-<h3><span class="header-section-number">8.19.1</span> 演習：散布図<a href="rviz.html#scatterpractice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="scatterpractice" class="section level3 hasAnchor" number="8.20.1">
+<h3><span class="header-section-number">8.20.1</span> <strong>練習問題</strong>：散布図<a href="rviz.html#scatterpractice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>ここでは<code>diamonds</code>というggplotに付属しているデータセットを使う。</p>
 <p>このデータには、ダイヤモンドの一つ一つのクオリティとその価格が記録されている。クオリティはいやゆるダイヤモンドの4Cと言われるカラット(Carat), カット(Cut), 色(Color), 透明性(Clarity)で表されている。</p>
 <p>ここでは、大きさであるカラットと価格の関係性、さらに色の影響を見てみる。</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="rviz.html#cb213-1" tabindex="-1"></a><span class="co"># diamondsというデータを読みこむ</span></span>
-<span id="cb213-2"><a href="rviz.html#cb213-2" tabindex="-1"></a><span class="fu">data</span>(diamonds)</span>
-<span id="cb213-3"><a href="rviz.html#cb213-3" tabindex="-1"></a></span>
-<span id="cb213-4"><a href="rviz.html#cb213-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
-<span id="cb213-5"><a href="rviz.html#cb213-5" tabindex="-1"></a><span class="fu">names</span>(diamonds)</span></code></pre></div>
-<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;  
-##  [6] &quot;table&quot;   &quot;price&quot;   &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rviz.html#cb215-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
-<span id="cb215-2"><a href="rviz.html#cb215-2" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="rviz.html#cb218-1" tabindex="-1"></a><span class="co"># diamondsというデータを読みこむ</span></span>
+<span id="cb218-2"><a href="rviz.html#cb218-2" tabindex="-1"></a><span class="fu">data</span>(diamonds)</span>
+<span id="cb218-3"><a href="rviz.html#cb218-3" tabindex="-1"></a></span>
+<span id="cb218-4"><a href="rviz.html#cb218-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
+<span id="cb218-5"><a href="rviz.html#cb218-5" tabindex="-1"></a><span class="fu">names</span>(diamonds)</span></code></pre></div>
+<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;   &quot;table&quot;   &quot;price&quot;   &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="rviz.html#cb220-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
+<span id="cb220-2"><a href="rviz.html#cb220-2" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10
-##   carat cut    color clarity depth table price     x     y
-##   &lt;dbl&gt; &lt;ord&gt;  &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  0.23 Ideal  E     SI2      61.5    55   326  3.95  3.98
-## 2  0.21 Premi… E     SI1      59.8    61   326  3.89  3.84
-## 3  0.23 Good   E     VS1      56.9    65   327  4.05  4.07
-## 4  0.29 Premi… I     VS2      62.4    58   334  4.2   4.23
-## 5  0.31 Good   J     SI2      63.3    58   335  4.34  4.35
-## 6  0.24 Very … J     VVS2     62.8    57   336  3.94  3.96
-## # ℹ 1 more variable: z &lt;dbl&gt;</code></pre>
+##   carat cut       color clarity depth table price     x     y     z
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
 <p><strong>課題</strong>：以下の画像を作成してみよう。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-127-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-163-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="lineplotpractice" class="section level2 hasAnchor" number="8.20">
-<h2><span class="header-section-number">8.20</span> <strong>練習問題</strong>: 折れ線グラフ<a href="rviz.html#lineplotpractice" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lineplotpractice" class="section level2 hasAnchor" number="8.21">
+<h2><span class="header-section-number">8.21</span> <strong>練習問題</strong>: 折れ線グラフ<a href="rviz.html#lineplotpractice" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>ここでは<code>economics</code>というggplotに付属しているデータセットを使う。</p>
 <p>このデータには、アメリカの主要な経済指標が時系列データとして記録されている。<code>date</code>は年月、<code>pop</code>は人口(1000人)、<code>psavert</code>は個人貯蓄率、<code>unempmed</code>は失業期間の中央値（週）、unemployは失業数（1000人）である。</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rviz.html#cb217-1" tabindex="-1"></a><span class="co"># economicsというデータを読みこむ</span></span>
-<span id="cb217-2"><a href="rviz.html#cb217-2" tabindex="-1"></a><span class="fu">data</span>(economics)</span>
-<span id="cb217-3"><a href="rviz.html#cb217-3" tabindex="-1"></a></span>
-<span id="cb217-4"><a href="rviz.html#cb217-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
-<span id="cb217-5"><a href="rviz.html#cb217-5" tabindex="-1"></a><span class="fu">names</span>(economics)</span></code></pre></div>
-<pre><code>## [1] &quot;date&quot;     &quot;pce&quot;      &quot;pop&quot;      &quot;psavert&quot;  &quot;uempmed&quot; 
-## [6] &quot;unemploy&quot;</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="rviz.html#cb219-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
-<span id="cb219-2"><a href="rviz.html#cb219-2" tabindex="-1"></a><span class="fu">head</span>(economics)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="rviz.html#cb222-1" tabindex="-1"></a><span class="co"># economicsというデータを読みこむ</span></span>
+<span id="cb222-2"><a href="rviz.html#cb222-2" tabindex="-1"></a><span class="fu">data</span>(economics)</span>
+<span id="cb222-3"><a href="rviz.html#cb222-3" tabindex="-1"></a></span>
+<span id="cb222-4"><a href="rviz.html#cb222-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
+<span id="cb222-5"><a href="rviz.html#cb222-5" tabindex="-1"></a><span class="fu">names</span>(economics)</span></code></pre></div>
+<pre><code>## [1] &quot;date&quot;     &quot;pce&quot;      &quot;pop&quot;      &quot;psavert&quot;  &quot;uempmed&quot;  &quot;unemploy&quot;</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="rviz.html#cb224-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
+<span id="cb224-2"><a href="rviz.html#cb224-2" tabindex="-1"></a><span class="fu">head</span>(economics)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##   date         pce    pop psavert uempmed unemploy
 ##   &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
@@ -842,10 +862,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 1967-11-01  517. 199498    12.8     4.7     3066
 ## 6 1967-12-01  525. 199657    11.8     4.8     3018</code></pre>
 <p><strong>課題</strong>：アメリカの失業数の変遷の折れ線グラフを作成しよう。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-130-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-166-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
-<div id="箱ひげ図" class="section level2 hasAnchor" number="8.21">
-<h2><span class="header-section-number">8.21</span> 箱ひげ図<a href="rviz.html#箱ひげ図" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="箱ひげ図" class="section level2 hasAnchor" number="8.22">
+<h2><span class="header-section-number">8.22</span> 箱ひげ図<a href="rviz.html#箱ひげ図" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><code>geom_boxplot</code>で箱ひげ図を描く
 <ul>
@@ -856,12 +876,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>車の種類をx軸, 各自動車の燃費をy軸</li>
 </ul>
 <p>]</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="rviz.html#cb221-1" tabindex="-1"></a>plot_boxplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>mpg) <span class="sc">+</span> </span>
-<span id="cb221-2"><a href="rviz.html#cb221-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>class,<span class="at">y=</span>hwy))</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-132-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="rviz.html#cb226-1" tabindex="-1"></a>plot_boxplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>mpg) <span class="sc">+</span> </span>
+<span id="cb226-2"><a href="rviz.html#cb226-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>class,<span class="at">y=</span>hwy))</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-168-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
-<div id="ヴァイオリンプロット" class="section level2 hasAnchor" number="8.22">
-<h2><span class="header-section-number">8.22</span> ヴァイオリンプロット<a href="rviz.html#ヴァイオリンプロット" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ヴァイオリンプロット" class="section level2 hasAnchor" number="8.23">
+<h2><span class="header-section-number">8.23</span> ヴァイオリンプロット<a href="rviz.html#ヴァイオリンプロット" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><code>geom_violin</code>でヴァイオリンプロットを描く
 <ul>
@@ -871,12 +891,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>ここでは<code>mpg</code>というggplotに付属しているデータセットを使う</li>
 <li>車の種類をx軸, 各自動車の燃費をy軸</li>
 </ul>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="rviz.html#cb222-1" tabindex="-1"></a>plot_violin <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>mpg) <span class="sc">+</span> </span>
-<span id="cb222-2"><a href="rviz.html#cb222-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x=</span>class,<span class="at">y=</span>hwy))</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-134-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="rviz.html#cb227-1" tabindex="-1"></a>plot_violin <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>mpg) <span class="sc">+</span> </span>
+<span id="cb227-2"><a href="rviz.html#cb227-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x=</span>class,<span class="at">y=</span>hwy))</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-170-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
-<div id="適した描画" class="section level2 hasAnchor" number="8.23">
-<h2><span class="header-section-number">8.23</span> 適した描画？<a href="rviz.html#適した描画" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="適した描画" class="section level2 hasAnchor" number="8.24">
+<h2><span class="header-section-number">8.24</span> 適した描画？<a href="rviz.html#適した描画" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>分析の目的やデータのタイプによって、用いたいグラフは異なる。どのような目的でデータ描画を行うのか考えてから描画に取りかかろう。</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:pressure"></span>
 <img src="docs/fig/IMG_3452.png" alt="データタイプ別のグラフ" width="80%" />
@@ -892,7 +912,123 @@ Figure 8.1: データタイプ別のグラフ
 <li>散布図：2つのデータの相関関係をみる</li>
 </ul>
 <p>例：<a href="https://www.tableau.com/ja-jp/learn/articles/graph-type">グラフの種類と使い分け、間違った使い方</a>(Tableau)</p>
+</div>
+<div id="ゼミ課題データの描画" class="section level2 hasAnchor" number="8.25">
+<h2><span class="header-section-number">8.25</span> <strong>ゼミ課題</strong>：データの描画<a href="rviz.html#ゼミ課題データの描画" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>データからグラフを描画し、それを英語で説明するプレゼンテーションを行う。</p>
+<ul>
+<li><a href="https://www.nstac.go.jp/use/literacy/ssdse/">教育用標準データセット</a>からデータを選ぶ。</li>
+<li>選んだデータの中で、変数を選択する。</li>
+<li>選択した変数について適切なグラフを描画する。
+<ul>
+<li>必要に応じてデータを加工する。</li>
+</ul></li>
+</ul>
+<p>他人と同じ変数は使えないため、どのデータのどの変数を描画するかは早いもの勝ちである。</p>
+<ol style="list-style-type: decimal">
+<li><p>自分がどのデータセットのどの変数を描画するかをGoogle Classroomのストリームに投稿する。（締切：6/4 23:59）</p></li>
+<li><p>描画した画像ファイルとRコードをGoogle Classroomの課題3-2に提出する。(締切：6/11 23:49）</p>
+<ul>
+<li>Rコードはkadai_presen_<strong><em>.Rという名前をつけて保存する。</em></strong>には自分の名前を英語で入れる。</li>
+</ul></li>
+<li><p>描画した画像ファイルについて、2~3分のプレゼンテーションを行う（実施日：6/19 ゼミ）</p>
+<ul>
+<li>英語で作成したグラフの説明を行う2~3分のプレゼンを準備する。</li>
+<li>提出された画像からスライドを作るのでスライドは用意しなくて良い。</li>
+<li>画像だけで自分で英語で説明する。どういうデータなのか、何を説明しているのか、グラフから何が言えそうか。</li>
+<li>原稿やスマホを使ってはいけない。</li>
+<li>順番はランダム。</li>
+</ul></li>
+</ol>
+<div id="例ssdse-b県別推移のデータ" class="section level3 hasAnchor" number="8.25.1">
+<h3><span class="header-section-number">8.25.1</span> 例：SSDSE-B県別推移のデータ<a href="rviz.html#例ssdse-b県別推移のデータ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ここでは一例として、県別推移データの合計特殊出生率を示すデータ描画を作成する。
+実際のデータ描画では、どのようなグラフ（棒グラフ・折れ線グラフなど）でも構わない。</p>
+<ol start="0" style="list-style-type: decimal">
+<li>あらたにRスクリプトを作成し、<code>kadai_presen_***.R</code>という名前をつけて保存する。<code>***</code>には自分の名前を英語で入れる。</li>
+</ol>
+<p>そして、以下のライブラリを読み込んでおく。</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="rviz.html#cb228-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>データをダウンロードして、dataフォルダに入れる。</p></li>
+<li><p>データを読み込む。日本語のデータでエンコーディングがShift-JISなのでencodingを変更する必要がある（セクション<a href="datahandling.html#datajpn">6.2.2</a>参照）。また、列名が2行にわたってしまっているので、最初の一行をskipする。</p></li>
+</ol>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="rviz.html#cb229-1" tabindex="-1"></a>data_ssdse <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/SSDSE/SSDSE-B-2024.csv&quot;</span>, </span>
+<span id="cb229-2"><a href="rviz.html#cb229-2" tabindex="-1"></a>                       <span class="at">locale=</span><span class="fu">locale</span>(<span class="at">encoding=</span><span class="st">&quot;CP932&quot;</span>), </span>
+<span id="cb229-3"><a href="rviz.html#cb229-3" tabindex="-1"></a>                       <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb229-4"><a href="rviz.html#cb229-4" tabindex="-1"></a></span>
+<span id="cb229-5"><a href="rviz.html#cb229-5" tabindex="-1"></a><span class="co"># 変数名を確認</span></span>
+<span id="cb229-6"><a href="rviz.html#cb229-6" tabindex="-1"></a><span class="fu">names</span>(data_ssdse)</span></code></pre></div>
+<pre><code>##   [1] &quot;年度&quot;                                   &quot;地域コード&quot;                             &quot;都道府県&quot;                              
+##   [4] &quot;総人口&quot;                                 &quot;総人口（男）&quot;                           &quot;総人口（女）&quot;                          
+##   [7] &quot;日本人人口&quot;                             &quot;日本人人口（男）&quot;                       &quot;日本人人口（女）&quot;                      
+##  [10] &quot;15歳未満人口&quot;                           &quot;15歳未満人口（男）&quot;                     &quot;15歳未満人口（女）&quot;                    
+##  [13] &quot;15〜64歳人口&quot;                           &quot;15〜64歳人口（男）&quot;                     &quot;15〜64歳人口（女）&quot;                    
+##  [16] &quot;65歳以上人口&quot;                           &quot;65歳以上人口（男）&quot;                     &quot;65歳以上人口（女）&quot;                    
+##  [19] &quot;出生数&quot;                                 &quot;出生数（男）&quot;                           &quot;出生数（女）&quot;                          
+##  [22] &quot;合計特殊出生率&quot;                         &quot;死亡数&quot;                                 &quot;死亡数（男）&quot;                          
+##  [25] &quot;死亡数（女）&quot;                           &quot;転入者数（日本人移動者）&quot;               &quot;転入者数（日本人移動者）（男）&quot;        
+##  [28] &quot;転入者数（日本人移動者）（女）&quot;         &quot;転出者数（日本人移動者）&quot;               &quot;転出者数（日本人移動者）（男）&quot;        
+##  [31] &quot;転出者数（日本人移動者）（女）&quot;         &quot;婚姻件数&quot;                               &quot;離婚件数&quot;                              
+##  [34] &quot;年平均気温&quot;                             &quot;最高気温（日最高気温の月平均の最高値）&quot; &quot;最低気温（日最低気温の月平均の最低値）&quot;
+##  [37] &quot;降水日数（年間）&quot;                       &quot;降水量（年間）&quot;                         &quot;着工建築物数&quot;                          
+##  [40] &quot;着工建築物床面積&quot;                       &quot;旅館営業施設数（ホテルを含む）&quot;         &quot;旅館営業施設客室数（ホテルを含む）&quot;    
+##  [43] &quot;標準価格（平均価格）（住宅地）&quot;         &quot;標準価格（平均価格）（商業地）&quot;         &quot;幼稚園数&quot;                              
+##  [46] &quot;幼稚園教員数&quot;                           &quot;幼稚園在園者数&quot;                         &quot;小学校数&quot;                              
+##  [49] &quot;小学校教員数&quot;                           &quot;小学校児童数&quot;                           &quot;中学校数&quot;                              
+##  [52] &quot;中学校教員数&quot;                           &quot;中学校生徒数&quot;                           &quot;中学校卒業者数&quot;                        
+##  [55] &quot;中学校卒業者のうち進学者数&quot;             &quot;高等学校数&quot;                             &quot;高等学校教員数&quot;                        
+##  [58] &quot;高等学校生徒数&quot;                         &quot;高等学校卒業者数&quot;                       &quot;高等学校卒業者のうち進学者数&quot;          
+##  [61] &quot;短期大学数&quot;                             &quot;大学数&quot;                                 &quot;短期大学教員数&quot;                        
+##  [64] &quot;大学教員数&quot;                             &quot;短期大学学生数&quot;                         &quot;大学学生数&quot;                            
+##  [67] &quot;短期大学卒業者数&quot;                       &quot;短期大学卒業者のうち進学者数&quot;           &quot;大学卒業者数&quot;                          
+##  [70] &quot;大学卒業者のうち進学者数&quot;               &quot;専修学校数&quot;                             &quot;各種学校数&quot;                            
+##  [73] &quot;専修学校生徒数&quot;                         &quot;各種学校生徒数&quot;                         &quot;新規求職申込件数（一般）&quot;              
+##  [76] &quot;月間有効求職者数（一般）&quot;               &quot;月間有効求人数（一般）&quot;                 &quot;充足数（一般）&quot;                        
+##  [79] &quot;就職件数（一般）&quot;                       &quot;一般旅券発行件数&quot;                       &quot;延べ宿泊者数&quot;                          
+##  [82] &quot;外国人延べ宿泊者数&quot;                     &quot;着工新設住宅戸数&quot;                       &quot;着工新設持家数&quot;                        
+##  [85] &quot;着工新設貸家数&quot;                         &quot;着工新設分譲住宅数&quot;                     &quot;着工新設住宅床面積&quot;                    
+##  [88] &quot;着工新設持家床面積&quot;                     &quot;着工新設分譲住宅床面積&quot;                 &quot;着工新設貸家床面積&quot;                    
+##  [91] &quot;ごみ総排出量（総量）&quot;                   &quot;1人1日当たりの排出量&quot;                   &quot;ごみのリサイクル率&quot;                    
+##  [94] &quot;一般病院数&quot;                             &quot;一般診療所数&quot;                           &quot;歯科診療所数&quot;                          
+##  [97] &quot;保育所等数&quot;                             &quot;保育所等定員数&quot;                         &quot;保育所等利用待機児童数&quot;                
+## [100] &quot;保育所等在所児数&quot;                       &quot;保育所等保育士数&quot;                       &quot;消費支出（二人以上の世帯）&quot;            
+## [103] &quot;食料費（二人以上の世帯）&quot;               &quot;住居費（二人以上の世帯）&quot;               &quot;光熱・水道費（二人以上の世帯）&quot;        
+## [106] &quot;家具・家事用品費（二人以上の世帯）&quot;     &quot;被服及び履物費（二人以上の世帯）&quot;       &quot;保健医療費（二人以上の世帯）&quot;          
+## [109] &quot;交通・通信費（二人以上の世帯）&quot;         &quot;教育費（二人以上の世帯）&quot;               &quot;教養娯楽費（二人以上の世帯）&quot;          
+## [112] &quot;その他の消費支出（二人以上の世帯）&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>都道府県別の合計特殊出生率の推移を比較する。しかし、すべての都道府県では多すぎるため、関東の１都６県に限定する。</li>
+</ol>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="rviz.html#cb231-1" tabindex="-1"></a>data_kanto <span class="ot">&lt;-</span> data_ssdse <span class="sc">|&gt;</span> </span>
+<span id="cb231-2"><a href="rviz.html#cb231-2" tabindex="-1"></a>  <span class="fu">filter</span>(都道府県 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;東京都&quot;</span>,<span class="st">&quot;神奈川県&quot;</span>,<span class="st">&quot;千葉県&quot;</span>,<span class="st">&quot;埼玉県&quot;</span>,<span class="st">&quot;茨城県&quot;</span>,<span class="st">&quot;栃木県&quot;</span>,<span class="st">&quot;群馬県&quot;</span>))</span>
+<span id="cb231-3"><a href="rviz.html#cb231-3" tabindex="-1"></a></span>
+<span id="cb231-4"><a href="rviz.html#cb231-4" tabindex="-1"></a><span class="co">#  %in% は 「都道府県というカテゴリ変数が、c()の中のいずれかに該当すれば真、という命題を表す。</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>グラフ描画する</li>
+</ol>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="rviz.html#cb232-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>合計特殊出生率, <span class="at">col=</span>都道府県)) <span class="sc">+</span> </span>
+<span id="cb232-2"><a href="rviz.html#cb232-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb232-3"><a href="rviz.html#cb232-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb232-4"><a href="rviz.html#cb232-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p>５．英語で発表するため、英語に変換する</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="rviz.html#cb233-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>合計特殊出生率, <span class="at">col=</span>都道府県)) <span class="sc">+</span> </span>
+<span id="cb233-2"><a href="rviz.html#cb233-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb233-3"><a href="rviz.html#cb233-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb233-4"><a href="rviz.html#cb233-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb233-5"><a href="rviz.html#cb233-5" tabindex="-1"></a>  <span class="co"># ラベルを変換</span></span>
+<span id="cb233-6"><a href="rviz.html#cb233-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">col=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb233-7"><a href="rviz.html#cb233-7" tabindex="-1"></a>  <span class="co"># カテゴリの名前（都道府県を変換）</span></span>
+<span id="cb233-8"><a href="rviz.html#cb233-8" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">&quot;千葉県&quot;</span>,<span class="st">&quot;埼玉県&quot;</span>,<span class="st">&quot;東京都&quot;</span>,<span class="st">&quot;栃木県&quot;</span>,<span class="st">&quot;神奈川県&quot;</span>,<span class="st">&quot;群馬県&quot;</span>,<span class="st">&quot;茨城県&quot;</span>),</span>
+<span id="cb233-9"><a href="rviz.html#cb233-9" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Chiba&quot;</span>,<span class="st">&quot;Saitama&quot;</span>,<span class="st">&quot;Tokyo&quot;</span>,<span class="st">&quot;Tochigi&quot;</span>,<span class="st">&quot;Kanagawa&quot;</span>,<span class="st">&quot;Gumma&quot;</span>,<span class="st">&quot;Ibaragi&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb233-10"><a href="rviz.html#cb233-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) <span class="co"># スライドで見やすくするために字を大きくする</span></span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>保存して、パワーポイントなどに貼る。</li>
+</ol>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="rviz.html#cb234-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;fig/fertility_rate_by_pref_2010_2021.png&quot;</span>,plot_f_rate,</span>
+<span id="cb234-2"><a href="rviz.html#cb234-2" tabindex="-1"></a>       <span class="at">device=</span><span class="st">&quot;png&quot;</span>)</span></code></pre></div>
 
+</div>
 </div>
 </div>
             </section>

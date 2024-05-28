@@ -9,6 +9,15 @@ Rにはデフォルトの描画関数も用意されているが、`tidyverse`�
 ggplot2とは、グラフィックの文法 (**g**rammar of **g**raphics)という概念に基づいて作図するパッケージ
 
 
+## 準備
+
+あらたにRスクリプトを作成し、`data_viz.R`という名前をつけて保存する。
+
+そして、以下のライブラリを読み込んでおく。ライブラリがなくてエラーが出る場合はインストールしてから再度読み込む。
+
+```{r}
+library(tidyverse)
+```
 
 ## 描画をしてみよう
 
@@ -20,6 +29,20 @@ fig_musashi_students
 
 
 ## 復習：データ読み込み
+
+まずデータをダウンロードする。
+
+```{r}
+# dataフォルダを作成していない場合はdataフォルダ（ディレクトリ）の作成
+fs::dir_create("data")
+
+# データのダウンロードとdataフォルダへの保存
+download.file("https://github.com/keita43a/regression_tutorial/blob/main/docs/data/musashi_keizai_students_2023.xlsx",
+              destfile="data/musashi_keizai_students_2023.xlsx")
+
+```
+
+ダウンロードしたデータを読み込む。
 
 ```{r}
 # エクセルからデータを読み込み
@@ -295,8 +318,12 @@ plot_634
   
 
 
-```{r}
+```{r, eval=FALSE}
+# figフォルダ（ディレクトリ）の作成
+fs::dir_create("fig")
+```
 
+```{r}
 # ggsave()関数を使って、図を保存
 # file: 保存する場所, plot: 図のオブジェクト, device: 保存する形式
 ggsave(file="fig/musashi_students_2023.png", plot=plot_634, device="png")
@@ -322,7 +349,7 @@ ggsave(file="fig/musashi_students_2023.png", plot=plot_634, device="png")
  - [参考](https://ggplot2.tidyverse.org/reference/)
 
 
-### 演習：散布図 {#scatterpractice}
+### **練習問題**：散布図 {#scatterpractice}
 
 ここでは`diamonds`というggplotに付属しているデータセットを使う。
 
@@ -431,7 +458,6 @@ print(plot_violin)
 
 
 
-
 ## 適した描画？
 
 分析の目的やデータのタイプによって、用いたいグラフは異なる。どのような目的でデータ描画を行うのか考えてから描画に取りかかろう。
@@ -450,6 +476,104 @@ knitr::include_graphics("docs/fig/IMG_3452.png")
 例：[グラフの種類と使い分け、間違った使い方](https://www.tableau.com/ja-jp/learn/articles/graph-type)(Tableau)
 
 
+## **ゼミ課題**：データの描画
+
+データからグラフを描画し、それを英語で説明するプレゼンテーションを行う。
+
+- [教育用標準データセット](https://www.nstac.go.jp/use/literacy/ssdse/)からデータを選ぶ。
+- 選んだデータの中で、変数を選択する。
+- 選択した変数について適切なグラフを描画する。
+  - 必要に応じてデータを加工する。
+
+他人と同じ変数は使えないため、どのデータのどの変数を描画するかは早いもの勝ちである。
+
+1. 自分がどのデータセットのどの変数を描画するかをGoogle Classroomのストリームに投稿する。（締切：6/4 23:59）
+
+2. 描画した画像ファイルとRコードをGoogle Classroomの課題3-2に提出する。(締切：6/11 23:49）
+    - Rコードはkadai_presen_***.Rという名前をつけて保存する。***には自分の名前を英語で入れる。
+
+3. 描画した画像ファイルについて、2~3分のプレゼンテーションを行う（実施日：6/19 ゼミ）
+    - 英語で作成したグラフの説明を行う2~3分のプレゼンを準備する。
+    - 提出された画像からスライドを作るのでスライドは用意しなくて良い。
+    - 画像だけで自分で英語で説明する。どういうデータなのか、何を説明しているのか、グラフから何が言えそうか。
+    - 原稿やスマホを使ってはいけない。
+    - 順番はランダム。
+
+
+### 例：SSDSE-B県別推移のデータ
+
+ここでは一例として、県別推移データの合計特殊出生率を示すデータ描画を作成する。
+実際のデータ描画では、どのようなグラフ（棒グラフ・折れ線グラフなど）でも構わない。
+
+0. あらたにRスクリプトを作成し、`kadai_presen_***.R`という名前をつけて保存する。`***`には自分の名前を英語で入れる。
+
+そして、以下のライブラリを読み込んでおく。
+
+```{r}
+library(tidyverse)
+```
+
+1. データをダウンロードして、dataフォルダに入れる。
+
+2. データを読み込む。日本語のデータでエンコーディングがShift-JISなのでencodingを変更する必要がある（セクション\@ref(datajpn)参照）。また、列名が2行にわたってしまっているので、最初の一行をskipする。
+
+```{r}
+data_ssdse <- read_csv("data/SSDSE/SSDSE-B-2024.csv", 
+                       locale=locale(encoding="CP932"), 
+                       skip=1)
+
+# 変数名を確認
+names(data_ssdse)
+```
+
+3. 都道府県別の合計特殊出生率の推移を比較する。しかし、すべての都道府県では多すぎるため、関東の１都６県に限定する。
+
+```{r}
+
+data_kanto <- data_ssdse |> 
+  filter(都道府県 %in% c("東京都","神奈川県","千葉県","埼玉県","茨城県","栃木県","群馬県"))
+
+#  %in% は 「都道府県というカテゴリ変数が、c()の中のいずれかに該当すれば真、という命題を表す。
+
+```
+
+
+4. グラフ描画する
+
+```{r}
+
+plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=合計特殊出生率, col=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "HiraKakuPro-W3")
+
+
+```
+
+５．英語で発表するため、英語に変換する
+
+
+```{r}
+
+plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=合計特殊出生率, col=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  # ラベルを変換
+  labs(x="Fiscal Year", y="Total Fertility Rate", col="Pref.") +
+  # カテゴリの名前（都道府県を変換）
+  scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県"),
+                       labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi")) +
+  theme(text = element_text(size=15)) # スライドで見やすくするために字を大きくする
+  
+```
+
+6. 保存して、パワーポイントなどに貼る。
+
+```{r}
+ggsave("fig/fertility_rate_by_pref_2010_2021.png",plot_f_rate,
+       device="png")
+```
 
 
 

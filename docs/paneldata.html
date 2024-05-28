@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -273,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="datahandling.html"><a href="datahandling.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="datahandling.html"><a href="datahandling.html#演習-データの読み込み"><i class="fa fa-check"></i><b>6.2.1</b> <strong>演習</strong>: データの読み込み</a></li>
-<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#日本語のデータを読み込む際の注意点"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
+<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#datajpn"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
 <li class="chapter" data-level="6.2.3" data-path="datahandling.html"><a href="datahandling.html#readrのその他のオプション"><i class="fa fa-check"></i><b>6.2.3</b> readrのその他のオプション</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="datahandling.html"><a href="datahandling.html#tidy-data-整然データ"><i class="fa fa-check"></i><b>6.3</b> tidy data (整然データ)</a></li>
@@ -323,54 +323,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
 <li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.2</b> データとは</a></li>
-<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.3</b> 代表的な統計量</a>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
+<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.3.1</b> 数式</a></li>
-<li class="chapter" data-level="7.3.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.3.2</b> 平均</a></li>
-<li class="chapter" data-level="7.3.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.3.3</b> 中央値</a></li>
-<li class="chapter" data-level="7.3.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.3.4</b> 最大値・最小値</a></li>
-<li class="chapter" data-level="7.3.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.3.5</b> 分散</a></li>
-<li class="chapter" data-level="7.3.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.3.6</b> もう一つの分散：不偏分散</a></li>
-<li class="chapter" data-level="7.3.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.3.7</b> 標準偏差</a></li>
-<li class="chapter" data-level="7.3.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.3.8</b> 不偏標準偏差</a></li>
+<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.4.1</b> 数式</a></li>
+<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.4.2</b> 平均</a></li>
+<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.4.3</b> 中央値</a></li>
+<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.4.4</b> 最大値・最小値</a></li>
+<li class="chapter" data-level="7.4.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.4.5</b> 分散</a></li>
+<li class="chapter" data-level="7.4.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.4.6</b> もう一つの分散：不偏分散</a></li>
+<li class="chapter" data-level="7.4.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.4.7</b> 標準偏差</a></li>
+<li class="chapter" data-level="7.4.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.4.8</b> 不偏標準偏差</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.4</b> Rによる記述統計のテクニック</a>
+<li class="chapter" data-level="7.5" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.5</b> Rによる記述統計のテクニック</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.4.1</b> 使用するデータ</a></li>
-<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.4.2</b> <code>summary</code>関数</a></li>
-<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.4.3</b> <code>describe</code>関数</a></li>
-<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.4.4</b> <code>skim</code>関数</a></li>
+<li class="chapter" data-level="7.5.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.5.1</b> 使用するデータ</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.5.2</b> <code>summary</code>関数</a></li>
+<li class="chapter" data-level="7.5.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.5.3</b> <code>describe</code>関数</a></li>
+<li class="chapter" data-level="7.5.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.5.4</b> <code>skim</code>関数</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
-<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.2</b> 描画をしてみよう</a></li>
-<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.3</b> 復習：データ読み込み</a></li>
-<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.4</b> 描画の前に</a></li>
-<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.5</b> キャンバスを用意する</a></li>
-<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.6</b> グラフのレイヤーを追加する</a></li>
-<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.7</b> 文字化けに対処する</a></li>
-<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.8</b> aesに色を追加する</a></li>
-<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.9</b> 男女の置き方を変えたい</a></li>
-<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#aesに色を追加する-1"><i class="fa fa-check"></i><b>8.10</b> aesに色を追加する</a></li>
-<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.11</b> 色を変えたい</a></li>
-<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.12</b> 学科別に分けたい</a></li>
-<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.13</b> ラベルを変更する・タイトルを追加する</a></li>
-<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する-1"><i class="fa fa-check"></i><b>8.14</b> ラベルを変更する・タイトルを追加する</a></li>
-<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.15</b> テーマを変更する1</a></li>
-<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#テーマを変更する2"><i class="fa fa-check"></i><b>8.16</b> テーマを変更する2</a></li>
-<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.17</b> 完成形</a></li>
-<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.18</b> ggplot2による図の保存</a></li>
-<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.19</b> 他の描画レイヤー</a>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-1"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
+<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
+<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
+<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.6</b> キャンバスを用意する</a></li>
+<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.7</b> グラフのレイヤーを追加する</a></li>
+<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.8</b> 文字化けに対処する</a></li>
+<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.9</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.10</b> 男女の置き方を変えたい</a></li>
+<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#aesに色を追加する-1"><i class="fa fa-check"></i><b>8.11</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.12</b> 色を変えたい</a></li>
+<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.13</b> 学科別に分けたい</a></li>
+<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.14</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する-1"><i class="fa fa-check"></i><b>8.15</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.16</b> テーマを変更する1</a></li>
+<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#テーマを変更する2"><i class="fa fa-check"></i><b>8.17</b> テーマを変更する2</a></li>
+<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.18</b> 完成形</a></li>
+<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.19</b> ggplot2による図の保存</a></li>
+<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.20</b> 他の描画レイヤー</a>
 <ul>
-<li class="chapter" data-level="8.19.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.19.1</b> 演習：散布図</a></li>
+<li class="chapter" data-level="8.20.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.20.1</b> <strong>練習問題</strong>：散布図</a></li>
 </ul></li>
-<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.20</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
-<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.21</b> 箱ひげ図</a></li>
-<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.22</b> ヴァイオリンプロット</a></li>
-<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.23</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.21</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
+<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.22</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.23</b> ヴァイオリンプロット</a></li>
+<li class="chapter" data-level="8.24" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.24</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.25" data-path="rviz.html"><a href="rviz.html#ゼミ課題データの描画"><i class="fa fa-check"></i><b>8.25</b> <strong>ゼミ課題</strong>：データの描画</a>
+<ul>
+<li class="chapter" data-level="8.25.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.25.1</b> 例：SSDSE-B県別推移のデータ</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
@@ -451,6 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>13.2.5</b> データの記述統計</a></li>
 <li class="chapter" data-level="13.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>13.2.6</b> 政策変更の確認</a></li>
 <li class="chapter" data-level="13.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>13.2.7</b> 差の差法</a></li>
+<li class="chapter" data-level="13.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>13.2.8</b> 回帰分析による差の差法</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>14</b> 練習問題解答</a>
@@ -496,240 +503,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">12.1.2</span> パッケージの準備<a href="paneldata.html#パッケージの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>以下のパッケージを使うので読み込んでおく。
 インストールしてない場合は、インストールする。</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="paneldata.html#cb253-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
-<span id="cb253-2"><a href="paneldata.html#cb253-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb253-3"><a href="paneldata.html#cb253-3" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb253-4"><a href="paneldata.html#cb253-4" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb253-5"><a href="paneldata.html#cb253-5" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
-<span id="cb253-6"><a href="paneldata.html#cb253-6" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="paneldata.html#cb265-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
+<span id="cb265-2"><a href="paneldata.html#cb265-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb265-3"><a href="paneldata.html#cb265-3" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb265-4"><a href="paneldata.html#cb265-4" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb265-5"><a href="paneldata.html#cb265-5" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb265-6"><a href="paneldata.html#cb265-6" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
 </div>
 <div id="データの準備" class="section level3 hasAnchor" number="12.1.3">
 <h3><span class="header-section-number">12.1.3</span> データの準備<a href="paneldata.html#データの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データを読み込む。データ名が長いので、 <code>data_f</code>に入れ替えよう。</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="paneldata.html#cb254-1" tabindex="-1"></a><span class="fu">data</span>(Fatalities)</span>
-<span id="cb254-2"><a href="paneldata.html#cb254-2" tabindex="-1"></a></span>
-<span id="cb254-3"><a href="paneldata.html#cb254-3" tabindex="-1"></a>data_f <span class="ot">&lt;-</span> Fatalities</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="paneldata.html#cb266-1" tabindex="-1"></a><span class="fu">data</span>(Fatalities)</span>
+<span id="cb266-2"><a href="paneldata.html#cb266-2" tabindex="-1"></a></span>
+<span id="cb266-3"><a href="paneldata.html#cb266-3" tabindex="-1"></a>data_f <span class="ot">&lt;-</span> Fatalities</span></code></pre></div>
 <p>データの中身を見てみる。
 まずは、どんなデータなのか<code>head()</code>で確認する。</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="paneldata.html#cb255-1" tabindex="-1"></a><span class="fu">head</span>(data_f)</span></code></pre></div>
-<pre><code>##   state year spirits unemp   income   emppop  beertax
-## 1    al 1982    1.37  14.4 10544.15 50.69204 1.539379
-## 2    al 1983    1.36  13.7 10732.80 52.14703 1.788991
-## 3    al 1984    1.32  11.1 11108.79 54.16809 1.714286
-## 4    al 1985    1.28   8.9 11332.63 55.27114 1.652542
-## 5    al 1986    1.23   9.8 11661.51 56.51450 1.609907
-## 6    al 1987    1.18   7.8 11944.00 57.50988 1.560000
-##   baptist  mormon drinkage     dry youngdrivers    miles
-## 1 30.3557 0.32829    19.00 25.0063     0.211572 7233.887
-## 2 30.3336 0.34341    19.00 22.9942     0.210768 7836.348
-## 3 30.3115 0.35924    19.00 24.0426     0.211484 8262.990
-## 4 30.2895 0.37579    19.67 23.6339     0.211140 8726.917
-## 5 30.2674 0.39311    21.00 23.4647     0.213400 8952.854
-## 6 30.2453 0.41123    21.00 23.7924     0.215527 9166.302
-##   breath jail service fatal nfatal sfatal fatal1517
-## 1     no   no      no   839    146     99        53
-## 2     no   no      no   930    154     98        71
-## 3     no   no      no   932    165     94        49
-## 4     no   no      no   882    146     98        66
-## 5     no   no      no  1081    172    119        82
-## 6     no   no      no  1110    181    114        94
-##   nfatal1517 fatal1820 nfatal1820 fatal2124 nfatal2124
-## 1          9        99         34       120         32
-## 2          8       108         26       124         35
-## 3          7       103         25       118         34
-## 4          9       100         23       114         45
-## 5         10       120         23       119         29
-## 6         11       127         31       138         30
-##    afatal     pop  pop1517  pop1820  pop2124 milestot
-## 1 309.438 3942002 208999.6 221553.4 290000.1    28516
-## 2 341.834 3960008 202000.1 219125.5 290000.2    31032
-## 3 304.872 3988992 197000.0 216724.1 288000.2    32961
-## 4 276.742 4021008 194999.7 214349.0 284000.3    35091
-## 5 360.716 4049994 203999.9 212000.0 263000.3    36259
-## 6 368.421 4082999 204999.8 208998.5 258999.8    37426
-##   unempus emppopus         gsp
-## 1     9.7     57.8 -0.02212476
-## 2     9.6     57.9  0.04655825
-## 3     7.5     59.5  0.06279784
-## 4     7.2     60.1  0.02748997
-## 5     7.0     60.7  0.03214295
-## 6     6.2     61.5  0.04897637</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="paneldata.html#cb267-1" tabindex="-1"></a><span class="fu">head</span>(data_f)</span></code></pre></div>
+<pre><code>##   state year spirits unemp   income   emppop  beertax baptist  mormon drinkage     dry youngdrivers    miles breath jail service fatal nfatal sfatal fatal1517
+## 1    al 1982    1.37  14.4 10544.15 50.69204 1.539379 30.3557 0.32829    19.00 25.0063     0.211572 7233.887     no   no      no   839    146     99        53
+## 2    al 1983    1.36  13.7 10732.80 52.14703 1.788991 30.3336 0.34341    19.00 22.9942     0.210768 7836.348     no   no      no   930    154     98        71
+## 3    al 1984    1.32  11.1 11108.79 54.16809 1.714286 30.3115 0.35924    19.00 24.0426     0.211484 8262.990     no   no      no   932    165     94        49
+## 4    al 1985    1.28   8.9 11332.63 55.27114 1.652542 30.2895 0.37579    19.67 23.6339     0.211140 8726.917     no   no      no   882    146     98        66
+## 5    al 1986    1.23   9.8 11661.51 56.51450 1.609907 30.2674 0.39311    21.00 23.4647     0.213400 8952.854     no   no      no  1081    172    119        82
+## 6    al 1987    1.18   7.8 11944.00 57.50988 1.560000 30.2453 0.41123    21.00 23.7924     0.215527 9166.302     no   no      no  1110    181    114        94
+##   nfatal1517 fatal1820 nfatal1820 fatal2124 nfatal2124  afatal     pop  pop1517  pop1820  pop2124 milestot unempus emppopus         gsp
+## 1          9        99         34       120         32 309.438 3942002 208999.6 221553.4 290000.1    28516     9.7     57.8 -0.02212476
+## 2          8       108         26       124         35 341.834 3960008 202000.1 219125.5 290000.2    31032     9.6     57.9  0.04655825
+## 3          7       103         25       118         34 304.872 3988992 197000.0 216724.1 288000.2    32961     7.5     59.5  0.06279784
+## 4          9       100         23       114         45 276.742 4021008 194999.7 214349.0 284000.3    35091     7.2     60.1  0.02748997
+## 5         10       120         23       119         29 360.716 4049994 203999.9 212000.0 263000.3    36259     7.0     60.7  0.03214295
+## 6         11       127         31       138         30 368.421 4082999 204999.8 208998.5 258999.8    37426     6.2     61.5  0.04897637</code></pre>
 <p>このデータはアメリカの州×年ごとに、様々な変数が記録されているデータである。
 どんな変数が記録されているかは、helpファイルを見るとわかる。</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="paneldata.html#cb257-1" tabindex="-1"></a><span class="fu">help</span>(Fatalities)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="paneldata.html#cb269-1" tabindex="-1"></a><span class="fu">help</span>(Fatalities)</span></code></pre></div>
 </div>
 <div id="データの記述統計" class="section level3 hasAnchor" number="12.1.4">
 <h3><span class="header-section-number">12.1.4</span> データの記述統計<a href="paneldata.html#データの記述統計" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データの記述統計を確認しよう。一番基本的なものはsummary()関数を使う方法である。</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="paneldata.html#cb258-1" tabindex="-1"></a><span class="fu">summary</span>(data_f)</span></code></pre></div>
-<pre><code>##      state       year       spirits          unemp       
-##  al     :  7   1982:48   Min.   :0.790   Min.   : 2.400  
-##  az     :  7   1983:48   1st Qu.:1.300   1st Qu.: 5.475  
-##  ar     :  7   1984:48   Median :1.670   Median : 7.000  
-##  ca     :  7   1985:48   Mean   :1.754   Mean   : 7.347  
-##  co     :  7   1986:48   3rd Qu.:2.013   3rd Qu.: 8.900  
-##  ct     :  7   1987:48   Max.   :4.900   Max.   :18.000  
-##  (Other):294   1988:48                                   
-##      income          emppop         beertax       
-##  Min.   : 9514   Min.   :42.99   Min.   :0.04331  
-##  1st Qu.:12086   1st Qu.:57.69   1st Qu.:0.20885  
-##  Median :13763   Median :61.36   Median :0.35259  
-##  Mean   :13880   Mean   :60.81   Mean   :0.51326  
-##  3rd Qu.:15175   3rd Qu.:64.41   3rd Qu.:0.65157  
-##  Max.   :22193   Max.   :71.27   Max.   :2.72076  
-##                                                   
-##     baptist            mormon           drinkage    
-##  Min.   : 0.0000   Min.   : 0.1000   Min.   :18.00  
-##  1st Qu.: 0.6268   1st Qu.: 0.2722   1st Qu.:20.00  
-##  Median : 1.7492   Median : 0.3931   Median :21.00  
-##  Mean   : 7.1569   Mean   : 2.8019   Mean   :20.46  
-##  3rd Qu.:13.1271   3rd Qu.: 0.6293   3rd Qu.:21.00  
-##  Max.   :30.3557   Max.   :65.9165   Max.   :21.00  
-##                                                     
-##       dry            youngdrivers         miles      
-##  Min.   : 0.00000   Min.   :0.07314   Min.   : 4576  
-##  1st Qu.: 0.00000   1st Qu.:0.17037   1st Qu.: 7183  
-##  Median : 0.08681   Median :0.18539   Median : 7796  
-##  Mean   : 4.26707   Mean   :0.18593   Mean   : 7891  
-##  3rd Qu.: 2.42481   3rd Qu.:0.20219   3rd Qu.: 8504  
-##  Max.   :45.79210   Max.   :0.28163   Max.   :26148  
-##                                                      
-##  breath      jail     service        fatal       
-##  no :181   no  :241   no  :273   Min.   :  79.0  
-##  yes:155   yes : 94   yes : 62   1st Qu.: 293.8  
-##            NA&#39;s:  1   NA&#39;s:  1   Median : 701.0  
-##                                  Mean   : 928.7  
-##                                  3rd Qu.:1063.5  
-##                                  Max.   :5504.0  
-##                                                  
-##      nfatal            sfatal        fatal1517     
-##  Min.   :  13.00   Min.   :  8.0   Min.   :  3.00  
-##  1st Qu.:  53.75   1st Qu.: 35.0   1st Qu.: 25.75  
-##  Median : 135.00   Median : 81.0   Median : 49.00  
-##  Mean   : 182.58   Mean   :109.9   Mean   : 62.61  
-##  3rd Qu.: 212.00   3rd Qu.:131.0   3rd Qu.: 77.00  
-##  Max.   :1049.00   Max.   :603.0   Max.   :318.00  
-##                                                    
-##    nfatal1517      fatal1820       nfatal1820    
-##  Min.   : 0.00   Min.   :  7.0   Min.   :  0.00  
-##  1st Qu.: 4.00   1st Qu.: 38.0   1st Qu.: 11.00  
-##  Median :10.00   Median : 82.0   Median : 24.00  
-##  Mean   :12.26   Mean   :106.7   Mean   : 33.53  
-##  3rd Qu.:15.25   3rd Qu.:130.2   3rd Qu.: 44.00  
-##  Max.   :76.00   Max.   :601.0   Max.   :196.00  
-##                                                  
-##    fatal2124       nfatal2124         afatal      
-##  Min.   : 12.0   Min.   :  1.00   Min.   :  24.6  
-##  1st Qu.: 42.0   1st Qu.: 13.00   1st Qu.:  90.5  
-##  Median : 97.5   Median : 30.00   Median : 211.6  
-##  Mean   :126.9   Mean   : 41.38   Mean   : 293.3  
-##  3rd Qu.:150.5   3rd Qu.: 49.00   3rd Qu.: 364.0  
-##  Max.   :770.0   Max.   :249.00   Max.   :2094.9  
-##                                                   
-##       pop              pop1517           pop1820       
-##  Min.   :  479000   Min.   :  21000   Min.   :  21000  
-##  1st Qu.: 1545251   1st Qu.:  71750   1st Qu.:  76962  
-##  Median : 3310503   Median : 163000   Median : 170982  
-##  Mean   : 4930272   Mean   : 230816   Mean   : 249090  
-##  3rd Qu.: 5751735   3rd Qu.: 270500   3rd Qu.: 308311  
-##  Max.   :28314028   Max.   :1172000   Max.   :1321004  
-##                                                        
-##     pop2124           milestot         unempus     
-##  Min.   :  30000   Min.   :  3993   Min.   :5.500  
-##  1st Qu.: 103500   1st Qu.: 11692   1st Qu.:6.200  
-##  Median : 241000   Median : 28484   Median :7.200  
-##  Mean   : 336390   Mean   : 37101   Mean   :7.529  
-##  3rd Qu.: 413000   3rd Qu.: 44140   3rd Qu.:9.600  
-##  Max.   :1892998   Max.   :241575   Max.   :9.700  
-##                                                    
-##     emppopus          gsp           
-##  Min.   :57.80   Min.   :-0.123641  
-##  1st Qu.:57.90   1st Qu.: 0.001182  
-##  Median :60.10   Median : 0.032413  
-##  Mean   :59.97   Mean   : 0.025313  
-##  3rd Qu.:61.50   3rd Qu.: 0.056501  
-##  Max.   :62.30   Max.   : 0.142361  
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="paneldata.html#cb270-1" tabindex="-1"></a><span class="fu">summary</span>(data_f)</span></code></pre></div>
+<pre><code>##      state       year       spirits          unemp            income          emppop         beertax           baptist            mormon           drinkage    
+##  al     :  7   1982:48   Min.   :0.790   Min.   : 2.400   Min.   : 9514   Min.   :42.99   Min.   :0.04331   Min.   : 0.0000   Min.   : 0.1000   Min.   :18.00  
+##  az     :  7   1983:48   1st Qu.:1.300   1st Qu.: 5.475   1st Qu.:12086   1st Qu.:57.69   1st Qu.:0.20885   1st Qu.: 0.6268   1st Qu.: 0.2722   1st Qu.:20.00  
+##  ar     :  7   1984:48   Median :1.670   Median : 7.000   Median :13763   Median :61.36   Median :0.35259   Median : 1.7492   Median : 0.3931   Median :21.00  
+##  ca     :  7   1985:48   Mean   :1.754   Mean   : 7.347   Mean   :13880   Mean   :60.81   Mean   :0.51326   Mean   : 7.1569   Mean   : 2.8019   Mean   :20.46  
+##  co     :  7   1986:48   3rd Qu.:2.013   3rd Qu.: 8.900   3rd Qu.:15175   3rd Qu.:64.41   3rd Qu.:0.65157   3rd Qu.:13.1271   3rd Qu.: 0.6293   3rd Qu.:21.00  
+##  ct     :  7   1987:48   Max.   :4.900   Max.   :18.000   Max.   :22193   Max.   :71.27   Max.   :2.72076   Max.   :30.3557   Max.   :65.9165   Max.   :21.00  
+##  (Other):294   1988:48                                                                                                                                         
+##       dry            youngdrivers         miles       breath      jail     service        fatal            nfatal            sfatal        fatal1517     
+##  Min.   : 0.00000   Min.   :0.07314   Min.   : 4576   no :181   no  :241   no  :273   Min.   :  79.0   Min.   :  13.00   Min.   :  8.0   Min.   :  3.00  
+##  1st Qu.: 0.00000   1st Qu.:0.17037   1st Qu.: 7183   yes:155   yes : 94   yes : 62   1st Qu.: 293.8   1st Qu.:  53.75   1st Qu.: 35.0   1st Qu.: 25.75  
+##  Median : 0.08681   Median :0.18539   Median : 7796             NA&#39;s:  1   NA&#39;s:  1   Median : 701.0   Median : 135.00   Median : 81.0   Median : 49.00  
+##  Mean   : 4.26707   Mean   :0.18593   Mean   : 7891                                   Mean   : 928.7   Mean   : 182.58   Mean   :109.9   Mean   : 62.61  
+##  3rd Qu.: 2.42481   3rd Qu.:0.20219   3rd Qu.: 8504                                   3rd Qu.:1063.5   3rd Qu.: 212.00   3rd Qu.:131.0   3rd Qu.: 77.00  
+##  Max.   :45.79210   Max.   :0.28163   Max.   :26148                                   Max.   :5504.0   Max.   :1049.00   Max.   :603.0   Max.   :318.00  
+##                                                                                                                                                          
+##    nfatal1517      fatal1820       nfatal1820       fatal2124       nfatal2124         afatal            pop              pop1517           pop1820       
+##  Min.   : 0.00   Min.   :  7.0   Min.   :  0.00   Min.   : 12.0   Min.   :  1.00   Min.   :  24.6   Min.   :  479000   Min.   :  21000   Min.   :  21000  
+##  1st Qu.: 4.00   1st Qu.: 38.0   1st Qu.: 11.00   1st Qu.: 42.0   1st Qu.: 13.00   1st Qu.:  90.5   1st Qu.: 1545251   1st Qu.:  71750   1st Qu.:  76962  
+##  Median :10.00   Median : 82.0   Median : 24.00   Median : 97.5   Median : 30.00   Median : 211.6   Median : 3310503   Median : 163000   Median : 170982  
+##  Mean   :12.26   Mean   :106.7   Mean   : 33.53   Mean   :126.9   Mean   : 41.38   Mean   : 293.3   Mean   : 4930272   Mean   : 230816   Mean   : 249090  
+##  3rd Qu.:15.25   3rd Qu.:130.2   3rd Qu.: 44.00   3rd Qu.:150.5   3rd Qu.: 49.00   3rd Qu.: 364.0   3rd Qu.: 5751735   3rd Qu.: 270500   3rd Qu.: 308311  
+##  Max.   :76.00   Max.   :601.0   Max.   :196.00   Max.   :770.0   Max.   :249.00   Max.   :2094.9   Max.   :28314028   Max.   :1172000   Max.   :1321004  
+##                                                                                                                                                           
+##     pop2124           milestot         unempus         emppopus          gsp           
+##  Min.   :  30000   Min.   :  3993   Min.   :5.500   Min.   :57.80   Min.   :-0.123641  
+##  1st Qu.: 103500   1st Qu.: 11692   1st Qu.:6.200   1st Qu.:57.90   1st Qu.: 0.001182  
+##  Median : 241000   Median : 28484   Median :7.200   Median :60.10   Median : 0.032413  
+##  Mean   : 336390   Mean   : 37101   Mean   :7.529   Mean   :59.97   Mean   : 0.025313  
+##  3rd Qu.: 413000   3rd Qu.: 44140   3rd Qu.:9.600   3rd Qu.:61.50   3rd Qu.: 0.056501  
+##  Max.   :1892998   Max.   :241575   Max.   :9.700   Max.   :62.30   Max.   : 0.142361  
 ## </code></pre>
 <p>Chapter @ref(#rstats)　で説明したように、他のパッケージを使う方法もある。</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="paneldata.html#cb260-1" tabindex="-1"></a><span class="fu">describe</span>(data_f, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>##              vars   n       mean         sd     median
-## state*          1 336      24.50      13.87      24.50
-## year*           2 336       4.00       2.00       4.00
-## spirits         3 336       1.75       0.68       1.67
-## unemp           4 336       7.35       2.53       7.00
-## income          5 336   13880.18    2253.05   13763.13
-## emppop          6 336      60.81       4.72      61.36
-## beertax         7 336       0.51       0.48       0.35
-## baptist         8 336       7.16       9.76       1.75
-## mormon          9 336       2.80       9.67       0.39
-## drinkage       10 336      20.46       0.90      21.00
-## dry            11 336       4.27       9.50       0.09
-## youngdrivers   12 336       0.19       0.02       0.19
-## miles          13 336    7890.75    1475.66    7796.22
-## breath*        14 336       1.46       0.50       1.00
-## jail*          15 335       1.28       0.45       1.00
-## service*       16 335       1.19       0.39       1.00
-## fatal          17 336     928.66     934.05     701.00
-## nfatal         18 336     182.58     188.43     135.00
-## sfatal         19 336     109.95     108.54      81.00
-## fatal1517      20 336      62.61      55.73      49.00
-## nfatal1517     21 336      12.26      12.25      10.00
-## fatal1820      22 336     106.66     104.22      82.00
-## nfatal1820     23 336      33.53      33.24      24.00
-## fatal2124      24 336     126.87     131.79      97.50
-## nfatal2124     25 336      41.38      42.93      30.00
-## afatal         26 336     293.33     303.58     211.59
-## pop            27 336 4930271.50 5073703.89 3310503.25
-## pop1517        28 336  230815.48  229896.27  163000.17
-## pop1820        29 336  249090.42  249345.64  170982.34
-## pop2124        30 336  336389.89  345304.37  240999.90
-## milestot       31 336   37101.49   37454.37   28483.50
-## unempus        32 336       7.53       1.48       7.20
-## emppopus       33 336      59.97       1.59      60.10
-## gsp            34 336       0.03       0.04       0.03
-##                    min         max       range        se
-## state*            1.00       48.00       47.00      0.76
-## year*             1.00        7.00        6.00      0.11
-## spirits           0.79        4.90        4.11      0.04
-## unemp             2.40       18.00       15.60      0.14
-## income         9513.76    22193.46    12679.69    122.91
-## emppop           42.99       71.27       28.28      0.26
-## beertax           0.04        2.72        2.68      0.03
-## baptist           0.00       30.36       30.36      0.53
-## mormon            0.10       65.92       65.82      0.53
-## drinkage         18.00       21.00        3.00      0.05
-## dry               0.00       45.79       45.79      0.52
-## youngdrivers      0.07        0.28        0.21      0.00
-## miles          4576.35    26148.27    21571.93     80.50
-## breath*           1.00        2.00        1.00      0.03
-## jail*             1.00        2.00        1.00      0.02
-## service*          1.00        2.00        1.00      0.02
-## fatal            79.00     5504.00     5425.00     50.96
-## nfatal           13.00     1049.00     1036.00     10.28
-## sfatal            8.00      603.00      595.00      5.92
-## fatal1517         3.00      318.00      315.00      3.04
-## nfatal1517        0.00       76.00       76.00      0.67
-## fatal1820         7.00      601.00      594.00      5.69
-## nfatal1820        0.00      196.00      196.00      1.81
-## fatal2124        12.00      770.00      758.00      7.19
-## nfatal2124        1.00      249.00      248.00      2.34
-## afatal           24.60     2094.90     2070.30     16.56
-## pop          478999.72 28314028.00 27835028.28 276793.24
-## pop1517       21000.02  1172000.25  1151000.23  12541.87
-## pop1820       20999.96  1321004.38  1300004.41  13602.92
-## pop2124       30000.16  1892998.12  1862997.97  18837.90
-## milestot       3993.00   241575.02   237582.02   2043.30
-## unempus           5.50        9.70        4.20      0.08
-## emppopus         57.80       62.30        4.50      0.09
-## gsp              -0.12        0.14        0.27      0.00</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="paneldata.html#cb272-1" tabindex="-1"></a><span class="fu">describe</span>(data_f, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>##              vars   n       mean         sd     median       min         max       range        se
+## state*          1 336      24.50      13.87      24.50      1.00       48.00       47.00      0.76
+## year*           2 336       4.00       2.00       4.00      1.00        7.00        6.00      0.11
+## spirits         3 336       1.75       0.68       1.67      0.79        4.90        4.11      0.04
+## unemp           4 336       7.35       2.53       7.00      2.40       18.00       15.60      0.14
+## income          5 336   13880.18    2253.05   13763.13   9513.76    22193.46    12679.69    122.91
+## emppop          6 336      60.81       4.72      61.36     42.99       71.27       28.28      0.26
+## beertax         7 336       0.51       0.48       0.35      0.04        2.72        2.68      0.03
+## baptist         8 336       7.16       9.76       1.75      0.00       30.36       30.36      0.53
+## mormon          9 336       2.80       9.67       0.39      0.10       65.92       65.82      0.53
+## drinkage       10 336      20.46       0.90      21.00     18.00       21.00        3.00      0.05
+## dry            11 336       4.27       9.50       0.09      0.00       45.79       45.79      0.52
+## youngdrivers   12 336       0.19       0.02       0.19      0.07        0.28        0.21      0.00
+## miles          13 336    7890.75    1475.66    7796.22   4576.35    26148.27    21571.93     80.50
+## breath*        14 336       1.46       0.50       1.00      1.00        2.00        1.00      0.03
+## jail*          15 335       1.28       0.45       1.00      1.00        2.00        1.00      0.02
+## service*       16 335       1.19       0.39       1.00      1.00        2.00        1.00      0.02
+## fatal          17 336     928.66     934.05     701.00     79.00     5504.00     5425.00     50.96
+## nfatal         18 336     182.58     188.43     135.00     13.00     1049.00     1036.00     10.28
+## sfatal         19 336     109.95     108.54      81.00      8.00      603.00      595.00      5.92
+## fatal1517      20 336      62.61      55.73      49.00      3.00      318.00      315.00      3.04
+## nfatal1517     21 336      12.26      12.25      10.00      0.00       76.00       76.00      0.67
+## fatal1820      22 336     106.66     104.22      82.00      7.00      601.00      594.00      5.69
+## nfatal1820     23 336      33.53      33.24      24.00      0.00      196.00      196.00      1.81
+## fatal2124      24 336     126.87     131.79      97.50     12.00      770.00      758.00      7.19
+## nfatal2124     25 336      41.38      42.93      30.00      1.00      249.00      248.00      2.34
+## afatal         26 336     293.33     303.58     211.59     24.60     2094.90     2070.30     16.56
+## pop            27 336 4930271.50 5073703.89 3310503.25 478999.72 28314028.00 27835028.28 276793.24
+## pop1517        28 336  230815.48  229896.27  163000.17  21000.02  1172000.25  1151000.23  12541.87
+## pop1820        29 336  249090.42  249345.64  170982.34  20999.96  1321004.38  1300004.41  13602.92
+## pop2124        30 336  336389.89  345304.37  240999.90  30000.16  1892998.12  1862997.97  18837.90
+## milestot       31 336   37101.49   37454.37   28483.50   3993.00   241575.02   237582.02   2043.30
+## unempus        32 336       7.53       1.48       7.20      5.50        9.70        4.20      0.08
+## emppopus       33 336      59.97       1.59      60.10     57.80       62.30        4.50      0.09
+## gsp            34 336       0.03       0.04       0.03     -0.12        0.14        0.27      0.00</code></pre>
 <p><code>psych</code>パッケージの<code>describe()</code>では、カテゴリー変数も無理やり数値化して計算するのでおかしなことになっているものがあることである。例えば、stateは州なので、平均や標準偏差が計算されているのはおかしい。
 しかし、数値の変数を見るときには有用である。</p>
 <p><code>skimr</code>パッケージの<code>skim()</code>関数は、カテゴリ変数と連続変数を区別して記述統計を示してくれる。</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="paneldata.html#cb262-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb262-2"><a href="paneldata.html#cb262-2" tabindex="-1"></a></span>
-<span id="cb262-3"><a href="paneldata.html#cb262-3" tabindex="-1"></a><span class="fu">skim</span>(data_f)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="paneldata.html#cb274-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb274-2"><a href="paneldata.html#cb274-2" tabindex="-1"></a></span>
+<span id="cb274-3"><a href="paneldata.html#cb274-3" tabindex="-1"></a><span class="fu">skim</span>(data_f)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-164">Table 12.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-206">Table 12.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -1247,10 +1135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">12.1.5</span> データの加工<a href="paneldata.html#データの加工" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データには、交通事故による死亡数<code>fatal</code>はあるが、死亡率がない。当然ながら各州によって人口が違い、人口が多い州は死亡数も多くなる。州の間で比較を行うためには、死亡数より死亡率が適切だろう。そこで、死亡率<code>fatal_rate</code>を死亡数<code>fatal</code>を人口<code>pop</code>で割ることで計算する。あまりに小さい数字になるため10000をかけて「１万人当たりの死亡者数」として死亡率を定義する。
 新たに追加したデータを<code>data_f2</code>に入れる。</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="paneldata.html#cb263-1" tabindex="-1"></a><span class="co"># データの加工</span></span>
-<span id="cb263-2"><a href="paneldata.html#cb263-2" tabindex="-1"></a>data_f2 <span class="ot">&lt;-</span> data_f <span class="sc">|&gt;</span> </span>
-<span id="cb263-3"><a href="paneldata.html#cb263-3" tabindex="-1"></a>  <span class="co"># 死亡率の計算</span></span>
-<span id="cb263-4"><a href="paneldata.html#cb263-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fatal_rate =</span> fatal<span class="sc">/</span>pop <span class="sc">*</span> <span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="paneldata.html#cb275-1" tabindex="-1"></a><span class="co"># データの加工</span></span>
+<span id="cb275-2"><a href="paneldata.html#cb275-2" tabindex="-1"></a>data_f2 <span class="ot">&lt;-</span> data_f <span class="sc">|&gt;</span> </span>
+<span id="cb275-3"><a href="paneldata.html#cb275-3" tabindex="-1"></a>  <span class="co"># 死亡率の計算</span></span>
+<span id="cb275-4"><a href="paneldata.html#cb275-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fatal_rate =</span> fatal<span class="sc">/</span>pop <span class="sc">*</span> <span class="dv">10000</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="パネルデータ分析" class="section level2 hasAnchor" number="12.2">
@@ -1266,23 +1154,23 @@ y_{i} = \alpha + \beta x_{i} +\varepsilon_{i}
 <p>ビール税率を上げると交通事故死亡率が下がる、という仮説を検証したい場合、<span class="math inline">\(\beta\)</span>が負（マイナス）であると期待するだろう。</p>
 <p>まず、この単回帰式を推定するために、クロス・セクションのデータで推定を行ってみよう。
 データのうち、1982年と1988年をそれぞれ抽出してみよう。</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="paneldata.html#cb264-1" tabindex="-1"></a><span class="co"># クロスセクションデータの作成</span></span>
-<span id="cb264-2"><a href="paneldata.html#cb264-2" tabindex="-1"></a>data_f2_1982 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
-<span id="cb264-3"><a href="paneldata.html#cb264-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1982</span>)</span>
-<span id="cb264-4"><a href="paneldata.html#cb264-4" tabindex="-1"></a></span>
-<span id="cb264-5"><a href="paneldata.html#cb264-5" tabindex="-1"></a>data_f2_1988 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
-<span id="cb264-6"><a href="paneldata.html#cb264-6" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1988</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="paneldata.html#cb276-1" tabindex="-1"></a><span class="co"># クロスセクションデータの作成</span></span>
+<span id="cb276-2"><a href="paneldata.html#cb276-2" tabindex="-1"></a>data_f2_1982 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
+<span id="cb276-3"><a href="paneldata.html#cb276-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1982</span>)</span>
+<span id="cb276-4"><a href="paneldata.html#cb276-4" tabindex="-1"></a></span>
+<span id="cb276-5"><a href="paneldata.html#cb276-5" tabindex="-1"></a>data_f2_1988 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
+<span id="cb276-6"><a href="paneldata.html#cb276-6" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1988</span>)</span></code></pre></div>
 <p>このデータを用いて単位回帰分析を行う。</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="paneldata.html#cb265-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
-<span id="cb265-2"><a href="paneldata.html#cb265-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
-<span id="cb265-3"><a href="paneldata.html#cb265-3" tabindex="-1"></a></span>
-<span id="cb265-4"><a href="paneldata.html#cb265-4" tabindex="-1"></a><span class="co"># 1982年のデータ</span></span>
-<span id="cb265-5"><a href="paneldata.html#cb265-5" tabindex="-1"></a>reg1_1982 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1982)</span>
-<span id="cb265-6"><a href="paneldata.html#cb265-6" tabindex="-1"></a></span>
-<span id="cb265-7"><a href="paneldata.html#cb265-7" tabindex="-1"></a><span class="co"># 1988年のデータ</span></span>
-<span id="cb265-8"><a href="paneldata.html#cb265-8" tabindex="-1"></a>reg1_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="paneldata.html#cb277-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
+<span id="cb277-2"><a href="paneldata.html#cb277-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
+<span id="cb277-3"><a href="paneldata.html#cb277-3" tabindex="-1"></a></span>
+<span id="cb277-4"><a href="paneldata.html#cb277-4" tabindex="-1"></a><span class="co"># 1982年のデータ</span></span>
+<span id="cb277-5"><a href="paneldata.html#cb277-5" tabindex="-1"></a>reg1_1982 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1982)</span>
+<span id="cb277-6"><a href="paneldata.html#cb277-6" tabindex="-1"></a></span>
+<span id="cb277-7"><a href="paneldata.html#cb277-7" tabindex="-1"></a><span class="co"># 1988年のデータ</span></span>
+<span id="cb277-8"><a href="paneldata.html#cb277-8" tabindex="-1"></a>reg1_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
 <p>結果を表示する。</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="paneldata.html#cb266-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_1982,reg1_1988)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="paneldata.html#cb278-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_1982,reg1_1988)</span></code></pre></div>
 <pre><code>##                         reg1_1982         reg1_1988
 ## Dependent Var.:        fatal_rate        fatal_rate
 ##                                                    
@@ -1298,12 +1186,12 @@ y_{i} = \alpha + \beta x_{i} +\varepsilon_{i}
 <p>この結果によれば、1982年ではビール税率が1%上がると、交通事故死亡率が0.1485上昇し、1988年では0.4388上昇する。
 このデータは州ごとのクロスセクションデータなので、もう少し正確に解釈すると、ビール税が1%高い州では交通事故死亡率が高い、ということになる。</p>
 <p>この結果をグラフでも見てみよう。縦軸を死亡率、横軸をビール税として散布図を描く。ここでは1988年のデータを見てみよう。</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="paneldata.html#cb268-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2_1988, <span class="fu">aes</span>(<span class="at">x=</span>beertax, <span class="at">y=</span>fatal_rate)) <span class="sc">+</span> </span>
-<span id="cb268-2"><a href="paneldata.html#cb268-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb268-3"><a href="paneldata.html#cb268-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)<span class="sc">+</span></span>
-<span id="cb268-4"><a href="paneldata.html#cb268-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;交通事故死亡率(10000人当たり）&quot;</span>) <span class="sc">+</span></span>
-<span id="cb268-5"><a href="paneldata.html#cb268-5" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="co">#&lt;- このレイヤーはWindowsならいらない</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="paneldata.html#cb280-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2_1988, <span class="fu">aes</span>(<span class="at">x=</span>beertax, <span class="at">y=</span>fatal_rate)) <span class="sc">+</span> </span>
+<span id="cb280-2"><a href="paneldata.html#cb280-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb280-3"><a href="paneldata.html#cb280-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb280-4"><a href="paneldata.html#cb280-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;交通事故死亡率(10000人当たり）&quot;</span>) <span class="sc">+</span></span>
+<span id="cb280-5"><a href="paneldata.html#cb280-5" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="co">#&lt;- このレイヤーはWindowsならいらない</span></span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 <p>むしろ税率と交通事故死亡率には正の関係がある。</p>
 <p>このアプローチには問題がないだろうか？なぜなら、クロスセクションデータでは州ごとの違いを見ているので、ビール税が高い州では交通事故死亡率が高いという結果であるが、交通事故死亡率が高い州ではビール税を上げているので高いという可能性もある。州による特性もある。</p>
 <p>では時間的な変動を含めたデータでは、どうなるだろうか？</p>
@@ -1311,13 +1199,13 @@ y_{i} = \alpha + \beta x_{i} +\varepsilon_{i}
 <p><span class="math display">\[
 y_{it} = \alpha + \beta x_{it} +\varepsilon_{it}
 \]</span></p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="paneldata.html#cb269-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
-<span id="cb269-2"><a href="paneldata.html#cb269-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
-<span id="cb269-3"><a href="paneldata.html#cb269-3" tabindex="-1"></a></span>
-<span id="cb269-4"><a href="paneldata.html#cb269-4" tabindex="-1"></a><span class="co"># 1982-1988年のデータ</span></span>
-<span id="cb269-5"><a href="paneldata.html#cb269-5" tabindex="-1"></a>reg1_panel <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="paneldata.html#cb281-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
+<span id="cb281-2"><a href="paneldata.html#cb281-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
+<span id="cb281-3"><a href="paneldata.html#cb281-3" tabindex="-1"></a></span>
+<span id="cb281-4"><a href="paneldata.html#cb281-4" tabindex="-1"></a><span class="co"># 1982-1988年のデータ</span></span>
+<span id="cb281-5"><a href="paneldata.html#cb281-5" tabindex="-1"></a>reg1_panel <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2)</span></code></pre></div>
 <p>結果を表示する。</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="paneldata.html#cb270-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="paneldata.html#cb282-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel)</span></code></pre></div>
 <pre><code>##                         reg1_panel
 ## Dependent Var.:         fatal_rate
 ##                                   
@@ -1350,10 +1238,10 @@ y_{it} = \beta x_{it} + \gamma_{AL} D_{AL} + \gamma_{AZ} D_{AZ} + \gamma_{AR} D_
 \]</span></p>
 <p>もしデータ<span class="math inline">\(i\)</span>がアラバマ州ならば<span class="math inline">\(D_{AL}\)</span>は1になり、それ以外は0になるので、<span class="math inline">\(\gamma_{AL}\)</span>が式に残る。もし<span class="math inline">\(i\)</span>がアリゾナ州ならば<span class="math inline">\(D_{AZ}\)</span>は1になり、それ以外は0になる。という形で、<span class="math inline">\(\gamma_{AL}\)</span>, <span class="math inline">\(\gamma_{AZ}\)</span> … <span class="math inline">\(\gamma_{WY}\)</span>のワイオミング州までを推定するのである。</p>
 <p>実際には、これを<code>feols</code>では簡単に推定できる。</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="paneldata.html#cb272-1" tabindex="-1"></a><span class="co"># |のあとに固定効果として推定したいカテゴリ（今回は州なのでstate)を入れる</span></span>
-<span id="cb272-2"><a href="paneldata.html#cb272-2" tabindex="-1"></a>reg1_panel_fe <span class="ot">=</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data =</span> data_f2)</span>
-<span id="cb272-3"><a href="paneldata.html#cb272-3" tabindex="-1"></a></span>
-<span id="cb272-4"><a href="paneldata.html#cb272-4" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel, reg1_panel_fe, <span class="at">se =</span> <span class="st">&quot;IID&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="paneldata.html#cb284-1" tabindex="-1"></a><span class="co"># |のあとに固定効果として推定したいカテゴリ（今回は州なのでstate)を入れる</span></span>
+<span id="cb284-2"><a href="paneldata.html#cb284-2" tabindex="-1"></a>reg1_panel_fe <span class="ot">=</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data =</span> data_f2)</span>
+<span id="cb284-3"><a href="paneldata.html#cb284-3" tabindex="-1"></a></span>
+<span id="cb284-4"><a href="paneldata.html#cb284-4" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel, reg1_panel_fe, <span class="at">se =</span> <span class="st">&quot;IID&quot;</span>)</span></code></pre></div>
 <pre><code>##                         reg1_panel       reg1_panel_fe
 ## Dependent Var.:         fatal_rate          fatal_rate
 ##                                                       
@@ -1373,38 +1261,36 @@ y_{it} = \beta x_{it} + \gamma_{AL} D_{AL} + \gamma_{AZ} D_{AZ} + \gamma_{AR} D_
 <p>このように、本当に推定したい効果が、データの特徴によって推定できない場合、それが主体独特の効果である場合は、固定効果モデルを用いることで分別して推定することができる。</p>
 <p>しかし、固定効果モデルはパネルデータではないと使うことができない。
 たとえば、上で作成したクロスセクションデータで固定効果モデルを推定してみよう。</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="paneldata.html#cb274-1" tabindex="-1"></a>reg1_panel_fe_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="paneldata.html#cb286-1" tabindex="-1"></a>reg1_panel_fe_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
 <pre><code>## Error: in feols(fatal_rate ~ beertax | state, data = data_f...: 
-## The only variable, &#39;beertax&#39;, is collinear with the
-## fixed effects. Without doubt, your model is
-## misspecified.</code></pre>
+## The only variable, &#39;beertax&#39;, is collinear with the fixed effects. Without doubt, your model is misspecified.</code></pre>
 <p>エラーが出る。これは、クロスセクションデータでは州ごとの変動しかないため、ダミー変数による固定効果の変動（州によって1か0か）と州ごとのビール税の変動のどちらが交通事故死亡率の変動を説明しているか識別ができないためである。</p>
 <div id="固定効果モデルのビジュアルイメージ" class="section level3 hasAnchor" number="12.3.1">
 <h3><span class="header-section-number">12.3.1</span> 固定効果モデルのビジュアルイメージ<a href="paneldata.html#固定効果モデルのビジュアルイメージ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>固定効果モデルをビジュアルイメージで理解してみよう。</p>
 <p>まず、パネルデータを使って散布図を書いてみよう。</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="paneldata.html#cb276-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
-<span id="cb276-2"><a href="paneldata.html#cb276-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb276-3"><a href="paneldata.html#cb276-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
-<span id="cb276-4"><a href="paneldata.html#cb276-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="paneldata.html#cb288-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
+<span id="cb288-2"><a href="paneldata.html#cb288-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb288-3"><a href="paneldata.html#cb288-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
+<span id="cb288-4"><a href="paneldata.html#cb288-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
 <p>これだけを見ると、やはり右肩上がりの傾向があるように見える。
 <code>geom_smooth(method="lm")</code>というレイヤーを加えて、回帰線を描いてみよう。</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="paneldata.html#cb277-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
-<span id="cb277-2"><a href="paneldata.html#cb277-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb277-3"><a href="paneldata.html#cb277-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
-<span id="cb277-4"><a href="paneldata.html#cb277-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb277-5"><a href="paneldata.html#cb277-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="paneldata.html#cb289-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
+<span id="cb289-2"><a href="paneldata.html#cb289-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb289-3"><a href="paneldata.html#cb289-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
+<span id="cb289-4"><a href="paneldata.html#cb289-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb289-5"><a href="paneldata.html#cb289-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
 <p>やはり右肩あがりになっている。</p>
 <p>では、今度は州ごとに色分けしてみよう。<code>aes()</code>の中で色カテゴリに州を指定する<code>col=state</code>。</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="paneldata.html#cb278-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate,<span class="at">col=</span>state)) <span class="sc">+</span></span>
-<span id="cb278-2"><a href="paneldata.html#cb278-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb278-3"><a href="paneldata.html#cb278-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
-<span id="cb278-4"><a href="paneldata.html#cb278-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb278-5"><a href="paneldata.html#cb278-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>) <span class="sc">+</span></span>
-<span id="cb278-6"><a href="paneldata.html#cb278-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># &lt;- もし凡例が大きすぎて図が見えない場合はこのレイヤーを追加して凡例を消す</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-176-1.png" width="672" />
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="paneldata.html#cb290-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate,<span class="at">col=</span>state)) <span class="sc">+</span></span>
+<span id="cb290-2"><a href="paneldata.html#cb290-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb290-3"><a href="paneldata.html#cb290-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
+<span id="cb290-4"><a href="paneldata.html#cb290-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb290-5"><a href="paneldata.html#cb290-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb290-6"><a href="paneldata.html#cb290-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># &lt;- もし凡例が大きすぎて図が見えない場合はこのレイヤーを追加して凡例を消す</span></span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-218-1.png" width="672" />
 すると、州ごと分けた点と線が描かれる。州ごとに見ると、州の中での時間的な変動ではビール税率が高いときに死亡率が下がっている傾向が見られるだろう。このように、州間の違いと州内の違いを分けて推定できるのが固定効果モデルである。</p>
 
 </div>

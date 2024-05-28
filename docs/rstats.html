@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -273,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="datahandling.html"><a href="datahandling.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="datahandling.html"><a href="datahandling.html#演習-データの読み込み"><i class="fa fa-check"></i><b>6.2.1</b> <strong>演習</strong>: データの読み込み</a></li>
-<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#日本語のデータを読み込む際の注意点"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
+<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#datajpn"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
 <li class="chapter" data-level="6.2.3" data-path="datahandling.html"><a href="datahandling.html#readrのその他のオプション"><i class="fa fa-check"></i><b>6.2.3</b> readrのその他のオプション</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="datahandling.html"><a href="datahandling.html#tidy-data-整然データ"><i class="fa fa-check"></i><b>6.3</b> tidy data (整然データ)</a></li>
@@ -323,54 +323,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
 <li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.2</b> データとは</a></li>
-<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.3</b> 代表的な統計量</a>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
+<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.3.1</b> 数式</a></li>
-<li class="chapter" data-level="7.3.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.3.2</b> 平均</a></li>
-<li class="chapter" data-level="7.3.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.3.3</b> 中央値</a></li>
-<li class="chapter" data-level="7.3.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.3.4</b> 最大値・最小値</a></li>
-<li class="chapter" data-level="7.3.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.3.5</b> 分散</a></li>
-<li class="chapter" data-level="7.3.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.3.6</b> もう一つの分散：不偏分散</a></li>
-<li class="chapter" data-level="7.3.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.3.7</b> 標準偏差</a></li>
-<li class="chapter" data-level="7.3.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.3.8</b> 不偏標準偏差</a></li>
+<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.4.1</b> 数式</a></li>
+<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.4.2</b> 平均</a></li>
+<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.4.3</b> 中央値</a></li>
+<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.4.4</b> 最大値・最小値</a></li>
+<li class="chapter" data-level="7.4.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.4.5</b> 分散</a></li>
+<li class="chapter" data-level="7.4.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.4.6</b> もう一つの分散：不偏分散</a></li>
+<li class="chapter" data-level="7.4.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.4.7</b> 標準偏差</a></li>
+<li class="chapter" data-level="7.4.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.4.8</b> 不偏標準偏差</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.4</b> Rによる記述統計のテクニック</a>
+<li class="chapter" data-level="7.5" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.5</b> Rによる記述統計のテクニック</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.4.1</b> 使用するデータ</a></li>
-<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.4.2</b> <code>summary</code>関数</a></li>
-<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.4.3</b> <code>describe</code>関数</a></li>
-<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.4.4</b> <code>skim</code>関数</a></li>
+<li class="chapter" data-level="7.5.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.5.1</b> 使用するデータ</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.5.2</b> <code>summary</code>関数</a></li>
+<li class="chapter" data-level="7.5.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.5.3</b> <code>describe</code>関数</a></li>
+<li class="chapter" data-level="7.5.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.5.4</b> <code>skim</code>関数</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
-<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.2</b> 描画をしてみよう</a></li>
-<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.3</b> 復習：データ読み込み</a></li>
-<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.4</b> 描画の前に</a></li>
-<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.5</b> キャンバスを用意する</a></li>
-<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.6</b> グラフのレイヤーを追加する</a></li>
-<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.7</b> 文字化けに対処する</a></li>
-<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.8</b> aesに色を追加する</a></li>
-<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.9</b> 男女の置き方を変えたい</a></li>
-<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#aesに色を追加する-1"><i class="fa fa-check"></i><b>8.10</b> aesに色を追加する</a></li>
-<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.11</b> 色を変えたい</a></li>
-<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.12</b> 学科別に分けたい</a></li>
-<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.13</b> ラベルを変更する・タイトルを追加する</a></li>
-<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する-1"><i class="fa fa-check"></i><b>8.14</b> ラベルを変更する・タイトルを追加する</a></li>
-<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.15</b> テーマを変更する1</a></li>
-<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#テーマを変更する2"><i class="fa fa-check"></i><b>8.16</b> テーマを変更する2</a></li>
-<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.17</b> 完成形</a></li>
-<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.18</b> ggplot2による図の保存</a></li>
-<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.19</b> 他の描画レイヤー</a>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-1"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
+<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
+<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
+<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.6</b> キャンバスを用意する</a></li>
+<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.7</b> グラフのレイヤーを追加する</a></li>
+<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.8</b> 文字化けに対処する</a></li>
+<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.9</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.10</b> 男女の置き方を変えたい</a></li>
+<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#aesに色を追加する-1"><i class="fa fa-check"></i><b>8.11</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.12</b> 色を変えたい</a></li>
+<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.13</b> 学科別に分けたい</a></li>
+<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.14</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する-1"><i class="fa fa-check"></i><b>8.15</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.16</b> テーマを変更する1</a></li>
+<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#テーマを変更する2"><i class="fa fa-check"></i><b>8.17</b> テーマを変更する2</a></li>
+<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.18</b> 完成形</a></li>
+<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.19</b> ggplot2による図の保存</a></li>
+<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.20</b> 他の描画レイヤー</a>
 <ul>
-<li class="chapter" data-level="8.19.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.19.1</b> 演習：散布図</a></li>
+<li class="chapter" data-level="8.20.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.20.1</b> <strong>練習問題</strong>：散布図</a></li>
 </ul></li>
-<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.20</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
-<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.21</b> 箱ひげ図</a></li>
-<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.22</b> ヴァイオリンプロット</a></li>
-<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.23</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.21</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
+<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.22</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.23</b> ヴァイオリンプロット</a></li>
+<li class="chapter" data-level="8.24" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.24</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.25" data-path="rviz.html"><a href="rviz.html#ゼミ課題データの描画"><i class="fa fa-check"></i><b>8.25</b> <strong>ゼミ課題</strong>：データの描画</a>
+<ul>
+<li class="chapter" data-level="8.25.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.25.1</b> 例：SSDSE-B県別推移のデータ</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
@@ -451,6 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>13.2.5</b> データの記述統計</a></li>
 <li class="chapter" data-level="13.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>13.2.6</b> 政策変更の確認</a></li>
 <li class="chapter" data-level="13.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>13.2.7</b> 差の差法</a></li>
+<li class="chapter" data-level="13.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>13.2.8</b> 回帰分析による差の差法</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>14</b> 練習問題解答</a>
@@ -499,22 +506,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 　このような推測統計を行う際には「よく混ぜる」ことが重要である。イメージとしてはコーヒーにミルクを混ぜる場合である。しっかりとかき混ぜれば、スプーンで掬った一部とカップの中は同じ濃さのはずであるが、きちんと混ざっていなければ、まだ良く混ざっていないコーヒーの部分を掬ってもカップの中の味を再現することはできない。</p>
 </div>
 </div>
-<div id="データとは-1" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> データとは<a href="rstats.html#データとは-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="準備" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> 準備<a href="rstats.html#準備" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>あらたにRスクリプトを作成し、<code>stats.R</code>という名前をつけて保存する。</p>
+<p>そして、以下のライブラリを読み込んでおく。ライブラリがなくてエラーが出る場合はインストールしてから再度読み込む。</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="rstats.html#cb173-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb173-2"><a href="rstats.html#cb173-2" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb173-3"><a href="rstats.html#cb173-3" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code></pre></div>
+</div>
+<div id="データとは-1" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> データとは<a href="rstats.html#データとは-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>統計において分析する対象はデータである。データには様々な形があるが、一般的には数値や文字情報の集まりである。</p>
 <p>以下のコードを実行してみよう。すると、100個の数値が並ぶ。これをランダムにサンプリングして計測した日本人男性の身長だとしよう。</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="rstats.html#cb172-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
-<span id="cb172-2"><a href="rstats.html#cb172-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="at">mean=</span><span class="dv">170</span>,<span class="at">sd=</span><span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>()</span>
-<span id="cb172-3"><a href="rstats.html#cb172-3" tabindex="-1"></a></span>
-<span id="cb172-4"><a href="rstats.html#cb172-4" tabindex="-1"></a>height</span></code></pre></div>
-<pre><code>##   [1] 160 167 173 158 172 170 171 181 158 183 163 159 163
-##  [14] 173 172 167 160 164 182 172 164 161 168 153 165 163
-##  [27] 182 180 169 159 179 179 177 177 166 177 183 170 160
-##  [40] 178 178 167 187 162 173 147 168 181 165 161 177 162
-##  [53] 173 153 156 165 160 184 179 162 176 179 173 174 182
-##  [66] 165 166 180 157 172 170 175 180 173 172 177 182 174
-##  [79] 160 168 187 166 177 182 178 170 172 161 174 161 161
-##  [92] 160 163 181 166 169 165 175 179 168</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="rstats.html#cb174-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb174-2"><a href="rstats.html#cb174-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="at">mean=</span><span class="dv">170</span>,<span class="at">sd=</span><span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>()</span>
+<span id="cb174-3"><a href="rstats.html#cb174-3" tabindex="-1"></a></span>
+<span id="cb174-4"><a href="rstats.html#cb174-4" tabindex="-1"></a>height</span></code></pre></div>
+<pre><code>##   [1] 160 167 173 158 172 170 171 181 158 183 163 159 163 173 172 167 160 164 182 172 164 161 168 153 165 163 182 180 169 159 179 179 177 177 166 177 183 170 160
+##  [40] 178 178 167 187 162 173 147 168 181 165 161 177 162 173 153 156 165 160 184 179 162 176 179 173 174 182 165 166 180 157 172 170 175 180 173 172 177 182 174
+##  [79] 160 168 187 166 177 182 178 170 172 161 174 161 161 160 163 181 166 169 165 175 179 168</code></pre>
 <p>この数字を見てどう思うか？</p>
 <p>「ああ、数字が並んでいるなぁ」</p>
 <p>「自分はこの中では高いほうかな」</p>
@@ -528,10 +538,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>縮約には大きく分けて二つの方法がある。一つ目は、1つの数字で特徴を代表させる方法である。この代表される数字を<strong>統計量</strong>である。二つ目は、グラフ化してその特徴をとらえようとすることである。近年ではVisualizationとも呼ばれる。</p>
 <p>この章では代表的な統計量をおさらいし、そのRでの計算方法を学ぶ。</p>
 </div>
-<div id="代表的な統計量" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> 代表的な統計量<a href="rstats.html#代表的な統計量" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="数式" class="section level3 hasAnchor" number="7.3.1">
-<h3><span class="header-section-number">7.3.1</span> 数式<a href="rstats.html#数式" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="代表的な統計量" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> 代表的な統計量<a href="rstats.html#代表的な統計量" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="数式" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> 数式<a href="rstats.html#数式" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>まず、数式の読み方について簡単におさらいする。数式は英語と同じで意味がわかれば怖いものではないので、一つずつ確認しよう。</p>
 <p>統計学では、データを表現するのによく文字を使う。例えば<span class="math inline">\(x\)</span>である。しかし、データが100個ある場合には、<span class="math inline">\(x_{1},x_{2},\ldots,x_{100}\)</span>といったように、右下に添え字をつけてデータを区別する。このとき、一般的な言い方をするために<span class="math inline">\(i\)</span>番目のデータを<span class="math inline">\(x_{i}\)</span>と表記することがある。</p>
 <p>ここで、厳密には統計量ではないが、データの合計の計算方法を勉強しよう。
@@ -547,22 +557,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>上の左辺のシグマ記号で書かれたものは、右辺と同じ意味である。
 つまり上のシグマ記号<span class="math inline">\(\sum\)</span>は、「<span class="math inline">\(i=1\)</span>から、<span class="math inline">\(100\)</span>までの<span class="math inline">\(x_i\)</span>を足し合わせる」という意味を持つ。</p>
 <p>合計をRで計算するときには、<code>sum()</code>という関数を使って以下のようになる。ここではheightというオブジェクトに100個の数値を持つベクトルが入っているため、<code>sum()</code>はベクトルのすべての数値を足し合わせる。</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="rstats.html#cb174-1" tabindex="-1"></a><span class="fu">sum</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="rstats.html#cb176-1" tabindex="-1"></a><span class="fu">sum</span>(height)</span></code></pre></div>
 <pre><code>## [1] 17008</code></pre>
 </div>
-<div id="平均" class="section level3 hasAnchor" number="7.3.2">
-<h3><span class="header-section-number">7.3.2</span> 平均<a href="rstats.html#平均" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="平均" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> 平均<a href="rstats.html#平均" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>もっとも身近な統計量は平均であろう。統計学において平均値とは一般的に算術平均（相加平均）を指す。これはすべてのデータを合計し、それをデータの個数で割ることで求められる。</p>
 <p>統計ではよくデータ<span class="math inline">\(x_{i}\)</span>の平均を、<span class="math inline">\(x\)</span>に棒をつけて<span class="math inline">\(\bar{x}\)</span>と表現する。</p>
 <p><span class="math display">\[
 \bar{x} = \frac{1}{n}\sum^{n}_{i=1}x_i
 \]</span></p>
 <p>これをRで計算するときには、<code>mean()</code>という関数が用意されている。</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="rstats.html#cb176-1" tabindex="-1"></a><span class="fu">mean</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="rstats.html#cb178-1" tabindex="-1"></a><span class="fu">mean</span>(height)</span></code></pre></div>
 <pre><code>## [1] 170.08</code></pre>
 </div>
-<div id="中央値" class="section level3 hasAnchor" number="7.3.3">
-<h3><span class="header-section-number">7.3.3</span> 中央値<a href="rstats.html#中央値" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="中央値" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> 中央値<a href="rstats.html#中央値" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>中央値は、一言でいうと「真ん中」にある数値である。数値を小さい順に並べ、その真ん中にある数値を代表値として選ぶ。これは平均値と一致することもあれば、異なることもある。</p>
 <p>もう少し厳密に定義すると、
 <span class="math inline">\(n\)</span>個の観測値からなるデータ(<span class="math inline">\(x_1,x_2,\ldots,x_n\)</span>)を小さい順に並べたものを(<span class="math inline">\(x_1&#39;,x_2&#39;,\ldots,x_{n}&#39;\)</span>) とする。中央値<span class="math inline">\(Q_{\frac{1}{2}}\)</span>は</p>
@@ -575,38 +585,38 @@ x_{\frac{n}{2}} &amp; \text{もし } n \text{が奇数の場合} \\
 <p>難しく見えるかもしれないが、単純なことを行っている。<span class="math inline">\(n\)</span>,つまりデータの個数が奇数ならば、「真ん中」の数値が中央値となる。データの個数が5なら3番目, 99なら50番目である。
 もし、データが偶数ならば、「真ん中」の数値はない。そこで、ちょうど真ん中を挟む二つの数字の平均を取る。100個のデータがあるならば、50番目と51番目の数字の平均を取ることで中央値とする。</p>
 <p>Rでの計算は<code>median()</code>関数を用いる。medianは文字通り英語で中央値という意味である。</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="rstats.html#cb178-1" tabindex="-1"></a><span class="fu">median</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="rstats.html#cb180-1" tabindex="-1"></a><span class="fu">median</span>(height)</span></code></pre></div>
 <pre><code>## [1] 170</code></pre>
 </div>
-<div id="最大値最小値" class="section level3 hasAnchor" number="7.3.4">
-<h3><span class="header-section-number">7.3.4</span> 最大値・最小値<a href="rstats.html#最大値最小値" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="最大値最小値" class="section level3 hasAnchor" number="7.4.4">
+<h3><span class="header-section-number">7.4.4</span> 最大値・最小値<a href="rstats.html#最大値最小値" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データの中で最も大きい数値、小さい数値もデータの特徴を表す。</p>
 <p>Rでは<code>max()</code>関数, <code>min()</code>関数で算出できる。</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="rstats.html#cb180-1" tabindex="-1"></a><span class="co"># データの最大値</span></span>
-<span id="cb180-2"><a href="rstats.html#cb180-2" tabindex="-1"></a><span class="fu">max</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="rstats.html#cb182-1" tabindex="-1"></a><span class="co"># データの最大値</span></span>
+<span id="cb182-2"><a href="rstats.html#cb182-2" tabindex="-1"></a><span class="fu">max</span>(height)</span></code></pre></div>
 <pre><code>## [1] 187</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="rstats.html#cb182-1" tabindex="-1"></a><span class="co"># データの最小値</span></span>
-<span id="cb182-2"><a href="rstats.html#cb182-2" tabindex="-1"></a><span class="fu">min</span>(height)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="rstats.html#cb184-1" tabindex="-1"></a><span class="co"># データの最小値</span></span>
+<span id="cb184-2"><a href="rstats.html#cb184-2" tabindex="-1"></a><span class="fu">min</span>(height)</span></code></pre></div>
 <pre><code>## [1] 147</code></pre>
 </div>
-<div id="分散" class="section level3 hasAnchor" number="7.3.5">
-<h3><span class="header-section-number">7.3.5</span> 分散<a href="rstats.html#分散" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="分散" class="section level3 hasAnchor" number="7.4.5">
+<h3><span class="header-section-number">7.4.5</span> 分散<a href="rstats.html#分散" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>分散は、データのばらつきを示す統計量である。数値が大きければデータは互いに大きく異なる数値を取っており、小さけば近い数値を取っている。分散は、それぞれのデータの数値から平均値を引き、それを二乗することで求められる。</p>
 <p><span class="math display">\[
 \sigma^2 = \frac{1}{n}\sum^{n}_{i=1}( x_i - \bar{x})^2
 \]</span></p>
 <p>Rで分散を計算する関数はデフォルトでは<strong>用意されていない</strong>。なぜないのかは、Section <a href="rstatsinfe.html#rstatsinfe">9</a>の不偏分散の項で説明する。</p>
 <p>分散をRで計算すると、自分で数式を表現する必要があるが以下のようになる。</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="rstats.html#cb184-1" tabindex="-1"></a>height_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(height) <span class="co"># heightの平均値</span></span>
-<span id="cb184-2"><a href="rstats.html#cb184-2" tabindex="-1"></a>height_n <span class="ot">&lt;-</span> <span class="fu">length</span>(height)  <span class="co"># heightのデータの個数</span></span>
-<span id="cb184-3"><a href="rstats.html#cb184-3" tabindex="-1"></a></span>
-<span id="cb184-4"><a href="rstats.html#cb184-4" tabindex="-1"></a></span>
-<span id="cb184-5"><a href="rstats.html#cb184-5" tabindex="-1"></a>sigma2 <span class="ot">=</span> <span class="fu">sum</span>((height<span class="sc">-</span>height_mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>height_n</span>
-<span id="cb184-6"><a href="rstats.html#cb184-6" tabindex="-1"></a>sigma2</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="rstats.html#cb186-1" tabindex="-1"></a>height_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(height) <span class="co"># heightの平均値</span></span>
+<span id="cb186-2"><a href="rstats.html#cb186-2" tabindex="-1"></a>height_n <span class="ot">&lt;-</span> <span class="fu">length</span>(height)  <span class="co"># heightのデータの個数</span></span>
+<span id="cb186-3"><a href="rstats.html#cb186-3" tabindex="-1"></a></span>
+<span id="cb186-4"><a href="rstats.html#cb186-4" tabindex="-1"></a></span>
+<span id="cb186-5"><a href="rstats.html#cb186-5" tabindex="-1"></a>sigma2 <span class="ot">=</span> <span class="fu">sum</span>((height<span class="sc">-</span>height_mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>height_n</span>
+<span id="cb186-6"><a href="rstats.html#cb186-6" tabindex="-1"></a>sigma2</span></code></pre></div>
 <pre><code>## [1] 72.9936</code></pre>
 </div>
-<div id="もう一つの分散不偏分散" class="section level3 hasAnchor" number="7.3.6">
-<h3><span class="header-section-number">7.3.6</span> もう一つの分散：不偏分散<a href="rstats.html#もう一つの分散不偏分散" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="もう一つの分散不偏分散" class="section level3 hasAnchor" number="7.4.6">
+<h3><span class="header-section-number">7.4.6</span> もう一つの分散：不偏分散<a href="rstats.html#もう一つの分散不偏分散" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>不偏分散は同じくデータの散らばりを示す統計量である。標本分散と呼んだり、文脈によっては単に分散と呼んでこちらを指す場合もある。
 詳しくは推定統計量の項で説明する。</p>
 <p>分散との違いは、<code>n</code>で割るか、<code>n-1</code>で割るかの違いである。</p>
@@ -614,12 +624,12 @@ x_{\frac{n}{2}} &amp; \text{もし } n \text{が奇数の場合} \\
 s^2 = \frac{1}{n-1}\sum^{n}_{i=1}( x_i - \bar{x})^2
 \]</span></p>
 <p>Rでは<code>var()</code>関数で計算できる。</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="rstats.html#cb186-1" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="fu">var</span>(height)</span>
-<span id="cb186-2"><a href="rstats.html#cb186-2" tabindex="-1"></a>s2</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="rstats.html#cb188-1" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="fu">var</span>(height)</span>
+<span id="cb188-2"><a href="rstats.html#cb188-2" tabindex="-1"></a>s2</span></code></pre></div>
 <pre><code>## [1] 73.73091</code></pre>
 </div>
-<div id="標準偏差" class="section level3 hasAnchor" number="7.3.7">
-<h3><span class="header-section-number">7.3.7</span> 標準偏差<a href="rstats.html#標準偏差" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="標準偏差" class="section level3 hasAnchor" number="7.4.7">
+<h3><span class="header-section-number">7.4.7</span> 標準偏差<a href="rstats.html#標準偏差" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>標準偏差もデータのばらつきを表す。
 分散もばらつきを表す統計量なので、なぜ二つあるのか？と思うかもしれない。
 分散は、データのばらつきを二乗してから合計してデータ数で割っている。そのため、数値大きさはばらつきを示すが、その数値の単位は二乗されてしまっている。身長のケースで言えば<span class="math inline">\(cm^2\)</span>となっているのである。</p>
@@ -630,12 +640,12 @@ s^2 = \frac{1}{n-1}\sum^{n}_{i=1}( x_i - \bar{x})^2
 \sigma = \sqrt{\sigma^2}
 \]</span></p>
 <p>ここでは単純に上で計算した分散のルーとしてを計算しよう。ルートは<code>sqrt()</code>という関数で計算できる。</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="rstats.html#cb188-1" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fu">sqrt</span>(sigma2)</span>
-<span id="cb188-2"><a href="rstats.html#cb188-2" tabindex="-1"></a>sigma</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="rstats.html#cb190-1" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fu">sqrt</span>(sigma2)</span>
+<span id="cb190-2"><a href="rstats.html#cb190-2" tabindex="-1"></a>sigma</span></code></pre></div>
 <pre><code>## [1] 8.543629</code></pre>
 </div>
-<div id="不偏標準偏差" class="section level3 hasAnchor" number="7.3.8">
-<h3><span class="header-section-number">7.3.8</span> 不偏標準偏差<a href="rstats.html#不偏標準偏差" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="不偏標準偏差" class="section level3 hasAnchor" number="7.4.8">
+<h3><span class="header-section-number">7.4.8</span> 不偏標準偏差<a href="rstats.html#不偏標準偏差" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>標準偏差を計算するために、不偏分散を用いたものが不偏標準偏差である。標本標準偏差と呼ばれたり、文脈によっては単に標準偏差とよんでこちらを指す場合もある。
 以下の記述統計などではこちらが一般的に使われる。
 理由は推定統計量の項を参照してほしい。</p>
@@ -643,121 +653,74 @@ s^2 = \frac{1}{n-1}\sum^{n}_{i=1}( x_i - \bar{x})^2
 s = \sqrt{s^2}
 \]</span>
 不偏標準偏差は上と同様にルートでも計算できるが、<code>sd()</code>という関数が用意されている。確認するために、いずれの方法でも計算してみよう。</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="rstats.html#cb190-1" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sqrt</span>(s2)</span>
-<span id="cb190-2"><a href="rstats.html#cb190-2" tabindex="-1"></a>s</span></code></pre></div>
-<pre><code>## [1] 8.58667</code></pre>
-<p><code>sd</code>関数を使う場合</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="rstats.html#cb192-1" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(height)</span>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="rstats.html#cb192-1" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sqrt</span>(s2)</span>
 <span id="cb192-2"><a href="rstats.html#cb192-2" tabindex="-1"></a>s</span></code></pre></div>
 <pre><code>## [1] 8.58667</code></pre>
+<p><code>sd</code>関数を使う場合</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="rstats.html#cb194-1" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(height)</span>
+<span id="cb194-2"><a href="rstats.html#cb194-2" tabindex="-1"></a>s</span></code></pre></div>
+<pre><code>## [1] 8.58667</code></pre>
 </div>
 </div>
-<div id="rによる記述統計のテクニック" class="section level2 hasAnchor" number="7.4">
-<h2><span class="header-section-number">7.4</span> Rによる記述統計のテクニック<a href="rstats.html#rによる記述統計のテクニック" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rによる記述統計のテクニック" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Rによる記述統計のテクニック<a href="rstats.html#rによる記述統計のテクニック" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>ここでは、簡単に記述統計を示すテクニックを紹介する。
 データ分析を行う上で、手元のデータがどういうデータなのかを記述統計で見るのは重要である。
 また、論文にする際にも、まずはデータの説明として記述統計表を示すのが一般的である。</p>
-<div id="使用するデータ" class="section level3 hasAnchor" number="7.4.1">
-<h3><span class="header-section-number">7.4.1</span> 使用するデータ<a href="rstats.html#使用するデータ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="使用するデータ" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> 使用するデータ<a href="rstats.html#使用するデータ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>ここではRにもともと入っているmtcarsというデータを使用する。
 1974年にアメリカのMotor Trendという雑誌に掲載された燃費などの性能を比較したデータである。</p>
 <p>例えば<code>mpg</code>は燃費（１ガロン当たりのマイル）、<code>cyl</code>はシリンダーの数、<code>hp</code>はエンジンの馬力、<code>wt</code>は重さ、などである。
 詳しく知りたい人は、RStudioの右下ペーンの[Help]タブから、<code>mtcars</code>と検索してみよう。</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="rstats.html#cb194-1" tabindex="-1"></a><span class="fu">data</span>(mtcars) <span class="co">#データの呼び出し</span></span>
-<span id="cb194-2"><a href="rstats.html#cb194-2" tabindex="-1"></a></span>
-<span id="cb194-3"><a href="rstats.html#cb194-3" tabindex="-1"></a>mtcars</span></code></pre></div>
-<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec
-## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46
-## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02
-## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61
-## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44
-## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02
-## Valiant             18.1   6 225.0 105 2.76 3.460 20.22
-## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84
-## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00
-## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90
-## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30
-## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90
-## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40
-## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60
-## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00
-## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98
-## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82
-## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42
-## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47
-## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52
-## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90
-## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01
-## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87
-## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30
-## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41
-## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05
-## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90
-## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70
-## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90
-## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50
-## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50
-## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60
-## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60
-##                     vs am gear carb
-## Mazda RX4            0  1    4    4
-## Mazda RX4 Wag        0  1    4    4
-## Datsun 710           1  1    4    1
-## Hornet 4 Drive       1  0    3    1
-## Hornet Sportabout    0  0    3    2
-## Valiant              1  0    3    1
-## Duster 360           0  0    3    4
-## Merc 240D            1  0    4    2
-## Merc 230             1  0    4    2
-## Merc 280             1  0    4    4
-## Merc 280C            1  0    4    4
-## Merc 450SE           0  0    3    3
-## Merc 450SL           0  0    3    3
-## Merc 450SLC          0  0    3    3
-## Cadillac Fleetwood   0  0    3    4
-## Lincoln Continental  0  0    3    4
-## Chrysler Imperial    0  0    3    4
-## Fiat 128             1  1    4    1
-## Honda Civic          1  1    4    2
-## Toyota Corolla       1  1    4    1
-## Toyota Corona        1  0    3    1
-## Dodge Challenger     0  0    3    2
-## AMC Javelin          0  0    3    2
-## Camaro Z28           0  0    3    4
-## Pontiac Firebird     0  0    3    2
-## Fiat X1-9            1  1    4    1
-## Porsche 914-2        0  1    5    2
-## Lotus Europa         1  1    5    2
-## Ford Pantera L       0  1    5    4
-## Ferrari Dino         0  1    5    6
-## Maserati Bora        0  1    5    8
-## Volvo 142E           1  1    4    2</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="rstats.html#cb196-1" tabindex="-1"></a><span class="fu">data</span>(mtcars) <span class="co">#データの呼び出し</span></span>
+<span id="cb196-2"><a href="rstats.html#cb196-2" tabindex="-1"></a></span>
+<span id="cb196-3"><a href="rstats.html#cb196-3" tabindex="-1"></a>mtcars</span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
 </div>
-<div id="summary関数" class="section level3 hasAnchor" number="7.4.2">
-<h3><span class="header-section-number">7.4.2</span> <code>summary</code>関数<a href="rstats.html#summary関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="summary関数" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> <code>summary</code>関数<a href="rstats.html#summary関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>summaryというRデフォルトの関数(<code>base</code>関数と呼ぶ)を使うと、最小・最大・平均・中央値・四分位点などが表示される。</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="rstats.html#cb196-1" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code></pre></div>
-<pre><code>##       mpg             cyl             disp      
-##  Min.   :10.40   Min.   :4.000   Min.   : 71.1  
-##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8  
-##  Median :19.20   Median :6.000   Median :196.3  
-##  Mean   :20.09   Mean   :6.188   Mean   :230.7  
-##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0  
-##  Max.   :33.90   Max.   :8.000   Max.   :472.0  
-##        hp             drat             wt       
-##  Min.   : 52.0   Min.   :2.760   Min.   :1.513  
-##  1st Qu.: 96.5   1st Qu.:3.080   1st Qu.:2.581  
-##  Median :123.0   Median :3.695   Median :3.325  
-##  Mean   :146.7   Mean   :3.597   Mean   :3.217  
-##  3rd Qu.:180.0   3rd Qu.:3.920   3rd Qu.:3.610  
-##  Max.   :335.0   Max.   :4.930   Max.   :5.424  
-##       qsec             vs               am        
-##  Min.   :14.50   Min.   :0.0000   Min.   :0.0000  
-##  1st Qu.:16.89   1st Qu.:0.0000   1st Qu.:0.0000  
-##  Median :17.71   Median :0.0000   Median :0.0000  
-##  Mean   :17.85   Mean   :0.4375   Mean   :0.4062  
-##  3rd Qu.:18.90   3rd Qu.:1.0000   3rd Qu.:1.0000  
-##  Max.   :22.90   Max.   :1.0000   Max.   :1.0000  
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="rstats.html#cb198-1" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code></pre></div>
+<pre><code>##       mpg             cyl             disp             hp             drat             wt             qsec             vs               am        
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0   Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000   Min.   :0.0000  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000   1st Qu.:0.0000  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0   Median :3.695   Median :3.325   Median :17.71   Median :0.0000   Median :0.0000  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7   Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375   Mean   :0.4062  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0   3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000   3rd Qu.:1.0000  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0   Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000   Max.   :1.0000  
 ##       gear            carb      
 ##  Min.   :3.000   Min.   :1.000  
 ##  1st Qu.:3.000   1st Qu.:2.000  
@@ -766,43 +729,31 @@ s = \sqrt{s^2}
 ##  3rd Qu.:4.000   3rd Qu.:4.000  
 ##  Max.   :5.000   Max.   :8.000</code></pre>
 </div>
-<div id="describe関数" class="section level3 hasAnchor" number="7.4.3">
-<h3><span class="header-section-number">7.4.3</span> <code>describe</code>関数<a href="rstats.html#describe関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="describe関数" class="section level3 hasAnchor" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> <code>describe</code>関数<a href="rstats.html#describe関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>describe</code>関数を使うと、簡単にデータ数(<code>n</code>)、平均、標準偏差や範囲を計算することができる。ここで計算されている標準偏差は不偏標準偏差である。</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="rstats.html#cb198-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb198-2"><a href="rstats.html#cb198-2" tabindex="-1"></a><span class="fu">describe</span>(mtcars, <span class="at">skew=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>##      vars  n   mean     sd median   min    max  range
-## mpg     1 32  20.09   6.03  19.20 10.40  33.90  23.50
-## cyl     2 32   6.19   1.79   6.00  4.00   8.00   4.00
-## disp    3 32 230.72 123.94 196.30 71.10 472.00 400.90
-## hp      4 32 146.69  68.56 123.00 52.00 335.00 283.00
-## drat    5 32   3.60   0.53   3.70  2.76   4.93   2.17
-## wt      6 32   3.22   0.98   3.33  1.51   5.42   3.91
-## qsec    7 32  17.85   1.79  17.71 14.50  22.90   8.40
-## vs      8 32   0.44   0.50   0.00  0.00   1.00   1.00
-## am      9 32   0.41   0.50   0.00  0.00   1.00   1.00
-## gear   10 32   3.69   0.74   4.00  3.00   5.00   2.00
-## carb   11 32   2.81   1.62   2.00  1.00   8.00   7.00
-##         se
-## mpg   1.07
-## cyl   0.32
-## disp 21.91
-## hp   12.12
-## drat  0.09
-## wt    0.17
-## qsec  0.32
-## vs    0.09
-## am    0.09
-## gear  0.13
-## carb  0.29</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="rstats.html#cb200-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb200-2"><a href="rstats.html#cb200-2" tabindex="-1"></a><span class="fu">describe</span>(mtcars, <span class="at">skew=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>##      vars  n   mean     sd median   min    max  range    se
+## mpg     1 32  20.09   6.03  19.20 10.40  33.90  23.50  1.07
+## cyl     2 32   6.19   1.79   6.00  4.00   8.00   4.00  0.32
+## disp    3 32 230.72 123.94 196.30 71.10 472.00 400.90 21.91
+## hp      4 32 146.69  68.56 123.00 52.00 335.00 283.00 12.12
+## drat    5 32   3.60   0.53   3.70  2.76   4.93   2.17  0.09
+## wt      6 32   3.22   0.98   3.33  1.51   5.42   3.91  0.17
+## qsec    7 32  17.85   1.79  17.71 14.50  22.90   8.40  0.32
+## vs      8 32   0.44   0.50   0.00  0.00   1.00   1.00  0.09
+## am      9 32   0.41   0.50   0.00  0.00   1.00   1.00  0.09
+## gear   10 32   3.69   0.74   4.00  3.00   5.00   2.00  0.13
+## carb   11 32   2.81   1.62   2.00  1.00   8.00   7.00  0.29</code></pre>
 </div>
-<div id="skim関数" class="section level3 hasAnchor" number="7.4.4">
-<h3><span class="header-section-number">7.4.4</span> <code>skim</code>関数<a href="rstats.html#skim関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="skim関数" class="section level3 hasAnchor" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> <code>skim</code>関数<a href="rstats.html#skim関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>skim</code>関数を使うと、記述統計に加えて簡単なヒストグラムも図示してくれる。ここで計算されている標準偏差は不偏標準偏差である。</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="rstats.html#cb200-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb200-2"><a href="rstats.html#cb200-2" tabindex="-1"></a><span class="fu">skim</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="rstats.html#cb202-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb202-2"><a href="rstats.html#cb202-2" tabindex="-1"></a><span class="fu">skim</span>(mtcars)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-111">Table 7.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-144">Table 7.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>

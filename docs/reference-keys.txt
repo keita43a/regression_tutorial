@@ -12,10 +12,10 @@ fig:rstudioinstall
 fig:rstudio2
 fig:directory
 fig:projectmake
-tab:unnamed-chunk-111
+tab:unnamed-chunk-144
 fig:pressure
-tab:unnamed-chunk-164
-tab:unnamed-chunk-183
+tab:unnamed-chunk-206
+tab:unnamed-chunk-225
 この資料について
 whatsr
 r
@@ -105,7 +105,7 @@ datahandling
 きれいなデータ
 データの読み込み
 演習-データの読み込み
-日本語のデータを読み込む際の注意点
+datajpn
 readrのその他のオプション
 tidy-data-整然データ
 データフレームを扱うテクニックパイプ
@@ -144,6 +144,7 @@ rstats
 統計とは
 記述統計
 infstats
+準備
 データとは-1
 代表的な統計量
 数式
@@ -161,6 +162,7 @@ describe関数
 skim関数
 rviz
 rにおける描画
+準備-1
 描画をしてみよう
 復習データ読み込み
 描画の前に
@@ -184,6 +186,8 @@ lineplotpractice
 箱ひげ図
 ヴァイオリンプロット
 適した描画
+ゼミ課題データの描画
+例ssdse-b県別推移のデータ
 rstatsinfe
 母集団と標本
 推定量
@@ -237,6 +241,7 @@ rでの演習
 演習問題処置に反応しているかの確認
 演習問題前後での比較
 差の差法
+回帰分析による差の差法
 practiceanswer
 ch.4
 ch.-6

@@ -388,4 +388,42 @@ njmin_table_did2
 つまり、6.15%ポイント雇用が増加したという推定になる。
 
 
+### 回帰分析による差の差法
+
+上で解説した回帰分析による差の差法の推定を行ってみよう。
+
+まず、データをlong形式に変換し、同じ変数であるフルタイム雇用の割合を前後で一つの列にする。
+
+```{r}
+data_njmin_long <- data_njmin %>% 
+  # 州とfull_で始まる列のみ抽出
+  dplyr::select(state, starts_with("full_")) %>%
+  # fullで始まる列を選択して、カテゴリ名をtiming, 数値の列名をpropとしてlong形式にする
+  pivot_longer(cols = starts_with("full"),
+               names_to = "timing",
+               names_prefix = "full_prop_",
+               values_to = "prop") %>% 
+  # 新たなダミー変数を作成する。上と同様に、policyは政策を受ける（最低賃金が上げられる）州なら１とするダミー変数
+  # timeは政策の前後で後ならば1とするダミー変数
+  mutate(policy = ifelse(state == "NJ", 1, 0),
+         time = ifelse(timing == "after", 1, 0))
+```
+
+
+このlong形式のデータセットを使って回帰分析を行う。
+
+```{r}
+reg_did1 <- feols(prop ~ policy + time + policy:time, data=data_njmin_long)
+
+etable(reg_did1)
+
+```
+
+回帰分析表の`policy x time`の推定値は0.0616となっているが、これは上で計算した差の差法の推定値と同じである。
+
+ただし、統計的には母集団ではゼロである仮説を棄却できないため、増加するとは言い難いが、
+少なくとも減少はしていない。
+
+この研究は、差の差法を使って最低賃金の雇用に対する影響という経済学において重要な問いに答えた有名な研究であり、それまでは最低賃金を上げると雇用に対して悪影響が起こるとされていた理論に対して新たな貢献をした重要な研究である。
+
 
