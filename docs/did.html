@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Rとはなにか？ | 武蔵大生のためのRによる実証分析入門</title>
+  <title>Chapter 13 差の差法 | 武蔵大生のためのRによる実証分析入門</title>
   <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Rとはなにか？ | 武蔵大生のためのRによる実証分析入門" />
+  <meta property="og:title" content="Chapter 13 差の差法 | 武蔵大生のためのRによる実証分析入門" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Rとはなにか？ | 武蔵大生のためのRによる実証分析入門" />
+  <meta name="twitter:title" content="Chapter 13 差の差法 | 武蔵大生のためのRによる実証分析入門" />
   
   <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="howtostart.html"/>
+<link rel="prev" href="paneldata.html"/>
+<link rel="next" href="practiceanswer.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -480,122 +480,524 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="whatsr" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Rとはなにか？<a href="whatsr.html#whatsr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="r" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> R?<a href="whatsr.html#r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="did" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> 差の差法<a href="did.html#did" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="差の差法とは" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> 差の差法とは<a href="did.html#差の差法とは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ここからは、より因果関係を推定できる可能性が高い<strong>疑似実験</strong>の手法を学んでいきます。</p>
+<p>差の差法（Difference-in-Differences, DiD, 差分の差分法)は、文字通り2つのグループの差に差があるか、をみることであるグループに嗜好された政策や出来事の効果や影響を推定しようとするアプローチである。</p>
+<div id="差の差法のアイデア" class="section level3 hasAnchor" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> 差の差法のアイデア<a href="did.html#差の差法のアイデア" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>パネルデータで説明したような状況でもあっても、目的変数と説明変数の両方に影響を与える変数の存在を完全に排除しきれるわけではない。
+パネルデータで紹介した固定効果モデルでも、固定効果を除いた説明変数の効果を推定できているが、固定効果ではない変数が存在している可能性も否定はできない。</p>
+<p>より因果関係により迫れる方法として、疑似実験が挙げられる。これはあたかも実験のような状況を見つけ出して、実験でいう処置群（政策などの影響を受けるグループ）と、対照群（効果・影響を受けないグループ）を比較する方法である。</p>
+<p>本当の実験であれば、処置を行う前はいずれのグループも全く同じであり、処置を受けた後に2つを比較すれば、その差が処置の効果だと言うことになる。</p>
+<p>実際の社会では、政策などが実施される前後で2つのグループが全く同じ、ということはまれであろう。
+しかし、2つのグループが異なるけれど、同じような動きをする、と考えればもう少し可能性は広がる。</p>
+<p>例えば、埼玉県と東京都の平均所得は当然異なるが、景気などによって東京都の所得が上がっているときは埼玉県の所得も上がっていそうだ。
+このように平行に推移する目的変数であるならば、差だけをとっても比較はできないが、差の差、を取ることで比較することが可能になる。</p>
+<p>下の図は、差の差法の概念を示した図である。</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="did.html#cb279-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/did_concept_pos.png&quot;</span>)</span></code></pre></div>
+<p><img src="fig/did_concept_pos.png" width="1015" /></p>
+<p>処置群は、なんらかの政策を受ける。効果があるならば、政策によって目的変数が変化する。
+しかし、前後関係だけで比較することはできない。なぜならば、その前後の変化は政策以外による影響もあるかもしれないからだ。</p>
+<p>仮に、東京都の中学校で１クラス40人学級だったものを、30人学級に変更するという政策が行われたとしよう。
+担任の教師ひとりが担当する生徒数が減るので、より目が行き届くようになり、生徒にとって良い影響があると期待される。
+例えば、平均的な試験のスコアが上がると期待される。
+この変更を実際に施行して東京都の中学校の試験の平均スコアを比較してみたとしよう。すると、図のように前回よりも下がっていたとしたらどうだろうか？
+クラスの人数を少なくすることはよいことどころかスコアを悪化させる悪い政策だったのだろうか？</p>
+<p>となりの埼玉県でも同じテストを実施しているとしよう。しかし、東京都と違って埼玉県ではこの時期にクラス人数の変更やその他テストスコアに影響しそうな施策を変更していないとする。この埼玉県の中学校を比較対象グループとする。
+埼玉県のテストスコアを見てみると、大きく減少している。例えば、たまたま学級サイズ変更後のテストが前年のテストより難しかった可能性がある。</p>
+<p>埼玉県と東京都は東京都のほうが上だが、普段は同じような動きをするとする（平行トレンドの家庭）。
+そこで、埼玉県の「前後の差」を東京都の「もし学級サイズの変更がなかった場合の差」として考えてみる。
+すると、東京都はもし学級サイズの変更がなければ図の点線のような動きになっていたことになる。すなわち、もっとテストスコアが悪かっただろう、ということだ。</p>
+<p>そこで、「実際に観察された東京都の前後差」を埼玉県の前後差から引くと、「東京都がもし学級サイズを変更していなかった場合のテストスコアの差」から「東京都が学級サイズを変更した場合（つまり現実）のテストスコアの差」を引くことと同義になり、東京都で学級サイズを変更したことによるテストスコアへの影響を推定できることになる。</p>
+<p>これが差分の差分法のアイデアである。</p>
+</div>
+<div id="差分の差分法の仮定" class="section level3 hasAnchor" number="13.1.2">
+<h3><span class="header-section-number">13.1.2</span> 差分の差分法の仮定<a href="did.html#差分の差分法の仮定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>因果推定としての差分の差分法による推定では、以下のような仮定を置いて推定する。以下の仮定が明らかに成り立たない場合は、この方法は使えないことに留意が必要だ。</p>
 <ul>
-<li><p>　<strong>R</strong> は統計、データ分析、作図のためのインタープリタープログラミング言語</p></li>
-<li><p>統計やデータ分析を行うアプリ</p>
-<ul>
-<li>他にはSPSS, Stata</li>
-<li>Pythonもよく使われる</li>
-</ul></li>
+<li>平行トレンドの仮定：処置グループと対照グループはもし政策の施行がなければ平行に推移する。</li>
+<li>スピルオーバーがない：処置グループの効果や影響が対照グループに影響しない。</li>
 </ul>
 </div>
-<div id="excelじゃだめなのか" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Excelじゃだめなのか<a href="whatsr.html#excelじゃだめなのか" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="回帰分析を使って行う方法" class="section level3 hasAnchor" number="13.1.3">
+<h3><span class="header-section-number">13.1.3</span> 回帰分析を使って行う方法<a href="did.html#回帰分析を使って行う方法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>比較するというアイデアは上の通りだが、それを実際にどうやって推定するのだろうか？</p>
+<p>ここでは、回帰分析を使って差分の差分法を推定する方法を説明する。</p>
+<p>差分の差分法が適用できるようなデータは、少なくとも2つの期間（政策施行前と後）があり、2つのグループ（政策が施行されたグループと対照グループ）がある。
+データでは、それぞれ個々人や自治体などのユニットで値は異なるが、簡単に説明するためにそれぞれのグループの平均だけで話をすると、以下のように整理できる。</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">対照群 (A)</th>
+<th>処置群 (B)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>時点 t=1</td>
+<td align="center"><span class="math inline">\(Y_{1A}\)</span></td>
+<td><span class="math inline">\(Y_{1B}\)</span></td>
+</tr>
+<tr class="even">
+<td>時点 t=2</td>
+<td align="center"><span class="math inline">\(Y_{2A}\)</span></td>
+<td><span class="math inline">\(Y_{2B}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>ここで、処置群の差は<span class="math inline">\(Y_{2B} - Y_{1B}\)</span>で表され、対照群の差は<span class="math inline">\(Y_{2A} - Y_{1A}\)</span>となる。
+差の差で推定される効果は</p>
+<p><span class="math display">\[
+(Y_{2B} - Y_{1B}) - (Y_{2A} - Y_{1A})
+\]</span></p>
+<p>として表現することができる。平均値だけで言えば、これで推定された値が差の差法で推定された政策の効果である。</p>
+<p>これを回帰分析で表現するとどうなるだろうか。
+政策前後と対照・処置群両方が含まれたデータを使って、以下のような式を推定するとする。</p>
+<p><span class="math display">\[
+Y_{it} = \alpha + \beta_{1} Policy_{i} + \beta_{2} Time_{t} + \beta_{3} Policy_{i} \times Time_{t} + \varepsilon_{it}
+\]</span>
+ここで、<span class="math inline">\(Policy_{i}\)</span>と<span class="math inline">\(Time_{t}\)</span>はダミー変数である。<span class="math inline">\(Policy_{i}\)</span>はもし、該当データ（個人<span class="math inline">\(i\)</span>）が、処置群に入るならば１、対照群ならば０を取る。
+<span class="math inline">\(Time_{t}\)</span>は該当データ(時点<span class="math inline">\(t\)</span>)のタイミングが政策実施後ならば１，政策実施前ならば0を取る。</p>
+<p>それぞれのケースを見てみよう。</p>
+<p><strong>ケース１：政策実施前＋対照群</strong></p>
+<p>もし政策実施前で、対照群に入っているデータならば
+<span class="math display">\[
+Y_{it} = \alpha + \beta_{1} 0 + \beta_{2} 0 + \beta_{3} 0 \times 0 + \varepsilon_{it} = \alpha + \varepsilon_{it}
+\]</span></p>
+<p>このケースは、上の表でいうと<span class="math inline">\(Y_{1A}\)</span>に当たる。このグループの平均を取ると、誤差項はゼロになるので、<span class="math inline">\(Y_{1A} = \alpha\)</span>となる。</p>
+<p><strong>ケース２：政策実施前＋処置群</strong></p>
+<p>もし政策実施前(<span class="math inline">\(Time_{t} = 0\)</span>)で、処置群(<span class="math inline">\(Policy_{i}=1\)</span>)に入っているデータならば
+<span class="math display">\[
+Y_{it} = \alpha + \beta_{1} 1 + \beta_{2} 0 + \beta_{3} 1 \times 0 + \varepsilon_{it} = \alpha + \beta_{1} + \varepsilon_{it}
+\]</span>
+同様に<span class="math inline">\(Y_1B=\alpha + \beta_1\)</span>となる。</p>
+<p><strong>ケース３：政策実施後＋対照群</strong></p>
+<p>もし政策実施後(<span class="math inline">\(Time_{t} = 1\)</span>)で、対照群(<span class="math inline">\(Policy_{i}=0\)</span>)に入っているデータならば
+<span class="math display">\[
+Y_{it} = \alpha + \beta_{1} \cdot0 + \beta_{2} \cdot 1 + \beta_{3} \cdot 0 \times 1 + \varepsilon_{it} = \alpha + \beta_{2} + \varepsilon_{it}
+\]</span></p>
+<p>同様に<span class="math inline">\(Y_1B=\alpha + \beta_2\)</span>となる。</p>
+<p><strong>ケース４：政策実施後＋処置群</strong></p>
+<p>もし政策実施後(<span class="math inline">\(Time_{t} = 1\)</span>)で、対照群(<span class="math inline">\(Policy_{i}=0\)</span>)に入っているデータならば</p>
+<p><span class="math display">\[
+Y_{it} = \alpha + \beta_{1} \cdot 1 + \beta_{2} \cdot 1 + \beta_{3} \cdot 1 \times 1 + \varepsilon_{it} = \alpha + \beta_{1} + \beta_{2} + \beta_{3} + \varepsilon_{it}
+\]</span></p>
+<p>同様に<span class="math inline">\(Y_2B=\alpha + \beta_1 + \beta_2 \beta_3\)</span>となる。</p>
+</div>
+<div id="演習問題" class="section level3 hasAnchor" number="13.1.4">
+<h3><span class="header-section-number">13.1.4</span> 演習問題<a href="did.html#演習問題" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>差の差法による推定効果が、回帰式の<span class="math inline">\(\beta_{3}\)</span>と一致することを証明してみよう。</p>
+</div>
+</div>
+<div id="rでの演習" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Rでの演習<a href="did.html#rでの演習" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="スクリプトの準備-1" class="section level3 hasAnchor" number="13.2.1">
+<h3><span class="header-section-number">13.2.1</span> スクリプトの準備<a href="did.html#スクリプトの準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>新しいスクリプトにコードを書いていく。
+新しくスクリプトを作成し、<code>did.R</code>という名前をつけて保存する。</p>
+</div>
+<div id="パッケージの準備-1" class="section level3 hasAnchor" number="13.2.2">
+<h3><span class="header-section-number">13.2.2</span> パッケージの準備<a href="did.html#パッケージの準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>以下のパッケージを使うので読み込んでおく。
+インストールしてない場合は、インストールする。</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="did.html#cb280-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
+<span id="cb280-2"><a href="did.html#cb280-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb280-3"><a href="did.html#cb280-3" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb280-4"><a href="did.html#cb280-4" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb280-5"><a href="did.html#cb280-5" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb280-6"><a href="did.html#cb280-6" tabindex="-1"></a><span class="fu">library</span>(fixest)</span>
+<span id="cb280-7"><a href="did.html#cb280-7" tabindex="-1"></a><span class="co"># https://rpubs.com/phle/r_tutorial_difference_in_differences</span></span>
+<span id="cb280-8"><a href="did.html#cb280-8" tabindex="-1"></a><span class="co"># https://yukiyanai.github.io/econometrics2/difference-in-differences.html</span></span></code></pre></div>
+</div>
+<div id="データの準備-1" class="section level3 hasAnchor" number="13.2.3">
+<h3><span class="header-section-number">13.2.3</span> データの準備<a href="did.html#データの準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データをダウンロードする。</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="did.html#cb281-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの格納を自動的に行う</span></span>
+<span id="cb281-2"><a href="did.html#cb281-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;&quot;</span>, </span>
+<span id="cb281-3"><a href="did.html#cb281-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/data_njmin.csv&quot;</span>)</span>
+<span id="cb281-4"><a href="did.html#cb281-4" tabindex="-1"></a></span>
+<span id="cb281-5"><a href="did.html#cb281-5" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
+<span id="cb281-6"><a href="did.html#cb281-6" tabindex="-1"></a>data_njmin <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data_njmin.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="データの確認" class="section level3 hasAnchor" number="13.2.4">
+<h3><span class="header-section-number">13.2.4</span> データの確認<a href="did.html#データの確認" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>このデータはアメリカの２つの州におけるファーストフード店の雇用者数や賃金が記録されている。
+州のPAはペンシルベニア州、NJはニュージャージー州である。
+このデータは差の差分析でもっとも有名な論文であるCard and Krueger (1994)で実際に用いられたデータである。
+1992年にニュージャージ州では最低賃金が引き上げられた（$4.25 -&gt;$5.05)が、隣のペンシルベニア州ではそのような政策の変更がなかった。
+この現象を利用して、差の差分析を用いて最低賃金が雇用に影響をもたらすかどうかを分析した研究である。</p>
+<p>データの中身を見てみる。
+まずは、どんなデータなのか<code>head()</code>で確認する。</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="did.html#cb282-1" tabindex="-1"></a><span class="fu">head</span>(data_njmin)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 9
+##   state fulltime_before parttime_before wage_before
+##   &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;
+## 1 PA                 20              20        5   
+## 2 PA                  6              26        5.5 
+## 3 PA                 50              35        5   
+## 4 PA                 10              17        5   
+## 5 PA                  2               8        5.25
+## 6 PA                  2              10        5   
+## # ℹ 5 more variables: fulltime_after &lt;dbl&gt;,
+## #   parttime_after &lt;dbl&gt;, wage_after &lt;dbl&gt;,
+## #   full_prop_before &lt;dbl&gt;, full_prop_after &lt;dbl&gt;</code></pre>
+</div>
+<div id="データの記述統計-1" class="section level3 hasAnchor" number="13.2.5">
+<h3><span class="header-section-number">13.2.5</span> データの記述統計<a href="did.html#データの記述統計-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データの記述統計を確認しよう。
+Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code>パッケージの<code>skim()</code>関数を使った。</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="did.html#cb284-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb284-2"><a href="did.html#cb284-2" tabindex="-1"></a></span>
+<span id="cb284-3"><a href="did.html#cb284-3" tabindex="-1"></a><span class="fu">skim</span>(data_njmin)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-183">Table 13.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">data_njmin</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">358</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">9</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="13%" />
+<col width="19%" />
+<col width="5%" />
+<col width="5%" />
+<col width="8%" />
+<col width="12%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">state</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="19%" />
+<col width="11%" />
+<col width="15%" />
+<col width="6%" />
+<col width="6%" />
+<col width="5%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">fulltime_before</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">8.47</td>
+<td align="right">8.70</td>
+<td align="right">0.00</td>
+<td align="right">2.12</td>
+<td align="right">6.00</td>
+<td align="right">12.00</td>
+<td align="right">60.00</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">parttime_before</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">18.75</td>
+<td align="right">10.29</td>
+<td align="right">0.00</td>
+<td align="right">11.00</td>
+<td align="right">16.25</td>
+<td align="right">25.00</td>
+<td align="right">60.00</td>
+<td align="left">▆▇▅▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">wage_before</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4.62</td>
+<td align="right">0.35</td>
+<td align="right">4.25</td>
+<td align="right">4.25</td>
+<td align="right">4.50</td>
+<td align="right">4.99</td>
+<td align="right">5.75</td>
+<td align="left">▇▃▃▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">fulltime_after</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">8.36</td>
+<td align="right">7.81</td>
+<td align="right">0.00</td>
+<td align="right">2.00</td>
+<td align="right">6.00</td>
+<td align="right">12.00</td>
+<td align="right">40.00</td>
+<td align="left">▇▃▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">parttime_after</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">18.69</td>
+<td align="right">10.57</td>
+<td align="right">0.00</td>
+<td align="right">11.00</td>
+<td align="right">17.00</td>
+<td align="right">25.00</td>
+<td align="right">60.00</td>
+<td align="left">▆▇▅▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">wage_after</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4.99</td>
+<td align="right">0.26</td>
+<td align="right">4.25</td>
+<td align="right">5.05</td>
+<td align="right">5.05</td>
+<td align="right">5.05</td>
+<td align="right">6.25</td>
+<td align="left">▁▇▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">full_prop_before</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.30</td>
+<td align="right">0.23</td>
+<td align="right">0.00</td>
+<td align="right">0.11</td>
+<td align="right">0.26</td>
+<td align="right">0.47</td>
+<td align="right">1.00</td>
+<td align="left">▇▆▃▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">full_prop_after</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.31</td>
+<td align="right">0.25</td>
+<td align="right">0.00</td>
+<td align="right">0.11</td>
+<td align="right">0.27</td>
+<td align="right">0.50</td>
+<td align="right">1.00</td>
+<td align="left">▇▅▃▂▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="政策変更の確認" class="section level3 hasAnchor" number="13.2.6">
+<h3><span class="header-section-number">13.2.6</span> 政策変更の確認<a href="did.html#政策変更の確認" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ここでは、実際に政策変更が行われたかを2 x 2 の表を作成することで確認しよう。</p>
+<p>上の表のように、２ｘ２の表では以下のような形となることを理解しよう。
+ここでは目的変数（雇用）ではなく、処置を受けた場合に変化する変数（最低賃金）であることに注意しよう。
+賃金(wage)なので<span class="math inline">\(w\)</span>で表記する。</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">対照群 (PA)</th>
+<th align="center">処置群 (NJ)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>時点 t=1</td>
+<td align="center"><span class="math inline">\(w_{1,PA}\)</span></td>
+<td align="center"><span class="math inline">\(w_{1,NJ}\)</span></td>
+</tr>
+<tr class="even">
+<td>時点 t=2</td>
+<td align="center"><span class="math inline">\(w_{2,PA}\)</span></td>
+<td align="center"><span class="math inline">\(w_{2,NJ}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>グループごとの記述統計（セクション<a href="datahandling.html#groupagg">6.11.12</a>参照）を用いて、上のような表を作ってみよう。</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="did.html#cb285-1" tabindex="-1"></a>njmin_table <span class="ot">&lt;-</span> data_njmin <span class="sc">|&gt;</span></span>
+<span id="cb285-2"><a href="did.html#cb285-2" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span> <span class="co"># 州ごとにグループ分けを行う</span></span>
+<span id="cb285-3"><a href="did.html#cb285-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">before =</span> <span class="fu">mean</span>(wage_before), </span>
+<span id="cb285-4"><a href="did.html#cb285-4" tabindex="-1"></a>            <span class="at">after =</span> <span class="fu">mean</span>(wage_after),  </span>
+<span id="cb285-5"><a href="did.html#cb285-5" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="co"># 混乱を避けるためgroup_byで指定したグループ化を解除</span></span>
+<span id="cb285-6"><a href="did.html#cb285-6" tabindex="-1"></a></span>
+<span id="cb285-7"><a href="did.html#cb285-7" tabindex="-1"></a>njmin_table</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   state before after
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 NJ      4.61  5.08
+## 2 PA      4.65  4.61</code></pre>
+<p>上の表と違って、行に州が、列に時期が入ってしまっているが、計算したいことはできている。</p>
+<p>予想通り、ペンシルベニア州（PA）では、政策変更の前後ともにあまり平均賃金は変わっていないが、ニュージャージ州（NJ）では変更後に平均賃金が上がっている。
+当然ながら、平均賃金は新しい最低賃金（$5.05)よりも高い。</p>
+<div id="演習問題処置に反応しているかの確認" class="section level4 hasAnchor" number="13.2.6.1">
+<h4><span class="header-section-number">13.2.6.1</span> <strong>演習問題</strong>：処置に反応しているかの確認<a href="did.html#演習問題処置に反応しているかの確認" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>本当にペンシルベニア州のファーストフード店が最低賃金の引き上げに従っているのだろうか？
+政策施行の前後と州ごとに、賃金が5.05 (PAの政策施行後の最低賃金)より低い店の割合を計算し、<code>njmin_table2</code>というオブジェクトに格納してから表示しなさい。</p>
+<p>ヒント：もし<code>wage_before &lt; 5.05</code>という命題が論理値によって評価される場合はTRUEかFALSEが返されるが、TRUEは1, FALSEは0として評価される。
+そのため<code>mean(wage_before &lt; 5.05)</code>という計算によって、1と0の平均が計算されるということは、<code>wage_before &lt; 5.05</code>である割合を計算することと同義である。</p>
+<pre><code>## # A tibble: 2 × 3
+##   state before   after
+##   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1 NJ     0.911 0.00344
+## 2 PA     0.940 0.955</code></pre>
+<p>結果は上のような表が出力される。
+ニュージャージ州の政策施行後だけ、著しく低い割合になっている。すべての店ではないが、多くの店は最低賃金のルールに従って賃金を設定しているようだ。</p>
+</div>
+<div id="演習問題前後での比較" class="section level4 hasAnchor" number="13.2.6.2">
+<h4><span class="header-section-number">13.2.6.2</span> <strong>演習問題</strong>：前後での比較<a href="did.html#演習問題前後での比較" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>よく行われる比較は、実際に政策を実行してみた後とその前を比較して「上がったか？下がったか？」を議論するやり方だ。
+ニュースなどでも「〇〇を実施した後、△△がX%上昇」などという文言を聞くことがあるだろう。
+ここでは、前後比較を計算してみよう。</p>
 <ul>
-<li><p><strong>Excel</strong> は表計算ソフトで多くの機能を有している</p></li>
-<li><p>Excelでできること</p>
-<ul>
-<li>計算する</li>
-<li>図を描く</li>
-<li>基本的な統計分析</li>
-</ul></li>
-<li><p>ではExcelではだめなのか？</p>
-<ul>
-<li>Excelでも最低限のことはできますが、分析が複雑になっていくと手数も増えていきます。</li>
-<li>特に、Excelだと同じことをもう一度やる（データを変えて同じ分析をする、など）がやりにくく、ミスも起きやすくなります。</li>
-<li>本当に初歩の初歩ならエクセルで十分ですが、ある程度の実証分析をやろうと思うとRなどを学ぶほうが回り道のようで結局早い</li>
-</ul></li>
+<li>ニュージャージー州のみのデータを抽出しなさい</li>
+<li>フルタイム労働者の割合(<code>full_prop_**</code>)の平均をそれぞれ政策施行前、後でとりなさい。</li>
+<li><code>full_prop_diff</code>という列を作成し、計算した前後の平均の差を計算しなさい。</li>
+<li><code>njmin_table3</code>というオブジェクトに格納して、コンソールに表示しなさい</li>
 </ul>
-<p><img src="r_basics_musashi_files/figure-html/complexity-1.png" width="1152" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rのよいところ" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Rのよいところ<a href="whatsr.html#rのよいところ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>無料</li>
-<li>多くにプラットフォーム（MacOS, Windows, Linux)で使用可能</li>
-<li>たくさんの資料がネット上に存在する</li>
-<li>分析結果をプレゼンテーションするツールが充実している</li>
-<li>Rstudio: 統合開発環境(IDE)</li>
-<li>豊富なパッケージ
-<ul>
-<li>多くのエンジニアや研究者が公開</li>
-</ul></li>
-</ul>
-</div>
-<div id="例えばrでできること図表" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> 例えばRでできること：図表<a href="whatsr.html#例えばrでできること図表" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Rでは、柔軟に図表を描くことができます。例えば以下の図は、武蔵大学のウェブサイトに公開されている学生数のデータを描画したものです。少しやり方を学べば、以下のような図を簡単に作成することができます。</p>
-<p><img src="r_basics_musashi_files/figure-html/musashi1-1.png" width="960" style="display: block; margin: auto;" /></p>
-</div>
-<div id="例えばrでできることウェブアプリ" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> 例えばRでできること：ウェブアプリ<a href="whatsr.html#例えばrでできることウェブアプリ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Rではインタラクティブなウェブアプリも作ることができます。以下の例は、数値をユーザーが変えることで結果のグラフが変化して表示される簡単なウェブアプリです。</p>
-<p><a href="https://keita43a.shinyapps.io/easter_island/">例</a></p>
-</div>
-<div id="例えばrでできることウェブスクレイピング" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> 例えばRでできること：ウェブスクレイピング<a href="whatsr.html#例えばrでできることウェブスクレイピング" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="docs/fig/suumo1.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="地図の分析活用" class="section level2 hasAnchor" number="2.7">
-<h2><span class="header-section-number">2.7</span> 地図の分析・活用<a href="whatsr.html#地図の分析活用" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-30e4409849e39179307f" style="width:100%;height:576px;"></div>
-<script type="application/json" data-for="htmlwidget-30e4409849e39179307f">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"setView":[[35.7366,139.6673],17,[]]},"evals":[],"jsHooks":[]}</script>
-</div>
-<div id="rの欠点" class="section level2 hasAnchor" number="2.8">
-<h2><span class="header-section-number">2.8</span> Rの欠点<a href="whatsr.html#rの欠点" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Rは進化が速い</li>
-<li>処理が比較的遅い
-<ul>
-<li>一般的なデータ分析をするのには問題がない</li>
-<li>Excelよりは速い</li>
-<li>ビッグデータや複雑な統計モデルを走らせると、遅かったりメモリ消費が激しい</li>
-</ul></li>
-<li>CUIなので、最初の学習が難しい</li>
-</ul>
-</div>
-<div id="cuiとgui" class="section level2 hasAnchor" number="2.9">
-<h2><span class="header-section-number">2.9</span> CUIとGUI<a href="whatsr.html#cuiとgui" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>CUI: Character User Interface
-<ul>
-<li>命令を文字で行う（キーボードを使う）操作環境</li>
-</ul></li>
-<li>GUI: Graphic User Interface
-<ul>
-<li>マウスでクリックしながら使う操作環境</li>
-</ul></li>
-</ul>
-<div id="guiの方が楽" class="section level3 hasAnchor" number="2.9.1">
-<h3><span class="header-section-number">2.9.1</span> GUIの方が楽？<a href="whatsr.html#guiの方が楽" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>GUIの方が楽では？
-<ul>
-<li>マウスで操作ができる方がよさそう？</li>
-</ul></li>
-<li>CUIは記録ができる
-<ul>
-<li>何度も同じ操作ができる</li>
-<li>人が書いた一連の操作（コード）をコピー・参考にできる</li>
-<li>柔軟性が高い</li>
-</ul></li>
-<li>Rを使う統合環境であるRStudioは、CUIながらGUI的に作業を行える部分もある環境を提供する。</li>
-</ul>
+<pre><code>## # A tibble: 1 × 3
+##   full_prop_before full_prop_after full_prop_diff
+##              &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;
+## 1            0.297           0.320         0.0239</code></pre>
+<p>上のような表が表示される。
+前後の差は0.0238…なので2.4%ポイント上昇したことになる。これは正しい推定だろうか？</p>
+<p>当然前後の比較なので、この比較は「もし政策が変わらなければ、NJ州のフルタイム雇用率は政策実施前から変わらない」ことが仮定として暗に置かれている。
+しかし、経済状況など様々な他の要因は変わりうる。この前後比較というのは、実はかなり強い仮定（=あまり現実的ではない仮定）のもとで推定されているに過ぎないのである。</p>
 </div>
 </div>
-<div id="プログラミング" class="section level2 hasAnchor" number="2.10">
-<h2><span class="header-section-number">2.10</span> プログラミング<a href="whatsr.html#プログラミング" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>やることはプログラミング</li>
-<li>PythonもJavaも、まずはプログラミングを理解すると学べるようになる</li>
-<li>Rは比較的わかりやすい言語</li>
-<li>ゼミでは基本的なデータ描画と統計分析をできるようになることが目標</li>
-</ul>
+<div id="差の差法" class="section level3 hasAnchor" number="13.2.7">
+<h3><span class="header-section-number">13.2.7</span> 差の差法<a href="did.html#差の差法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>各グループと前後の平均だけで推定する方法で差の差法を推定してみよう。</p>
+<p>まず2x2の目的変数の2x2の表を作成する。</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">対照群 (PA)</th>
+<th align="center">処置群 (NJ)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>時点 t=1</td>
+<td align="center"><span class="math inline">\(Y_{1,PA}\)</span></td>
+<td align="center"><span class="math inline">\(Y_{1,NJ}\)</span></td>
+</tr>
+<tr class="even">
+<td>時点 t=2</td>
+<td align="center"><span class="math inline">\(Y_{2,PA}\)</span></td>
+<td align="center"><span class="math inline">\(Y_{2,NJ}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="did.html#cb289-1" tabindex="-1"></a>njmin_table_did <span class="ot">&lt;-</span> data_njmin <span class="sc">|&gt;</span></span>
+<span id="cb289-2"><a href="did.html#cb289-2" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
+<span id="cb289-3"><a href="did.html#cb289-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">full_prop_before =</span> <span class="fu">mean</span>(full_prop_before),</span>
+<span id="cb289-4"><a href="did.html#cb289-4" tabindex="-1"></a>            <span class="at">full_prop_after =</span> <span class="fu">mean</span>(full_prop_after),</span>
+<span id="cb289-5"><a href="did.html#cb289-5" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) </span>
+<span id="cb289-6"><a href="did.html#cb289-6" tabindex="-1"></a></span>
+<span id="cb289-7"><a href="did.html#cb289-7" tabindex="-1"></a>njmin_table_did</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   state full_prop_before full_prop_after
+##   &lt;chr&gt;            &lt;dbl&gt;           &lt;dbl&gt;
+## 1 NJ               0.297           0.320
+## 2 PA               0.310           0.272</code></pre>
+<p>さらに上のコードに付け足して、差の差を計算する。</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="did.html#cb291-1" tabindex="-1"></a>njmin_table_did2 <span class="ot">&lt;-</span> data_njmin <span class="sc">|&gt;</span></span>
+<span id="cb291-2"><a href="did.html#cb291-2" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
+<span id="cb291-3"><a href="did.html#cb291-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">full_prop_before =</span> <span class="fu">mean</span>(full_prop_before),</span>
+<span id="cb291-4"><a href="did.html#cb291-4" tabindex="-1"></a>            <span class="at">full_prop_after =</span> <span class="fu">mean</span>(full_prop_after),</span>
+<span id="cb291-5"><a href="did.html#cb291-5" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb291-6"><a href="did.html#cb291-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">full_prop_diff =</span> full_prop_after <span class="sc">-</span> full_prop_before) <span class="sc">|&gt;</span></span>
+<span id="cb291-7"><a href="did.html#cb291-7" tabindex="-1"></a>  <span class="fu">with</span>(full_prop_diff[state<span class="sc">==</span><span class="st">&quot;NJ&quot;</span>] <span class="sc">-</span> full_prop_diff[state<span class="sc">==</span><span class="st">&quot;PA&quot;</span>])</span>
+<span id="cb291-8"><a href="did.html#cb291-8" tabindex="-1"></a></span>
+<span id="cb291-9"><a href="did.html#cb291-9" tabindex="-1"></a>njmin_table_did2</span></code></pre></div>
+<pre><code>## [1] 0.06155831</code></pre>
+<p>つまり、6.15%ポイント雇用が増加したという推定になる。</p>
 
+</div>
 </div>
 </div>
             </section>
@@ -603,8 +1005,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="howtostart.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="paneldata.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="practiceanswer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -635,7 +1037,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/02_whats_r.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/14_did.Rmd",
 "text": "Edit"
 },
 "history": {

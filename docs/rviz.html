@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-22" />
+<meta name="date" content="2024-05-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.11.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.11.9</b> データの列を編集する: mutate()</a></li>
 <li class="chapter" data-level="6.11.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.11.10</b> データを集計する</a></li>
 <li class="chapter" data-level="6.11.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.11.11</b> データ操作の応用：パイプによる引き渡し</a></li>
-<li class="chapter" data-level="6.11.12" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用グループごとの集計"><i class="fa fa-check"></i><b>6.11.12</b> データ操作の応用：グループごとの集計</a></li>
+<li class="chapter" data-level="6.11.12" data-path="datahandling.html"><a href="datahandling.html#groupagg"><i class="fa fa-check"></i><b>6.11.12</b> データ操作の応用：グループごとの集計</a></li>
 </ul></li>
 <li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.12</b> <strong>練習問題</strong>: データ操作</a></li>
 <li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.13</b> データの結合</a>
@@ -433,12 +433,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3.1" data-path="paneldata.html"><a href="paneldata.html#固定効果モデルのビジュアルイメージ"><i class="fa fa-check"></i><b>12.3.1</b> 固定効果モデルのビジュアルイメージ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>13</b> 練習問題解答</a>
+<li class="chapter" data-level="13" data-path="did.html"><a href="did.html"><i class="fa fa-check"></i><b>13</b> 差の差法</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>13.1</b> Ch.4</a></li>
-<li class="chapter" data-level="13.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>13.2</b> Ch. 6</a></li>
-<li class="chapter" data-level="13.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>13.3</b> Ch. 8</a></li>
-<li class="chapter" data-level="13.4" data-path="practiceanswer.html"><a href="practiceanswer.html#ch-10"><i class="fa fa-check"></i><b>13.4</b> Ch 10</a></li>
+<li class="chapter" data-level="13.1" data-path="did.html"><a href="did.html#差の差法とは"><i class="fa fa-check"></i><b>13.1</b> 差の差法とは</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="did.html"><a href="did.html#差の差法のアイデア"><i class="fa fa-check"></i><b>13.1.1</b> 差の差法のアイデア</a></li>
+<li class="chapter" data-level="13.1.2" data-path="did.html"><a href="did.html#差分の差分法の仮定"><i class="fa fa-check"></i><b>13.1.2</b> 差分の差分法の仮定</a></li>
+<li class="chapter" data-level="13.1.3" data-path="did.html"><a href="did.html#回帰分析を使って行う方法"><i class="fa fa-check"></i><b>13.1.3</b> 回帰分析を使って行う方法</a></li>
+<li class="chapter" data-level="13.1.4" data-path="did.html"><a href="did.html#演習問題"><i class="fa fa-check"></i><b>13.1.4</b> 演習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="did.html"><a href="did.html#rでの演習"><i class="fa fa-check"></i><b>13.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="did.html"><a href="did.html#スクリプトの準備-1"><i class="fa fa-check"></i><b>13.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="13.2.2" data-path="did.html"><a href="did.html#パッケージの準備-1"><i class="fa fa-check"></i><b>13.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="13.2.3" data-path="did.html"><a href="did.html#データの準備-1"><i class="fa fa-check"></i><b>13.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="13.2.4" data-path="did.html"><a href="did.html#データの確認"><i class="fa fa-check"></i><b>13.2.4</b> データの確認</a></li>
+<li class="chapter" data-level="13.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>13.2.5</b> データの記述統計</a></li>
+<li class="chapter" data-level="13.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>13.2.6</b> 政策変更の確認</a></li>
+<li class="chapter" data-level="13.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>13.2.7</b> 差の差法</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>14</b> 練習問題解答</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>14.1</b> Ch.4</a></li>
+<li class="chapter" data-level="14.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>14.2</b> Ch. 6</a></li>
+<li class="chapter" data-level="14.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>14.3</b> Ch. 8</a></li>
+<li class="chapter" data-level="14.4" data-path="practiceanswer.html"><a href="practiceanswer.html#ch-10"><i class="fa fa-check"></i><b>14.4</b> Ch 10</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -781,18 +801,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb213-3"><a href="rviz.html#cb213-3" tabindex="-1"></a></span>
 <span id="cb213-4"><a href="rviz.html#cb213-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
 <span id="cb213-5"><a href="rviz.html#cb213-5" tabindex="-1"></a><span class="fu">names</span>(diamonds)</span></code></pre></div>
-<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;   &quot;table&quot;   &quot;price&quot;   &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;  
+##  [6] &quot;table&quot;   &quot;price&quot;   &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rviz.html#cb215-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
 <span id="cb215-2"><a href="rviz.html#cb215-2" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10
-##   carat cut       color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-## 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-## 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-## 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-## 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-## 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+##   carat cut    color clarity depth table price     x     y
+##   &lt;dbl&gt; &lt;ord&gt;  &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  0.23 Ideal  E     SI2      61.5    55   326  3.95  3.98
+## 2  0.21 Premi… E     SI1      59.8    61   326  3.89  3.84
+## 3  0.23 Good   E     VS1      56.9    65   327  4.05  4.07
+## 4  0.29 Premi… I     VS2      62.4    58   334  4.2   4.23
+## 5  0.31 Good   J     SI2      63.3    58   335  4.34  4.35
+## 6  0.24 Very … J     VVS2     62.8    57   336  3.94  3.96
+## # ℹ 1 more variable: z &lt;dbl&gt;</code></pre>
 <p><strong>課題</strong>：以下の画像を作成してみよう。</p>
 <p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-127-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
@@ -806,7 +828,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb217-3"><a href="rviz.html#cb217-3" tabindex="-1"></a></span>
 <span id="cb217-4"><a href="rviz.html#cb217-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
 <span id="cb217-5"><a href="rviz.html#cb217-5" tabindex="-1"></a><span class="fu">names</span>(economics)</span></code></pre></div>
-<pre><code>## [1] &quot;date&quot;     &quot;pce&quot;      &quot;pop&quot;      &quot;psavert&quot;  &quot;uempmed&quot;  &quot;unemploy&quot;</code></pre>
+<pre><code>## [1] &quot;date&quot;     &quot;pce&quot;      &quot;pop&quot;      &quot;psavert&quot;  &quot;uempmed&quot; 
+## [6] &quot;unemploy&quot;</code></pre>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="rviz.html#cb219-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
 <span id="cb219-2"><a href="rviz.html#cb219-2" tabindex="-1"></a><span class="fu">head</span>(economics)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
