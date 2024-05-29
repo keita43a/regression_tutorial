@@ -109,7 +109,7 @@ $$
 $$
  Y_{it} = \alpha + \beta_{1} 1 + \beta_{2} 0 + \beta_{3} 1 \times 0 + \varepsilon_{it} = \alpha + \beta_{1} + \varepsilon_{it}
 $$
-同様に$Y_1B=\alpha + \beta_1$となる。
+同様に$Y_{1B}=\alpha + \beta_1$となる。
 
 **ケース３：政策実施後＋対照群**
 
@@ -118,7 +118,7 @@ $$
  Y_{it} = \alpha + \beta_{1} \cdot0 + \beta_{2} \cdot 1 + \beta_{3} \cdot 0 \times 1 + \varepsilon_{it} = \alpha + \beta_{2} + \varepsilon_{it}
 $$
 
-同様に$Y_1B=\alpha + \beta_2$となる。
+同様に$Y_{2A}=\alpha + \beta_2$となる。
 
 **ケース４：政策実施後＋処置群**
 
@@ -131,7 +131,7 @@ $$
 同様に$Y_2B=\alpha + \beta_1 + \beta_2 \beta_3$となる。
 
 
-### 演習問題
+### **演習問題**：差の差法の回帰分析アプローチ
 
 差の差法による推定効果が、回帰式の$\beta_{3}$と一致することを証明してみよう。
 
@@ -155,6 +155,10 @@ library(psych)
 library(skimr)
 library(AER)
 library(fixest)
+
+```
+
+```{r, eval=FALSE, echo=FALSE}
 # https://rpubs.com/phle/r_tutorial_difference_in_differences
 # https://yukiyanai.github.io/econometrics2/difference-in-differences.html
 ```
@@ -231,7 +235,7 @@ data_njmin = read_csv("data/data_njmin.csv")
 ```{r, eval=FALSE}
 
 # データのダウンロードとdataフォルダへの格納を自動的に行う
-download.file("", 
+download.file("https://github.com/keita43a/regression_tutorial/blob/main/data/data_njmin.csv?raw=TRUE", 
               destfile = "data/data_njmin.csv")
 
 # データを読み込む
@@ -411,6 +415,10 @@ data_njmin_long <- data_njmin %>%
 
 
 このlong形式のデータセットを使って回帰分析を行う。
+
+Rの回帰式では、policyとtimeの交差項は`policy:time`とコロン(`:`)でつなぐことで表現する。
+掛け算なので`policy*time`と思うかもしれないが、アスタリスク`*`でつなぐと、policyとtimeそれぞれも再度含めてしまう。
+（すなわち`policy*time`は`policy + time + policy:time`と同義である。ここではあえて省略せずに後者で書くことで、回帰式と一致していることを確認している。）
 
 ```{r}
 reg_did1 <- feols(prop ~ policy + time + policy:time, data=data_njmin_long)

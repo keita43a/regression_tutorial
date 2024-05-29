@@ -37,7 +37,7 @@ fig_musashi_students
 fs::dir_create("data")
 
 # データのダウンロードとdataフォルダへの保存
-download.file("https://github.com/keita43a/regression_tutorial/blob/main/docs/data/musashi_keizai_students_2023.xlsx",
+download.file("https://github.com/keita43a/regression_tutorial/blob/main/docs/data/musashi_keizai_students_2023.xlsx?raw=TRUE",
               destfile="data/musashi_keizai_students_2023.xlsx")
 
 ```
@@ -46,7 +46,7 @@ download.file("https://github.com/keita43a/regression_tutorial/blob/main/docs/da
 
 ```{r}
 # エクセルからデータを読み込み
-data_634 <- readxl::read_excel("docs/data/musashi_keizai_students_2023.xlsx") 
+data_634 <- readxl::read_excel("data/musashi_keizai_students_2023.xlsx") 
 
 # long型(tidy data)に変換
 data_634_long <- data_634 |> 
@@ -149,9 +149,6 @@ print(plot_634)
   - デフォルトは`stack`になっている（文字通り「積む」）
 
 
-
-## aesに色を追加する
-
 ```{r, fig.align='center', fig.height=4, fig.width=7.5}
 plot_634 <- ggplot() +
   geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), # <- 追加！
@@ -190,7 +187,6 @@ print(plot_634)
 
 - 現状では、学科の人数がすべて積算されてしまっているが、データとしては分かれている
 - せっかくなので別で表示したいが、もうx軸もy軸も色も使ってしまっている。
---
 - では、グラフ自体を分けてしまおう
 - `facet_wrap()`というレイヤーを使う
   - `~`の後に分割に使うカテゴリを指定することで、分割した図を作ってくれる
@@ -219,10 +215,6 @@ print(plot_634)
   - サブタイトルも`subtitle=`で追加できる
 - 右下のノートも`caption=`で追加できる
 
-
-
-## ラベルを変更する・タイトルを追加する
-
 ```{r, fig.align='center', fig.height=4, fig.width=7.5}
 plot_634 <- ggplot() +
   geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
@@ -233,6 +225,8 @@ plot_634 <- ggplot() +
        caption = "データ元：武蔵大学公式ウェブサイト") + # <- 追加!
   theme_grey(base_family="HiraKakuPro-W3") +
   facet_wrap(~ 学科) # <- 追加！
+
+plot_634
 ```
 
 
@@ -246,7 +240,9 @@ plot_634 <- ggplot() +
 - `theme_***`でデフォルトテーマを使うこともできる
   - <a href ="https://ggplot2.tidyverse.org/reference/ggtheme.html" target = "_blank">ここ</a>でどんなテーマがあるか見られる
 
-- ここではは見た目をスッキリさせるデフォルトテーマ`theme_minimal`を使ってみる
+### デフォルトテーマを使った変更
+
+- ここでは見た目をスッキリさせるデフォルトテーマ`theme_minimal`を使ってみる
 
 
 ```{r, fig.align='center', fig.height=4, fig.width=7.5}
@@ -268,7 +264,7 @@ print(plot_634)
 
 
 
-## テーマを変更する2
+### 細かいテーマ設定
 
 - 細かいテーマ設定を`theme`レイヤーの中で行う
   - `panel.grid.major.x`はメインのグリッドの設定
@@ -490,7 +486,7 @@ knitr::include_graphics("docs/fig/IMG_3452.png")
 1. 自分がどのデータセットのどの変数を描画するかをGoogle Classroomのストリームに投稿する。（締切：6/4 23:59）
 
 2. 描画した画像ファイルとRコードをGoogle Classroomの課題3-2に提出する。(締切：6/11 23:49）
-    - Rコードはkadai_presen_***.Rという名前をつけて保存する。***には自分の名前を英語で入れる。
+    - Rコードはkadai_presen_XXX.Rという名前をつけて保存する。XXXには自分の名前を英語で入れる。
 
 3. 描画した画像ファイルについて、2~3分のプレゼンテーションを行う（実施日：6/19 ゼミ）
     - 英語で作成したグラフの説明を行う2~3分のプレゼンを準備する。
@@ -505,7 +501,7 @@ knitr::include_graphics("docs/fig/IMG_3452.png")
 ここでは一例として、県別推移データの合計特殊出生率を示すデータ描画を作成する。
 実際のデータ描画では、どのようなグラフ（棒グラフ・折れ線グラフなど）でも構わない。
 
-0. あらたにRスクリプトを作成し、`kadai_presen_***.R`という名前をつけて保存する。`***`には自分の名前を英語で入れる。
+0. あらたにRスクリプトを作成し、`kadai_presen_XXX.R`という名前をつけて保存する。`XXX`には自分の名前を英語で入れる。
 
 そして、以下のライブラリを読み込んでおく。
 
@@ -547,6 +543,7 @@ plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=合計特殊出生率, col
   geom_point() +
   theme_bw(base_family = "HiraKakuPro-W3")
 
+plot_f_rate
 
 ```
 
@@ -565,6 +562,8 @@ plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=合計特殊出生率, col
   scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県"),
                        labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi")) +
   theme(text = element_text(size=15)) # スライドで見やすくするために字を大きくする
+
+plot_f_rate
   
 ```
 
