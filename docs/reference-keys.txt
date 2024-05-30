@@ -12,10 +12,10 @@ fig:rstudioinstall
 fig:rstudio2
 fig:directory
 fig:projectmake
-tab:unnamed-chunk-119
+tab:unnamed-chunk-113
 fig:pressure
-tab:unnamed-chunk-197
-tab:unnamed-chunk-217
+tab:unnamed-chunk-191
+tab:unnamed-chunk-211
 この資料について
 whatsr
 r

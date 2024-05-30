@@ -502,7 +502,7 @@ Rでは`cor`関数の`method`引数を変更するとスピアマンの相関係
 cor(dat_flower$male, dat_flower$female, method="spearman")
 ```
 
-上の他のケースを計算すると、完全一致のケースでは`r cor(dat_flower2$male, dat_flower2$female, method="spearman")|>round(digits=2)`, 真逆のケースでは`cor(dat_flower3$male, dat_flower3$female, method="spearman")|>round(digits=2)`, ばらばらのケースでは`cor(dat_flower4$male, dat_flower4$female, method="spearman")|>round(digits=2)`となる。
+上の他のケースを計算すると、完全一致のケースでは`r cor(dat_flower2$male, dat_flower2$female, method="spearman")|>round(digits=2)`, 真逆のケースでは`r cor(dat_flower3$male, dat_flower3$female, method="spearman")|>round(digits=2)`, ばらばらのケースでは`r cor(dat_flower4$male, dat_flower4$female, method="spearman")|>round(digits=2)`となる。
 
 
 ### ケンドールの順位相関係数
@@ -532,4 +532,4 @@ $$
 cor(dat_flower$male, dat_flower$female, method="kendall")
 ```
 
-上の他のケースを計算すると、完全一致のケースでは`r cor(dat_flower2$male, dat_flower2$female, method="kendall")|>round(digits=2)`, 真逆のケースでは`cor(dat_flower3$male, dat_flower3$female, method="kendall")|>round(digits=2)`, ばらばらのケースでは`cor(dat_flower4$male, dat_flower4$female, method="kendall")|>round(digits=2)`となる。
+上の他のケースを計算すると、完全一致のケースでは`r cor(dat_flower2$male, dat_flower2$female, method="kendall")|>round(digits=2)`, 真逆のケースでは`r cor(dat_flower3$male, dat_flower3$female, method="kendall")|>round(digits=2)`, ばらばらのケースでは`r cor(dat_flower4$male, dat_flower4$female, method="kendall")|>round(digits=2)`となる。
