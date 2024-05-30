@@ -1,0 +1,535 @@
+# 相関関係 {#correlation}
+
+
+## ２つの変数の関係
+
+実証分析において重要な問いとして「XがYに影響を与えるか」というものである。
+例えば、最低賃金を上げると雇用率に影響を与えるか？生徒教員比を減らすと生徒のテストのパフォーマンスはよくなるか？などである。
+Xが政策的に変更できる変数であり、Yがなにか経済・社会的に重要な変数ならば、Xを増やす/減らすことでYに影響を与えられる、という政策含意が得られる。
+
+まずは、そもそも2つの変数に統計的な関係があるかを見ていこう。
+
+### 共分散
+
+共分散は直接解釈するとXの偏差とYの偏差の積の平均、となる。
+
+例えば、次のような5人の国語と算数の試験の点数のデータがあるとする。
+
+
+```{r, echo=FALSE}
+# テストデータの作成
+test <- data.frame(student = c("A","B","C","D","E"),
+                   kokugo = c(50, 50, 80, 70, 90),
+                   sugaku = c(52, 75, 62, 89, 99))
+
+# テストデータの表示
+test
+```
+
+それぞれの平均を求めてみよう。
+
+```{r}
+test |> summarise(kokugo_average = mean(kokugo),
+                  sugaku_average = mean(sugaku))
+
+```
+
+それぞれ国語が68点、算数が75.4点という結果である。
+
+Aさんはそれぞれの科目で、平均からどれぐらい離れているか？言い換えると、偏差はいくつだろうか。
+
+$$
+ 国語の偏差 = 50-68 = -18\\
+ 数学の偏差 = 52-75.4 = -23.4
+$$
+となる。
+
+偏差の積とは、$-18\times-23.4$なので$421.2$になる。
+5人の偏差とその積をとってみよう。
+
+```{r}
+test |> 
+  mutate(kokugo_hensa = kokugo - mean(kokugo),
+         sugaku_hensa = sugaku - mean(sugaku)) |>
+  mutate(hensa_seki = kokugo_hensa*sugaku_hensa)
+```
+
+ここで、あることに気づいた人もいるかもしれない。
+偏差の積は、**どちらもよい**か**どちらも悪い**点数なら、正の数で大きくなり、どちらかが悪くてもう一つがよいと、負の数になる。
+このケースで言えば、Aさん（どちらも悪い）や、Eさん（どちらもよい）は、偏差の積が正で大きく、Cさん（国語は良いが数学は悪い）は、偏差の積が負になっている。
+
+この平均を取るということは、どちらも悪い・どちらも良い、という傾向があるか、どちらかが悪いともう片方がよい、という傾向があるかということがわかるということである。
+
+偏差の積の平均を取ってみよう。
+
+```{r}
+test |> 
+  mutate(kokugo_hensa = kokugo - mean(kokugo),
+         sugaku_hensa = sugaku - mean(sugaku)) |>
+  mutate(hensa_seki = kokugo_hensa*sugaku_hensa) |>
+  summarise(hensa_seki_average = mean(hensa_seki))
+```
+ここでは、162.8という正の数となった。
+
+この数字（2つの変数の偏差の積の平均）を**共分散**と呼び、2つの変数の関係性を測る指標となる。
+
+一般に共分散が正であれば、正の関係がある（Xが大きいときYも大きい傾向がある）、負であれば負の関係がある（Xが大きいとき、Yが小さい傾向がある）。
+
+上の例では、国語の成績がいい人は数学の成績がいい傾向がある、ということになる。
+
+
+共分散の定義は、以下のような式で定義できる。
+
+$$\sigma_{xy} = \frac{1}{n}\sum^{n}_{i=1}(x_i - \bar{x})(y_i - \bar{y})$$
+
+Rでは、`cov()`という関数が用意されているが、不偏共分散を推定する関数である。そのため、サンプルサイズが小さい上のようなケースでは、$n$で割った場合と大きく異なる数字が出る。
+
+```{r}
+test |> summarise(kyoubunsan = cov(kokugo, sugaku))
+```
+
+
+### 相関係数
+
+共分散は2つの変数の関係を見る指標になると述べたが、実際にはあまり使われない。
+その理由は、共分散は単位に依存するからである。
+例えば、身長と体重のデータがあるとして、身長とmで測るのか、cmで測るのかで共分散は大きく異なる。
+
+しかし、そもそものデータで標準化すれば、単位の問題はなくなる。
+
+先に定義を提示すると、以下のようになる。
+
+$$
+ \rho_{xy} = \frac{\sigma_{xy}}{\sigma_x \sigma_y} 
+$$
+
+言葉で説明すれば、相関係数とは共分散をXとYのそれぞれの標準偏差で割った数字である。
+単位が大きければばらつきも大きくなるわけなので、そのばらつき自体で割ってしまえば単位に依存しない偏差を計算できるというわけである。
+
+上のテストデータで計算してみよう。
+
+```{r}
+test |> 
+  mutate(kokugo_hensa = kokugo - mean(kokugo),
+         sugaku_hensa = sugaku - mean(sugaku)) |>
+  mutate(hensa_seki = kokugo_hensa*sugaku_hensa) |>
+  summarise(hensa_seki_average = mean(hensa_seki),
+            kokugo_sd = sd(kokugo),
+            sugaku_sd = sd(sugaku),
+            soukan_keisu = hensa_seki_average/(kokugo_sd*sugaku_sd))
+```
+
+相関係数は**相関の程度**を表す係数であり、$-1$から$1$までの実数を取る。数字が負であれば、負の関係があり、正であれば正の関係がある。絶対値が1に近いほど、その関係が強いことを表している。
+
+相関係数を計算する関数には、`cor`が用意されている。こちらも、共分散を計算する際に`n-1`で割るため、サンプルサイズが小さい場合は`n`で割った場合と大きく異なる数字が出る。
+
+```{r}
+cor(test$kokugo,test$sugaku)
+```
+
+
+
+### 散布図
+
+相関関係を図で描くと直感的である。
+
+例えば、正の相関関係は以下のような図となる。
+
+```{r, echo=FALSE, message =FALSE, fig.width=12,fig.height=6}
+
+# Set seed for reproducibility
+set.seed(0)
+
+# Function to generate data with specified correlation
+generate_data <- function(cor, n = 100) {
+  x <- rnorm(n)
+  y <- cor * x + rnorm(n) * sqrt(1 - cor^2)
+  data.frame(x = x, y = y)
+}
+
+# Generate data for different correlations
+data_09 <- generate_data(0.9)
+data_05 <- generate_data(0.5)
+data_02 <- generate_data(0.2)
+
+# Plot function
+plot_data <- function(data, cor) {
+  ggplot(data, aes(x = x, y = y)) +
+    geom_point(alpha = 0.7) +
+    ggtitle(paste("相関係数=", cor)) +
+    xlab("変数 X") +
+    ylab("変数 Y") +
+    theme_minimal(base_family="Hirakakupro-w3")
+}
+
+# Create plots
+plot_09 <- plot_data(data_09, 0.9)
+plot_05 <- plot_data(data_05, 0.5)
+plot_02 <- plot_data(data_02, 0.2)
+
+plot_09 + plot_05 + plot_02
+```
+
+
+また、負の相関関係がある場合は以下のような形である。
+
+```{r, echo=FALSE, message=FALSE, fig.width=12,fig.height=6}
+# Generate data for different correlations
+data_n09 <- generate_data(-0.9)
+data_n05 <- generate_data(-0.5)
+data_n02 <- generate_data(-0.2)
+
+# Create plots
+plot_n09 <- plot_data(data_n09, -0.9)
+plot_n05 <- plot_data(data_n05, -0.5)
+plot_n02 <- plot_data(data_n02, -0.2)
+
+plot_n09 + plot_n05 + plot_n02
+```
+
+上の図の観察をまとめると、
+
+- 正の場合は右肩上がり、負の場合は右肩下がりの傾向がある
+- 相関関係が強い(相関係数の絶対値が１に近い)ほどばらつきが少ない
+
+
+
+## 相関関係と因果関係
+
+ここまでは２つの変数の関係として、相関関係を議論してきた。
+しかし、社会科学の実証分析で重要な点として、**相関関係は必ずしも因果関係を意味しない**ということがある。
+
+たとえば、下の図はある年の日ごとのアイスクリームの売上と水難事故の件数だとする。
+
+```{r, echo = FALSE}
+
+set.seed(3)
+
+dat_ice = tibble(
+  day = 1:100,
+  temp = runif(100, 0, 40),  
+  ice = (temp*20 + rnorm(100, 0, 100)) %>% ifelse(. >= 0, ., 0) |> round(2) ,
+  accident = ifelse(temp < 10, 0 ,round((temp-10)*2.5 + rnorm(100,0,30))) %>% ifelse(. >= 0, ., 0)
+) |>
+  mutate(temp = round(temp,1))
+
+write_csv(dat_ice,"data/ice_cream.csv")
+
+ggplot(data=dat_ice) +
+  geom_point(aes(x=ice, y=accident)) +
+  theme_minimal(base_family = "HiraKakuPro-W3") +
+  labs(x="アイスクリームの売上（万円）", y="水難事故の件数")
+
+```
+
+このことから、アイスクリームの売上と水難事故件数には相関関係がありそうだ。実際に計算してみても、相関係数は`r cor(dat_ice$ice,dat_ice$accident)|>round(2)`と計算された。
+
+しかし、この２つの間に**因果関係**はあるだろうか？
+例えば、アイスクリームの売上を増やすと水難事故も増えるのだろうか？
+では、政策的含意として、アイスクリームの販売に規制をかけて売上を増やさないようにすることで、水難事故を防ぐことはできるのだろうか？
+
+もちろんできない。
+
+この２つの変数の後ろには**気温**という別の変数が隠れている。
+
+```{r, echo=FALSE}
+
+temp_plot_1 <- ggplot(data=dat_ice) +
+  geom_point(aes(x=temp, y=ice)) +
+  theme_minimal(base_family = "HiraKakuPro-W3") +
+  labs(y="アイスクリームの売上（万円）", x="気温（℃）")
+
+temp_plot_2 <- ggplot(data=dat_ice) +
+  geom_point(aes(x=temp, y=accident)) +
+  theme_minimal(base_family = "HiraKakuPro-W3") +
+  labs(y="水難事故件数", x="気温（℃）")
+
+temp_plot_1 + temp_plot_2
+```
+
+
+気温が高ければ、人々はアイスクリームを買って食べるし、川や海にレジャーに行くため水難事故の絶対数も増えてしまう。
+
+しかし、アイスクリームと水難事故には直接の関係はないのである。
+このような相関関係を**見せかけの相関**と呼ぶ。
+
+3つの変数の相関係数をそれぞれ計算してみよう。
+
+```{r}
+# dayを計算に入れたくないので、除く
+dat_ice2 = dat_ice |> dplyr::select(-day)
+
+cor(dat_ice2)
+```
+ここではdayは実際には変数ではないので無視する。
+気温(`temp`)とアイスクリームの売上(`ice`)は0.93と非常に強い相関関係がある。
+気温(`temp`)と水難事故(`accident`)も0.69とある程度強い相関関係になっている。
+アイスクリームの売上と水難事故も0.63と強い相関関係があるが、果たしてその相関関係はどちらかがどちらかに直接影響を与えるような関係なのだろうか？
+
+### 偏相関係数
+
+見かけ上の相関が疑われ、その間にある第3の変数がわかっている場合は、**偏相関係数**を用いることで相関を測ることができる。
+第3の変数を$z$とすると、
+
+$$
+\rho_{xy,z} = \frac{\rho_{xy}-\rho_{xz}\rho_{zy}}{\sqrt{1-\rho_{xz}^2}\sqrt{1-\rho_{yz}^2}}
+$$
+
+で表される。
+
+上の場合では、気温という第3の変数の影響を除いた後のアイスクリームの売上と水難事故の相関係数に当たる。
+
+#### Rによる偏相関係数の推定
+
+Rで偏相関係数を計算する場合は、`ppcor`パッケージの`pcor`関数を使う。
+
+```{r, message=FALSE}
+# パッケージのインストール
+install.packages("ppcor")
+
+# パッケージの読み込み
+library(ppcor)
+
+# 偏相関係数の計算
+pcor(dat_ice2)
+
+```
+
+```{r, echo=FALSE}
+# MASSをunloadしないとselectと衝突する
+detach("package:ppcor",unload=TRUE)
+detach("package:MASS",unload=TRUE)
+```
+
+
+偏相関係数の結果を見てみると、気温(`temp`)とアイスクリームの売上(`ice`)は0.88と、水難事故の影響を除いても非常に強い相関関係がある。
+気温(`temp`)と水難事故(`accident`)も0.37と、ある程度の正の相関関係が残っている。
+アイスクリームの売上と水難事故は、気温の影響を除くと-0.05とほとんどゼロに近い相関係数であり、気温を通した関係以外はないことがわかる。
+
+
+## 順位相関係数
+
+上の相関係数は、一般に積率相関係数と呼ばれていて、量的な変数に用いられる。
+しかし、質的な基準（例えばランキング）の場合は直接積率相関係数を適用することができない。
+
+例：男性と女性にそれぞれどの花が好きかというアンケート調査をした結果、以下のような順位になったとする。女性と男性の傾向に相関関係はあるのだろうか？
+
+| 花              |  男  | 女   |
+| --------------: | :--: | :--: |
+| 桜              | 1    | 3    |
+| 菊              | 2    | 1    | 
+| バラ            | 3    | 2    |
+| 梅              | 4    | 5    |
+| ゆり            | 5    | 4    |
+| チューリップ    | 6    | 7    |
+| カーネーション  | 7    | 6    |
+| 椿              | 8    |  8   |
+
+図で描くと以下のような形になる。
+
+```{r}
+# データ準備
+dat_flower = tibble(
+  flower = c("桜","菊","バラ","梅","ユリ","チューリップ","カーネーション","椿"),
+  male = c(1,2,3,4,5,6,7,8),
+  female = c(3,1,2,5,4,7,6,8)) |>
+  mutate(flower = fct_reorder(flower,male))
+  
+# 整然データ化
+dat_flower_long = dat_flower |>
+  pivot_longer(cols=ends_with("male"),
+               names_to = "gender",values_to="rank_flower") 
+```
+
+```{r, eval=FALSE, echo= FALSE}
+ggplot(data=dat_flower_long, aes(x=flower,y=rank_flower, col=gender)) +
+  geom_point(size=5) + 
+  theme_bw(base_family="HiraKakuPro-W3") + 
+  labs(col="",x="花の名前",y="花の順位") +
+  scale_color_discrete(breaks=c("male","female"),labels=c("男性","女性")) +
+  theme(legend.position = "bottom")
+
+```
+
+
+データを"散布図"で描いてみよう。
+
+```{r}
+ggplot(dat_flower,aes(x=male,y=female)) + 
+  geom_point(size=4) +
+  geom_text_repel(aes(label=flower), family="HiraKakuPro-W3") +
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  scale_x_continuous(breaks = 1:8) +
+  scale_y_continuous(breaks = 1:8) +
+  labs(y="女性の順位", x="男性の順位") +
+  theme(panel.grid.minor = element_blank())
+```
+
+
+図で描いてみると、なんとなく似た傾向があるように見えるが、これをどう定量的に表すのか？
+
+もし、男女の順位が完全に一致していると、以下のような図になる。
+
+```{r, echo=FALSE}
+# データ準備
+dat_flower2 = tibble(
+  flower = c("桜","菊","バラ","梅","ユリ","チューリップ","カーネーション","椿"),
+  male = c(1,2,3,4,5,6,7,8),
+  female = c(1,2,3,4,5,6,7,8)) |>
+  mutate(flower = fct_reorder(flower,male))
+  
+knitr::kable(dat_flower2)
+
+ggplot(dat_flower2,aes(x=male,y=female)) + 
+  geom_point(size=4) +
+  geom_text_repel(aes(label=flower), family="HiraKakuPro-W3") +
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  scale_x_continuous(breaks = 1:8) +
+  scale_y_continuous(breaks = 1:8) +
+  labs(y="女性の順位", x="男性の順位") +
+  theme(panel.grid.minor = element_blank())
+  
+```
+
+このときは**正の相関**があることがわかるだろう。
+
+全く男女の順位が逆であったらどうだろうか。
+
+```{r, echo=FALSE}
+# データ準備
+dat_flower3 = tibble(
+  flower = c("桜","菊","バラ","梅","ユリ","チューリップ","カーネーション","椿"),
+  male = c(1,2,3,4,5,6,7,8),
+  female = c(8,7,6,5,4,3,2,1)) |>
+  mutate(flower = fct_reorder(flower,male))
+  
+knitr::kable(dat_flower3)
+
+ggplot(dat_flower3,aes(x=male,y=female)) + 
+  geom_point(size=4) +
+  geom_text_repel(aes(label=flower), family="HiraKakuPro-W3") +
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  scale_x_continuous(breaks = 1:8) +
+  scale_y_continuous(breaks = 1:8) +
+  labs(y="女性の順位", x="男性の順位") +
+  theme(panel.grid.minor = element_blank())
+  
+```
+
+男女の順位に関係がなければどんな散布図になるだろうか。
+
+```{r, echo=FALSE}
+# データ準備
+dat_flower4 = tibble(
+  flower = c("桜","菊","バラ","梅","ユリ","チューリップ","カーネーション","椿"),
+  male = c(1,2,3,4,5,6,7,8),
+  female = c(6,2,4,8,1,3,5,7)) |>
+  mutate(flower = fct_reorder(flower,male))
+  
+knitr::kable(dat_flower4)
+
+ggplot(dat_flower4,aes(x=male,y=female)) + 
+  geom_point(size=4) +
+  geom_text_repel(aes(label=flower), family="HiraKakuPro-W3") +
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  scale_x_continuous(breaks = 1:8) +
+  scale_y_continuous(breaks = 1:8) +
+  labs(y="女性の順位", x="男性の順位") +
+  theme(panel.grid.minor = element_blank())
+  
+```
+
+ばらばらで男女の順位に関係がなさそうなことは直感的にはわかる。
+
+これをどう定量的に表せばいいのだろうか？
+
+### スピアマンの順位相関係数
+
+相関係数でよく使われるものには二種類ある。一つはスピアマン(Spearman)の順位相関係数、もう一つはケンドール(Kendall)の順位相関係数である。
+
+スピアマンの順位相関係数では、2つの系列の順位の差を二乗したものを計算する。
+
+$$
+  r_{s} = 1-\frac{6}{n^3-n}\sum^{n}_{i=1}(R_i - R_{i}')^2
+$$
+
+このスピアマンの順位相関係数では、数値が１に近いほど相関が強く、-1になるほど離れるほど逆の相関がある。
+
+**オリジナルデータのそれぞれの順位差**
+
+```{r}
+dat_flower |> 
+  mutate(順位差=male-female,
+         順位差２乗=順位差^2) |>
+  knitr::kable()
+```
+
+
+もし、完全に一致する順位ならば、$\sum^{n}_{i=1}(R_i - R_{i}')^2$に部分は０になる。一方で、もし真逆の順位ならば、その部分はとても大きくなる。
+
+**完全に順位が一致するケースのそれぞれの順位差**
+
+```{r}
+dat_flower2 |> 
+  mutate(順位差=male-female,
+         順位差２乗=順位差^2) |>
+  knitr::kable()
+```
+
+**順位が真逆のケースのそれぞれの順位差**
+
+```{r}
+dat_flower3 |> 
+  mutate(順位差=male-female,
+         順位差２乗=順位差^2) |>
+  knitr::kable()
+```
+
+**順位がばらばらのケースのそれぞれの順位差**
+
+```{r}
+dat_flower4 |> 
+  mutate(順位差=male-female,
+         順位差２乗=順位差^2) |>
+  knitr::kable()
+```
+
+#### Rでのスピアマン相関係数の計算
+
+Rでは`cor`関数の`method`引数を変更するとスピアマンの相関係数が使える。
+
+```{r}
+cor(dat_flower$male, dat_flower$female, method="spearman")
+```
+
+上の他のケースを計算すると、完全一致のケースでは`r cor(dat_flower2$male, dat_flower2$female, method="spearman")|>round(digits=2)`, 真逆のケースでは`cor(dat_flower3$male, dat_flower3$female, method="spearman")|>round(digits=2)`, ばらばらのケースでは`cor(dat_flower4$male, dat_flower4$female, method="spearman")|>round(digits=2)`となる。
+
+
+### ケンドールの順位相関係数
+
+もう一つの順位相関係数であるケンドールの順位相関係数は、データの中の順位の相対的な違いに注目する。
+
+もしデータは*正順*である場合は、そのペアに1を与える。正順であるとは$i$と$j$という項目について、ある系列では順位が$R_i > R_j$である場合にもう一つの系列でも$R_i' > R_j'$であることをいう。これは$(R_i-R_j)(R_i'-R_j')>0$とも表現できる。
+
+データが*逆順*出る場合は、そのペアに-1を与える。逆であるとはある系列では順位が$R_i > R_j$である場合にもう一つの系列でも$R_i' < R_j'$であることをいう。これは$(R_i-R_j)(R_i'-R_j')<0$とも表現できる。
+
+花のデータで言えば、男性の順位では桜(1位)は菊(2位)より順位が上（数字が小さい）ので$R_桜 < R_菊$であるが、女性の順位では桜(3位)は菊(1位)よりが下であるため、$R_桜' > R_菊'$となるため、桜と菊のペアには-1が与えられる。
+
+ケンドールの順位相関係数では、すべてのペアに1か-1を与えて、1のペアの数と-1のペアの数をそれぞれ集計する。その差を取って、ペアの数で割った数である。
+1のペアの数が$G$, -1のペアの数が$H$だとすると、
+
+$$
+\tau = \frac{G-H}{n(n-1)/2}
+$$
+と定義される。
+この値も、完全に順位が一致していれば、+1, 完全に逆ならば-1を取る。
+
+ちなみに、この相関係数は元のデータが順位でなくても計算する事が可能である。なぜなら、ペアに対して与えるのは大小なので、数値そのものを使ったとしても、$x_i > x_j$と$y_i > y_j$ならば正順、というように各ペアに+1か-1を割り当てることが可能だからである。
+
+こちらも、`cor`関数の引数を変えることで、計算が可能である。
+
+```{r}
+cor(dat_flower$male, dat_flower$female, method="kendall")
+```
+
+上の他のケースを計算すると、完全一致のケースでは`r cor(dat_flower2$male, dat_flower2$female, method="kendall")|>round(digits=2)`, 真逆のケースでは`cor(dat_flower3$male, dat_flower3$female, method="kendall")|>round(digits=2)`, ばらばらのケースでは`cor(dat_flower4$male, dat_flower4$female, method="kendall")|>round(digits=2)`となる。

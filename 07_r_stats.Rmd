@@ -28,10 +28,14 @@
 
 そして、以下のライブラリを読み込んでおく。ライブラリがなくてエラーが出る場合はインストールしてから再度読み込む。
 
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
 library(psych)
 library(skimr)
+
+# もしインストールしてない場合は、Rstudioの右下ペーンのPackagesタブからインストールするか、以下のコード
+install.packages("psych")
+install.packages("skimr")
 ```
 
 

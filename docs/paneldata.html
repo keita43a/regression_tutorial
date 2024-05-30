@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 パネルデータ分析 | 武蔵大生のためのRによる実証分析入門</title>
+  <title>Chapter 13 パネルデータ分析 | 武蔵大生のためのRによる実証分析入門</title>
   <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 パネルデータ分析 | 武蔵大生のためのRによる実証分析入門" />
+  <meta property="og:title" content="Chapter 13 パネルデータ分析 | 武蔵大生のためのRによる実証分析入門" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 パネルデータ分析 | 武蔵大生のためのRによる実証分析入門" />
+  <meta name="twitter:title" content="Chapter 13 パネルデータ分析 | 武蔵大生のためのRによる実証分析入門" />
   
   <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-29" />
+<meta name="date" content="2024-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -399,74 +399,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#棄却域"><i class="fa fa-check"></i><b>9.4.3</b> 棄却域</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="simpleregression.html"><a href="simpleregression.html"><i class="fa fa-check"></i><b>10</b> 単回帰分析</a>
+<li class="chapter" data-level="10" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>10</b> 相関関係</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="simpleregression.html"><a href="simpleregression.html#つの変数の関係"><i class="fa fa-check"></i><b>10.1</b> ２つの変数の関係</a>
+<li class="chapter" data-level="10.1" data-path="correlation.html"><a href="correlation.html#つの変数の関係"><i class="fa fa-check"></i><b>10.1</b> ２つの変数の関係</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="simpleregression.html"><a href="simpleregression.html#共分散"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
-<li class="chapter" data-level="10.1.2" data-path="simpleregression.html"><a href="simpleregression.html#相関係数"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
-<li class="chapter" data-level="10.1.3" data-path="simpleregression.html"><a href="simpleregression.html#散布図"><i class="fa fa-check"></i><b>10.1.3</b> 散布図</a></li>
+<li class="chapter" data-level="10.1.1" data-path="correlation.html"><a href="correlation.html#共分散"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="10.1.2" data-path="correlation.html"><a href="correlation.html#相関係数"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="10.1.3" data-path="correlation.html"><a href="correlation.html#散布図"><i class="fa fa-check"></i><b>10.1.3</b> 散布図</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="simpleregression.html"><a href="simpleregression.html#相関関係と因果関係"><i class="fa fa-check"></i><b>10.2</b> 相関関係と因果関係</a></li>
-<li class="chapter" data-level="10.3" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析"><i class="fa fa-check"></i><b>10.3</b> 回帰分析</a>
+<li class="chapter" data-level="10.2" data-path="correlation.html"><a href="correlation.html#相関関係と因果関係"><i class="fa fa-check"></i><b>10.2</b> 相関関係と因果関係</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="simpleregression.html"><a href="simpleregression.html#rによる単回帰モデルの推定"><i class="fa fa-check"></i><b>10.3.1</b> Rによる単回帰モデルの推定</a></li>
-<li class="chapter" data-level="10.3.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰係数の統計的な推定"><i class="fa fa-check"></i><b>10.3.2</b> 回帰係数の統計的な推定</a></li>
-<li class="chapter" data-level="10.3.3" data-path="simpleregression.html"><a href="simpleregression.html#見せかけの相関と単回帰分析"><i class="fa fa-check"></i><b>10.3.3</b> 見せかけの相関と単回帰分析</a></li>
+<li class="chapter" data-level="10.2.1" data-path="correlation.html"><a href="correlation.html#偏相関係数"><i class="fa fa-check"></i><b>10.2.1</b> 偏相関係数</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析の推定方法"><i class="fa fa-check"></i><b>10.4</b> 回帰分析の推定方法</a></li>
-<li class="chapter" data-level="10.5" data-path="simpleregression.html"><a href="simpleregression.html#演習問題単回帰分析"><i class="fa fa-check"></i><b>10.5</b> 演習問題：単回帰分析</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>11</b> 重回帰分析</a>
+<li class="chapter" data-level="10.3" data-path="correlation.html"><a href="correlation.html#順位相関係数"><i class="fa fa-check"></i><b>10.3</b> 順位相関係数</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="multipleregression.html"><a href="multipleregression.html#重回帰分析とは"><i class="fa fa-check"></i><b>11.1</b> 重回帰分析とは</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>12</b> パネルデータ分析</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータとは"><i class="fa fa-check"></i><b>12.1</b> パネルデータとは</a>
-<ul>
-<li class="chapter" data-level="12.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>12.1.1</b> スクリプトの準備</a></li>
-<li class="chapter" data-level="12.1.2" data-path="paneldata.html"><a href="paneldata.html#パッケージの準備"><i class="fa fa-check"></i><b>12.1.2</b> パッケージの準備</a></li>
-<li class="chapter" data-level="12.1.3" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>12.1.3</b> データの準備</a></li>
-<li class="chapter" data-level="12.1.4" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>12.1.4</b> データの記述統計</a></li>
-<li class="chapter" data-level="12.1.5" data-path="paneldata.html"><a href="paneldata.html#データの加工"><i class="fa fa-check"></i><b>12.1.5</b> データの加工</a></li>
-</ul></li>
-<li class="chapter" data-level="12.2" data-path="paneldata.html"><a href="paneldata.html#パネルデータ分析"><i class="fa fa-check"></i><b>12.2</b> パネルデータ分析</a>
-<ul>
-<li class="chapter" data-level="12.2.1" data-path="paneldata.html"><a href="paneldata.html#事例交通事故死亡率とアルコール税の関係"><i class="fa fa-check"></i><b>12.2.1</b> 事例：交通事故死亡率とアルコール税の関係</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="paneldata.html"><a href="paneldata.html#固定効果モデル"><i class="fa fa-check"></i><b>12.3</b> 固定効果モデル</a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="paneldata.html"><a href="paneldata.html#固定効果モデルのビジュアルイメージ"><i class="fa fa-check"></i><b>12.3.1</b> 固定効果モデルのビジュアルイメージ</a></li>
+<li class="chapter" data-level="10.3.1" data-path="correlation.html"><a href="correlation.html#スピアマンの順位相関係数"><i class="fa fa-check"></i><b>10.3.1</b> スピアマンの順位相関係数</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation.html"><a href="correlation.html#ケンドールの順位相関係数"><i class="fa fa-check"></i><b>10.3.2</b> ケンドールの順位相関係数</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="did.html"><a href="did.html"><i class="fa fa-check"></i><b>13</b> 差の差法</a>
+<li class="chapter" data-level="11" data-path="simpleregression.html"><a href="simpleregression.html"><i class="fa fa-check"></i><b>11</b> 単回帰分析</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="did.html"><a href="did.html#差の差法とは"><i class="fa fa-check"></i><b>13.1</b> 差の差法とは</a>
+<li class="chapter" data-level="11.1" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析"><i class="fa fa-check"></i><b>11.1</b> 回帰分析</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="did.html"><a href="did.html#差の差法のアイデア"><i class="fa fa-check"></i><b>13.1.1</b> 差の差法のアイデア</a></li>
-<li class="chapter" data-level="13.1.2" data-path="did.html"><a href="did.html#差分の差分法の仮定"><i class="fa fa-check"></i><b>13.1.2</b> 差分の差分法の仮定</a></li>
-<li class="chapter" data-level="13.1.3" data-path="did.html"><a href="did.html#回帰分析を使って行う方法"><i class="fa fa-check"></i><b>13.1.3</b> 回帰分析を使って行う方法</a></li>
-<li class="chapter" data-level="13.1.4" data-path="did.html"><a href="did.html#演習問題差の差法の回帰分析アプローチ"><i class="fa fa-check"></i><b>13.1.4</b> <strong>演習問題</strong>：差の差法の回帰分析アプローチ</a></li>
+<li class="chapter" data-level="11.1.1" data-path="simpleregression.html"><a href="simpleregression.html#rによる単回帰モデルの推定"><i class="fa fa-check"></i><b>11.1.1</b> Rによる単回帰モデルの推定</a></li>
+<li class="chapter" data-level="11.1.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰係数の統計的な推定"><i class="fa fa-check"></i><b>11.1.2</b> 回帰係数の統計的な推定</a></li>
+<li class="chapter" data-level="11.1.3" data-path="simpleregression.html"><a href="simpleregression.html#見せかけの相関と単回帰分析"><i class="fa fa-check"></i><b>11.1.3</b> 見せかけの相関と単回帰分析</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="did.html"><a href="did.html#rでの演習"><i class="fa fa-check"></i><b>13.2</b> Rでの演習</a>
+<li class="chapter" data-level="11.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析の推定方法"><i class="fa fa-check"></i><b>11.2</b> 回帰分析の推定方法</a></li>
+<li class="chapter" data-level="11.3" data-path="simpleregression.html"><a href="simpleregression.html#演習問題単回帰分析"><i class="fa fa-check"></i><b>11.3</b> 演習問題：単回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>12</b> 重回帰分析</a>
 <ul>
-<li class="chapter" data-level="13.2.1" data-path="did.html"><a href="did.html#スクリプトの準備-1"><i class="fa fa-check"></i><b>13.2.1</b> スクリプトの準備</a></li>
-<li class="chapter" data-level="13.2.2" data-path="did.html"><a href="did.html#パッケージの準備-1"><i class="fa fa-check"></i><b>13.2.2</b> パッケージの準備</a></li>
-<li class="chapter" data-level="13.2.3" data-path="did.html"><a href="did.html#データの準備-1"><i class="fa fa-check"></i><b>13.2.3</b> データの準備</a></li>
-<li class="chapter" data-level="13.2.4" data-path="did.html"><a href="did.html#データの確認"><i class="fa fa-check"></i><b>13.2.4</b> データの確認</a></li>
-<li class="chapter" data-level="13.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>13.2.5</b> データの記述統計</a></li>
-<li class="chapter" data-level="13.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>13.2.6</b> 政策変更の確認</a></li>
-<li class="chapter" data-level="13.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>13.2.7</b> 差の差法</a></li>
-<li class="chapter" data-level="13.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>13.2.8</b> 回帰分析による差の差法</a></li>
+<li class="chapter" data-level="12.1" data-path="multipleregression.html"><a href="multipleregression.html#重回帰分析とは"><i class="fa fa-check"></i><b>12.1</b> 重回帰分析とは</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>13</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータとは"><i class="fa fa-check"></i><b>13.1</b> パネルデータとは</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>13.1.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="13.1.2" data-path="paneldata.html"><a href="paneldata.html#パッケージの準備"><i class="fa fa-check"></i><b>13.1.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="13.1.3" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>13.1.3</b> データの準備</a></li>
+<li class="chapter" data-level="13.1.4" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>13.1.4</b> データの記述統計</a></li>
+<li class="chapter" data-level="13.1.5" data-path="paneldata.html"><a href="paneldata.html#データの加工"><i class="fa fa-check"></i><b>13.1.5</b> データの加工</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="paneldata.html"><a href="paneldata.html#パネルデータ分析"><i class="fa fa-check"></i><b>13.2</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="paneldata.html"><a href="paneldata.html#事例交通事故死亡率とアルコール税の関係"><i class="fa fa-check"></i><b>13.2.1</b> 事例：交通事故死亡率とアルコール税の関係</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="paneldata.html"><a href="paneldata.html#固定効果モデル"><i class="fa fa-check"></i><b>13.3</b> 固定効果モデル</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="paneldata.html"><a href="paneldata.html#固定効果モデルのビジュアルイメージ"><i class="fa fa-check"></i><b>13.3.1</b> 固定効果モデルのビジュアルイメージ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>14</b> 練習問題解答</a>
+<li class="chapter" data-level="14" data-path="did.html"><a href="did.html"><i class="fa fa-check"></i><b>14</b> 差の差法</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>14.1</b> Ch.4</a></li>
-<li class="chapter" data-level="14.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>14.2</b> Ch. 6</a></li>
-<li class="chapter" data-level="14.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>14.3</b> Ch. 8</a></li>
-<li class="chapter" data-level="14.4" data-path="practiceanswer.html"><a href="practiceanswer.html#ch-10"><i class="fa fa-check"></i><b>14.4</b> Ch 10</a></li>
+<li class="chapter" data-level="14.1" data-path="did.html"><a href="did.html#差の差法とは"><i class="fa fa-check"></i><b>14.1</b> 差の差法とは</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="did.html"><a href="did.html#差の差法のアイデア"><i class="fa fa-check"></i><b>14.1.1</b> 差の差法のアイデア</a></li>
+<li class="chapter" data-level="14.1.2" data-path="did.html"><a href="did.html#差分の差分法の仮定"><i class="fa fa-check"></i><b>14.1.2</b> 差分の差分法の仮定</a></li>
+<li class="chapter" data-level="14.1.3" data-path="did.html"><a href="did.html#回帰分析を使って行う方法"><i class="fa fa-check"></i><b>14.1.3</b> 回帰分析を使って行う方法</a></li>
+<li class="chapter" data-level="14.1.4" data-path="did.html"><a href="did.html#演習問題差の差法の回帰分析アプローチ"><i class="fa fa-check"></i><b>14.1.4</b> <strong>演習問題</strong>：差の差法の回帰分析アプローチ</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="did.html"><a href="did.html#rでの演習"><i class="fa fa-check"></i><b>14.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="did.html"><a href="did.html#スクリプトの準備-1"><i class="fa fa-check"></i><b>14.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="14.2.2" data-path="did.html"><a href="did.html#パッケージの準備-1"><i class="fa fa-check"></i><b>14.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="14.2.3" data-path="did.html"><a href="did.html#データの準備-1"><i class="fa fa-check"></i><b>14.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="14.2.4" data-path="did.html"><a href="did.html#データの確認"><i class="fa fa-check"></i><b>14.2.4</b> データの確認</a></li>
+<li class="chapter" data-level="14.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>14.2.5</b> データの記述統計</a></li>
+<li class="chapter" data-level="14.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>14.2.6</b> 政策変更の確認</a></li>
+<li class="chapter" data-level="14.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>14.2.7</b> 差の差法</a></li>
+<li class="chapter" data-level="14.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>14.2.8</b> 回帰分析による差の差法</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>15</b> 練習問題解答</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>15.1</b> Ch.4</a></li>
+<li class="chapter" data-level="15.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>15.2</b> Ch. 6</a></li>
+<li class="chapter" data-level="15.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>15.3</b> Ch. 8</a></li>
+<li class="chapter" data-level="15.4" data-path="practiceanswer.html"><a href="practiceanswer.html#ch-10"><i class="fa fa-check"></i><b>15.4</b> Ch 10</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -488,38 +499,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="paneldata" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> パネルデータ分析<a href="paneldata.html#paneldata" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="パネルデータとは" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> パネルデータとは<a href="paneldata.html#パネルデータとは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="paneldata" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> パネルデータ分析<a href="paneldata.html#paneldata" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="パネルデータとは" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> パネルデータとは<a href="paneldata.html#パネルデータとは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>重回帰分析のセクションで扱ったデータは基本的にはクロスセクションデータであった。
 これは、データの変動が人であったり、県であったり、グループであったりするものであり、データでは添字<span class="math inline">\(i\)</span>で表現していた。</p>
 <p>これに加えて、時間の変動藻ある場合には、クロスセクションデータで分析するよりアドバンテージがある。時間変動がある場合にどのような形になるか見てみよう。</p>
-<div id="スクリプトの準備" class="section level3 hasAnchor" number="12.1.1">
-<h3><span class="header-section-number">12.1.1</span> スクリプトの準備<a href="paneldata.html#スクリプトの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="スクリプトの準備" class="section level3 hasAnchor" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> スクリプトの準備<a href="paneldata.html#スクリプトの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>新しいスクリプトにコードを書いていく。
 新しくスクリプトを作成し、<code>panel_data.R</code>という名前をつけて保存する。</p>
 </div>
-<div id="パッケージの準備" class="section level3 hasAnchor" number="12.1.2">
-<h3><span class="header-section-number">12.1.2</span> パッケージの準備<a href="paneldata.html#パッケージの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="パッケージの準備" class="section level3 hasAnchor" number="13.1.2">
+<h3><span class="header-section-number">13.1.2</span> パッケージの準備<a href="paneldata.html#パッケージの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>以下のパッケージを使うので読み込んでおく。
 インストールしてない場合は、インストールする。</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="paneldata.html#cb265-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
-<span id="cb265-2"><a href="paneldata.html#cb265-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb265-3"><a href="paneldata.html#cb265-3" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb265-4"><a href="paneldata.html#cb265-4" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb265-5"><a href="paneldata.html#cb265-5" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
-<span id="cb265-6"><a href="paneldata.html#cb265-6" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="paneldata.html#cb283-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
+<span id="cb283-2"><a href="paneldata.html#cb283-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb283-3"><a href="paneldata.html#cb283-3" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb283-4"><a href="paneldata.html#cb283-4" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb283-5"><a href="paneldata.html#cb283-5" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb283-6"><a href="paneldata.html#cb283-6" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
 </div>
-<div id="データの準備" class="section level3 hasAnchor" number="12.1.3">
-<h3><span class="header-section-number">12.1.3</span> データの準備<a href="paneldata.html#データの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの準備" class="section level3 hasAnchor" number="13.1.3">
+<h3><span class="header-section-number">13.1.3</span> データの準備<a href="paneldata.html#データの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データを読み込む。データ名が長いので、 <code>data_f</code>に入れ替えよう。</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="paneldata.html#cb266-1" tabindex="-1"></a><span class="fu">data</span>(Fatalities)</span>
-<span id="cb266-2"><a href="paneldata.html#cb266-2" tabindex="-1"></a></span>
-<span id="cb266-3"><a href="paneldata.html#cb266-3" tabindex="-1"></a>data_f <span class="ot">&lt;-</span> Fatalities</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="paneldata.html#cb284-1" tabindex="-1"></a><span class="fu">data</span>(Fatalities)</span>
+<span id="cb284-2"><a href="paneldata.html#cb284-2" tabindex="-1"></a></span>
+<span id="cb284-3"><a href="paneldata.html#cb284-3" tabindex="-1"></a>data_f <span class="ot">&lt;-</span> Fatalities</span></code></pre></div>
 <p>データの中身を見てみる。
 まずは、どんなデータなのか<code>head()</code>で確認する。</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="paneldata.html#cb267-1" tabindex="-1"></a><span class="fu">head</span>(data_f)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="paneldata.html#cb285-1" tabindex="-1"></a><span class="fu">head</span>(data_f)</span></code></pre></div>
 <pre><code>##   state year spirits unemp   income   emppop  beertax baptist  mormon drinkage     dry youngdrivers    miles breath jail service fatal nfatal sfatal fatal1517
 ## 1    al 1982    1.37  14.4 10544.15 50.69204 1.539379 30.3557 0.32829    19.00 25.0063     0.211572 7233.887     no   no      no   839    146     99        53
 ## 2    al 1983    1.36  13.7 10732.80 52.14703 1.788991 30.3336 0.34341    19.00 22.9942     0.210768 7836.348     no   no      no   930    154     98        71
@@ -536,12 +547,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6         11       127         31       138         30 368.421 4082999 204999.8 208998.5 258999.8    37426     6.2     61.5  0.04897637</code></pre>
 <p>このデータはアメリカの州×年ごとに、様々な変数が記録されているデータである。
 どんな変数が記録されているかは、helpファイルを見るとわかる。</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="paneldata.html#cb269-1" tabindex="-1"></a><span class="fu">help</span>(Fatalities)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="paneldata.html#cb287-1" tabindex="-1"></a><span class="fu">help</span>(Fatalities)</span></code></pre></div>
 </div>
-<div id="データの記述統計" class="section level3 hasAnchor" number="12.1.4">
-<h3><span class="header-section-number">12.1.4</span> データの記述統計<a href="paneldata.html#データの記述統計" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの記述統計" class="section level3 hasAnchor" number="13.1.4">
+<h3><span class="header-section-number">13.1.4</span> データの記述統計<a href="paneldata.html#データの記述統計" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データの記述統計を確認しよう。一番基本的なものはsummary()関数を使う方法である。</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="paneldata.html#cb270-1" tabindex="-1"></a><span class="fu">summary</span>(data_f)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="paneldata.html#cb288-1" tabindex="-1"></a><span class="fu">summary</span>(data_f)</span></code></pre></div>
 <pre><code>##      state       year       spirits          unemp            income          emppop         beertax           baptist            mormon           drinkage    
 ##  al     :  7   1982:48   Min.   :0.790   Min.   : 2.400   Min.   : 9514   Min.   :42.99   Min.   :0.04331   Min.   : 0.0000   Min.   : 0.1000   Min.   :18.00  
 ##  az     :  7   1983:48   1st Qu.:1.300   1st Qu.: 5.475   1st Qu.:12086   1st Qu.:57.69   1st Qu.:0.20885   1st Qu.: 0.6268   1st Qu.: 0.2722   1st Qu.:20.00  
@@ -575,7 +586,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  Max.   :1892998   Max.   :241575   Max.   :9.700   Max.   :62.30   Max.   : 0.142361  
 ## </code></pre>
 <p>Chapter @ref(#rstats)　で説明したように、他のパッケージを使う方法もある。</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="paneldata.html#cb272-1" tabindex="-1"></a><span class="fu">describe</span>(data_f, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="paneldata.html#cb290-1" tabindex="-1"></a><span class="fu">describe</span>(data_f, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>##              vars   n       mean         sd     median       min         max       range        se
 ## state*          1 336      24.50      13.87      24.50      1.00       48.00       47.00      0.76
 ## year*           2 336       4.00       2.00       4.00      1.00        7.00        6.00      0.11
@@ -614,11 +625,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>psych</code>パッケージの<code>describe()</code>では、カテゴリー変数も無理やり数値化して計算するのでおかしなことになっているものがあることである。例えば、stateは州なので、平均や標準偏差が計算されているのはおかしい。
 しかし、数値の変数を見るときには有用である。</p>
 <p><code>skimr</code>パッケージの<code>skim()</code>関数は、カテゴリ変数と連続変数を区別して記述統計を示してくれる。</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="paneldata.html#cb274-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb274-2"><a href="paneldata.html#cb274-2" tabindex="-1"></a></span>
-<span id="cb274-3"><a href="paneldata.html#cb274-3" tabindex="-1"></a><span class="fu">skim</span>(data_f)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="paneldata.html#cb292-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb292-2"><a href="paneldata.html#cb292-2" tabindex="-1"></a></span>
+<span id="cb292-3"><a href="paneldata.html#cb292-3" tabindex="-1"></a><span class="fu">skim</span>(data_f)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-178">Table 12.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-197">Table 13.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -1132,20 +1143,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="データの加工" class="section level3 hasAnchor" number="12.1.5">
-<h3><span class="header-section-number">12.1.5</span> データの加工<a href="paneldata.html#データの加工" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データの加工" class="section level3 hasAnchor" number="13.1.5">
+<h3><span class="header-section-number">13.1.5</span> データの加工<a href="paneldata.html#データの加工" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データには、交通事故による死亡数<code>fatal</code>はあるが、死亡率がない。当然ながら各州によって人口が違い、人口が多い州は死亡数も多くなる。州の間で比較を行うためには、死亡数より死亡率が適切だろう。そこで、死亡率<code>fatal_rate</code>を死亡数<code>fatal</code>を人口<code>pop</code>で割ることで計算する。あまりに小さい数字になるため10000をかけて「１万人当たりの死亡者数」として死亡率を定義する。
 新たに追加したデータを<code>data_f2</code>に入れる。</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="paneldata.html#cb275-1" tabindex="-1"></a><span class="co"># データの加工</span></span>
-<span id="cb275-2"><a href="paneldata.html#cb275-2" tabindex="-1"></a>data_f2 <span class="ot">&lt;-</span> data_f <span class="sc">|&gt;</span> </span>
-<span id="cb275-3"><a href="paneldata.html#cb275-3" tabindex="-1"></a>  <span class="co"># 死亡率の計算</span></span>
-<span id="cb275-4"><a href="paneldata.html#cb275-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fatal_rate =</span> fatal<span class="sc">/</span>pop <span class="sc">*</span> <span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="paneldata.html#cb293-1" tabindex="-1"></a><span class="co"># データの加工</span></span>
+<span id="cb293-2"><a href="paneldata.html#cb293-2" tabindex="-1"></a>data_f2 <span class="ot">&lt;-</span> data_f <span class="sc">|&gt;</span> </span>
+<span id="cb293-3"><a href="paneldata.html#cb293-3" tabindex="-1"></a>  <span class="co"># 死亡率の計算</span></span>
+<span id="cb293-4"><a href="paneldata.html#cb293-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fatal_rate =</span> fatal<span class="sc">/</span>pop <span class="sc">*</span> <span class="dv">10000</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="パネルデータ分析" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> パネルデータ分析<a href="paneldata.html#パネルデータ分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="事例交通事故死亡率とアルコール税の関係" class="section level3 hasAnchor" number="12.2.1">
-<h3><span class="header-section-number">12.2.1</span> 事例：交通事故死亡率とアルコール税の関係<a href="paneldata.html#事例交通事故死亡率とアルコール税の関係" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="パネルデータ分析" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> パネルデータ分析<a href="paneldata.html#パネルデータ分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="事例交通事故死亡率とアルコール税の関係" class="section level3 hasAnchor" number="13.2.1">
+<h3><span class="header-section-number">13.2.1</span> 事例：交通事故死亡率とアルコール税の関係<a href="paneldata.html#事例交通事故死亡率とアルコール税の関係" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>ここでは、アメリカの州（アラスカとハワイを除いた48州）の1982~1988年のデータを用いて、各州のアルコール税の税率と、交通事故死亡率の関係を分析する。</p>
 <p>ここで、日本とは異なる背景知識だが、アメリカは連邦制の国であり、州によって様々な法律が異なる。例えば消費税のない州もあれば、その税率が州で違ったりもする。この場合はアルコール、特にビールにかかる税率が州で異なる点に着目して、税率の違いが酒酔い運転などによっても引き起こされる交通事故死亡率に影響するかどうかを分析する。</p>
 <p>州<span class="math inline">\(i\)</span>の交通事故死亡率を<span class="math inline">\(y_{i}\)</span>とし、ビール税率を<span class="math inline">\(x_{i}\)</span>とすると、以下の単回帰式によって、影響が推定できそうだ。</p>
@@ -1155,23 +1166,23 @@ y_{i} = \alpha + \beta x_{i} +\varepsilon_{i}
 <p>ビール税率を上げると交通事故死亡率が下がる、という仮説を検証したい場合、<span class="math inline">\(\beta\)</span>が負（マイナス）であると期待するだろう。</p>
 <p>まず、この単回帰式を推定するために、クロス・セクションのデータで推定を行ってみよう。
 データのうち、1982年と1988年をそれぞれ抽出してみよう。</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="paneldata.html#cb276-1" tabindex="-1"></a><span class="co"># クロスセクションデータの作成</span></span>
-<span id="cb276-2"><a href="paneldata.html#cb276-2" tabindex="-1"></a>data_f2_1982 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
-<span id="cb276-3"><a href="paneldata.html#cb276-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1982</span>)</span>
-<span id="cb276-4"><a href="paneldata.html#cb276-4" tabindex="-1"></a></span>
-<span id="cb276-5"><a href="paneldata.html#cb276-5" tabindex="-1"></a>data_f2_1988 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
-<span id="cb276-6"><a href="paneldata.html#cb276-6" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1988</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="paneldata.html#cb294-1" tabindex="-1"></a><span class="co"># クロスセクションデータの作成</span></span>
+<span id="cb294-2"><a href="paneldata.html#cb294-2" tabindex="-1"></a>data_f2_1982 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
+<span id="cb294-3"><a href="paneldata.html#cb294-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1982</span>)</span>
+<span id="cb294-4"><a href="paneldata.html#cb294-4" tabindex="-1"></a></span>
+<span id="cb294-5"><a href="paneldata.html#cb294-5" tabindex="-1"></a>data_f2_1988 <span class="ot">&lt;-</span> data_f2 <span class="sc">|&gt;</span> </span>
+<span id="cb294-6"><a href="paneldata.html#cb294-6" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1988</span>)</span></code></pre></div>
 <p>このデータを用いて単位回帰分析を行う。</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="paneldata.html#cb277-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
-<span id="cb277-2"><a href="paneldata.html#cb277-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
-<span id="cb277-3"><a href="paneldata.html#cb277-3" tabindex="-1"></a></span>
-<span id="cb277-4"><a href="paneldata.html#cb277-4" tabindex="-1"></a><span class="co"># 1982年のデータ</span></span>
-<span id="cb277-5"><a href="paneldata.html#cb277-5" tabindex="-1"></a>reg1_1982 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1982)</span>
-<span id="cb277-6"><a href="paneldata.html#cb277-6" tabindex="-1"></a></span>
-<span id="cb277-7"><a href="paneldata.html#cb277-7" tabindex="-1"></a><span class="co"># 1988年のデータ</span></span>
-<span id="cb277-8"><a href="paneldata.html#cb277-8" tabindex="-1"></a>reg1_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="paneldata.html#cb295-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
+<span id="cb295-2"><a href="paneldata.html#cb295-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
+<span id="cb295-3"><a href="paneldata.html#cb295-3" tabindex="-1"></a></span>
+<span id="cb295-4"><a href="paneldata.html#cb295-4" tabindex="-1"></a><span class="co"># 1982年のデータ</span></span>
+<span id="cb295-5"><a href="paneldata.html#cb295-5" tabindex="-1"></a>reg1_1982 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1982)</span>
+<span id="cb295-6"><a href="paneldata.html#cb295-6" tabindex="-1"></a></span>
+<span id="cb295-7"><a href="paneldata.html#cb295-7" tabindex="-1"></a><span class="co"># 1988年のデータ</span></span>
+<span id="cb295-8"><a href="paneldata.html#cb295-8" tabindex="-1"></a>reg1_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
 <p>結果を表示する。</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="paneldata.html#cb278-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_1982,reg1_1988)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="paneldata.html#cb296-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_1982,reg1_1988)</span></code></pre></div>
 <pre><code>##                         reg1_1982         reg1_1988
 ## Dependent Var.:        fatal_rate        fatal_rate
 ##                                                    
@@ -1187,12 +1198,12 @@ y_{i} = \alpha + \beta x_{i} +\varepsilon_{i}
 <p>この結果によれば、1982年ではビール税率が1%上がると、交通事故死亡率が0.1485上昇し、1988年では0.4388上昇する。
 このデータは州ごとのクロスセクションデータなので、もう少し正確に解釈すると、ビール税が1%高い州では交通事故死亡率が高い、ということになる。</p>
 <p>この結果をグラフでも見てみよう。縦軸を死亡率、横軸をビール税として散布図を描く。ここでは1988年のデータを見てみよう。</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="paneldata.html#cb280-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2_1988, <span class="fu">aes</span>(<span class="at">x=</span>beertax, <span class="at">y=</span>fatal_rate)) <span class="sc">+</span> </span>
-<span id="cb280-2"><a href="paneldata.html#cb280-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb280-3"><a href="paneldata.html#cb280-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)<span class="sc">+</span></span>
-<span id="cb280-4"><a href="paneldata.html#cb280-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;交通事故死亡率(10000人当たり）&quot;</span>) <span class="sc">+</span></span>
-<span id="cb280-5"><a href="paneldata.html#cb280-5" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="co">#&lt;- このレイヤーはWindowsならいらない</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="paneldata.html#cb298-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2_1988, <span class="fu">aes</span>(<span class="at">x=</span>beertax, <span class="at">y=</span>fatal_rate)) <span class="sc">+</span> </span>
+<span id="cb298-2"><a href="paneldata.html#cb298-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb298-3"><a href="paneldata.html#cb298-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb298-4"><a href="paneldata.html#cb298-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;交通事故死亡率(10000人当たり）&quot;</span>) <span class="sc">+</span></span>
+<span id="cb298-5"><a href="paneldata.html#cb298-5" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="co">#&lt;- このレイヤーはWindowsならいらない</span></span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 <p>むしろ税率と交通事故死亡率には正の関係がある。</p>
 <p>このアプローチには問題がないだろうか？なぜなら、クロスセクションデータでは州ごとの違いを見ているので、ビール税が高い州では交通事故死亡率が高いという結果であるが、交通事故死亡率が高い州ではビール税を上げているので高いという可能性もある。州による特性もある。</p>
 <p>では時間的な変動を含めたデータでは、どうなるだろうか？</p>
@@ -1200,13 +1211,13 @@ y_{i} = \alpha + \beta x_{i} +\varepsilon_{i}
 <p><span class="math display">\[
 y_{it} = \alpha + \beta x_{it} +\varepsilon_{it}
 \]</span></p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="paneldata.html#cb281-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
-<span id="cb281-2"><a href="paneldata.html#cb281-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
-<span id="cb281-3"><a href="paneldata.html#cb281-3" tabindex="-1"></a></span>
-<span id="cb281-4"><a href="paneldata.html#cb281-4" tabindex="-1"></a><span class="co"># 1982-1988年のデータ</span></span>
-<span id="cb281-5"><a href="paneldata.html#cb281-5" tabindex="-1"></a>reg1_panel <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2)</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="paneldata.html#cb299-1" tabindex="-1"></a><span class="co"># 回帰分析</span></span>
+<span id="cb299-2"><a href="paneldata.html#cb299-2" tabindex="-1"></a><span class="co"># lm()の代わりに feols()を使う</span></span>
+<span id="cb299-3"><a href="paneldata.html#cb299-3" tabindex="-1"></a></span>
+<span id="cb299-4"><a href="paneldata.html#cb299-4" tabindex="-1"></a><span class="co"># 1982-1988年のデータ</span></span>
+<span id="cb299-5"><a href="paneldata.html#cb299-5" tabindex="-1"></a>reg1_panel <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2)</span></code></pre></div>
 <p>結果を表示する。</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="paneldata.html#cb282-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="paneldata.html#cb300-1" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel)</span></code></pre></div>
 <pre><code>##                         reg1_panel
 ## Dependent Var.:         fatal_rate
 ##                                   
@@ -1223,8 +1234,8 @@ y_{it} = \alpha + \beta x_{it} +\varepsilon_{it}
 時間変動を加えても結果は変わっていない、ということはやはりビール税を上げると交通事故死亡率が増えるのだろうか？</p>
 </div>
 </div>
-<div id="固定効果モデル" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> 固定効果モデル<a href="paneldata.html#固定効果モデル" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="固定効果モデル" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> 固定効果モデル<a href="paneldata.html#固定効果モデル" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>ここで、重要なのはデータを変えただけでは本質的な問題である「州の特性によって、死亡率が高い州ほどビール税が高い（上げている）」可能性の影響を推定値から排除できていないことである。</p>
 <p>この<span class="math inline">\(x_{it}\)</span>には、州によってはビール税が（年にかかわらず）高い、という特性も入ってしまっており、そのデータが推定値に影響している。ならば、その影響を分けて推定することはできないか。これが<strong>固定効果モデル</strong>のアイデアである。</p>
 <p>固定効果とは、データとしては直接観察されないが時間的に変化しない主体独特の効果である。この場合は時間的に変化しない州独特の効果と言える。ではデータとしては直接観察されないのに、どうやって回帰式に含めるのか？これは、州ごとのダミー変数を作成するという発想で解決する。</p>
@@ -1239,10 +1250,10 @@ y_{it} = \beta x_{it} + \gamma_{AL} D_{AL} + \gamma_{AZ} D_{AZ} + \gamma_{AR} D_
 \]</span></p>
 <p>もしデータ<span class="math inline">\(i\)</span>がアラバマ州ならば<span class="math inline">\(D_{AL}\)</span>は1になり、それ以外は0になるので、<span class="math inline">\(\gamma_{AL}\)</span>が式に残る。もし<span class="math inline">\(i\)</span>がアリゾナ州ならば<span class="math inline">\(D_{AZ}\)</span>は1になり、それ以外は0になる。という形で、<span class="math inline">\(\gamma_{AL}\)</span>, <span class="math inline">\(\gamma_{AZ}\)</span> … <span class="math inline">\(\gamma_{WY}\)</span>のワイオミング州までを推定するのである。</p>
 <p>実際には、これを<code>feols</code>では簡単に推定できる。</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="paneldata.html#cb284-1" tabindex="-1"></a><span class="co"># |のあとに固定効果として推定したいカテゴリ（今回は州なのでstate)を入れる</span></span>
-<span id="cb284-2"><a href="paneldata.html#cb284-2" tabindex="-1"></a>reg1_panel_fe <span class="ot">=</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data =</span> data_f2)</span>
-<span id="cb284-3"><a href="paneldata.html#cb284-3" tabindex="-1"></a></span>
-<span id="cb284-4"><a href="paneldata.html#cb284-4" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel, reg1_panel_fe, <span class="at">se =</span> <span class="st">&quot;IID&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="paneldata.html#cb302-1" tabindex="-1"></a><span class="co"># |のあとに固定効果として推定したいカテゴリ（今回は州なのでstate)を入れる</span></span>
+<span id="cb302-2"><a href="paneldata.html#cb302-2" tabindex="-1"></a>reg1_panel_fe <span class="ot">=</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data =</span> data_f2)</span>
+<span id="cb302-3"><a href="paneldata.html#cb302-3" tabindex="-1"></a></span>
+<span id="cb302-4"><a href="paneldata.html#cb302-4" tabindex="-1"></a><span class="fu">etable</span>(reg1_panel, reg1_panel_fe, <span class="at">se =</span> <span class="st">&quot;IID&quot;</span>)</span></code></pre></div>
 <pre><code>##                         reg1_panel       reg1_panel_fe
 ## Dependent Var.:         fatal_rate          fatal_rate
 ##                                                       
@@ -1262,36 +1273,36 @@ y_{it} = \beta x_{it} + \gamma_{AL} D_{AL} + \gamma_{AZ} D_{AZ} + \gamma_{AR} D_
 <p>このように、本当に推定したい効果が、データの特徴によって推定できない場合、それが主体独特の効果である場合は、固定効果モデルを用いることで分別して推定することができる。</p>
 <p>しかし、固定効果モデルはパネルデータではないと使うことができない。
 たとえば、上で作成したクロスセクションデータで固定効果モデルを推定してみよう。</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="paneldata.html#cb286-1" tabindex="-1"></a>reg1_panel_fe_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="paneldata.html#cb304-1" tabindex="-1"></a>reg1_panel_fe_1988 <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data=</span>data_f2_1988)</span></code></pre></div>
 <pre><code>## Error: in feols(fatal_rate ~ beertax | state, data = data_f...: 
 ## The only variable, &#39;beertax&#39;, is collinear with the fixed effects. Without doubt, your model is misspecified.</code></pre>
 <p>エラーが出る。これは、クロスセクションデータでは州ごとの変動しかないため、ダミー変数による固定効果の変動（州によって1か0か）と州ごとのビール税の変動のどちらが交通事故死亡率の変動を説明しているか識別ができないためである。</p>
-<div id="固定効果モデルのビジュアルイメージ" class="section level3 hasAnchor" number="12.3.1">
-<h3><span class="header-section-number">12.3.1</span> 固定効果モデルのビジュアルイメージ<a href="paneldata.html#固定効果モデルのビジュアルイメージ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="固定効果モデルのビジュアルイメージ" class="section level3 hasAnchor" number="13.3.1">
+<h3><span class="header-section-number">13.3.1</span> 固定効果モデルのビジュアルイメージ<a href="paneldata.html#固定効果モデルのビジュアルイメージ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>固定効果モデルをビジュアルイメージで理解してみよう。</p>
 <p>まず、パネルデータを使って散布図を書いてみよう。</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="paneldata.html#cb288-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
-<span id="cb288-2"><a href="paneldata.html#cb288-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb288-3"><a href="paneldata.html#cb288-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
-<span id="cb288-4"><a href="paneldata.html#cb288-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="paneldata.html#cb306-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
+<span id="cb306-2"><a href="paneldata.html#cb306-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb306-3"><a href="paneldata.html#cb306-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
+<span id="cb306-4"><a href="paneldata.html#cb306-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
 <p>これだけを見ると、やはり右肩上がりの傾向があるように見える。
 <code>geom_smooth(method="lm")</code>というレイヤーを加えて、回帰線を描いてみよう。</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="paneldata.html#cb289-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
-<span id="cb289-2"><a href="paneldata.html#cb289-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb289-3"><a href="paneldata.html#cb289-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
-<span id="cb289-4"><a href="paneldata.html#cb289-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb289-5"><a href="paneldata.html#cb289-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="paneldata.html#cb307-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate)) <span class="sc">+</span></span>
+<span id="cb307-2"><a href="paneldata.html#cb307-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb307-3"><a href="paneldata.html#cb307-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
+<span id="cb307-4"><a href="paneldata.html#cb307-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb307-5"><a href="paneldata.html#cb307-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 <p>やはり右肩あがりになっている。</p>
 <p>では、今度は州ごとに色分けしてみよう。<code>aes()</code>の中で色カテゴリに州を指定する<code>col=state</code>。</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="paneldata.html#cb290-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate,<span class="at">col=</span>state)) <span class="sc">+</span></span>
-<span id="cb290-2"><a href="paneldata.html#cb290-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb290-3"><a href="paneldata.html#cb290-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
-<span id="cb290-4"><a href="paneldata.html#cb290-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb290-5"><a href="paneldata.html#cb290-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>) <span class="sc">+</span></span>
-<span id="cb290-6"><a href="paneldata.html#cb290-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># &lt;- もし凡例が大きすぎて図が見えない場合はこのレイヤーを追加して凡例を消す</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-190-1.png" width="672" />
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="paneldata.html#cb308-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_f2, <span class="fu">aes</span>(<span class="at">x=</span>beertax,<span class="at">y=</span>fatal_rate,<span class="at">col=</span>state)) <span class="sc">+</span></span>
+<span id="cb308-2"><a href="paneldata.html#cb308-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb308-3"><a href="paneldata.html#cb308-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="at">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="sc">+</span></span>
+<span id="cb308-4"><a href="paneldata.html#cb308-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb308-5"><a href="paneldata.html#cb308-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb308-6"><a href="paneldata.html#cb308-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># &lt;- もし凡例が大きすぎて図が見えない場合はこのレイヤーを追加して凡例を消す</span></span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-209-1.png" width="672" />
 すると、州ごと分けた点と線が描かれる。州ごとに見ると、州の中での時間的な変動ではビール税率が高いときに死亡率が下がっている傾向が見られるだろう。このように、州間の違いと州内の違いを分けて推定できるのが固定効果モデルである。</p>
 
 </div>
@@ -1334,7 +1345,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/13_panel_data_regression.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/14_panel_data_regression.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -21,11 +21,13 @@ description: "Rと計量経済学を用いた基本的な実証分析を説明�
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 pacman::p_load(
-  tidyverse,
   knitr,
   kableExtra,
   patchwork,
-  cols4all
+  cols4all,
+  psych,
+  skimr,
+  tidyverse
 )
 
 # bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook", output_dir="./docs")
