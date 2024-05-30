@@ -596,9 +596,9 @@ Xが政策的に変更できる変数であり、Yがなにか経済・社会的
 <h3><span class="header-section-number">10.1.3</span> 散布図<a href="correlation.html#散布図" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>相関関係を図で描くと直感的である。</p>
 <p>例えば、正の相関関係は以下のような図となる。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-156-1.png" width="1152" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-158-1.png" width="1152" /></p>
 <p>また、負の相関関係がある場合は以下のような形である。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-157-1.png" width="1152" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-159-1.png" width="1152" /></p>
 <p>上の図の観察をまとめると、</p>
 <ul>
 <li>正の場合は右肩上がり、負の場合は右肩下がりの傾向がある</li>
@@ -611,14 +611,14 @@ Xが政策的に変更できる変数であり、Yがなにか経済・社会的
 <p>ここまでは２つの変数の関係として、相関関係を議論してきた。
 しかし、社会科学の実証分析で重要な点として、<strong>相関関係は必ずしも因果関係を意味しない</strong>ということがある。</p>
 <p>たとえば、下の図はある年の日ごとのアイスクリームの売上と水難事故の件数だとする。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
 <p>このことから、アイスクリームの売上と水難事故件数には相関関係がありそうだ。実際に計算してみても、相関係数は0.63と計算された。</p>
 <p>しかし、この２つの間に<strong>因果関係</strong>はあるだろうか？
 例えば、アイスクリームの売上を増やすと水難事故も増えるのだろうか？
 では、政策的含意として、アイスクリームの販売に規制をかけて売上を増やさないようにすることで、水難事故を防ぐことはできるのだろうか？</p>
 <p>もちろんできない。</p>
 <p>この２つの変数の後ろには<strong>気温</strong>という別の変数が隠れている。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
 <p>気温が高ければ、人々はアイスクリームを買って食べるし、川や海にレジャーに行くため水難事故の絶対数も増えてしまう。</p>
 <p>しかし、アイスクリームと水難事故には直接の関係はないのである。
 このような相関関係を<strong>見せかけの相関</strong>と呼ぶ。</p>
@@ -766,7 +766,7 @@ Xが政策的に変更できる変数であり、Yがなにか経済・社会的
 <span id="cb260-6"><a href="correlation.html#cb260-6" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb260-7"><a href="correlation.html#cb260-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;女性の順位&quot;</span>, <span class="at">x=</span><span class="st">&quot;男性の順位&quot;</span>) <span class="sc">+</span></span>
 <span id="cb260-8"><a href="correlation.html#cb260-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
 <p>図で描いてみると、なんとなく似た傾向があるように見えるが、これをどう定量的に表すのか？</p>
 <p>もし、男女の順位が完全に一致していると、以下のような図になる。</p>
 <table>
@@ -820,7 +820,7 @@ Xが政策的に変更できる変数であり、Yがなにか経済・社会的
 </tr>
 </tbody>
 </table>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
 <p>このときは<strong>正の相関</strong>があることがわかるだろう。</p>
 <p>全く男女の順位が逆であったらどうだろうか。</p>
 <table>
@@ -874,7 +874,7 @@ Xが政策的に変更できる変数であり、Yがなにか経済・社会的
 </tr>
 </tbody>
 </table>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <p>男女の順位に関係がなければどんな散布図になるだろうか。</p>
 <table>
 <thead>
@@ -927,7 +927,7 @@ Xが政策的に変更できる変数であり、Yがなにか経済・社会的
 </tr>
 </tbody>
 </table>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 <p>ばらばらで男女の順位に関係がなさそうなことは直感的にはわかる。</p>
 <p>これをどう定量的に表せばいいのだろうか？</p>
 <div id="スピアマンの順位相関係数" class="section level3 hasAnchor" number="10.3.1">
@@ -1246,9 +1246,10 @@ Xが政策的に変更できる変数であり、Yがなにか経済・社会的
 <div id="ケンドールの順位相関係数" class="section level3 hasAnchor" number="10.3.2">
 <h3><span class="header-section-number">10.3.2</span> ケンドールの順位相関係数<a href="correlation.html#ケンドールの順位相関係数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>もう一つの順位相関係数であるケンドールの順位相関係数は、データの中の順位の相対的な違いに注目する。</p>
-<p>もしデータは<em>正順</em>である場合は、そのペアに1を与える。正順であるとは<span class="math inline">\(i\)</span>と<span class="math inline">\(j\)</span>という項目について、ある系列では順位が<span class="math inline">\(R_i &gt; R_j\)</span>である場合にもう一つの系列でも<span class="math inline">\(R_i&#39; &gt; R_j&#39;\)</span>であることをいう。これは<span class="math inline">\((R_i-R_j)(R_i&#39;-R_j&#39;)&gt;0\)</span>とも表現できる。</p>
-<p>データが<em>逆順</em>出る場合は、そのペアに-1を与える。逆であるとはある系列では順位が<span class="math inline">\(R_i &gt; R_j\)</span>である場合にもう一つの系列でも<span class="math inline">\(R_i&#39; &lt; R_j&#39;\)</span>であることをいう。これは<span class="math inline">\((R_i-R_j)(R_i&#39;-R_j&#39;)&lt;0\)</span>とも表現できる。</p>
-<p>花のデータで言えば、男性の順位では桜(1位)は菊(2位)より順位が上（数字が小さい）ので<span class="math inline">\(R_桜 &lt; R_菊\)</span>であるが、女性の順位では桜(3位)は菊(1位)よりが下であるため、<span class="math inline">\(R_桜&#39; &gt; R_菊&#39;\)</span>となるため、桜と菊のペアには-1が与えられる。</p>
+<p>もしデータは<strong>正順</strong>である場合は、そのペアに1を与える。正順であるとは<span class="math inline">\(i\)</span>と<span class="math inline">\(j\)</span>という項目について、ある系列では順位が<span class="math inline">\(R_i &gt; R_j\)</span>である場合にもう一つの系列でも<span class="math inline">\(R_i&#39; &gt; R_j&#39;\)</span>であることをいう。
+これは<span class="math inline">\((R_i-R_j)(R_i&#39;-R_j&#39;)&gt;0\)</span>とも表現できる。</p>
+<p>データが<strong>逆順</strong>であるる場合は、そのペアに-1を与える。逆であるとはある系列では順位が<span class="math inline">\(R_i &gt; R_j\)</span>である場合にもう一つの系列でも<span class="math inline">\(R_i&#39; &lt; R_j&#39;\)</span>であることをいう。これは<span class="math inline">\((R_i-R_j)(R_i&#39;-R_j&#39;)&lt;0\)</span>とも表現できる。</p>
+<p>花のデータで言えば、男性の順位では桜（1位）は菊（2位）より順位が上（数字が小さい）ので<span class="math inline">\(R_桜 &lt; R_菊\)</span>であるが、女性の順位では桜（3位）は菊（1位）より下（数字が大きい）であるため、<span class="math inline">\(R_桜&#39; &gt; R_菊&#39;\)</span>となるため、桜と菊のペアには-1が与えられる。</p>
 <p>ケンドールの順位相関係数では、すべてのペアに1か-1を与えて、1のペアの数と-1のペアの数をそれぞれ集計する。その差を取って、ペアの数で割った数である。
 1のペアの数が<span class="math inline">\(G\)</span>, -1のペアの数が<span class="math inline">\(H\)</span>だとすると、</p>
 <p><span class="math display">\[
@@ -1257,11 +1258,112 @@ Xが政策的に変更できる変数であり、Yがなにか経済・社会的
 と定義される。
 この値も、完全に順位が一致していれば、+1, 完全に逆ならば-1を取る。</p>
 <p>ちなみに、この相関係数は元のデータが順位でなくても計算する事が可能である。なぜなら、ペアに対して与えるのは大小なので、数値そのものを使ったとしても、<span class="math inline">\(x_i &gt; x_j\)</span>と<span class="math inline">\(y_i &gt; y_j\)</span>ならば正順、というように各ペアに+1か-1を割り当てることが可能だからである。</p>
-<p>こちらも、<code>cor</code>関数の引数を変えることで、計算が可能である。</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="correlation.html#cb267-1" tabindex="-1"></a><span class="fu">cor</span>(dat_flower<span class="sc">$</span>male, dat_flower<span class="sc">$</span>female, <span class="at">method=</span><span class="st">&quot;kendall&quot;</span>)</span></code></pre></div>
+<div id="計算例" class="section level4 hasAnchor" number="10.3.2.1">
+<h4><span class="header-section-number">10.3.2.1</span> 計算例<a href="correlation.html#計算例" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>実際にケンドールの相関係数を手計算で行うことで理解してみよう。
+手計算で行うために、縮小版として4つの花で聞いたとするデータを使う。</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="correlation.html#cb267-1" tabindex="-1"></a>dat_flower5 <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb267-2"><a href="correlation.html#cb267-2" tabindex="-1"></a>  <span class="at">flower =</span> <span class="fu">c</span>(<span class="st">&quot;桜&quot;</span>,<span class="st">&quot;菊&quot;</span>,<span class="st">&quot;梅&quot;</span>,<span class="st">&quot;椿&quot;</span>),</span>
+<span id="cb267-3"><a href="correlation.html#cb267-3" tabindex="-1"></a>  <span class="at">male =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb267-4"><a href="correlation.html#cb267-4" tabindex="-1"></a>  <span class="at">female =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb267-5"><a href="correlation.html#cb267-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">flower =</span> <span class="fu">fct_reorder</span>(flower,male))</span>
+<span id="cb267-6"><a href="correlation.html#cb267-6" tabindex="-1"></a></span>
+<span id="cb267-7"><a href="correlation.html#cb267-7" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dat_flower5)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">flower</th>
+<th align="right">male</th>
+<th align="right">female</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">桜</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">菊</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">梅</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">椿</td>
+<td align="right">4</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>ペア</th>
+<th align="center">男性順位の比較</th>
+<th align="center">女性順位の比較</th>
+<th align="center">ペア評価</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>桜と菊</td>
+<td align="center">1 &lt; 2</td>
+<td align="center">2 &gt; 1</td>
+<td align="center">逆順</td>
+</tr>
+<tr class="even">
+<td>桜と梅</td>
+<td align="center">1 &lt; 3</td>
+<td align="center">2 &lt; 4</td>
+<td align="center">正順</td>
+</tr>
+<tr class="odd">
+<td>桜と椿</td>
+<td align="center">1 &lt; 4</td>
+<td align="center">2 &lt; 3</td>
+<td align="center">正順</td>
+</tr>
+<tr class="even">
+<td>菊と梅</td>
+<td align="center">2 &lt; 3</td>
+<td align="center">1 &lt; 4</td>
+<td align="center">正順</td>
+</tr>
+<tr class="odd">
+<td>桜と椿</td>
+<td align="center">2 &lt; 4</td>
+<td align="center">1 &lt; 3</td>
+<td align="center">正順</td>
+</tr>
+<tr class="even">
+<td>梅と椿</td>
+<td align="center">3 &lt; 4</td>
+<td align="center">4 &gt; 3</td>
+<td align="center">逆順</td>
+</tr>
+</tbody>
+</table>
+<p>正順(+1)が4つなので<span class="math inline">\(G=4\)</span>で、逆順(-1)が2つなので<span class="math inline">\(H=2\)</span>である。</p>
+<p>ペアの数は<span class="math inline">\(4(4-1)/2 = 6\)</span>である。</p>
+<p>これをあてはめると
+<span class="math display">\[
+  \tau = \frac{4-2}{6} = 1/3 \simeq 0.33
+\]</span></p>
+<p>この場合は、弱いが正の相関があるといえる。</p>
+</div>
+<div id="rでのケンドール相関係数の計算" class="section level4 hasAnchor" number="10.3.2.2">
+<h4><span class="header-section-number">10.3.2.2</span> Rでのケンドール相関係数の計算<a href="correlation.html#rでのケンドール相関係数の計算" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>こちらも、<code>cor</code>関数の引数を変えることで、Rで計算が可能である。</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="correlation.html#cb268-1" tabindex="-1"></a><span class="fu">cor</span>(dat_flower<span class="sc">$</span>male, dat_flower<span class="sc">$</span>female, <span class="at">method=</span><span class="st">&quot;kendall&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0.7142857</code></pre>
 <p>上の他のケースを計算すると、完全一致のケースでは1, 真逆のケースでは-1, ばらばらのケースでは0.14となる。</p>
 
+</div>
 </div>
 </div>
 </div>

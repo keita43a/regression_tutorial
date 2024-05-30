@@ -12,10 +12,10 @@ fig:rstudioinstall
 fig:rstudio2
 fig:directory
 fig:projectmake
-tab:unnamed-chunk-113
+tab:unnamed-chunk-115
 fig:pressure
-tab:unnamed-chunk-191
-tab:unnamed-chunk-211
+tab:unnamed-chunk-194
+tab:unnamed-chunk-214
 この資料について
 whatsr
 r
@@ -211,6 +211,8 @@ rによる偏相関係数の推定
 スピアマンの順位相関係数
 rでのスピアマン相関係数の計算
 ケンドールの順位相関係数
+計算例
+rでのケンドール相関係数の計算
 simpleregression
 回帰分析
 rによる単回帰モデルの推定
