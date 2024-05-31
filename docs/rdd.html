@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 15 回帰不連続デザイン | 武蔵大生のためのRによる実証分析入門</title>
+  <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 15 回帰不連続デザイン | 武蔵大生のためのRによる実証分析入門" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 15 回帰不連続デザイン | 武蔵大生のためのRによる実証分析入門" />
+  
+  <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  
+
+<meta name="author" content="Keita Abe" />
+
+
+<meta name="date" content="2024-05-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="did.html"/>
+<link rel="next" href="practiceanswer.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R入門</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> この資料について</a></li>
+<li class="chapter" data-level="2" data-path="whatsr.html"><a href="whatsr.html"><i class="fa fa-check"></i><b>2</b> Rとはなにか？</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="whatsr.html"><a href="whatsr.html#r"><i class="fa fa-check"></i><b>2.1</b> R?</a></li>
+<li class="chapter" data-level="2.2" data-path="whatsr.html"><a href="whatsr.html#excelじゃだめなのか"><i class="fa fa-check"></i><b>2.2</b> Excelじゃだめなのか</a></li>
+<li class="chapter" data-level="2.3" data-path="whatsr.html"><a href="whatsr.html#rのよいところ"><i class="fa fa-check"></i><b>2.3</b> Rのよいところ</a></li>
+<li class="chapter" data-level="2.4" data-path="whatsr.html"><a href="whatsr.html#例えばrでできること図表"><i class="fa fa-check"></i><b>2.4</b> 例えばRでできること：図表</a></li>
+<li class="chapter" data-level="2.5" data-path="whatsr.html"><a href="whatsr.html#例えばrでできることウェブアプリ"><i class="fa fa-check"></i><b>2.5</b> 例えばRでできること：ウェブアプリ</a></li>
+<li class="chapter" data-level="2.6" data-path="whatsr.html"><a href="whatsr.html#例えばrでできることウェブスクレイピング"><i class="fa fa-check"></i><b>2.6</b> 例えばRでできること：ウェブスクレイピング</a></li>
+<li class="chapter" data-level="2.7" data-path="whatsr.html"><a href="whatsr.html#地図の分析活用"><i class="fa fa-check"></i><b>2.7</b> 地図の分析・活用</a></li>
+<li class="chapter" data-level="2.8" data-path="whatsr.html"><a href="whatsr.html#rの欠点"><i class="fa fa-check"></i><b>2.8</b> Rの欠点</a></li>
+<li class="chapter" data-level="2.9" data-path="whatsr.html"><a href="whatsr.html#cuiとgui"><i class="fa fa-check"></i><b>2.9</b> CUIとGUI</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="whatsr.html"><a href="whatsr.html#guiの方が楽"><i class="fa fa-check"></i><b>2.9.1</b> GUIの方が楽？</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="whatsr.html"><a href="whatsr.html#プログラミング"><i class="fa fa-check"></i><b>2.10</b> プログラミング</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="howtostart.html"><a href="howtostart.html"><i class="fa fa-check"></i><b>3</b> Rのはじめかた</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="howtostart.html"><a href="howtostart.html#rをどうやって使う"><i class="fa fa-check"></i><b>3.1</b> Rをどうやって使う？</a></li>
+<li class="chapter" data-level="3.2" data-path="howtostart.html"><a href="howtostart.html#rstudioを使う3つの方法"><i class="fa fa-check"></i><b>3.2</b> Rstudioを使う3つの方法</a></li>
+<li class="chapter" data-level="3.3" data-path="howtostart.html"><a href="howtostart.html#rのインストール"><i class="fa fa-check"></i><b>3.3</b> Rのインストール</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windownsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windownsへのインストール</a></li>
+<li class="chapter" data-level="3.3.2" data-path="howtostart.html"><a href="howtostart.html#mac-osへのインストール"><i class="fa fa-check"></i><b>3.3.2</b> Mac OSへのインストール</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="howtostart.html"><a href="howtostart.html#rstudioのインストール"><i class="fa fa-check"></i><b>3.4</b> Rstudioのインストール</a></li>
+<li class="chapter" data-level="3.5" data-path="howtostart.html"><a href="howtostart.html#rstudioのインターフェース"><i class="fa fa-check"></i><b>3.5</b> Rstudioのインターフェース</a></li>
+<li class="chapter" data-level="3.6" data-path="howtostart.html"><a href="howtostart.html#コンピュータのディレクトリ構造"><i class="fa fa-check"></i><b>3.6</b> コンピュータのディレクトリ構造</a></li>
+<li class="chapter" data-level="3.7" data-path="howtostart.html"><a href="howtostart.html#演習作業フォルダを作ろう"><i class="fa fa-check"></i><b>3.7</b> <strong>演習</strong>：作業フォルダを作ろう</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="howtostart.html"><a href="howtostart.html#自分のパソコン"><i class="fa fa-check"></i><b>3.7.1</b> 自分のパソコン</a></li>
+<li class="chapter" data-level="3.7.2" data-path="howtostart.html"><a href="howtostart.html#学校のパソコン"><i class="fa fa-check"></i><b>3.7.2</b> 学校のパソコン</a></li>
+<li class="chapter" data-level="3.7.3" data-path="howtostart.html"><a href="howtostart.html#posit.cloud"><i class="fa fa-check"></i><b>3.7.3</b> Posit.cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="howtostart.html"><a href="howtostart.html#作業スペース"><i class="fa fa-check"></i><b>3.8</b> 作業スペース</a></li>
+<li class="chapter" data-level="3.9" data-path="howtostart.html"><a href="howtostart.html#プロジェクトの作成"><i class="fa fa-check"></i><b>3.9</b> プロジェクトの作成</a></li>
+<li class="chapter" data-level="3.10" data-path="howtostart.html"><a href="howtostart.html#演習-rプロジェクトを作成してみよう"><i class="fa fa-check"></i><b>3.10</b> <strong>演習</strong>: Rプロジェクトを作成してみよう</a></li>
+<li class="chapter" data-level="3.11" data-path="howtostart.html"><a href="howtostart.html#とりあえず触ってみる"><i class="fa fa-check"></i><b>3.11</b> とりあえず触ってみる</a></li>
+<li class="chapter" data-level="3.12" data-path="howtostart.html"><a href="howtostart.html#scriptmake"><i class="fa fa-check"></i><b>3.12</b> スクリプトの作成</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="howtostart.html"><a href="howtostart.html#演習スクリプトを作成してみる"><i class="fa fa-check"></i><b>3.12.1</b> <strong>演習</strong>：スクリプトを作成してみる</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="howtostart.html"><a href="howtostart.html#実行してみる"><i class="fa fa-check"></i><b>3.13</b> 実行してみる</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="howtostart.html"><a href="howtostart.html#コードを実行する際のポイント"><i class="fa fa-check"></i><b>3.13.1</b> コードを実行する際のポイント</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="howtostart.html"><a href="howtostart.html#スクリプトを書く際の注意点"><i class="fa fa-check"></i><b>3.14</b> スクリプトを書く際の注意点</a>
+<ul>
+<li class="chapter" data-level="3.14.1" data-path="howtostart.html"><a href="howtostart.html#コメント"><i class="fa fa-check"></i><b>3.14.1</b> コメント</a></li>
+<li class="chapter" data-level="3.14.2" data-path="howtostart.html"><a href="howtostart.html#スクリプトは読みやすく"><i class="fa fa-check"></i><b>3.14.2</b> スクリプトは読みやすく</a></li>
+</ul></li>
+<li class="chapter" data-level="3.15" data-path="howtostart.html"><a href="howtostart.html#エラーを恐れるな"><i class="fa fa-check"></i><b>3.15</b> エラーを恐れるな！</a>
+<ul>
+<li class="chapter" data-level="3.15.1" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー1"><i class="fa fa-check"></i><b>3.15.1</b> よくあるエラー1</a></li>
+<li class="chapter" data-level="3.15.2" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー2"><i class="fa fa-check"></i><b>3.15.2</b> よくあるエラー2</a></li>
+</ul></li>
+<li class="chapter" data-level="3.16" data-path="howtostart.html"><a href="howtostart.html#rstudioの補完機能"><i class="fa fa-check"></i><b>3.16</b> Rstudioの補完機能</a></li>
+<li class="chapter" data-level="3.17" data-path="howtostart.html"><a href="howtostart.html#rstudioのオプション"><i class="fa fa-check"></i><b>3.17</b> Rstudioのオプション</a>
+<ul>
+<li class="chapter" data-level="3.17.1" data-path="howtostart.html"><a href="howtostart.html#例外観の変更"><i class="fa fa-check"></i><b>3.17.1</b> 例：外観の変更</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="letsuse.html"><a href="letsuse.html"><i class="fa fa-check"></i><b>4</b> Rを使ってみる</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="letsuse.html"><a href="letsuse.html#計算機としてのr"><i class="fa fa-check"></i><b>4.1</b> 計算機としてのR</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="letsuse.html"><a href="letsuse.html#演習r-scriptの作成"><i class="fa fa-check"></i><b>4.1.1</b> 演習：R Scriptの作成</a></li>
+<li class="chapter" data-level="4.1.2" data-path="letsuse.html"><a href="letsuse.html#足し算引き算"><i class="fa fa-check"></i><b>4.1.2</b> 足し算・引き算</a></li>
+<li class="chapter" data-level="4.1.3" data-path="letsuse.html"><a href="letsuse.html#かけ算割り算"><i class="fa fa-check"></i><b>4.1.3</b> かけ算・割り算</a></li>
+<li class="chapter" data-level="4.1.4" data-path="letsuse.html"><a href="letsuse.html#practicecalc"><i class="fa fa-check"></i><b>4.1.4</b> <strong>練習問題</strong>：以下の演算をRを使ってやってみよう</a></li>
+<li class="chapter" data-level="4.1.5" data-path="letsuse.html"><a href="letsuse.html#論理演算"><i class="fa fa-check"></i><b>4.1.5</b> 論理演算</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング言語としてのr"><i class="fa fa-check"></i><b>4.2</b> プログラミング言語としてのR</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="letsuse.html"><a href="letsuse.html#変数へのオブジェクトの代入"><i class="fa fa-check"></i><b>4.2.1</b> 変数へのオブジェクトの代入</a></li>
+<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#loop"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
+<li class="chapter" data-level="4.2.3" data-path="letsuse.html"><a href="letsuse.html#practiceloop"><i class="fa fa-check"></i><b>4.2.3</b> <strong>練習問題</strong>：ループを用いた計算</a></li>
+<li class="chapter" data-level="4.2.4" data-path="letsuse.html"><a href="letsuse.html#プログラミングif文"><i class="fa fa-check"></i><b>4.2.4</b> プログラミング：if文</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="letsuse.html"><a href="letsuse.html#データ型"><i class="fa fa-check"></i><b>4.3</b> データ型</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="letsuse.html"><a href="letsuse.html#データ型注意点"><i class="fa fa-check"></i><b>4.3.1</b> データ型：注意点</a></li>
+<li class="chapter" data-level="4.3.2" data-path="letsuse.html"><a href="letsuse.html#データ型の変換"><i class="fa fa-check"></i><b>4.3.2</b> データ型の変換</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="letsuse.html"><a href="letsuse.html#ベクトル"><i class="fa fa-check"></i><b>4.4</b> ベクトル</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="letsuse.html"><a href="letsuse.html#ベクトルの型"><i class="fa fa-check"></i><b>4.4.1</b> ベクトルの型</a></li>
+<li class="chapter" data-level="4.4.2" data-path="letsuse.html"><a href="letsuse.html#ベクトル連続した数値"><i class="fa fa-check"></i><b>4.4.2</b> ベクトル：連続した数値</a></li>
+<li class="chapter" data-level="4.4.3" data-path="letsuse.html"><a href="letsuse.html#vectormake"><i class="fa fa-check"></i><b>4.4.3</b> <strong>練習問題</strong>: 数列の作成</a></li>
+<li class="chapter" data-level="4.4.4" data-path="letsuse.html"><a href="letsuse.html#ベクトル同じ数値が並ぶベクトル"><i class="fa fa-check"></i><b>4.4.4</b> ベクトル：同じ数値が並ぶベクトル</a></li>
+<li class="chapter" data-level="4.4.5" data-path="letsuse.html"><a href="letsuse.html#vectormake2"><i class="fa fa-check"></i><b>4.4.5</b> <strong>練習問題</strong>：ベクトルの作成</a></li>
+<li class="chapter" data-level="4.4.6" data-path="letsuse.html"><a href="letsuse.html#ベクトル要素の参照"><i class="fa fa-check"></i><b>4.4.6</b> ベクトル要素の参照</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="letsuse.html"><a href="letsuse.html#リスト"><i class="fa fa-check"></i><b>4.5</b> リスト</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="letsuse.html"><a href="letsuse.html#リストの参照"><i class="fa fa-check"></i><b>4.5.1</b> リストの参照</a></li>
+<li class="chapter" data-level="4.5.2" data-path="letsuse.html"><a href="letsuse.html#リストの参照-1"><i class="fa fa-check"></i><b>4.5.2</b> リストの参照</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> パッケージとは</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#パッケージについて"><i class="fa fa-check"></i><b>5.1</b> パッケージについて</a></li>
+<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#パッケージのインストール"><i class="fa fa-check"></i><b>5.2</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#よく使うパッケージのインストール"><i class="fa fa-check"></i><b>5.3</b> よく使うパッケージのインストール</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="packages.html"><a href="packages.html#tidyverseについて"><i class="fa fa-check"></i><b>5.3.1</b> Tidyverseについて</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#パッケージの使い方1"><i class="fa fa-check"></i><b>5.4</b> パッケージの使い方1</a></li>
+<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#パッケージの使い方2"><i class="fa fa-check"></i><b>5.5</b> パッケージの使い方2</a></li>
+<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#パッケージの注意点"><i class="fa fa-check"></i><b>5.6</b> パッケージの注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datahandling.html"><a href="datahandling.html"><i class="fa fa-check"></i><b>6</b> データのハンドリング</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="datahandling.html"><a href="datahandling.html#データ"><i class="fa fa-check"></i><b>6.1</b> データ</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="datahandling.html"><a href="datahandling.html#データとは"><i class="fa fa-check"></i><b>6.1.1</b> データとは？</a></li>
+<li class="chapter" data-level="6.1.2" data-path="datahandling.html"><a href="datahandling.html#データフレーム"><i class="fa fa-check"></i><b>6.1.2</b> データフレーム</a></li>
+<li class="chapter" data-level="6.1.3" data-path="datahandling.html"><a href="datahandling.html#行と列"><i class="fa fa-check"></i><b>6.1.3</b> 行と列</a></li>
+<li class="chapter" data-level="6.1.4" data-path="datahandling.html"><a href="datahandling.html#きれいなデータ"><i class="fa fa-check"></i><b>6.1.4</b> きれいなデータ？</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="datahandling.html"><a href="datahandling.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="datahandling.html"><a href="datahandling.html#演習-データの読み込み"><i class="fa fa-check"></i><b>6.2.1</b> <strong>演習</strong>: データの読み込み</a></li>
+<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#datajpn"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
+<li class="chapter" data-level="6.2.3" data-path="datahandling.html"><a href="datahandling.html#readrのその他のオプション"><i class="fa fa-check"></i><b>6.2.3</b> readrのその他のオプション</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="datahandling.html"><a href="datahandling.html#tidy-data-整然データ"><i class="fa fa-check"></i><b>6.3</b> tidy data (整然データ)</a></li>
+<li class="chapter" data-level="6.4" data-path="datahandling.html"><a href="datahandling.html#データフレームを扱うテクニックパイプ"><i class="fa fa-check"></i><b>6.4</b> データフレームを扱うテクニック：パイプ</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="datahandling.html"><a href="datahandling.html#パイプ"><i class="fa fa-check"></i><b>6.4.1</b> パイプ</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="datahandling.html"><a href="datahandling.html#tidyでないデータとtidyデータの変換"><i class="fa fa-check"></i><b>6.5</b> tidyでないデータとtidyデータの変換</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="datahandling.html"><a href="datahandling.html#long型データへの変換"><i class="fa fa-check"></i><b>6.5.1</b> long型データへの変換</a></li>
+<li class="chapter" data-level="6.5.2" data-path="datahandling.html"><a href="datahandling.html#データを見てみる"><i class="fa fa-check"></i><b>6.5.2</b> データを見てみる</a></li>
+<li class="chapter" data-level="6.5.3" data-path="datahandling.html"><a href="datahandling.html#データを一部だけみたい場合"><i class="fa fa-check"></i><b>6.5.3</b> データを一部だけみたい場合</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="datahandling.html"><a href="datahandling.html#データの大きさ"><i class="fa fa-check"></i><b>6.6</b> データの「大きさ」</a></li>
+<li class="chapter" data-level="6.7" data-path="datahandling.html"><a href="datahandling.html#列の名前一覧"><i class="fa fa-check"></i><b>6.7</b> 列の名前一覧</a></li>
+<li class="chapter" data-level="6.8" data-path="datahandling.html"><a href="datahandling.html#変数の要約"><i class="fa fa-check"></i><b>6.8</b> 変数の要約</a></li>
+<li class="chapter" data-level="6.9" data-path="datahandling.html"><a href="datahandling.html#変数の取り出し"><i class="fa fa-check"></i><b>6.9</b> 変数の取り出し</a></li>
+<li class="chapter" data-level="6.10" data-path="datahandling.html"><a href="datahandling.html#変数の取り出しと計算"><i class="fa fa-check"></i><b>6.10</b> 変数の取り出しと計算</a></li>
+<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.11</b> データの操作</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.11.1</b> データの操作</a></li>
+<li class="chapter" data-level="6.11.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.11.2</b> 元のデータの見た目確認</a></li>
+<li class="chapter" data-level="6.11.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.11.3</b> 列の名前を変えたい: rename()</a></li>
+<li class="chapter" data-level="6.11.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.11.4</b> 特定の列だけ抽出する: select()</a></li>
+<li class="chapter" data-level="6.11.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.11.5</b> 特定の行だけ抽出する: filter()</a></li>
+<li class="chapter" data-level="6.11.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.11.6</b> データの順番を並び替える: arrange()</a></li>
+<li class="chapter" data-level="6.11.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.11.7</b> データの列を並び替える: relocate()</a></li>
+<li class="chapter" data-level="6.11.8" data-path="datahandling.html"><a href="datahandling.html#datamgcolumnadd"><i class="fa fa-check"></i><b>6.11.8</b> データの列を追加する: mutate()</a></li>
+<li class="chapter" data-level="6.11.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.11.9</b> データの列を編集する: mutate()</a></li>
+<li class="chapter" data-level="6.11.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.11.10</b> データを集計する</a></li>
+<li class="chapter" data-level="6.11.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.11.11</b> データ操作の応用：パイプによる引き渡し</a></li>
+<li class="chapter" data-level="6.11.12" data-path="datahandling.html"><a href="datahandling.html#groupagg"><i class="fa fa-check"></i><b>6.11.12</b> データ操作の応用：グループごとの集計</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.12</b> <strong>練習問題</strong>: データ操作</a></li>
+<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.13</b> データの結合</a>
+<ul>
+<li class="chapter" data-level="6.13.1" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.13.1</b> データの縦の結合</a></li>
+<li class="chapter" data-level="6.13.2" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.13.2</b> データを横に統合</a></li>
+<li class="chapter" data-level="6.13.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.13.3</b> データを横に統合：join()関数</a></li>
+<li class="chapter" data-level="6.13.4" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.13.4</b> join関数一覧</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rstats.html"><a href="rstats.html"><i class="fa fa-check"></i><b>7</b> 記述統計</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="rstats.html"><a href="rstats.html#統計とは"><i class="fa fa-check"></i><b>7.1</b> 統計とは</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
+<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.4.1</b> 数式</a></li>
+<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.4.2</b> 平均</a></li>
+<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.4.3</b> 中央値</a></li>
+<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.4.4</b> 最大値・最小値</a></li>
+<li class="chapter" data-level="7.4.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.4.5</b> 分散</a></li>
+<li class="chapter" data-level="7.4.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.4.6</b> もう一つの分散：不偏分散</a></li>
+<li class="chapter" data-level="7.4.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.4.7</b> 標準偏差</a></li>
+<li class="chapter" data-level="7.4.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.4.8</b> 不偏標準偏差</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.5</b> Rによる記述統計のテクニック</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.5.1</b> 使用するデータ</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.5.2</b> <code>summary</code>関数</a></li>
+<li class="chapter" data-level="7.5.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.5.3</b> <code>describe</code>関数</a></li>
+<li class="chapter" data-level="7.5.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.5.4</b> <code>skim</code>関数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-1"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
+<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
+<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
+<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.6</b> キャンバスを用意する</a></li>
+<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.7</b> グラフのレイヤーを追加する</a></li>
+<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.8</b> 文字化けに対処する</a></li>
+<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.9</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.10</b> 男女の置き方を変えたい</a></li>
+<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.11</b> 色を変えたい</a></li>
+<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.12</b> 学科別に分けたい</a></li>
+<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.13</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.14</b> テーマを変更する1</a>
+<ul>
+<li class="chapter" data-level="8.14.1" data-path="rviz.html"><a href="rviz.html#デフォルトテーマを使った変更"><i class="fa fa-check"></i><b>8.14.1</b> デフォルトテーマを使った変更</a></li>
+<li class="chapter" data-level="8.14.2" data-path="rviz.html"><a href="rviz.html#細かいテーマ設定"><i class="fa fa-check"></i><b>8.14.2</b> 細かいテーマ設定</a></li>
+</ul></li>
+<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.15</b> 完成形</a></li>
+<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.16</b> ggplot2による図の保存</a></li>
+<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.17</b> 他の描画レイヤー</a>
+<ul>
+<li class="chapter" data-level="8.17.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.17.1</b> <strong>練習問題</strong>：散布図</a></li>
+</ul></li>
+<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.18</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
+<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.19</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.20</b> ヴァイオリンプロット</a></li>
+<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.21</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#ゼミ課題データの描画"><i class="fa fa-check"></i><b>8.22</b> <strong>ゼミ課題</strong>：データの描画</a>
+<ul>
+<li class="chapter" data-level="8.22.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.22.1</b> 例：SSDSE-B県別推移のデータ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.1</b> 母集団と標本</a></li>
+<li class="chapter" data-level="9.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#推定量"><i class="fa fa-check"></i><b>9.2</b> 推定量</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏性"><i class="fa fa-check"></i><b>9.2.1</b> 不偏性</a></li>
+<li class="chapter" data-level="9.2.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#一致性"><i class="fa fa-check"></i><b>9.2.2</b> 一致性</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母平均の信頼区間"><i class="fa fa-check"></i><b>9.3</b> 母平均の信頼区間</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#標準誤差"><i class="fa fa-check"></i><b>9.3.1</b> 標準誤差</a></li>
+<li class="chapter" data-level="9.3.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#信頼区間"><i class="fa fa-check"></i><b>9.3.2</b> 信頼区間</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#統計的仮説検定"><i class="fa fa-check"></i><b>9.4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#仮説設定"><i class="fa fa-check"></i><b>9.4.1</b> 仮説設定</a></li>
+<li class="chapter" data-level="9.4.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#有意水準"><i class="fa fa-check"></i><b>9.4.2</b> 有意水準</a></li>
+<li class="chapter" data-level="9.4.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#棄却域"><i class="fa fa-check"></i><b>9.4.3</b> 棄却域</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>10</b> 相関関係</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation.html"><a href="correlation.html#つの変数の関係"><i class="fa fa-check"></i><b>10.1</b> ２つの変数の関係</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="correlation.html"><a href="correlation.html#共分散"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="10.1.2" data-path="correlation.html"><a href="correlation.html#相関係数"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="10.1.3" data-path="correlation.html"><a href="correlation.html#散布図"><i class="fa fa-check"></i><b>10.1.3</b> 散布図</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="correlation.html"><a href="correlation.html#相関関係と因果関係"><i class="fa fa-check"></i><b>10.2</b> 相関関係と因果関係</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="correlation.html"><a href="correlation.html#偏相関係数"><i class="fa fa-check"></i><b>10.2.1</b> 偏相関係数</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="correlation.html"><a href="correlation.html#順位相関係数"><i class="fa fa-check"></i><b>10.3</b> 順位相関係数</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation.html"><a href="correlation.html#スピアマンの順位相関係数"><i class="fa fa-check"></i><b>10.3.1</b> スピアマンの順位相関係数</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation.html"><a href="correlation.html#ケンドールの順位相関係数"><i class="fa fa-check"></i><b>10.3.2</b> ケンドールの順位相関係数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="simpleregression.html"><a href="simpleregression.html"><i class="fa fa-check"></i><b>11</b> 単回帰分析</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析"><i class="fa fa-check"></i><b>11.1</b> 回帰分析</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="simpleregression.html"><a href="simpleregression.html#rによる単回帰モデルの推定"><i class="fa fa-check"></i><b>11.1.1</b> Rによる単回帰モデルの推定</a></li>
+<li class="chapter" data-level="11.1.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰係数の統計的な推定"><i class="fa fa-check"></i><b>11.1.2</b> 回帰係数の統計的な推定</a></li>
+<li class="chapter" data-level="11.1.3" data-path="simpleregression.html"><a href="simpleregression.html#見せかけの相関と単回帰分析"><i class="fa fa-check"></i><b>11.1.3</b> 見せかけの相関と単回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析の推定方法"><i class="fa fa-check"></i><b>11.2</b> 回帰分析の推定方法</a></li>
+<li class="chapter" data-level="11.3" data-path="simpleregression.html"><a href="simpleregression.html#演習問題単回帰分析"><i class="fa fa-check"></i><b>11.3</b> 演習問題：単回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>12</b> 重回帰分析</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="multipleregression.html"><a href="multipleregression.html#重回帰分析とは"><i class="fa fa-check"></i><b>12.1</b> 重回帰分析とは</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>13</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータとは"><i class="fa fa-check"></i><b>13.1</b> パネルデータとは</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>13.1.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="13.1.2" data-path="paneldata.html"><a href="paneldata.html#パッケージの準備"><i class="fa fa-check"></i><b>13.1.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="13.1.3" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>13.1.3</b> データの準備</a></li>
+<li class="chapter" data-level="13.1.4" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>13.1.4</b> データの記述統計</a></li>
+<li class="chapter" data-level="13.1.5" data-path="paneldata.html"><a href="paneldata.html#データの加工"><i class="fa fa-check"></i><b>13.1.5</b> データの加工</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="paneldata.html"><a href="paneldata.html#パネルデータ分析"><i class="fa fa-check"></i><b>13.2</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="paneldata.html"><a href="paneldata.html#事例交通事故死亡率とアルコール税の関係"><i class="fa fa-check"></i><b>13.2.1</b> 事例：交通事故死亡率とアルコール税の関係</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="paneldata.html"><a href="paneldata.html#固定効果モデル"><i class="fa fa-check"></i><b>13.3</b> 固定効果モデル</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="paneldata.html"><a href="paneldata.html#固定効果モデルのビジュアルイメージ"><i class="fa fa-check"></i><b>13.3.1</b> 固定効果モデルのビジュアルイメージ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="did.html"><a href="did.html"><i class="fa fa-check"></i><b>14</b> 差の差法</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="did.html"><a href="did.html#差の差法とは"><i class="fa fa-check"></i><b>14.1</b> 差の差法とは</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="did.html"><a href="did.html#差の差法のアイデア"><i class="fa fa-check"></i><b>14.1.1</b> 差の差法のアイデア</a></li>
+<li class="chapter" data-level="14.1.2" data-path="did.html"><a href="did.html#差の差法の仮定"><i class="fa fa-check"></i><b>14.1.2</b> 差の差法の仮定</a></li>
+<li class="chapter" data-level="14.1.3" data-path="did.html"><a href="did.html#回帰分析を使って行う方法"><i class="fa fa-check"></i><b>14.1.3</b> 回帰分析を使って行う方法</a></li>
+<li class="chapter" data-level="14.1.4" data-path="did.html"><a href="did.html#演習問題差の差法の回帰分析アプローチ"><i class="fa fa-check"></i><b>14.1.4</b> <strong>演習問題</strong>：差の差法の回帰分析アプローチ</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="did.html"><a href="did.html#rでの演習"><i class="fa fa-check"></i><b>14.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="did.html"><a href="did.html#スクリプトの準備-1"><i class="fa fa-check"></i><b>14.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="14.2.2" data-path="did.html"><a href="did.html#パッケージの準備-1"><i class="fa fa-check"></i><b>14.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="14.2.3" data-path="did.html"><a href="did.html#データの準備-1"><i class="fa fa-check"></i><b>14.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="14.2.4" data-path="did.html"><a href="did.html#データの確認"><i class="fa fa-check"></i><b>14.2.4</b> データの確認</a></li>
+<li class="chapter" data-level="14.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>14.2.5</b> データの記述統計</a></li>
+<li class="chapter" data-level="14.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>14.2.6</b> 政策変更の確認</a></li>
+<li class="chapter" data-level="14.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>14.2.7</b> 差の差法</a></li>
+<li class="chapter" data-level="14.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>14.2.8</b> 回帰分析による差の差法</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="rdd.html"><a href="rdd.html"><i class="fa fa-check"></i><b>15</b> 回帰不連続デザイン</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインとは"><i class="fa fa-check"></i><b>15.1</b> 回帰不連続デザインとは</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインのアイデア"><i class="fa fa-check"></i><b>15.1.1</b> 回帰不連続デザインのアイデア</a></li>
+<li class="chapter" data-level="15.1.2" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインの仮定"><i class="fa fa-check"></i><b>15.1.2</b> 回帰不連続デザインの仮定</a></li>
+<li class="chapter" data-level="15.1.3" data-path="rdd.html"><a href="rdd.html#回帰分析を使って行う方法-1"><i class="fa fa-check"></i><b>15.1.3</b> 回帰分析を使って行う方法</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="rdd.html"><a href="rdd.html#rでの演習-1"><i class="fa fa-check"></i><b>15.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="rdd.html"><a href="rdd.html#スクリプトの準備-2"><i class="fa fa-check"></i><b>15.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="15.2.2" data-path="rdd.html"><a href="rdd.html#パッケージの準備-2"><i class="fa fa-check"></i><b>15.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="15.2.3" data-path="rdd.html"><a href="rdd.html#データの準備-2"><i class="fa fa-check"></i><b>15.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="15.2.4" data-path="rdd.html"><a href="rdd.html#データの確認-1"><i class="fa fa-check"></i><b>15.2.4</b> データの確認</a></li>
+<li class="chapter" data-level="15.2.5" data-path="rdd.html"><a href="rdd.html#データの記述統計-2"><i class="fa fa-check"></i><b>15.2.5</b> データの記述統計</a></li>
+<li class="chapter" data-level="15.2.6" data-path="rdd.html"><a href="rdd.html#データの加工-1"><i class="fa fa-check"></i><b>15.2.6</b> データの加工</a></li>
+<li class="chapter" data-level="15.2.7" data-path="rdd.html"><a href="rdd.html#政策による行動への影響"><i class="fa fa-check"></i><b>15.2.7</b> 政策による行動への影響</a></li>
+<li class="chapter" data-level="15.2.8" data-path="rdd.html"><a href="rdd.html#政策による結果への影響"><i class="fa fa-check"></i><b>15.2.8</b> 政策による結果への影響</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="rdd.html"><a href="rdd.html#演習問題アメリカの飲酒年齢と死亡率"><i class="fa fa-check"></i><b>15.3</b> 演習問題：アメリカの飲酒年齢と死亡率</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="practiceanswer.html"><a href="practiceanswer.html"><i class="fa fa-check"></i><b>16</b> 練習問題解答</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.4"><i class="fa fa-check"></i><b>16.1</b> Ch.4</a></li>
+<li class="chapter" data-level="16.2" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-6"><i class="fa fa-check"></i><b>16.2</b> Ch. 6</a></li>
+<li class="chapter" data-level="16.3" data-path="practiceanswer.html"><a href="practiceanswer.html#ch.-8"><i class="fa fa-check"></i><b>16.3</b> Ch. 8</a></li>
+<li class="chapter" data-level="16.4" data-path="practiceanswer.html"><a href="practiceanswer.html#ch-10"><i class="fa fa-check"></i><b>16.4</b> Ch 10</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">武蔵大生のためのRによる実証分析入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rdd" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chapter 15</span> 回帰不連続デザイン<a href="rdd.html#rdd" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="回帰不連続デザインとは" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> 回帰不連続デザインとは<a href="rdd.html#回帰不連続デザインとは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>回帰不連続デザイン(Regression Discontinuity Design, RDD)も、回帰不連続デザインと同様疑似実験を用いた手法の一つである。
+連続的に変化すると考えられるある変数が、政策介入や処置によって急激な変化（ジャンプ）する場合に、その急激な変化を介入や処置による効果として推定する手法である。</p>
+<div id="回帰不連続デザインのアイデア" class="section level3 hasAnchor" number="15.1.1">
+<h3><span class="header-section-number">15.1.1</span> 回帰不連続デザインのアイデア<a href="rdd.html#回帰不連続デザインのアイデア" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>お酒・アルコールを飲むのは（好きな人には）楽しいですが、当然負の側面もある。健康被害を起こしたり、また事故なども起こる可能性がある。</p>
+<p>アルコールを接種することで、死亡率は上がるのだろうか。</p>
+<p>アルコールを接種するかどうかは、法律によって年齢が決まっている。「お酒は二十歳になってから」と言われるように、日本では飲酒の年齢は20歳からである。</p>
+<p>つまり、18歳や19歳ならばお酒は飲まないが、20歳以上ならば飲酒するという傾向があるのである。（当然ならば法律を守っているかどうか、という議論はあるが、すくなくても法律を守っていないのは一部で多くは20歳から飲酒するだろう）</p>
+<p>しかし、18〜22歳ぐらいまでの若者は基本的には似た性質を持っていると考えられる。20歳になって、いきなり死亡率が増えるとは考えにくい。そのため、18歳や19歳に比べて、20歳や21歳で突然死亡率が上がっているならば、それは20歳をカットオフ（閾値）として扱い（処置）が変わる飲酒傾向によるものと考えることができるだろう。</p>
+<p>18-19歳の人々は「対照群」、20-22歳の人を「処置群」として考えることができ、比較が可能となる。これが、基本的な回帰不連続デザインのアイデアである。</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="rdd.html#cb326-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept.png&quot;</span>)</span></code></pre></div>
+<p><img src="fig/rdd_concept.png" width="928" /></p>
+<p>年齢によって死亡率は異なるが、少なくともその変化は滑らかであると考えられる。そこで、境界線上に大きな変化（ジャンプ）が起こっていれば、それが政策や処置の効果であると考えて推定を行うのである。</p>
+<p>ここでは、年齢のような変数を<strong>割当変数</strong>と呼ぶ。</p>
+</div>
+<div id="回帰不連続デザインの仮定" class="section level3 hasAnchor" number="15.1.2">
+<h3><span class="header-section-number">15.1.2</span> 回帰不連続デザインの仮定<a href="rdd.html#回帰不連続デザインの仮定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>割当変数と目的変数の間には政策がなければ滑らかに変化する関係がある</li>
+<li>カットオフ前後では政策以外に大きな相違がなくほぼ同じである</li>
+<li>カットオフの存在によって、割当変数を操作するようなことがない
+<ul>
+<li>例：奨学金がもらえるカットオフが80点だとする。そこがカットオフだと知っていれば、80点にギリギリみたないような人がいつも以上に頑張って80点以上を取ろうとする。これは、政策（奨学金給付）があることで、政策がなければないようなカットオフ間の移動が起こっているため、仮定を満たさない。</li>
+</ul></li>
+</ul>
+</div>
+<div id="回帰分析を使って行う方法-1" class="section level3 hasAnchor" number="15.1.3">
+<h3><span class="header-section-number">15.1.3</span> 回帰分析を使って行う方法<a href="rdd.html#回帰分析を使って行う方法-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>回帰不連続デザインを回帰分析で行う場合は、式としていくつかの方法があるが、ここでは比較グループと政策実施グループで異なる傾きを持つ分割線形回帰を紹介する。</p>
+<p>まず回帰式は以下のようになる。</p>
+<p><span class="math display">\[
+Y_{it} = \alpha + \rho Policy_{i} + \beta_{1} x_{t} + \beta_{2} Policy_{i} \times x_{t} + \varepsilon_{it}
+\]</span>
+ここで、<span class="math inline">\(Policy_{i}\)</span>はダミー変数である。<span class="math inline">\(Policy_{i}\)</span>はもし、該当データが、割当変数でカットオフより大きい（政策によっては小さい）個人<span class="math inline">\(i\)</span>が、処置群に入るならば１、対照群ならば０を取る。</p>
+<p>例えば、飲酒年齢の問題では年齢が割当変数(<span class="math inline">\(x_i\)</span>)となる。そして、20歳以上ならば、<span class="math inline">\(Policy_{i}\)</span>は1となるが、20歳未満は<span class="math inline">\(Policy_{i}\)</span>が0となる。</p>
+<p>ここでは、因果効果として推定されるパラメータは<span class="math inline">\(\rho\)</span>（ローと読む）である。</p>
+<p>上の概念図に対応させると、以下のようになる。</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="rdd.html#cb327-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept_var.png&quot;</span>)</span></code></pre></div>
+<p><img src="fig/rdd_concept_var.png" width="962" /></p>
+<p>左右の直線は、政策が適用される側（処置群）とされない側（対照群）でデータに基づいてそれぞれ推定された回帰直線である。</p>
+<p>もし仮に、推定された結果について<span class="math inline">\(\beta_2\)</span>と<span class="math inline">\(rho\)</span>がゼロだとする。すると、回帰式は</p>
+<p><span class="math display">\[
+Y_{it} = \alpha + \beta_{1} x_{t} + \varepsilon_{it}
+\]</span>
+となり、単なる単回帰式となる。図で表すと以下のような形だ。</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="rdd.html#cb328-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept_noeffect.png&quot;</span>)</span></code></pre></div>
+<p><img src="fig/rdd_concept_noeffect.png" width="1157" /></p>
+<p>この場合は、当然ながら政策によって割当変数と目的変数のスムーズな関係に変化は起こっていない。</p>
+<p>もし<span class="math inline">\(\beta_2\)</span>がマイナスの値で、<span class="math inline">\(rho\)</span>がゼロだったらどうなるか。
+この場合は以下のような式になる。</p>
+<p><span class="math display">\[
+Y_{it} = \alpha + \beta_{1} x_{t} + \beta_{2} Policy_{i}\times x_{t} + \varepsilon_{it}
+\]</span></p>
+<p>この場合の<span class="math inline">\(x_i\)</span>の係数は、<span class="math inline">\(\beta_{1} x_{t} + \beta_{2} Policy_{i}\times x_{t} = (\beta_{i} + \beta_{2} Policy_{i})x_{i}\)</span>と解釈することができる。つまり、カットオフより下ならば<span class="math inline">\(Policy_{i}=0\)</span>なので、係数は<span class="math inline">\(\beta_{1}\)</span>になるが、カットオフより上ならば<span class="math inline">\(Policy_{i}=1\)</span>なので、係数は<span class="math inline">\(\beta_{1} + \beta_{2}\)</span>となる。</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="rdd.html#cb329-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept_noeffect2.png&quot;</span>)</span></code></pre></div>
+<p><img src="fig/rdd_concept_noeffect2.png" width="1157" /></p>
+<p>もし政策効果がないならば、左右の直線はつながった形になる。もし政策がなければ、目的変数は割当変数に従って滑らかに変化する。もしかしたら比例関係ではなく、どこかで傾向が変わる関係かもしれない。そのために<span class="math inline">\(\beta_2\)</span>を推定して、傾向が変わることを許すモデルにしているのである。仮にそのような関係があったとしても、「ジャンプ」がない限りは政策効果はないと考えられる。</p>
+<p>政策効果<span class="math inline">\(\rho\)</span>がゼロでない場合のみ、2つの直線の間に「ジャンプ」が生じる。これが政策が行われたことによる効果であると解釈される。</p>
+</div>
+</div>
+<div id="rでの演習-1" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Rでの演習<a href="rdd.html#rでの演習-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="スクリプトの準備-2" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> スクリプトの準備<a href="rdd.html#スクリプトの準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>新しいスクリプトにコードを書いていく。
+新しくスクリプトを作成し、<code>rdd</code>.R`という名前をつけて保存する。</p>
+</div>
+<div id="パッケージの準備-2" class="section level3 hasAnchor" number="15.2.2">
+<h3><span class="header-section-number">15.2.2</span> パッケージの準備<a href="rdd.html#パッケージの準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>以下のパッケージを使うので読み込んでおく。
+インストールしてない場合は、インストールする。</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="rdd.html#cb330-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
+<span id="cb330-2"><a href="rdd.html#cb330-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb330-3"><a href="rdd.html#cb330-3" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb330-4"><a href="rdd.html#cb330-4" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
+</div>
+<div id="データの準備-2" class="section level3 hasAnchor" number="15.2.3">
+<h3><span class="header-section-number">15.2.3</span> データの準備<a href="rdd.html#データの準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データをダウンロードする。</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="rdd.html#cb331-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの格納を自動的に行う</span></span>
+<span id="cb331-2"><a href="rdd.html#cb331-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/data_rdd.csv?raw=TRUE&quot;</span>, </span>
+<span id="cb331-3"><a href="rdd.html#cb331-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/data_rdd.csv&quot;</span>)</span>
+<span id="cb331-4"><a href="rdd.html#cb331-4" tabindex="-1"></a></span>
+<span id="cb331-5"><a href="rdd.html#cb331-5" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
+<span id="cb331-6"><a href="rdd.html#cb331-6" tabindex="-1"></a>data_rdd <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data_rdd.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="データの確認-1" class="section level3 hasAnchor" number="15.2.4">
+<h3><span class="header-section-number">15.2.4</span> データの確認<a href="rdd.html#データの確認-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>このデータは生成されたデータであるが、実際の研究に使われたデータを模倣したものである。
+Shigeoka (2014)では、日本の医療費の自己負担割合が70歳を境に3割から1割に下がることに着目し、この自己負担割合の変化が高齢者の死亡率を下げることに貢献しているかどうかを検証した。もし、自己負担割合が下がることで高齢者が病気や怪我のときに病院に行くようになり、それが結果として死亡率の低下に貢献しているのならばこの政策は一定の効果があると言える。</p>
+<p>回帰不連続デザインを使う理由は70歳というカットオフが存在するからである。69歳11ヶ月の人は自己負担割合が3割だが、70歳0ヶ月になると突然1割になる。しかし、70歳になったからといって突然不健康になったり死亡率が上がるわけではないため、70歳になって急激に死亡率が下がっているのならば、これは自己負担割合の違いが死亡率の低下に貢献していると言えるというわけだ。</p>
+<p>データの中身を見てみる。
+まずは、どんなデータなのか<code>head()</code>で確認する。</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="rdd.html#cb332-1" tabindex="-1"></a><span class="fu">head</span>(data_rdd)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##     age   visits  death
+##   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1  65.1 -0.0922  -0.281
+## 2  65.2 -0.0794  -0.298
+## 3  65.2 -0.115   -0.286
+## 4  65.3 -0.0603  -0.282
+## 5  65.3 -0.121   -0.286
+## 6  65.5 -0.00707 -0.281</code></pre>
+</div>
+<div id="データの記述統計-2" class="section level3 hasAnchor" number="15.2.5">
+<h3><span class="header-section-number">15.2.5</span> データの記述統計<a href="rdd.html#データの記述統計-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データの記述統計を確認しよう。
+Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code>パッケージの<code>skim()</code>関数を使った。</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="rdd.html#cb334-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb334-2"><a href="rdd.html#cb334-2" tabindex="-1"></a></span>
+<span id="cb334-3"><a href="rdd.html#cb334-3" tabindex="-1"></a><span class="fu">skim</span>(data_rdd)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-246">Table 15.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">data_rdd</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">100</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="11%" />
+<col width="16%" />
+<col width="7%" />
+<col width="5%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">age</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">69.85</td>
+<td align="right">3.02</td>
+<td align="right">65.10</td>
+<td align="right">67.19</td>
+<td align="right">69.94</td>
+<td align="right">72.50</td>
+<td align="right">74.93</td>
+<td align="left">▇▆▇▅▇</td>
+</tr>
+<tr class="even">
+<td align="left">visits</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">-0.03</td>
+<td align="right">0.08</td>
+<td align="right">-0.18</td>
+<td align="right">-0.10</td>
+<td align="right">-0.03</td>
+<td align="right">0.03</td>
+<td align="right">0.13</td>
+<td align="left">▃▇▆▅▃</td>
+</tr>
+<tr class="odd">
+<td align="left">death</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">-0.01</td>
+<td align="right">0.18</td>
+<td align="right">-0.30</td>
+<td align="right">-0.17</td>
+<td align="right">-0.01</td>
+<td align="right">0.15</td>
+<td align="right">0.30</td>
+<td align="left">▇▆▆▆▇</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="データの加工-1" class="section level3 hasAnchor" number="15.2.6">
+<h3><span class="header-section-number">15.2.6</span> データの加工<a href="rdd.html#データの加工-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データには年齢は記録されているが、70歳以上かどうかを示す情報は直接は記録されていない。
+年齢から、70歳以上かどうか、というダミー変数を作成しよう。
+<code>ifelse(test,true,false)</code>という関数は1つ目の引数である<code>test</code>に条件式を入れる。その条件式を評価して、真であれば2つ目の引数である<code>true</code>に入力された値を返す。偽であれば<code>false</code>である3つ目の引数の値を返す。この場合は<code>age &gt;= 70</code>が条件式なので、各行において<code>age</code>が70以上であれば、<code>1</code>を入れ、そうでなければ<code>0</code>を入れる。</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="rdd.html#cb335-1" tabindex="-1"></a>data_rdd <span class="ot">&lt;-</span> data_rdd <span class="sc">|&gt;</span></span>
+<span id="cb335-2"><a href="rdd.html#cb335-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dummy70 =</span> <span class="fu">ifelse</span>(age <span class="sc">&gt;=</span> <span class="dv">70</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
+</div>
+<div id="政策による行動への影響" class="section level3 hasAnchor" number="15.2.7">
+<h3><span class="header-section-number">15.2.7</span> 政策による行動への影響<a href="rdd.html#政策による行動への影響" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ここでは、政策によって実際に行動が変わっているかをまず確認する。</p>
+<p>下のコードでは、<code>aes()</code>によるマッピングの中に、<code>group</code>という項目が入っている。これは、描画に使うデータを年齢が70歳以上か未満か<code>dummy70</code>で分ける機能を持つ。
+こうすることで、<code>geom_smooth</code>を使うときに、70歳未満と以上で別々の直線を描いてくれる。
+<code>geom_vline</code>は縦(vertical)の直線を追加するレイヤーである。この場合は、x軸上の70歳(<code>xintercept = 70</code>)に縦の直線を、線の種類をダッシュ(<code>linetype="dashed"</code>)で、色を赤で(<code>color="red"</code>)追加する。</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="rdd.html#cb336-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_rdd, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> visits, <span class="at">group =</span> dummy70)) <span class="sc">+</span></span>
+<span id="cb336-2"><a href="rdd.html#cb336-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;gray&#39;</span>) <span class="sc">+</span></span>
+<span id="cb336-3"><a href="rdd.html#cb336-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb336-4"><a href="rdd.html#cb336-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb336-5"><a href="rdd.html#cb336-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;年齢&quot;</span>, <span class="at">y =</span> <span class="st">&quot;外来患者数(対数)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;自己負担割合が減ると外来受診が増える&quot;</span>) <span class="sc">+</span></span>
+<span id="cb336-6"><a href="rdd.html#cb336-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
+<p>これを見ると、外来患者数には70歳を境に大きなジャンプがある。
+つまり、自己負担割合が低くなることで、外来患者の数が急激に増加している。
+このことから、自己負担割合の変化は外来診察を受けるインセンティブを高め、高齢患者の行動を変えていると言えそうだ。</p>
+<div id="回帰分析による推定" class="section level4 hasAnchor" number="15.2.7.1">
+<h4><span class="header-section-number">15.2.7.1</span> 回帰分析による推定<a href="rdd.html#回帰分析による推定" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>回帰分析でこの効果を推定してみよう。</p>
+<p>この場合は</p>
+<p><span class="math display">\[
+Visits_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\times Dummy70_{i} + \varepsilon_{i}
+\]</span>
+という式を推定することになる。</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="rdd.html#cb337-1" tabindex="-1"></a>rdd_visit <span class="ot">&lt;-</span> <span class="fu">feols</span>(visits <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
+<span id="cb337-2"><a href="rdd.html#cb337-2" tabindex="-1"></a></span>
+<span id="cb337-3"><a href="rdd.html#cb337-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_visit)</span></code></pre></div>
+<pre><code>##                           rdd_visit
+## Dependent Var.:              visits
+##                                    
+## Constant          -0.5376. (0.2933)
+## dummy70           1.789*** (0.4178)
+## age                 0.0066 (0.0044)
+## dummy70 x age   -0.0233*** (0.0060)
+## _______________ ___________________
+## S.E. type                       IID
+## Observations                    100
+## R2                          0.72216
+## Adj. R2                     0.71348
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>結果は<span class="math inline">\(\rho\)</span>が1.789と推定された。<span class="math inline">\(Visits\)</span>は対数で表示されているため、このジャンプによって訪問患者数が179%増加したという結果になる。</p>
+<p>繰り返しになるが、これは元の研究を模倣したデータであり、説明のために大きく省略したアプローチを取っているのでオリジナルの研究とこの数字は一致しない。</p>
+</div>
+</div>
+<div id="政策による結果への影響" class="section level3 hasAnchor" number="15.2.8">
+<h3><span class="header-section-number">15.2.8</span> 政策による結果への影響<a href="rdd.html#政策による結果への影響" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>今度は、政策によって重要な結果、ここでは死亡率に効果があるかを見てみよう。</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="rdd.html#cb339-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_rdd, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> death, <span class="at">group =</span> dummy70)) <span class="sc">+</span></span>
+<span id="cb339-2"><a href="rdd.html#cb339-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;gray&#39;</span>) <span class="sc">+</span></span>
+<span id="cb339-3"><a href="rdd.html#cb339-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb339-4"><a href="rdd.html#cb339-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb339-5"><a href="rdd.html#cb339-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;年齢&quot;</span>, <span class="at">y =</span> <span class="st">&quot;死亡率(対数)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;自己負担割合が減っても死亡率は変わらない&quot;</span>) <span class="sc">+</span></span>
+<span id="cb339-6"><a href="rdd.html#cb339-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
+<p>上と同様に分割して回帰直線を描いているが、あたかもつながっているかのような直線になっている。大きなジャンプは見られず、70歳になって突然死亡率が下がったという傾向はなさそうである。</p>
+<div id="回帰分析による推定-1" class="section level4 hasAnchor" number="15.2.8.1">
+<h4><span class="header-section-number">15.2.8.1</span> 回帰分析による推定<a href="rdd.html#回帰分析による推定-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>回帰分析でこの効果を推定してみよう。</p>
+<p>この場合は</p>
+<p><span class="math display">\[
+Death_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\times Dummy70_{i} + \varepsilon_{i}
+\]</span>
+という式を推定することになる。</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="rdd.html#cb340-1" tabindex="-1"></a>rdd_death <span class="ot">&lt;-</span> <span class="fu">feols</span>(death <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
+<span id="cb340-2"><a href="rdd.html#cb340-2" tabindex="-1"></a></span>
+<span id="cb340-3"><a href="rdd.html#cb340-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_death)</span></code></pre></div>
+<pre><code>##                          rdd_death
+## Dependent Var.:              death
+##                                   
+## Constant        -4.283*** (0.0680)
+## dummy70            0.1488 (0.0969)
+## age             0.0612*** (0.0010)
+## dummy70 x age     -0.0021 (0.0014)
+## _______________ __________________
+## S.E. type                      IID
+## Observations                   100
+## R2                         0.99693
+## Adj. R2                    0.99683
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>結果は<span class="math inline">\(\rho\)</span>が0.1488と推定された。また、統計的に有意ではないため、0であるという仮説を棄却できない。
+このことから、死亡率に対する健康保険の自己負担割合の低下は効果を与えていないという結論が導かれる。</p>
+</div>
+</div>
+</div>
+<div id="演習問題アメリカの飲酒年齢と死亡率" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> 演習問題：アメリカの飲酒年齢と死亡率<a href="rdd.html#演習問題アメリカの飲酒年齢と死亡率" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>以下のコードを実行してデータをダウンロードして読み込む。</li>
+</ol>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="rdd.html#cb342-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの格納を自動的に行う</span></span>
+<span id="cb342-2"><a href="rdd.html#cb342-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/data_alcohol.csv?raw=TRUE&quot;</span>, </span>
+<span id="cb342-3"><a href="rdd.html#cb342-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/data_alcohol.csv&quot;</span>)</span>
+<span id="cb342-4"><a href="rdd.html#cb342-4" tabindex="-1"></a></span>
+<span id="cb342-5"><a href="rdd.html#cb342-5" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
+<span id="cb342-6"><a href="rdd.html#cb342-6" tabindex="-1"></a>data_alcohol<span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data_alcohol.csv&quot;</span>)</span></code></pre></div>
+<p>これはアメリカの誕生日によて区切られた年齢グループ別のデータである。約一ヶ月ごとに誕生日からどれぐらい経っているか（例：20歳の誕生日から1ヶ月以上2ヶ月未満）などのグループ(<code>agecell</code>)で区切られている。またそのグループ別に、死因別や合計(<code>all_death</code>)の死亡数が記録されている。</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>データの記述統計を確認する。</p></li>
+<li><p><code>agecell</code>を割当変数、<code>policy</code>を政策変数、<code>all_death</code>を目的変数として回帰不連続デザインの図を描きなさい。アメリカの飲酒年齢は21歳である。</p></li>
+</ol>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>以下のモデルを推定して、結果をコンソールに表示する。<code>age</code>は<code>agecell</code>を21歳を中心として基準化した変数である。（例えば19歳は<code>age</code>では<code>-2</code>となる。）</li>
+</ol>
+<p><span class="math display">\[
+all\_death_{it} = \alpha + \rho Policy_{i} + \beta_{1} age_{t} + \beta_{2} Policy_{i} \times age_{t} + \varepsilon_{it}
+\]</span></p>
+<ol start="5" style="list-style-type: decimal">
+<li>結果を解釈する。</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="did.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="practiceanswer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/16_rd.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r_basics_musashi.pdf", "r_basics_musashi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -27,7 +27,8 @@ pacman::p_load(
   cols4all,
   psych,
   skimr,
-  tidyverse
+  tidyverse,
+  ggrepel
 )
 
 # bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook", output_dir="./docs")
