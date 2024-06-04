@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-31" />
+<meta name="date" content="2024-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -760,9 +760,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="letsuse.html#cb83-1" tabindex="-1"></a><span class="co"># 5が100個ならぶベクトル</span></span>
 <span id="cb83-2"><a href="letsuse.html#cb83-2" tabindex="-1"></a>v8 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">5</span>,<span class="dv">100</span>)</span>
 <span id="cb83-3"><a href="letsuse.html#cb83-3" tabindex="-1"></a><span class="fu">print</span>(v8)</span></code></pre></div>
-<pre><code>##   [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
-##  [38] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
-##  [75] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5</code></pre>
+<pre><code>##   [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+##  [26] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+##  [51] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+##  [76] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5</code></pre>
 <p>本当に100個出てるか？
 ベクトルの要素の数を数える関数は<code>length</code></p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="letsuse.html#cb85-1" tabindex="-1"></a><span class="fu">length</span>(v8)</span></code></pre></div>
@@ -804,8 +805,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 3.0 1.1 5.0
 ## 
 ## $data
-##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
-## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
+##           mpg cyl disp  hp drat   wt  qsec vs am gear
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4
+##           carb
+## Mazda RX4    4</code></pre>
 <div id="リストの参照" class="section level3 hasAnchor" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> リストの参照<a href="letsuse.html#リストの参照" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>リストの参照も角カッコでできる</p>
@@ -821,8 +824,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.5.2</span> リストの参照<a href="letsuse.html#リストの参照-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>リストの中身のみを取り出したい場合は、二重括角カッコを使う<code>[[]]</code></p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="letsuse.html#cb97-1" tabindex="-1"></a>a[[<span class="dv">3</span>]]</span></code></pre></div>
-<pre><code>##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
-## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
+<pre><code>##           mpg cyl disp  hp drat   wt  qsec vs am gear
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4
+##           carb
+## Mazda RX4    4</code></pre>
 
 </div>
 </div>

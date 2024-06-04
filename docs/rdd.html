@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-31" />
+<meta name="date" content="2024-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -534,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>つまり、18歳や19歳ならばお酒は飲まないが、20歳以上ならば飲酒するという傾向があるのである。（当然ならば法律を守っているかどうか、という議論はあるが、すくなくても法律を守っていないのは一部で多くは20歳から飲酒するだろう）</p>
 <p>しかし、18〜22歳ぐらいまでの若者は基本的には似た性質を持っていると考えられる。20歳になって、いきなり死亡率が増えるとは考えにくい。そのため、18歳や19歳に比べて、20歳や21歳で突然死亡率が上がっているならば、それは20歳をカットオフ（閾値）として扱い（処置）が変わる飲酒傾向によるものと考えることができるだろう。</p>
 <p>18-19歳の人々は「対照群」、20-22歳の人を「処置群」として考えることができ、比較が可能となる。これが、基本的な回帰不連続デザインのアイデアである。</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="rdd.html#cb326-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="rdd.html#cb327-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept.png&quot;</span>)</span></code></pre></div>
 <p><img src="fig/rdd_concept.png" width="928" /></p>
 <p>年齢によって死亡率は異なるが、少なくともその変化は滑らかであると考えられる。そこで、境界線上に大きな変化（ジャンプ）が起こっていれば、それが政策や処置の効果であると考えて推定を行うのである。</p>
 <p>ここでは、年齢のような変数を<strong>割当変数</strong>と呼ぶ。</p>
@@ -561,7 +561,7 @@ Y_{it} = \alpha + \rho Policy_{i} + \beta_{1} x_{t} + \beta_{2} Policy_{i} \time
 <p>例えば、飲酒年齢の問題では年齢が割当変数(<span class="math inline">\(x_i\)</span>)となる。そして、20歳以上ならば、<span class="math inline">\(Policy_{i}\)</span>は1となるが、20歳未満は<span class="math inline">\(Policy_{i}\)</span>が0となる。</p>
 <p>ここでは、因果効果として推定されるパラメータは<span class="math inline">\(\rho\)</span>（ローと読む）である。</p>
 <p>上の概念図に対応させると、以下のようになる。</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="rdd.html#cb327-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept_var.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="rdd.html#cb328-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept_var.png&quot;</span>)</span></code></pre></div>
 <p><img src="fig/rdd_concept_var.png" width="962" /></p>
 <p>左右の直線は、政策が適用される側（処置群）とされない側（対照群）でデータに基づいてそれぞれ推定された回帰直線である。</p>
 <p>もし仮に、推定された結果について<span class="math inline">\(\beta_2\)</span>と<span class="math inline">\(rho\)</span>がゼロだとする。すると、回帰式は</p>
@@ -569,7 +569,7 @@ Y_{it} = \alpha + \rho Policy_{i} + \beta_{1} x_{t} + \beta_{2} Policy_{i} \time
 Y_{it} = \alpha + \beta_{1} x_{t} + \varepsilon_{it}
 \]</span>
 となり、単なる単回帰式となる。図で表すと以下のような形だ。</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="rdd.html#cb328-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept_noeffect.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="rdd.html#cb329-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept_noeffect.png&quot;</span>)</span></code></pre></div>
 <p><img src="fig/rdd_concept_noeffect.png" width="1157" /></p>
 <p>この場合は、当然ながら政策によって割当変数と目的変数のスムーズな関係に変化は起こっていない。</p>
 <p>もし<span class="math inline">\(\beta_2\)</span>がマイナスの値で、<span class="math inline">\(rho\)</span>がゼロだったらどうなるか。
@@ -578,7 +578,7 @@ Y_{it} = \alpha + \beta_{1} x_{t} + \varepsilon_{it}
 Y_{it} = \alpha + \beta_{1} x_{t} + \beta_{2} Policy_{i}\times x_{t} + \varepsilon_{it}
 \]</span></p>
 <p>この場合の<span class="math inline">\(x_i\)</span>の係数は、<span class="math inline">\(\beta_{1} x_{t} + \beta_{2} Policy_{i}\times x_{t} = (\beta_{i} + \beta_{2} Policy_{i})x_{i}\)</span>と解釈することができる。つまり、カットオフより下ならば<span class="math inline">\(Policy_{i}=0\)</span>なので、係数は<span class="math inline">\(\beta_{1}\)</span>になるが、カットオフより上ならば<span class="math inline">\(Policy_{i}=1\)</span>なので、係数は<span class="math inline">\(\beta_{1} + \beta_{2}\)</span>となる。</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="rdd.html#cb329-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept_noeffect2.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="rdd.html#cb330-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/rdd_concept_noeffect2.png&quot;</span>)</span></code></pre></div>
 <p><img src="fig/rdd_concept_noeffect2.png" width="1157" /></p>
 <p>もし政策効果がないならば、左右の直線はつながった形になる。もし政策がなければ、目的変数は割当変数に従って滑らかに変化する。もしかしたら比例関係ではなく、どこかで傾向が変わる関係かもしれない。そのために<span class="math inline">\(\beta_2\)</span>を推定して、傾向が変わることを許すモデルにしているのである。仮にそのような関係があったとしても、「ジャンプ」がない限りは政策効果はないと考えられる。</p>
 <p>政策効果<span class="math inline">\(\rho\)</span>がゼロでない場合のみ、2つの直線の間に「ジャンプ」が生じる。これが政策が行われたことによる効果であると解釈される。</p>
@@ -595,20 +595,20 @@ Y_{it} = \alpha + \beta_{1} x_{t} + \beta_{2} Policy_{i}\times x_{t} + \varepsil
 <h3><span class="header-section-number">15.2.2</span> パッケージの準備<a href="rdd.html#パッケージの準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>以下のパッケージを使うので読み込んでおく。
 インストールしてない場合は、インストールする。</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="rdd.html#cb330-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
-<span id="cb330-2"><a href="rdd.html#cb330-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb330-3"><a href="rdd.html#cb330-3" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb330-4"><a href="rdd.html#cb330-4" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="rdd.html#cb331-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
+<span id="cb331-2"><a href="rdd.html#cb331-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb331-3"><a href="rdd.html#cb331-3" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb331-4"><a href="rdd.html#cb331-4" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
 </div>
 <div id="データの準備-2" class="section level3 hasAnchor" number="15.2.3">
 <h3><span class="header-section-number">15.2.3</span> データの準備<a href="rdd.html#データの準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データをダウンロードする。</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="rdd.html#cb331-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの格納を自動的に行う</span></span>
-<span id="cb331-2"><a href="rdd.html#cb331-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/data_rdd.csv?raw=TRUE&quot;</span>, </span>
-<span id="cb331-3"><a href="rdd.html#cb331-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/data_rdd.csv&quot;</span>)</span>
-<span id="cb331-4"><a href="rdd.html#cb331-4" tabindex="-1"></a></span>
-<span id="cb331-5"><a href="rdd.html#cb331-5" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
-<span id="cb331-6"><a href="rdd.html#cb331-6" tabindex="-1"></a>data_rdd <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data_rdd.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="rdd.html#cb332-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの格納を自動的に行う</span></span>
+<span id="cb332-2"><a href="rdd.html#cb332-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/data_rdd.csv?raw=TRUE&quot;</span>, </span>
+<span id="cb332-3"><a href="rdd.html#cb332-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/data_rdd.csv&quot;</span>)</span>
+<span id="cb332-4"><a href="rdd.html#cb332-4" tabindex="-1"></a></span>
+<span id="cb332-5"><a href="rdd.html#cb332-5" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
+<span id="cb332-6"><a href="rdd.html#cb332-6" tabindex="-1"></a>data_rdd <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data_rdd.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="データの確認-1" class="section level3 hasAnchor" number="15.2.4">
 <h3><span class="header-section-number">15.2.4</span> データの確認<a href="rdd.html#データの確認-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -617,7 +617,7 @@ Shigeoka (2014)では、日本の医療費の自己負担割合が70歳を境に
 <p>回帰不連続デザインを使う理由は70歳というカットオフが存在するからである。69歳11ヶ月の人は自己負担割合が3割だが、70歳0ヶ月になると突然1割になる。しかし、70歳になったからといって突然不健康になったり死亡率が上がるわけではないため、70歳になって急激に死亡率が下がっているのならば、これは自己負担割合の違いが死亡率の低下に貢献していると言えるというわけだ。</p>
 <p>データの中身を見てみる。
 まずは、どんなデータなのか<code>head()</code>で確認する。</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="rdd.html#cb332-1" tabindex="-1"></a><span class="fu">head</span>(data_rdd)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="rdd.html#cb333-1" tabindex="-1"></a><span class="fu">head</span>(data_rdd)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##     age   visits  death
 ##   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
@@ -632,11 +632,11 @@ Shigeoka (2014)では、日本の医療費の自己負担割合が70歳を境に
 <h3><span class="header-section-number">15.2.5</span> データの記述統計<a href="rdd.html#データの記述統計-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データの記述統計を確認しよう。
 Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code>パッケージの<code>skim()</code>関数を使った。</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="rdd.html#cb334-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb334-2"><a href="rdd.html#cb334-2" tabindex="-1"></a></span>
-<span id="cb334-3"><a href="rdd.html#cb334-3" tabindex="-1"></a><span class="fu">skim</span>(data_rdd)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="rdd.html#cb335-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb335-2"><a href="rdd.html#cb335-2" tabindex="-1"></a></span>
+<span id="cb335-3"><a href="rdd.html#cb335-3" tabindex="-1"></a><span class="fu">skim</span>(data_rdd)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-246">Table 15.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-231">Table 15.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -750,8 +750,8 @@ Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code
 <p>データには年齢は記録されているが、70歳以上かどうかを示す情報は直接は記録されていない。
 年齢から、70歳以上かどうか、というダミー変数を作成しよう。
 <code>ifelse(test,true,false)</code>という関数は1つ目の引数である<code>test</code>に条件式を入れる。その条件式を評価して、真であれば2つ目の引数である<code>true</code>に入力された値を返す。偽であれば<code>false</code>である3つ目の引数の値を返す。この場合は<code>age &gt;= 70</code>が条件式なので、各行において<code>age</code>が70以上であれば、<code>1</code>を入れ、そうでなければ<code>0</code>を入れる。</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="rdd.html#cb335-1" tabindex="-1"></a>data_rdd <span class="ot">&lt;-</span> data_rdd <span class="sc">|&gt;</span></span>
-<span id="cb335-2"><a href="rdd.html#cb335-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dummy70 =</span> <span class="fu">ifelse</span>(age <span class="sc">&gt;=</span> <span class="dv">70</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="rdd.html#cb336-1" tabindex="-1"></a>data_rdd <span class="ot">&lt;-</span> data_rdd <span class="sc">|&gt;</span></span>
+<span id="cb336-2"><a href="rdd.html#cb336-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dummy70 =</span> <span class="fu">ifelse</span>(age <span class="sc">&gt;=</span> <span class="dv">70</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
 </div>
 <div id="政策による行動への影響" class="section level3 hasAnchor" number="15.2.7">
 <h3><span class="header-section-number">15.2.7</span> 政策による行動への影響<a href="rdd.html#政策による行動への影響" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -759,13 +759,13 @@ Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code
 <p>下のコードでは、<code>aes()</code>によるマッピングの中に、<code>group</code>という項目が入っている。これは、描画に使うデータを年齢が70歳以上か未満か<code>dummy70</code>で分ける機能を持つ。
 こうすることで、<code>geom_smooth</code>を使うときに、70歳未満と以上で別々の直線を描いてくれる。
 <code>geom_vline</code>は縦(vertical)の直線を追加するレイヤーである。この場合は、x軸上の70歳(<code>xintercept = 70</code>)に縦の直線を、線の種類をダッシュ(<code>linetype="dashed"</code>)で、色を赤で(<code>color="red"</code>)追加する。</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="rdd.html#cb336-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_rdd, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> visits, <span class="at">group =</span> dummy70)) <span class="sc">+</span></span>
-<span id="cb336-2"><a href="rdd.html#cb336-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;gray&#39;</span>) <span class="sc">+</span></span>
-<span id="cb336-3"><a href="rdd.html#cb336-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb336-4"><a href="rdd.html#cb336-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb336-5"><a href="rdd.html#cb336-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;年齢&quot;</span>, <span class="at">y =</span> <span class="st">&quot;外来患者数(対数)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;自己負担割合が減ると外来受診が増える&quot;</span>) <span class="sc">+</span></span>
-<span id="cb336-6"><a href="rdd.html#cb336-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="rdd.html#cb337-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_rdd, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> visits, <span class="at">group =</span> dummy70)) <span class="sc">+</span></span>
+<span id="cb337-2"><a href="rdd.html#cb337-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;gray&#39;</span>) <span class="sc">+</span></span>
+<span id="cb337-3"><a href="rdd.html#cb337-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb337-4"><a href="rdd.html#cb337-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb337-5"><a href="rdd.html#cb337-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;年齢&quot;</span>, <span class="at">y =</span> <span class="st">&quot;外来患者数(対数)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;自己負担割合が減ると外来受診が増える&quot;</span>) <span class="sc">+</span></span>
+<span id="cb337-6"><a href="rdd.html#cb337-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
 <p>これを見ると、外来患者数には70歳を境に大きなジャンプがある。
 つまり、自己負担割合が低くなることで、外来患者の数が急激に増加している。
 このことから、自己負担割合の変化は外来診察を受けるインセンティブを高め、高齢患者の行動を変えていると言えそうだ。</p>
@@ -777,9 +777,9 @@ Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code
 Visits_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\times Dummy70_{i} + \varepsilon_{i}
 \]</span>
 という式を推定することになる。</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="rdd.html#cb337-1" tabindex="-1"></a>rdd_visit <span class="ot">&lt;-</span> <span class="fu">feols</span>(visits <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
-<span id="cb337-2"><a href="rdd.html#cb337-2" tabindex="-1"></a></span>
-<span id="cb337-3"><a href="rdd.html#cb337-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_visit)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="rdd.html#cb338-1" tabindex="-1"></a>rdd_visit <span class="ot">&lt;-</span> <span class="fu">feols</span>(visits <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
+<span id="cb338-2"><a href="rdd.html#cb338-2" tabindex="-1"></a></span>
+<span id="cb338-3"><a href="rdd.html#cb338-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_visit)</span></code></pre></div>
 <pre><code>##                           rdd_visit
 ## Dependent Var.:              visits
 ##                                    
@@ -801,13 +801,13 @@ Visits_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\ti
 <div id="政策による結果への影響" class="section level3 hasAnchor" number="15.2.8">
 <h3><span class="header-section-number">15.2.8</span> 政策による結果への影響<a href="rdd.html#政策による結果への影響" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>今度は、政策によって重要な結果、ここでは死亡率に効果があるかを見てみよう。</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="rdd.html#cb339-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_rdd, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> death, <span class="at">group =</span> dummy70)) <span class="sc">+</span></span>
-<span id="cb339-2"><a href="rdd.html#cb339-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;gray&#39;</span>) <span class="sc">+</span></span>
-<span id="cb339-3"><a href="rdd.html#cb339-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb339-4"><a href="rdd.html#cb339-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb339-5"><a href="rdd.html#cb339-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;年齢&quot;</span>, <span class="at">y =</span> <span class="st">&quot;死亡率(対数)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;自己負担割合が減っても死亡率は変わらない&quot;</span>) <span class="sc">+</span></span>
-<span id="cb339-6"><a href="rdd.html#cb339-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="rdd.html#cb340-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_rdd, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> death, <span class="at">group =</span> dummy70)) <span class="sc">+</span></span>
+<span id="cb340-2"><a href="rdd.html#cb340-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;gray&#39;</span>) <span class="sc">+</span></span>
+<span id="cb340-3"><a href="rdd.html#cb340-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb340-4"><a href="rdd.html#cb340-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb340-5"><a href="rdd.html#cb340-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;年齢&quot;</span>, <span class="at">y =</span> <span class="st">&quot;死亡率(対数)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;自己負担割合が減っても死亡率は変わらない&quot;</span>) <span class="sc">+</span></span>
+<span id="cb340-6"><a href="rdd.html#cb340-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
 <p>上と同様に分割して回帰直線を描いているが、あたかもつながっているかのような直線になっている。大きなジャンプは見られず、70歳になって突然死亡率が下がったという傾向はなさそうである。</p>
 <div id="回帰分析による推定-1" class="section level4 hasAnchor" number="15.2.8.1">
 <h4><span class="header-section-number">15.2.8.1</span> 回帰分析による推定<a href="rdd.html#回帰分析による推定-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -817,9 +817,9 @@ Visits_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\ti
 Death_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\times Dummy70_{i} + \varepsilon_{i}
 \]</span>
 という式を推定することになる。</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="rdd.html#cb340-1" tabindex="-1"></a>rdd_death <span class="ot">&lt;-</span> <span class="fu">feols</span>(death <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
-<span id="cb340-2"><a href="rdd.html#cb340-2" tabindex="-1"></a></span>
-<span id="cb340-3"><a href="rdd.html#cb340-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_death)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="rdd.html#cb341-1" tabindex="-1"></a>rdd_death <span class="ot">&lt;-</span> <span class="fu">feols</span>(death <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
+<span id="cb341-2"><a href="rdd.html#cb341-2" tabindex="-1"></a></span>
+<span id="cb341-3"><a href="rdd.html#cb341-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_death)</span></code></pre></div>
 <pre><code>##                          rdd_death
 ## Dependent Var.:              death
 ##                                   
@@ -844,18 +844,18 @@ Death_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\tim
 <ol style="list-style-type: decimal">
 <li>以下のコードを実行してデータをダウンロードして読み込む。</li>
 </ol>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="rdd.html#cb342-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの格納を自動的に行う</span></span>
-<span id="cb342-2"><a href="rdd.html#cb342-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/data_alcohol.csv?raw=TRUE&quot;</span>, </span>
-<span id="cb342-3"><a href="rdd.html#cb342-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/data_alcohol.csv&quot;</span>)</span>
-<span id="cb342-4"><a href="rdd.html#cb342-4" tabindex="-1"></a></span>
-<span id="cb342-5"><a href="rdd.html#cb342-5" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
-<span id="cb342-6"><a href="rdd.html#cb342-6" tabindex="-1"></a>data_alcohol<span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data_alcohol.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="rdd.html#cb343-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの格納を自動的に行う</span></span>
+<span id="cb343-2"><a href="rdd.html#cb343-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/data_alcohol.csv?raw=TRUE&quot;</span>, </span>
+<span id="cb343-3"><a href="rdd.html#cb343-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/data_alcohol.csv&quot;</span>)</span>
+<span id="cb343-4"><a href="rdd.html#cb343-4" tabindex="-1"></a></span>
+<span id="cb343-5"><a href="rdd.html#cb343-5" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
+<span id="cb343-6"><a href="rdd.html#cb343-6" tabindex="-1"></a>data_alcohol<span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data_alcohol.csv&quot;</span>)</span></code></pre></div>
 <p>これはアメリカの誕生日によて区切られた年齢グループ別のデータである。約一ヶ月ごとに誕生日からどれぐらい経っているか（例：20歳の誕生日から1ヶ月以上2ヶ月未満）などのグループ(<code>agecell</code>)で区切られている。またそのグループ別に、死因別や合計(<code>all_death</code>)の死亡数が記録されている。</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>データの記述統計を確認する。</p></li>
 <li><p><code>agecell</code>を割当変数、<code>policy</code>を政策変数、<code>all_death</code>を目的変数として回帰不連続デザインの図を描きなさい。アメリカの飲酒年齢は21歳である。</p></li>
 </ol>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>以下のモデルを推定して、結果をコンソールに表示する。<code>age</code>は<code>agecell</code>を21歳を中心として基準化した変数である。（例えば19歳は<code>age</code>では<code>-2</code>となる。）</li>
 </ol>

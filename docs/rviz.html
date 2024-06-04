@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-05-31" />
+<meta name="date" content="2024-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -578,7 +578,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="rviz.html#cb206-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span>
 <span id="cb206-2"><a href="rviz.html#cb206-2" tabindex="-1"></a></span>
 <span id="cb206-3"><a href="rviz.html#cb206-3" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-134-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-118-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 <div id="グラフのレイヤーを追加する" class="section level2 hasAnchor" number="8.7">
 <h2><span class="header-section-number">8.7</span> グラフのレイヤーを追加する<a href="rviz.html#グラフのレイヤーを追加する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -596,7 +596,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb207-2"><a href="rviz.html#cb207-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数),<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)  <span class="co"># &lt;- 追加！</span></span>
 <span id="cb207-3"><a href="rviz.html#cb207-3" tabindex="-1"></a></span>
 <span id="cb207-4"><a href="rviz.html#cb207-4" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-135-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-119-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 <div id="文字化けに対処する" class="section level2 hasAnchor" number="8.8">
 <h2><span class="header-section-number">8.8</span> 文字化けに対処する<a href="rviz.html#文字化けに対処する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -616,7 +616,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb208-3"><a href="rviz.html#cb208-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)  <span class="co"># &lt;- 追加！</span></span>
 <span id="cb208-4"><a href="rviz.html#cb208-4" tabindex="-1"></a></span>
 <span id="cb208-5"><a href="rviz.html#cb208-5" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-136-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-120-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 <div id="aesに色を追加する" class="section level2 hasAnchor" number="8.9">
 <h2><span class="header-section-number">8.9</span> aesに色を追加する<a href="rviz.html#aesに色を追加する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -632,7 +632,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb209-3"><a href="rviz.html#cb209-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
 <span id="cb209-4"><a href="rviz.html#cb209-4" tabindex="-1"></a></span>
 <span id="cb209-5"><a href="rviz.html#cb209-5" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-137-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-121-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 <div id="男女の置き方を変えたい" class="section level2 hasAnchor" number="8.10">
 <h2><span class="header-section-number">8.10</span> 男女の置き方を変えたい<a href="rviz.html#男女の置き方を変えたい" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -649,7 +649,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb210-4"><a href="rviz.html#cb210-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) </span>
 <span id="cb210-5"><a href="rviz.html#cb210-5" tabindex="-1"></a></span>
 <span id="cb210-6"><a href="rviz.html#cb210-6" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-138-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-122-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 <div id="色を変えたい" class="section level2 hasAnchor" number="8.11">
 <h2><span class="header-section-number">8.11</span> 色を変えたい<a href="rviz.html#色を変えたい" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -673,7 +673,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb211-4"><a href="rviz.html#cb211-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
 <span id="cb211-5"><a href="rviz.html#cb211-5" tabindex="-1"></a></span>
 <span id="cb211-6"><a href="rviz.html#cb211-6" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-139-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-123-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 <div id="学科別に分けたい" class="section level2 hasAnchor" number="8.12">
 <h2><span class="header-section-number">8.12</span> 学科別に分けたい<a href="rviz.html#学科別に分けたい" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -693,7 +693,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb212-5"><a href="rviz.html#cb212-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="co"># &lt;- 追加！</span></span>
 <span id="cb212-6"><a href="rviz.html#cb212-6" tabindex="-1"></a></span>
 <span id="cb212-7"><a href="rviz.html#cb212-7" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-140-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-124-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ラベルを変更するタイトルを追加する" class="section level2 hasAnchor" number="8.13">
 <h2><span class="header-section-number">8.13</span> ラベルを変更する・タイトルを追加する<a href="rviz.html#ラベルを変更するタイトルを追加する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -722,7 +722,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb213-9"><a href="rviz.html#cb213-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="co"># &lt;- 追加！</span></span>
 <span id="cb213-10"><a href="rviz.html#cb213-10" tabindex="-1"></a></span>
 <span id="cb213-11"><a href="rviz.html#cb213-11" tabindex="-1"></a>plot_634</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-141-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-125-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 <div id="テーマを変更する1" class="section level2 hasAnchor" number="8.14">
 <h2><span class="header-section-number">8.14</span> テーマを変更する1<a href="rviz.html#テーマを変更する1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -752,7 +752,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb214-7"><a href="rviz.html#cb214-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb214-8"><a href="rviz.html#cb214-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span>     <span class="co"># &lt;- 変更!</span></span>
 <span id="cb214-9"><a href="rviz.html#cb214-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="do">## &lt;- 追加！</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-143-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-127-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="細かいテーマ設定" class="section level3 hasAnchor" number="8.14.2">
 <h3><span class="header-section-number">8.14.2</span> 細かいテーマ設定<a href="rviz.html#細かいテーマ設定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -859,21 +859,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb218-3"><a href="rviz.html#cb218-3" tabindex="-1"></a></span>
 <span id="cb218-4"><a href="rviz.html#cb218-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
 <span id="cb218-5"><a href="rviz.html#cb218-5" tabindex="-1"></a><span class="fu">names</span>(diamonds)</span></code></pre></div>
-<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;   &quot;table&quot;   &quot;price&quot;  
-##  [8] &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;  
+##  [6] &quot;table&quot;   &quot;price&quot;   &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="rviz.html#cb220-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
 <span id="cb220-2"><a href="rviz.html#cb220-2" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10
-##   carat cut       color clarity depth table price     x     y     z
-##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-## 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-## 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-## 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-## 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-## 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+##   carat cut       color clarity depth table price     x
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+## 1  0.23 Ideal     E     SI2      61.5    55   326  3.95
+## 2  0.21 Premium   E     SI1      59.8    61   326  3.89
+## 3  0.23 Good      E     VS1      56.9    65   327  4.05
+## 4  0.29 Premium   I     VS2      62.4    58   334  4.2 
+## 5  0.31 Good      J     SI2      63.3    58   335  4.34
+## 6  0.24 Very Good J     VVS2     62.8    57   336  3.94
+## # ℹ 2 more variables: y &lt;dbl&gt;, z &lt;dbl&gt;</code></pre>
 <p><strong>課題</strong>：以下の画像を作成してみよう。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-148-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-132-1.png" width="720" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="lineplotpractice" class="section level2 hasAnchor" number="8.18">
@@ -885,7 +886,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb222-3"><a href="rviz.html#cb222-3" tabindex="-1"></a></span>
 <span id="cb222-4"><a href="rviz.html#cb222-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
 <span id="cb222-5"><a href="rviz.html#cb222-5" tabindex="-1"></a><span class="fu">names</span>(economics)</span></code></pre></div>
-<pre><code>## [1] &quot;date&quot;     &quot;pce&quot;      &quot;pop&quot;      &quot;psavert&quot;  &quot;uempmed&quot;  &quot;unemploy&quot;</code></pre>
+<pre><code>## [1] &quot;date&quot;     &quot;pce&quot;      &quot;pop&quot;      &quot;psavert&quot; 
+## [5] &quot;uempmed&quot;  &quot;unemploy&quot;</code></pre>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="rviz.html#cb224-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
 <span id="cb224-2"><a href="rviz.html#cb224-2" tabindex="-1"></a><span class="fu">head</span>(economics)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
@@ -898,7 +900,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 1967-11-01  517. 199498    12.8     4.7     3066
 ## 6 1967-12-01  525. 199657    11.8     4.8     3018</code></pre>
 <p><strong>課題</strong>：アメリカの失業数の変遷の折れ線グラフを作成しよう。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-151-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-135-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="箱ひげ図" class="section level2 hasAnchor" number="8.19">
 <h2><span class="header-section-number">8.19</span> 箱ひげ図<a href="rviz.html#箱ひげ図" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -914,7 +916,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>]</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="rviz.html#cb226-1" tabindex="-1"></a>plot_boxplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>mpg) <span class="sc">+</span> </span>
 <span id="cb226-2"><a href="rviz.html#cb226-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>class,<span class="at">y=</span>hwy))</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-153-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-137-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ヴァイオリンプロット" class="section level2 hasAnchor" number="8.20">
 <h2><span class="header-section-number">8.20</span> ヴァイオリンプロット<a href="rviz.html#ヴァイオリンプロット" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -929,7 +931,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="rviz.html#cb227-1" tabindex="-1"></a>plot_violin <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>mpg) <span class="sc">+</span> </span>
 <span id="cb227-2"><a href="rviz.html#cb227-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x=</span>class,<span class="at">y=</span>hwy))</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-155-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-139-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="適した描画" class="section level2 hasAnchor" number="8.21">
 <h2><span class="header-section-number">8.21</span> 適した描画？<a href="rviz.html#適した描画" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1123,7 +1125,7 @@ Figure 8.1: データタイプ別のグラフ
 <span id="cb232-4"><a href="rviz.html#cb232-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
 <span id="cb232-5"><a href="rviz.html#cb232-5" tabindex="-1"></a></span>
 <span id="cb232-6"><a href="rviz.html#cb232-6" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 <p>５．英語で発表するため、英語に変換する</p>
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="rviz.html#cb233-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>合計特殊出生率, <span class="at">col=</span>都道府県)) <span class="sc">+</span> </span>
 <span id="cb233-2"><a href="rviz.html#cb233-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -1137,7 +1139,7 @@ Figure 8.1: データタイプ別のグラフ
 <span id="cb233-10"><a href="rviz.html#cb233-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) <span class="co"># スライドで見やすくするために字を大きくする</span></span>
 <span id="cb233-11"><a href="rviz.html#cb233-11" tabindex="-1"></a></span>
 <span id="cb233-12"><a href="rviz.html#cb233-12" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li>保存して、パワーポイントなどに貼る。</li>
 </ol>
