@@ -20,7 +20,7 @@
 
 18-19歳の人々は「対照群」、20-22歳の人を「処置群」として考えることができ、比較が可能となる。これが、基本的な回帰不連続デザインのアイデアである。
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("fig/rdd_concept.png")
 ```
 
@@ -46,7 +46,7 @@ knitr::include_graphics("fig/rdd_concept.png")
 まず回帰式は以下のようになる。
 
 $$
- Y_{it} = \alpha + \rho Policy_{i} + \beta_{1} x_{t} + \beta_{2} Policy_{i} \times x_{t} + \varepsilon_{it}
+ Y_{i} = \alpha + \rho Policy_{i} + \beta_{1} x_{i} + \beta_{2} Policy_{i} \times x_{i} + \varepsilon_{i}
 $$
 ここで、$Policy_{i}$はダミー変数である。$Policy_{i}$はもし、該当データが、割当変数でカットオフより大きい（政策によっては小さい）個人$i$が、処置群に入るならば１、対照群ならば０を取る。
 
@@ -56,35 +56,35 @@ $$
 
 上の概念図に対応させると、以下のようになる。
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("fig/rdd_concept_var.png")
 ```
 
 左右の直線は、政策が適用される側（処置群）とされない側（対照群）でデータに基づいてそれぞれ推定された回帰直線である。
 
-もし仮に、推定された結果について$\beta_2$と$rho$がゼロだとする。すると、回帰式は
+もし仮に、推定された結果について$\beta_2$と$\rho$がゼロだとする。すると、回帰式は
 
 $$
- Y_{it} = \alpha + \beta_{1} x_{t} + \varepsilon_{it}
+ Y_{i} = \alpha + \beta_{1} x_{i} + \varepsilon_{i}
 $$
 となり、単なる単回帰式となる。図で表すと以下のような形だ。
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("fig/rdd_concept_noeffect.png")
 ```
 
 この場合は、当然ながら政策によって割当変数と目的変数のスムーズな関係に変化は起こっていない。
 
-もし$\beta_2$がマイナスの値で、$rho$がゼロだったらどうなるか。
+もし$\beta_2$がマイナスの値で、$\rho$がゼロだったらどうなるか。
 この場合は以下のような式になる。
 
 $$
- Y_{it} = \alpha + \beta_{1} x_{t} + \beta_{2} Policy_{i}\times x_{t} + \varepsilon_{it}
+ Y_{i} = \alpha + \beta_{1} x_{i} + \beta_{2} Policy_{i}\times x_{i} + \varepsilon_{i}
 $$
 
-この場合の$x_i$の係数は、$\beta_{1} x_{t} + \beta_{2} Policy_{i}\times x_{t} = (\beta_{i} + \beta_{2} Policy_{i})x_{i}$と解釈することができる。つまり、カットオフより下ならば$Policy_{i}=0$なので、係数は$\beta_{1}$になるが、カットオフより上ならば$Policy_{i}=1$なので、係数は$\beta_{1} + \beta_{2}$となる。
+この場合の$x_i$の係数は、$\beta_{1} x_{i} + \beta_{2} Policy_{i}\times x_{i} = (\beta_{i} + \beta_{2} Policy_{i})x_{i}$と解釈することができる。つまり、カットオフより下ならば$Policy_{i}=0$なので、係数は$\beta_{1}$になるが、カットオフより上ならば$Policy_{i}=1$なので、係数は$\beta_{1} + \beta_{2}$となる。
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("fig/rdd_concept_noeffect2.png")
 ```
 
@@ -98,7 +98,7 @@ knitr::include_graphics("fig/rdd_concept_noeffect2.png")
 ### スクリプトの準備
 
 新しいスクリプトにコードを書いていく。
-新しくスクリプトを作成し、`rdd`.R`という名前をつけて保存する。
+新しくスクリプトを作成し、`rdd.R`という名前をつけて保存する。
 
 ### パッケージの準備
 
@@ -321,7 +321,7 @@ download.file("https://github.com/keita43a/regression_tutorial/blob/main/data/da
 data_alcohol= read_csv("data/data_alcohol.csv")
 ```
 
-これはアメリカの誕生日によて区切られた年齢グループ別のデータである。約一ヶ月ごとに誕生日からどれぐらい経っているか（例：20歳の誕生日から1ヶ月以上2ヶ月未満）などのグループ(`agecell`)で区切られている。またそのグループ別に、死因別や合計(`all_death`)の死亡数が記録されている。
+これはアメリカの誕生日によって区切られた年齢グループ別のデータである。約一ヶ月ごとに誕生日からどれぐらい経っているか（例：20歳の誕生日から1ヶ月以上2ヶ月未満）などのグループ(`agecell`)で区切られている。またそのグループ別に、死因別や合計(`all_death`)の死亡数が記録されている。
 
 2. データの記述統計を確認する。
 

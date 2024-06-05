@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-06-04" />
+<meta name="date" content="2024-06-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -556,18 +556,12 @@ Xが政策的に変更できる変数であり、Yがなにか経済・社会的
 <span id="cb243-2"><a href="correlation.html#cb243-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kokugo_hensa =</span> kokugo <span class="sc">-</span> <span class="fu">mean</span>(kokugo),</span>
 <span id="cb243-3"><a href="correlation.html#cb243-3" tabindex="-1"></a>         <span class="at">sugaku_hensa =</span> sugaku <span class="sc">-</span> <span class="fu">mean</span>(sugaku)) <span class="sc">|&gt;</span></span>
 <span id="cb243-4"><a href="correlation.html#cb243-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hensa_seki =</span> kokugo_hensa<span class="sc">*</span>sugaku_hensa)</span></code></pre></div>
-<pre><code>##   student kokugo sugaku kokugo_hensa sugaku_hensa
-## 1       A     50     52          -18        -23.4
-## 2       B     50     75          -18         -0.4
-## 3       C     80     62           12        -13.4
-## 4       D     70     89            2         13.6
-## 5       E     90     99           22         23.6
-##   hensa_seki
-## 1      421.2
-## 2        7.2
-## 3     -160.8
-## 4       27.2
-## 5      519.2</code></pre>
+<pre><code>##   student kokugo sugaku kokugo_hensa sugaku_hensa hensa_seki
+## 1       A     50     52          -18        -23.4      421.2
+## 2       B     50     75          -18         -0.4        7.2
+## 3       C     80     62           12        -13.4     -160.8
+## 4       D     70     89            2         13.6       27.2
+## 5       E     90     99           22         23.6      519.2</code></pre>
 <p>ここで、あることに気づいた人もいるかもしれない。
 偏差の積は、<strong>どちらもよい</strong>か<strong>どちらも悪い</strong>点数なら、正の数で大きくなり、どちらかが悪くてもう一つがよいと、負の数になる。
 このケースで言えば、Aさん（どちらも悪い）や、Eさん（どちらもよい）は、偏差の積が正で大きく、Cさん（国語は良いが数学は悪い）は、偏差の積が負になっている。</p>
