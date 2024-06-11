@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-06-05" />
+<meta name="date" content="2024-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -431,6 +431,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>12</b> 重回帰分析</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="multipleregression.html"><a href="multipleregression.html#重回帰分析とは"><i class="fa fa-check"></i><b>12.1</b> 重回帰分析とは</a></li>
+<li class="chapter" data-level="12.2" data-path="multipleregression.html"><a href="multipleregression.html#回帰分析における真のモデル"><i class="fa fa-check"></i><b>12.2</b> 回帰分析における真のモデル</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="multipleregression.html"><a href="multipleregression.html#シミュレーション"><i class="fa fa-check"></i><b>12.2.1</b> シミュレーション</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>13</b> パネルデータ分析</a>
 <ul>
@@ -537,7 +541,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>例えば、埼玉県と東京都の平均所得は当然異なるが、景気などによって東京都の所得が上がっているときは埼玉県の所得も上がっていそうだ。
 このように平行に推移する目的変数であるならば、差だけをとっても比較はできないが、差の差、を取ることで比較することが可能になる。</p>
 <p>下の図は、差の差法の概念を示した図である。</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="did.html#cb310-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/did_concept_pos.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="did.html#cb321-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/did_concept_pos.png&quot;</span>)</span></code></pre></div>
 <p><img src="fig/did_concept_pos.png" width="1015" /></p>
 <p>処置群は、なんらかの政策を受ける。効果があるならば、政策によって目的変数が変化する。
 しかし、前後関係だけで比較することはできない。なぜならば、その前後の変化は政策以外による影響もあるかもしれないからだ。</p>
@@ -644,20 +648,20 @@ Y_{it} = \alpha + \beta_{1} \cdot 1 + \beta_{2} \cdot 1 + \beta_{3} \cdot 1 \tim
 <h3><span class="header-section-number">14.2.2</span> パッケージの準備<a href="did.html#パッケージの準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>以下のパッケージを使うので読み込んでおく。
 インストールしてない場合は、インストールする。</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="did.html#cb311-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
-<span id="cb311-2"><a href="did.html#cb311-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb311-3"><a href="did.html#cb311-3" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb311-4"><a href="did.html#cb311-4" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="did.html#cb322-1" tabindex="-1"></a><span class="co"># ライブラリ</span></span>
+<span id="cb322-2"><a href="did.html#cb322-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb322-3"><a href="did.html#cb322-3" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb322-4"><a href="did.html#cb322-4" tabindex="-1"></a><span class="fu">library</span>(fixest)</span></code></pre></div>
 </div>
 <div id="データの準備-1" class="section level3 hasAnchor" number="14.2.3">
 <h3><span class="header-section-number">14.2.3</span> データの準備<a href="did.html#データの準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データをダウンロードする。</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="did.html#cb312-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの格納を自動的に行う</span></span>
-<span id="cb312-2"><a href="did.html#cb312-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/data_njmin.csv?raw=TRUE&quot;</span>, </span>
-<span id="cb312-3"><a href="did.html#cb312-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/data_njmin.csv&quot;</span>)</span>
-<span id="cb312-4"><a href="did.html#cb312-4" tabindex="-1"></a></span>
-<span id="cb312-5"><a href="did.html#cb312-5" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
-<span id="cb312-6"><a href="did.html#cb312-6" tabindex="-1"></a>data_njmin <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data_njmin.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="did.html#cb323-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの格納を自動的に行う</span></span>
+<span id="cb323-2"><a href="did.html#cb323-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/data_njmin.csv?raw=TRUE&quot;</span>, </span>
+<span id="cb323-3"><a href="did.html#cb323-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/data_njmin.csv&quot;</span>)</span>
+<span id="cb323-4"><a href="did.html#cb323-4" tabindex="-1"></a></span>
+<span id="cb323-5"><a href="did.html#cb323-5" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
+<span id="cb323-6"><a href="did.html#cb323-6" tabindex="-1"></a>data_njmin <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data_njmin.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="データの確認" class="section level3 hasAnchor" number="14.2.4">
 <h3><span class="header-section-number">14.2.4</span> データの確認<a href="did.html#データの確認" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -668,28 +672,26 @@ Y_{it} = \alpha + \beta_{1} \cdot 1 + \beta_{2} \cdot 1 + \beta_{3} \cdot 1 \tim
 この現象を利用して、差の差分析を用いて最低賃金が雇用に影響をもたらすかどうかを分析した研究である。</p>
 <p>データの中身を見てみる。
 まずは、どんなデータなのか<code>head()</code>で確認する。</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="did.html#cb313-1" tabindex="-1"></a><span class="fu">head</span>(data_njmin)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="did.html#cb324-1" tabindex="-1"></a><span class="fu">head</span>(data_njmin)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 9
-##   state fulltime_before parttime_before wage_before fulltime_after
-##   &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
-## 1 PA                 20              20        5                 0
-## 2 PA                  6              26        5.5              28
-## 3 PA                 50              35        5                15
-## 4 PA                 10              17        5                26
-## 5 PA                  2               8        5.25              3
-## 6 PA                  2              10        5                 2
-## # ℹ 4 more variables: parttime_after &lt;dbl&gt;, wage_after &lt;dbl&gt;,
-## #   full_prop_before &lt;dbl&gt;, full_prop_after &lt;dbl&gt;</code></pre>
+##   state fulltime_before parttime_before wage_before fulltime_after parttime_after wage_after full_prop_before full_prop_after
+##   &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
+## 1 PA                 20              20        5                 0             36       5.25            0.5             0    
+## 2 PA                  6              26        5.5              28              3       4.75            0.188           0.903
+## 3 PA                 50              35        5                15             18       4.75            0.588           0.455
+## 4 PA                 10              17        5                26              9       5               0.370           0.743
+## 5 PA                  2               8        5.25              3             12       5               0.2             0.2  
+## 6 PA                  2              10        5                 2              9       5               0.167           0.182</code></pre>
 </div>
 <div id="データの記述統計-1" class="section level3 hasAnchor" number="14.2.5">
 <h3><span class="header-section-number">14.2.5</span> データの記述統計<a href="did.html#データの記述統計-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>データの記述統計を確認しよう。
 Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code>パッケージの<code>skim()</code>関数を使った。</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="did.html#cb315-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb315-2"><a href="did.html#cb315-2" tabindex="-1"></a></span>
-<span id="cb315-3"><a href="did.html#cb315-3" tabindex="-1"></a><span class="fu">skim</span>(data_njmin)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="did.html#cb326-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb326-2"><a href="did.html#cb326-2" tabindex="-1"></a></span>
+<span id="cb326-3"><a href="did.html#cb326-3" tabindex="-1"></a><span class="fu">skim</span>(data_njmin)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-214">Table 14.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-235">Table 14.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -932,13 +934,13 @@ Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code
 </tbody>
 </table>
 <p>グループごとの記述統計（セクション<a href="datahandling.html#groupagg">6.11.12</a>参照）を用いて、上のような表を作ってみよう。</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="did.html#cb316-1" tabindex="-1"></a>njmin_table <span class="ot">&lt;-</span> data_njmin <span class="sc">|&gt;</span></span>
-<span id="cb316-2"><a href="did.html#cb316-2" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span> <span class="co"># 州ごとにグループ分けを行う</span></span>
-<span id="cb316-3"><a href="did.html#cb316-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">before =</span> <span class="fu">mean</span>(wage_before), </span>
-<span id="cb316-4"><a href="did.html#cb316-4" tabindex="-1"></a>            <span class="at">after =</span> <span class="fu">mean</span>(wage_after),  </span>
-<span id="cb316-5"><a href="did.html#cb316-5" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="co"># 混乱を避けるためgroup_byで指定したグループ化を解除</span></span>
-<span id="cb316-6"><a href="did.html#cb316-6" tabindex="-1"></a></span>
-<span id="cb316-7"><a href="did.html#cb316-7" tabindex="-1"></a>njmin_table</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="did.html#cb327-1" tabindex="-1"></a>njmin_table <span class="ot">&lt;-</span> data_njmin <span class="sc">|&gt;</span></span>
+<span id="cb327-2"><a href="did.html#cb327-2" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span> <span class="co"># 州ごとにグループ分けを行う</span></span>
+<span id="cb327-3"><a href="did.html#cb327-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">before =</span> <span class="fu">mean</span>(wage_before), </span>
+<span id="cb327-4"><a href="did.html#cb327-4" tabindex="-1"></a>            <span class="at">after =</span> <span class="fu">mean</span>(wage_after),  </span>
+<span id="cb327-5"><a href="did.html#cb327-5" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="co"># 混乱を避けるためgroup_byで指定したグループ化を解除</span></span>
+<span id="cb327-6"><a href="did.html#cb327-6" tabindex="-1"></a></span>
+<span id="cb327-7"><a href="did.html#cb327-7" tabindex="-1"></a>njmin_table</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   state before after
 ##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
@@ -1007,28 +1009,28 @@ Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="did.html#cb320-1" tabindex="-1"></a>njmin_table_did <span class="ot">&lt;-</span> data_njmin <span class="sc">|&gt;</span></span>
-<span id="cb320-2"><a href="did.html#cb320-2" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
-<span id="cb320-3"><a href="did.html#cb320-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">full_prop_before =</span> <span class="fu">mean</span>(full_prop_before),</span>
-<span id="cb320-4"><a href="did.html#cb320-4" tabindex="-1"></a>            <span class="at">full_prop_after =</span> <span class="fu">mean</span>(full_prop_after),</span>
-<span id="cb320-5"><a href="did.html#cb320-5" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) </span>
-<span id="cb320-6"><a href="did.html#cb320-6" tabindex="-1"></a></span>
-<span id="cb320-7"><a href="did.html#cb320-7" tabindex="-1"></a>njmin_table_did</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="did.html#cb331-1" tabindex="-1"></a>njmin_table_did <span class="ot">&lt;-</span> data_njmin <span class="sc">|&gt;</span></span>
+<span id="cb331-2"><a href="did.html#cb331-2" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
+<span id="cb331-3"><a href="did.html#cb331-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">full_prop_before =</span> <span class="fu">mean</span>(full_prop_before),</span>
+<span id="cb331-4"><a href="did.html#cb331-4" tabindex="-1"></a>            <span class="at">full_prop_after =</span> <span class="fu">mean</span>(full_prop_after),</span>
+<span id="cb331-5"><a href="did.html#cb331-5" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) </span>
+<span id="cb331-6"><a href="did.html#cb331-6" tabindex="-1"></a></span>
+<span id="cb331-7"><a href="did.html#cb331-7" tabindex="-1"></a>njmin_table_did</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   state full_prop_before full_prop_after
 ##   &lt;chr&gt;            &lt;dbl&gt;           &lt;dbl&gt;
 ## 1 NJ               0.297           0.320
 ## 2 PA               0.310           0.272</code></pre>
 <p>さらに上のコードに付け足して、差の差を計算する。</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="did.html#cb322-1" tabindex="-1"></a>njmin_table_did2 <span class="ot">&lt;-</span> data_njmin <span class="sc">|&gt;</span></span>
-<span id="cb322-2"><a href="did.html#cb322-2" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
-<span id="cb322-3"><a href="did.html#cb322-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">full_prop_before =</span> <span class="fu">mean</span>(full_prop_before),</span>
-<span id="cb322-4"><a href="did.html#cb322-4" tabindex="-1"></a>            <span class="at">full_prop_after =</span> <span class="fu">mean</span>(full_prop_after),</span>
-<span id="cb322-5"><a href="did.html#cb322-5" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb322-6"><a href="did.html#cb322-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">full_prop_diff =</span> full_prop_after <span class="sc">-</span> full_prop_before) <span class="sc">|&gt;</span></span>
-<span id="cb322-7"><a href="did.html#cb322-7" tabindex="-1"></a>  <span class="fu">with</span>(full_prop_diff[state<span class="sc">==</span><span class="st">&quot;NJ&quot;</span>] <span class="sc">-</span> full_prop_diff[state<span class="sc">==</span><span class="st">&quot;PA&quot;</span>])</span>
-<span id="cb322-8"><a href="did.html#cb322-8" tabindex="-1"></a></span>
-<span id="cb322-9"><a href="did.html#cb322-9" tabindex="-1"></a>njmin_table_did2</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="did.html#cb333-1" tabindex="-1"></a>njmin_table_did2 <span class="ot">&lt;-</span> data_njmin <span class="sc">|&gt;</span></span>
+<span id="cb333-2"><a href="did.html#cb333-2" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
+<span id="cb333-3"><a href="did.html#cb333-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">full_prop_before =</span> <span class="fu">mean</span>(full_prop_before),</span>
+<span id="cb333-4"><a href="did.html#cb333-4" tabindex="-1"></a>            <span class="at">full_prop_after =</span> <span class="fu">mean</span>(full_prop_after),</span>
+<span id="cb333-5"><a href="did.html#cb333-5" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb333-6"><a href="did.html#cb333-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">full_prop_diff =</span> full_prop_after <span class="sc">-</span> full_prop_before) <span class="sc">|&gt;</span></span>
+<span id="cb333-7"><a href="did.html#cb333-7" tabindex="-1"></a>  <span class="fu">with</span>(full_prop_diff[state<span class="sc">==</span><span class="st">&quot;NJ&quot;</span>] <span class="sc">-</span> full_prop_diff[state<span class="sc">==</span><span class="st">&quot;PA&quot;</span>])</span>
+<span id="cb333-8"><a href="did.html#cb333-8" tabindex="-1"></a></span>
+<span id="cb333-9"><a href="did.html#cb333-9" tabindex="-1"></a>njmin_table_did2</span></code></pre></div>
 <pre><code>## [1] 0.06155831</code></pre>
 <p>つまり、6.15%ポイント雇用が増加したという推定になる。</p>
 </div>
@@ -1036,25 +1038,25 @@ Chapter @ref(#rstats)　で説明したように、ここでは<code>skimr</code
 <h3><span class="header-section-number">14.2.8</span> 回帰分析による差の差法<a href="did.html#回帰分析による差の差法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>上で解説した回帰分析による差の差法の推定を行ってみよう。</p>
 <p>まず、データをlong形式に変換し、同じ変数であるフルタイム雇用の割合を前後で一つの列にする。</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="did.html#cb324-1" tabindex="-1"></a>data_njmin_long <span class="ot">&lt;-</span> data_njmin <span class="sc">%&gt;%</span> </span>
-<span id="cb324-2"><a href="did.html#cb324-2" tabindex="-1"></a>  <span class="co"># 州とfull_で始まる列のみ抽出</span></span>
-<span id="cb324-3"><a href="did.html#cb324-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(state, <span class="fu">starts_with</span>(<span class="st">&quot;full_&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb324-4"><a href="did.html#cb324-4" tabindex="-1"></a>  <span class="co"># fullで始まる列を選択して、カテゴリ名をtiming, 数値の列名をpropとしてlong形式にする</span></span>
-<span id="cb324-5"><a href="did.html#cb324-5" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;full&quot;</span>),</span>
-<span id="cb324-6"><a href="did.html#cb324-6" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;timing&quot;</span>,</span>
-<span id="cb324-7"><a href="did.html#cb324-7" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;full_prop_&quot;</span>,</span>
-<span id="cb324-8"><a href="did.html#cb324-8" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;prop&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb324-9"><a href="did.html#cb324-9" tabindex="-1"></a>  <span class="co"># 新たなダミー変数を作成する。上と同様に、policyは政策を受ける（最低賃金が上げられる）州なら１とするダミー変数</span></span>
-<span id="cb324-10"><a href="did.html#cb324-10" tabindex="-1"></a>  <span class="co"># timeは政策の前後で後ならば1とするダミー変数</span></span>
-<span id="cb324-11"><a href="did.html#cb324-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">policy =</span> <span class="fu">ifelse</span>(state <span class="sc">==</span> <span class="st">&quot;NJ&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb324-12"><a href="did.html#cb324-12" tabindex="-1"></a>         <span class="at">time =</span> <span class="fu">ifelse</span>(timing <span class="sc">==</span> <span class="st">&quot;after&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="did.html#cb335-1" tabindex="-1"></a>data_njmin_long <span class="ot">&lt;-</span> data_njmin <span class="sc">%&gt;%</span> </span>
+<span id="cb335-2"><a href="did.html#cb335-2" tabindex="-1"></a>  <span class="co"># 州とfull_で始まる列のみ抽出</span></span>
+<span id="cb335-3"><a href="did.html#cb335-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(state, <span class="fu">starts_with</span>(<span class="st">&quot;full_&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb335-4"><a href="did.html#cb335-4" tabindex="-1"></a>  <span class="co"># fullで始まる列を選択して、カテゴリ名をtiming, 数値の列名をpropとしてlong形式にする</span></span>
+<span id="cb335-5"><a href="did.html#cb335-5" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;full&quot;</span>),</span>
+<span id="cb335-6"><a href="did.html#cb335-6" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;timing&quot;</span>,</span>
+<span id="cb335-7"><a href="did.html#cb335-7" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;full_prop_&quot;</span>,</span>
+<span id="cb335-8"><a href="did.html#cb335-8" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;prop&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb335-9"><a href="did.html#cb335-9" tabindex="-1"></a>  <span class="co"># 新たなダミー変数を作成する。上と同様に、policyは政策を受ける（最低賃金が上げられる）州なら１とするダミー変数</span></span>
+<span id="cb335-10"><a href="did.html#cb335-10" tabindex="-1"></a>  <span class="co"># timeは政策の前後で後ならば1とするダミー変数</span></span>
+<span id="cb335-11"><a href="did.html#cb335-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">policy =</span> <span class="fu">ifelse</span>(state <span class="sc">==</span> <span class="st">&quot;NJ&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb335-12"><a href="did.html#cb335-12" tabindex="-1"></a>         <span class="at">time =</span> <span class="fu">ifelse</span>(timing <span class="sc">==</span> <span class="st">&quot;after&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
 <p>このlong形式のデータセットを使って回帰分析を行う。</p>
 <p>Rの回帰式では、policyとtimeの交差項は<code>policy:time</code>とコロン(<code>:</code>)でつなぐことで表現する。
 掛け算なので<code>policy*time</code>と思うかもしれないが、アスタリスク<code>*</code>でつなぐと、policyとtimeそれぞれも再度含めてしまう。
 （すなわち<code>policy*time</code>は<code>policy + time + policy:time</code>と同義である。ここではあえて省略せずに後者で書くことで、回帰式と一致していることを確認している。）</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="did.html#cb325-1" tabindex="-1"></a>reg_did1 <span class="ot">&lt;-</span> <span class="fu">feols</span>(prop <span class="sc">~</span> policy <span class="sc">+</span> time <span class="sc">+</span> policy<span class="sc">:</span>time, <span class="at">data=</span>data_njmin_long)</span>
-<span id="cb325-2"><a href="did.html#cb325-2" tabindex="-1"></a></span>
-<span id="cb325-3"><a href="did.html#cb325-3" tabindex="-1"></a><span class="fu">etable</span>(reg_did1)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="did.html#cb336-1" tabindex="-1"></a>reg_did1 <span class="ot">&lt;-</span> <span class="fu">feols</span>(prop <span class="sc">~</span> policy <span class="sc">+</span> time <span class="sc">+</span> policy<span class="sc">:</span>time, <span class="at">data=</span>data_njmin_long)</span>
+<span id="cb336-2"><a href="did.html#cb336-2" tabindex="-1"></a></span>
+<span id="cb336-3"><a href="did.html#cb336-3" tabindex="-1"></a><span class="fu">etable</span>(reg_did1)</span></code></pre></div>
 <pre><code>##                           reg_did1
 ## Dependent Var.:               prop
 ##                                   

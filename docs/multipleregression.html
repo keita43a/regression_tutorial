@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-06-05" />
+<meta name="date" content="2024-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -431,6 +431,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>12</b> 重回帰分析</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="multipleregression.html"><a href="multipleregression.html#重回帰分析とは"><i class="fa fa-check"></i><b>12.1</b> 重回帰分析とは</a></li>
+<li class="chapter" data-level="12.2" data-path="multipleregression.html"><a href="multipleregression.html#回帰分析における真のモデル"><i class="fa fa-check"></i><b>12.2</b> 回帰分析における真のモデル</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="multipleregression.html"><a href="multipleregression.html#シミュレーション"><i class="fa fa-check"></i><b>12.2.1</b> シミュレーション</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>13</b> パネルデータ分析</a>
 <ul>
@@ -525,9 +529,368 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="重回帰分析とは" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> 重回帰分析とは<a href="multipleregression.html#重回帰分析とは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>重回帰分析は、単純に言えば説明変数が２つ以上ある回帰式を用いる回帰分析である。</p>
-<p>これは、単純に多くの変数を入れることで、目的変数を説明できる部分が増える、というような目的で用いられるのではない。</p>
+<p>しかし、重回帰分析は、単純に多くの変数を入れることで、目的変数を説明できる部分が増える、というような目的で用いられるのではない。</p>
 <p>特に、実証分析における因果推定では、重回帰分析における係数が、他の説明変数の影響を除いた影響として推定されることが重要である。</p>
+</div>
+<div id="回帰分析における真のモデル" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> 回帰分析における真のモデル<a href="multipleregression.html#回帰分析における真のモデル" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>回帰分析では、そのデータを生み出している<strong>元</strong>となる存在があると考える(専門用語ではData Generating Processと呼ぶ)。</p>
+<p>これは、現象を起こすメカニズムが存在し、そのメカニズムは<strong>神のみぞ知る</strong>と考えていると言ってもよい。</p>
+<p>私たち分析者は、神のみぞ知るメカニズムに迫ろうとしているのだ。</p>
+<p>実際の社会で起こっているメカニズムの本当の姿は（真のモデル）は、神のみぞ知るが、シミュレーションによる仮想世界を作ってその世界の真のメカニズムを知りながら、分析をすることはできる。いわば、仮想世界では神になることができるのだ。</p>
+<div id="シミュレーション" class="section level3 hasAnchor" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> シミュレーション<a href="multipleregression.html#シミュレーション" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="準備-2" class="section level4 hasAnchor" number="12.2.1.1">
+<h4><span class="header-section-number">12.2.1.1</span> 準備<a href="multipleregression.html#準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>まず、multi_reg.Rというスクリプトを作って保存しよう。</p>
+<p>そして、以下のパッケージを読み込む。</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="multipleregression.html#cb283-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb283-2"><a href="multipleregression.html#cb283-2" tabindex="-1"></a><span class="fu">library</span>(fixest)</span>
+<span id="cb283-3"><a href="multipleregression.html#cb283-3" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code></pre></div>
+</div>
+<div id="データの生成" class="section level4 hasAnchor" number="12.2.1.2">
+<h4><span class="header-section-number">12.2.1.2</span> データの生成<a href="multipleregression.html#データの生成" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>今から行うのは、以下のような真のモデルがあると仮定して、データを生成することである。</p>
+<p>ここでは、あるスーパーマーケットチェーンのお店ごとのデータを生成するとしよう。このスーパーマーケットチェーンでは全国で300店舗展開しているとする。
+300店舗のうち、一部の店舗では広告を出稿することにした。ここで分析しようとしているのは、広告を出すことによって平均的に売上が上がるのかどうかである。</p>
+<p>当然ながら売上は広告だけでは決まらない。ここでは、「神」となってデータを生成してみよう。
+各店舗<span class="math inline">\(i\)</span>の売上は、以下のモデルで決まるとしよう。これが「真のモデル」である。</p>
+<p><span class="math display">\[
+Sales_i = \alpha + \beta_1 Ads_i + \beta_2 Age_i + \beta_3 Income_i + \varepsilon_i
+\]</span></p>
+<p><span class="math inline">\(Sales_i\)</span>は店舗<span class="math inline">\(i\)</span>の売上、<span class="math inline">\(Ads_i\)</span>は広告を出したかというダミー変数で出向していれば1, していなければ0を取る。<span class="math inline">\(Age_i\)</span>は店長の年齢である。<span class="math inline">\(Income_i\)</span>はその店舗が出店している地域の平均所得だとしよう。</p>
+<p>単純なモデルであるが売上は、広告、店長の年齢、地域の平均所得で決まるとしよう。</p>
+<p>しかし、広告を出すかどうか、という意思決定は<strong>外生的</strong>に決まらない。外生的とは、モデルの外で天から降ってきたように決まることをいう。しかし、この広告を出すかどうかは<strong>内生的</strong>に決まるものだとしよう。モデルの中の変数によって決まるとする。</p>
+<p><span class="math display">\[
+Ads_i = I\{100 \leq \gamma_1 Age_i + \gamma_2 Income_i + u_i\}
+\]</span></p>
+<p>すこしややこしい数式だが、この数式が言っているのは次のとおりだ。店長の年齢と地域の平均所得で決まる数値が100より大きい店舗では広告を出稿する。</p>
+<p>そして、仮想世界の神であるので、このモデルのパラメーターの数値を決めることができる。
+以下のようにパラメーターの数値を決めた。</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="multipleregression.html#cb284-1" tabindex="-1"></a><span class="co"># パラメーターの数値</span></span>
+<span id="cb284-2"><a href="multipleregression.html#cb284-2" tabindex="-1"></a>a1<span class="ot">&lt;-</span><span class="dv">500</span></span>
+<span id="cb284-3"><a href="multipleregression.html#cb284-3" tabindex="-1"></a>b1<span class="ot">&lt;-</span><span class="dv">50</span></span>
+<span id="cb284-4"><a href="multipleregression.html#cb284-4" tabindex="-1"></a>b2<span class="ot">&lt;-</span><span class="dv">5</span></span>
+<span id="cb284-5"><a href="multipleregression.html#cb284-5" tabindex="-1"></a>b3<span class="ot">&lt;-</span><span class="fl">0.09</span></span>
+<span id="cb284-6"><a href="multipleregression.html#cb284-6" tabindex="-1"></a></span>
+<span id="cb284-7"><a href="multipleregression.html#cb284-7" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb284-8"><a href="multipleregression.html#cb284-8" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb284-9"><a href="multipleregression.html#cb284-9" tabindex="-1"></a></span>
+<span id="cb284-10"><a href="multipleregression.html#cb284-10" tabindex="-1"></a>N2<span class="ot">&lt;-</span><span class="dv">300</span></span></code></pre></div>
+<p>そして、いよいよデータの生成である。
+データの生成には確率的な要素も入れ込むが、再現性を担保するためにシード値を決めておく。</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="multipleregression.html#cb285-1" tabindex="-1"></a><span class="co"># シードの固定</span></span>
+<span id="cb285-2"><a href="multipleregression.html#cb285-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span></code></pre></div>
+<p>そして、以下のようにデータを生成する。
+少し説明が難しい要素もあるので、ここはコピー&amp;ペーストでよいので自分のスクリプトに貼り付けて実行してみよう。
+実行する際は、かならず上の<code>set.seed(3)</code>を実行してから実行すること。</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="multipleregression.html#cb286-1" tabindex="-1"></a><span class="co"># シミュレーションデータの作成</span></span>
+<span id="cb286-2"><a href="multipleregression.html#cb286-2" tabindex="-1"></a>dat_sim <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb286-3"><a href="multipleregression.html#cb286-3" tabindex="-1"></a>  <span class="at">shop_ID =</span> <span class="dv">1</span><span class="sc">:</span>N2,</span>
+<span id="cb286-4"><a href="multipleregression.html#cb286-4" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">round</span>(<span class="fu">runif</span>(N2,<span class="dv">25</span>,<span class="dv">60</span>)),</span>
+<span id="cb286-5"><a href="multipleregression.html#cb286-5" tabindex="-1"></a>  <span class="at">income =</span> <span class="fu">round</span>(<span class="fu">runif</span>(N2,<span class="dv">15</span>,<span class="dv">100</span>))<span class="sc">*</span><span class="dv">10</span>,</span>
+<span id="cb286-6"><a href="multipleregression.html#cb286-6" tabindex="-1"></a>  <span class="at">pop =</span> <span class="fu">round</span>(<span class="fu">runif</span>(N2,<span class="dv">10</span>,<span class="dv">1000</span>))<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb286-7"><a href="multipleregression.html#cb286-7" tabindex="-1"></a>  <span class="at">dogs =</span> <span class="fu">round</span>(<span class="fu">runif</span>(N2,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="at">digits=</span><span class="dv">2</span>),</span>
+<span id="cb286-8"><a href="multipleregression.html#cb286-8" tabindex="-1"></a>  <span class="at">u_ads =</span> <span class="fu">rnorm</span>(N2,<span class="dv">0</span>,<span class="at">sd=</span><span class="dv">10</span>),</span>
+<span id="cb286-9"><a href="multipleregression.html#cb286-9" tabindex="-1"></a>  <span class="at">z_ads =</span> <span class="fu">round</span>(g1<span class="sc">*</span>age<span class="sc">+</span>g2<span class="sc">*</span>income,<span class="at">digits=</span><span class="dv">1</span>),</span>
+<span id="cb286-10"><a href="multipleregression.html#cb286-10" tabindex="-1"></a>  <span class="at">y_ads =</span> z_ads <span class="sc">+</span> u_ads,</span>
+<span id="cb286-11"><a href="multipleregression.html#cb286-11" tabindex="-1"></a>  <span class="at">ads =</span> <span class="fu">ifelse</span>(<span class="dv">100</span> <span class="sc">&lt;=</span> y_ads,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb286-12"><a href="multipleregression.html#cb286-12" tabindex="-1"></a>  <span class="at">epsilon =</span> <span class="fu">rnorm</span>(N2,<span class="at">sd=</span><span class="dv">20</span>),</span>
+<span id="cb286-13"><a href="multipleregression.html#cb286-13" tabindex="-1"></a>  <span class="at">sales =</span> <span class="fu">round</span>(a1 <span class="sc">+</span> b1<span class="sc">*</span>ads <span class="sc">+</span> b2<span class="sc">*</span>age <span class="sc">+</span> b3<span class="sc">*</span>income <span class="sc">+</span> epsilon,<span class="at">digits=</span><span class="dv">1</span>)</span>
+<span id="cb286-14"><a href="multipleregression.html#cb286-14" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb286-15"><a href="multipleregression.html#cb286-15" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">contains</span>(<span class="st">&quot;_ads&quot;</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">&quot;u&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb286-16"><a href="multipleregression.html#cb286-16" tabindex="-1"></a>  <span class="fu">relocate</span>(ads, <span class="at">.before=</span>age)</span></code></pre></div>
+<p>ここでは、上のモデルで使った変数に加えて、<code>pop</code>という地域の人口に当たる変数と、<code>dogs</code>という地域の犬を飼っている割合という変数も生成している。</p>
+<p>データの記述統計を見てみよう。</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="multipleregression.html#cb287-1" tabindex="-1"></a><span class="fu">skim</span>(dat_sim)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-203">Table 12.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">dat_sim</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">300</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">8</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="9%" />
+<col width="13%" />
+<col width="8%" />
+<col width="8%" />
+<col width="7%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="9%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">shop_ID</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">150.50</td>
+<td align="right">86.75</td>
+<td align="right">1.00</td>
+<td align="right">75.75</td>
+<td align="right">150.50</td>
+<td align="right">225.25</td>
+<td align="right">300.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">ads</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.53</td>
+<td align="right">0.50</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">age</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">42.11</td>
+<td align="right">9.81</td>
+<td align="right">25.00</td>
+<td align="right">34.00</td>
+<td align="right">42.00</td>
+<td align="right">51.00</td>
+<td align="right">60.00</td>
+<td align="left">▇▇▇▇▆</td>
+</tr>
+<tr class="even">
+<td align="left">income</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">603.23</td>
+<td align="right">251.09</td>
+<td align="right">150.00</td>
+<td align="right">397.50</td>
+<td align="right">625.00</td>
+<td align="right">832.50</td>
+<td align="right">1000.00</td>
+<td align="left">▆▇▆▆▇</td>
+</tr>
+<tr class="odd">
+<td align="left">pop</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">49726.00</td>
+<td align="right">28658.81</td>
+<td align="right">1200.00</td>
+<td align="right">26000.00</td>
+<td align="right">48950.00</td>
+<td align="right">74075.00</td>
+<td align="right">100000.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">dogs</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.24</td>
+<td align="right">0.14</td>
+<td align="right">0.00</td>
+<td align="right">0.13</td>
+<td align="right">0.25</td>
+<td align="right">0.35</td>
+<td align="right">0.50</td>
+<td align="left">▇▇▇▆▆</td>
+</tr>
+<tr class="odd">
+<td align="left">epsilon</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">-1.28</td>
+<td align="right">20.71</td>
+<td align="right">-64.81</td>
+<td align="right">-16.14</td>
+<td align="right">-0.31</td>
+<td align="right">12.57</td>
+<td align="right">51.91</td>
+<td align="left">▁▅▇▇▁</td>
+</tr>
+<tr class="even">
+<td align="left">sales</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">789.90</td>
+<td align="right">73.83</td>
+<td align="right">624.80</td>
+<td align="right">735.03</td>
+<td align="right">789.45</td>
+<td align="right">846.12</td>
+<td align="right">961.00</td>
+<td align="left">▃▆▇▆▂</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="回帰モデルの推定" class="section level4 hasAnchor" number="12.2.1.3">
+<h4><span class="header-section-number">12.2.1.3</span> 回帰モデルの推定<a href="multipleregression.html#回帰モデルの推定" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>ここでの疑問は「広告の出稿は売上増加に貢献するか」であった。</p>
+<p>普通のデータなら、真のモデルはわからないが、ここでは我々は神なので真のモデルがわかっている。</p>
+<p>まず、このデータから真のモデルと同じモデルを推定してみよう。</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="multipleregression.html#cb288-1" tabindex="-1"></a>model_true <span class="ot">&lt;-</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> income, <span class="at">data =</span> dat_sim)</span>
+<span id="cb288-2"><a href="multipleregression.html#cb288-2" tabindex="-1"></a></span>
+<span id="cb288-3"><a href="multipleregression.html#cb288-3" tabindex="-1"></a><span class="fu">etable</span>(model_true)</span></code></pre></div>
+<pre><code>##                         model_true
+## Dependent Var.:              sales
+##                                   
+## Constant          499.6*** (6.860)
+## ads               49.66*** (4.028)
+## age              4.985*** (0.1299)
+## income          0.0899*** (0.0078)
+## _______________ __________________
+## S.E. type                      IID
+## Observations                   300
+## R2                         0.92132
+## Adj. R2                    0.92052
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>設定したパラメーターに近い数値が推定されている。</p>
+<p>真のモデルを知っていれば広告の効果は50であるとわかる。
+また、真のモデルに基づいたデータ分析でも推定値は49.66と非常に近い値が推定されている。</p>
+<p>しかし、本当は分析者は真のモデルは知らない。
+一般的には、単回帰分析から始めるが、単回帰分析をしてみるとどうなるだろうか。</p>
+<p><span class="math display">\[
+Sales_i = \alpha + \beta_1 Ads_i + \varepsilon_i
+\]</span></p>
+<p><strong>練習問題</strong>: 説明変数を広告とした単回帰モデルを推定し、結果を表示させなさい</p>
+<pre><code>##                          model_1
+## Dependent Var.:            sales
+##                                 
+## Constant        733.4*** (4.261)
+## ads             107.3*** (5.872)
+## _______________ ________________
+## S.E. type                    IID
+## Observations                 300
+## R2                       0.52853
+## Adj. R2                  0.52694
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>推定値は107と出た。これは真の値である50に比べると２倍以上である。
+つまり、このモデルでは広告の効果を２倍以上見積もっていることになる。</p>
+<p>何度も言うように、本来ならば分析者は真のモデルや真の値を知らない。
+そのため、単純に単回帰モデルを分析して、結果を解釈すると「広告の出稿は107万円の売上を増加させる」という間違った結果を得てしまう。</p>
+<p>次に、分析者は他の変数を含めてみようと思うかもしれない。
+地域の人口が売上に影響を与えていそうだ、という思って次のような重回帰モデルを推定するとしよう。</p>
+<p><span class="math display">\[
+Sales_i = \alpha + \beta_1 Ads_i + \beta_4 Pop_i + \varepsilon_i
+\]</span></p>
+<p><strong>練習問題</strong>: 説明変数を広告と人口(<code>pop</code>)とした重回帰モデルを推定し、結果を表示させなさい</p>
+<pre><code>##                           model_2
+## Dependent Var.:             sales
+##                                  
+## Constant         737.1*** (6.782)
+## ads              107.1*** (5.885)
+## pop             -7.32e-5 (0.0001)
+## _______________ _________________
+## S.E. type                     IID
+## Observations                  300
+## R2                        0.52933
+## Adj. R2                   0.52616
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>結果は、popの係数の数値は非常に小さく、また統計的にゼロである可能性を棄却できなかった。
+また、広告の効果も単回帰とは変わらない。</p>
+<p>次に、分析者は店長の年齢は経験値などに比例しているので売上に関係があると思ったとする。
+そこで、次に店長の年齢<code>age</code>を含めたモデルを推定する。</p>
+<p><strong>練習問題</strong>: 説明変数を広告、人口(<code>pop</code>)、店長の年齢(<code>age</code>)とした重回帰モデルを推定し、結果を表示させなさい</p>
+<pre><code>##                            model_3
+## Dependent Var.:              sales
+##                                   
+## Constant          552.0*** (6.929)
+## ads               86.14*** (2.977)
+## pop             -4.28e-5 (5.06e-5)
+## age              4.623*** (0.1516)
+## _______________ __________________
+## S.E. type                      IID
+## Observations                   300
+## R2                         0.88635
+## Adj. R2                    0.88519
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="multipleregression.html#cb293-1" tabindex="-1"></a>models_ads <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb293-2"><a href="multipleregression.html#cb293-2" tabindex="-1"></a></span>
+<span id="cb293-3"><a href="multipleregression.html#cb293-3" tabindex="-1"></a>models_ads[[<span class="st">&quot;Model 1&quot;</span>]] <span class="ot">=</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads, <span class="at">se=</span><span class="st">&quot;iid&quot;</span>, <span class="at">data=</span>dat_sim)</span>
+<span id="cb293-4"><a href="multipleregression.html#cb293-4" tabindex="-1"></a>models_ads[[<span class="st">&quot;Model 2&quot;</span>]] <span class="ot">=</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age, <span class="at">se=</span><span class="st">&quot;iid&quot;</span>, <span class="at">data=</span>dat_sim)</span>
+<span id="cb293-5"><a href="multipleregression.html#cb293-5" tabindex="-1"></a>models_ads[[<span class="st">&quot;Model 3&quot;</span>]] <span class="ot">=</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> income, <span class="at">se=</span><span class="st">&quot;iid&quot;</span>, <span class="at">data=</span>dat_sim)</span>
+<span id="cb293-6"><a href="multipleregression.html#cb293-6" tabindex="-1"></a>models_ads[[<span class="st">&quot;Model 4&quot;</span>]] <span class="ot">=</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> income <span class="sc">+</span> pop, <span class="at">se=</span><span class="st">&quot;iid&quot;</span>, <span class="at">data=</span>dat_sim)</span>
+<span id="cb293-7"><a href="multipleregression.html#cb293-7" tabindex="-1"></a>models_ads[[<span class="st">&quot;Model 5&quot;</span>]] <span class="ot">=</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> income <span class="sc">+</span> pop <span class="sc">+</span> dogs, <span class="at">se=</span><span class="st">&quot;iid&quot;</span>, <span class="at">data=</span>dat_sim)</span>
+<span id="cb293-8"><a href="multipleregression.html#cb293-8" tabindex="-1"></a></span>
+<span id="cb293-9"><a href="multipleregression.html#cb293-9" tabindex="-1"></a><span class="fu">etable</span>(models_ads)</span></code></pre></div>
+<pre><code>##                          Model 1           Model 2            Model 3            Model 4            Model 5
+## Dependent Var.:            sales             sales              sales              sales              sales
+##                                                                                                            
+## Constant        733.4*** (4.261)  549.7*** (6.372)   499.6*** (6.860)   501.6*** (7.241)   503.3*** (7.492)
+## ads             107.3*** (5.872)  86.26*** (2.973)   49.66*** (4.028)   49.59*** (4.030)   49.58*** (4.031)
+## age                              4.625*** (0.1515)  4.985*** (0.1299)  4.982*** (0.1300)  4.982*** (0.1301)
+## income                                             0.0899*** (0.0078) 0.0898*** (0.0078) 0.0901*** (0.0078)
+## pop                                                                    -3.7e-5 (4.21e-5) -3.67e-5 (4.21e-5)
+## dogs                                                                                         -7.638 (8.689)
+## _______________ ________________ _________________ __________________ __________________ __________________
+## S.E. type                    IID               IID                IID                IID                IID
+## Observations                 300               300                300                300                300
+## R2                       0.52853           0.88607            0.92132            0.92152            0.92173
+## Adj. R2                  0.52694           0.88530            0.92052            0.92046            0.92040
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 
+</div>
+</div>
 </div>
 </div>
             </section>

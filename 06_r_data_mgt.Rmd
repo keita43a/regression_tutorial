@@ -281,19 +281,15 @@ kable(data_temp2)
 
 `tidyr`というパッケージの`pivot_longer`という関数はtidyでないデータ(wide型)をtidyなデータ(long型)に変換する。
 
-まずパイプ(`|>`)で`data_634`というwide型のデータを関数に引き渡す。
+まずパイプ(`|>`)で`data_634`というwide型のデータを`pivot_longer()`関数に引き渡す。
 
-```{r, eval=FALSE}
-data_634_long <- data_634 |> 
-  pivot_longer() 
-```
-
-
-`pivot_longer()` 関数の引数
+`pivot_longer()` 関数には、まず以下の3つの引数が重要である。
 
 - `cols`は、どの列(column)の変数を使うかを指定する  
 - `names_to`は、新たに生成されるカテゴリ用の列の名前を指定する  
 - `values_to`は、数値が入る列の名前を指定する  
+
+さらに複雑な操作をする場合は他にも引数を使うことがあるが、基本的な変換は上の三つできちんと指定されていればうまくいくはずだ。
 
 ```{r, eval=FALSE}
 data_634_long <- data_634 |> 
