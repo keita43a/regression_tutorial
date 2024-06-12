@@ -1,0 +1,386 @@
+# 描画課題のレビュー {#graphreview2024}
+
+
+## Yuma Ikeda
+
+### オリジナルコード
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(readr)
+data_ssdse<-read_csv("data/SSDSE-B-2024.csv",locale=locale(encoding="CP932"),skip=1)
+
+names(data_ssdse)
+
+data_kanto <- data_ssdse |> 
+  filter(都道府県 %in% c("東京都","神奈川県","千葉県","埼玉県","茨城県","栃木県","群馬県"))
+
+plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=大学卒業者数, col=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "HiraKakuPro-W3")
+plot_f_rate
+
+plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=大学卒業者数, col=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  labs(x="Fiscal Year", y="Number Of University Graduates", col="Pref.") +
+  scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県"),
+                       labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi")) +
+  theme(text = element_text(size=15))
+plot_f_rate
+```
+
+```{r, eval=FALSE}
+ggsave("fig/fertility_rate_by_pref_2010_2021.png",plot_f_rate,
+       device="png")
+warnings()
+```
+
+### フィードバック
+
+具体例と大きく変わりないですが、基本的な描画はできていると思います。
+
+
+
+## Yugo Kaneko
+
+### オリジナルコード
+
+```{r,eval=FALSE}
+
+
+#パッケージの読み込み
+library(tidyverse)
+library(tidyr)
+```
+
+```{r}
+
+#データの読み込みと変数名の確認
+data_ssdse<- read_csv("data/SSDSE-B-2024.csv",locale=locale(encoding="CP932")
+                      ,skip=1)
+
+names(data_ssdse)
+#西日本主要府県に限定した、データの表示
+data_nishinihonsyuyoufukenn<- data_ssdse|>
+
+  filter(都道府県　%in% c("大阪府","京都府","兵庫県","福岡県","愛知県"))
+
+  ## long型に変換。
+data_nishinihonnsyuyoufukenn_long <- data_nishinihonsyuyoufukenn |> 
+  
+  pivot_longer(cols=c("中学校数"))
+　#キャンバスの用意
+plot_data_nishinihonnsyuyoufukenn<-ggplot()
+  
+print(plot_data_nishinihonnsyuyoufukenn) 
+ #グラフの描画
+plot_f_rate<- ggplot(data=data_nishinihonnsyuyoufukenn_long, mapping=aes(x=年度, y=大学数,col=都道府県))+
+  
+  geom_line()+
+  geom_point()+
+   labs(x="Fiscal Year", y="THE NUMBER OF UNIVERSITIES", col="Pref."
+        ,title="西日本主要府県の大学数の推移",subtitle="データ元：https://www.nstac.go.jp/use/literacy/ssdse/#SSDSE-Bhttps://www.nstac.go.jp/use/literacy/ssdse/#SSDSE-B") +
+  scale_color_discrete(breaks = c("大阪府","京都府","兵庫県","福岡県","愛知県"),
+                       labels = c("osaka","kyoto","hyogo","fukuoka","aichi")) +
+  theme(text = element_text(size=15)) +
+  theme_gray(base_family = "HiraKakuPro-W3") # Mac用に追加
+ 
+plot_f_rate
+```
+
+```{r, eval=FALSE}
+#データの保存
+fs::dir_create("fig")
+ggsave("fig/fertility_rate_by_pref_2010_2021.png",plot_f_rate,
+       device="png")
+```
+
+
+### フィードバック
+
+基本的な描画はできています。
+タイトルも英語にしたほうがいいです。
+データ元はsubtitleよりもcaptionにしたほうが見やすいかもしれません。
+
+
+
+
+## Yui Kunimatsu
+
+### オリジナルコード
+
+```{r, eval = FALSE}
+library(tidyverse)
+
+fs::dir_create("data")
+
+download.file("download.file/Users/yuinya/abezemi/SSDSE.xlsx",
+              destfile="SSDSE.xlsx")
+
+
+data_634 <- readxl::read_excel("SSDSE.xlsx/SSDSE.xlsx")
+```
+
+
+```{r, echo=FALSE}
+data_634_long <- read_csv("data/SSDSE-B-2024.csv", locale=locale(encoding="Cp932"), skip=1)
+```
+
+
+```{r,eval = FALSE}
+
+  # long型(tidy data)に変換
+  data_634_long <- data_634 |> 
+  # long型に変換。1年〜４年の列(cols)を学生数という列にvalues_toでまとめる。各行に何年生かnames_toで記録する。
+  pivot_longer(cols=c(2010:2021),names_to ="年度",values_to = "合計特殊出生率")
+
+plot_634 <- ggplot()
+
+print(plot_634)
+```
+
+```{r}
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=年度, y=合計特殊出生率),stat="identity")  # <- 追加！
+
+
+
+plot_634 <- ggplot() +
+  geom_bar(data=data_634_long, mapping=aes(x=年度, y=合計特殊出生率),stat="identity") +
+  theme_grey(base_family="HiraKakuPro-W3")  # <- 追加！
+
+print(plot_634)
+```
+
+
+### フィードバック
+
+基本的な描画はできていますが、データの読み込みはこれでうまくいきましたか？
+整然データへの変換は必要ないように思います（SSDSEはすでに整然データになっています）。
+
+時系列の変化を描く場合は、折れ線グラフを使ったほうがいいかもしれません。
+
+
+
+
+## Kotaro Mezaki
+
+```{r}
+library(tidyverse)
+library(readxl)
+
+getwd()
+
+data_ssdse <- read_csv("data/SSDSE-B-2024.csv", 
+                       locale=locale(encoding="CP932"), 
+                       skip=1)
+
+# 変数名を確認
+names(data_ssdse)
+
+data_kanto_yamaguti<- data_ssdse |> 
+  filter(都道府県 %in% c("東京都","神奈川県","千葉県","埼玉県","茨城県","栃木県","群馬県","山口県"))
+
+#  %in% は 「都道府県というカテゴリ変数が、c()の中のいずれかに該当すれば真、という命題を表す。
+
+plot_f_rate <- ggplot(data=data_kanto_yamaguti,aes(x=年度, y=ごみのリサイクル率, col=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "HiraKakuPro-W3")
+
+plot_f_rate
+
+plot_f_rate <- ggplot(data=data_kanto_yamaguti,aes(x=年度, y=ごみのリサイクル率, col=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "HiraKakuPro-W3") +
+  
+  labs(x="Year", y="Garbage recycling rate", col="Pref.") +
+  
+  scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県","山口県"),
+                       labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi","yamaguti")) +
+  theme(text = element_text(size=15)) 
+
+plot_f_rate
+
+ggsave(file="fig/Garbage recycling rate_pref_2010_2021.png",plot_f_rate,device = "png")
+
+```
+
+### フィードバック
+
+基本的な描画はできています。
+なぜ山口が含まれているかはぜひプレゼンで説明してください。
+
+
+
+## Rei Shimizu
+
+```{r}
+library(tidyverse)
+library(readxl)
+
+data_pop <- read_csv("data/SSDSE-B-2024.csv",locale=locale(encoding="CP932"), 
+                       skip=1)
+
+data_pop_fil<-data_pop|>
+  filter( 都道府県 %in% c("千葉県","埼玉県"),
+          年度%in%c("2016","2017","2018","2019","2020","2021"))
+  
+  
+
+
+plot_pop_fil<-ggplot(data=data_pop_fil,mapping=aes(x=年度,y=総人口,col=都道府県))+
+geom_line()+
+geom_point()+
+  labs(x="Fiscal Year", y="Population", col="Pref.") +
+  scale_color_discrete(breaks = c("千葉県","埼玉県"),
+                       labels = c("Chiba","Saitama"))+
+  theme(text = element_text(size=15))
+
+print(plot_pop_fil)
+
+
+data_pop_fil2<-data_pop|>
+  filter( 都道府県 %in% c("長野県","福島県"),
+          年度%in%c("2016","2017","2018","2019","2020","2021"))
+
+plot_pop_fil2<-ggplot(data=data_pop_fil2,mapping=aes(x=年度,y=総人口,col=都道府県))+
+  geom_line()+
+  geom_point()+
+  labs(x="Fiscal Year", y="Population", col="Pref.") +
+  scale_color_discrete(breaks = c("長野県","福島県"),
+                       labels = c("Nagano","Fukusima"))+
+  theme(text = element_text(size=15))
+
+print(plot_pop_fil2)
+
+```
+
+### フィードバック
+
+基本的な描画はできています。
+人口のように数値が大きい場合は、一定の数で割って、単位を変更すると見やすいです。
+
+
+```{r}
+plot_pop_fil2<-ggplot(data=data_pop_fil2,mapping=aes(x=年度,y=総人口/1000,col=都道府県))+　# <- ここを変更
+  geom_line()+
+  geom_point()+
+  labs(x="Fiscal Year", y="Population (Thousands)", col="Pref.") + # <- ここを変更
+  scale_color_discrete(breaks = c("長野県","福島県"),
+                       labels = c("Nagano","Fukusima"))+
+  theme(text = element_text(size=15))
+
+print(plot_pop_fil2)
+```
+
+
+## Yuta Shimizu
+
+```{r, echo=FALSE}
+
+data635 <- read_csv("data/SSDSE-C-2024.csv",locale=locale(encoding = "cp932"),skip=1)
+
+```
+
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(readxl)
+data635 <- readxl::read_excel("data/zemiyou.xlsx")
+data635
+```
+
+```{r}
+plot635 <- ggplot()+
+  geom_bar(data=data635,mapping=aes(x=reorder(都道府県,カップ麺),y=カップ麺),stat="identity")+
+  labs(fill="",x="",y="",
+       title="県別年間カップ麺消費量",
+       subtitle="2024年4月24日公開",
+       caption = "データ元SSDSE-家計消費" )
+plot635 <- ggplot()+
+  geom_bar(data=data635,mapping=aes(x=カップ麺,y=都道府県),stat="identity")+
+  labs(fill="",x="",y="",
+       title="県別年間カップ麺消費量",
+       subtitle="2024年4月24日公開",
+       caption = "データ元SSDSE-家計消費" ) +
+  theme_grey(base_family = "HiraKakuPro-W3") # Mac用に追加
+
+plot635
+```
+
+
+### フィードバック
+
+基本的な描画はできています。
+英語で発表するので、英語に直しましょう。
+
+コメントにあったカテゴリの順番を変える方法は、以下の通りです。
+アイデアとしては、データにおけるカテゴリの順番を変えるという発想です。
+
+```{r}
+data635 <- data635 |>
+  # mutate()ですでにある都道府県の列を更新する
+  # カテゴリの順番は、fct_reorderで変更することができる。
+  # これはtidyverseに入っているforcatというパッケージに入っている関数。
+  mutate(都道府県 = fct_reorder(都道府県, カップ麺))
+
+
+plot635 <- ggplot()+
+  geom_bar(data=data635,mapping=aes(x=カップ麺,y=都道府県),stat="identity")+
+  labs(fill="",x="",y="",
+       title="県別年間カップ麺消費量",
+       subtitle="2024年4月24日公開",
+       caption = "データ元SSDSE-家計消費" ) +
+  theme_grey(base_family = "HiraKakuPro-W3") + # Mac用に追加
+  theme(axis.text.y = element_text(size=7)) # themeの中で、axis.text.yという項目のtextという要素で、文字サイズを変えることが可能。
+
+plot635
+```
+
+
+## Hyuga Yamanouchi
+
+```{r}
+library(tidyverse)
+data_ssdse <- read_csv("data/SSDSE-B-2024.csv", 
+                       locale=locale(encoding="CP932"), 
+                       skip=1)
+data_ssdse
+
+data_ssdse_kanto<-data_ssdse|>
+  filter(都道府県%in% c("東京都","神奈川県","埼玉県","千葉県","茨城県","栃木県","群馬県"))
+data_ssdse_kanto
+
+
+
+
+plot_ssdse_applicants<-ggplot(data=data_ssdse_kanto,aes(x=年度,y=`月間有効求職者数（一般）`,col=都道府県))+
+  geom_line()+
+  geom_point()+
+  theme_bw(base_family = "HirakakuPro-W3")+
+  labs(x="Fiscal Year",y="Total Job Applicants",col="Pref.")+
+  scale_color_discrete(breaks=c("東京都","神奈川県","埼玉県","千葉県","茨城県","栃木県","群馬県"),
+                       labels=c("Tokyo","Kanagawa","Saitama","Chiba","Ibaraki","Tochigi","Gunma"))+
+  theme(text=element_text(size=10))
+  
+plot_ssdse_applicants
+
+
+ggsave(file="fig/Total_Job_Applicants_by_pref_2010_2021.png",plot_ssdse_applicants,device="png")
+
+#こっちを採用
+ggsave(file="fig/Total_Job_Applicants_2_by_pref_2010_2021.png",plot_ssdse_applicants,device="png")
+
+```
+
+### フィードバック
+
+基本的な描画はできています。
+プレゼン用としては、少し字を大きくするといいかもしれません。
+
