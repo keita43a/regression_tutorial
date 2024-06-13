@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-06-12" />
+<meta name="date" content="2024-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -537,6 +537,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="17.7.1" data-path="graphreview2024.html"><a href="graphreview2024.html#フィードバック-6"><i class="fa fa-check"></i><b>17.7.1</b> フィードバック</a></li>
 </ul></li>
+<li class="chapter" data-level="17.8" data-path="graphreview2024.html"><a href="graphreview2024.html#jinto-eguro"><i class="fa fa-check"></i><b>17.8</b> Jinto Eguro</a>
+<ul>
+<li class="chapter" data-level="17.8.1" data-path="graphreview2024.html"><a href="graphreview2024.html#フィードバック-7"><i class="fa fa-check"></i><b>17.8.1</b> フィードバック</a></li>
+</ul></li>
+<li class="chapter" data-level="17.9" data-path="graphreview2024.html"><a href="graphreview2024.html#描画テクニックの補足"><i class="fa fa-check"></i><b>17.9</b> 描画テクニックの補足</a>
+<ul>
+<li class="chapter" data-level="17.9.1" data-path="graphreview2024.html"><a href="graphreview2024.html#グラフのカテゴリの順番を変更するには"><i class="fa fa-check"></i><b>17.9.1</b> グラフのカテゴリの順番を変更するには？</a></li>
+<li class="chapter" data-level="17.9.2" data-path="graphreview2024.html"><a href="graphreview2024.html#カテゴリが多すぎるので減らす方法"><i class="fa fa-check"></i><b>17.9.2</b> カテゴリが多すぎるので減らす方法</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -635,7 +644,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb238-6"><a href="rstatsinfe.html#cb238-6" tabindex="-1"></a>  <span class="co"># ggplotのgeom_histogramで描画する。見やすいように枠線を青に、中身をグレーに変更している。</span></span>
 <span id="cb238-7"><a href="rstatsinfe.html#cb238-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> data_sample_mean) <span class="sc">+</span> </span>
 <span id="cb238-8"><a href="rstatsinfe.html#cb238-8" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sample_mean), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">fill=</span><span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-261-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 <p>標本平均一つ一つであれば、小さいもので167cmぐらい、大きいものだと173cmぐらいまでズレがあることがわかる。それぞれ170cmピッタリとは限らないが、平均的には170cmを推定できていることがわかる。</p>
 <p>このことから、標本平均が母平均を推定する推定量として、不偏性を持っているということがわかる。</p>
 </div>

@@ -12,12 +12,12 @@ fig:rstudioinstall
 fig:rstudio2
 fig:directory
 fig:projectmake
-tab:unnamed-chunk-226
+tab:unnamed-chunk-112
 fig:pressure
-tab:unnamed-chunk-305
-tab:unnamed-chunk-317
-tab:unnamed-chunk-337
-tab:unnamed-chunk-354
+tab:unnamed-chunk-191
+tab:unnamed-chunk-203
+tab:unnamed-chunk-223
+tab:unnamed-chunk-240
 この資料について
 whatsr
 r
@@ -297,3 +297,9 @@ yuta-shimizu
 フィードバック-5
 hyuga-yamanouchi
 フィードバック-6
+jinto-eguro
+フィードバック-7
+描画テクニックの補足
+グラフのカテゴリの順番を変更するには
+順番を変える方法
+カテゴリが多すぎるので減らす方法

@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-06-12" />
+<meta name="date" content="2024-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -537,6 +537,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="17.7.1" data-path="graphreview2024.html"><a href="graphreview2024.html#フィードバック-6"><i class="fa fa-check"></i><b>17.7.1</b> フィードバック</a></li>
 </ul></li>
+<li class="chapter" data-level="17.8" data-path="graphreview2024.html"><a href="graphreview2024.html#jinto-eguro"><i class="fa fa-check"></i><b>17.8</b> Jinto Eguro</a>
+<ul>
+<li class="chapter" data-level="17.8.1" data-path="graphreview2024.html"><a href="graphreview2024.html#フィードバック-7"><i class="fa fa-check"></i><b>17.8.1</b> フィードバック</a></li>
+</ul></li>
+<li class="chapter" data-level="17.9" data-path="graphreview2024.html"><a href="graphreview2024.html#描画テクニックの補足"><i class="fa fa-check"></i><b>17.9</b> 描画テクニックの補足</a>
+<ul>
+<li class="chapter" data-level="17.9.1" data-path="graphreview2024.html"><a href="graphreview2024.html#グラフのカテゴリの順番を変更するには"><i class="fa fa-check"></i><b>17.9.1</b> グラフのカテゴリの順番を変更するには？</a></li>
+<li class="chapter" data-level="17.9.2" data-path="graphreview2024.html"><a href="graphreview2024.html#カテゴリが多すぎるので減らす方法"><i class="fa fa-check"></i><b>17.9.2</b> カテゴリが多すぎるので減らす方法</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -567,9 +576,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="graphreview2024.html#cb375-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb375-2"><a href="graphreview2024.html#cb375-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb375-3"><a href="graphreview2024.html#cb375-3" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb375-4"><a href="graphreview2024.html#cb375-4" tabindex="-1"></a>data_ssdse<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/SSDSE-B-2024.csv&quot;</span>,<span class="at">locale=</span><span class="fu">locale</span>(<span class="at">encoding=</span><span class="st">&quot;CP932&quot;</span>),<span class="at">skip=</span><span class="dv">1</span>)</span>
-<span id="cb375-5"><a href="graphreview2024.html#cb375-5" tabindex="-1"></a></span>
-<span id="cb375-6"><a href="graphreview2024.html#cb375-6" tabindex="-1"></a><span class="fu">names</span>(data_ssdse)</span></code></pre></div>
+<span id="cb375-4"><a href="graphreview2024.html#cb375-4" tabindex="-1"></a></span>
+<span id="cb375-5"><a href="graphreview2024.html#cb375-5" tabindex="-1"></a>data_ssdse<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/SSDSE-B-2024.csv&quot;</span>,<span class="at">locale=</span><span class="fu">locale</span>(<span class="at">encoding=</span><span class="st">&quot;cp932&quot;</span>),<span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb375-6"><a href="graphreview2024.html#cb375-6" tabindex="-1"></a></span>
+<span id="cb375-7"><a href="graphreview2024.html#cb375-7" tabindex="-1"></a><span class="fu">names</span>(data_ssdse)</span></code></pre></div>
 <pre><code>##   [1] &quot;年度&quot;                                   &quot;地域コード&quot;                             &quot;都道府県&quot;                              
 ##   [4] &quot;総人口&quot;                                 &quot;総人口（男）&quot;                           &quot;総人口（女）&quot;                          
 ##   [7] &quot;日本人人口&quot;                             &quot;日本人人口（男）&quot;                       &quot;日本人人口（女）&quot;                      
@@ -616,7 +626,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb377-6"><a href="graphreview2024.html#cb377-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb377-7"><a href="graphreview2024.html#cb377-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
 <span id="cb377-8"><a href="graphreview2024.html#cb377-8" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-378-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-264-1.png" width="672" /></p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="graphreview2024.html#cb378-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>大学卒業者数, <span class="at">col=</span>都道府県)) <span class="sc">+</span> </span>
 <span id="cb378-2"><a href="graphreview2024.html#cb378-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb378-3"><a href="graphreview2024.html#cb378-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -626,7 +636,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb378-7"><a href="graphreview2024.html#cb378-7" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Chiba&quot;</span>,<span class="st">&quot;Saitama&quot;</span>,<span class="st">&quot;Tokyo&quot;</span>,<span class="st">&quot;Tochigi&quot;</span>,<span class="st">&quot;Kanagawa&quot;</span>,<span class="st">&quot;Gumma&quot;</span>,<span class="st">&quot;Ibaragi&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb378-8"><a href="graphreview2024.html#cb378-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>))</span>
 <span id="cb378-9"><a href="graphreview2024.html#cb378-9" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-378-2.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-264-2.png" width="672" /></p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="graphreview2024.html#cb379-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;fig/fertility_rate_by_pref_2010_2021.png&quot;</span>,plot_f_rate,</span>
 <span id="cb379-2"><a href="graphreview2024.html#cb379-2" tabindex="-1"></a>       <span class="at">device=</span><span class="st">&quot;png&quot;</span>)</span>
 <span id="cb379-3"><a href="graphreview2024.html#cb379-3" tabindex="-1"></a><span class="fu">warnings</span>()</span></code></pre></div>
@@ -699,7 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb383-11"><a href="graphreview2024.html#cb383-11" tabindex="-1"></a>plot_data_nishinihonnsyuyoufukenn<span class="ot">&lt;-</span><span class="fu">ggplot</span>()</span>
 <span id="cb383-12"><a href="graphreview2024.html#cb383-12" tabindex="-1"></a>  </span>
 <span id="cb383-13"><a href="graphreview2024.html#cb383-13" tabindex="-1"></a><span class="fu">print</span>(plot_data_nishinihonnsyuyoufukenn) </span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-381-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="graphreview2024.html#cb384-1" tabindex="-1"></a> <span class="co">#グラフの描画</span></span>
 <span id="cb384-2"><a href="graphreview2024.html#cb384-2" tabindex="-1"></a>plot_f_rate<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_nishinihonnsyuyoufukenn_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>大学数,<span class="at">col=</span>都道府県))<span class="sc">+</span></span>
 <span id="cb384-3"><a href="graphreview2024.html#cb384-3" tabindex="-1"></a>  </span>
@@ -713,7 +723,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb384-11"><a href="graphreview2024.html#cb384-11" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="co"># Mac用に追加</span></span>
 <span id="cb384-12"><a href="graphreview2024.html#cb384-12" tabindex="-1"></a> </span>
 <span id="cb384-13"><a href="graphreview2024.html#cb384-13" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-381-2.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-267-2.png" width="672" /></p>
 <div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="graphreview2024.html#cb385-1" tabindex="-1"></a><span class="co">#データの保存</span></span>
 <span id="cb385-2"><a href="graphreview2024.html#cb385-2" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_create</span>(<span class="st">&quot;fig&quot;</span>)</span>
 <span id="cb385-3"><a href="graphreview2024.html#cb385-3" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;fig/fertility_rate_by_pref_2010_2021.png&quot;</span>,plot_f_rate,</span>
@@ -757,7 +767,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb388-8"><a href="graphreview2024.html#cb388-8" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)  <span class="co"># &lt;- 追加！</span></span>
 <span id="cb388-9"><a href="graphreview2024.html#cb388-9" tabindex="-1"></a></span>
 <span id="cb388-10"><a href="graphreview2024.html#cb388-10" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-386-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
 </div>
 <div id="フィードバック-2" class="section level3 hasAnchor" number="17.3.2">
 <h3><span class="header-section-number">17.3.2</span> フィードバック<a href="graphreview2024.html#フィードバック-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -828,7 +838,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb393-9"><a href="graphreview2024.html#cb393-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
 <span id="cb393-10"><a href="graphreview2024.html#cb393-10" tabindex="-1"></a></span>
 <span id="cb393-11"><a href="graphreview2024.html#cb393-11" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-387-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
 <div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="graphreview2024.html#cb394-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto_yamaguti,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>ごみのリサイクル率, <span class="at">col=</span>都道府県)) <span class="sc">+</span> </span>
 <span id="cb394-2"><a href="graphreview2024.html#cb394-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb394-3"><a href="graphreview2024.html#cb394-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -841,7 +851,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb394-10"><a href="graphreview2024.html#cb394-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) </span>
 <span id="cb394-11"><a href="graphreview2024.html#cb394-11" tabindex="-1"></a></span>
 <span id="cb394-12"><a href="graphreview2024.html#cb394-12" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-387-2.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-273-2.png" width="672" /></p>
 <div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="graphreview2024.html#cb395-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">file=</span><span class="st">&quot;fig/Garbage recycling rate_pref_2010_2021.png&quot;</span>,plot_f_rate,<span class="at">device =</span> <span class="st">&quot;png&quot;</span>)</span></code></pre></div>
 <div id="フィードバック-3" class="section level3 hasAnchor" number="17.4.1">
 <h3><span class="header-section-number">17.4.1</span> フィードバック<a href="graphreview2024.html#フィードバック-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -873,7 +883,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb396-20"><a href="graphreview2024.html#cb396-20" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>))</span>
 <span id="cb396-21"><a href="graphreview2024.html#cb396-21" tabindex="-1"></a></span>
 <span id="cb396-22"><a href="graphreview2024.html#cb396-22" tabindex="-1"></a><span class="fu">print</span>(plot_pop_fil)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-388-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-274-1.png" width="672" /></p>
 <div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="graphreview2024.html#cb397-1" tabindex="-1"></a>data_pop_fil2<span class="ot">&lt;-</span>data_pop<span class="sc">|&gt;</span></span>
 <span id="cb397-2"><a href="graphreview2024.html#cb397-2" tabindex="-1"></a>  <span class="fu">filter</span>( 都道府県 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;長野県&quot;</span>,<span class="st">&quot;福島県&quot;</span>),</span>
 <span id="cb397-3"><a href="graphreview2024.html#cb397-3" tabindex="-1"></a>          年度<span class="sc">%in%</span><span class="fu">c</span>(<span class="st">&quot;2016&quot;</span>,<span class="st">&quot;2017&quot;</span>,<span class="st">&quot;2018&quot;</span>,<span class="st">&quot;2019&quot;</span>,<span class="st">&quot;2020&quot;</span>,<span class="st">&quot;2021&quot;</span>))</span>
@@ -887,7 +897,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb397-11"><a href="graphreview2024.html#cb397-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>))</span>
 <span id="cb397-12"><a href="graphreview2024.html#cb397-12" tabindex="-1"></a></span>
 <span id="cb397-13"><a href="graphreview2024.html#cb397-13" tabindex="-1"></a><span class="fu">print</span>(plot_pop_fil2)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-388-2.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-274-2.png" width="672" /></p>
 <div id="フィードバック-4" class="section level3 hasAnchor" number="17.5.1">
 <h3><span class="header-section-number">17.5.1</span> フィードバック<a href="graphreview2024.html#フィードバック-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>基本的な描画はできています。
@@ -901,7 +911,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb398-7"><a href="graphreview2024.html#cb398-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>))</span>
 <span id="cb398-8"><a href="graphreview2024.html#cb398-8" tabindex="-1"></a></span>
 <span id="cb398-9"><a href="graphreview2024.html#cb398-9" tabindex="-1"></a><span class="fu">print</span>(plot_pop_fil2)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-389-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-275-1.png" width="672" /></p>
 </div>
 </div>
 <div id="yuta-shimizu" class="section level2 hasAnchor" number="17.6">
@@ -925,7 +935,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb400-13"><a href="graphreview2024.html#cb400-13" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="co"># Mac用に追加</span></span>
 <span id="cb400-14"><a href="graphreview2024.html#cb400-14" tabindex="-1"></a></span>
 <span id="cb400-15"><a href="graphreview2024.html#cb400-15" tabindex="-1"></a>plot635</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-392-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
 <div id="フィードバック-5" class="section level3 hasAnchor" number="17.6.1">
 <h3><span class="header-section-number">17.6.1</span> フィードバック<a href="graphreview2024.html#フィードバック-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>基本的な描画はできています。
@@ -949,7 +959,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb401-15"><a href="graphreview2024.html#cb401-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">7</span>)) <span class="co"># themeの中で、axis.text.yという項目のtextという要素で、文字サイズを変えることが可能。</span></span>
 <span id="cb401-16"><a href="graphreview2024.html#cb401-16" tabindex="-1"></a></span>
 <span id="cb401-17"><a href="graphreview2024.html#cb401-17" tabindex="-1"></a>plot635</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-393-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
 </div>
 </div>
 <div id="hyuga-yamanouchi" class="section level2 hasAnchor" number="17.7">
@@ -1012,7 +1022,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb406-8"><a href="graphreview2024.html#cb406-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>))</span>
 <span id="cb406-9"><a href="graphreview2024.html#cb406-9" tabindex="-1"></a>  </span>
 <span id="cb406-10"><a href="graphreview2024.html#cb406-10" tabindex="-1"></a>plot_ssdse_applicants</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-394-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-280-1.png" width="672" /></p>
 <div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="graphreview2024.html#cb407-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">file=</span><span class="st">&quot;fig/Total_Job_Applicants_by_pref_2010_2021.png&quot;</span>,plot_ssdse_applicants,<span class="at">device=</span><span class="st">&quot;png&quot;</span>)</span>
 <span id="cb407-2"><a href="graphreview2024.html#cb407-2" tabindex="-1"></a></span>
 <span id="cb407-3"><a href="graphreview2024.html#cb407-3" tabindex="-1"></a><span class="co">#こっちを採用</span></span>
@@ -1021,6 +1031,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">17.7.1</span> フィードバック<a href="graphreview2024.html#フィードバック-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>基本的な描画はできています。
 プレゼン用としては、少し字を大きくするといいかもしれません。</p>
+</div>
+</div>
+<div id="jinto-eguro" class="section level2 hasAnchor" number="17.8">
+<h2><span class="header-section-number">17.8</span> Jinto Eguro<a href="graphreview2024.html#jinto-eguro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="graphreview2024.html#cb408-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb408-2"><a href="graphreview2024.html#cb408-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb408-3"><a href="graphreview2024.html#cb408-3" tabindex="-1"></a>data_F<span class="ot">&lt;-</span>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;data/SSDSE-A-2023.xlsx&quot;</span>)</span>
+<span id="cb408-4"><a href="graphreview2024.html#cb408-4" tabindex="-1"></a>data_F</span>
+<span id="cb408-5"><a href="graphreview2024.html#cb408-5" tabindex="-1"></a></span>
+<span id="cb408-6"><a href="graphreview2024.html#cb408-6" tabindex="-1"></a>plotF<span class="ot">&lt;-</span><span class="fu">ggplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="graphreview2024.html#cb409-1" tabindex="-1"></a><span class="fu">print</span>(plotF)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-283-1.png" width="672" /></p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="graphreview2024.html#cb410-1" tabindex="-1"></a>plotF<span class="ot">&lt;-</span><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb410-2"><a href="graphreview2024.html#cb410-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_F,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>市区町村,<span class="at">y=</span>外国人人口),<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span>
+<span id="cb410-3"><a href="graphreview2024.html#cb410-3" tabindex="-1"></a><span class="fu">print</span>(plotF)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-283-2.png" width="672" /></p>
+<div id="フィードバック-7" class="section level3 hasAnchor" number="17.8.1">
+<h3><span class="header-section-number">17.8.1</span> フィードバック<a href="graphreview2024.html#フィードバック-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>基本的な描画はできています。
+データを読み込むとき、エクセルファイルだと最初に2行不要な行があるので、<code>skip=2</code>という引数を<code>read_excel()</code>の中に追加して、最初の2行を飛ばすとよいです。</p>
+<p>描画はできていますが、市区町村だと数が多すぎるので、下のテクニックの補足のように一部を取り出して描画するとよいです。</p>
+</div>
+</div>
+<div id="描画テクニックの補足" class="section level2 hasAnchor" number="17.9">
+<h2><span class="header-section-number">17.9</span> 描画テクニックの補足<a href="graphreview2024.html#描画テクニックの補足" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="グラフのカテゴリの順番を変更するには" class="section level3 hasAnchor" number="17.9.1">
+<h3><span class="header-section-number">17.9.1</span> グラフのカテゴリの順番を変更するには？<a href="graphreview2024.html#グラフのカテゴリの順番を変更するには" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>例として、SSDSE-Cのデータを使います。</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="graphreview2024.html#cb411-1" tabindex="-1"></a>data_ssdse_c <span class="ot">&lt;-</span>  <span class="fu">read_csv</span>(<span class="st">&quot;data/SSDSE-C-2024.csv&quot;</span>,<span class="at">locale=</span><span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;cp932&quot;</span>),<span class="at">skip=</span><span class="dv">1</span>)</span></code></pre></div>
+<p>例として、各都道府県の魚介類消費量を棒グラフにしてみる。
+横向きのグラフにするため、x軸に変数（<code>02　魚介類</code>）を、y軸に都道府県を取る。</p>
+<p>ちなみに変数名にカッコやスペースが入っていると、うまく認識されないためにエラーが出ることがある。この場合には、02と魚介類の間にスペースが入っているので、このままmappingに入力すると、エラーが出る。そのため`で囲むことで、スペースやカッコをふくめたひとまとまりが変数名であることを明示できる。</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="graphreview2024.html#cb412-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_ssdse_c, <span class="fu">aes</span>(<span class="at">y=</span>都道府県, <span class="at">x=</span><span class="st">`</span><span class="at">02　魚介類</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb412-2"><a href="graphreview2024.html#cb412-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb412-3"><a href="graphreview2024.html#cb412-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-285-1.png" width="672" /></p>
+<p>各都道府県のデータを見せることができたが、
+1. 順番がバラバラでわかりにくい。ランキング形式で表示できると良さそう。
+2. 左軸に都道府県すべてが表示されていて、多いので見にくい。</p>
+<p>という問題がある。</p>
+<div id="順番を変える方法" class="section level4 hasAnchor" number="17.9.1.1">
+<h4><span class="header-section-number">17.9.1.1</span> 順番を変える方法<a href="graphreview2024.html#順番を変える方法" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>ggplotはカテゴリ（例えば都道府県）を表示する際に適当に並び替えてしまうため、思ったとおりの順番でカテゴリーを表示してくれないケースがある。</p>
+<p>カテゴリの順番を変えるには、データの要素の順番を変える必要がある。
+<code>tidyverse</code>パッケージには、<code>forcats</code>というパッケージが含まれており、そこに<code>fct_reorder()</code>という関数がある。<code>fct_reorder()</code>の１つ目の引数には、順番を変更する変数を、２つ目には順番に使うものを指定する。</p>
+<p>この場合は、１つ目に<code>都道府県</code>、２つ目に<code>02　魚介類</code>を指定して、都道府県を魚介類消費量の順番に要素として並び替えている。</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="graphreview2024.html#cb413-1" tabindex="-1"></a>data_ssdse_c <span class="ot">&lt;-</span> data_ssdse_c <span class="sc">|&gt;</span> </span>
+<span id="cb413-2"><a href="graphreview2024.html#cb413-2" tabindex="-1"></a>  <span class="fu">mutate</span>(都道府県 <span class="ot">=</span> <span class="fu">fct_reorder</span>(都道府県, <span class="st">`</span><span class="at">02　魚介類</span><span class="st">`</span>))</span></code></pre></div>
+<p>このデータを用いると、順番が変更された形で図を描くことができる。</p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="graphreview2024.html#cb414-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_ssdse_c, <span class="fu">aes</span>(<span class="at">y=</span>都道府県, <span class="at">x=</span><span class="st">`</span><span class="at">02　魚介類</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb414-2"><a href="graphreview2024.html#cb414-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb414-3"><a href="graphreview2024.html#cb414-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-287-1.png" width="672" /></p>
+<p>順番を逆にしたい場合は<code>desc()</code>関数を使う</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="graphreview2024.html#cb415-1" tabindex="-1"></a>data_ssdse_c_2 <span class="ot">&lt;-</span> data_ssdse_c <span class="sc">|&gt;</span> </span>
+<span id="cb415-2"><a href="graphreview2024.html#cb415-2" tabindex="-1"></a>  <span class="fu">mutate</span>(都道府県 <span class="ot">=</span> <span class="fu">fct_reorder</span>(都道府県, <span class="fu">desc</span>(<span class="st">`</span><span class="at">02　魚介類</span><span class="st">`</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="graphreview2024.html#cb416-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_ssdse_c_2, <span class="fu">aes</span>(<span class="at">y=</span>都道府県, <span class="at">x=</span><span class="st">`</span><span class="at">02　魚介類</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb416-2"><a href="graphreview2024.html#cb416-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb416-3"><a href="graphreview2024.html#cb416-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
+</div>
+</div>
+<div id="カテゴリが多すぎるので減らす方法" class="section level3 hasAnchor" number="17.9.2">
+<h3><span class="header-section-number">17.9.2</span> カテゴリが多すぎるので減らす方法<a href="graphreview2024.html#カテゴリが多すぎるので減らす方法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データが多すぎる場合、例えばトップ１０のみを見せるというのも手である。
+以下のコードでは、データを魚介類に基づいて降順（大きい方から小さい方）に並び替えて、１行目から10行目を抜き出している。</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="graphreview2024.html#cb417-1" tabindex="-1"></a>data_ssdse_c_3 <span class="ot">&lt;-</span> data_ssdse_c <span class="sc">|&gt;</span> </span>
+<span id="cb417-2"><a href="graphreview2024.html#cb417-2" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">02　魚介類</span><span class="st">`</span>)) <span class="sc">|&gt;</span>　<span class="co"># 順番を降順に変更</span></span>
+<span id="cb417-3"><a href="graphreview2024.html#cb417-3" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) 　　　　　　　　　　<span class="co"># 1行目から１０行目を「スライス」する</span></span></code></pre></div>
+<p>このデータを使って描くと、消費量トップ10の都道府県のデータを描くことができる。</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="graphreview2024.html#cb418-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_ssdse_c_3, <span class="fu">aes</span>(<span class="at">y=</span>都道府県, <span class="at">x=</span><span class="st">`</span><span class="at">02　魚介類</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb418-2"><a href="graphreview2024.html#cb418-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb418-3"><a href="graphreview2024.html#cb418-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-291-1.png" width="672" /></p>
 
 </div>
 </div>

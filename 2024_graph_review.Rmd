@@ -9,7 +9,8 @@
 library(tidyverse)
 library(readxl)
 library(readr)
-data_ssdse<-read_csv("data/SSDSE-B-2024.csv",locale=locale(encoding="CP932"),skip=1)
+
+data_ssdse<-read_csv("data/SSDSE-B-2024.csv",locale=locale(encoding="cp932"),skip=1)
 
 names(data_ssdse)
 
@@ -384,3 +385,116 @@ ggsave(file="fig/Total_Job_Applicants_2_by_pref_2010_2021.png",plot_ssdse_applic
 基本的な描画はできています。
 プレゼン用としては、少し字を大きくするといいかもしれません。
 
+
+## Jinto Eguro
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(readxl)
+data_F<-readxl::read_excel("data/SSDSE-A-2023.xlsx")
+data_F
+
+plotF<-ggplot()
+```
+
+```{r, echo=F}
+data_F<-readxl::read_excel("data/SSDSE-A-2023.xlsx", skip=2)
+```
+
+
+```{r}
+print(plotF)
+plotF<-ggplot()+
+  geom_bar(data=data_F,mapping = aes(x=市区町村,y=外国人人口),stat = "identity")
+print(plotF)
+
+```
+
+
+### フィードバック
+
+基本的な描画はできています。
+データを読み込むとき、エクセルファイルだと最初に2行不要な行があるので、`skip=2`という引数を`read_excel()`の中に追加して、最初の2行を飛ばすとよいです。
+
+描画はできていますが、市区町村だと数が多すぎるので、下のテクニックの補足のように一部を取り出して描画するとよいです。
+
+## 描画テクニックの補足
+
+### グラフのカテゴリの順番を変更するには？
+
+例として、SSDSE-Cのデータを使います。
+
+```{r}
+data_ssdse_c <-  read_csv("data/SSDSE-C-2024.csv",locale=locale(encoding = "cp932"),skip=1)
+```
+例として、各都道府県の魚介類消費量を棒グラフにしてみる。
+横向きのグラフにするため、x軸に変数（`02　魚介類`）を、y軸に都道府県を取る。
+
+ちなみに変数名にカッコやスペースが入っていると、うまく認識されないためにエラーが出ることがある。この場合には、02と魚介類の間にスペースが入っているので、このままmappingに入力すると、エラーが出る。そのため\`で囲むことで、スペースやカッコをふくめたひとまとまりが変数名であることを明示できる。
+
+```{r}
+ggplot(data=data_ssdse_c, aes(y=都道府県, x=`02　魚介類`)) + 
+  geom_bar(stat="identity") + 
+  theme_bw(base_family="HiraKakuPro-W3")
+```
+
+各都道府県のデータを見せることができたが、
+1. 順番がバラバラでわかりにくい。ランキング形式で表示できると良さそう。
+2. 左軸に都道府県すべてが表示されていて、多いので見にくい。
+
+という問題がある。
+
+#### 順番を変える方法
+
+ggplotはカテゴリ（例えば都道府県）を表示する際に適当に並び替えてしまうため、思ったとおりの順番でカテゴリーを表示してくれないケースがある。
+
+カテゴリの順番を変えるには、データの要素の順番を変える必要がある。
+`tidyverse`パッケージには、`forcats`というパッケージが含まれており、そこに`fct_reorder()`という関数がある。`fct_reorder()`の１つ目の引数には、順番を変更する変数を、２つ目には順番に使うものを指定する。
+
+この場合は、１つ目に`都道府県`、２つ目に`02　魚介類`を指定して、都道府県を魚介類消費量の順番に要素として並び替えている。
+
+```{r}
+data_ssdse_c <- data_ssdse_c |> 
+  mutate(都道府県 = fct_reorder(都道府県, `02　魚介類`))
+```
+
+
+このデータを用いると、順番が変更された形で図を描くことができる。
+
+```{r}
+ggplot(data=data_ssdse_c, aes(y=都道府県, x=`02　魚介類`)) + 
+  geom_bar(stat="identity") + 
+  theme_bw(base_family="HiraKakuPro-W3")
+```
+
+順番を逆にしたい場合は`desc()`関数を使う
+
+```{r}
+data_ssdse_c_2 <- data_ssdse_c |> 
+  mutate(都道府県 = fct_reorder(都道府県, desc(`02　魚介類`)))
+```
+
+```{r}
+ggplot(data=data_ssdse_c_2, aes(y=都道府県, x=`02　魚介類`)) + 
+  geom_bar(stat="identity") + 
+  theme_bw(base_family="HiraKakuPro-W3")
+```
+
+### カテゴリが多すぎるので減らす方法
+
+データが多すぎる場合、例えばトップ１０のみを見せるというのも手である。
+以下のコードでは、データを魚介類に基づいて降順（大きい方から小さい方）に並び替えて、１行目から10行目を抜き出している。
+
+```{r}
+data_ssdse_c_3 <- data_ssdse_c |> 
+  arrange(desc(`02　魚介類`)) |>　# 順番を降順に変更
+  slice(1:10) 　　　　　　　　　　# 1行目から１０行目を「スライス」する
+```
+
+このデータを使って描くと、消費量トップ10の都道府県のデータを描くことができる。
+
+```{r}
+ggplot(data=data_ssdse_c_3, aes(y=都道府県, x=`02　魚介類`)) + 
+  geom_bar(stat="identity") + 
+  theme_bw(base_family="HiraKakuPro-W3")
+```
