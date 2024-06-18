@@ -1,0 +1,196 @@
+# 回帰分析の応用 {#multipleregressionapp}
+
+
+##　変数の単位と、傾きパラメータの解釈
+
+回帰分析の係数の解釈は、その説明変数が１単位増えたときに、目的変数がどれだけ変化するか、である。
+
+例えば、以下のようなモデルがあるとする。
+
+$$
+  賃金_i = \alpha + \beta_1 経験年数_i + \varepsilon_i
+$$
+
+このとき推定された$\hat{\beta_1}$の解釈は「教育年数が１年増えると賃金が$\hat{\beta_1}$上がる」となる。
+この「説明変数が１単位増えた場合の目的変数への効果」を**限界効果**と呼ぶ。
+
+この限界効果は、モデルを微分することでも得ることができる。
+一般的な単回帰モデルは以下のように記述される。
+
+$$
+ y_i = \alpha + \beta_1 x_i + \varepsilon_i
+$$
+
+このモデルを説明変数$x_i$で微分したもの
+$$
+  \frac{dy}{dx} = \beta_1
+$$
+
+微分は、xの微小な変化によるyの変化量として解釈される。その変化量が$\beta_1$となる。
+
+## より複雑な効果をモデル化
+
+### 関数形の変更：二次関数
+
+上のモデルでは、経験年数が１年増えた場合の賃金への効果は常に一定で$\hat{\beta_1}$であるという解釈になる。
+
+しかし、もっと複雑かつ柔軟なモデル化も可能である。
+例えば、仕事の経験年数が浅いときに１年経験が増えた後に増加する賃金は大きいかもしれないが、経験年数が多く経った時に１年経験が増えたところで大きく賃金は増加しないかもしれない。
+
+そのような形の限界効果をモデル化するには、回帰モデルの形を変更することで対処できる。
+
+$$
+   y_i = \alpha + \beta_1 x_i +  \beta_2 x^2_i +\varepsilon_i
+$$
+
+
+このモデルを上と同じく微分すると
+
+$$
+  \frac{dy}{dx} = \beta_1 + 2\beta_2x_i
+$$
+
+となる。先ほどと違い、限界効果の中に$x_i$が入っているということは、効果の量が$x_i$の量によって異なるということである。
+
+```{r}
+dat_funplot = tibble(
+  x = seq(0,10,by=0.1),
+  y1 = 3 + 0.2*x,
+  y2 = 3 + 0.35*x - 0.02*x^2
+)
+
+ggplot(dat_funplot, aes(x=x)) + 
+  geom_line(aes(y=y1), col="red") + 
+  geom_line(aes(y=y2), col="blue") +
+  annotate("text",x=7.5,y=4.75,parse=TRUE, 
+           label="y==alpha+beta[1]*x", col="red") +
+  annotate("text",x=5.0,y=4.5,parse=TRUE, 
+           label="y==alpha+beta[1]*x+beta[2]*x^2", col="blue") +
+  labs(x="x", y ="y") +
+  theme_bw()
+
+```
+
+
+
+### 例：経験年数の年収への効果
+
+以下のようなモデルを推定する。
+
+$$
+   対数賃金_i = \alpha + \beta_1 経験年数_i +  \beta_2 経験年数^2_i + \beta_3 教育年数 + \varepsilon_i
+$$
+左辺が対数の場合は限界効果の解釈はxが１単位増加した時に、目的変数が何％増加するか、になる。
+
+#### 準備
+
+`multi_reg_app.R`というスクリプトを準備し、必要なパッケージをロードする。
+
+```{r}
+library(tidyverse)
+library(fixest)
+library(skimr)
+```
+
+#### データのロード
+
+以下の通りデータをダウンロードして、読み込む。
+
+```{r, echo=FALSE, eval=FALSE}
+
+dat_income<- read_csv("data/tanaka_data/csv/6_1_income.csv") |>
+  select(-exper2)
+
+write_csv(dat_income,"data/dat_income.csv")
+
+```
+
+```{r,eval=FALSE}
+# データのダウンロードとdataフォルダへの保存
+download.file("https://github.com/keita43a/regression_tutorial/blob/main/data/dat_income.csv?raw=TRUE",
+              destfile="data/dat_income.csv")
+```
+
+```{r}
+dat_income = read_csv("data/dat_income.csv")
+```
+
+#### データの確認
+
+```{r}
+skim(dat_income)
+```
+
+#### 推定
+
+```{r}
+reg_income <- feols(lincome ~ exper + I(exper^2) + yeduc, data=dat_income)
+
+etable(reg_income)
+```
+
+例えば経験年数が5年ならば、限界効果は13.6%となり、10ならば7.6%となる。
+
+$$
+ \frac{d対数賃金}{d経験年数}|_{経験年数=5} = 0.196 - 2\times0.006\times5 =0.136
+$$
+
+$$
+ \frac{d対数賃金}{d経験年数}|_{経験年数=10} = 0.196 - 2\times0.006\times10 =0.076
+$$
+
+```{r}
+0.196-2*0.006*5
+0.196-2*0.006*10
+```
+
+### ダミー変数を使った分析
+
+$$
+ 対数賃金_i = \alpha + \beta_1 教育年数 + \beta_2 女性ダミー_i + \varepsilon_i
+$$
+
+```{r, echo=FALSE, eval=FALSE}
+
+dat_income_female<- read_csv("data/tanaka_data/csv/7_1_income.csv") |>
+  select(-female_yeduc)
+
+write_csv(dat_income_female,"data/dat_income_female.csv")
+
+```
+
+```{r,eval=FALSE}
+# データのダウンロードとdataフォルダへの保存
+download.file("https://github.com/keita43a/regression_tutorial/blob/main/data/dat_income_female.csv?raw=TRUE",
+              destfile="data/dat_income_female.csv")
+```
+
+```{r}
+dat_income_female <- read_csv("data/dat_income_female.csv")
+```
+
+
+
+```{r}
+skim(dat_income_female)
+```
+
+```{r}
+reg_income_female <- feols(lincome ~ yeduc + female, data=dat_income_female)
+
+etable(reg_income_female)
+
+```
+
+
+### 交差項
+
+$$
+ 対数賃金_i = \alpha + \beta_1 教育年数_i + \beta_2 女性ダミー_i + \beta_2 女性ダミー_i\times教育年数_i + \varepsilon_i
+$$
+```{r}
+reg_income_female_2 <- feols(lincome ~ yeduc + female + yeduc:female, data=dat_income_female)
+
+etable(reg_income_female_2)
+
+```

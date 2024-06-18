@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -670,7 +670,7 @@ Ads_i = I\{100 \leq \gamma_1 Age_i + \gamma_2 Income_i + u_i\}
 <p>データの記述統計を見てみよう。</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="multipleregression.html#cb287-1" tabindex="-1"></a><span class="fu">skim</span>(dat_sim)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-191">Table 12.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-194">Table 12.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -954,20 +954,35 @@ Sales_i = \alpha + \beta_1 Ads_i + \beta_4 Pop_i + \varepsilon_i
 <span id="cb295-7"><a href="multipleregression.html#cb295-7" tabindex="-1"></a>models_ads[[<span class="st">&quot;Model 5&quot;</span>]] <span class="ot">=</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> income <span class="sc">+</span> pop <span class="sc">+</span> dogs, <span class="at">se=</span><span class="st">&quot;iid&quot;</span>, <span class="at">data=</span>dat_sim)</span>
 <span id="cb295-8"><a href="multipleregression.html#cb295-8" tabindex="-1"></a></span>
 <span id="cb295-9"><a href="multipleregression.html#cb295-9" tabindex="-1"></a><span class="fu">etable</span>(models_ads)</span></code></pre></div>
-<pre><code>##                          Model 1           Model 2            Model 3            Model 4            Model 5
-## Dependent Var.:            sales             sales              sales              sales              sales
-##                                                                                                            
-## Constant        733.4*** (4.261)  549.7*** (6.372)   499.6*** (6.860)   501.6*** (7.241)   503.3*** (7.492)
-## ads             107.3*** (5.872)  86.26*** (2.973)   49.66*** (4.028)   49.59*** (4.030)   49.58*** (4.031)
-## age                              4.625*** (0.1515)  4.985*** (0.1299)  4.982*** (0.1300)  4.982*** (0.1301)
-## income                                             0.0899*** (0.0078) 0.0898*** (0.0078) 0.0901*** (0.0078)
-## pop                                                                    -3.7e-5 (4.21e-5) -3.67e-5 (4.21e-5)
-## dogs                                                                                         -7.638 (8.689)
-## _______________ ________________ _________________ __________________ __________________ __________________
-## S.E. type                    IID               IID                IID                IID                IID
-## Observations                 300               300                300                300                300
-## R2                       0.52853           0.88607            0.92132            0.92152            0.92173
-## Adj. R2                  0.52694           0.88530            0.92052            0.92046            0.92040
+<pre><code>##                          Model 1           Model 2            Model 3
+## Dependent Var.:            sales             sales              sales
+##                                                                      
+## Constant        733.4*** (4.261)  549.7*** (6.372)   499.6*** (6.860)
+## ads             107.3*** (5.872)  86.26*** (2.973)   49.66*** (4.028)
+## age                              4.625*** (0.1515)  4.985*** (0.1299)
+## income                                             0.0899*** (0.0078)
+## pop                                                                  
+## dogs                                                                 
+## _______________ ________________ _________________ __________________
+## S.E. type                    IID               IID                IID
+## Observations                 300               300                300
+## R2                       0.52853           0.88607            0.92132
+## Adj. R2                  0.52694           0.88530            0.92052
+## 
+##                            Model 4            Model 5
+## Dependent Var.:              sales              sales
+##                                                      
+## Constant          501.6*** (7.241)   503.3*** (7.492)
+## ads               49.59*** (4.030)   49.58*** (4.031)
+## age              4.982*** (0.1300)  4.982*** (0.1301)
+## income          0.0898*** (0.0078) 0.0901*** (0.0078)
+## pop              -3.7e-5 (4.21e-5) -3.67e-5 (4.21e-5)
+## dogs                                   -7.638 (8.689)
+## _______________ __________________ __________________
+## S.E. type                      IID                IID
+## Observations                   300                300
+## R2                         0.92152            0.92173
+## Adj. R2                    0.92046            0.92040
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 
