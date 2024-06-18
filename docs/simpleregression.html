@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-06-13" />
+<meta name="date" content="2024-06-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -541,10 +541,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="17.8.1" data-path="graphreview2024.html"><a href="graphreview2024.html#フィードバック-7"><i class="fa fa-check"></i><b>17.8.1</b> フィードバック</a></li>
 </ul></li>
-<li class="chapter" data-level="17.9" data-path="graphreview2024.html"><a href="graphreview2024.html#描画テクニックの補足"><i class="fa fa-check"></i><b>17.9</b> 描画テクニックの補足</a>
+<li class="chapter" data-level="17.9" data-path="graphreview2024.html"><a href="graphreview2024.html#kohei-kuroda"><i class="fa fa-check"></i><b>17.9</b> Kohei Kuroda</a>
 <ul>
-<li class="chapter" data-level="17.9.1" data-path="graphreview2024.html"><a href="graphreview2024.html#グラフのカテゴリの順番を変更するには"><i class="fa fa-check"></i><b>17.9.1</b> グラフのカテゴリの順番を変更するには？</a></li>
-<li class="chapter" data-level="17.9.2" data-path="graphreview2024.html"><a href="graphreview2024.html#カテゴリが多すぎるので減らす方法"><i class="fa fa-check"></i><b>17.9.2</b> カテゴリが多すぎるので減らす方法</a></li>
+<li class="chapter" data-level="17.9.1" data-path="graphreview2024.html"><a href="graphreview2024.html#フィードバック-8"><i class="fa fa-check"></i><b>17.9.1</b> フィードバック</a></li>
+</ul></li>
+<li class="chapter" data-level="17.10" data-path="graphreview2024.html"><a href="graphreview2024.html#koki-nakahata"><i class="fa fa-check"></i><b>17.10</b> Koki Nakahata</a>
+<ul>
+<li class="chapter" data-level="17.10.1" data-path="graphreview2024.html"><a href="graphreview2024.html#フィードバック-9"><i class="fa fa-check"></i><b>17.10.1</b> フィードバック</a></li>
+</ul></li>
+<li class="chapter" data-level="17.11" data-path="graphreview2024.html"><a href="graphreview2024.html#rai-kouta"><i class="fa fa-check"></i><b>17.11</b> Rai Kouta</a>
+<ul>
+<li class="chapter" data-level="17.11.1" data-path="graphreview2024.html"><a href="graphreview2024.html#フィードバック-10"><i class="fa fa-check"></i><b>17.11.1</b> フィードバック</a></li>
+</ul></li>
+<li class="chapter" data-level="17.12" data-path="graphreview2024.html"><a href="graphreview2024.html#描画テクニックの補足"><i class="fa fa-check"></i><b>17.12</b> 描画テクニックの補足</a>
+<ul>
+<li class="chapter" data-level="17.12.1" data-path="graphreview2024.html"><a href="graphreview2024.html#グラフのカテゴリの順番を変更するには"><i class="fa fa-check"></i><b>17.12.1</b> グラフのカテゴリの順番を変更するには？</a></li>
+<li class="chapter" data-level="17.12.2" data-path="graphreview2024.html"><a href="graphreview2024.html#カテゴリが多すぎるので減らす方法"><i class="fa fa-check"></i><b>17.12.2</b> カテゴリが多すぎるので減らす方法</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -647,14 +659,14 @@ y_{i} = \hat{\alpha} + \hat{\beta} x_{i} + \hat{e}_{i}
 <p>それでは、気温とアイスクリームの売上の関係を見る散布図を描いてみよう。</p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="simpleregression.html#cb275-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat_ice, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y=</span>ice)) <span class="sc">+</span> </span>
 <span id="cb275-2"><a href="simpleregression.html#cb275-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
 <p>上でも見たように、気温が上がればアイスクリームの売上が上がるという右肩上がりの関係がある。</p>
 <p>単回帰分析でやろうとしているのは、この関係を定量的に把握して、線を引くことである。</p>
 <p>今書いた<code>ggplot</code>のコードに、<code>geom_smooth(method="lm",se=FALSE)</code>というレイヤーを加えてみよう。</p>
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="simpleregression.html#cb276-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat_ice,<span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y=</span>ice)) <span class="sc">+</span> </span>
 <span id="cb276-2"><a href="simpleregression.html#cb276-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb276-3"><a href="simpleregression.html#cb276-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span><span class="cn">FALSE</span>) <span class="co"># 追加！</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
 <p>青い線が表示された。これは実質的には<code>ggplot</code>の機能として、単回帰直線を推定して、それを描画するということを行っている。</p>
 <p>では、実際に回帰分析を行ってみよう。
 Rでは、回帰分析を行う関数の中で、目的変数と説明変数の関係を<code>y ~ x</code>のように波線で挟んで書く。
@@ -755,7 +767,7 @@ y_{i} = 11.37 + 18.69 \times x_{i} + \hat{e}_{i}
 <p>下の図は、気温とアイスクリームの売上のデータのうち、最初の10個だけを取り出したものである。
 各点はそれぞれのデータポイントを表している。引かれている直線は回帰直線であるが、この直線が通っているところと実際のデータポイントとの目的変数の差が「残差」となる。当然ながら、どうやって直線を引くかによって残差は変わるが、もっとも残差の合計が小さくなるところが「適切な」線だという考え方である。</p>
 <p>引かれた線よりも上や下にデータポイントが散らばるので、そのまま合計すると打ち消し合ってしまうため、実際の「距離」として測ることが難しい。しかし、二乗すれば負の値も正になるため、二乗してから合計することで直線の上下関係なくどれぐらい離れているかという残差を評価することができる。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
 <p>厳密にどのように推定しているかはここでは省略するが、統計学や計量経済学の教科書を見て理解を進めてほしい。</p>
 </div>
 <div id="演習問題単回帰分析" class="section level2 hasAnchor" number="11.3">
@@ -766,7 +778,7 @@ y_{i} = 11.37 + 18.69 \times x_{i} + \hat{e}_{i}
 <li><p><code>tidyverse</code>パッケージの関数を使って、学生数<code>students</code>と教員数<code>teachers</code>の比を計算し、<code>STR</code>という変数にする。また、国語<code>read</code>と数学<code>math</code>を足して２で割ったスコアを<code>score</code>という変数にする。新たに作成したデータを<code>dat_school</code>として保存する。</p></li>
 <li><p><code>ggplot</code>を用いて、x軸を<code>STR</code>, y軸を<code>score</code>とする散布図を描く。以下のような図になるはずである（背景色やラベルなどは同じでなくてよい）</p></li>
 </ol>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
 <ol start="5" style="list-style-type: decimal">
 <li><p><code>STR</code>を説明変数、<code>score</code>を目的変数とする単回帰分析を行い、summary()関数を用いて結果を表示しなさい。</p></li>
 <li><p>5.の結果を解釈しなさい。</p></li>

@@ -418,6 +418,204 @@ print(plotF)
 
 描画はできていますが、市区町村だと数が多すぎるので、下のテクニックの補足のように一部を取り出して描画するとよいです。
 
+## Kohei Kuroda
+
+```{r, eval=FALSE}
+library(tidyverse)
+data_ssdse=read_csv("data/SSDSE-B-2024.csv",locale = locale(encoding = "CP932"),skip = 1)
+names(data_ssdse)
+data_kanto <- data_ssdse |> 
+  filter(都道府県 %in% c("東京都","神奈川県","千葉県","埼玉県","茨城県","栃木県","群馬県"))
+plot_div=ggplot()
+plot_div
+plot_div=ggplot()+geom_line(data = data_kanto,mapping=aes(x=年度,y=離婚件数))+theme_bw(base_family = "HiraKakuPro-W3")
+plot_div
+plot_div=ggplot()+geom_line(data = data_kanto,mapping=aes(x=年度,y=離婚件数))+geom_point(data = data_kanto,mapping=aes(x=年度,y=離婚件数))+theme_bw(base_family = "HiraKakuPro-W3")
+plot_div
+plot_div=ggplot()+geom_line(data = data_kanto,mapping=aes(x=年度,y=離婚件数,col=都道府県))+geom_point(data = data_kanto,mapping=aes(x=年度,y=離婚件数,col=都道府県))+theme_bw(base_family = "HiraKakuPro-W3")
+plot_div
+plot_div=ggplot()+geom_line(data = data_kanto,mapping=aes(x=年度,y=離婚件数,col=都道府県))+geom_point(data = data_kanto,mapping=aes(x=年度,y=離婚件数,col=都道府県))+theme_bw(base_family = "HiraKakuPro-W3")+labs(x="Fiscal Year", y="Number Of Divorces", col="Pref.") +
+scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県"),labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi")) +theme(text = element_text(size=15),)
+plot_div
+plot_div=ggplot()+geom_line(data = data_kanto,mapping=aes(x=年度,y=離婚件数,col=都道府県))+geom_point(data = data_kanto,mapping=aes(x=年度,y=離婚件数,col=都道府県))+theme_bw(base_family = "HiraKakuPro-W3")+labs(x="Fiscal Year", y="Number Of Divorces", col="Pref.") +
+  scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県"),labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi")) +theme(text = element_text(size=15))
+plot_div
+ggsave(filename = "fig/numb_of_div.png",plot = plot_div,device = "png")
+
+```
+
+```{r, echo=FALSE}
+
+plot_div=ggplot()+
+  geom_line(data = data_kanto,mapping=aes(x=年度,y=離婚件数,col=都道府県))+
+  geom_point(data = data_kanto,mapping=aes(x=年度,y=離婚件数,col=都道府県))+
+  theme_bw(base_family = "HiraKakuPro-W3")+
+  labs(x="Fiscal Year", y="Number Of Divorces", col="Pref.") +
+  scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県"),
+                       labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi")) +
+  theme(text = element_text(size=15))
+
+plot_div
+```
+
+### フィードバック
+
+基本的な描画はできています。例とほぼ同じなので、工夫するとすれば、データを加工して県の人口で離婚件数を割ると、例えば人口1万人当たりの離婚件数として標準化できるので、都道府県の間での比較がしやすくなると思います。（例えば東京の件数が多いのは人口が多いので当たり前）
+
+
+## Koki Nakahata
+
+```{r, eval = FALSE}
+library(tidyverse)
+
+data_ssdse <- read_csv("data//SSDSE-C-2024.csv", 
+                       locale=locale(encoding="CP932"), 
+                       skip=1)
+
+# 変数名を確認
+names(data_ssdse)
+
+
+plot_consumption<-ggplot()
+
+print(plot_consumption)
+
+
+ggplot(data=data_ssdse, aes(y=都道府県, x=`米`)) + 
+  geom_bar(stat="identity") + 
+  theme_grey(base_family="HiraKakuPro-W3")  # <- 追加！
+
+data_ssdse <- data_ssdse |> 
+  mutate(都道府県 = fct_reorder(都道府県, `米`))
+
+ggplot(data=data_ssdse, aes(y=都道府県, x=`米`)) + 
+  geom_bar(stat="identity") 
+ 
+data_ssdse <- data_ssdse |> 
+  arrange(desc(`米`)) |>　# 順番を降順に変更
+  slice(1:10) 　　　　　　　　　　# 1行目から１０行目を「スライス」する
+
+ggplot(data=data_ssdse, aes(y=都道府県, x=`米`)) + 
+  geom_bar(stat="identity") + 
+  theme_grey(base_family="HiraKakuPro-W3")
+
+plot_consumption <- ggplot()+
+  geom_bar(data=data_ssdse,mapping=aes(x=米,y=都道府県),stat="identity")+
+  labs(fill="",x="Rice Consumption",y="Pref.",
+       title="Top 10 pref.in terms of rice consumption",
+       subtitle="2024年4月24日公開",
+       caption = "データ元SSDSE-家計消費" ) +
+  theme_grey(base_family = "HiraKakuPro-W3") + # Mac用に追加
+  theme(axis.text.y = element_text(size=15)) # themeの中で、axis.text.yという項目のtextという要素で、文字サイズを変えることが可能。
+
+plot_consumption
+
+# figフォルダ（ディレクトリ）の作成
+fs::dir_create("fig")
+
+ggsave(file="fig/Rice consumption.png",plot_consumption,device = "png")
+```
+
+### フィードバック
+
+カテゴリの要素を日本語から英語に変えたい場合は、指定しているカテゴリを調整します。
+
+```{r, echo=FALSE}
+data_ssdse_c_koki <- data_ssdse_c |> arrange(desc(`米`)) |>
+  slice(1:10) |>
+  mutate(都道府県 = fct_reorder(都道府県, 米))
+```
+
+
+```{r,eval=FALSE}
+
+plot_consumption <- ggplot()+
+  geom_bar(data=data_ssdse,mapping=aes(x=米,y=都道府県),stat="identity")+
+  labs(fill="",x="Rice Consumption",y="Pref.",
+       title="Top 10 pref.in terms of rice consumption",
+       subtitle="2024年4月24日公開",
+       caption = "データ元SSDSE-家計消費" ) +
+  scale_y_discrete(breaks=c("静岡県","新潟県","沖縄県","長崎県","福井県","富山県","北海道","山形県","石川県","和歌山県"),              # <- 追加
+                   labels=c("Shizuoka","Niigata","Okinawa","Nagasaki","Fukui","Toyama","Hokkaido","Yamagata","Ishikawa","Wakayama")) + # <- 追加
+  theme_grey(base_family = "HiraKakuPro-W3") + # Mac用に追加
+  theme(axis.text.y = element_text(size=15)) # themeの中で、axis.text.yという項目のtextという要素で、文字サイズを変えることが可能。
+
+plot_consumption
+```
+```{r,echo=FALSE}
+
+plot_consumption <- ggplot()+
+  geom_bar(data=data_ssdse_c_koki,mapping=aes(x=米,y=都道府県),stat="identity")+
+  labs(fill="",x="Rice Consumption",y="Pref.",
+       title="Top 10 pref.in terms of rice consumption",
+       subtitle="2024年4月24日公開",
+       caption = "データ元SSDSE-家計消費" ) +
+  scale_y_discrete(breaks=c("静岡県","新潟県","沖縄県","長崎県","福井県","富山県","北海道","山形県","石川県","和歌山県"),              # <- 追加
+                   labels=c("Shizuoka","Niigata","Okinawa","Nagasaki","Fukui","Toyama","Hokkaido","Yamagata","Ishikawa","Wakayama")) + # <- 追加
+  theme_grey(base_family = "HiraKakuPro-W3") + # Mac用に追加
+  theme(axis.text.y = element_text(size=15)) # themeの中で、axis.text.yという項目のtextという要素で、文字サイズを変えることが可能。
+
+plot_consumption
+```
+
+
+## Rai Kouta
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(readxl)
+library(readr)
+data_ssdse <- read_csv("data/SSDSE-E-2024.xlsx", 
+                       locale=locale(encoding="CP932"), 
+                       skip=1)
+names(data_ssdse)
+  
+plot_consumption<-ggplot()
+
+print(plot_consumption)
+
+  
+data_kanto <- data_ssdse |> 
+  filter("都道府県" %in% c("東京都","神奈川県","千葉県","埼玉県","茨城県","栃木県","群馬県"))
+
+
+plot_f_grey<- ggplot(data=data_kanto,mapping=aes(x="年度", y="総人口",col="都道府県"))
+  geom_bar(data=data_kanto,mapping=aes(x="年度",y="総人口",col="都道府県"),stat = "identity") +
+  geom_point() +
+  theme_grey(base_family = "HiraKakuPro-W3")
+  plot_f_grey
+
+  
+labs(x="Fiscal Year", y="Total Fertility Rate", col="Pref.") +  
+scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県"),
+                       labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi")) +
+theme(text = element_text(size=15))
+  
+
+fs::dir_create("fig")
+ggsave("fig/souzinnkou_rate_by_pref_2010_2021.png",plot_f_grey,
+       device="png")
+```
+
+### フィードバック
+
+マッピングのaes関数の中で、変数を指定するときは、""で囲むのではなく、何もなしか、``で囲むと変数（オブジェクト）の指定であることを明示できます。
+""で囲むとただの文字列であるという認識がされてしまうため、思った結果にならないです。
+
+また、時間をx軸にする場合は折れ線グラフを使うのが一般的ですが、関東圏すべての総人口とその内訳を見るために棒グラフを使う場合は色分けをcol (線や点の色)ではなく、fill(塗りつぶし)で指定するとよいです。
+
+```{r}
+
+plot_f_grey <- ggplot(data=data_kanto,mapping=aes(x=年度, y=総人口,col=都道府県)) +
+  geom_bar(data=data_kanto,mapping=aes(x=年度, y=総人口,fill=都道府県),stat="identity") +
+  theme_grey(base_family = "HiraKakuPro-W3")
+
+
+plot_f_grey 
+```
+
+
+
 ## 描画テクニックの補足
 
 ### グラフのカテゴリの順番を変更するには？
