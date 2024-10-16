@@ -1,7 +1,120 @@
 # 回帰分析の応用 {#multipleregressionapp}
 
 
-##　変数の単位と、傾きパラメータの解釈
+```{r, echo=FALSE}
+library(tidyverse)
+library(fixest)
+library(skimr)
+```
+
+
+## 変数の変換
+
+### 測定単位の変更
+
+前の章の例を使ってみよう。
+
+```{r, echo=FALSE}
+# シミュレーションデータの作成
+set.seed(3)
+
+dat_sim = tibble(
+  shop_ID = 1:N2,
+  age = round(runif(N2,25,60)),
+  income = round(runif(N2,15,100))*10,
+  pop = round(runif(N2,10,1000))*100,
+  dogs = round(runif(N2,0,0.5),digits=2),
+  u_ads = rnorm(N2,0,sd=10),
+  z_ads = round(g1*age+g2*income,digits=1),
+  y_ads = z_ads + u_ads,
+  ads = ifelse(100 <= y_ads,1,0),
+  epsilon = rnorm(N2,sd=20),
+  sales = round(a1 + b1*ads + b2*age + b3*income + epsilon,digits=1)
+) %>%
+  select(!contains("_ads") & !starts_with("u")) %>%
+  relocate(ads, .before=age)
+
+```
+
+
+```{r}
+model1 <- feols(sales ~ ads + age + income, data = dat_sim)
+model2 <- feols(sales ~ ads + age + I(income*10000), data = dat_sim)
+
+etable(model1,model2)
+```
+
+上では、全く同じモデルを推定しているが、違いは`income`の単位である。
+データの中では、incomeの単位は「万円」で記録されている。
+例えば数値が200であったら、200万円という意味である。
+
+そのデータに10000をかけているので、２つ目のモデルでは単位が「円」になっている。
+
+見ての通り、このデータの単位の変換を行ったところで、データのばらつきは同じなので他の係数の推定にも影響はない。
+所得の係数の推定値は非常に小さくなっているが、これは解釈の違いに影響する。
+
+１つ目のモデルでは、「所得が1万円上昇すると、0.0899万円売上が上昇する」という解釈になる。
+しかし、2つ目のモデルでは「所得が1円上昇すると、0.00000089万円売上が上昇する」となる。
+
+どちらがわかりやすいだろうか？
+
+### 中心化
+
+### 対数変換
+
+**対数変換**とは文字通り、変数の対数を取ることである。ことわりがない限り、自然対数を意味している場合が多い。
+自然対数とは対数の底がネイピア数（Napier's constant）である。
+
+ある変数Xに対して、$\log_eX$が対数変換である。自然対数は$\ln X$とも表記される。
+
+
+
+#### 対数
+
+#### 対数変換を用いたモデルの種類
+
+|$y = \alpha + \beta x$            | 説明変数が１単位増えると、目的変数が何単位増えるか？ | 
+|$\log(y) = \alpha + \beta x$      | 説明変数が１単位増えると、目的変数が何%増えるか？    |
+|$\log(y) = \alpha + \beta log(x)$ | 説明変数が１%増えると、目的変数が何%増えるか？       |
+
+#### (発展) 対数化とパーセントの近似
+
+被説明変数（目的変数）を対数変換したモデルは
+$$
+\log(y_i) = \alpha + \beta_1 x_i + \varepsilon_i
+$$
+
+$x$を$\Delta x$だけ増やした時に、yが$\Delta y$だけ増えるとすると、
+$$
+\log(y_i + \Delta y_i) = \alpha + \beta_1 (x_i+\Delta x_i) + \varepsilon_i
+$$
+
+この増えた式を元の式から引くと、
+$$
+  \log(y_i + \Delta y_i) - \log(y_i) = \alpha + \beta_1 (x_i+\Delta x_i) + \varepsilon_i - (\alpha + \beta_1 x_i + \varepsilon_i) = \beta_1 \Delta x_i
+$$
+
+このとき、左辺は
+$$
+\begin{align}
+ \log(y_i + \Delta y_i) - \log(y_i) &  = \log(\frac{y_i + \Delta y_i}{y_i}) \\
+ & = \log(1 + \frac{\Delta y_i}{y_i}) \\
+ & \approx \frac{\Delta y_i}{y_i}
+\end{align}
+$$
+となる。
+ここで１つ目の等式は、対数の公式：$\log(x)-\log(y) = \log(x/y)$を用いている。
+また、３つ目の近似はテイラー展開を用いた近似であり、$a$の値が十分に小さい時に、$\log(1+a) \approx a$であることが知られている。
+気になる人は、例えば`log(1 + 0.1)`をRで実行してみよう。
+
+つまり、
+$$
+ \frac{\Delta y_i}{y_i} \approx \beta_1 \Delta x_i
+$$
+が成り立つことからxの微小な変化によるyの相対的な変化(%変化)が$\beta_1$で表されることがわかる。
+
+
+## 変数の単位と、傾きパラメータの解釈
 
 回帰分析の係数の解釈は、その説明変数が１単位増えたときに、目的変数がどれだけ変化するか、である。
 
@@ -27,6 +140,9 @@ $$
 $$
 
 微分は、xの微小な変化によるyの変化量として解釈される。その変化量が$\beta_1$となる。
+
+
+
 
 ## より複雑な効果をモデル化
 
@@ -186,7 +302,7 @@ etable(reg_income_female)
 ### 交差項
 
 $$
- 対数賃金_i = \alpha + \beta_1 教育年数_i + \beta_2 女性ダミー_i + \beta_2 女性ダミー_i\times教育年数_i + \varepsilon_i
+ 対数賃金_i = \alpha + \beta_1 教育年数_i + \beta_2 女性ダミー_i + \beta_3 女性ダミー_i\times教育年数_i + \varepsilon_i
 $$
 ```{r}
 reg_income_female_2 <- feols(lincome ~ yeduc + female + yeduc:female, data=dat_income_female)
