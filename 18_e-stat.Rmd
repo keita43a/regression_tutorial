@@ -12,7 +12,7 @@
 2. e-stat APIからデータを直接Rにダウンロードする(推奨)
 
 
-1の方法では、ダウンロードしたいページ（例えば[これ](https://www.e-stat.go.jp/dbview?sid=0001828481)）で、右上の「ダウンロード」ボタンを押すと以下のようなページが現れる。データとして分析するためのファイルを読み込む場合は、「CSV形式（列指向形式・Shift-JIS）」を選択し、ヘッダの出力を「出力しない」にしてダウンロードする。
+1の方法では、ダウンロードしたいページ（例えば<a href = "https://www.e-stat.go.jp/dbview?sid=0001828481" target="_blank">これ</a>）で、右上の「ダウンロード」ボタンを押すと以下のようなページが現れる。データとして分析するためのファイルを読み込む場合は、「CSV形式（列指向形式・Shift-JIS）」を選択し、ヘッダの出力を「出力しない」にしてダウンロードする。
 
 ```{r  label = e_stat_DL, echo = FALSE, fig.cap = "", out.width = '70%',fig.align='center'}
 knitr::include_graphics("docs/fig/e-stat_dl.png")
@@ -33,7 +33,7 @@ APIとは「アプリケーション・プログラミング・インターフ�
 
 ### APIの準備
 
-まず、e-StatのAPI機能の[ページ](https://www.e-stat.go.jp/api/)に行って、ユーザー登録を行う。
+まず、e-StatのAPI機能の<a href = "https://www.e-stat.go.jp/api/" target="_blank">ページ</a>に行って、ユーザー登録を行う。
 メールアドレスを仮登録したら、メールに来たURLから本登録を行う。
 
 本登録を行う際は、大学のGoogleアカウントを使うと、パスワードの入力などが省略できる。
@@ -79,7 +79,7 @@ appID <- "283cd12487fa6b0b809db37a05c91078b1408223"
 上のIDは適当なので、自分のIDに置き換えて使う。
 
 例えば、ここでは2018年漁業センサスの第２巻　海面漁業に関する統計（都道府県編）の漁業経営体数・漁船というデータを読み込むとしよう。
-e-Statのウェブサイト上で、漁業センサスを検索し、「データベース」を選ぶとこのような[ページ](https://www.e-stat.go.jp/stat-search/database?page=1&toukei=00500210&tstat=000001033844)に飛ぶ。そこから、2018年漁業センサス第2巻を選び、漁業経営体数・漁船を選ぶと、以下のような表が表示される。
+e-Statのウェブサイト上で、漁業センサスを検索し、「データベース」を選ぶとこのような<a href="https://www.e-stat.go.jp/stat-search/database?page=1&toukei=00500210&tstat=000001033844" target="_blank">ページ</a>に飛ぶ。そこから、2018年漁業センサス第2巻を選び、漁業経営体数・漁船を選ぶと、以下のような表が表示される。
 
 ```{r  label = e_stat_page1, echo = FALSE, fig.cap = "", out.width = '70%',fig.align='center'}
 knitr::include_graphics("docs/fig/e_stat_page1.png")
@@ -135,7 +135,7 @@ head(dat, n=10)
 
 ### データ加工の例
 
-ここからはデータのハンドリング（#datahandling）の復習なので、細かい関数の挙動は該当チャプターで復習してほしい。
+ここからはデータのハンドリングの復習なので、細かい関数の挙動は[該当チャプター](#datahandling)で復習してほしい。
 
 ```{r}
 dat2 <- dat |>
@@ -152,7 +152,7 @@ dat2 <- dat |>
 
 ### データ描画の例
 
-詳細については描画についてのチャプター（#rviz）を参照してください。
+詳細については描画についての[チャプター](#rviz)を参照してください。
 
 ```{r}
 ggplot(data=dat2, aes(x=pref, y=`漁業経営体数`)) + 

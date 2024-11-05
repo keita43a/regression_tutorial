@@ -567,7 +567,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>CSVやエクセルをダウンロードする。</li>
 <li>e-stat APIからデータを直接Rにダウンロードする(推奨)</li>
 </ol>
-<p>1の方法では、ダウンロードしたいページ（例えば<a href="https://www.e-stat.go.jp/dbview?sid=0001828481">これ</a>）で、右上の「ダウンロード」ボタンを押すと以下のようなページが現れる。データとして分析するためのファイルを読み込む場合は、「CSV形式（列指向形式・Shift-JIS）」を選択し、ヘッダの出力を「出力しない」にしてダウンロードする。</p>
+<p>1の方法では、ダウンロードしたいページ（例えば<a href = "https://www.e-stat.go.jp/dbview?sid=0001828481" target="_blank">これ</a>）で、右上の「ダウンロード」ボタンを押すと以下のようなページが現れる。データとして分析するためのファイルを読み込む場合は、「CSV形式（列指向形式・Shift-JIS）」を選択し、ヘッダの出力を「出力しない」にしてダウンロードする。</p>
 <p><img src="docs/fig/e-stat_dl.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>ダウンロードされたファイルを、自分の作業フォルダなど適切な場所に移して、read_csvなどで読み込ませれば使用することができる。
 このファイルはエンコーディングがShift-JISになっているため、そのまま読み込むと文字化けするかエラーが出る。
@@ -580,7 +580,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>ここでは、e-statという統計情報サービスと、R/R Studioというプログラムの間をつなぐというイメージに当たる。</p>
 <div id="apiの準備" class="section level3 hasAnchor" number="17.3.1">
 <h3><span class="header-section-number">17.3.1</span> APIの準備<a href="e-stat.html#apiの準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>まず、e-StatのAPI機能の<a href="https://www.e-stat.go.jp/api/">ページ</a>に行って、ユーザー登録を行う。
+<p>まず、e-StatのAPI機能の<a href = "https://www.e-stat.go.jp/api/" target="_blank">ページ</a>に行って、ユーザー登録を行う。
 メールアドレスを仮登録したら、メールに来たURLから本登録を行う。</p>
 <p>本登録を行う際は、大学のGoogleアカウントを使うと、パスワードの入力などが省略できる。</p>
 <p>登録を終えて、ログインしたら、「マイページ」の上部メニューから「API機能（アプリケーションID発行）」を選ぶ。</p>
@@ -600,7 +600,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="e-stat.html#cb374-1" tabindex="-1"></a>appID <span class="ot">&lt;-</span> <span class="st">&quot;283cd12487fxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;</span></span></code></pre></div>
 <p>上のIDは適当なので、自分のIDに置き換えて使う。</p>
 <p>例えば、ここでは2018年漁業センサスの第２巻　海面漁業に関する統計（都道府県編）の漁業経営体数・漁船というデータを読み込むとしよう。
-e-Statのウェブサイト上で、漁業センサスを検索し、「データベース」を選ぶとこのような<a href="https://www.e-stat.go.jp/stat-search/database?page=1&amp;toukei=00500210&amp;tstat=000001033844">ページ</a>に飛ぶ。そこから、2018年漁業センサス第2巻を選び、漁業経営体数・漁船を選ぶと、以下のような表が表示される。</p>
+e-Statのウェブサイト上で、漁業センサスを検索し、「データベース」を選ぶとこのような<a href="https://www.e-stat.go.jp/stat-search/database?page=1&toukei=00500210&tstat=000001033844" target="_blank">ページ</a>に飛ぶ。そこから、2018年漁業センサス第2巻を選び、漁業経営体数・漁船を選ぶと、以下のような表が表示される。</p>
 <p><img src="docs/fig/e_stat_page1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>その中で、「統計表表示ID」というものをコピーする。</p>
 <p><img src="docs/fig/e_stat_page2.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -646,7 +646,7 @@ e-Statのウェブサイト上で、漁業センサスを検索し、「デー�
 </div>
 <div id="データ加工の例" class="section level3 hasAnchor" number="17.3.3">
 <h3><span class="header-section-number">17.3.3</span> データ加工の例<a href="e-stat.html#データ加工の例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>ここからはデータのハンドリング（#datahandling）の復習なので、細かい関数の挙動は該当チャプターで復習してほしい。</p>
+<p>ここからはデータのハンドリングの復習なので、細かい関数の挙動は<a href="datahandling.html#datahandling">該当チャプター</a>で復習してほしい。</p>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="e-stat.html#cb383-1" tabindex="-1"></a>dat2 <span class="ot">&lt;-</span> dat <span class="sc">|&gt;</span></span>
 <span id="cb383-2"><a href="e-stat.html#cb383-2" tabindex="-1"></a>  <span class="co"># 列名を簡単なものに変える</span></span>
 <span id="cb383-3"><a href="e-stat.html#cb383-3" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">&quot;pref&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;item&quot;</span> <span class="ot">=</span> <span class="dv">4</span>) <span class="sc">|&gt;</span>  <span class="co"># 2列目をprefに、4列目をitemに変更</span></span>
@@ -660,7 +660,7 @@ e-Statのウェブサイト上で、漁業センサスを検索し、「デー�
 </div>
 <div id="データ描画の例" class="section level3 hasAnchor" number="17.3.4">
 <h3><span class="header-section-number">17.3.4</span> データ描画の例<a href="e-stat.html#データ描画の例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>詳細については描画についてのチャプター（#rviz）を参照してください。</p>
+<p>詳細については描画についての<a href="rviz.html#rviz">チャプター</a>を参照してください。</p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="e-stat.html#cb384-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat2, <span class="fu">aes</span>(<span class="at">x=</span>pref, <span class="at">y=</span><span class="st">`</span><span class="at">漁業経営体数</span><span class="st">`</span>)) <span class="sc">+</span> </span>
 <span id="cb384-2"><a href="e-stat.html#cb384-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
 <span id="cb384-3"><a href="e-stat.html#cb384-3" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
