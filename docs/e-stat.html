@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-12-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="rdd.html"/>
-
+<link rel="next" href="regressionreporting.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -533,6 +533,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.3.4" data-path="e-stat.html"><a href="e-stat.html#データ描画の例"><i class="fa fa-check"></i><b>17.3.4</b> データ描画の例</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="18" data-path="regressionreporting.html"><a href="regressionreporting.html"><i class="fa fa-check"></i><b>18</b> 回帰分析結果のレポーティング</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析結果の報告"><i class="fa fa-check"></i><b>18.1</b> 回帰分析結果の報告</a></li>
+<li class="chapter" data-level="18.2" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析の結果の報告"><i class="fa fa-check"></i><b>18.2</b> 回帰分析の結果の報告</a></li>
+<li class="chapter" data-level="18.3" data-path="regressionreporting.html"><a href="regressionreporting.html#modelsummaryによる表作成"><i class="fa fa-check"></i><b>18.3</b> modelsummary()による表作成</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="regressionreporting.html"><a href="regressionreporting.html#表の出力"><i class="fa fa-check"></i><b>18.3.1</b> 表の出力</a></li>
+<li class="chapter" data-level="18.3.2" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定"><i class="fa fa-check"></i><b>18.3.2</b> 変数名の設定</a></li>
+<li class="chapter" data-level="18.3.3" data-path="regressionreporting.html"><a href="regressionreporting.html#有意水準を示す星の表示"><i class="fa fa-check"></i><b>18.3.3</b> 有意水準を示す星の表示</a></li>
+<li class="chapter" data-level="18.3.4" data-path="regressionreporting.html"><a href="regressionreporting.html#不必要な統計量の非表示"><i class="fa fa-check"></i><b>18.3.4</b> 不必要な統計量の非表示</a></li>
+<li class="chapter" data-level="18.3.5" data-path="regressionreporting.html"><a href="regressionreporting.html#モデルに名前をつける"><i class="fa fa-check"></i><b>18.3.5</b> モデルに名前をつける</a></li>
+<li class="chapter" data-level="18.3.6" data-path="regressionreporting.html"><a href="regressionreporting.html#固定効果の表示"><i class="fa fa-check"></i><b>18.3.6</b> 固定効果の表示</a></li>
+<li class="chapter" data-level="18.3.7" data-path="regressionreporting.html"><a href="regressionreporting.html#ファイルへの出力"><i class="fa fa-check"></i><b>18.3.7</b> ファイルへの出力</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="regressionreporting.html"><a href="regressionreporting.html#etableによる表作成"><i class="fa fa-check"></i><b>18.4</b> etable()による表作成</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定-1"><i class="fa fa-check"></i><b>18.4.1</b> 変数名の設定</a></li>
+<li class="chapter" data-level="18.4.2" data-path="regressionreporting.html"><a href="regressionreporting.html#標準誤差の数値を係数の下に表示"><i class="fa fa-check"></i><b>18.4.2</b> 標準誤差の数値を係数の下に表示</a></li>
+<li class="chapter" data-level="18.4.3" data-path="regressionreporting.html"><a href="regressionreporting.html#エクセルへの出力"><i class="fa fa-check"></i><b>18.4.3</b> エクセルへの出力</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -630,18 +651,21 @@ e-Statのウェブサイト上で、漁業センサスを検索し、「デー�
 <p>データを見てみる。</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="e-stat.html#cb381-1" tabindex="-1"></a><span class="fu">head</span>(dat, <span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 7
-##    cat01_code `(J118-30-2-001)全国・都道府県・大海区` cat02_code `(J118-30-1-064)基本的項目` unit     value annotation
-##    &lt;chr&gt;      &lt;chr&gt;                                   &lt;chr&gt;      &lt;chr&gt;                       &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     
-##  1 001        全国                                    001        漁業経営体数                経営体  79067  &lt;NA&gt;      
-##  2 001        全国                                    002        漁船_無動力漁船隻数         隻       3080  &lt;NA&gt;      
-##  3 001        全国                                    003        漁船_船外機付漁船隻数       隻      59201  &lt;NA&gt;      
-##  4 001        全国                                    004        漁船_動力漁船_隻数          隻      69920  &lt;NA&gt;      
-##  5 001        全国                                    005        漁船_動力漁船_ﾄﾝ数          T      547521. &lt;NA&gt;      
-##  6 002        北海道                                  001        漁業経営体数                経営体  11089  &lt;NA&gt;      
-##  7 002        北海道                                  002        漁船_無動力漁船隻数         隻         77  &lt;NA&gt;      
-##  8 002        北海道                                  003        漁船_船外機付漁船隻数       隻      12689  &lt;NA&gt;      
-##  9 002        北海道                                  004        漁船_動力漁船_隻数          隻       6376  &lt;NA&gt;      
-## 10 002        北海道                                  005        漁船_動力漁船_ﾄﾝ数          T       58798  &lt;NA&gt;</code></pre>
+##    cat01_code (J118-30-2-001)全国・…¹ cat02_code (J118-30-1-064)基本的…² unit   value
+##    &lt;chr&gt;      &lt;chr&gt;                   &lt;chr&gt;      &lt;chr&gt;                   &lt;chr&gt;  &lt;dbl&gt;
+##  1 001        全国                    001        漁業経営体数            経営… 7.91e4
+##  2 001        全国                    002        漁船_無動力漁船隻数     隻    3.08e3
+##  3 001        全国                    003        漁船_船外機付漁船隻数   隻    5.92e4
+##  4 001        全国                    004        漁船_動力漁船_隻数      隻    6.99e4
+##  5 001        全国                    005        漁船_動力漁船_ﾄﾝ数      T     5.48e5
+##  6 002        北海道                  001        漁業経営体数            経営… 1.11e4
+##  7 002        北海道                  002        漁船_無動力漁船隻数     隻    7.7 e1
+##  8 002        北海道                  003        漁船_船外機付漁船隻数   隻    1.27e4
+##  9 002        北海道                  004        漁船_動力漁船_隻数      隻    6.38e3
+## 10 002        北海道                  005        漁船_動力漁船_ﾄﾝ数      T     5.88e4
+## # ℹ abbreviated names: ¹​`(J118-30-2-001)全国・都道府県・大海区`,
+## #   ²​`(J118-30-1-064)基本的項目`
+## # ℹ 1 more variable: annotation &lt;chr&gt;</code></pre>
 <p><code>value</code>という列には異なる変数（経営体数や漁船数）が一気に入ってしまっているので、整然データにはなっていない。</p>
 </div>
 <div id="データ加工の例" class="section level3 hasAnchor" number="17.3.3">
@@ -676,8 +700,8 @@ e-Statのウェブサイト上で、漁業センサスを検索し、「デー�
           </div>
         </div>
       </div>
-<a href="rdd.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="rdd.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regressionreporting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

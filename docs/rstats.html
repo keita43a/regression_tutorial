@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-12-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -533,6 +533,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.3.4" data-path="e-stat.html"><a href="e-stat.html#データ描画の例"><i class="fa fa-check"></i><b>17.3.4</b> データ描画の例</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="18" data-path="regressionreporting.html"><a href="regressionreporting.html"><i class="fa fa-check"></i><b>18</b> 回帰分析結果のレポーティング</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析結果の報告"><i class="fa fa-check"></i><b>18.1</b> 回帰分析結果の報告</a></li>
+<li class="chapter" data-level="18.2" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析の結果の報告"><i class="fa fa-check"></i><b>18.2</b> 回帰分析の結果の報告</a></li>
+<li class="chapter" data-level="18.3" data-path="regressionreporting.html"><a href="regressionreporting.html#modelsummaryによる表作成"><i class="fa fa-check"></i><b>18.3</b> modelsummary()による表作成</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="regressionreporting.html"><a href="regressionreporting.html#表の出力"><i class="fa fa-check"></i><b>18.3.1</b> 表の出力</a></li>
+<li class="chapter" data-level="18.3.2" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定"><i class="fa fa-check"></i><b>18.3.2</b> 変数名の設定</a></li>
+<li class="chapter" data-level="18.3.3" data-path="regressionreporting.html"><a href="regressionreporting.html#有意水準を示す星の表示"><i class="fa fa-check"></i><b>18.3.3</b> 有意水準を示す星の表示</a></li>
+<li class="chapter" data-level="18.3.4" data-path="regressionreporting.html"><a href="regressionreporting.html#不必要な統計量の非表示"><i class="fa fa-check"></i><b>18.3.4</b> 不必要な統計量の非表示</a></li>
+<li class="chapter" data-level="18.3.5" data-path="regressionreporting.html"><a href="regressionreporting.html#モデルに名前をつける"><i class="fa fa-check"></i><b>18.3.5</b> モデルに名前をつける</a></li>
+<li class="chapter" data-level="18.3.6" data-path="regressionreporting.html"><a href="regressionreporting.html#固定効果の表示"><i class="fa fa-check"></i><b>18.3.6</b> 固定効果の表示</a></li>
+<li class="chapter" data-level="18.3.7" data-path="regressionreporting.html"><a href="regressionreporting.html#ファイルへの出力"><i class="fa fa-check"></i><b>18.3.7</b> ファイルへの出力</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="regressionreporting.html"><a href="regressionreporting.html#etableによる表作成"><i class="fa fa-check"></i><b>18.4</b> etable()による表作成</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定-1"><i class="fa fa-check"></i><b>18.4.1</b> 変数名の設定</a></li>
+<li class="chapter" data-level="18.4.2" data-path="regressionreporting.html"><a href="regressionreporting.html#標準誤差の数値を係数の下に表示"><i class="fa fa-check"></i><b>18.4.2</b> 標準誤差の数値を係数の下に表示</a></li>
+<li class="chapter" data-level="18.4.3" data-path="regressionreporting.html"><a href="regressionreporting.html#エクセルへの出力"><i class="fa fa-check"></i><b>18.4.3</b> エクセルへの出力</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -592,9 +613,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb173-2"><a href="rstats.html#cb173-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="at">mean=</span><span class="dv">170</span>,<span class="at">sd=</span><span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>()</span>
 <span id="cb173-3"><a href="rstats.html#cb173-3" tabindex="-1"></a></span>
 <span id="cb173-4"><a href="rstats.html#cb173-4" tabindex="-1"></a>height</span></code></pre></div>
-<pre><code>##   [1] 160 167 173 158 172 170 171 181 158 183 163 159 163 173 172 167 160 164 182 172 164 161 168 153 165 163 182 180 169 159 179 179 177 177 166 177
-##  [37] 183 170 160 178 178 167 187 162 173 147 168 181 165 161 177 162 173 153 156 165 160 184 179 162 176 179 173 174 182 165 166 180 157 172 170 175
-##  [73] 180 173 172 177 182 174 160 168 187 166 177 182 178 170 172 161 174 161 161 160 163 181 166 169 165 175 179 168</code></pre>
+<pre><code>##   [1] 160 167 173 158 172 170 171 181 158 183 163 159 163 173 172 167 160 164 182 172
+##  [21] 164 161 168 153 165 163 182 180 169 159 179 179 177 177 166 177 183 170 160 178
+##  [41] 178 167 187 162 173 147 168 181 165 161 177 162 173 153 156 165 160 184 179 162
+##  [61] 176 179 173 174 182 165 166 180 157 172 170 175 180 173 172 177 182 174 160 168
+##  [81] 187 166 177 182 178 170 172 161 174 161 161 160 163 181 166 169 165 175 179 168</code></pre>
 <p>この数字を見てどう思うか？</p>
 <p>「ああ、数字が並んでいるなぁ」</p>
 <p>「自分はこの中では高いほうかな」</p>
@@ -784,20 +807,27 @@ s = \sqrt{s^2}
 <h3><span class="header-section-number">7.5.2</span> <code>summary</code>関数<a href="rstats.html#summary関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>summaryというRデフォルトの関数(<code>base</code>関数と呼ぶ)を使うと、最小・最大・平均・中央値・四分位点などが表示される。</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="rstats.html#cb197-1" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code></pre></div>
-<pre><code>##       mpg             cyl             disp             hp             drat             wt             qsec             vs               am        
-##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0   Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000   Min.   :0.0000  
-##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000   1st Qu.:0.0000  
-##  Median :19.20   Median :6.000   Median :196.3   Median :123.0   Median :3.695   Median :3.325   Median :17.71   Median :0.0000   Median :0.0000  
-##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7   Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375   Mean   :0.4062  
-##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0   3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000   3rd Qu.:1.0000  
-##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0   Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000   Max.   :1.0000  
-##       gear            carb      
-##  Min.   :3.000   Min.   :1.000  
-##  1st Qu.:3.000   1st Qu.:2.000  
-##  Median :4.000   Median :2.000  
-##  Mean   :3.688   Mean   :2.812  
-##  3rd Qu.:4.000   3rd Qu.:4.000  
-##  Max.   :5.000   Max.   :8.000</code></pre>
+<pre><code>##       mpg             cyl             disp             hp             drat      
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0   Min.   :2.760  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.080  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0   Median :3.695  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7   Mean   :3.597  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0   3rd Qu.:3.920  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0   Max.   :4.930  
+##        wt             qsec             vs               am              gear      
+##  Min.   :1.513   Min.   :14.50   Min.   :0.0000   Min.   :0.0000   Min.   :3.000  
+##  1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:3.000  
+##  Median :3.325   Median :17.71   Median :0.0000   Median :0.0000   Median :4.000  
+##  Mean   :3.217   Mean   :17.85   Mean   :0.4375   Mean   :0.4062   Mean   :3.688  
+##  3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:4.000  
+##  Max.   :5.424   Max.   :22.90   Max.   :1.0000   Max.   :1.0000   Max.   :5.000  
+##       carb      
+##  Min.   :1.000  
+##  1st Qu.:2.000  
+##  Median :2.000  
+##  Mean   :2.812  
+##  3rd Qu.:4.000  
+##  Max.   :8.000</code></pre>
 </div>
 <div id="describe関数" class="section level3 hasAnchor" number="7.5.3">
 <h3><span class="header-section-number">7.5.3</span> <code>describe</code>関数<a href="rstats.html#describe関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>

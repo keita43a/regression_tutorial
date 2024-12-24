@@ -1,0 +1,398 @@
+# 回帰分析結果のレポーティング {#regressionreporting}
+
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(fixest)
+library(skimr)
+library(openxlsx)
+library(modelsummary)
+```
+
+
+## 回帰分析結果の報告
+
+回帰分析を行ったら、その結果を報告する。報告の際には、結果を**表にして報告**するのがスタンダードである。これは、プレゼンテーションやレポート・論文でも同じである。
+
+複数のモデルを比較しやすいようにして表にして見せるのがよい。この見せ方は、結果をきちんと伝える上で大変重要である。この章では、回帰分析の表のアウトプットについて解説する。
+
+## 回帰分析の結果の報告
+
+引き続き[重回帰分析の章](#multipleregression)の例を使ってみよう。
+「# シミュレーションデータの作成」部分を実行して`dat_sim`というデータを作成しよう。
+
+```{r, echo=FALSE}
+# シミュレーションデータの作成
+set.seed(3)
+
+dat_sim = tibble(
+  shop_ID = 1:N2,
+  age = round(runif(N2,25,60)),
+  income = round(runif(N2,15,100))*10,
+  pop = round(runif(N2,10,1000))*100,
+  dogs = round(runif(N2,0,0.5),digits=2),
+  u_ads = rnorm(N2,0,sd=10),
+  z_ads = round(g1*age+g2*income,digits=1),
+  y_ads = z_ads + u_ads,
+  ads = ifelse(100 <= y_ads,1,0),
+  epsilon = rnorm(N2,sd=20),
+  sales = round(a1 + b1*ads + b2*age + b3*income + epsilon,digits=1)
+) %>%
+  select(!contains("_ads") & !starts_with("u")) %>%
+  relocate(ads, .before=age)
+
+```
+
+そのデータを使って、以下のような２つのモデルを推定する。ここでは`fixest`パッケージの`feols()`関数を使っている。
+
+```{r}
+model1 <- feols(sales ~ ads + age, data = dat_sim)
+model2 <- feols(sales ~ ads + age + income, data = dat_sim)
+
+etable(model1,model2)
+```
+
+`fixest`パッケージを使っている場合は、`etable()`関数で回帰分析表をコンソールに表示できることはすでに解説した。
+
+```{r,fig.align = 'center'}
+knitr::include_graphics("fig/etable_result.png")
+```
+
+このような結果が出る。
+
+もしくは、`etable()`を使わなかったり、`lm()`や`lm_robust()`などを使って`summary()`関数で結果を表示していると、このような結果がコンソールに出るだろう。
+
+```{r,fig.align = 'center'}
+knitr::include_graphics("fig/summary_result.png")
+```
+
+この結果を、テキストとしてコピペしてワードに貼り付けたり、スクリーンショットを撮って図として貼り付けたりするケースが見られるが、そのまま見せるのは良くない。なぜなら、ひとことでいうと**美しくない**からである。
+
+美しさはバカにはできない。美しくない図表は読者の見る気、理解しようとする気を失わせる。きちんと理解してもらうためには、最低限の「身だしなみ」を整える必要がある。
+
+身だしなみを整える方法として、２つのステップがある。１つは、表としての体裁を整えること。これで8割は決まる。必要な情報を提供することが大事であり、例えば最低限の比較として、`summary()`を使った結果を並べるより`etable()`で比較しやすく見せるのは最初に一歩である。しかし、それだけではだめで、さらに見やすく整える必要がある。
+
+もう一つは、Wordなどの形式にきちんと出力することである。スクリーンショットというアドホックな手法ではなく、きちんとファイル名を指定してファイルを書き出すことで、再現性を高めることができるし、どのファイルがどのようにして生成されたかをコードに残すことができる。さらに、画像ファイルの他にWordやHTML, 上級者向けにはTexなどにも出力することが可能だ。
+
+ここでは、`lm()`などにも対応した表作成パッケージの`modelsummary`の使い方を解説し、その後`etable()`を使った表作成も解説する。
+
+## modelsummary()による表作成
+
+まず、`modelsummary`というパッケージをインストールする。
+
+例によって、RStudioの右下ペーンのPackagesタブからInstallを押してインストールするか、`install.packages("modelsummary")`を実行してインストールする。
+
+インストールしたら、コード上部に`library(modelsummary)`と追加して読み込むのを忘れずに。
+
+### 表の出力
+
+まず、`modelsummary()`では、出力したい回帰分析オブジェクトを`list()`でまとめる必要がある。
+例えば、`model1`と`model2`を表示したい場合は、`list(model1,model2)`という形でまとめる。
+
+```{r, eval=FALSE}
+modelsummary(list(model1,model2))
+```
+```{r,echo=FALSE}
+modelsummary(list(model1,model2),
+             output="fig/msummary1.png")
+```
+```{r,echo=FALSE, out.width="60%",fig.align = 'center'}
+knitr::include_graphics("fig/msummary1.png")
+```
+
+これを実行すると、右下ペーンのViewerに回帰分析表が表示される。
+
+これから、この表を見やすく整えていく。
+
+### 変数名の設定
+
+#### 変数名の変換
+
+モデル推定に直接使用した説明変数の変数名は、読者にとってはわかりにくい。
+もっとわかりやすい名前に変えて表に示すほうが親切である。
+
+そのためには、変数名と変換したい名前の「辞書」を作成する。
+具体的には、以下のように変数名と変換したい名前を`=`つなぎ、`c()`でまとめ、オブジェクトに保存する。
+
+```{r}
+varname_dict <- c(sales = "支店の売上",
+                  `(Intercept)` = "切片",
+                  ads = "広告ダミー",
+                  age = "店長の年齢(歳)",
+                  income = "地域の平均所得(万円)")
+```
+
+そして、`coef_rename`という引数にこの辞書を指定する。
+
+```{r, eval=FALSE}
+modelsummary(list(model1,model2),
+             coef_rename = varname_dict)
+```
+```{r,echo=FALSE}
+modelsummary(list(model1,model2),
+             coef_rename = varname_dict,
+             output="fig/msummary2.png")
+```
+```{r,echo=FALSE, out.width="60%", fig.align = 'center'}
+knitr::include_graphics("fig/msummary2.png")
+```
+
+すると、対応する変数の名前が変換された表が表示される。
+
+#### 変数の削除
+
+変数が多すぎたり、結果に重要な変数ではない場合はそれを非表示にすることもできる。
+例えば、切片は特に解釈するわけではなく、重要ではないので非表示にするとしよう。
+
+この場合は`coef_omit`を指定する。
+
+```{r, eval=FALSE}
+modelsummary(list(model1,model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept")
+```
+```{r,echo=FALSE}
+modelsummary(list(model1,model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept",
+             output="fig/msummary3.png")
+```
+```{r,echo=FALSE, out.width="60%", fig.align = 'center'}
+knitr::include_graphics("fig/msummary3.png")
+```
+
+### 有意水準を示す星の表示
+
+デフォルトでは、`modelsummary`は有意水準を示す星(`*`)が**非表示**になっている。
+表示させるためには、`stars`という引数に`TRUE`を指定する。
+
+```{r, eval=FALSE}
+modelsummary(list(model1,model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept",
+             stars = TRUE)
+```
+```{r,echo=FALSE}
+modelsummary(list(model1,model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept",
+             stars = TRUE,
+             output="fig/msummary4.png")
+```
+```{r,echo=FALSE, out.width="60%", fig.align = 'center'}
+knitr::include_graphics("fig/msummary4.png")
+```
+ここでは、有意水準が10%以下で`+`, 5%以下で`*`, 1%以下で`**`, 10%以下で`***`と表示される設定になっている。この基準も自動的に表の下部に表示される。
+
+### 不必要な統計量の非表示
+
+気づいている人もいるかもしれないが、表示された表の下部をみると、モデルの決定係数`R2`や調整済み決定係数`R2 Adj.`の他にも`AIC`などの統計量が表示されている。これは、もっと違う手法を使う場合は表示する必要だが、最小二乗法を使う基本的な回帰分析では表示する必要はない。
+
+これをどうすれば非表示にできるかというと、`gof_omit`という引数で指定する。
+
+```{r, eval=FALSE}
+modelsummary(list(model1,model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept",
+             stars = TRUE,
+             gof_omit = "BIC|AIC|RMSE|Std.Errors")
+```
+```{r,echo=FALSE}
+modelsummary(list(model1,model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept",
+             stars = TRUE,
+             gof_omit = "BIC|AIC|RMSE|Std.Errors",
+             output="fig/msummary5.png")
+```
+```{r,echo=FALSE, out.width="60%", fig.align = 'center'}
+knitr::include_graphics("fig/msummary5.png")
+```
+
+データの観察数、決定係数、調整済み決定係数以外の統計量が非表示になった。
+
+### モデルに名前をつける
+
+各モデルの列は、入力された順番に(1),(2)という数字が自動でつくようになっているが、これに名前をつけることができる。
+
+名前をつけるには、`list()`で入力するときに名前を指定する。
+
+```{r, eval=FALSE}
+modelsummary(list("モデル1"=model1,"モデル2"=model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept",
+             stars = TRUE,
+             gof_omit = "BIC|AIC|RMSE|Std.Errors")
+```
+```{r,echo=FALSE}
+modelsummary(list("モデル1"=model1,"モデル2"=model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept",
+             stars = TRUE,
+             gof_omit = "BIC|AIC|RMSE|Std.Errors",
+             output="fig/msummary6.png")
+```
+```{r,echo=FALSE, out.width="60%", fig.align = 'center'}
+knitr::include_graphics("fig/msummary6.png")
+```
+
+### 固定効果の表示
+
+固定効果の場合は、固定効果自体をテーブルに表示することは数が多すぎて難しい。しかし、モデルに固定効果を含めているかどうかを表示することは重要だ。
+`modelsummary()`では固定効果が含まれているかをX印で表示することを自動でやってくれる。
+
+ここでは[パネルデータの章](#paneldata)の例を使って、表の出力を見てみる。
+
+```{r, echo =FALSE}
+library(AER)
+data(Fatalities)
+data_f <- Fatalities
+
+# データの加工
+data_f2 <- data_f |> 
+  # 死亡率の計算
+  mutate(fatal_rate = fatal/pop * 10000)
+```
+
+単回帰モデルと固定効果モデルの両方を推定してオブジェクトにそれぞれ保存する。
+
+```{r}
+
+reg1_panel <- feols(fatal_rate ~ beertax, data=data_f2)
+
+reg1_panel_fe = feols(fatal_rate ~ beertax | state, data = data_f2)
+
+```
+
+２つのモデルを並べた表を作成する。
+ここでは単回帰モデル(`reg1_panel`)を「単回帰」, 固定効果モデル(`reg1_panel`)を「固定効果」と名前をつけている。
+
+```{r, eval=FALSE}
+varname_dict2 = c(beertax="ビール税")
+
+modelsummary(list("単回帰"=reg1_panel, "固定効果"=reg1_panel_fe),
+             coef_rename = varname_dict2,
+             coef_omit = "Intercept",
+             stars = TRUE,
+             gof_omit = "BIC|AIC|RMSE|Std.Errors"
+             )
+```
+```{r,echo=FALSE}
+varname_dict2 = c(beertax="ビール税")
+
+modelsummary(list("単回帰"=reg1_panel, "固定効果"=reg1_panel_fe),
+             coef_rename = varname_dict2,
+             coef_omit = "Intercept",
+             stars = TRUE,
+             gof_omit = "BIC|AIC|RMSE|Std.Errors",
+             output="fig/msummary7.png")
+```
+```{r,echo=FALSE, out.width="60%", fig.align = 'center'}
+knitr::include_graphics("fig/msummary7.png")
+```
+
+一番下にFE: stateという行が作成され、固定効果を含まないモデルは空欄、含むモデルにはX印がついている。
+
+
+### ファイルへの出力
+
+`modelsummary`では`output`という引数にファイル名を指定することで表をファイルに出力することができる。
+ファイル形式は、.docx, .html, .tex, .md, .txt, .csv, .xlsx, .png, .jpgなどが対応している。
+
+
+#### 画像ファイルへの出力
+
+`output`引数に画像ファイルの拡張子で終わるファイル名をつけると、画像ファイルが出力される。
+
+```{r}
+modelsummary(list("モデル1"=model1,"モデル2"=model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept",
+             stars = TRUE,
+             gof_omit = "BIC|AIC|RMSE|Std.Errors",
+             output="reg_output1.png")
+```
+
+上のコードを実行してエラーが出なければ、作業ディレクトリの直下に"reg_output1.png"という画像ファイルが出力されているはずである。
+
+#### ワードへの出力
+
+Mircosoft Wordへの出力も画像と同様に`output`引数にファイル名を指定し、拡張子を".docx"とすれば、出力することができる。
+
+```{r}
+modelsummary(list("モデル1"=model1,"モデル2"=model2),
+             coef_rename = varname_dict,
+             coef_omit = "Intercept",
+             stars = TRUE,
+             gof_omit = "BIC|AIC|RMSE|Std.Errors",
+             output="reg_output1.docx")
+```
+
+ここで注意点は、ワードファイルに日本語を含む表を出力するとうまくいかないという点である。
+これは一般的には英語などはsingle-byte文字という半角アルファベットなどが使われるが、日本語はmulti-byte文字であり、開発者が日本語などを含むことを想定していないことから来ていると考えられる。
+
+現状では日本語を使わないか、Wordファイルにした後に手作業で日本語に変換する、もしくは画像ファイルをWordに挿入するなどの対応になるだろう。
+
+
+
+## etable()による表作成
+
+上述の通り、`fixest`の`feols()`などで推定した結果のオブジェクトであれば、`etable()`を使って回帰分析表の形式で出力させることができる。
+
+```{r}
+etable(model1,model2)
+```
+
+しかし、`etable()`の弱点として、Wordのファイルに出力しにくいという欠点がある。
+
+### 変数名の設定
+
+ここで、モデル推定に直接使用した説明変数の変数名は、読者にとってはわかりにくい。
+もっとわかりやすい名前に変えて表に示すほうが親切である。
+
+これは、`setFixest_dict()`という関数で設定することができる。
+
+
+```{r}
+setFixest_dict(c(sales = "支店の売上",
+                 ads = "広告ダミー",
+                 age = "店長の年齢(歳)",
+                 income = "地域の平均所得(万円)"
+                 ))
+```
+
+変数名と変換したい名前を`=`つなぎ、`c()`でまとめたものを`setFixest_dict()`で囲ってやればよい。
+
+これを設定したら、該当箇所が変換された表が出力される。
+
+```{r}
+etable(model1,model2)
+```
+### 標準誤差の数値を係数の下に表示
+
+`se.below = TRUE`を追加すると、標準誤差の数値を係数の下に表示する。
+横幅をあまり取らないし、一般的にはこのような形で表示するのがスタンダードである。
+
+```{r}
+etable(model1,model2, se.below = TRUE)
+```
+
+### エクセルへの出力
+
+`etable()`は現状では簡単にWordに出力する方法はないが、きれいな形でエクセルに出力することはできるため、それをWordに貼り付けて編集することはできる。
+
+`openxlsx`パッケージをインストールして、`library(openxlsx)`をコードの上部のlibraryセクションに追加しよう。
+
+準備ができたら、以下のように`etable()`の結果をオブジェクトに格納し、そのオブジェクトを`write.xlsx`という関数でエクセルファイルに書き出す。
+
+```{r}
+results <- etable(model1,model2, se.below = TRUE)
+
+write.xlsx(results,"results_table.xlsx")
+```
+
+生成されたエクセルファイル`results_table.xlsx`を見てみると、結果が格納されている。
+
+
+
+

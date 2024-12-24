@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-12-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -533,6 +533,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.3.4" data-path="e-stat.html"><a href="e-stat.html#データ描画の例"><i class="fa fa-check"></i><b>17.3.4</b> データ描画の例</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="18" data-path="regressionreporting.html"><a href="regressionreporting.html"><i class="fa fa-check"></i><b>18</b> 回帰分析結果のレポーティング</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析結果の報告"><i class="fa fa-check"></i><b>18.1</b> 回帰分析結果の報告</a></li>
+<li class="chapter" data-level="18.2" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析の結果の報告"><i class="fa fa-check"></i><b>18.2</b> 回帰分析の結果の報告</a></li>
+<li class="chapter" data-level="18.3" data-path="regressionreporting.html"><a href="regressionreporting.html#modelsummaryによる表作成"><i class="fa fa-check"></i><b>18.3</b> modelsummary()による表作成</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="regressionreporting.html"><a href="regressionreporting.html#表の出力"><i class="fa fa-check"></i><b>18.3.1</b> 表の出力</a></li>
+<li class="chapter" data-level="18.3.2" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定"><i class="fa fa-check"></i><b>18.3.2</b> 変数名の設定</a></li>
+<li class="chapter" data-level="18.3.3" data-path="regressionreporting.html"><a href="regressionreporting.html#有意水準を示す星の表示"><i class="fa fa-check"></i><b>18.3.3</b> 有意水準を示す星の表示</a></li>
+<li class="chapter" data-level="18.3.4" data-path="regressionreporting.html"><a href="regressionreporting.html#不必要な統計量の非表示"><i class="fa fa-check"></i><b>18.3.4</b> 不必要な統計量の非表示</a></li>
+<li class="chapter" data-level="18.3.5" data-path="regressionreporting.html"><a href="regressionreporting.html#モデルに名前をつける"><i class="fa fa-check"></i><b>18.3.5</b> モデルに名前をつける</a></li>
+<li class="chapter" data-level="18.3.6" data-path="regressionreporting.html"><a href="regressionreporting.html#固定効果の表示"><i class="fa fa-check"></i><b>18.3.6</b> 固定効果の表示</a></li>
+<li class="chapter" data-level="18.3.7" data-path="regressionreporting.html"><a href="regressionreporting.html#ファイルへの出力"><i class="fa fa-check"></i><b>18.3.7</b> ファイルへの出力</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="regressionreporting.html"><a href="regressionreporting.html#etableによる表作成"><i class="fa fa-check"></i><b>18.4</b> etable()による表作成</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定-1"><i class="fa fa-check"></i><b>18.4.1</b> 変数名の設定</a></li>
+<li class="chapter" data-level="18.4.2" data-path="regressionreporting.html"><a href="regressionreporting.html#標準誤差の数値を係数の下に表示"><i class="fa fa-check"></i><b>18.4.2</b> 標準誤差の数値を係数の下に表示</a></li>
+<li class="chapter" data-level="18.4.3" data-path="regressionreporting.html"><a href="regressionreporting.html#エクセルへの出力"><i class="fa fa-check"></i><b>18.4.3</b> エクセルへの出力</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -703,14 +724,16 @@ Y_{it} = \alpha + \beta_{1} \cdot 1 + \beta_{2} \cdot 1 + \beta_{3} \cdot 1 \tim
 まずは、どんなデータなのか<code>head()</code>で確認する。</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="did.html#cb346-1" tabindex="-1"></a><span class="fu">head</span>(data_njmin)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 9
-##   state fulltime_before parttime_before wage_before fulltime_after parttime_after wage_after full_prop_before full_prop_after
-##   &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
-## 1 PA                 20              20        5                 0             36       5.25            0.5             0    
-## 2 PA                  6              26        5.5              28              3       4.75            0.188           0.903
-## 3 PA                 50              35        5                15             18       4.75            0.588           0.455
-## 4 PA                 10              17        5                26              9       5               0.370           0.743
-## 5 PA                  2               8        5.25              3             12       5               0.2             0.2  
-## 6 PA                  2              10        5                 2              9       5               0.167           0.182</code></pre>
+##   state fulltime_before parttime_before wage_before fulltime_after parttime_after
+##   &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+## 1 PA                 20              20        5                 0             36
+## 2 PA                  6              26        5.5              28              3
+## 3 PA                 50              35        5                15             18
+## 4 PA                 10              17        5                26              9
+## 5 PA                  2               8        5.25              3             12
+## 6 PA                  2              10        5                 2              9
+## # ℹ 3 more variables: wage_after &lt;dbl&gt;, full_prop_before &lt;dbl&gt;,
+## #   full_prop_after &lt;dbl&gt;</code></pre>
 </div>
 <div id="データの記述統計-1" class="section level3 hasAnchor" number="15.2.5">
 <h3><span class="header-section-number">15.2.5</span> データの記述統計<a href="did.html#データの記述統計-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>

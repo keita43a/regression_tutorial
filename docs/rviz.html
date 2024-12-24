@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-12-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -533,6 +533,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.3.4" data-path="e-stat.html"><a href="e-stat.html#データ描画の例"><i class="fa fa-check"></i><b>17.3.4</b> データ描画の例</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="18" data-path="regressionreporting.html"><a href="regressionreporting.html"><i class="fa fa-check"></i><b>18</b> 回帰分析結果のレポーティング</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析結果の報告"><i class="fa fa-check"></i><b>18.1</b> 回帰分析結果の報告</a></li>
+<li class="chapter" data-level="18.2" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析の結果の報告"><i class="fa fa-check"></i><b>18.2</b> 回帰分析の結果の報告</a></li>
+<li class="chapter" data-level="18.3" data-path="regressionreporting.html"><a href="regressionreporting.html#modelsummaryによる表作成"><i class="fa fa-check"></i><b>18.3</b> modelsummary()による表作成</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="regressionreporting.html"><a href="regressionreporting.html#表の出力"><i class="fa fa-check"></i><b>18.3.1</b> 表の出力</a></li>
+<li class="chapter" data-level="18.3.2" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定"><i class="fa fa-check"></i><b>18.3.2</b> 変数名の設定</a></li>
+<li class="chapter" data-level="18.3.3" data-path="regressionreporting.html"><a href="regressionreporting.html#有意水準を示す星の表示"><i class="fa fa-check"></i><b>18.3.3</b> 有意水準を示す星の表示</a></li>
+<li class="chapter" data-level="18.3.4" data-path="regressionreporting.html"><a href="regressionreporting.html#不必要な統計量の非表示"><i class="fa fa-check"></i><b>18.3.4</b> 不必要な統計量の非表示</a></li>
+<li class="chapter" data-level="18.3.5" data-path="regressionreporting.html"><a href="regressionreporting.html#モデルに名前をつける"><i class="fa fa-check"></i><b>18.3.5</b> モデルに名前をつける</a></li>
+<li class="chapter" data-level="18.3.6" data-path="regressionreporting.html"><a href="regressionreporting.html#固定効果の表示"><i class="fa fa-check"></i><b>18.3.6</b> 固定効果の表示</a></li>
+<li class="chapter" data-level="18.3.7" data-path="regressionreporting.html"><a href="regressionreporting.html#ファイルへの出力"><i class="fa fa-check"></i><b>18.3.7</b> ファイルへの出力</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="regressionreporting.html"><a href="regressionreporting.html#etableによる表作成"><i class="fa fa-check"></i><b>18.4</b> etable()による表作成</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定-1"><i class="fa fa-check"></i><b>18.4.1</b> 変数名の設定</a></li>
+<li class="chapter" data-level="18.4.2" data-path="regressionreporting.html"><a href="regressionreporting.html#標準誤差の数値を係数の下に表示"><i class="fa fa-check"></i><b>18.4.2</b> 標準誤差の数値を係数の下に表示</a></li>
+<li class="chapter" data-level="18.4.3" data-path="regressionreporting.html"><a href="regressionreporting.html#エクセルへの出力"><i class="fa fa-check"></i><b>18.4.3</b> エクセルへの出力</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -892,7 +913,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb217-3"><a href="rviz.html#cb217-3" tabindex="-1"></a></span>
 <span id="cb217-4"><a href="rviz.html#cb217-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
 <span id="cb217-5"><a href="rviz.html#cb217-5" tabindex="-1"></a><span class="fu">names</span>(diamonds)</span></code></pre></div>
-<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;   &quot;table&quot;   &quot;price&quot;   &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;   &quot;table&quot;   &quot;price&quot;   &quot;x&quot;      
+##  [9] &quot;y&quot;       &quot;z&quot;</code></pre>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="rviz.html#cb219-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
 <span id="cb219-2"><a href="rviz.html#cb219-2" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10
@@ -1029,43 +1051,117 @@ Figure 8.1: データタイプ別のグラフ
 <span id="cb228-4"><a href="rviz.html#cb228-4" tabindex="-1"></a></span>
 <span id="cb228-5"><a href="rviz.html#cb228-5" tabindex="-1"></a><span class="co"># 変数名を確認</span></span>
 <span id="cb228-6"><a href="rviz.html#cb228-6" tabindex="-1"></a><span class="fu">names</span>(data_ssdse)</span></code></pre></div>
-<pre><code>##   [1] &quot;年度&quot;                                   &quot;地域コード&quot;                             &quot;都道府県&quot;                              
-##   [4] &quot;総人口&quot;                                 &quot;総人口（男）&quot;                           &quot;総人口（女）&quot;                          
-##   [7] &quot;日本人人口&quot;                             &quot;日本人人口（男）&quot;                       &quot;日本人人口（女）&quot;                      
-##  [10] &quot;15歳未満人口&quot;                           &quot;15歳未満人口（男）&quot;                     &quot;15歳未満人口（女）&quot;                    
-##  [13] &quot;15〜64歳人口&quot;                           &quot;15〜64歳人口（男）&quot;                     &quot;15〜64歳人口（女）&quot;                    
-##  [16] &quot;65歳以上人口&quot;                           &quot;65歳以上人口（男）&quot;                     &quot;65歳以上人口（女）&quot;                    
-##  [19] &quot;出生数&quot;                                 &quot;出生数（男）&quot;                           &quot;出生数（女）&quot;                          
-##  [22] &quot;合計特殊出生率&quot;                         &quot;死亡数&quot;                                 &quot;死亡数（男）&quot;                          
-##  [25] &quot;死亡数（女）&quot;                           &quot;転入者数（日本人移動者）&quot;               &quot;転入者数（日本人移動者）（男）&quot;        
-##  [28] &quot;転入者数（日本人移動者）（女）&quot;         &quot;転出者数（日本人移動者）&quot;               &quot;転出者数（日本人移動者）（男）&quot;        
-##  [31] &quot;転出者数（日本人移動者）（女）&quot;         &quot;婚姻件数&quot;                               &quot;離婚件数&quot;                              
-##  [34] &quot;年平均気温&quot;                             &quot;最高気温（日最高気温の月平均の最高値）&quot; &quot;最低気温（日最低気温の月平均の最低値）&quot;
-##  [37] &quot;降水日数（年間）&quot;                       &quot;降水量（年間）&quot;                         &quot;着工建築物数&quot;                          
-##  [40] &quot;着工建築物床面積&quot;                       &quot;旅館営業施設数（ホテルを含む）&quot;         &quot;旅館営業施設客室数（ホテルを含む）&quot;    
-##  [43] &quot;標準価格（平均価格）（住宅地）&quot;         &quot;標準価格（平均価格）（商業地）&quot;         &quot;幼稚園数&quot;                              
-##  [46] &quot;幼稚園教員数&quot;                           &quot;幼稚園在園者数&quot;                         &quot;小学校数&quot;                              
-##  [49] &quot;小学校教員数&quot;                           &quot;小学校児童数&quot;                           &quot;中学校数&quot;                              
-##  [52] &quot;中学校教員数&quot;                           &quot;中学校生徒数&quot;                           &quot;中学校卒業者数&quot;                        
-##  [55] &quot;中学校卒業者のうち進学者数&quot;             &quot;高等学校数&quot;                             &quot;高等学校教員数&quot;                        
-##  [58] &quot;高等学校生徒数&quot;                         &quot;高等学校卒業者数&quot;                       &quot;高等学校卒業者のうち進学者数&quot;          
-##  [61] &quot;短期大学数&quot;                             &quot;大学数&quot;                                 &quot;短期大学教員数&quot;                        
-##  [64] &quot;大学教員数&quot;                             &quot;短期大学学生数&quot;                         &quot;大学学生数&quot;                            
-##  [67] &quot;短期大学卒業者数&quot;                       &quot;短期大学卒業者のうち進学者数&quot;           &quot;大学卒業者数&quot;                          
-##  [70] &quot;大学卒業者のうち進学者数&quot;               &quot;専修学校数&quot;                             &quot;各種学校数&quot;                            
-##  [73] &quot;専修学校生徒数&quot;                         &quot;各種学校生徒数&quot;                         &quot;新規求職申込件数（一般）&quot;              
-##  [76] &quot;月間有効求職者数（一般）&quot;               &quot;月間有効求人数（一般）&quot;                 &quot;充足数（一般）&quot;                        
-##  [79] &quot;就職件数（一般）&quot;                       &quot;一般旅券発行件数&quot;                       &quot;延べ宿泊者数&quot;                          
-##  [82] &quot;外国人延べ宿泊者数&quot;                     &quot;着工新設住宅戸数&quot;                       &quot;着工新設持家数&quot;                        
-##  [85] &quot;着工新設貸家数&quot;                         &quot;着工新設分譲住宅数&quot;                     &quot;着工新設住宅床面積&quot;                    
-##  [88] &quot;着工新設持家床面積&quot;                     &quot;着工新設分譲住宅床面積&quot;                 &quot;着工新設貸家床面積&quot;                    
-##  [91] &quot;ごみ総排出量（総量）&quot;                   &quot;1人1日当たりの排出量&quot;                   &quot;ごみのリサイクル率&quot;                    
-##  [94] &quot;一般病院数&quot;                             &quot;一般診療所数&quot;                           &quot;歯科診療所数&quot;                          
-##  [97] &quot;保育所等数&quot;                             &quot;保育所等定員数&quot;                         &quot;保育所等利用待機児童数&quot;                
-## [100] &quot;保育所等在所児数&quot;                       &quot;保育所等保育士数&quot;                       &quot;消費支出（二人以上の世帯）&quot;            
-## [103] &quot;食料費（二人以上の世帯）&quot;               &quot;住居費（二人以上の世帯）&quot;               &quot;光熱・水道費（二人以上の世帯）&quot;        
-## [106] &quot;家具・家事用品費（二人以上の世帯）&quot;     &quot;被服及び履物費（二人以上の世帯）&quot;       &quot;保健医療費（二人以上の世帯）&quot;          
-## [109] &quot;交通・通信費（二人以上の世帯）&quot;         &quot;教育費（二人以上の世帯）&quot;               &quot;教養娯楽費（二人以上の世帯）&quot;          
+<pre><code>##   [1] &quot;年度&quot;                                  
+##   [2] &quot;地域コード&quot;                            
+##   [3] &quot;都道府県&quot;                              
+##   [4] &quot;総人口&quot;                                
+##   [5] &quot;総人口（男）&quot;                          
+##   [6] &quot;総人口（女）&quot;                          
+##   [7] &quot;日本人人口&quot;                            
+##   [8] &quot;日本人人口（男）&quot;                      
+##   [9] &quot;日本人人口（女）&quot;                      
+##  [10] &quot;15歳未満人口&quot;                          
+##  [11] &quot;15歳未満人口（男）&quot;                    
+##  [12] &quot;15歳未満人口（女）&quot;                    
+##  [13] &quot;15〜64歳人口&quot;                          
+##  [14] &quot;15〜64歳人口（男）&quot;                    
+##  [15] &quot;15〜64歳人口（女）&quot;                    
+##  [16] &quot;65歳以上人口&quot;                          
+##  [17] &quot;65歳以上人口（男）&quot;                    
+##  [18] &quot;65歳以上人口（女）&quot;                    
+##  [19] &quot;出生数&quot;                                
+##  [20] &quot;出生数（男）&quot;                          
+##  [21] &quot;出生数（女）&quot;                          
+##  [22] &quot;合計特殊出生率&quot;                        
+##  [23] &quot;死亡数&quot;                                
+##  [24] &quot;死亡数（男）&quot;                          
+##  [25] &quot;死亡数（女）&quot;                          
+##  [26] &quot;転入者数（日本人移動者）&quot;              
+##  [27] &quot;転入者数（日本人移動者）（男）&quot;        
+##  [28] &quot;転入者数（日本人移動者）（女）&quot;        
+##  [29] &quot;転出者数（日本人移動者）&quot;              
+##  [30] &quot;転出者数（日本人移動者）（男）&quot;        
+##  [31] &quot;転出者数（日本人移動者）（女）&quot;        
+##  [32] &quot;婚姻件数&quot;                              
+##  [33] &quot;離婚件数&quot;                              
+##  [34] &quot;年平均気温&quot;                            
+##  [35] &quot;最高気温（日最高気温の月平均の最高値）&quot;
+##  [36] &quot;最低気温（日最低気温の月平均の最低値）&quot;
+##  [37] &quot;降水日数（年間）&quot;                      
+##  [38] &quot;降水量（年間）&quot;                        
+##  [39] &quot;着工建築物数&quot;                          
+##  [40] &quot;着工建築物床面積&quot;                      
+##  [41] &quot;旅館営業施設数（ホテルを含む）&quot;        
+##  [42] &quot;旅館営業施設客室数（ホテルを含む）&quot;    
+##  [43] &quot;標準価格（平均価格）（住宅地）&quot;        
+##  [44] &quot;標準価格（平均価格）（商業地）&quot;        
+##  [45] &quot;幼稚園数&quot;                              
+##  [46] &quot;幼稚園教員数&quot;                          
+##  [47] &quot;幼稚園在園者数&quot;                        
+##  [48] &quot;小学校数&quot;                              
+##  [49] &quot;小学校教員数&quot;                          
+##  [50] &quot;小学校児童数&quot;                          
+##  [51] &quot;中学校数&quot;                              
+##  [52] &quot;中学校教員数&quot;                          
+##  [53] &quot;中学校生徒数&quot;                          
+##  [54] &quot;中学校卒業者数&quot;                        
+##  [55] &quot;中学校卒業者のうち進学者数&quot;            
+##  [56] &quot;高等学校数&quot;                            
+##  [57] &quot;高等学校教員数&quot;                        
+##  [58] &quot;高等学校生徒数&quot;                        
+##  [59] &quot;高等学校卒業者数&quot;                      
+##  [60] &quot;高等学校卒業者のうち進学者数&quot;          
+##  [61] &quot;短期大学数&quot;                            
+##  [62] &quot;大学数&quot;                                
+##  [63] &quot;短期大学教員数&quot;                        
+##  [64] &quot;大学教員数&quot;                            
+##  [65] &quot;短期大学学生数&quot;                        
+##  [66] &quot;大学学生数&quot;                            
+##  [67] &quot;短期大学卒業者数&quot;                      
+##  [68] &quot;短期大学卒業者のうち進学者数&quot;          
+##  [69] &quot;大学卒業者数&quot;                          
+##  [70] &quot;大学卒業者のうち進学者数&quot;              
+##  [71] &quot;専修学校数&quot;                            
+##  [72] &quot;各種学校数&quot;                            
+##  [73] &quot;専修学校生徒数&quot;                        
+##  [74] &quot;各種学校生徒数&quot;                        
+##  [75] &quot;新規求職申込件数（一般）&quot;              
+##  [76] &quot;月間有効求職者数（一般）&quot;              
+##  [77] &quot;月間有効求人数（一般）&quot;                
+##  [78] &quot;充足数（一般）&quot;                        
+##  [79] &quot;就職件数（一般）&quot;                      
+##  [80] &quot;一般旅券発行件数&quot;                      
+##  [81] &quot;延べ宿泊者数&quot;                          
+##  [82] &quot;外国人延べ宿泊者数&quot;                    
+##  [83] &quot;着工新設住宅戸数&quot;                      
+##  [84] &quot;着工新設持家数&quot;                        
+##  [85] &quot;着工新設貸家数&quot;                        
+##  [86] &quot;着工新設分譲住宅数&quot;                    
+##  [87] &quot;着工新設住宅床面積&quot;                    
+##  [88] &quot;着工新設持家床面積&quot;                    
+##  [89] &quot;着工新設分譲住宅床面積&quot;                
+##  [90] &quot;着工新設貸家床面積&quot;                    
+##  [91] &quot;ごみ総排出量（総量）&quot;                  
+##  [92] &quot;1人1日当たりの排出量&quot;                  
+##  [93] &quot;ごみのリサイクル率&quot;                    
+##  [94] &quot;一般病院数&quot;                            
+##  [95] &quot;一般診療所数&quot;                          
+##  [96] &quot;歯科診療所数&quot;                          
+##  [97] &quot;保育所等数&quot;                            
+##  [98] &quot;保育所等定員数&quot;                        
+##  [99] &quot;保育所等利用待機児童数&quot;                
+## [100] &quot;保育所等在所児数&quot;                      
+## [101] &quot;保育所等保育士数&quot;                      
+## [102] &quot;消費支出（二人以上の世帯）&quot;            
+## [103] &quot;食料費（二人以上の世帯）&quot;              
+## [104] &quot;住居費（二人以上の世帯）&quot;              
+## [105] &quot;光熱・水道費（二人以上の世帯）&quot;        
+## [106] &quot;家具・家事用品費（二人以上の世帯）&quot;    
+## [107] &quot;被服及び履物費（二人以上の世帯）&quot;      
+## [108] &quot;保健医療費（二人以上の世帯）&quot;          
+## [109] &quot;交通・通信費（二人以上の世帯）&quot;        
+## [110] &quot;教育費（二人以上の世帯）&quot;              
+## [111] &quot;教養娯楽費（二人以上の世帯）&quot;          
 ## [112] &quot;その他の消費支出（二人以上の世帯）&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>データの加工</strong>: 都道府県別の合計特殊出生率の推移を比較する。しかし、すべての都道府県では多すぎるため、関東の１都６県に限定する。</li>
