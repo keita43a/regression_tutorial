@@ -830,18 +830,18 @@ Visits_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\ti
 <div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="rdd.html#cb367-1" tabindex="-1"></a>rdd_visit <span class="ot">&lt;-</span> <span class="fu">feols</span>(visits <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
 <span id="cb367-2"><a href="rdd.html#cb367-2" tabindex="-1"></a></span>
 <span id="cb367-3"><a href="rdd.html#cb367-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_visit)</span></code></pre></div>
-<pre><code>##                           rdd_visit
-## Dependent Var.:              visits
-##                                    
-## Constant          -0.5376. (0.2933)
-## dummy70           1.789*** (0.4178)
-## age                 0.0066 (0.0044)
-## dummy70 x age   -0.0233*** (0.0060)
-## _______________ ___________________
-## S.E. type                       IID
-## Observations                    100
-## R2                          0.72216
-## Adj. R2                     0.71348
+<pre><code>##                              rdd_visit
+## Dependent Var.:                 visits
+##                                       
+## Constant             -0.5376. (0.2933)
+## dummy70              1.789*** (0.4178)
+## 店長の年齢(歳)     0.0066 (0.0044)
+## dummy70 x 店長の年齢(歳) -0.0233*** (0.0060)
+## __________________ ___________________
+## S.E. type                          IID
+## Observations                       100
+## R2                             0.72216
+## Adj. R2                        0.71348
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>結果は<span class="math inline">\(\rho\)</span>が1.789と推定された。<span class="math inline">\(Visits\)</span>は対数で表示されているため、このジャンプによって訪問患者数が179%増加したという結果になる。</p>
@@ -870,18 +870,18 @@ Death_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\tim
 <div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="rdd.html#cb370-1" tabindex="-1"></a>rdd_death <span class="ot">&lt;-</span> <span class="fu">feols</span>(death <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
 <span id="cb370-2"><a href="rdd.html#cb370-2" tabindex="-1"></a></span>
 <span id="cb370-3"><a href="rdd.html#cb370-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_death)</span></code></pre></div>
-<pre><code>##                          rdd_death
-## Dependent Var.:              death
-##                                   
-## Constant        -4.283*** (0.0680)
-## dummy70            0.1488 (0.0969)
-## age             0.0612*** (0.0010)
-## dummy70 x age     -0.0021 (0.0014)
-## _______________ __________________
-## S.E. type                      IID
-## Observations                   100
-## R2                         0.99693
-## Adj. R2                    0.99683
+<pre><code>##                             rdd_death
+## Dependent Var.:                 death
+##                                      
+## Constant           -4.283*** (0.0680)
+## dummy70               0.1488 (0.0969)
+## 店長の年齢(歳) 0.0612*** (0.0010)
+## dummy70 x 店長の年齢(歳)   -0.0021 (0.0014)
+## __________________ __________________
+## S.E. type                         IID
+## Observations                      100
+## R2                            0.99693
+## Adj. R2                       0.99683
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>結果は<span class="math inline">\(\rho\)</span>が0.1488と推定された。また、統計的に有意ではないため、0であるという仮説を棄却できない。
