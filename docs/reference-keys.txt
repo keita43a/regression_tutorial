@@ -1,3 +1,5 @@
+fig:explorer
+fig:kakuchoshi
 fig:downloadwin-1
 fig:downloadwin-2
 fig:downloadwin-3
@@ -37,12 +39,13 @@ howtostart
 rをどうやって使う
 rstudioを使う3つの方法
 rのインストール
-windownsへのインストール
+windowsへのインストール
+準備
+インストール
 mac-osへのインストール
-チップの種類を確認
-command-line-toolsのインストール
-xcodeのインストール
-xquartzのインストール
+準備１チップの種類を確認
+準備２command-line-toolsのインストール
+準備４xquartzのインストール
 rのダウンロード
 rstudioのインストール
 rstudioのインターフェース
@@ -148,7 +151,7 @@ rstats
 統計とは
 記述統計
 infstats
-準備
+準備-1
 データとは-1
 代表的な統計量
 数式
@@ -166,7 +169,7 @@ describe関数
 skim関数
 rviz
 rにおける描画
-準備-1
+準備-2
 描画をしてみよう
 復習データ読み込み
 描画の前に
@@ -228,7 +231,7 @@ multipleregression
 重回帰分析とは
 回帰分析における真のモデル
 シミュレーション
-準備-2
+準備-3
 データの生成
 回帰モデルの推定
 新たなパッケージの導入
@@ -249,7 +252,7 @@ multipleregressionapp
 より複雑な効果をモデル化
 関数形の変更二次関数
 例経験年数の年収への効果
-準備-3
+準備-4
 データのロード
 データの確認
 推定

@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-12-25" />
+<meta name="date" content="2025-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -172,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="howtostart.html"><a href="howtostart.html#rstudioを使う3つの方法"><i class="fa fa-check"></i><b>3.2</b> Rstudioを使う3つの方法</a></li>
 <li class="chapter" data-level="3.3" data-path="howtostart.html"><a href="howtostart.html#rのインストール"><i class="fa fa-check"></i><b>3.3</b> Rのインストール</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windownsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windownsへのインストール</a></li>
+<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windowsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windowsへのインストール</a></li>
 <li class="chapter" data-level="3.3.2" data-path="howtostart.html"><a href="howtostart.html#mac-osへのインストール"><i class="fa fa-check"></i><b>3.3.2</b> Mac OSへのインストール</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="howtostart.html"><a href="howtostart.html#rstudioのインストール"><i class="fa fa-check"></i><b>3.4</b> Rstudioのインストール</a></li>
@@ -323,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
 <li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備-1"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
 <li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
 <li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
 <ul>
@@ -347,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
-<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-1"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-2"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
 <li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
 <li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
 <li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
@@ -651,21 +651,18 @@ e-Statのウェブサイト上で、漁業センサスを検索し、「デー�
 <p>データを見てみる。</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="e-stat.html#cb381-1" tabindex="-1"></a><span class="fu">head</span>(dat, <span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 7
-##    cat01_code (J118-30-2-001)全国・…¹ cat02_code (J118-30-1-064)基本的…² unit   value
-##    &lt;chr&gt;      &lt;chr&gt;                   &lt;chr&gt;      &lt;chr&gt;                   &lt;chr&gt;  &lt;dbl&gt;
-##  1 001        全国                    001        漁業経営体数            経営… 7.91e4
-##  2 001        全国                    002        漁船_無動力漁船隻数     隻    3.08e3
-##  3 001        全国                    003        漁船_船外機付漁船隻数   隻    5.92e4
-##  4 001        全国                    004        漁船_動力漁船_隻数      隻    6.99e4
-##  5 001        全国                    005        漁船_動力漁船_ﾄﾝ数      T     5.48e5
-##  6 002        北海道                  001        漁業経営体数            経営… 1.11e4
-##  7 002        北海道                  002        漁船_無動力漁船隻数     隻    7.7 e1
-##  8 002        北海道                  003        漁船_船外機付漁船隻数   隻    1.27e4
-##  9 002        北海道                  004        漁船_動力漁船_隻数      隻    6.38e3
-## 10 002        北海道                  005        漁船_動力漁船_ﾄﾝ数      T     5.88e4
-## # ℹ abbreviated names: ¹​`(J118-30-2-001)全国・都道府県・大海区`,
-## #   ²​`(J118-30-1-064)基本的項目`
-## # ℹ 1 more variable: annotation &lt;chr&gt;</code></pre>
+##    cat01_code `(J118-30-2-001)全国・都道府県・大海区` cat02_code `(J118-30-1-064)基本的項目` unit     value annotation
+##    &lt;chr&gt;      &lt;chr&gt;                                   &lt;chr&gt;      &lt;chr&gt;                       &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     
+##  1 001        全国                                    001        漁業経営体数                経営体  79067  &lt;NA&gt;      
+##  2 001        全国                                    002        漁船_無動力漁船隻数         隻       3080  &lt;NA&gt;      
+##  3 001        全国                                    003        漁船_船外機付漁船隻数       隻      59201  &lt;NA&gt;      
+##  4 001        全国                                    004        漁船_動力漁船_隻数          隻      69920  &lt;NA&gt;      
+##  5 001        全国                                    005        漁船_動力漁船_ﾄﾝ数          T      547521. &lt;NA&gt;      
+##  6 002        北海道                                  001        漁業経営体数                経営体  11089  &lt;NA&gt;      
+##  7 002        北海道                                  002        漁船_無動力漁船隻数         隻         77  &lt;NA&gt;      
+##  8 002        北海道                                  003        漁船_船外機付漁船隻数       隻      12689  &lt;NA&gt;      
+##  9 002        北海道                                  004        漁船_動力漁船_隻数          隻       6376  &lt;NA&gt;      
+## 10 002        北海道                                  005        漁船_動力漁船_ﾄﾝ数          T       58798  &lt;NA&gt;</code></pre>
 <p><code>value</code>という列には異なる変数（経営体数や漁船数）が一気に入ってしまっているので、整然データにはなっていない。</p>
 </div>
 <div id="データ加工の例" class="section level3 hasAnchor" number="17.3.3">

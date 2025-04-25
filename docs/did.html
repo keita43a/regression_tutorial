@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-12-25" />
+<meta name="date" content="2025-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -172,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="howtostart.html"><a href="howtostart.html#rstudioを使う3つの方法"><i class="fa fa-check"></i><b>3.2</b> Rstudioを使う3つの方法</a></li>
 <li class="chapter" data-level="3.3" data-path="howtostart.html"><a href="howtostart.html#rのインストール"><i class="fa fa-check"></i><b>3.3</b> Rのインストール</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windownsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windownsへのインストール</a></li>
+<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windowsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windowsへのインストール</a></li>
 <li class="chapter" data-level="3.3.2" data-path="howtostart.html"><a href="howtostart.html#mac-osへのインストール"><i class="fa fa-check"></i><b>3.3.2</b> Mac OSへのインストール</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="howtostart.html"><a href="howtostart.html#rstudioのインストール"><i class="fa fa-check"></i><b>3.4</b> Rstudioのインストール</a></li>
@@ -323,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
 <li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備-1"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
 <li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
 <li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
 <ul>
@@ -347,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
-<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-1"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-2"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
 <li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
 <li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
 <li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
@@ -724,16 +724,14 @@ Y_{it} = \alpha + \beta_{1} \cdot 1 + \beta_{2} \cdot 1 + \beta_{3} \cdot 1 \tim
 まずは、どんなデータなのか<code>head()</code>で確認する。</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="did.html#cb346-1" tabindex="-1"></a><span class="fu">head</span>(data_njmin)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 9
-##   state fulltime_before parttime_before wage_before fulltime_after parttime_after
-##   &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
-## 1 PA                 20              20        5                 0             36
-## 2 PA                  6              26        5.5              28              3
-## 3 PA                 50              35        5                15             18
-## 4 PA                 10              17        5                26              9
-## 5 PA                  2               8        5.25              3             12
-## 6 PA                  2              10        5                 2              9
-## # ℹ 3 more variables: wage_after &lt;dbl&gt;, full_prop_before &lt;dbl&gt;,
-## #   full_prop_after &lt;dbl&gt;</code></pre>
+##   state fulltime_before parttime_before wage_before fulltime_after parttime_after wage_after full_prop_before full_prop_after
+##   &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
+## 1 PA                 20              20        5                 0             36       5.25            0.5             0    
+## 2 PA                  6              26        5.5              28              3       4.75            0.188           0.903
+## 3 PA                 50              35        5                15             18       4.75            0.588           0.455
+## 4 PA                 10              17        5                26              9       5               0.370           0.743
+## 5 PA                  2               8        5.25              3             12       5               0.2             0.2  
+## 6 PA                  2              10        5                 2              9       5               0.167           0.182</code></pre>
 </div>
 <div id="データの記述統計-1" class="section level3 hasAnchor" number="15.2.5">
 <h3><span class="header-section-number">15.2.5</span> データの記述統計<a href="did.html#データの記述統計-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>

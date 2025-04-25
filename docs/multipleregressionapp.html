@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2024-12-25" />
+<meta name="date" content="2025-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -172,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="howtostart.html"><a href="howtostart.html#rstudioを使う3つの方法"><i class="fa fa-check"></i><b>3.2</b> Rstudioを使う3つの方法</a></li>
 <li class="chapter" data-level="3.3" data-path="howtostart.html"><a href="howtostart.html#rのインストール"><i class="fa fa-check"></i><b>3.3</b> Rのインストール</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windownsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windownsへのインストール</a></li>
+<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windowsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windowsへのインストール</a></li>
 <li class="chapter" data-level="3.3.2" data-path="howtostart.html"><a href="howtostart.html#mac-osへのインストール"><i class="fa fa-check"></i><b>3.3.2</b> Mac OSへのインストール</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="howtostart.html"><a href="howtostart.html#rstudioのインストール"><i class="fa fa-check"></i><b>3.4</b> Rstudioのインストール</a></li>
@@ -323,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
 <li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備-1"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
 <li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
 <li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
 <ul>
@@ -347,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
-<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-1"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-2"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
 <li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
 <li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
 <li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
@@ -586,12 +586,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb297-3"><a href="multipleregressionapp.html#cb297-3" tabindex="-1"></a></span>
 <span id="cb297-4"><a href="multipleregressionapp.html#cb297-4" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                               model1               model2
-## Dependent Var.:      支店の売上      支店の売上
+## Dependent Var.:                sales                sales
 ##                                                          
 ## Constant            499.6*** (6.860)     499.6*** (6.860)
-## 広告ダミー     49.66*** (4.028)     49.66*** (4.028)
-## 店長の年齢(歳)  4.985*** (0.1299)    4.985*** (0.1299)
-## 地域の平均所得(万円) 0.0899*** (0.0078)                     
+## ads                 49.66*** (4.028)     49.66*** (4.028)
+## age                4.985*** (0.1299)    4.985*** (0.1299)
+## income            0.0899*** (0.0078)                     
 ## I(income x 10000)                    8.99e-6*** (7.81e-7)
 ## _________________ __________________ ____________________
 ## S.E. type                        IID                  IID
@@ -721,8 +721,8 @@ y_i = \alpha + \beta_1 x_i + \varepsilon_i
    対数賃金_i = \alpha + \beta_1 経験年数_i +  \beta_2 経験年数^2_i + \beta_3 教育年数 + \varepsilon_i
 \]</span>
 左辺が対数の場合は限界効果の解釈はxが１単位増加した時に、目的変数が何％増加するか、になる。</p>
-<div id="準備-3" class="section level4 hasAnchor" number="13.2.2.1">
-<h4><span class="header-section-number">13.2.2.1</span> 準備<a href="multipleregressionapp.html#準備-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="準備-4" class="section level4 hasAnchor" number="13.2.2.1">
+<h4><span class="header-section-number">13.2.2.1</span> 準備<a href="multipleregressionapp.html#準備-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>multi_reg_app.R</code>というスクリプトを準備し、必要なパッケージをロードする。</p>
 <div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="multipleregressionapp.html#cb300-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb300-2"><a href="multipleregressionapp.html#cb300-2" tabindex="-1"></a><span class="fu">library</span>(fixest)</span>
