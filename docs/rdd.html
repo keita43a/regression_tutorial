@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-04-25" />
+<meta name="date" content="2025-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -205,6 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.15.1" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー1"><i class="fa fa-check"></i><b>3.15.1</b> よくあるエラー1</a></li>
 <li class="chapter" data-level="3.15.2" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー2"><i class="fa fa-check"></i><b>3.15.2</b> よくあるエラー2</a></li>
+<li class="chapter" data-level="3.15.3" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー3というかトラブル"><i class="fa fa-check"></i><b>3.15.3</b> よくあるエラー3（というかトラブル）</a></li>
 </ul></li>
 <li class="chapter" data-level="3.16" data-path="howtostart.html"><a href="howtostart.html#rstudioの補完機能"><i class="fa fa-check"></i><b>3.16</b> Rstudioの補完機能</a></li>
 <li class="chapter" data-level="3.17" data-path="howtostart.html"><a href="howtostart.html#rstudioのオプション"><i class="fa fa-check"></i><b>3.17</b> Rstudioのオプション</a>
@@ -830,18 +831,18 @@ Visits_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\ti
 <div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="rdd.html#cb367-1" tabindex="-1"></a>rdd_visit <span class="ot">&lt;-</span> <span class="fu">feols</span>(visits <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
 <span id="cb367-2"><a href="rdd.html#cb367-2" tabindex="-1"></a></span>
 <span id="cb367-3"><a href="rdd.html#cb367-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_visit)</span></code></pre></div>
-<pre><code>##                              rdd_visit
-## Dependent Var.:                 visits
-##                                       
-## Constant             -0.5376. (0.2933)
-## dummy70              1.789*** (0.4178)
-## 店長の年齢(歳)     0.0066 (0.0044)
-## dummy70 x 店長の年齢(歳) -0.0233*** (0.0060)
-## __________________ ___________________
-## S.E. type                          IID
-## Observations                       100
-## R2                             0.72216
-## Adj. R2                        0.71348
+<pre><code>##                           rdd_visit
+## Dependent Var.:              visits
+##                                    
+## Constant          -0.5376. (0.2933)
+## dummy70           1.789*** (0.4178)
+## age                 0.0066 (0.0044)
+## dummy70 x age   -0.0233*** (0.0060)
+## _______________ ___________________
+## S.E. type                       IID
+## Observations                    100
+## R2                          0.72216
+## Adj. R2                     0.71348
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>結果は<span class="math inline">\(\rho\)</span>が1.789と推定された。<span class="math inline">\(Visits\)</span>は対数で表示されているため、このジャンプによって訪問患者数が179%増加したという結果になる。</p>
@@ -870,18 +871,18 @@ Death_{i} = \alpha + \rho Dummy70_{i} + \beta_{1}age_{i} + \beta_{2} age_{i}\tim
 <div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="rdd.html#cb370-1" tabindex="-1"></a>rdd_death <span class="ot">&lt;-</span> <span class="fu">feols</span>(death <span class="sc">~</span> dummy70 <span class="sc">+</span> age <span class="sc">+</span> dummy70<span class="sc">:</span>age, <span class="at">data=</span>data_rdd)</span>
 <span id="cb370-2"><a href="rdd.html#cb370-2" tabindex="-1"></a></span>
 <span id="cb370-3"><a href="rdd.html#cb370-3" tabindex="-1"></a><span class="fu">etable</span>(rdd_death)</span></code></pre></div>
-<pre><code>##                             rdd_death
-## Dependent Var.:                 death
-##                                      
-## Constant           -4.283*** (0.0680)
-## dummy70               0.1488 (0.0969)
-## 店長の年齢(歳) 0.0612*** (0.0010)
-## dummy70 x 店長の年齢(歳)   -0.0021 (0.0014)
-## __________________ __________________
-## S.E. type                         IID
-## Observations                      100
-## R2                            0.99693
-## Adj. R2                       0.99683
+<pre><code>##                          rdd_death
+## Dependent Var.:              death
+##                                   
+## Constant        -4.283*** (0.0680)
+## dummy70            0.1488 (0.0969)
+## age             0.0612*** (0.0010)
+## dummy70 x age     -0.0021 (0.0014)
+## _______________ __________________
+## S.E. type                      IID
+## Observations                   100
+## R2                         0.99693
+## Adj. R2                    0.99683
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>結果は<span class="math inline">\(\rho\)</span>が0.1488と推定された。また、統計的に有意ではないため、0であるという仮説を棄却できない。

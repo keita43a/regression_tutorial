@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-04-25" />
+<meta name="date" content="2025-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -205,6 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.15.1" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー1"><i class="fa fa-check"></i><b>3.15.1</b> よくあるエラー1</a></li>
 <li class="chapter" data-level="3.15.2" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー2"><i class="fa fa-check"></i><b>3.15.2</b> よくあるエラー2</a></li>
+<li class="chapter" data-level="3.15.3" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー3というかトラブル"><i class="fa fa-check"></i><b>3.15.3</b> よくあるエラー3（というかトラブル）</a></li>
 </ul></li>
 <li class="chapter" data-level="3.16" data-path="howtostart.html"><a href="howtostart.html#rstudioの補完機能"><i class="fa fa-check"></i><b>3.16</b> Rstudioの補完機能</a></li>
 <li class="chapter" data-level="3.17" data-path="howtostart.html"><a href="howtostart.html#rstudioのオプション"><i class="fa fa-check"></i><b>3.17</b> Rstudioのオプション</a>
@@ -591,12 +592,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb385-3"><a href="regressionreporting.html#cb385-3" tabindex="-1"></a></span>
 <span id="cb385-4"><a href="regressionreporting.html#cb385-4" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
-## Dependent Var.:   支店の売上    支店の売上
+## Dependent Var.:             sales              sales
 ##                                                     
 ## Constant         549.7*** (6.372)   499.6*** (6.860)
-## 広告ダミー  86.26*** (2.973)   49.66*** (4.028)
-## 店長の年齢(歳) 4.625*** (0.1515)  4.985*** (0.1299)
-## 地域の平均所得(万円)                   0.0899*** (0.0078)
+## ads              86.26*** (2.973)   49.66*** (4.028)
+## age             4.625*** (0.1515)  4.985*** (0.1299)
+## income                            0.0899*** (0.0078)
 ## _______________ _________________ __________________
 ## S.E. type                     IID                IID
 ## Observations                  300                300
@@ -752,12 +753,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>上述の通り、<code>fixest</code>の<code>feols()</code>などで推定した結果のオブジェクトであれば、<code>etable()</code>を使って回帰分析表の形式で出力させることができる。</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="regressionreporting.html#cb400-1" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
-## Dependent Var.:   支店の売上    支店の売上
+## Dependent Var.:             sales              sales
 ##                                                     
 ## Constant         549.7*** (6.372)   499.6*** (6.860)
-## 広告ダミー  86.26*** (2.973)   49.66*** (4.028)
-## 店長の年齢(歳) 4.625*** (0.1515)  4.985*** (0.1299)
-## 地域の平均所得(万円)                   0.0899*** (0.0078)
+## ads              86.26*** (2.973)   49.66*** (4.028)
+## age             4.625*** (0.1515)  4.985*** (0.1299)
+## income                            0.0899*** (0.0078)
 ## _______________ _________________ __________________
 ## S.E. type                     IID                IID
 ## Observations                  300                300
