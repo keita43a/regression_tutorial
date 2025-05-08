@@ -14,14 +14,14 @@ fig:rstudioinstall
 fig:rstudio2
 fig:directory
 fig:projectmake
-tab:unnamed-chunk-112
+tab:unnamed-chunk-116
 fig:pressure
-tab:unnamed-chunk-191
-tab:unnamed-chunk-207
-tab:unnamed-chunk-213
-tab:unnamed-chunk-222
-tab:unnamed-chunk-242
-tab:unnamed-chunk-259
+tab:unnamed-chunk-195
+tab:unnamed-chunk-211
+tab:unnamed-chunk-217
+tab:unnamed-chunk-226
+tab:unnamed-chunk-246
+tab:unnamed-chunk-263
 この資料について
 whatsr
 r
@@ -144,6 +144,7 @@ datamgcolumnadd
 groupagg
 datamgtpractice
 データの結合
+準備-1
 データの縦の結合
 データを横に統合
 データを横に統合join関数
@@ -152,7 +153,7 @@ rstats
 統計とは
 記述統計
 infstats
-準備-1
+準備-2
 データとは-1
 代表的な統計量
 数式
@@ -170,7 +171,7 @@ describe関数
 skim関数
 rviz
 rにおける描画
-準備-2
+準備-3
 描画をしてみよう
 復習データ読み込み
 描画の前に
@@ -232,7 +233,7 @@ multipleregression
 重回帰分析とは
 回帰分析における真のモデル
 シミュレーション
-準備-3
+準備-4
 データの生成
 回帰モデルの推定
 新たなパッケージの導入
@@ -253,7 +254,7 @@ multipleregressionapp
 より複雑な効果をモデル化
 関数形の変更二次関数
 例経験年数の年収への効果
-準備-4
+準備-5
 データのロード
 データの確認
 推定
