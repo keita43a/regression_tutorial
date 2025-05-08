@@ -631,23 +631,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>ファイルがある場所のpathを指定する。</li>
 </ul></li>
-<li>データファイルの形式はExcelや<code>.csv</code>, <code>.dta</code>, <code>.rds</code>など様々
+<li>データファイルの形式はExcel(<code>.xlsx</code>)や<code>.csv</code>, <code>.dta</code>, <code>.rds</code>など様々
 <ul>
 <li>形式によって使う関数が異なる。</li>
 </ul></li>
 <li>例えば
 <ul>
-<li>Excelなら、<code>readxl</code>パッケージの<code>read_excel</code></li>
-<li>csvなら、<code>readr</code>パッケージの<code>read_csv</code></li>
-<li>いずれも<code>tidyverse</code>パッケージ群に含まれている</li>
+<li>RDSなら、<code>readRDS()</code></li>
+<li>Excelなら、<code>readxl</code>パッケージの<code>read_excel()</code></li>
+<li>csvなら、<code>readr</code>パッケージの<code>read_csv()</code>
+<ul>
+<li><code>readr</code>パッケージは<code>tidyverse</code>パッケージ群に含まれている</li>
+</ul></li>
 </ul></li>
 </ul>
-<p>ここではエクセル形式について説明するが、その他のファイル形式については<a href="https://www.jaysong.net/RBook/io.html#sec-io-read">私達のRの第8章</a>を参照してほしい</p>
+<p>ここでCSV形式について説明するが、その他のファイル形式については<a href="https://www.jaysong.net/RBook/io.html#sec-io-read">私達のRの第8章</a>を参照してほしい</p>
 <div id="演習-データの読み込み" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> <strong>演習</strong>: データの読み込み<a href="datahandling.html#演習-データの読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>csvを読み込むには<code>read_excel()</code>関数を使う。この関数は<code>readxl</code>パッケージ含まれている。</p>
+<p>csvを読み込むには<code>read_csv()</code>関数を使う。この関数は<code>readr</code>パッケージ含まれている。</p>
 <ol style="list-style-type: decimal">
-<li><p><code>readxl</code>パッケージをインストールする。</p></li>
+<li><p><code>readr</code>パッケージをインストールする。(<code>tidyverse</code>をインストールしたならば、新たにインストールする必要はない。)</p></li>
 <li><p><code>r_renshu</code>フォルダに<code>data</code>フォルダを作成し、武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx" download="musashi_keizai_students_2023.xlsx">こちら</a>からダウンロードして保存するか、以下のコードを実行する。</p></li>
 </ol>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="datahandling.html#cb107-1" tabindex="-1"></a><span class="co"># data ディレクトリの作成</span></span>

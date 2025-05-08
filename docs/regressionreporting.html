@@ -593,12 +593,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb388-3"><a href="regressionreporting.html#cb388-3" tabindex="-1"></a></span>
 <span id="cb388-4"><a href="regressionreporting.html#cb388-4" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
-## Dependent Var.:             sales              sales
+## Dependent Var.:   支店の売上    支店の売上
 ##                                                     
 ## Constant         549.7*** (6.372)   499.6*** (6.860)
-## ads              86.26*** (2.973)   49.66*** (4.028)
-## age             4.625*** (0.1515)  4.985*** (0.1299)
-## income                            0.0899*** (0.0078)
+## 広告ダミー  86.26*** (2.973)   49.66*** (4.028)
+## 店長の年齢(歳) 4.625*** (0.1515)  4.985*** (0.1299)
+## 地域の平均所得(万円)                   0.0899*** (0.0078)
 ## _______________ _________________ __________________
 ## S.E. type                     IID                IID
 ## Observations                  300                300
@@ -754,12 +754,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>上述の通り、<code>fixest</code>の<code>feols()</code>などで推定した結果のオブジェクトであれば、<code>etable()</code>を使って回帰分析表の形式で出力させることができる。</p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="regressionreporting.html#cb403-1" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
-## Dependent Var.:             sales              sales
+## Dependent Var.:   支店の売上    支店の売上
 ##                                                     
 ## Constant         549.7*** (6.372)   499.6*** (6.860)
-## ads              86.26*** (2.973)   49.66*** (4.028)
-## age             4.625*** (0.1515)  4.985*** (0.1299)
-## income                            0.0899*** (0.0078)
+## 広告ダミー  86.26*** (2.973)   49.66*** (4.028)
+## 店長の年齢(歳) 4.625*** (0.1515)  4.985*** (0.1299)
+## 地域の平均所得(万円)                   0.0899*** (0.0078)
 ## _______________ _________________ __________________
 ## S.E. type                     IID                IID
 ## Observations                  300                300
