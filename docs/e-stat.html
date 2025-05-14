@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-05-08" />
+<meta name="date" content="2025-05-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -653,18 +653,21 @@ e-Statのウェブサイト上で、漁業センサスを検索し、「デー�
 <p>データを見てみる。</p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="e-stat.html#cb384-1" tabindex="-1"></a><span class="fu">head</span>(dat, <span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 7
-##    cat01_code `(J118-30-2-001)全国・都道府県・大海区` cat02_code `(J118-30-1-064)基本的項目` unit     value annotation
-##    &lt;chr&gt;      &lt;chr&gt;                                   &lt;chr&gt;      &lt;chr&gt;                       &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     
-##  1 001        全国                                    001        漁業経営体数                経営体  79067  &lt;NA&gt;      
-##  2 001        全国                                    002        漁船_無動力漁船隻数         隻       3080  &lt;NA&gt;      
-##  3 001        全国                                    003        漁船_船外機付漁船隻数       隻      59201  &lt;NA&gt;      
-##  4 001        全国                                    004        漁船_動力漁船_隻数          隻      69920  &lt;NA&gt;      
-##  5 001        全国                                    005        漁船_動力漁船_ﾄﾝ数          T      547521. &lt;NA&gt;      
-##  6 002        北海道                                  001        漁業経営体数                経営体  11089  &lt;NA&gt;      
-##  7 002        北海道                                  002        漁船_無動力漁船隻数         隻         77  &lt;NA&gt;      
-##  8 002        北海道                                  003        漁船_船外機付漁船隻数       隻      12689  &lt;NA&gt;      
-##  9 002        北海道                                  004        漁船_動力漁船_隻数          隻       6376  &lt;NA&gt;      
-## 10 002        北海道                                  005        漁船_動力漁船_ﾄﾝ数          T       58798  &lt;NA&gt;</code></pre>
+##    cat01_code (J118-30-2-001)全国…¹ cat02_code (J118-30-1-064)基本的…²
+##    &lt;chr&gt;      &lt;chr&gt;                 &lt;chr&gt;      &lt;chr&gt;                  
+##  1 001        全国                  001        漁業経営体数           
+##  2 001        全国                  002        漁船_無動力漁船隻数    
+##  3 001        全国                  003        漁船_船外機付漁船隻数  
+##  4 001        全国                  004        漁船_動力漁船_隻数     
+##  5 001        全国                  005        漁船_動力漁船_ﾄﾝ数     
+##  6 002        北海道                001        漁業経営体数           
+##  7 002        北海道                002        漁船_無動力漁船隻数    
+##  8 002        北海道                003        漁船_船外機付漁船隻数  
+##  9 002        北海道                004        漁船_動力漁船_隻数     
+## 10 002        北海道                005        漁船_動力漁船_ﾄﾝ数     
+## # ℹ abbreviated names: ¹​`(J118-30-2-001)全国・都道府県・大海区`,
+## #   ²​`(J118-30-1-064)基本的項目`
+## # ℹ 3 more variables: unit &lt;chr&gt;, value &lt;dbl&gt;, annotation &lt;chr&gt;</code></pre>
 <p><code>value</code>という列には異なる変数（経営体数や漁船数）が一気に入ってしまっているので、整然データにはなっていない。</p>
 </div>
 <div id="データ加工の例" class="section level3 hasAnchor" number="17.3.3">

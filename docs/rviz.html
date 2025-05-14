@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-05-08" />
+<meta name="date" content="2025-05-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -665,11 +665,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Windowsは多分不要。</li>
 </ul></li>
-<li>新しく<code>theme_grey</code>というレイヤーを作り、その中の<code>base_family</code>という引数でフォント名<code>"HiraKakuPro-W3"</code>を指定する。</li>
+<li>新しく<code>theme_grey</code>というレイヤーを作り、その中の<code>base_family</code>という引数でフォント名<code>"YuGothic"</code>を指定する。</li>
 </ul>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="rviz.html#cb210-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb210-2"><a href="rviz.html#cb210-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数),<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb210-3"><a href="rviz.html#cb210-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)  <span class="co"># &lt;- 追加！</span></span>
+<span id="cb210-3"><a href="rviz.html#cb210-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;YuGothic&quot;</span>)  <span class="co"># &lt;- 追加！</span></span>
 <span id="cb210-4"><a href="rviz.html#cb210-4" tabindex="-1"></a></span>
 <span id="cb210-5"><a href="rviz.html#cb210-5" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
 <p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-123-1.png" width="720" style="display: block; margin: auto;" /></p>
@@ -685,7 +685,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rviz.html#cb211-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb211-2"><a href="rviz.html#cb211-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別),<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span>  <span class="co"># &lt;- 追加！</span></span>
-<span id="cb211-3"><a href="rviz.html#cb211-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
+<span id="cb211-3"><a href="rviz.html#cb211-3" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;YuGothic&quot;</span>)</span>
 <span id="cb211-4"><a href="rviz.html#cb211-4" tabindex="-1"></a></span>
 <span id="cb211-5"><a href="rviz.html#cb211-5" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
 <p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-124-1.png" width="720" style="display: block; margin: auto;" /></p>
@@ -702,7 +702,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="rviz.html#cb212-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb212-2"><a href="rviz.html#cb212-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="co"># &lt;- 追加！</span></span>
 <span id="cb212-3"><a href="rviz.html#cb212-3" tabindex="-1"></a>           <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
-<span id="cb212-4"><a href="rviz.html#cb212-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) </span>
+<span id="cb212-4"><a href="rviz.html#cb212-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;YuGothic&quot;</span>) </span>
 <span id="cb212-5"><a href="rviz.html#cb212-5" tabindex="-1"></a></span>
 <span id="cb212-6"><a href="rviz.html#cb212-6" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
 <p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-125-1.png" width="720" style="display: block; margin: auto;" /></p>
@@ -726,7 +726,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="rviz.html#cb213-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb213-2"><a href="rviz.html#cb213-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span></span>
 <span id="cb213-3"><a href="rviz.html#cb213-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span> <span class="co"># &lt;- 追加！</span></span>
-<span id="cb213-4"><a href="rviz.html#cb213-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
+<span id="cb213-4"><a href="rviz.html#cb213-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;YuGothic&quot;</span>)</span>
 <span id="cb213-5"><a href="rviz.html#cb213-5" tabindex="-1"></a></span>
 <span id="cb213-6"><a href="rviz.html#cb213-6" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
 <p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-126-1.png" width="720" style="display: block; margin: auto;" /></p>
@@ -745,7 +745,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="rviz.html#cb214-1" tabindex="-1"></a>plot_634 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb214-2"><a href="rviz.html#cb214-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>data_634_long, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>学年, <span class="at">y=</span>学生数, <span class="at">fill=</span>性別), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span> </span>
 <span id="cb214-3"><a href="rviz.html#cb214-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">&quot;#0A6648&quot;</span>,<span class="st">&quot;#F6B21B&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb214-4"><a href="rviz.html#cb214-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb214-4"><a href="rviz.html#cb214-4" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
 <span id="cb214-5"><a href="rviz.html#cb214-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="co"># &lt;- 追加！</span></span>
 <span id="cb214-6"><a href="rviz.html#cb214-6" tabindex="-1"></a></span>
 <span id="cb214-7"><a href="rviz.html#cb214-7" tabindex="-1"></a><span class="fu">print</span>(plot_634)</span></code></pre></div>
@@ -774,7 +774,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb215-5"><a href="rviz.html#cb215-5" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;武蔵大学経済学部の学科別・男女別学生数&quot;</span>,   <span class="co"># &lt;- 追加!</span></span>
 <span id="cb215-6"><a href="rviz.html#cb215-6" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;2023年5月1日時点&quot;</span>,                      <span class="co"># &lt;- 追加!</span></span>
 <span id="cb215-7"><a href="rviz.html#cb215-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> <span class="co"># &lt;- 追加!</span></span>
-<span id="cb215-8"><a href="rviz.html#cb215-8" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb215-8"><a href="rviz.html#cb215-8" tabindex="-1"></a>  <span class="fu">theme_grey</span>(<span class="at">base_family=</span><span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
 <span id="cb215-9"><a href="rviz.html#cb215-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="co"># &lt;- 追加！</span></span>
 <span id="cb215-10"><a href="rviz.html#cb215-10" tabindex="-1"></a></span>
 <span id="cb215-11"><a href="rviz.html#cb215-11" tabindex="-1"></a>plot_634</span></code></pre></div>
@@ -806,7 +806,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb216-5"><a href="rviz.html#cb216-5" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;武蔵大学経済学部の学科別・男女別学生数&quot;</span>,   </span>
 <span id="cb216-6"><a href="rviz.html#cb216-6" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;2023年5月1日時点&quot;</span>,                      </span>
 <span id="cb216-7"><a href="rviz.html#cb216-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb216-8"><a href="rviz.html#cb216-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span>     <span class="co"># &lt;- 変更!</span></span>
+<span id="cb216-8"><a href="rviz.html#cb216-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span>     <span class="co"># &lt;- 変更!</span></span>
 <span id="cb216-9"><a href="rviz.html#cb216-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> 学科) <span class="do">## &lt;- 追加！</span></span></code></pre></div>
 <p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-130-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
@@ -834,7 +834,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb217-5"><a href="rviz.html#cb217-5" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;武蔵大学経済学部の学科別・男女別学生数&quot;</span>,   </span>
 <span id="cb217-6"><a href="rviz.html#cb217-6" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;2023年5月1日時点&quot;</span>,                      </span>
 <span id="cb217-7"><a href="rviz.html#cb217-7" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;データ元：武蔵大学公式ウェブサイト&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb217-8"><a href="rviz.html#cb217-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb217-8"><a href="rviz.html#cb217-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family=</span><span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
 <span id="cb217-9"><a href="rviz.html#cb217-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),   <span class="co"># &lt;- 追加!</span></span>
 <span id="cb217-10"><a href="rviz.html#cb217-10" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,             <span class="co"># &lt;- 追加!</span></span>
 <span id="cb217-11"><a href="rviz.html#cb217-11" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) <span class="sc">+</span>         <span class="co"># &lt;- 追加!</span></span>
@@ -915,7 +915,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb220-3"><a href="rviz.html#cb220-3" tabindex="-1"></a></span>
 <span id="cb220-4"><a href="rviz.html#cb220-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
 <span id="cb220-5"><a href="rviz.html#cb220-5" tabindex="-1"></a><span class="fu">names</span>(diamonds)</span></code></pre></div>
-<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;   &quot;table&quot;   &quot;price&quot;   &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;   &quot;table&quot;  
+##  [7] &quot;price&quot;   &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="rviz.html#cb222-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
 <span id="cb222-2"><a href="rviz.html#cb222-2" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10
@@ -1052,43 +1053,117 @@ Figure 8.1: データタイプ別のグラフ
 <span id="cb231-4"><a href="rviz.html#cb231-4" tabindex="-1"></a></span>
 <span id="cb231-5"><a href="rviz.html#cb231-5" tabindex="-1"></a><span class="co"># 変数名を確認</span></span>
 <span id="cb231-6"><a href="rviz.html#cb231-6" tabindex="-1"></a><span class="fu">names</span>(data_ssdse)</span></code></pre></div>
-<pre><code>##   [1] &quot;年度&quot;                                   &quot;地域コード&quot;                             &quot;都道府県&quot;                              
-##   [4] &quot;総人口&quot;                                 &quot;総人口（男）&quot;                           &quot;総人口（女）&quot;                          
-##   [7] &quot;日本人人口&quot;                             &quot;日本人人口（男）&quot;                       &quot;日本人人口（女）&quot;                      
-##  [10] &quot;15歳未満人口&quot;                           &quot;15歳未満人口（男）&quot;                     &quot;15歳未満人口（女）&quot;                    
-##  [13] &quot;15〜64歳人口&quot;                           &quot;15〜64歳人口（男）&quot;                     &quot;15〜64歳人口（女）&quot;                    
-##  [16] &quot;65歳以上人口&quot;                           &quot;65歳以上人口（男）&quot;                     &quot;65歳以上人口（女）&quot;                    
-##  [19] &quot;出生数&quot;                                 &quot;出生数（男）&quot;                           &quot;出生数（女）&quot;                          
-##  [22] &quot;合計特殊出生率&quot;                         &quot;死亡数&quot;                                 &quot;死亡数（男）&quot;                          
-##  [25] &quot;死亡数（女）&quot;                           &quot;転入者数（日本人移動者）&quot;               &quot;転入者数（日本人移動者）（男）&quot;        
-##  [28] &quot;転入者数（日本人移動者）（女）&quot;         &quot;転出者数（日本人移動者）&quot;               &quot;転出者数（日本人移動者）（男）&quot;        
-##  [31] &quot;転出者数（日本人移動者）（女）&quot;         &quot;婚姻件数&quot;                               &quot;離婚件数&quot;                              
-##  [34] &quot;年平均気温&quot;                             &quot;最高気温（日最高気温の月平均の最高値）&quot; &quot;最低気温（日最低気温の月平均の最低値）&quot;
-##  [37] &quot;降水日数（年間）&quot;                       &quot;降水量（年間）&quot;                         &quot;着工建築物数&quot;                          
-##  [40] &quot;着工建築物床面積&quot;                       &quot;旅館営業施設数（ホテルを含む）&quot;         &quot;旅館営業施設客室数（ホテルを含む）&quot;    
-##  [43] &quot;標準価格（平均価格）（住宅地）&quot;         &quot;標準価格（平均価格）（商業地）&quot;         &quot;幼稚園数&quot;                              
-##  [46] &quot;幼稚園教員数&quot;                           &quot;幼稚園在園者数&quot;                         &quot;小学校数&quot;                              
-##  [49] &quot;小学校教員数&quot;                           &quot;小学校児童数&quot;                           &quot;中学校数&quot;                              
-##  [52] &quot;中学校教員数&quot;                           &quot;中学校生徒数&quot;                           &quot;中学校卒業者数&quot;                        
-##  [55] &quot;中学校卒業者のうち進学者数&quot;             &quot;高等学校数&quot;                             &quot;高等学校教員数&quot;                        
-##  [58] &quot;高等学校生徒数&quot;                         &quot;高等学校卒業者数&quot;                       &quot;高等学校卒業者のうち進学者数&quot;          
-##  [61] &quot;短期大学数&quot;                             &quot;大学数&quot;                                 &quot;短期大学教員数&quot;                        
-##  [64] &quot;大学教員数&quot;                             &quot;短期大学学生数&quot;                         &quot;大学学生数&quot;                            
-##  [67] &quot;短期大学卒業者数&quot;                       &quot;短期大学卒業者のうち進学者数&quot;           &quot;大学卒業者数&quot;                          
-##  [70] &quot;大学卒業者のうち進学者数&quot;               &quot;専修学校数&quot;                             &quot;各種学校数&quot;                            
-##  [73] &quot;専修学校生徒数&quot;                         &quot;各種学校生徒数&quot;                         &quot;新規求職申込件数（一般）&quot;              
-##  [76] &quot;月間有効求職者数（一般）&quot;               &quot;月間有効求人数（一般）&quot;                 &quot;充足数（一般）&quot;                        
-##  [79] &quot;就職件数（一般）&quot;                       &quot;一般旅券発行件数&quot;                       &quot;延べ宿泊者数&quot;                          
-##  [82] &quot;外国人延べ宿泊者数&quot;                     &quot;着工新設住宅戸数&quot;                       &quot;着工新設持家数&quot;                        
-##  [85] &quot;着工新設貸家数&quot;                         &quot;着工新設分譲住宅数&quot;                     &quot;着工新設住宅床面積&quot;                    
-##  [88] &quot;着工新設持家床面積&quot;                     &quot;着工新設分譲住宅床面積&quot;                 &quot;着工新設貸家床面積&quot;                    
-##  [91] &quot;ごみ総排出量（総量）&quot;                   &quot;1人1日当たりの排出量&quot;                   &quot;ごみのリサイクル率&quot;                    
-##  [94] &quot;一般病院数&quot;                             &quot;一般診療所数&quot;                           &quot;歯科診療所数&quot;                          
-##  [97] &quot;保育所等数&quot;                             &quot;保育所等定員数&quot;                         &quot;保育所等利用待機児童数&quot;                
-## [100] &quot;保育所等在所児数&quot;                       &quot;保育所等保育士数&quot;                       &quot;消費支出（二人以上の世帯）&quot;            
-## [103] &quot;食料費（二人以上の世帯）&quot;               &quot;住居費（二人以上の世帯）&quot;               &quot;光熱・水道費（二人以上の世帯）&quot;        
-## [106] &quot;家具・家事用品費（二人以上の世帯）&quot;     &quot;被服及び履物費（二人以上の世帯）&quot;       &quot;保健医療費（二人以上の世帯）&quot;          
-## [109] &quot;交通・通信費（二人以上の世帯）&quot;         &quot;教育費（二人以上の世帯）&quot;               &quot;教養娯楽費（二人以上の世帯）&quot;          
+<pre><code>##   [1] &quot;年度&quot;                                  
+##   [2] &quot;地域コード&quot;                            
+##   [3] &quot;都道府県&quot;                              
+##   [4] &quot;総人口&quot;                                
+##   [5] &quot;総人口（男）&quot;                          
+##   [6] &quot;総人口（女）&quot;                          
+##   [7] &quot;日本人人口&quot;                            
+##   [8] &quot;日本人人口（男）&quot;                      
+##   [9] &quot;日本人人口（女）&quot;                      
+##  [10] &quot;15歳未満人口&quot;                          
+##  [11] &quot;15歳未満人口（男）&quot;                    
+##  [12] &quot;15歳未満人口（女）&quot;                    
+##  [13] &quot;15〜64歳人口&quot;                          
+##  [14] &quot;15〜64歳人口（男）&quot;                    
+##  [15] &quot;15〜64歳人口（女）&quot;                    
+##  [16] &quot;65歳以上人口&quot;                          
+##  [17] &quot;65歳以上人口（男）&quot;                    
+##  [18] &quot;65歳以上人口（女）&quot;                    
+##  [19] &quot;出生数&quot;                                
+##  [20] &quot;出生数（男）&quot;                          
+##  [21] &quot;出生数（女）&quot;                          
+##  [22] &quot;合計特殊出生率&quot;                        
+##  [23] &quot;死亡数&quot;                                
+##  [24] &quot;死亡数（男）&quot;                          
+##  [25] &quot;死亡数（女）&quot;                          
+##  [26] &quot;転入者数（日本人移動者）&quot;              
+##  [27] &quot;転入者数（日本人移動者）（男）&quot;        
+##  [28] &quot;転入者数（日本人移動者）（女）&quot;        
+##  [29] &quot;転出者数（日本人移動者）&quot;              
+##  [30] &quot;転出者数（日本人移動者）（男）&quot;        
+##  [31] &quot;転出者数（日本人移動者）（女）&quot;        
+##  [32] &quot;婚姻件数&quot;                              
+##  [33] &quot;離婚件数&quot;                              
+##  [34] &quot;年平均気温&quot;                            
+##  [35] &quot;最高気温（日最高気温の月平均の最高値）&quot;
+##  [36] &quot;最低気温（日最低気温の月平均の最低値）&quot;
+##  [37] &quot;降水日数（年間）&quot;                      
+##  [38] &quot;降水量（年間）&quot;                        
+##  [39] &quot;着工建築物数&quot;                          
+##  [40] &quot;着工建築物床面積&quot;                      
+##  [41] &quot;旅館営業施設数（ホテルを含む）&quot;        
+##  [42] &quot;旅館営業施設客室数（ホテルを含む）&quot;    
+##  [43] &quot;標準価格（平均価格）（住宅地）&quot;        
+##  [44] &quot;標準価格（平均価格）（商業地）&quot;        
+##  [45] &quot;幼稚園数&quot;                              
+##  [46] &quot;幼稚園教員数&quot;                          
+##  [47] &quot;幼稚園在園者数&quot;                        
+##  [48] &quot;小学校数&quot;                              
+##  [49] &quot;小学校教員数&quot;                          
+##  [50] &quot;小学校児童数&quot;                          
+##  [51] &quot;中学校数&quot;                              
+##  [52] &quot;中学校教員数&quot;                          
+##  [53] &quot;中学校生徒数&quot;                          
+##  [54] &quot;中学校卒業者数&quot;                        
+##  [55] &quot;中学校卒業者のうち進学者数&quot;            
+##  [56] &quot;高等学校数&quot;                            
+##  [57] &quot;高等学校教員数&quot;                        
+##  [58] &quot;高等学校生徒数&quot;                        
+##  [59] &quot;高等学校卒業者数&quot;                      
+##  [60] &quot;高等学校卒業者のうち進学者数&quot;          
+##  [61] &quot;短期大学数&quot;                            
+##  [62] &quot;大学数&quot;                                
+##  [63] &quot;短期大学教員数&quot;                        
+##  [64] &quot;大学教員数&quot;                            
+##  [65] &quot;短期大学学生数&quot;                        
+##  [66] &quot;大学学生数&quot;                            
+##  [67] &quot;短期大学卒業者数&quot;                      
+##  [68] &quot;短期大学卒業者のうち進学者数&quot;          
+##  [69] &quot;大学卒業者数&quot;                          
+##  [70] &quot;大学卒業者のうち進学者数&quot;              
+##  [71] &quot;専修学校数&quot;                            
+##  [72] &quot;各種学校数&quot;                            
+##  [73] &quot;専修学校生徒数&quot;                        
+##  [74] &quot;各種学校生徒数&quot;                        
+##  [75] &quot;新規求職申込件数（一般）&quot;              
+##  [76] &quot;月間有効求職者数（一般）&quot;              
+##  [77] &quot;月間有効求人数（一般）&quot;                
+##  [78] &quot;充足数（一般）&quot;                        
+##  [79] &quot;就職件数（一般）&quot;                      
+##  [80] &quot;一般旅券発行件数&quot;                      
+##  [81] &quot;延べ宿泊者数&quot;                          
+##  [82] &quot;外国人延べ宿泊者数&quot;                    
+##  [83] &quot;着工新設住宅戸数&quot;                      
+##  [84] &quot;着工新設持家数&quot;                        
+##  [85] &quot;着工新設貸家数&quot;                        
+##  [86] &quot;着工新設分譲住宅数&quot;                    
+##  [87] &quot;着工新設住宅床面積&quot;                    
+##  [88] &quot;着工新設持家床面積&quot;                    
+##  [89] &quot;着工新設分譲住宅床面積&quot;                
+##  [90] &quot;着工新設貸家床面積&quot;                    
+##  [91] &quot;ごみ総排出量（総量）&quot;                  
+##  [92] &quot;1人1日当たりの排出量&quot;                  
+##  [93] &quot;ごみのリサイクル率&quot;                    
+##  [94] &quot;一般病院数&quot;                            
+##  [95] &quot;一般診療所数&quot;                          
+##  [96] &quot;歯科診療所数&quot;                          
+##  [97] &quot;保育所等数&quot;                            
+##  [98] &quot;保育所等定員数&quot;                        
+##  [99] &quot;保育所等利用待機児童数&quot;                
+## [100] &quot;保育所等在所児数&quot;                      
+## [101] &quot;保育所等保育士数&quot;                      
+## [102] &quot;消費支出（二人以上の世帯）&quot;            
+## [103] &quot;食料費（二人以上の世帯）&quot;              
+## [104] &quot;住居費（二人以上の世帯）&quot;              
+## [105] &quot;光熱・水道費（二人以上の世帯）&quot;        
+## [106] &quot;家具・家事用品費（二人以上の世帯）&quot;    
+## [107] &quot;被服及び履物費（二人以上の世帯）&quot;      
+## [108] &quot;保健医療費（二人以上の世帯）&quot;          
+## [109] &quot;交通・通信費（二人以上の世帯）&quot;        
+## [110] &quot;教育費（二人以上の世帯）&quot;              
+## [111] &quot;教養娯楽費（二人以上の世帯）&quot;          
 ## [112] &quot;その他の消費支出（二人以上の世帯）&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>データの加工</strong>: 都道府県別の合計特殊出生率の推移を比較する。しかし、すべての都道府県では多すぎるため、関東の１都６県に限定する。</li>
@@ -1103,7 +1178,7 @@ Figure 8.1: データタイプ別のグラフ
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="rviz.html#cb234-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>合計特殊出生率, <span class="at">col=</span>都道府県)) <span class="sc">+</span> </span>
 <span id="cb234-2"><a href="rviz.html#cb234-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb234-3"><a href="rviz.html#cb234-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb234-4"><a href="rviz.html#cb234-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span>
+<span id="cb234-4"><a href="rviz.html#cb234-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>)</span>
 <span id="cb234-5"><a href="rviz.html#cb234-5" tabindex="-1"></a></span>
 <span id="cb234-6"><a href="rviz.html#cb234-6" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
 <p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
@@ -1111,7 +1186,7 @@ Figure 8.1: データタイプ別のグラフ
 <div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="rviz.html#cb235-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>合計特殊出生率, <span class="at">col=</span>都道府県)) <span class="sc">+</span> </span>
 <span id="cb235-2"><a href="rviz.html#cb235-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb235-3"><a href="rviz.html#cb235-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb235-4"><a href="rviz.html#cb235-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb235-4"><a href="rviz.html#cb235-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
 <span id="cb235-5"><a href="rviz.html#cb235-5" tabindex="-1"></a>  <span class="co"># ラベルを変換</span></span>
 <span id="cb235-6"><a href="rviz.html#cb235-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">col=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
 <span id="cb235-7"><a href="rviz.html#cb235-7" tabindex="-1"></a>  <span class="co"># カテゴリの名前（都道府県を変換）</span></span>
