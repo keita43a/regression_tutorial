@@ -54,31 +54,42 @@ knitr::include_graphics("docs/fig/gyoretsu2.png")
 
 - データはデータファイルから読み込む
   - ファイルがある場所のpathを指定する。
-- データファイルの形式はExcelや`.csv`, `.dta`, `.rds`など様々
+- データファイルの形式はExcel(`.xlsx`)や`.csv`, `.dta`, `.rds`など様々
   - 形式によって使う関数が異なる。
 - 例えば
-  - Excelなら、`readxl`パッケージの`read_excel`
-  - csvなら、`readr`パッケージの`read_csv`
-  - いずれも`tidyverse`パッケージ群に含まれている
+  - RDSなら、`readRDS()`
+  - Excelなら、`readxl`パッケージの`read_excel()`
+  - csvなら、`readr`パッケージの`read_csv()`
+    - `readr`パッケージは`tidyverse`パッケージ群に含まれている
 
-ここではエクセル形式について説明するが、その他のファイル形式については[私達のRの第8章](https://www.jaysong.net/RBook/io.html#sec-io-read)を参照してほしい
+ここでCSV形式について説明するが、その他のファイル形式については[私達のRの第8章](https://www.jaysong.net/RBook/io.html#sec-io-read)を参照してほしい
   
   
 ### **演習**: データの読み込み
 
-csvを読み込むには`read_excel()`関数を使う。この関数は`readxl`パッケージ含まれている。
+csvを読み込むには`read_csv()`関数を使う。この関数は`readr`パッケージ含まれている。
 
-1. `readxl`パッケージをインストールする。
+1. `readr`パッケージをインストールする。(`tidyverse`をインストールしたならば、新たにインストールする必要はない。)
 
 2. `r_renshu`フォルダに`data`フォルダを作成し、武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx" download="musashi_keizai_students_2023.xlsx">こちら</a>からダウンロードして保存するか、以下のコードを実行する。
 
 ```{r, eval=FALSE}
 # data ディレクトリの作成
 fs::dir_create("data")
+```
 
+```{r, eval=FALSE, echo=FALSE}
 # データのダウンロードと保存
 download.file(url="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx",
               destfile = "data/musashi_keizai_students_2023.xlsx")
+```
+
+
+```{r, eval=FALSE}
+# データのダウンロードと保存
+download.file(url="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2025.csv",
+              destfile = "data/musashi_keizai_students_2025.csv")
+
 ```
 
 3. Rスクリプトを作成し、`data_mgt.R`という名前をつけて保存する。
@@ -95,7 +106,7 @@ library(readxl)
 
 
 ```{r,eval=FALSE}
-data_634 <- read_excel("data/musashi_keizai_students_2023.xlsx")
+data_634 <- read_csv("data/musashi_keizai_students_2025.csv")
 ```
 
 - `Error: path does not exist:’`というエラーが出る場合は、ファイルの相対パスが間違っている可能性がある
@@ -178,14 +189,14 @@ readrでは以下のオプションを引数に指定することで設定でき
 
 ```{r, echo=FALSE}
 ## エクセルからデータを読み込み
-data_634 <- readxl::read_excel("docs/data/musashi_keizai_students_2023.xlsx") 
+data_634 <- read_csv("docs/data/musashi_keizai_students_2025.csv") 
 
 knitr::kable(data_634) ## kableは見やすい表を出力する関数
 ```
 
 ```{r, eval=FALSE}
 ## エクセルからデータを読み込み
-data_634 <- read_excel("data/musashi_keizai_students_2023.xlsx") 
+data_634 <- read_csv("data/musashi_keizai_students_2025.csv") 
 
 knitr::kable(data_634) ## kableは見やすい表を出力する関数
 ```
@@ -195,7 +206,7 @@ knitr::kable(data_634) ## kableは見やすい表を出力する関数
 同じデータを、異なる形式で表示したものが以下である。
 
 ```{r, echo =FALSE}
-data_634_long = readxl::read_excel("docs/data/musashi_keizai_students_2023.xlsx") %>%
+data_634_long = read_csv("docs/data/musashi_keizai_students_2025.csv") %>%
   pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") %>%
   mutate(学科 = factor(学科, levels=c("経済学科","経営学科","金融学科")),　## order of departments
          性別 = factor(性別, levels=c("男","女")),
@@ -614,14 +625,38 @@ print(data_634_long_dept)
 2. 横に結合したい場合
 
 
+### 準備
+
+新たにデータを2つダウンロードする
+
+人文学部の学生数データ。
+人文学部のデータは<a href="https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2023.xlsx" download="musashi_jinbun_students_2023.xlsx">こちら</a>からもダウンロードできる。
+
+```{r, eval=FALSE}
+# データのダウンロードと保存
+download.file(url="https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2025.csv",
+              destfile = "data/musashi_jinbun_students_2025.csv")
+
+```
+
+経済学部の各学科の定員データ。
+経済学部の各学科の定員データは<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_teiin_2025.csv" download="musashi_keizai_teiin_2025.csv">こちら</a>からもダウンロードできる。
+
+```{r, eval=FALSE}
+# データのダウンロードと保存
+download.file(url="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_teiin_2025.csv",
+              destfile = "data/musashi_keizai_teiin_2025.csv")
+```
+
+
 ### データの縦の結合
 
 例えば人文学部のデータと結合したいとする。
-人文学部のデータは<a href="https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2023.xlsx" download="musashi_jinbun_students_2023.xlsx">こちら</a>からダウンロードできる。
+
 
 ```{r}
 ## エクセルからデータを読み込み
-data_634_jinbun <- readxl::read_excel("docs/data/musashi_jinbun_students_2023.xlsx") 
+data_634_jinbun <- read_csv("data/musashi_jinbun_students_2025.csv") 
 
 knitr::kable(data_634_jinbun) ## kableは見やすい表を出力する関数
 ```
@@ -643,7 +678,7 @@ print(data_634_keizai_jinbun)
 
 ```{r}
 ## エクセルからデータを読み込み
-data_634_keizai_teiin <- readxl::read_excel("docs/data/musashi_keizai_teiin_2023.xlsx") 
+data_634_keizai_teiin <- read_csv("data/musashi_keizai_teiin_2025.csv") 
 
 knitr::kable(data_634_keizai_teiin) ## kableは見やすい表を出力する関数
 ```

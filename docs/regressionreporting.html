@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-05-14" />
+<meta name="date" content="2025-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,6 +380,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.22.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.22.1</b> 例：SSDSE-B県別推移のデータ</a></li>
 </ul></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#makefigFAQ"><i class="fa fa-check"></i><b>8.23</b> よくある問題と対策</a>
+<ul>
+<li class="chapter" data-level="8.23.1" data-path="rviz.html"><a href="rviz.html#axisnum"><i class="fa fa-check"></i><b>8.23.1</b> 軸の数値がおかしい</a></li>
+<li class="chapter" data-level="8.23.2" data-path="rviz.html"><a href="rviz.html#smallletter"><i class="fa fa-check"></i><b>8.23.2</b> 字が小さい</a></li>
+<li class="chapter" data-level="8.23.3" data-path="rviz.html"><a href="rviz.html#axisnumadjust"><i class="fa fa-check"></i><b>8.23.3</b> 軸の数値がいい感じにならない</a></li>
+<li class="chapter" data-level="8.23.4" data-path="rviz.html"><a href="rviz.html#axislabeladjust"><i class="fa fa-check"></i><b>8.23.4</b> 軸の目盛りラベルを調整する</a></li>
+<li class="chapter" data-level="8.23.5" data-path="rviz.html"><a href="rviz.html#jpntrans"><i class="fa fa-check"></i><b>8.23.5</b> ラベルだけではなく、凡例や目盛りラベルも日本語化したい</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
@@ -588,10 +596,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>引き続き<a href="multipleregression.html#multipleregression">重回帰分析の章</a>の例を使ってみよう。
 「# シミュレーションデータの作成」部分を実行して<code>dat_sim</code>というデータを作成しよう。</p>
 <p>そのデータを使って、以下のような２つのモデルを推定する。ここでは<code>fixest</code>パッケージの<code>feols()</code>関数を使っている。</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="regressionreporting.html#cb388-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age, <span class="at">data =</span> dat_sim)</span>
-<span id="cb388-2"><a href="regressionreporting.html#cb388-2" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> income, <span class="at">data =</span> dat_sim)</span>
-<span id="cb388-3"><a href="regressionreporting.html#cb388-3" tabindex="-1"></a></span>
-<span id="cb388-4"><a href="regressionreporting.html#cb388-4" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="regressionreporting.html#cb395-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age, <span class="at">data =</span> dat_sim)</span>
+<span id="cb395-2"><a href="regressionreporting.html#cb395-2" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> income, <span class="at">data =</span> dat_sim)</span>
+<span id="cb395-3"><a href="regressionreporting.html#cb395-3" tabindex="-1"></a></span>
+<span id="cb395-4"><a href="regressionreporting.html#cb395-4" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
 ## Dependent Var.:   支店の売上    支店の売上
 ##                                                     
@@ -607,11 +615,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><code>fixest</code>パッケージを使っている場合は、<code>etable()</code>関数で回帰分析表をコンソールに表示できることはすでに解説した。</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="regressionreporting.html#cb390-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/etable_result.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="regressionreporting.html#cb397-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/etable_result.png&quot;</span>)</span></code></pre></div>
 <p><img src="fig/etable_result.png" width="560" style="display: block; margin: auto;" /></p>
 <p>このような結果が出る。</p>
 <p>もしくは、<code>etable()</code>を使わなかったり、<code>lm()</code>や<code>lm_robust()</code>などを使って<code>summary()</code>関数で結果を表示していると、このような結果がコンソールに出るだろう。</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="regressionreporting.html#cb391-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/summary_result.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="regressionreporting.html#cb398-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;fig/summary_result.png&quot;</span>)</span></code></pre></div>
 <p><img src="fig/summary_result.png" width="572" style="display: block; margin: auto;" /></p>
 <p>この結果を、テキストとしてコピペしてワードに貼り付けたり、スクリーンショットを撮って図として貼り付けたりするケースが見られるが、そのまま見せるのは良くない。なぜなら、ひとことでいうと<strong>美しくない</strong>からである。</p>
 <p>美しさはバカにはできない。美しくない図表は読者の見る気、理解しようとする気を失わせる。きちんと理解してもらうためには、最低限の「身だしなみ」を整える必要がある。</p>
@@ -628,7 +636,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">18.3.1</span> 表の出力<a href="regressionreporting.html#表の出力" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>まず、<code>modelsummary()</code>では、出力したい回帰分析オブジェクトを<code>list()</code>でまとめる必要がある。
 例えば、<code>model1</code>と<code>model2</code>を表示したい場合は、<code>list(model1,model2)</code>という形でまとめる。</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="regressionreporting.html#cb392-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2))</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="regressionreporting.html#cb399-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2))</span></code></pre></div>
 <p><img src="fig/msummary1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>これを実行すると、右下ペーンのViewerに回帰分析表が表示される。</p>
 <p>これから、この表を見やすく整えていく。</p>
@@ -641,14 +649,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 もっとわかりやすい名前に変えて表に示すほうが親切である。</p>
 <p>そのためには、変数名と変換したい名前の「辞書」を作成する。
 具体的には、以下のように変数名と変換したい名前を<code>=</code>つなぎ、<code>c()</code>でまとめ、オブジェクトに保存する。</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="regressionreporting.html#cb393-1" tabindex="-1"></a>varname_dict <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">sales =</span> <span class="st">&quot;支店の売上&quot;</span>,</span>
-<span id="cb393-2"><a href="regressionreporting.html#cb393-2" tabindex="-1"></a>                  <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;切片&quot;</span>,</span>
-<span id="cb393-3"><a href="regressionreporting.html#cb393-3" tabindex="-1"></a>                  <span class="at">ads =</span> <span class="st">&quot;広告ダミー&quot;</span>,</span>
-<span id="cb393-4"><a href="regressionreporting.html#cb393-4" tabindex="-1"></a>                  <span class="at">age =</span> <span class="st">&quot;店長の年齢(歳)&quot;</span>,</span>
-<span id="cb393-5"><a href="regressionreporting.html#cb393-5" tabindex="-1"></a>                  <span class="at">income =</span> <span class="st">&quot;地域の平均所得(万円)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="regressionreporting.html#cb400-1" tabindex="-1"></a>varname_dict <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">sales =</span> <span class="st">&quot;支店の売上&quot;</span>,</span>
+<span id="cb400-2"><a href="regressionreporting.html#cb400-2" tabindex="-1"></a>                  <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;切片&quot;</span>,</span>
+<span id="cb400-3"><a href="regressionreporting.html#cb400-3" tabindex="-1"></a>                  <span class="at">ads =</span> <span class="st">&quot;広告ダミー&quot;</span>,</span>
+<span id="cb400-4"><a href="regressionreporting.html#cb400-4" tabindex="-1"></a>                  <span class="at">age =</span> <span class="st">&quot;店長の年齢(歳)&quot;</span>,</span>
+<span id="cb400-5"><a href="regressionreporting.html#cb400-5" tabindex="-1"></a>                  <span class="at">income =</span> <span class="st">&quot;地域の平均所得(万円)&quot;</span>)</span></code></pre></div>
 <p>そして、<code>coef_rename</code>という引数にこの辞書を指定する。</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="regressionreporting.html#cb394-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2),</span>
-<span id="cb394-2"><a href="regressionreporting.html#cb394-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="regressionreporting.html#cb401-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2),</span>
+<span id="cb401-2"><a href="regressionreporting.html#cb401-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict)</span></code></pre></div>
 <p><img src="fig/msummary2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>すると、対応する変数の名前が変換された表が表示される。</p>
 </div>
@@ -657,9 +665,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>変数が多すぎたり、結果に重要な変数ではない場合はそれを非表示にすることもできる。
 例えば、切片は特に解釈するわけではなく、重要ではないので非表示にするとしよう。</p>
 <p>この場合は<code>coef_omit</code>を指定する。</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="regressionreporting.html#cb395-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2),</span>
-<span id="cb395-2"><a href="regressionreporting.html#cb395-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
-<span id="cb395-3"><a href="regressionreporting.html#cb395-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="regressionreporting.html#cb402-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2),</span>
+<span id="cb402-2"><a href="regressionreporting.html#cb402-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
+<span id="cb402-3"><a href="regressionreporting.html#cb402-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>)</span></code></pre></div>
 <p><img src="fig/msummary3.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -667,10 +675,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">18.3.3</span> 有意水準を示す星の表示<a href="regressionreporting.html#有意水準を示す星の表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>デフォルトでは、<code>modelsummary</code>は有意水準を示す星(<code>*</code>)が<strong>非表示</strong>になっている。
 表示させるためには、<code>stars</code>という引数に<code>TRUE</code>を指定する。</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="regressionreporting.html#cb396-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2),</span>
-<span id="cb396-2"><a href="regressionreporting.html#cb396-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
-<span id="cb396-3"><a href="regressionreporting.html#cb396-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb396-4"><a href="regressionreporting.html#cb396-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="regressionreporting.html#cb403-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2),</span>
+<span id="cb403-2"><a href="regressionreporting.html#cb403-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
+<span id="cb403-3"><a href="regressionreporting.html#cb403-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb403-4"><a href="regressionreporting.html#cb403-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="fig/msummary4.png" width="60%" style="display: block; margin: auto;" />
 ここでは、有意水準が10%以下で<code>+</code>, 5%以下で<code>*</code>, 1%以下で<code>**</code>, 10%以下で<code>***</code>と表示される設定になっている。この基準も自動的に表の下部に表示される。</p>
 </div>
@@ -678,11 +686,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">18.3.4</span> 不必要な統計量の非表示<a href="regressionreporting.html#不必要な統計量の非表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>気づいている人もいるかもしれないが、表示された表の下部をみると、モデルの決定係数<code>R2</code>や調整済み決定係数<code>R2 Adj.</code>の他にも<code>AIC</code>などの統計量が表示されている。これは、もっと違う手法を使う場合は表示する必要だが、最小二乗法を使う基本的な回帰分析では表示する必要はない。</p>
 <p>これをどうすれば非表示にできるかというと、<code>gof_omit</code>という引数で指定する。</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="regressionreporting.html#cb397-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2),</span>
-<span id="cb397-2"><a href="regressionreporting.html#cb397-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
-<span id="cb397-3"><a href="regressionreporting.html#cb397-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb397-4"><a href="regressionreporting.html#cb397-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb397-5"><a href="regressionreporting.html#cb397-5" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="regressionreporting.html#cb404-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(model1,model2),</span>
+<span id="cb404-2"><a href="regressionreporting.html#cb404-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
+<span id="cb404-3"><a href="regressionreporting.html#cb404-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb404-4"><a href="regressionreporting.html#cb404-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb404-5"><a href="regressionreporting.html#cb404-5" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>)</span></code></pre></div>
 <p><img src="fig/msummary5.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>データの観察数、決定係数、調整済み決定係数以外の統計量が非表示になった。</p>
 </div>
@@ -690,11 +698,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">18.3.5</span> モデルに名前をつける<a href="regressionreporting.html#モデルに名前をつける" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>各モデルの列は、入力された順番に(1),(2)という数字が自動でつくようになっているが、これに名前をつけることができる。</p>
 <p>名前をつけるには、<code>list()</code>で入力するときに名前を指定する。</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="regressionreporting.html#cb398-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">&quot;モデル1&quot;</span><span class="ot">=</span>model1,<span class="st">&quot;モデル2&quot;</span><span class="ot">=</span>model2),</span>
-<span id="cb398-2"><a href="regressionreporting.html#cb398-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
-<span id="cb398-3"><a href="regressionreporting.html#cb398-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb398-4"><a href="regressionreporting.html#cb398-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb398-5"><a href="regressionreporting.html#cb398-5" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="regressionreporting.html#cb405-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">&quot;モデル1&quot;</span><span class="ot">=</span>model1,<span class="st">&quot;モデル2&quot;</span><span class="ot">=</span>model2),</span>
+<span id="cb405-2"><a href="regressionreporting.html#cb405-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
+<span id="cb405-3"><a href="regressionreporting.html#cb405-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb405-4"><a href="regressionreporting.html#cb405-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb405-5"><a href="regressionreporting.html#cb405-5" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>)</span></code></pre></div>
 <p><img src="fig/msummary6.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="固定効果の表示" class="section level3 hasAnchor" number="18.3.6">
@@ -703,19 +711,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>modelsummary()</code>では固定効果が含まれているかをX印で表示することを自動でやってくれる。</p>
 <p>ここでは<a href="paneldata.html#paneldata">パネルデータの章</a>の例を使って、表の出力を見てみる。</p>
 <p>単回帰モデルと固定効果モデルの両方を推定してオブジェクトにそれぞれ保存する。</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="regressionreporting.html#cb399-1" tabindex="-1"></a>reg1_panel <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2)</span>
-<span id="cb399-2"><a href="regressionreporting.html#cb399-2" tabindex="-1"></a></span>
-<span id="cb399-3"><a href="regressionreporting.html#cb399-3" tabindex="-1"></a>reg1_panel_fe <span class="ot">=</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data =</span> data_f2)</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="regressionreporting.html#cb406-1" tabindex="-1"></a>reg1_panel <span class="ot">&lt;-</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax, <span class="at">data=</span>data_f2)</span>
+<span id="cb406-2"><a href="regressionreporting.html#cb406-2" tabindex="-1"></a></span>
+<span id="cb406-3"><a href="regressionreporting.html#cb406-3" tabindex="-1"></a>reg1_panel_fe <span class="ot">=</span> <span class="fu">feols</span>(fatal_rate <span class="sc">~</span> beertax <span class="sc">|</span> state, <span class="at">data =</span> data_f2)</span></code></pre></div>
 <p>２つのモデルを並べた表を作成する。
 ここでは単回帰モデル(<code>reg1_panel</code>)を「単回帰」, 固定効果モデル(<code>reg1_panel</code>)を「固定効果」と名前をつけている。</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="regressionreporting.html#cb400-1" tabindex="-1"></a>varname_dict2 <span class="ot">=</span> <span class="fu">c</span>(<span class="at">beertax=</span><span class="st">&quot;ビール税&quot;</span>)</span>
-<span id="cb400-2"><a href="regressionreporting.html#cb400-2" tabindex="-1"></a></span>
-<span id="cb400-3"><a href="regressionreporting.html#cb400-3" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">&quot;単回帰&quot;</span><span class="ot">=</span>reg1_panel, <span class="st">&quot;固定効果&quot;</span><span class="ot">=</span>reg1_panel_fe),</span>
-<span id="cb400-4"><a href="regressionreporting.html#cb400-4" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict2,</span>
-<span id="cb400-5"><a href="regressionreporting.html#cb400-5" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb400-6"><a href="regressionreporting.html#cb400-6" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb400-7"><a href="regressionreporting.html#cb400-7" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span></span>
-<span id="cb400-8"><a href="regressionreporting.html#cb400-8" tabindex="-1"></a>             )</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="regressionreporting.html#cb407-1" tabindex="-1"></a>varname_dict2 <span class="ot">=</span> <span class="fu">c</span>(<span class="at">beertax=</span><span class="st">&quot;ビール税&quot;</span>)</span>
+<span id="cb407-2"><a href="regressionreporting.html#cb407-2" tabindex="-1"></a></span>
+<span id="cb407-3"><a href="regressionreporting.html#cb407-3" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">&quot;単回帰&quot;</span><span class="ot">=</span>reg1_panel, <span class="st">&quot;固定効果&quot;</span><span class="ot">=</span>reg1_panel_fe),</span>
+<span id="cb407-4"><a href="regressionreporting.html#cb407-4" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict2,</span>
+<span id="cb407-5"><a href="regressionreporting.html#cb407-5" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb407-6"><a href="regressionreporting.html#cb407-6" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb407-7"><a href="regressionreporting.html#cb407-7" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span></span>
+<span id="cb407-8"><a href="regressionreporting.html#cb407-8" tabindex="-1"></a>             )</span></code></pre></div>
 <p><img src="fig/msummary7.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>一番下にFE: stateという行が作成され、固定効果を含まないモデルは空欄、含むモデルにはX印がついている。</p>
 </div>
@@ -726,23 +734,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="画像ファイルへの出力" class="section level4 hasAnchor" number="18.3.7.1">
 <h4><span class="header-section-number">18.3.7.1</span> 画像ファイルへの出力<a href="regressionreporting.html#画像ファイルへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>output</code>引数に画像ファイルの拡張子で終わるファイル名をつけると、画像ファイルが出力される。</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="regressionreporting.html#cb401-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">&quot;モデル1&quot;</span><span class="ot">=</span>model1,<span class="st">&quot;モデル2&quot;</span><span class="ot">=</span>model2),</span>
-<span id="cb401-2"><a href="regressionreporting.html#cb401-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
-<span id="cb401-3"><a href="regressionreporting.html#cb401-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb401-4"><a href="regressionreporting.html#cb401-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb401-5"><a href="regressionreporting.html#cb401-5" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>,</span>
-<span id="cb401-6"><a href="regressionreporting.html#cb401-6" tabindex="-1"></a>             <span class="at">output=</span><span class="st">&quot;reg_output1.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="regressionreporting.html#cb408-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">&quot;モデル1&quot;</span><span class="ot">=</span>model1,<span class="st">&quot;モデル2&quot;</span><span class="ot">=</span>model2),</span>
+<span id="cb408-2"><a href="regressionreporting.html#cb408-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
+<span id="cb408-3"><a href="regressionreporting.html#cb408-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb408-4"><a href="regressionreporting.html#cb408-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb408-5"><a href="regressionreporting.html#cb408-5" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>,</span>
+<span id="cb408-6"><a href="regressionreporting.html#cb408-6" tabindex="-1"></a>             <span class="at">output=</span><span class="st">&quot;reg_output1.png&quot;</span>)</span></code></pre></div>
 <p>上のコードを実行してエラーが出なければ、作業ディレクトリの直下に”reg_output1.png”という画像ファイルが出力されているはずである。</p>
 </div>
 <div id="ワードへの出力" class="section level4 hasAnchor" number="18.3.7.2">
 <h4><span class="header-section-number">18.3.7.2</span> ワードへの出力<a href="regressionreporting.html#ワードへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Mircosoft Wordへの出力も画像と同様に<code>output</code>引数にファイル名を指定し、拡張子を”.docx”とすれば、出力することができる。</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="regressionreporting.html#cb402-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">&quot;モデル1&quot;</span><span class="ot">=</span>model1,<span class="st">&quot;モデル2&quot;</span><span class="ot">=</span>model2),</span>
-<span id="cb402-2"><a href="regressionreporting.html#cb402-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
-<span id="cb402-3"><a href="regressionreporting.html#cb402-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb402-4"><a href="regressionreporting.html#cb402-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb402-5"><a href="regressionreporting.html#cb402-5" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>,</span>
-<span id="cb402-6"><a href="regressionreporting.html#cb402-6" tabindex="-1"></a>             <span class="at">output=</span><span class="st">&quot;reg_output1.docx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="regressionreporting.html#cb409-1" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">&quot;モデル1&quot;</span><span class="ot">=</span>model1,<span class="st">&quot;モデル2&quot;</span><span class="ot">=</span>model2),</span>
+<span id="cb409-2"><a href="regressionreporting.html#cb409-2" tabindex="-1"></a>             <span class="at">coef_rename =</span> varname_dict,</span>
+<span id="cb409-3"><a href="regressionreporting.html#cb409-3" tabindex="-1"></a>             <span class="at">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb409-4"><a href="regressionreporting.html#cb409-4" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb409-5"><a href="regressionreporting.html#cb409-5" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>,</span>
+<span id="cb409-6"><a href="regressionreporting.html#cb409-6" tabindex="-1"></a>             <span class="at">output=</span><span class="st">&quot;reg_output1.docx&quot;</span>)</span></code></pre></div>
 <p>ここで注意点は、ワードファイルに日本語を含む表を出力するとうまくいかないという点である。
 これは一般的には英語などはsingle-byte文字という半角アルファベットなどが使われるが、日本語はmulti-byte文字であり、開発者が日本語などを含むことを想定していないことから来ていると考えられる。</p>
 <p>現状では日本語を使わないか、Wordファイルにした後に手作業で日本語に変換する、もしくは画像ファイルをWordに挿入するなどの対応になるだろう。</p>
@@ -752,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="etableによる表作成" class="section level2 hasAnchor" number="18.4">
 <h2><span class="header-section-number">18.4</span> etable()による表作成<a href="regressionreporting.html#etableによる表作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>上述の通り、<code>fixest</code>の<code>feols()</code>などで推定した結果のオブジェクトであれば、<code>etable()</code>を使って回帰分析表の形式で出力させることができる。</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="regressionreporting.html#cb403-1" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="regressionreporting.html#cb410-1" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
 ## Dependent Var.:   支店の売上    支店の売上
 ##                                                     
@@ -773,14 +781,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>ここで、モデル推定に直接使用した説明変数の変数名は、読者にとってはわかりにくい。
 もっとわかりやすい名前に変えて表に示すほうが親切である。</p>
 <p>これは、<code>setFixest_dict()</code>という関数で設定することができる。</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="regressionreporting.html#cb405-1" tabindex="-1"></a><span class="fu">setFixest_dict</span>(<span class="fu">c</span>(<span class="at">sales =</span> <span class="st">&quot;支店の売上&quot;</span>,</span>
-<span id="cb405-2"><a href="regressionreporting.html#cb405-2" tabindex="-1"></a>                 <span class="at">ads =</span> <span class="st">&quot;広告ダミー&quot;</span>,</span>
-<span id="cb405-3"><a href="regressionreporting.html#cb405-3" tabindex="-1"></a>                 <span class="at">age =</span> <span class="st">&quot;店長の年齢(歳)&quot;</span>,</span>
-<span id="cb405-4"><a href="regressionreporting.html#cb405-4" tabindex="-1"></a>                 <span class="at">income =</span> <span class="st">&quot;地域の平均所得(万円)&quot;</span></span>
-<span id="cb405-5"><a href="regressionreporting.html#cb405-5" tabindex="-1"></a>                 ))</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="regressionreporting.html#cb412-1" tabindex="-1"></a><span class="fu">setFixest_dict</span>(<span class="fu">c</span>(<span class="at">sales =</span> <span class="st">&quot;支店の売上&quot;</span>,</span>
+<span id="cb412-2"><a href="regressionreporting.html#cb412-2" tabindex="-1"></a>                 <span class="at">ads =</span> <span class="st">&quot;広告ダミー&quot;</span>,</span>
+<span id="cb412-3"><a href="regressionreporting.html#cb412-3" tabindex="-1"></a>                 <span class="at">age =</span> <span class="st">&quot;店長の年齢(歳)&quot;</span>,</span>
+<span id="cb412-4"><a href="regressionreporting.html#cb412-4" tabindex="-1"></a>                 <span class="at">income =</span> <span class="st">&quot;地域の平均所得(万円)&quot;</span></span>
+<span id="cb412-5"><a href="regressionreporting.html#cb412-5" tabindex="-1"></a>                 ))</span></code></pre></div>
 <p>変数名と変換したい名前を<code>=</code>つなぎ、<code>c()</code>でまとめたものを<code>setFixest_dict()</code>で囲ってやればよい。</p>
 <p>これを設定したら、該当箇所が変換された表が出力される。</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="regressionreporting.html#cb406-1" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="regressionreporting.html#cb413-1" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
 ## Dependent Var.:   支店の売上    支店の売上
 ##                                                     
@@ -800,7 +808,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">18.4.2</span> 標準誤差の数値を係数の下に表示<a href="regressionreporting.html#標準誤差の数値を係数の下に表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>se.below = TRUE</code>を追加すると、標準誤差の数値を係数の下に表示する。
 横幅をあまり取らないし、一般的にはこのような形で表示するのがスタンダードである。</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="regressionreporting.html#cb408-1" tabindex="-1"></a><span class="fu">etable</span>(model1,model2, <span class="at">se.below =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="regressionreporting.html#cb415-1" tabindex="-1"></a><span class="fu">etable</span>(model1,model2, <span class="at">se.below =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##                     model1      model2
 ## Dependent Var.: 支店の売上 支店の売上
 ##                                       
@@ -825,9 +833,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>etable()</code>は現状では簡単にWordに出力する方法はないが、きれいな形でエクセルに出力することはできるため、それをWordに貼り付けて編集することはできる。</p>
 <p><code>openxlsx</code>パッケージをインストールして、<code>library(openxlsx)</code>をコードの上部のlibraryセクションに追加しよう。</p>
 <p>準備ができたら、以下のように<code>etable()</code>の結果をオブジェクトに格納し、そのオブジェクトを<code>write.xlsx</code>という関数でエクセルファイルに書き出す。</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="regressionreporting.html#cb410-1" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">etable</span>(model1,model2, <span class="at">se.below =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb410-2"><a href="regressionreporting.html#cb410-2" tabindex="-1"></a></span>
-<span id="cb410-3"><a href="regressionreporting.html#cb410-3" tabindex="-1"></a><span class="fu">write.xlsx</span>(results,<span class="st">&quot;results_table.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="regressionreporting.html#cb417-1" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">etable</span>(model1,model2, <span class="at">se.below =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb417-2"><a href="regressionreporting.html#cb417-2" tabindex="-1"></a></span>
+<span id="cb417-3"><a href="regressionreporting.html#cb417-3" tabindex="-1"></a><span class="fu">write.xlsx</span>(results,<span class="st">&quot;results_table.xlsx&quot;</span>)</span></code></pre></div>
 <p>生成されたエクセルファイル<code>results_table.xlsx</code>を見てみると、結果が格納されている。</p>
 
 </div>

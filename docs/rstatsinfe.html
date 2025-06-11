@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-05-14" />
+<meta name="date" content="2025-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,6 +380,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.22.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.22.1</b> 例：SSDSE-B県別推移のデータ</a></li>
 </ul></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#makefigFAQ"><i class="fa fa-check"></i><b>8.23</b> よくある問題と対策</a>
+<ul>
+<li class="chapter" data-level="8.23.1" data-path="rviz.html"><a href="rviz.html#axisnum"><i class="fa fa-check"></i><b>8.23.1</b> 軸の数値がおかしい</a></li>
+<li class="chapter" data-level="8.23.2" data-path="rviz.html"><a href="rviz.html#smallletter"><i class="fa fa-check"></i><b>8.23.2</b> 字が小さい</a></li>
+<li class="chapter" data-level="8.23.3" data-path="rviz.html"><a href="rviz.html#axisnumadjust"><i class="fa fa-check"></i><b>8.23.3</b> 軸の数値がいい感じにならない</a></li>
+<li class="chapter" data-level="8.23.4" data-path="rviz.html"><a href="rviz.html#axislabeladjust"><i class="fa fa-check"></i><b>8.23.4</b> 軸の目盛りラベルを調整する</a></li>
+<li class="chapter" data-level="8.23.5" data-path="rviz.html"><a href="rviz.html#jpntrans"><i class="fa fa-check"></i><b>8.23.5</b> ラベルだけではなく、凡例や目盛りラベルも日本語化したい</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
@@ -598,62 +606,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>上では標本平均は母平均のよい推定量と書いたが、よい推定量とはなんだろうか？推定量としてよいかどうかにはいくつかの基準がある。</p>
 <p>まずひとつ目は<strong>不偏性 (unbiasedness)</strong>である。これは、もし仮に何度もサンプリングを行って標本平均をたくさんとったとき（例えば1000回サンプリングを繰り返して、1000個の標本平均が計算できたとき）、その標本平均の平均は、母平均と等しいという性質である。一回のサンプリングによる標本の標本平均は、実際には母平均とはズレがある可能性は否定できない。しかし、その推定プロセスでは、平均的に正しい（母平均と等しい）値が得られるという性質を持つ推定量は不偏性を持つといい、<strong>不偏推定量</strong>と呼ばれる。</p>
 <p>これをRにおけるシミュレーションで確認してみよう。</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="rstatsinfe.html#cb237-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20240509</span>) <span class="co"># ランダムなプロセスを再現するためにseedを設定する。</span></span>
-<span id="cb237-2"><a href="rstatsinfe.html#cb237-2" tabindex="-1"></a></span>
-<span id="cb237-3"><a href="rstatsinfe.html#cb237-3" tabindex="-1"></a><span class="co"># 母集団を決める（シミュレーションなので現実とは異なる）</span></span>
-<span id="cb237-4"><a href="rstatsinfe.html#cb237-4" tabindex="-1"></a>mu <span class="ot">=</span> <span class="dv">170</span></span>
-<span id="cb237-5"><a href="rstatsinfe.html#cb237-5" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb237-6"><a href="rstatsinfe.html#cb237-6" tabindex="-1"></a></span>
-<span id="cb237-7"><a href="rstatsinfe.html#cb237-7" tabindex="-1"></a><span class="co"># サンプルサイズを決める。今回は100人だとする。</span></span>
-<span id="cb237-8"><a href="rstatsinfe.html#cb237-8" tabindex="-1"></a>sample_size <span class="ot">=</span> <span class="dv">100</span></span>
-<span id="cb237-9"><a href="rstatsinfe.html#cb237-9" tabindex="-1"></a></span>
-<span id="cb237-10"><a href="rstatsinfe.html#cb237-10" tabindex="-1"></a><span class="co"># rnorm(n,mean,sd)は、meanとsdという母数を持つ正規分布という確率分布を持つ母集団から、n個（今回はn人）をランダムにサンプリングするという関数である。</span></span>
-<span id="cb237-11"><a href="rstatsinfe.html#cb237-11" tabindex="-1"></a></span>
-<span id="cb237-12"><a href="rstatsinfe.html#cb237-12" tabindex="-1"></a>sample1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span>sample_size, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
-<span id="cb237-13"><a href="rstatsinfe.html#cb237-13" tabindex="-1"></a></span>
-<span id="cb237-14"><a href="rstatsinfe.html#cb237-14" tabindex="-1"></a><span class="co"># 平均を計算する</span></span>
-<span id="cb237-15"><a href="rstatsinfe.html#cb237-15" tabindex="-1"></a>sample1_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample1)</span>
-<span id="cb237-16"><a href="rstatsinfe.html#cb237-16" tabindex="-1"></a>sample1_mean</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="rstatsinfe.html#cb244-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20240509</span>) <span class="co"># ランダムなプロセスを再現するためにseedを設定する。</span></span>
+<span id="cb244-2"><a href="rstatsinfe.html#cb244-2" tabindex="-1"></a></span>
+<span id="cb244-3"><a href="rstatsinfe.html#cb244-3" tabindex="-1"></a><span class="co"># 母集団を決める（シミュレーションなので現実とは異なる）</span></span>
+<span id="cb244-4"><a href="rstatsinfe.html#cb244-4" tabindex="-1"></a>mu <span class="ot">=</span> <span class="dv">170</span></span>
+<span id="cb244-5"><a href="rstatsinfe.html#cb244-5" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb244-6"><a href="rstatsinfe.html#cb244-6" tabindex="-1"></a></span>
+<span id="cb244-7"><a href="rstatsinfe.html#cb244-7" tabindex="-1"></a><span class="co"># サンプルサイズを決める。今回は100人だとする。</span></span>
+<span id="cb244-8"><a href="rstatsinfe.html#cb244-8" tabindex="-1"></a>sample_size <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb244-9"><a href="rstatsinfe.html#cb244-9" tabindex="-1"></a></span>
+<span id="cb244-10"><a href="rstatsinfe.html#cb244-10" tabindex="-1"></a><span class="co"># rnorm(n,mean,sd)は、meanとsdという母数を持つ正規分布という確率分布を持つ母集団から、n個（今回はn人）をランダムにサンプリングするという関数である。</span></span>
+<span id="cb244-11"><a href="rstatsinfe.html#cb244-11" tabindex="-1"></a></span>
+<span id="cb244-12"><a href="rstatsinfe.html#cb244-12" tabindex="-1"></a>sample1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span>sample_size, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
+<span id="cb244-13"><a href="rstatsinfe.html#cb244-13" tabindex="-1"></a></span>
+<span id="cb244-14"><a href="rstatsinfe.html#cb244-14" tabindex="-1"></a><span class="co"># 平均を計算する</span></span>
+<span id="cb244-15"><a href="rstatsinfe.html#cb244-15" tabindex="-1"></a>sample1_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample1)</span>
+<span id="cb244-16"><a href="rstatsinfe.html#cb244-16" tabindex="-1"></a>sample1_mean</span></code></pre></div>
 <pre><code>## [1] 171.1845</code></pre>
 <p>まず、一度だけのサンプリングと標本平均の計算を行った。
 この結果、標本平均は171.18cmなので、母平均の170cmにまぁ近い。</p>
 <p>では、このコードを編集して、<code>for</code>関数を用いたループで1000回サンプリングしてみよう。<code>for</code>関数についてはセクション<a href="letsuse.html#loop">4.2.2</a>を参照。</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="rstatsinfe.html#cb239-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20240509</span>) <span class="co"># ランダムなプロセスを再現するためにseedを設定する。</span></span>
-<span id="cb239-2"><a href="rstatsinfe.html#cb239-2" tabindex="-1"></a></span>
-<span id="cb239-3"><a href="rstatsinfe.html#cb239-3" tabindex="-1"></a><span class="co"># 母集団を決める（シミュレーションなので現実とは異なる）</span></span>
-<span id="cb239-4"><a href="rstatsinfe.html#cb239-4" tabindex="-1"></a>mu <span class="ot">=</span> <span class="dv">170</span></span>
-<span id="cb239-5"><a href="rstatsinfe.html#cb239-5" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb239-6"><a href="rstatsinfe.html#cb239-6" tabindex="-1"></a></span>
-<span id="cb239-7"><a href="rstatsinfe.html#cb239-7" tabindex="-1"></a><span class="co"># サンプルサイズを決める。今回は1000人だとする。</span></span>
-<span id="cb239-8"><a href="rstatsinfe.html#cb239-8" tabindex="-1"></a>sample_size <span class="ot">=</span> <span class="dv">100</span></span>
-<span id="cb239-9"><a href="rstatsinfe.html#cb239-9" tabindex="-1"></a></span>
-<span id="cb239-10"><a href="rstatsinfe.html#cb239-10" tabindex="-1"></a><span class="co"># 標本平均を格納するベクトルをつくっておく</span></span>
-<span id="cb239-11"><a href="rstatsinfe.html#cb239-11" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">vector</span>() </span>
-<span id="cb239-12"><a href="rstatsinfe.html#cb239-12" tabindex="-1"></a></span>
-<span id="cb239-13"><a href="rstatsinfe.html#cb239-13" tabindex="-1"></a><span class="co"># 繰り返しloop</span></span>
-<span id="cb239-14"><a href="rstatsinfe.html#cb239-14" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>){  <span class="co"># iという変数を1から1000まで繰り返す</span></span>
-<span id="cb239-15"><a href="rstatsinfe.html#cb239-15" tabindex="-1"></a></span>
-<span id="cb239-16"><a href="rstatsinfe.html#cb239-16" tabindex="-1"></a>  <span class="co"># サンプリングを行って、sample1というオブジェクトに格納する</span></span>
-<span id="cb239-17"><a href="rstatsinfe.html#cb239-17" tabindex="-1"></a>  sample1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span>sample_size, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
-<span id="cb239-18"><a href="rstatsinfe.html#cb239-18" tabindex="-1"></a></span>
-<span id="cb239-19"><a href="rstatsinfe.html#cb239-19" tabindex="-1"></a>  <span class="co"># 平均を計算して、それをsample_meanのi番目の要素に格納する</span></span>
-<span id="cb239-20"><a href="rstatsinfe.html#cb239-20" tabindex="-1"></a>  sample_mean[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample1)</span>
-<span id="cb239-21"><a href="rstatsinfe.html#cb239-21" tabindex="-1"></a>}</span>
-<span id="cb239-22"><a href="rstatsinfe.html#cb239-22" tabindex="-1"></a></span>
-<span id="cb239-23"><a href="rstatsinfe.html#cb239-23" tabindex="-1"></a><span class="co"># 繰り返しが終わったら、sample_meanの平均を獲る</span></span>
-<span id="cb239-24"><a href="rstatsinfe.html#cb239-24" tabindex="-1"></a><span class="fu">mean</span>(sample_mean)</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="rstatsinfe.html#cb246-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20240509</span>) <span class="co"># ランダムなプロセスを再現するためにseedを設定する。</span></span>
+<span id="cb246-2"><a href="rstatsinfe.html#cb246-2" tabindex="-1"></a></span>
+<span id="cb246-3"><a href="rstatsinfe.html#cb246-3" tabindex="-1"></a><span class="co"># 母集団を決める（シミュレーションなので現実とは異なる）</span></span>
+<span id="cb246-4"><a href="rstatsinfe.html#cb246-4" tabindex="-1"></a>mu <span class="ot">=</span> <span class="dv">170</span></span>
+<span id="cb246-5"><a href="rstatsinfe.html#cb246-5" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb246-6"><a href="rstatsinfe.html#cb246-6" tabindex="-1"></a></span>
+<span id="cb246-7"><a href="rstatsinfe.html#cb246-7" tabindex="-1"></a><span class="co"># サンプルサイズを決める。今回は1000人だとする。</span></span>
+<span id="cb246-8"><a href="rstatsinfe.html#cb246-8" tabindex="-1"></a>sample_size <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb246-9"><a href="rstatsinfe.html#cb246-9" tabindex="-1"></a></span>
+<span id="cb246-10"><a href="rstatsinfe.html#cb246-10" tabindex="-1"></a><span class="co"># 標本平均を格納するベクトルをつくっておく</span></span>
+<span id="cb246-11"><a href="rstatsinfe.html#cb246-11" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">vector</span>() </span>
+<span id="cb246-12"><a href="rstatsinfe.html#cb246-12" tabindex="-1"></a></span>
+<span id="cb246-13"><a href="rstatsinfe.html#cb246-13" tabindex="-1"></a><span class="co"># 繰り返しloop</span></span>
+<span id="cb246-14"><a href="rstatsinfe.html#cb246-14" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>){  <span class="co"># iという変数を1から1000まで繰り返す</span></span>
+<span id="cb246-15"><a href="rstatsinfe.html#cb246-15" tabindex="-1"></a></span>
+<span id="cb246-16"><a href="rstatsinfe.html#cb246-16" tabindex="-1"></a>  <span class="co"># サンプリングを行って、sample1というオブジェクトに格納する</span></span>
+<span id="cb246-17"><a href="rstatsinfe.html#cb246-17" tabindex="-1"></a>  sample1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span>sample_size, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
+<span id="cb246-18"><a href="rstatsinfe.html#cb246-18" tabindex="-1"></a></span>
+<span id="cb246-19"><a href="rstatsinfe.html#cb246-19" tabindex="-1"></a>  <span class="co"># 平均を計算して、それをsample_meanのi番目の要素に格納する</span></span>
+<span id="cb246-20"><a href="rstatsinfe.html#cb246-20" tabindex="-1"></a>  sample_mean[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample1)</span>
+<span id="cb246-21"><a href="rstatsinfe.html#cb246-21" tabindex="-1"></a>}</span>
+<span id="cb246-22"><a href="rstatsinfe.html#cb246-22" tabindex="-1"></a></span>
+<span id="cb246-23"><a href="rstatsinfe.html#cb246-23" tabindex="-1"></a><span class="co"># 繰り返しが終わったら、sample_meanの平均を獲る</span></span>
+<span id="cb246-24"><a href="rstatsinfe.html#cb246-24" tabindex="-1"></a><span class="fu">mean</span>(sample_mean)</span></code></pre></div>
 <pre><code>## [1] 169.9808</code></pre>
 <p>標本平均の平均を見てみると、限りなく170cmに近い数値が出ている。</p>
 <p>しかし、一回一回の標本平均がピッタリ170cmであるわけではない。1000回とった標本平均がどのような散らばりを持っているのか、ヒストグラムを描いてみよう。</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="rstatsinfe.html#cb241-1" tabindex="-1"></a><span class="co"># ヒストグラムを描画してみる</span></span>
-<span id="cb241-2"><a href="rstatsinfe.html#cb241-2" tabindex="-1"></a></span>
-<span id="cb241-3"><a href="rstatsinfe.html#cb241-3" tabindex="-1"></a>  <span class="co"># ggplot2はデータフレームかtibbleしか受け付けないので、tibbleに変換する。sample_meanという変数にする</span></span>
-<span id="cb241-4"><a href="rstatsinfe.html#cb241-4" tabindex="-1"></a>  data_sample_mean <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">sample_mean =</span> sample_mean)</span>
-<span id="cb241-5"><a href="rstatsinfe.html#cb241-5" tabindex="-1"></a></span>
-<span id="cb241-6"><a href="rstatsinfe.html#cb241-6" tabindex="-1"></a>  <span class="co"># ggplotのgeom_histogramで描画する。見やすいように枠線を青に、中身をグレーに変更している。</span></span>
-<span id="cb241-7"><a href="rstatsinfe.html#cb241-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> data_sample_mean) <span class="sc">+</span> </span>
-<span id="cb241-8"><a href="rstatsinfe.html#cb241-8" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sample_mean), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">fill=</span><span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="rstatsinfe.html#cb248-1" tabindex="-1"></a><span class="co"># ヒストグラムを描画してみる</span></span>
+<span id="cb248-2"><a href="rstatsinfe.html#cb248-2" tabindex="-1"></a></span>
+<span id="cb248-3"><a href="rstatsinfe.html#cb248-3" tabindex="-1"></a>  <span class="co"># ggplot2はデータフレームかtibbleしか受け付けないので、tibbleに変換する。sample_meanという変数にする</span></span>
+<span id="cb248-4"><a href="rstatsinfe.html#cb248-4" tabindex="-1"></a>  data_sample_mean <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">sample_mean =</span> sample_mean)</span>
+<span id="cb248-5"><a href="rstatsinfe.html#cb248-5" tabindex="-1"></a></span>
+<span id="cb248-6"><a href="rstatsinfe.html#cb248-6" tabindex="-1"></a>  <span class="co"># ggplotのgeom_histogramで描画する。見やすいように枠線を青に、中身をグレーに変更している。</span></span>
+<span id="cb248-7"><a href="rstatsinfe.html#cb248-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> data_sample_mean) <span class="sc">+</span> </span>
+<span id="cb248-8"><a href="rstatsinfe.html#cb248-8" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sample_mean), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">fill=</span><span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
 <p>標本平均一つ一つであれば、小さいもので167cmぐらい、大きいものだと173cmぐらいまでズレがあることがわかる。それぞれ170cmピッタリとは限らないが、平均的には170cmを推定できていることがわかる。</p>
 <p>このことから、標本平均が母平均を推定する推定量として、不偏性を持っているということがわかる。</p>
 </div>

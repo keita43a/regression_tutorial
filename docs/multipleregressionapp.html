@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-05-14" />
+<meta name="date" content="2025-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,6 +380,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.22.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.22.1</b> 例：SSDSE-B県別推移のデータ</a></li>
 </ul></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#makefigFAQ"><i class="fa fa-check"></i><b>8.23</b> よくある問題と対策</a>
+<ul>
+<li class="chapter" data-level="8.23.1" data-path="rviz.html"><a href="rviz.html#axisnum"><i class="fa fa-check"></i><b>8.23.1</b> 軸の数値がおかしい</a></li>
+<li class="chapter" data-level="8.23.2" data-path="rviz.html"><a href="rviz.html#smallletter"><i class="fa fa-check"></i><b>8.23.2</b> 字が小さい</a></li>
+<li class="chapter" data-level="8.23.3" data-path="rviz.html"><a href="rviz.html#axisnumadjust"><i class="fa fa-check"></i><b>8.23.3</b> 軸の数値がいい感じにならない</a></li>
+<li class="chapter" data-level="8.23.4" data-path="rviz.html"><a href="rviz.html#axislabeladjust"><i class="fa fa-check"></i><b>8.23.4</b> 軸の目盛りラベルを調整する</a></li>
+<li class="chapter" data-level="8.23.5" data-path="rviz.html"><a href="rviz.html#jpntrans"><i class="fa fa-check"></i><b>8.23.5</b> ラベルだけではなく、凡例や目盛りラベルも日本語化したい</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
@@ -583,10 +591,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="測定単位の変更" class="section level3 hasAnchor" number="13.1.1">
 <h3><span class="header-section-number">13.1.1</span> 測定単位の変更<a href="multipleregressionapp.html#測定単位の変更" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>前の章の例を使ってみよう。</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="multipleregressionapp.html#cb300-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> income, <span class="at">data =</span> dat_sim)</span>
-<span id="cb300-2"><a href="multipleregressionapp.html#cb300-2" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(income<span class="sc">*</span><span class="dv">10000</span>), <span class="at">data =</span> dat_sim)</span>
-<span id="cb300-3"><a href="multipleregressionapp.html#cb300-3" tabindex="-1"></a></span>
-<span id="cb300-4"><a href="multipleregressionapp.html#cb300-4" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="multipleregressionapp.html#cb307-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> income, <span class="at">data =</span> dat_sim)</span>
+<span id="cb307-2"><a href="multipleregressionapp.html#cb307-2" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">feols</span>(sales <span class="sc">~</span> ads <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(income<span class="sc">*</span><span class="dv">10000</span>), <span class="at">data =</span> dat_sim)</span>
+<span id="cb307-3"><a href="multipleregressionapp.html#cb307-3" tabindex="-1"></a></span>
+<span id="cb307-4"><a href="multipleregressionapp.html#cb307-4" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                               model1               model2
 ## Dependent Var.:      支店の売上      支店の売上
 ##                                                          
@@ -699,22 +707,22 @@ y_i = \alpha + \beta_1 x_i + \varepsilon_i
   \frac{dy}{dx} = \beta_1 + 2\beta_2x_i
 \]</span></p>
 <p>となる。先ほどと違い、限界効果の中に<span class="math inline">\(x_i\)</span>が入っているということは、効果の量が<span class="math inline">\(x_i\)</span>の量によって異なるということである。</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="multipleregressionapp.html#cb302-1" tabindex="-1"></a>dat_funplot <span class="ot">=</span> <span class="fu">tibble</span>(</span>
-<span id="cb302-2"><a href="multipleregressionapp.html#cb302-2" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="fl">0.1</span>),</span>
-<span id="cb302-3"><a href="multipleregressionapp.html#cb302-3" tabindex="-1"></a>  <span class="at">y1 =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fl">0.2</span><span class="sc">*</span>x,</span>
-<span id="cb302-4"><a href="multipleregressionapp.html#cb302-4" tabindex="-1"></a>  <span class="at">y2 =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fl">0.35</span><span class="sc">*</span>x <span class="sc">-</span> <span class="fl">0.02</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb302-5"><a href="multipleregressionapp.html#cb302-5" tabindex="-1"></a>)</span>
-<span id="cb302-6"><a href="multipleregressionapp.html#cb302-6" tabindex="-1"></a></span>
-<span id="cb302-7"><a href="multipleregressionapp.html#cb302-7" tabindex="-1"></a><span class="fu">ggplot</span>(dat_funplot, <span class="fu">aes</span>(<span class="at">x=</span>x)) <span class="sc">+</span> </span>
-<span id="cb302-8"><a href="multipleregressionapp.html#cb302-8" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y1), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb302-9"><a href="multipleregressionapp.html#cb302-9" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y2), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb302-10"><a href="multipleregressionapp.html#cb302-10" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="fl">7.5</span>,<span class="at">y=</span><span class="fl">4.75</span>,<span class="at">parse=</span><span class="cn">TRUE</span>, </span>
-<span id="cb302-11"><a href="multipleregressionapp.html#cb302-11" tabindex="-1"></a>           <span class="at">label=</span><span class="st">&quot;y==alpha+beta[1]*x&quot;</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb302-12"><a href="multipleregressionapp.html#cb302-12" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="fl">5.0</span>,<span class="at">y=</span><span class="fl">4.5</span>,<span class="at">parse=</span><span class="cn">TRUE</span>, </span>
-<span id="cb302-13"><a href="multipleregressionapp.html#cb302-13" tabindex="-1"></a>           <span class="at">label=</span><span class="st">&quot;y==alpha+beta[1]*x+beta[2]*x^2&quot;</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb302-14"><a href="multipleregressionapp.html#cb302-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;x&quot;</span>, <span class="at">y =</span><span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb302-15"><a href="multipleregressionapp.html#cb302-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="multipleregressionapp.html#cb309-1" tabindex="-1"></a>dat_funplot <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb309-2"><a href="multipleregressionapp.html#cb309-2" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="fl">0.1</span>),</span>
+<span id="cb309-3"><a href="multipleregressionapp.html#cb309-3" tabindex="-1"></a>  <span class="at">y1 =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fl">0.2</span><span class="sc">*</span>x,</span>
+<span id="cb309-4"><a href="multipleregressionapp.html#cb309-4" tabindex="-1"></a>  <span class="at">y2 =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fl">0.35</span><span class="sc">*</span>x <span class="sc">-</span> <span class="fl">0.02</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb309-5"><a href="multipleregressionapp.html#cb309-5" tabindex="-1"></a>)</span>
+<span id="cb309-6"><a href="multipleregressionapp.html#cb309-6" tabindex="-1"></a></span>
+<span id="cb309-7"><a href="multipleregressionapp.html#cb309-7" tabindex="-1"></a><span class="fu">ggplot</span>(dat_funplot, <span class="fu">aes</span>(<span class="at">x=</span>x)) <span class="sc">+</span> </span>
+<span id="cb309-8"><a href="multipleregressionapp.html#cb309-8" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y1), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb309-9"><a href="multipleregressionapp.html#cb309-9" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>y2), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb309-10"><a href="multipleregressionapp.html#cb309-10" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="fl">7.5</span>,<span class="at">y=</span><span class="fl">4.75</span>,<span class="at">parse=</span><span class="cn">TRUE</span>, </span>
+<span id="cb309-11"><a href="multipleregressionapp.html#cb309-11" tabindex="-1"></a>           <span class="at">label=</span><span class="st">&quot;y==alpha+beta[1]*x&quot;</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb309-12"><a href="multipleregressionapp.html#cb309-12" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,<span class="at">x=</span><span class="fl">5.0</span>,<span class="at">y=</span><span class="fl">4.5</span>,<span class="at">parse=</span><span class="cn">TRUE</span>, </span>
+<span id="cb309-13"><a href="multipleregressionapp.html#cb309-13" tabindex="-1"></a>           <span class="at">label=</span><span class="st">&quot;y==alpha+beta[1]*x+beta[2]*x^2&quot;</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb309-14"><a href="multipleregressionapp.html#cb309-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;x&quot;</span>, <span class="at">y =</span><span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb309-15"><a href="multipleregressionapp.html#cb309-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
 </div>
 <div id="例経験年数の年収への効果" class="section level3 hasAnchor" number="13.2.2">
 <h3><span class="header-section-number">13.2.2</span> 例：経験年数の年収への効果<a href="multipleregressionapp.html#例経験年数の年収への効果" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -726,23 +734,23 @@ y_i = \alpha + \beta_1 x_i + \varepsilon_i
 <div id="準備-5" class="section level4 hasAnchor" number="13.2.2.1">
 <h4><span class="header-section-number">13.2.2.1</span> 準備<a href="multipleregressionapp.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>multi_reg_app.R</code>というスクリプトを準備し、必要なパッケージをロードする。</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="multipleregressionapp.html#cb303-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb303-2"><a href="multipleregressionapp.html#cb303-2" tabindex="-1"></a><span class="fu">library</span>(fixest)</span>
-<span id="cb303-3"><a href="multipleregressionapp.html#cb303-3" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="multipleregressionapp.html#cb310-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb310-2"><a href="multipleregressionapp.html#cb310-2" tabindex="-1"></a><span class="fu">library</span>(fixest)</span>
+<span id="cb310-3"><a href="multipleregressionapp.html#cb310-3" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code></pre></div>
 </div>
 <div id="データのロード" class="section level4 hasAnchor" number="13.2.2.2">
 <h4><span class="header-section-number">13.2.2.2</span> データのロード<a href="multipleregressionapp.html#データのロード" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>以下の通りデータをダウンロードして、読み込む。</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="multipleregressionapp.html#cb304-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの保存</span></span>
-<span id="cb304-2"><a href="multipleregressionapp.html#cb304-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/dat_income.csv?raw=TRUE&quot;</span>,</span>
-<span id="cb304-3"><a href="multipleregressionapp.html#cb304-3" tabindex="-1"></a>              <span class="at">destfile=</span><span class="st">&quot;data/dat_income.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="multipleregressionapp.html#cb305-1" tabindex="-1"></a>dat_income <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat_income.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="multipleregressionapp.html#cb311-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの保存</span></span>
+<span id="cb311-2"><a href="multipleregressionapp.html#cb311-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/dat_income.csv?raw=TRUE&quot;</span>,</span>
+<span id="cb311-3"><a href="multipleregressionapp.html#cb311-3" tabindex="-1"></a>              <span class="at">destfile=</span><span class="st">&quot;data/dat_income.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="multipleregressionapp.html#cb312-1" tabindex="-1"></a>dat_income <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat_income.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="データの確認" class="section level4 hasAnchor" number="13.2.2.3">
 <h4><span class="header-section-number">13.2.2.3</span> データの確認<a href="multipleregressionapp.html#データの確認" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="multipleregressionapp.html#cb306-1" tabindex="-1"></a><span class="fu">skim</span>(dat_income)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="multipleregressionapp.html#cb313-1" tabindex="-1"></a><span class="fu">skim</span>(dat_income)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-211">Table 13.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-225">Table 13.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -866,9 +874,9 @@ y_i = \alpha + \beta_1 x_i + \varepsilon_i
 </div>
 <div id="推定" class="section level4 hasAnchor" number="13.2.2.4">
 <h4><span class="header-section-number">13.2.2.4</span> 推定<a href="multipleregressionapp.html#推定" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="multipleregressionapp.html#cb307-1" tabindex="-1"></a>reg_income <span class="ot">&lt;-</span> <span class="fu">feols</span>(lincome <span class="sc">~</span> exper <span class="sc">+</span> <span class="fu">I</span>(exper<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> yeduc, <span class="at">data=</span>dat_income)</span>
-<span id="cb307-2"><a href="multipleregressionapp.html#cb307-2" tabindex="-1"></a></span>
-<span id="cb307-3"><a href="multipleregressionapp.html#cb307-3" tabindex="-1"></a><span class="fu">etable</span>(reg_income)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="multipleregressionapp.html#cb314-1" tabindex="-1"></a>reg_income <span class="ot">&lt;-</span> <span class="fu">feols</span>(lincome <span class="sc">~</span> exper <span class="sc">+</span> <span class="fu">I</span>(exper<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> yeduc, <span class="at">data=</span>dat_income)</span>
+<span id="cb314-2"><a href="multipleregressionapp.html#cb314-2" tabindex="-1"></a></span>
+<span id="cb314-3"><a href="multipleregressionapp.html#cb314-3" tabindex="-1"></a><span class="fu">etable</span>(reg_income)</span></code></pre></div>
 <pre><code>##                          reg_income
 ## Dependent Var.:             lincome
 ##                                    
@@ -890,9 +898,9 @@ y_i = \alpha + \beta_1 x_i + \varepsilon_i
 <p><span class="math display">\[
 \frac{d対数賃金}{d経験年数}|_{経験年数=10} = 0.196 - 2\times0.006\times10 =0.076
 \]</span></p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="multipleregressionapp.html#cb309-1" tabindex="-1"></a><span class="fl">0.196</span><span class="dv">-2</span><span class="sc">*</span><span class="fl">0.006</span><span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="multipleregressionapp.html#cb316-1" tabindex="-1"></a><span class="fl">0.196</span><span class="dv">-2</span><span class="sc">*</span><span class="fl">0.006</span><span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 0.136</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="multipleregressionapp.html#cb311-1" tabindex="-1"></a><span class="fl">0.196</span><span class="dv">-2</span><span class="sc">*</span><span class="fl">0.006</span><span class="sc">*</span><span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="multipleregressionapp.html#cb318-1" tabindex="-1"></a><span class="fl">0.196</span><span class="dv">-2</span><span class="sc">*</span><span class="fl">0.006</span><span class="sc">*</span><span class="dv">10</span></span></code></pre></div>
 <pre><code>## [1] 0.076</code></pre>
 </div>
 </div>
@@ -901,13 +909,13 @@ y_i = \alpha + \beta_1 x_i + \varepsilon_i
 <p><span class="math display">\[
 対数賃金_i = \alpha + \beta_1 教育年数 + \beta_2 女性ダミー_i + \varepsilon_i
 \]</span></p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="multipleregressionapp.html#cb313-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの保存</span></span>
-<span id="cb313-2"><a href="multipleregressionapp.html#cb313-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/dat_income_female.csv?raw=TRUE&quot;</span>,</span>
-<span id="cb313-3"><a href="multipleregressionapp.html#cb313-3" tabindex="-1"></a>              <span class="at">destfile=</span><span class="st">&quot;data/dat_income_female.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="multipleregressionapp.html#cb314-1" tabindex="-1"></a>dat_income_female <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat_income_female.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="multipleregressionapp.html#cb315-1" tabindex="-1"></a><span class="fu">skim</span>(dat_income_female)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="multipleregressionapp.html#cb320-1" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの保存</span></span>
+<span id="cb320-2"><a href="multipleregressionapp.html#cb320-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/dat_income_female.csv?raw=TRUE&quot;</span>,</span>
+<span id="cb320-3"><a href="multipleregressionapp.html#cb320-3" tabindex="-1"></a>              <span class="at">destfile=</span><span class="st">&quot;data/dat_income_female.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="multipleregressionapp.html#cb321-1" tabindex="-1"></a>dat_income_female <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat_income_female.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="multipleregressionapp.html#cb322-1" tabindex="-1"></a><span class="fu">skim</span>(dat_income_female)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-217">Table 13.2: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-231">Table 13.2: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -1015,9 +1023,9 @@ y_i = \alpha + \beta_1 x_i + \varepsilon_i
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="multipleregressionapp.html#cb316-1" tabindex="-1"></a>reg_income_female <span class="ot">&lt;-</span> <span class="fu">feols</span>(lincome <span class="sc">~</span> yeduc <span class="sc">+</span> female, <span class="at">data=</span>dat_income_female)</span>
-<span id="cb316-2"><a href="multipleregressionapp.html#cb316-2" tabindex="-1"></a></span>
-<span id="cb316-3"><a href="multipleregressionapp.html#cb316-3" tabindex="-1"></a><span class="fu">etable</span>(reg_income_female)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="multipleregressionapp.html#cb323-1" tabindex="-1"></a>reg_income_female <span class="ot">&lt;-</span> <span class="fu">feols</span>(lincome <span class="sc">~</span> yeduc <span class="sc">+</span> female, <span class="at">data=</span>dat_income_female)</span>
+<span id="cb323-2"><a href="multipleregressionapp.html#cb323-2" tabindex="-1"></a></span>
+<span id="cb323-3"><a href="multipleregressionapp.html#cb323-3" tabindex="-1"></a><span class="fu">etable</span>(reg_income_female)</span></code></pre></div>
 <pre><code>##                   reg_income_female
 ## Dependent Var.:             lincome
 ##                                    
@@ -1037,9 +1045,9 @@ y_i = \alpha + \beta_1 x_i + \varepsilon_i
 <p><span class="math display">\[
 対数賃金_i = \alpha + \beta_1 教育年数_i + \beta_2 女性ダミー_i + \beta_3 女性ダミー_i\times教育年数_i + \varepsilon_i
 \]</span></p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="multipleregressionapp.html#cb318-1" tabindex="-1"></a>reg_income_female_2 <span class="ot">&lt;-</span> <span class="fu">feols</span>(lincome <span class="sc">~</span> yeduc <span class="sc">+</span> female <span class="sc">+</span> yeduc<span class="sc">:</span>female, <span class="at">data=</span>dat_income_female)</span>
-<span id="cb318-2"><a href="multipleregressionapp.html#cb318-2" tabindex="-1"></a></span>
-<span id="cb318-3"><a href="multipleregressionapp.html#cb318-3" tabindex="-1"></a><span class="fu">etable</span>(reg_income_female_2)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="multipleregressionapp.html#cb325-1" tabindex="-1"></a>reg_income_female_2 <span class="ot">&lt;-</span> <span class="fu">feols</span>(lincome <span class="sc">~</span> yeduc <span class="sc">+</span> female <span class="sc">+</span> yeduc<span class="sc">:</span>female, <span class="at">data=</span>dat_income_female)</span>
+<span id="cb325-2"><a href="multipleregressionapp.html#cb325-2" tabindex="-1"></a></span>
+<span id="cb325-3"><a href="multipleregressionapp.html#cb325-3" tabindex="-1"></a><span class="fu">etable</span>(reg_income_female_2)</span></code></pre></div>
 <pre><code>##                 reg_income_fema..2
 ## Dependent Var.:            lincome
 ##                                   

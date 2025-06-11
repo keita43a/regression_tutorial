@@ -142,6 +142,8 @@ $1+2+3+\cdots+50=$
 
 ヒント：`goukei`というオブジェクトを用意して、ループの前に`0`を代入してみよう。
 
+解答：[Link](https://docs.google.com/document/d/18J4l_kYHMTZuD-r9vK1sRB-A1A-v182UMlLiWXfnWUI/edit?usp=sharing) (Google Driveへのアクセス権がほしい方は阿部まで連絡してください。)
+
 ### プログラミング：if文
 
 もしある命題が真ならどうする、偽ならどうするというifの条件によって異なる処理を行うif文もプログラミングの基本だ。Rでも簡単に実装できる。

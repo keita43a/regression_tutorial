@@ -3,6 +3,9 @@
 ## Rをどうやって使う？
 
 - Rを使うにはいくつか方法がある。
+  - Rのソフトウェアをそのまま使うことも可能。
+  - ウェブ上でRを実行するGoogle Colaboratoryという環境もある。
+  - ここでは自分のPC上でIDEを使用する環境を説明する。
 - 統合開発環境 IDE: Integrated Development Environment
   - ソフトウェア開発や、データ分析のプロセスをワンストップで行える環境
   - 一部GUIを導入したり、CUIによる操作をアシストする
@@ -12,6 +15,8 @@
 
 ## Rstudioを使う3つの方法
 
+特に理由がない限りは、1の方法でやってみよう。
+
 1. PCにインストール
   - 自分のPCにインストール
   - ネット環境がなくても使える
@@ -20,64 +25,91 @@
 2. 学校のパソコンを使う
   - 学校のパソコンにはRとRStudioがインストールされている
   - 学校に自分のPCを持ってこなくてもよいが家で勉強できない
-  - Rプロジェクトを用いた際にネットワークドライブに置いた場合、ワーキングディレクトリの挙動がおかしいので、パソコンのpathなどに詳しくない人は混乱するかもしれない。
+  - Rプロジェクトを用いた際にネットワークドライブに置いた場合、ワーキングディレクトリの挙動がおかしいので、パソコンのpathなどに詳しくない人は混乱しやすいため、おすすめしない。
 
 3. posit.Cloudの無料プランを使う
   - クラウド上でRstudioを使う
   - 利点：コンピューター上の設定が不要
   - 欠点：データファイルなどを毎回アップロードする必要がある。ファイル数などは限られる。
   
-できれば1の方法でやってみよう。
+
 
 
 
 ## Rのインストール
 
 - 学校のパソコンにはすでにインストールされている
-- 自分のパソコンに導入する人は[このスライド](https://speakerdeck.com/s_uryu/introduction-to-r)か[ここ](https://yukiyanai.github.io/jp/resources/)にある「RとRStudioのインストール方法の解説」を参照
+- 以下ではWindowsとMacでそれぞれインストールする方法を説明する。
 
-### Windownsへのインストール
+
+### Windowsへのインストール
+
+#### 準備
+
+- Windowsユーザーは、まず**ファイルエクスプローラー**で、拡張子の表示を行う設定をしよう。ファイルの種類を識別しやすくするために、表示しておくのが望ましいが、Windowsではデフォルトの設定では拡張子が表示されていないため**設定を変更**する必要がある。
+  - **ファイルエクスプローラー**は、エクスプローラーとも呼ばれ、Windowsでファイルやフォルダを管理するためのアプリである。黄色いフォルダのアイコンで表示されている。
+```{r  label = explorer, echo = FALSE, fig.cap = "エクスプローラー", out.width = '30%', fig.align='center'}
+knitr::include_graphics("fig/explorer.jpg")
+```
+
+  - **拡張子**とは、ファイルの種類を識別するために使われるファイルの末尾にある、ドットで区切られた右側の英数字のことである
+  。例えば、
+    - テキストファイルでは「.txt」
+    - ワードファイルでは「.doc」「.docx」
+    - エクセルファイルでは「.xls」「.xlsx」
+    - CSVファイル（データの保存によく使われる形式）は「.csv」
+    - Rのプロジェクトファイルは「.Rproj」
+    - Rスクリプトでは「.R」
+    
+- 拡張子の表示は、エクスプローラーを立ち上げて上のメニューバーの「表示」→プルダウンから「表示」→「ファイル名拡張子」にチェックを入れる。
+
+```{r  label = kakuchoshi, echo = FALSE, fig.cap = "拡張子", out.width = '80%', fig.align='center'}
+knitr::include_graphics("fig/kakuchoshi.jpg")
+```
+
+
+#### インストール
 
 - ブラウザから<a href="https://cran.ism.ac.jp/" target="_blank">CLAN</a>へアクセスする
   - もし繋がらなければ<a href="https://ftp.yz.yamagata-u.ac.jp/pub/cran/">こちら</a>から試してみる
-- 「Download R for Windows」-> 「base」-> 「Download R-4.3.3 for Windows」
-  - R-4.3.3-win.exeがダウンロードされる
-  - この資料が更新されていなければ4.3.3.より新しいバージョンになっているかもしれない。
+- 「Download R for Windows」-> 「base」-> 「Download R-4.5.0 for Windows」
+  - R-4.5.0-win.exeがダウンロードされる
+  - この資料が更新されていなければ4.5.0.より新しいバージョンになっているかもしれない。
 
-```{r  label = downloadwin, echo = FALSE, fig.cap = "Rのダウンロード。Windowsの場合", out.width = '60%'}
+```{r  label = downloadwin, echo = FALSE, fig.cap = "Rのダウンロード。Windowsの場合", out.width = '60%', fig.align='center'}
 knitr::include_graphics("fig/download_R.png")
 knitr::include_graphics("fig/download_R_win.png")
 knitr::include_graphics("fig/download_R_win2.png")
 ```
 
-- R-4.3.3-win.exeをクリックしてインストールする
+- R-4.5.0-win.exeをクリックしてインストールする
   - 基本的に「はい」や「次へ」で良い
   - 「起動時オプション」は「いいえ」（デフォルト状態）
   - 「このアプリがデバイスに変更を加えることを許可しますか」と出たら「はい」
-- 完了したらデスクトップやアプリ一覧にR.4.3.3があるかどうかチェック
+- 完了したらデスクトップやアプリ一覧にR.4.5.0があるかどうかチェック
 
 ### Mac OSへのインストール
 
 Mac OSへのインストールは少し大変である。一つずつ確認していこう。
 
-#### チップの種類を確認
+#### 準備１：チップの種類を確認
 
 - まず自分のMacがIntelチップかApple Siliconかを確認する
 - 左上のリンゴマーク→「このMacについて」
   - 表示された情報の「チップ」が「Apple M1」やM2,M3であればApple silicon, IntelであればIntel
 
-#### Command Line Toolsのインストール
+#### 準備２：Command Line Toolsのインストール
 
 Macのアプリ一覧から、「ターミナル」を開く。
 
-```{r  label = terminal, echo = FALSE, fig.cap = "ターミナル", out.width = '70%'}
+```{r  label = terminal, echo = FALSE, fig.cap = "ターミナル", out.width = '70%', fig.align='center'}
 knitr::include_graphics("fig/terminal_app.png")
 ```
 
 
 ターミナルを開くと以下のような画面が出てくる。以下の画面は私のPCなのでkeitaになっているが、実際にはそれぞれのユーザーネームになっている。
 
-```{r  label = terminalscreen, echo = FALSE, fig.cap = "ターミナルの画面", out.width = '70%'}
+```{r  label = terminalscreen, echo = FALSE, fig.cap = "ターミナルの画面", out.width = '70%', fig.align='center'}
 knitr::include_graphics("fig/terminal.png")
 ```
 
@@ -99,7 +131,7 @@ $ xcode-select --install
 
 もしこれで、うまくいかない場合は次のXcodeをインストールすることでCommand Line Toolsをインストールする。
 
-#### Xcodeのインストール
+####　準備３： Xcodeのインストール
 
 Xcodeは上のCommand Line Toolsがインストールできればとりあえず不要（のはず）である。もしできばければ、インストールしよう。ここではApple IDが必要となる。Xcodeは非常に大きいので、WiFiなどのインターネット接続が安定しているところで、**時間のあるとき**にやりましょう。
 
@@ -108,17 +140,17 @@ MacのApp Storeから、Xcodeをインストールする。
 App Storeを開いて、Xcodeを検索する。下のようなハンマーのアイコンのアプリである。これをインストールする。
 
 
-```{r label = xcode, echo = FALSE, fig.cap = "Xcode", out.width = '70%'}
+```{r label = xcode, echo = FALSE, fig.cap = "Xcode", out.width = '70%', fig.align='center'}
 knitr::include_graphics("fig/Xcode.png")
 ```
 
 App Storeの使い方がわからない人は、<a href="https://support.apple.com/ja-jp/guide/app-store/fir9b2ea074e/3.0/mac/10.15" target="_blank">App Storeユーザーガイド</a>を参照してください。
 
-#### XQuartzのインストール
+#### 準備４：XQuartzのインストール
 
-XQuartzの<a href="https://www.xquartz.org/" target="_blank">ウェブサイト</a>にアクセスして、`Quartz-x.x.x.pkg`というファイルをダウンロードする。`x`にはバージョン名が入るので、2024年4月時点では2.8.5だが、それより新しいバージョンになっているかもしれない。
+XQuartzの<a href="https://www.xquartz.org/" target="_blank">ウェブサイト</a>にアクセスして、`Quartz-x.x.x.pkg`というファイルをダウンロードする。`x`にはバージョン名が入るので、2025年4月時点では2.8.5だが、それより新しいバージョンになっているかもしれない。
 
-```{r  label = xquartz, echo = FALSE, fig.cap = "XQuartzのダウンロード画面", out.width = '60%'}
+```{r  label = xquartz, echo = FALSE, fig.cap = "XQuartzのダウンロード画面", out.width = '60%', fig.align='center'}
 knitr::include_graphics("fig/xquartz.png")
 ```
 
@@ -129,10 +161,11 @@ knitr::include_graphics("fig/xquartz.png")
 - ブラウザから<a href="https://cran.ism.ac.jp/" target="_blank">CLAN</a>へアクセスする
   - もし繋がらなければ<a href="https://ftp.yz.yamagata-u.ac.jp/pub/cran/">こちら</a>から試してみる
 - 「Download R for Mac OS」をクリック
-  - Apple Siliconの場合は、R-4.3.3-arm64.pkgをダウンロード
-  - Intelの場合は、R-4.3.3-x86_64.pkgをダウンロード
+  - 2025年4月時点では最新バージョンは4.5.0だが、この資料が更新されていなければ新しくなっているかもしれない（数字が大きくなっている）。その場合は最新版をダウンロードする。
+  - Apple Siliconの場合は、R-4.5.0-arm64.pkgをダウンロード
+  - Intelの場合は、R-4.5.0-x86_64.pkgをダウンロード
 
-```{r label = downloadmac, echo = FALSE, fig.cap = "Rのダウンロード。MacOSの場合", out.width = '80%'}
+```{r label = downloadmac, echo = FALSE, fig.cap = "Rのダウンロード。MacOSの場合", out.width = '80%', fig.align='center'}
 knitr::include_graphics("fig/download_R.png")
 knitr::include_graphics("fig/download_R_mac.png")
 ```
@@ -144,7 +177,7 @@ knitr::include_graphics("fig/download_R_mac.png")
   - 標準インストール
 - 完了したら、アプリ一覧にRがあるかどうかチェック
 
-```{r  label = launchpad, echo = FALSE, fig.cap = "MacのLaunchpad上に表示されているR", out.width = '70%'}
+```{r  label = launchpad, echo = FALSE, fig.cap = "MacのLaunchpad上に表示されているR", out.width = '70%', fig.align='center'}
 knitr::include_graphics("fig/launchpad_R.png")
 ```
 
@@ -165,9 +198,9 @@ knitr::include_graphics("fig/install_rstudio.png")
 
 ## Rstudioのインターフェース
 
-RStudioは４つのペーンに分割されている。もし３つしかない、という人は左上の白い四角に緑の＋マークが付いているところを押して"R Script"を選ぼう。すると左上のペーンが現れて新たなスクリプトファイルが生成される。
+RStudioは４つのペーンと呼ばれるエリアに分割されている。もし３つしかない、という人は左上の白い四角に緑の＋マークが付いているところを押して"R Script"を選ぼう。すると左上のペーンが現れて新たなスクリプトファイルが生成される。
 
-```{r  label = rstudio2, echo = FALSE, fig.cap = "Rstudio見た目", out.width = '90%'}
+```{r  label = rstudio2, echo = FALSE, fig.cap = "Rstudio見た目", out.width = '90%', fig.align='center'}
 knitr::include_graphics("docs/fig/Rstudio_look-2.png")
 ```
 
@@ -175,15 +208,15 @@ knitr::include_graphics("docs/fig/Rstudio_look-2.png")
 
 ## コンピュータのディレクトリ構造
 
-コンピュータでファイルなどを扱う上で、pathという概念を理解しておく必要がある。パソコンを使っているとフォルダをよく使う。自分が作ったファイルをフォルダに保存するなどである。これはCUIでは**ディレクトリ**と呼ばれる。
+コンピュータでファイルなどを扱う上で、**pathという概念**を理解しておく必要がある。パソコンを使っているとフォルダをよく使う。自分が作ったファイルをフォルダに保存するなどである。これはCUIでは**ディレクトリ**と呼ばれる。
 
-コンピュータ上においては、ファイルの場所はpathで表現される。これはコンピュータ上の住所のようなものである。
+コンピュータ上においては、ファイルの場所は**path**で表現される。これはコンピュータ上の住所のようなものである。
 
 `j:`というドライブの下の`abezemi`というフォルダの下にある`r_renshu`というフォルダにある`kadai1.R`というファイルがあるとする。そのファイルのpathは`j:/abezemi/r_renshu/kadai1.R`となる。
 
 コンピュータ上では、このように文字でファイルの場所と名前を指定することがよくある。
 
-```{r  label = directory, echo = FALSE, fig.cap = "ディレクトリ構造", out.width = '90%'}
+```{r  label = directory, echo = FALSE, fig.cap = "ディレクトリ構造", out.width = '90%', fig.align='center'}
 knitr::include_graphics("docs/fig/directory_structure.png")
 ```
 
@@ -200,11 +233,11 @@ knitr::include_graphics("docs/fig/directory_structure.png")
   - 自分の学生番号のドライブ(例 s1234567)の下に abezemi フォルダを作成
 
 ### Posit.cloud
-  - Posit.clouの場合は、まだここでは何もする必要はない。
+  - Posit.cloudの場合は、まだここでは何もする必要はない。
 
 ## 作業スペース
 
-コンピューター上では、どこかのディレクトリ（フォルダ）がRの作業場所になっている。
+コンピューター上では、どこかのディレクトリ（フォルダ）がRの**作業場所**になっている。
 今の作業場所は`getwd()`で表示できる。
 
 ```{r, eval=FALSE}
@@ -262,7 +295,7 @@ RStudioの**Rプロジェクト**という機能を使うと、以下のメリ�
     - 今回はabezemiの下につくるので、Browseを開いて上で作ったabezemiフォルダを指定してOpenをクリック。
 
  
-```{r  label = projectmake, echo = FALSE, fig.cap = "Rプロジェクトの作成", out.width = '90%'}
+```{r  label = projectmake, echo = FALSE, fig.cap = "Rプロジェクトの作成", out.width = '90%', fig.align='center'}
 knitr::include_graphics("fig/r_project_make.png")
 ```
 
@@ -303,8 +336,8 @@ R scriptに以下のように書く
 print("Hello World!")
 ```
 
-カーソルが同じ行にあることを確認して、![](fig/run_button.png)をクリック  
-もしくは、[Ctrl]を押しながら[Enter] (MacならCommand+Enter)
+カーソルが**同じ行にある**ことを確認して、![](fig/run_button.png)をクリック  
+もしくは、[Ctrl]を押しながら[Enter] (Macなら[Command]+[Enter])
 
 "Hello World!"と表示されれば成功。
 
@@ -417,6 +450,24 @@ XXX.csvというファイルが作業場所にありません。
 - ファイルの指定場所が間違っている
 - つづりが間違っている
 
+### よくあるエラー3（というかトラブル）
+
+以下の図のように、命令を実行したはずが何も起きず、エンターを押しても左側に+が表示され続ける状態に陥ることがある。
+
+```{r  label = plusplus, echo = FALSE, fig.cap = "", out.width = '80%',fig.align='center'}
+knitr::include_graphics("docs/fig/plusplus.png")
+```
+
+コンソールの左側が`>`ではなく、`+`になっている状態は、「上の続きがありますよね？」とRが追加の入力を待っている状態である。
+命令が完了しているはずなのに、`+`が出ている場合は、タイプミスをしていて、何かが足りていないケースが多い。例えば、上の例であれば`"`を忘れている。
+もしくは`)`で閉じるのを忘れている場合も、この状態になることが多い。
+
+対処法としては、まずは何を書き忘れたかをみて、きちんと閉じること。
+
+しかし、長いコードを実行した場合などは、どこが間違っているかすぐにわからないことも多い。
+そういう場合は**エスケープキー（キーボードの左上にある[Esc]というキー）**を押すと、それまでの命令がキャンセルされて、`>`で入力を待つ状態に戻すことができる。
+
+
 
 ## Rstudioの補完機能
 
@@ -443,6 +494,8 @@ Rstudioを自分好みにカスタマイズすることが可能
 
 ### 例：外観の変更
 
-```{r  label = option, echo = FALSE, fig.cap = "", out.width = '60%'}
+背景を暗くして、文字をネオン調のビビッドな色にするなど、見た目の変更が可能。
+
+```{r  label = option, echo = FALSE, fig.cap = "", out.width = '60%', fig.align='center'}
 knitr::include_graphics("docs/fig/option.png")
 ```

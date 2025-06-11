@@ -65,7 +65,7 @@ ggplot(aes(x=complexity)) +
 Rでは、柔軟に図表を描くことができます。例えば以下の図は、武蔵大学のウェブサイトに公開されている学生数のデータを描画したものです。少しやり方を学べば、以下のような図を簡単に作成することができます。
 
 ```{r, echo =FALSE}
-data_634_long = readxl::read_excel("docs/data/musashi_keizai_students_2023.xlsx") %>%
+data_634_long = read_csv("data/musashi_keizai_students_2025.csv") %>%
   pivot_longer(cols=c("1年","2年","3年","4年"),names_to ="学年",values_to = "学生数") %>%
   mutate(学科 = factor(学科, levels=c("経済学科","経営学科","金融学科")),　## order of departments
          性別 = factor(性別, levels=c("男","女")),

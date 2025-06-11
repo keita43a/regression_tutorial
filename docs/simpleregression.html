@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-05-14" />
+<meta name="date" content="2025-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,6 +380,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.22.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.22.1</b> 例：SSDSE-B県別推移のデータ</a></li>
 </ul></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#makefigFAQ"><i class="fa fa-check"></i><b>8.23</b> よくある問題と対策</a>
+<ul>
+<li class="chapter" data-level="8.23.1" data-path="rviz.html"><a href="rviz.html#axisnum"><i class="fa fa-check"></i><b>8.23.1</b> 軸の数値がおかしい</a></li>
+<li class="chapter" data-level="8.23.2" data-path="rviz.html"><a href="rviz.html#smallletter"><i class="fa fa-check"></i><b>8.23.2</b> 字が小さい</a></li>
+<li class="chapter" data-level="8.23.3" data-path="rviz.html"><a href="rviz.html#axisnumadjust"><i class="fa fa-check"></i><b>8.23.3</b> 軸の数値がいい感じにならない</a></li>
+<li class="chapter" data-level="8.23.4" data-path="rviz.html"><a href="rviz.html#axislabeladjust"><i class="fa fa-check"></i><b>8.23.4</b> 軸の目盛りラベルを調整する</a></li>
+<li class="chapter" data-level="8.23.5" data-path="rviz.html"><a href="rviz.html#jpntrans"><i class="fa fa-check"></i><b>8.23.5</b> ラベルだけではなく、凡例や目盛りラベルも日本語化したい</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
 <ul>
@@ -626,23 +634,23 @@ y_{i} = \hat{\alpha} + \hat{\beta} x_{i} + \hat{e}_{i}
 <p>Rで回帰分析をする方法はたくさんあるが、まずはもっともシンプルな方法としてRに標準搭載されている<code>lm()</code>関数で推定する。</p>
 <p>まずは<code>simple_reg.R</code>というスクリプトを作成しよう。</p>
 <p>そして、よく使うライブラリを読み込んでおく。</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="simpleregression.html#cb271-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="simpleregression.html#cb278-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>データをダウンロードする。</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="simpleregression.html#cb272-1" tabindex="-1"></a><span class="co"># dataフォルダを作成していない場合はdataフォルダ（ディレクトリ）の作成</span></span>
-<span id="cb272-2"><a href="simpleregression.html#cb272-2" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_create</span>(<span class="st">&quot;data&quot;</span>)</span>
-<span id="cb272-3"><a href="simpleregression.html#cb272-3" tabindex="-1"></a></span>
-<span id="cb272-4"><a href="simpleregression.html#cb272-4" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの保存</span></span>
-<span id="cb272-5"><a href="simpleregression.html#cb272-5" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/ice_cream.csv?raw=TRUE&quot;</span>,</span>
-<span id="cb272-6"><a href="simpleregression.html#cb272-6" tabindex="-1"></a>              <span class="at">destfile=</span><span class="st">&quot;data/ice_cream.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="simpleregression.html#cb279-1" tabindex="-1"></a><span class="co"># dataフォルダを作成していない場合はdataフォルダ（ディレクトリ）の作成</span></span>
+<span id="cb279-2"><a href="simpleregression.html#cb279-2" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb279-3"><a href="simpleregression.html#cb279-3" tabindex="-1"></a></span>
+<span id="cb279-4"><a href="simpleregression.html#cb279-4" tabindex="-1"></a><span class="co"># データのダウンロードとdataフォルダへの保存</span></span>
+<span id="cb279-5"><a href="simpleregression.html#cb279-5" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://github.com/keita43a/regression_tutorial/blob/main/data/ice_cream.csv?raw=TRUE&quot;</span>,</span>
+<span id="cb279-6"><a href="simpleregression.html#cb279-6" tabindex="-1"></a>              <span class="at">destfile=</span><span class="st">&quot;data/ice_cream.csv&quot;</span>)</span></code></pre></div>
 <p>ダウンロードしたデータを読み込む。</p>
 <p>次に、データを読み込む。</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="simpleregression.html#cb273-1" tabindex="-1"></a>dat_ice <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/ice_cream.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="simpleregression.html#cb280-1" tabindex="-1"></a>dat_ice <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/ice_cream.csv&quot;</span>)</span></code></pre></div>
 <p>まずはデータを確認する。</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="simpleregression.html#cb274-1" tabindex="-1"></a><span class="co"># データの変数の名前のリスト</span></span>
-<span id="cb274-2"><a href="simpleregression.html#cb274-2" tabindex="-1"></a><span class="fu">names</span>(dat_ice)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="simpleregression.html#cb281-1" tabindex="-1"></a><span class="co"># データの変数の名前のリスト</span></span>
+<span id="cb281-2"><a href="simpleregression.html#cb281-2" tabindex="-1"></a><span class="fu">names</span>(dat_ice)</span></code></pre></div>
 <pre><code>## [1] &quot;day&quot;      &quot;temp&quot;     &quot;ice&quot;      &quot;accident&quot;</code></pre>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="simpleregression.html#cb276-1" tabindex="-1"></a><span class="co"># データの冒頭だけ見てチェック</span></span>
-<span id="cb276-2"><a href="simpleregression.html#cb276-2" tabindex="-1"></a><span class="fu">head</span>(dat_ice)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="simpleregression.html#cb283-1" tabindex="-1"></a><span class="co"># データの冒頭だけ見てチェック</span></span>
+<span id="cb283-2"><a href="simpleregression.html#cb283-2" tabindex="-1"></a><span class="fu">head</span>(dat_ice)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##     day  temp   ice accident
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -654,24 +662,24 @@ y_{i} = \hat{\alpha} + \hat{\beta} x_{i} + \hat{e}_{i}
 ## 6     6  24.2 438.        42</code></pre>
 <p>それぞれ、day(日), temp(気温), ice (アイスクリームの売上), accident (水難事故件数)というデータが記録されている。</p>
 <p>それでは、気温とアイスクリームの売上の関係を見る散布図を描いてみよう。</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="simpleregression.html#cb278-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat_ice, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y=</span>ice)) <span class="sc">+</span> </span>
-<span id="cb278-2"><a href="simpleregression.html#cb278-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="simpleregression.html#cb285-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat_ice, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y=</span>ice)) <span class="sc">+</span> </span>
+<span id="cb285-2"><a href="simpleregression.html#cb285-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <p>上でも見たように、気温が上がればアイスクリームの売上が上がるという右肩上がりの関係がある。</p>
 <p>単回帰分析でやろうとしているのは、この関係を定量的に把握して、線を引くことである。</p>
 <p>今書いた<code>ggplot</code>のコードに、<code>geom_smooth(method="lm",se=FALSE)</code>というレイヤーを加えてみよう。</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="simpleregression.html#cb279-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat_ice,<span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y=</span>ice)) <span class="sc">+</span> </span>
-<span id="cb279-2"><a href="simpleregression.html#cb279-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb279-3"><a href="simpleregression.html#cb279-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span><span class="cn">FALSE</span>) <span class="co"># 追加！</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="simpleregression.html#cb286-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat_ice,<span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y=</span>ice)) <span class="sc">+</span> </span>
+<span id="cb286-2"><a href="simpleregression.html#cb286-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb286-3"><a href="simpleregression.html#cb286-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span><span class="cn">FALSE</span>) <span class="co"># 追加！</span></span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
 <p>青い線が表示された。これは実質的には<code>ggplot</code>の機能として、単回帰直線を推定して、それを描画するということを行っている。</p>
 <p>では、実際に回帰分析を行ってみよう。
 Rでは、回帰分析を行う関数の中で、目的変数と説明変数の関係を<code>y ~ x</code>のように波線で挟んで書く。
 <code>data</code>引数で使うデータを指定し、その中のどの変数をそれぞれ目的変数と説明変数にするかを指定する。
 推定した結果は、reg1というオブジェクトに格納してから、表示しよう。</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="simpleregression.html#cb280-1" tabindex="-1"></a>reg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ice <span class="sc">~</span> temp, <span class="at">data =</span> dat_ice)</span>
-<span id="cb280-2"><a href="simpleregression.html#cb280-2" tabindex="-1"></a></span>
-<span id="cb280-3"><a href="simpleregression.html#cb280-3" tabindex="-1"></a>reg1</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="simpleregression.html#cb287-1" tabindex="-1"></a>reg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ice <span class="sc">~</span> temp, <span class="at">data =</span> dat_ice)</span>
+<span id="cb287-2"><a href="simpleregression.html#cb287-2" tabindex="-1"></a></span>
+<span id="cb287-3"><a href="simpleregression.html#cb287-3" tabindex="-1"></a>reg1</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = ice ~ temp, data = dat_ice)
@@ -693,7 +701,7 @@ y_{i} = 11.37 + 18.69 \times x_{i} + \hat{e}_{i}
 <h3><span class="header-section-number">11.1.2</span> 回帰係数の統計的な推定<a href="simpleregression.html#回帰係数の統計的な推定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>まず係数の推定結果を出して、推定することができた。
 ここで推定された<code>reg1</code>に入っている<code>lm</code>オブジェクトは、<code>summary()</code>関数を適用することでさらに詳細な内容を見ることができる。</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="simpleregression.html#cb282-1" tabindex="-1"></a><span class="fu">summary</span>(reg1)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="simpleregression.html#cb289-1" tabindex="-1"></a><span class="fu">summary</span>(reg1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = ice ~ temp, data = dat_ice)
@@ -728,9 +736,9 @@ y_{i} = 11.37 + 18.69 \times x_{i} + \hat{e}_{i}
 <h3><span class="header-section-number">11.1.3</span> 見せかけの相関と単回帰分析<a href="simpleregression.html#見せかけの相関と単回帰分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>上で説明した見せかけの相関のある変数同士であっても、単回帰分析で推定すること自体は可能である。</p>
 <p>上でみたように、アイスクリームの売上と水難事故の件数を単回帰分析してみよう。ここでは水難事故の件数を目的変数として推定してみる。</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="simpleregression.html#cb284-1" tabindex="-1"></a>reg2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(accident <span class="sc">~</span> ice, <span class="at">data =</span> dat_ice) </span>
-<span id="cb284-2"><a href="simpleregression.html#cb284-2" tabindex="-1"></a></span>
-<span id="cb284-3"><a href="simpleregression.html#cb284-3" tabindex="-1"></a><span class="fu">summary</span>(reg2)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="simpleregression.html#cb291-1" tabindex="-1"></a>reg2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(accident <span class="sc">~</span> ice, <span class="at">data =</span> dat_ice) </span>
+<span id="cb291-2"><a href="simpleregression.html#cb291-2" tabindex="-1"></a></span>
+<span id="cb291-3"><a href="simpleregression.html#cb291-3" tabindex="-1"></a><span class="fu">summary</span>(reg2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = accident ~ ice, data = dat_ice)
@@ -764,7 +772,7 @@ y_{i} = 11.37 + 18.69 \times x_{i} + \hat{e}_{i}
 <p>下の図は、気温とアイスクリームの売上のデータのうち、最初の10個だけを取り出したものである。
 各点はそれぞれのデータポイントを表している。引かれている直線は回帰直線であるが、この直線が通っているところと実際のデータポイントとの目的変数の差が「残差」となる。当然ながら、どうやって直線を引くかによって残差は変わるが、もっとも残差の合計が小さくなるところが「適切な」線だという考え方である。</p>
 <p>引かれた線よりも上や下にデータポイントが散らばるので、そのまま合計すると打ち消し合ってしまうため、実際の「距離」として測ることが難しい。しかし、二乗すれば負の値も正になるため、二乗してから合計することで直線の上下関係なくどれぐらい離れているかという残差を評価することができる。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 <p>厳密にどのように推定しているかはここでは省略するが、統計学や計量経済学の教科書を見て理解を進めてほしい。</p>
 </div>
 <div id="演習問題単回帰分析" class="section level2 hasAnchor" number="11.3">
@@ -775,7 +783,7 @@ y_{i} = 11.37 + 18.69 \times x_{i} + \hat{e}_{i}
 <li><p><code>tidyverse</code>パッケージの関数を使って、学生数<code>students</code>と教員数<code>teachers</code>の比を計算し、<code>STR</code>という変数にする。また、国語<code>read</code>と数学<code>math</code>を足して２で割ったスコアを<code>score</code>という変数にする。新たに作成したデータを<code>dat_school</code>として保存する。</p></li>
 <li><p><code>ggplot</code>を用いて、x軸を<code>STR</code>, y軸を<code>score</code>とする散布図を描く。以下のような図になるはずである（背景色やラベルなどは同じでなくてよい）</p></li>
 </ol>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
 <ol start="5" style="list-style-type: decimal">
 <li><p><code>STR</code>を説明変数、<code>score</code>を目的変数とする単回帰分析を行い、summary()関数を用いて結果を表示しなさい。</p></li>
 <li><p>5.の結果を解釈しなさい。</p></li>

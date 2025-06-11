@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-05-14" />
+<meta name="date" content="2025-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -379,6 +379,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#ゼミ課題データの描画"><i class="fa fa-check"></i><b>8.22</b> <strong>ゼミ課題</strong>：データの描画</a>
 <ul>
 <li class="chapter" data-level="8.22.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.22.1</b> 例：SSDSE-B県別推移のデータ</a></li>
+</ul></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#makefigFAQ"><i class="fa fa-check"></i><b>8.23</b> よくある問題と対策</a>
+<ul>
+<li class="chapter" data-level="8.23.1" data-path="rviz.html"><a href="rviz.html#axisnum"><i class="fa fa-check"></i><b>8.23.1</b> 軸の数値がおかしい</a></li>
+<li class="chapter" data-level="8.23.2" data-path="rviz.html"><a href="rviz.html#smallletter"><i class="fa fa-check"></i><b>8.23.2</b> 字が小さい</a></li>
+<li class="chapter" data-level="8.23.3" data-path="rviz.html"><a href="rviz.html#axisnumadjust"><i class="fa fa-check"></i><b>8.23.3</b> 軸の数値がいい感じにならない</a></li>
+<li class="chapter" data-level="8.23.4" data-path="rviz.html"><a href="rviz.html#axislabeladjust"><i class="fa fa-check"></i><b>8.23.4</b> 軸の目盛りラベルを調整する</a></li>
+<li class="chapter" data-level="8.23.5" data-path="rviz.html"><a href="rviz.html#jpntrans"><i class="fa fa-check"></i><b>8.23.5</b> ラベルだけではなく、凡例や目盛りラベルも日本語化したい</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
@@ -915,8 +923,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb220-3"><a href="rviz.html#cb220-3" tabindex="-1"></a></span>
 <span id="cb220-4"><a href="rviz.html#cb220-4" tabindex="-1"></a><span class="co"># diamondsの変数を確認する</span></span>
 <span id="cb220-5"><a href="rviz.html#cb220-5" tabindex="-1"></a><span class="fu">names</span>(diamonds)</span></code></pre></div>
-<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;   &quot;table&quot;  
-##  [7] &quot;price&quot;   &quot;x&quot;       &quot;y&quot;       &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;carat&quot;   &quot;cut&quot;     &quot;color&quot;   &quot;clarity&quot; &quot;depth&quot;   &quot;table&quot;   &quot;price&quot;   &quot;x&quot;       &quot;y&quot;      
+## [10] &quot;z&quot;</code></pre>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="rviz.html#cb222-1" tabindex="-1"></a><span class="co"># diamondsのデータの冒頭を確認する</span></span>
 <span id="cb222-2"><a href="rviz.html#cb222-2" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10
@@ -1053,118 +1061,62 @@ Figure 8.1: データタイプ別のグラフ
 <span id="cb231-4"><a href="rviz.html#cb231-4" tabindex="-1"></a></span>
 <span id="cb231-5"><a href="rviz.html#cb231-5" tabindex="-1"></a><span class="co"># 変数名を確認</span></span>
 <span id="cb231-6"><a href="rviz.html#cb231-6" tabindex="-1"></a><span class="fu">names</span>(data_ssdse)</span></code></pre></div>
-<pre><code>##   [1] &quot;年度&quot;                                  
-##   [2] &quot;地域コード&quot;                            
-##   [3] &quot;都道府県&quot;                              
-##   [4] &quot;総人口&quot;                                
-##   [5] &quot;総人口（男）&quot;                          
-##   [6] &quot;総人口（女）&quot;                          
-##   [7] &quot;日本人人口&quot;                            
-##   [8] &quot;日本人人口（男）&quot;                      
-##   [9] &quot;日本人人口（女）&quot;                      
-##  [10] &quot;15歳未満人口&quot;                          
-##  [11] &quot;15歳未満人口（男）&quot;                    
-##  [12] &quot;15歳未満人口（女）&quot;                    
-##  [13] &quot;15〜64歳人口&quot;                          
-##  [14] &quot;15〜64歳人口（男）&quot;                    
-##  [15] &quot;15〜64歳人口（女）&quot;                    
-##  [16] &quot;65歳以上人口&quot;                          
-##  [17] &quot;65歳以上人口（男）&quot;                    
-##  [18] &quot;65歳以上人口（女）&quot;                    
-##  [19] &quot;出生数&quot;                                
-##  [20] &quot;出生数（男）&quot;                          
-##  [21] &quot;出生数（女）&quot;                          
-##  [22] &quot;合計特殊出生率&quot;                        
-##  [23] &quot;死亡数&quot;                                
-##  [24] &quot;死亡数（男）&quot;                          
-##  [25] &quot;死亡数（女）&quot;                          
-##  [26] &quot;転入者数（日本人移動者）&quot;              
-##  [27] &quot;転入者数（日本人移動者）（男）&quot;        
-##  [28] &quot;転入者数（日本人移動者）（女）&quot;        
-##  [29] &quot;転出者数（日本人移動者）&quot;              
-##  [30] &quot;転出者数（日本人移動者）（男）&quot;        
-##  [31] &quot;転出者数（日本人移動者）（女）&quot;        
-##  [32] &quot;婚姻件数&quot;                              
-##  [33] &quot;離婚件数&quot;                              
-##  [34] &quot;年平均気温&quot;                            
-##  [35] &quot;最高気温（日最高気温の月平均の最高値）&quot;
-##  [36] &quot;最低気温（日最低気温の月平均の最低値）&quot;
-##  [37] &quot;降水日数（年間）&quot;                      
-##  [38] &quot;降水量（年間）&quot;                        
-##  [39] &quot;着工建築物数&quot;                          
-##  [40] &quot;着工建築物床面積&quot;                      
-##  [41] &quot;旅館営業施設数（ホテルを含む）&quot;        
-##  [42] &quot;旅館営業施設客室数（ホテルを含む）&quot;    
-##  [43] &quot;標準価格（平均価格）（住宅地）&quot;        
-##  [44] &quot;標準価格（平均価格）（商業地）&quot;        
-##  [45] &quot;幼稚園数&quot;                              
-##  [46] &quot;幼稚園教員数&quot;                          
-##  [47] &quot;幼稚園在園者数&quot;                        
-##  [48] &quot;小学校数&quot;                              
-##  [49] &quot;小学校教員数&quot;                          
-##  [50] &quot;小学校児童数&quot;                          
-##  [51] &quot;中学校数&quot;                              
-##  [52] &quot;中学校教員数&quot;                          
-##  [53] &quot;中学校生徒数&quot;                          
-##  [54] &quot;中学校卒業者数&quot;                        
-##  [55] &quot;中学校卒業者のうち進学者数&quot;            
-##  [56] &quot;高等学校数&quot;                            
-##  [57] &quot;高等学校教員数&quot;                        
-##  [58] &quot;高等学校生徒数&quot;                        
-##  [59] &quot;高等学校卒業者数&quot;                      
-##  [60] &quot;高等学校卒業者のうち進学者数&quot;          
-##  [61] &quot;短期大学数&quot;                            
-##  [62] &quot;大学数&quot;                                
-##  [63] &quot;短期大学教員数&quot;                        
-##  [64] &quot;大学教員数&quot;                            
-##  [65] &quot;短期大学学生数&quot;                        
-##  [66] &quot;大学学生数&quot;                            
-##  [67] &quot;短期大学卒業者数&quot;                      
-##  [68] &quot;短期大学卒業者のうち進学者数&quot;          
-##  [69] &quot;大学卒業者数&quot;                          
-##  [70] &quot;大学卒業者のうち進学者数&quot;              
-##  [71] &quot;専修学校数&quot;                            
-##  [72] &quot;各種学校数&quot;                            
-##  [73] &quot;専修学校生徒数&quot;                        
-##  [74] &quot;各種学校生徒数&quot;                        
-##  [75] &quot;新規求職申込件数（一般）&quot;              
-##  [76] &quot;月間有効求職者数（一般）&quot;              
-##  [77] &quot;月間有効求人数（一般）&quot;                
-##  [78] &quot;充足数（一般）&quot;                        
-##  [79] &quot;就職件数（一般）&quot;                      
-##  [80] &quot;一般旅券発行件数&quot;                      
-##  [81] &quot;延べ宿泊者数&quot;                          
-##  [82] &quot;外国人延べ宿泊者数&quot;                    
-##  [83] &quot;着工新設住宅戸数&quot;                      
-##  [84] &quot;着工新設持家数&quot;                        
-##  [85] &quot;着工新設貸家数&quot;                        
-##  [86] &quot;着工新設分譲住宅数&quot;                    
-##  [87] &quot;着工新設住宅床面積&quot;                    
-##  [88] &quot;着工新設持家床面積&quot;                    
-##  [89] &quot;着工新設分譲住宅床面積&quot;                
-##  [90] &quot;着工新設貸家床面積&quot;                    
-##  [91] &quot;ごみ総排出量（総量）&quot;                  
-##  [92] &quot;1人1日当たりの排出量&quot;                  
-##  [93] &quot;ごみのリサイクル率&quot;                    
-##  [94] &quot;一般病院数&quot;                            
-##  [95] &quot;一般診療所数&quot;                          
-##  [96] &quot;歯科診療所数&quot;                          
-##  [97] &quot;保育所等数&quot;                            
-##  [98] &quot;保育所等定員数&quot;                        
-##  [99] &quot;保育所等利用待機児童数&quot;                
-## [100] &quot;保育所等在所児数&quot;                      
-## [101] &quot;保育所等保育士数&quot;                      
-## [102] &quot;消費支出（二人以上の世帯）&quot;            
-## [103] &quot;食料費（二人以上の世帯）&quot;              
-## [104] &quot;住居費（二人以上の世帯）&quot;              
-## [105] &quot;光熱・水道費（二人以上の世帯）&quot;        
-## [106] &quot;家具・家事用品費（二人以上の世帯）&quot;    
-## [107] &quot;被服及び履物費（二人以上の世帯）&quot;      
-## [108] &quot;保健医療費（二人以上の世帯）&quot;          
-## [109] &quot;交通・通信費（二人以上の世帯）&quot;        
-## [110] &quot;教育費（二人以上の世帯）&quot;              
-## [111] &quot;教養娯楽費（二人以上の世帯）&quot;          
-## [112] &quot;その他の消費支出（二人以上の世帯）&quot;</code></pre>
+<pre><code>##   [1] &quot;年度&quot;                                   &quot;地域コード&quot;                            
+##   [3] &quot;都道府県&quot;                               &quot;総人口&quot;                                
+##   [5] &quot;総人口（男）&quot;                           &quot;総人口（女）&quot;                          
+##   [7] &quot;日本人人口&quot;                             &quot;日本人人口（男）&quot;                      
+##   [9] &quot;日本人人口（女）&quot;                       &quot;15歳未満人口&quot;                          
+##  [11] &quot;15歳未満人口（男）&quot;                     &quot;15歳未満人口（女）&quot;                    
+##  [13] &quot;15〜64歳人口&quot;                           &quot;15〜64歳人口（男）&quot;                    
+##  [15] &quot;15〜64歳人口（女）&quot;                     &quot;65歳以上人口&quot;                          
+##  [17] &quot;65歳以上人口（男）&quot;                     &quot;65歳以上人口（女）&quot;                    
+##  [19] &quot;出生数&quot;                                 &quot;出生数（男）&quot;                          
+##  [21] &quot;出生数（女）&quot;                           &quot;合計特殊出生率&quot;                        
+##  [23] &quot;死亡数&quot;                                 &quot;死亡数（男）&quot;                          
+##  [25] &quot;死亡数（女）&quot;                           &quot;転入者数（日本人移動者）&quot;              
+##  [27] &quot;転入者数（日本人移動者）（男）&quot;         &quot;転入者数（日本人移動者）（女）&quot;        
+##  [29] &quot;転出者数（日本人移動者）&quot;               &quot;転出者数（日本人移動者）（男）&quot;        
+##  [31] &quot;転出者数（日本人移動者）（女）&quot;         &quot;婚姻件数&quot;                              
+##  [33] &quot;離婚件数&quot;                               &quot;年平均気温&quot;                            
+##  [35] &quot;最高気温（日最高気温の月平均の最高値）&quot; &quot;最低気温（日最低気温の月平均の最低値）&quot;
+##  [37] &quot;降水日数（年間）&quot;                       &quot;降水量（年間）&quot;                        
+##  [39] &quot;着工建築物数&quot;                           &quot;着工建築物床面積&quot;                      
+##  [41] &quot;旅館営業施設数（ホテルを含む）&quot;         &quot;旅館営業施設客室数（ホテルを含む）&quot;    
+##  [43] &quot;標準価格（平均価格）（住宅地）&quot;         &quot;標準価格（平均価格）（商業地）&quot;        
+##  [45] &quot;幼稚園数&quot;                               &quot;幼稚園教員数&quot;                          
+##  [47] &quot;幼稚園在園者数&quot;                         &quot;小学校数&quot;                              
+##  [49] &quot;小学校教員数&quot;                           &quot;小学校児童数&quot;                          
+##  [51] &quot;中学校数&quot;                               &quot;中学校教員数&quot;                          
+##  [53] &quot;中学校生徒数&quot;                           &quot;中学校卒業者数&quot;                        
+##  [55] &quot;中学校卒業者のうち進学者数&quot;             &quot;高等学校数&quot;                            
+##  [57] &quot;高等学校教員数&quot;                         &quot;高等学校生徒数&quot;                        
+##  [59] &quot;高等学校卒業者数&quot;                       &quot;高等学校卒業者のうち進学者数&quot;          
+##  [61] &quot;短期大学数&quot;                             &quot;大学数&quot;                                
+##  [63] &quot;短期大学教員数&quot;                         &quot;大学教員数&quot;                            
+##  [65] &quot;短期大学学生数&quot;                         &quot;大学学生数&quot;                            
+##  [67] &quot;短期大学卒業者数&quot;                       &quot;短期大学卒業者のうち進学者数&quot;          
+##  [69] &quot;大学卒業者数&quot;                           &quot;大学卒業者のうち進学者数&quot;              
+##  [71] &quot;専修学校数&quot;                             &quot;各種学校数&quot;                            
+##  [73] &quot;専修学校生徒数&quot;                         &quot;各種学校生徒数&quot;                        
+##  [75] &quot;新規求職申込件数（一般）&quot;               &quot;月間有効求職者数（一般）&quot;              
+##  [77] &quot;月間有効求人数（一般）&quot;                 &quot;充足数（一般）&quot;                        
+##  [79] &quot;就職件数（一般）&quot;                       &quot;一般旅券発行件数&quot;                      
+##  [81] &quot;延べ宿泊者数&quot;                           &quot;外国人延べ宿泊者数&quot;                    
+##  [83] &quot;着工新設住宅戸数&quot;                       &quot;着工新設持家数&quot;                        
+##  [85] &quot;着工新設貸家数&quot;                         &quot;着工新設分譲住宅数&quot;                    
+##  [87] &quot;着工新設住宅床面積&quot;                     &quot;着工新設持家床面積&quot;                    
+##  [89] &quot;着工新設分譲住宅床面積&quot;                 &quot;着工新設貸家床面積&quot;                    
+##  [91] &quot;ごみ総排出量（総量）&quot;                   &quot;1人1日当たりの排出量&quot;                  
+##  [93] &quot;ごみのリサイクル率&quot;                     &quot;一般病院数&quot;                            
+##  [95] &quot;一般診療所数&quot;                           &quot;歯科診療所数&quot;                          
+##  [97] &quot;保育所等数&quot;                             &quot;保育所等定員数&quot;                        
+##  [99] &quot;保育所等利用待機児童数&quot;                 &quot;保育所等在所児数&quot;                      
+## [101] &quot;保育所等保育士数&quot;                       &quot;消費支出（二人以上の世帯）&quot;            
+## [103] &quot;食料費（二人以上の世帯）&quot;               &quot;住居費（二人以上の世帯）&quot;              
+## [105] &quot;光熱・水道費（二人以上の世帯）&quot;         &quot;家具・家事用品費（二人以上の世帯）&quot;    
+## [107] &quot;被服及び履物費（二人以上の世帯）&quot;       &quot;保健医療費（二人以上の世帯）&quot;          
+## [109] &quot;交通・通信費（二人以上の世帯）&quot;         &quot;教育費（二人以上の世帯）&quot;              
+## [111] &quot;教養娯楽費（二人以上の世帯）&quot;           &quot;その他の消費支出（二人以上の世帯）&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>データの加工</strong>: 都道府県別の合計特殊出生率の推移を比較する。しかし、すべての都道府県では多すぎるため、関東の１都６県に限定する。</li>
 </ol>
@@ -1175,7 +1127,7 @@ Figure 8.1: データタイプ別のグラフ
 <ol start="4" style="list-style-type: decimal">
 <li>グラフ描画する</li>
 </ol>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="rviz.html#cb234-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>合計特殊出生率, <span class="at">col=</span>都道府県)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="rviz.html#cb234-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>合計特殊出生率, <span class="at">color=</span>都道府県)) <span class="sc">+</span> </span>
 <span id="cb234-2"><a href="rviz.html#cb234-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb234-3"><a href="rviz.html#cb234-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb234-4"><a href="rviz.html#cb234-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>)</span>
@@ -1183,18 +1135,14 @@ Figure 8.1: データタイプ別のグラフ
 <span id="cb234-6"><a href="rviz.html#cb234-6" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
 <p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 <p>５．英語で発表するため、英語に変換する</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="rviz.html#cb235-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>合計特殊出生率, <span class="at">col=</span>都道府県)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="rviz.html#cb235-1" tabindex="-1"></a>plot_f_rate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span>合計特殊出生率, <span class="at">color=</span>都道府県)) <span class="sc">+</span> </span>
 <span id="cb235-2"><a href="rviz.html#cb235-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb235-3"><a href="rviz.html#cb235-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb235-4"><a href="rviz.html#cb235-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
 <span id="cb235-5"><a href="rviz.html#cb235-5" tabindex="-1"></a>  <span class="co"># ラベルを変換</span></span>
-<span id="cb235-6"><a href="rviz.html#cb235-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">col=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
-<span id="cb235-7"><a href="rviz.html#cb235-7" tabindex="-1"></a>  <span class="co"># カテゴリの名前（都道府県を変換）</span></span>
-<span id="cb235-8"><a href="rviz.html#cb235-8" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">&quot;千葉県&quot;</span>,<span class="st">&quot;埼玉県&quot;</span>,<span class="st">&quot;東京都&quot;</span>,<span class="st">&quot;栃木県&quot;</span>,<span class="st">&quot;神奈川県&quot;</span>,<span class="st">&quot;群馬県&quot;</span>,<span class="st">&quot;茨城県&quot;</span>),</span>
-<span id="cb235-9"><a href="rviz.html#cb235-9" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Chiba&quot;</span>,<span class="st">&quot;Saitama&quot;</span>,<span class="st">&quot;Tokyo&quot;</span>,<span class="st">&quot;Tochigi&quot;</span>,<span class="st">&quot;Kanagawa&quot;</span>,<span class="st">&quot;Gumma&quot;</span>,<span class="st">&quot;Ibaragi&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb235-10"><a href="rviz.html#cb235-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) <span class="co"># スライドで見やすくするために字を大きくする</span></span>
-<span id="cb235-11"><a href="rviz.html#cb235-11" tabindex="-1"></a></span>
-<span id="cb235-12"><a href="rviz.html#cb235-12" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
+<span id="cb235-6"><a href="rviz.html#cb235-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">color=</span><span class="st">&quot;Pref.&quot;</span>) </span>
+<span id="cb235-7"><a href="rviz.html#cb235-7" tabindex="-1"></a></span>
+<span id="cb235-8"><a href="rviz.html#cb235-8" tabindex="-1"></a>plot_f_rate</span></code></pre></div>
 <p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li>保存する。ここではpng形式で保存している。保存するファイルのパスの最後（ファイル名）に.pngを指定し、<code>device</code>という引数にpngを指定している。
@@ -1202,6 +1150,182 @@ Figure 8.1: データタイプ別のグラフ
 </ol>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="rviz.html#cb236-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;fig/fertility_rate_by_pref_2010_2021.png&quot;</span>,plot_f_rate,</span>
 <span id="cb236-2"><a href="rviz.html#cb236-2" tabindex="-1"></a>       <span class="at">device=</span><span class="st">&quot;png&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="makefigFAQ" class="section level2 hasAnchor" number="8.23">
+<h2><span class="header-section-number">8.23</span> よくある問題と対策<a href="rviz.html#makefigFAQ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Q1.<a href="rviz.html#axisnum">軸の数値がおかしい</a><br />
+Q2.<a href="rviz.html#smallletter">字が小さい</a><br />
+Q3.<a href="rviz.html#axisnumadjust">軸の数値がいい感じにならない</a><br />
+Q4.<a href="rviz.html#axislabeladjust">軸の目盛りラベルを調整する</a><br />
+Q5.<a href="rviz.html#jpntrans">凡例や目盛りラベルも日本語化したい</a></p>
+<div id="axisnum" class="section level3 hasAnchor" number="8.23.1">
+<h3><span class="header-section-number">8.23.1</span> 軸の数値がおかしい<a href="rviz.html#axisnum" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>下の図のY軸ように、やたら数値の表示が多かったり、変な順番になっている場合は、数値として使っている変数が数値型ではなく文字列型になっている可能性が高いです。</p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-149-1.png" width="672" />
+その場合は、文字列型のデータを数値型に変換します。
+<code>mutate</code>を使って、データを編集するのが妥当ですが、アドホックな対応としては、ggplotの中で<code>as.numeric()</code>を使ってしまう方法です。以下のコードの<code>y=</code>のところに注目してください。</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="rviz.html#cb237-1" tabindex="-1"></a><span class="co"># yの変数を指定するときにas.numeric()で囲み、数値型にする</span></span>
+<span id="cb237-2"><a href="rviz.html#cb237-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span>年度, <span class="at">y=</span><span class="fu">as.numeric</span>(合計特殊出生率), <span class="at">color=</span>都道府県)) <span class="sc">+</span> </span>
+<span id="cb237-3"><a href="rviz.html#cb237-3" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb237-4"><a href="rviz.html#cb237-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb237-5"><a href="rviz.html#cb237-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
+<span id="cb237-6"><a href="rviz.html#cb237-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">color=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb237-7"><a href="rviz.html#cb237-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) </span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+</div>
+<div id="smallletter" class="section level3 hasAnchor" number="8.23.2">
+<h3><span class="header-section-number">8.23.2</span> 字が小さい<a href="rviz.html#smallletter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>上のコードでも触れていますが、字が小さい図はプレゼンテーションでは読みにくく効果的ではありません。</p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p>字を一括で大きくするには、<code>theme()</code>関数の中で、<code>text</code>という引数で設定します。その際、<code>element_text()</code>という関数の中で指定します。</p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+<p>より細かくそれぞれの部分の字のサイズなどを設定したい場合は、以下の表に基づいて、<code>theme()</code>関数の中の引数で指定してください。</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">要素名</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">axis.title</td>
+<td align="left">両軸ラベルの体裁</td>
+</tr>
+<tr class="even">
+<td align="left">axis.title.x</td>
+<td align="left">x軸ラベルの体裁</td>
+</tr>
+<tr class="odd">
+<td align="left">axis.title.y</td>
+<td align="left">y軸ラベルの体裁</td>
+</tr>
+<tr class="even">
+<td align="left">axis.text</td>
+<td align="left">両軸目盛ラベルの体裁</td>
+</tr>
+<tr class="odd">
+<td align="left">axis.text.x</td>
+<td align="left">x軸目盛ラベルの体裁</td>
+</tr>
+<tr class="even">
+<td align="left">axis.text.y</td>
+<td align="left">y軸目盛ラベルの体裁</td>
+</tr>
+<tr class="odd">
+<td align="left">legend.title</td>
+<td align="left">凡例項目の体裁</td>
+</tr>
+<tr class="even">
+<td align="left">plot.title</td>
+<td align="left">タイトルの体裁</td>
+</tr>
+<tr class="odd">
+<td align="left">strip.text</td>
+<td align="left">両方向ファセットラベルの体裁</td>
+</tr>
+<tr class="even">
+<td align="left">strip.text.x</td>
+<td align="left">水平方向ファセットラベルの体裁</td>
+</tr>
+<tr class="odd">
+<td align="left">strip.text.y</td>
+<td align="left">垂直方向ファセットラベルの体裁</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="axisnumadjust" class="section level3 hasAnchor" number="8.23.3">
+<h3><span class="header-section-number">8.23.3</span> 軸の数値がいい感じにならない<a href="rviz.html#axisnumadjust" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>例えば以下の図では、年度なのに2012.5とか2015.0みたいな小数がついた表記になることもあります。間違ってはいないですが、いい感じではないですね。</p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p><code>scale_x_continuous()</code>というレイヤーを追加して、この中の引数で<code>n.breaks</code>を指定すると、目盛りをいくつに設定したいかを変更できます。例えば8にすると以下のように2年ごとに整数で表記ができます。</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="rviz.html#cb238-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(年度), <span class="at">y=</span><span class="fu">as.numeric</span>(合計特殊出生率), <span class="at">color=</span>都道府県)) <span class="sc">+</span> </span>
+<span id="cb238-2"><a href="rviz.html#cb238-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb238-3"><a href="rviz.html#cb238-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb238-4"><a href="rviz.html#cb238-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
+<span id="cb238-5"><a href="rviz.html#cb238-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">color=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb238-6"><a href="rviz.html#cb238-6" tabindex="-1"></a>  <span class="co"># 目盛りを８つ表示するようにする。</span></span>
+<span id="cb238-7"><a href="rviz.html#cb238-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">n.breaks=</span><span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb238-8"><a href="rviz.html#cb238-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) </span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p>目盛りの数はggplotによって調整される場合もあります。</p>
+<p>もしくは、<code>breaks</code>で直接表示したい数値だけ指定することもできます。この場合は2010年から2021年のすべてを表示しています。</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="rviz.html#cb239-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(年度), <span class="at">y=</span><span class="fu">as.numeric</span>(合計特殊出生率), <span class="at">color=</span>都道府県)) <span class="sc">+</span> </span>
+<span id="cb239-2"><a href="rviz.html#cb239-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb239-3"><a href="rviz.html#cb239-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb239-4"><a href="rviz.html#cb239-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
+<span id="cb239-5"><a href="rviz.html#cb239-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">color=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb239-6"><a href="rviz.html#cb239-6" tabindex="-1"></a>  <span class="co"># x軸に2010, 2015だけを表示する</span></span>
+<span id="cb239-7"><a href="rviz.html#cb239-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">2010</span><span class="sc">:</span><span class="dv">2021</span>) <span class="sc">+</span></span>
+<span id="cb239-8"><a href="rviz.html#cb239-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) </span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<p>y軸にも同じようなことができます。その場合は<code>scale_y_continous</code>を使ってください。</p>
+</div>
+<div id="axislabeladjust" class="section level3 hasAnchor" number="8.23.4">
+<h3><span class="header-section-number">8.23.4</span> 軸の目盛りラベルを調整する<a href="rviz.html#axislabeladjust" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>軸の数字同士が重なったりして読みにくくなっているケースがあります。</p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
+<p>対策として、たとえば、数字を小さくして重ならないようにできます。
+このときも、字の大きさを変えたときと同じように<code>theme</code>を使いますが、引数で<code>axis.text.x</code>を使います。</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="rviz.html#cb240-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(年度), <span class="at">y=</span><span class="fu">as.numeric</span>(合計特殊出生率), <span class="at">color=</span>都道府県)) <span class="sc">+</span> </span>
+<span id="cb240-2"><a href="rviz.html#cb240-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb240-3"><a href="rviz.html#cb240-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb240-4"><a href="rviz.html#cb240-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
+<span id="cb240-5"><a href="rviz.html#cb240-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">color=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb240-6"><a href="rviz.html#cb240-6" tabindex="-1"></a>  <span class="co"># x軸の目盛りラベルの字の大きさを変える。</span></span>
+<span id="cb240-7"><a href="rviz.html#cb240-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">2010</span><span class="sc">:</span><span class="dv">2021</span>) <span class="sc">+</span></span>
+<span id="cb240-8"><a href="rviz.html#cb240-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb240-9"><a href="rviz.html#cb240-9" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>)) </span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<p>もしくは、目盛りラベルを傾けることもできます。</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="rviz.html#cb241-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(年度), <span class="at">y=</span><span class="fu">as.numeric</span>(合計特殊出生率), <span class="at">color=</span>都道府県)) <span class="sc">+</span> </span>
+<span id="cb241-2"><a href="rviz.html#cb241-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb241-3"><a href="rviz.html#cb241-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb241-4"><a href="rviz.html#cb241-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
+<span id="cb241-5"><a href="rviz.html#cb241-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">color=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb241-6"><a href="rviz.html#cb241-6" tabindex="-1"></a>  <span class="co"># x軸の目盛りラベルの傾きを変える。</span></span>
+<span id="cb241-7"><a href="rviz.html#cb241-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">2010</span><span class="sc">:</span><span class="dv">2021</span>) <span class="sc">+</span></span>
+<span id="cb241-8"><a href="rviz.html#cb241-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb241-9"><a href="rviz.html#cb241-9" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>)) </span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p>傾きましたが、ちょっと軸にラベルがかかっていて、美しくないですね。</p>
+<p>こういうときは、<code>hjust</code>という引数を変えて位置を調整しましょう。<code>hjust</code>は水平方向の位置を調整する引数で0から1の間の数値を取ります。</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="rviz.html#cb242-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(年度), <span class="at">y=</span><span class="fu">as.numeric</span>(合計特殊出生率), <span class="at">color=</span>都道府県)) <span class="sc">+</span> </span>
+<span id="cb242-2"><a href="rviz.html#cb242-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb242-3"><a href="rviz.html#cb242-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb242-4"><a href="rviz.html#cb242-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
+<span id="cb242-5"><a href="rviz.html#cb242-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">color=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb242-6"><a href="rviz.html#cb242-6" tabindex="-1"></a>  <span class="co"># x軸の目盛りラベルの傾きを変える。</span></span>
+<span id="cb242-7"><a href="rviz.html#cb242-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">2010</span><span class="sc">:</span><span class="dv">2021</span>) <span class="sc">+</span></span>
+<span id="cb242-8"><a href="rviz.html#cb242-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb242-9"><a href="rviz.html#cb242-9" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) </span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+</div>
+<div id="jpntrans" class="section level3 hasAnchor" number="8.23.5">
+<h3><span class="header-section-number">8.23.5</span> ラベルだけではなく、凡例や目盛りラベルも日本語化したい<a href="rviz.html#jpntrans" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>もともとのデータが日本語なので、凡例や、棒グラフなどを使っている人は軸の目盛りラベルが日本語になっていると思います。</p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<p>これを英語化するには、少し手間がかかります。</p>
+<p>一つは、エクセルなどで手動で対応表を作り、それを読みこんで、<code>left_join</code>で結合して新たな英語の列を作成する方法です。</p>
+<p>この意味がわからない場合は、ggplotの中で手作業で指定しましょう。</p>
+<p>例えば、この図ではcolorで都道府県を指定しています。
+ですので、<code>scale_color_discrete</code>というレイヤーを追加して指定します。もし棒グラフなどでx軸やy軸の目盛ラベルを日本語化したい場合は、<code>scale_x_discrete</code>や<code>scale_y_discrete</code>を使ってください。</p>
+<p><code>scale_color_discrete</code>の中では、まず<code>breaks</code>という引数で、今存在する日本語の項目をすべて列挙します。ここで指定し忘れると、図から消えてしまうので気を付けてください。</p>
+<p>次に<code>labels</code>という引数で、変更したい形（今回はアルファベット表記）を指定します。このとき、順番を<code>breaks</code>で指定した順番と同じにしてください。</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="rviz.html#cb243-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>data_kanto,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(年度), <span class="at">y=</span><span class="fu">as.numeric</span>(合計特殊出生率), <span class="at">color=</span>都道府県)) <span class="sc">+</span> </span>
+<span id="cb243-2"><a href="rviz.html#cb243-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb243-3"><a href="rviz.html#cb243-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb243-4"><a href="rviz.html#cb243-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">&quot;YuGothic&quot;</span>) <span class="sc">+</span></span>
+<span id="cb243-5"><a href="rviz.html#cb243-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fiscal Year&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Fertility Rate&quot;</span>, <span class="at">color=</span><span class="st">&quot;Pref.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb243-6"><a href="rviz.html#cb243-6" tabindex="-1"></a>    <span class="co"># ラベルも英語化する。</span></span>
+<span id="cb243-7"><a href="rviz.html#cb243-7" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">&quot;千葉県&quot;</span>,<span class="st">&quot;埼玉県&quot;</span>,<span class="st">&quot;東京都&quot;</span>,<span class="st">&quot;栃木県&quot;</span>,<span class="st">&quot;神奈川県&quot;</span>,<span class="st">&quot;群馬県&quot;</span>,<span class="st">&quot;茨城県&quot;</span>),</span>
+<span id="cb243-8"><a href="rviz.html#cb243-8" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Chiba&quot;</span>,<span class="st">&quot;Saitama&quot;</span>,<span class="st">&quot;Tokyo&quot;</span>,<span class="st">&quot;Tochigi&quot;</span>,<span class="st">&quot;Kanagawa&quot;</span>,<span class="st">&quot;Gumma&quot;</span>,<span class="st">&quot;Ibaragi&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb243-9"><a href="rviz.html#cb243-9" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">2010</span><span class="sc">:</span><span class="dv">2021</span>) <span class="sc">+</span></span>
+<span id="cb243-10"><a href="rviz.html#cb243-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb243-11"><a href="rviz.html#cb243-11" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) </span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
 
 </div>
 </div>

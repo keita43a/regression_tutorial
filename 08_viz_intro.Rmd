@@ -37,8 +37,8 @@ fig_musashi_students
 fs::dir_create("data")
 
 # データのダウンロードとdataフォルダへの保存
-download.file("https://github.com/keita43a/regression_tutorial/blob/main/docs/data/musashi_keizai_students_2023.xlsx?raw=TRUE",
-              destfile="data/musashi_keizai_students_2023.xlsx")
+download.file("https://github.com/keita43a/regression_tutorial/blob/main/docs/data/musashi_keizai_students_2025.csv?raw=TRUE",
+              destfile="data/musashi_keizai_students_2025.csv")
 
 ```
 
@@ -46,7 +46,7 @@ download.file("https://github.com/keita43a/regression_tutorial/blob/main/docs/da
 
 ```{r}
 # エクセルからデータを読み込み
-data_634 <- readxl::read_excel("data/musashi_keizai_students_2023.xlsx") 
+data_634 <- read_csv("data/musashi_keizai_students_2025.csv") 
 
 # long型(tidy data)に変換
 data_634_long <- data_634 |> 
@@ -110,13 +110,13 @@ print(plot_634)
   - **豆腐化現象**と呼ばれている
 - 文字化けに対処するため、日本語のフォントを指定する。
   - Windowsは多分不要。
-- 新しく`theme_grey`というレイヤーを作り、その中の`base_family`という引数でフォント名`"HiraKakuPro-W3"`を指定する。
+- 新しく`theme_grey`というレイヤーを作り、その中の`base_family`という引数でフォント名`"YuGothic"`を指定する。
 
 
 ```{r, fig.align='center', fig.height=4, fig.width=7.5}
 plot_634 <- ggplot() +
   geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数),stat="identity") +
-  theme_grey(base_family="HiraKakuPro-W3")  # <- 追加！
+  theme_grey(base_family="YuGothic")  # <- 追加！
 
 print(plot_634)
 ```
@@ -135,7 +135,7 @@ print(plot_634)
 ```{r, fig.align='center', fig.height=4, fig.width=7.5}
 plot_634 <- ggplot() +
   geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別),stat="identity")+  # <- 追加！
-  theme_grey(base_family="HiraKakuPro-W3")
+  theme_grey(base_family="YuGothic")
 
 print(plot_634)
 ```
@@ -153,7 +153,7 @@ print(plot_634)
 plot_634 <- ggplot() +
   geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), # <- 追加！
            stat="identity", position="dodge")+ 
-  theme_grey(base_family="HiraKakuPro-W3") 
+  theme_grey(base_family="YuGothic") 
 
 print(plot_634)
 ```
@@ -176,7 +176,7 @@ print(plot_634)
 plot_634 <- ggplot() +
   geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+
   scale_fill_manual(values =c("#0A6648","#F6B21B")) + # <- 追加！
-  theme_grey(base_family="HiraKakuPro-W3")
+  theme_grey(base_family="YuGothic")
 
 print(plot_634)
 ```
@@ -196,7 +196,7 @@ print(plot_634)
 plot_634 <- ggplot() +
   geom_bar(data=data_634_long, mapping=aes(x=学年, y=学生数, fill=性別), stat="identity", position="dodge")+ 
   scale_fill_manual(values =c("#0A6648","#F6B21B")) +
-  theme_grey(base_family="HiraKakuPro-W3") +
+  theme_grey(base_family="YuGothic") +
   facet_wrap(~ 学科) # <- 追加！
 
 print(plot_634)
@@ -223,7 +223,7 @@ plot_634 <- ggplot() +
        title="武蔵大学経済学部の学科別・男女別学生数",   # <- 追加!
        subtitle="2023年5月1日時点",                      # <- 追加!
        caption = "データ元：武蔵大学公式ウェブサイト") + # <- 追加!
-  theme_grey(base_family="HiraKakuPro-W3") +
+  theme_grey(base_family="YuGothic") +
   facet_wrap(~ 学科) # <- 追加！
 
 plot_634
@@ -253,7 +253,7 @@ plot_634 <- ggplot() +
        title="武蔵大学経済学部の学科別・男女別学生数",   
        subtitle="2023年5月1日時点",                      
        caption = "データ元：武蔵大学公式ウェブサイト") + 
-  theme_minimal(base_family="HiraKakuPro-W3") +     # <- 変更!
+  theme_minimal(base_family="YuGothic") +     # <- 変更!
   facet_wrap(~ 学科) ## <- 追加！
 ```
 
@@ -282,7 +282,7 @@ plot_634 <- ggplot() +
        title="武蔵大学経済学部の学科別・男女別学生数",   
        subtitle="2023年5月1日時点",                      
        caption = "データ元：武蔵大学公式ウェブサイト") + 
-  theme_minimal(base_family="HiraKakuPro-W3") +
+  theme_minimal(base_family="YuGothic") +
   theme(panel.grid.major.x = element_blank(),   # <- 追加!
         legend.position = "bottom",             # <- 追加!
         text = element_text(size=15)) +         # <- 追加!
@@ -483,12 +483,12 @@ knitr::include_graphics("docs/fig/IMG_3452.png")
 
 他人と同じ変数は使えないため、どのデータのどの変数を描画するかは早いもの勝ちである。
 
-1. 自分がどのデータセットのどの変数を描画するかをGoogle Classroomのストリームに投稿する。（締切：6/4 23:59）
+1. 自分がどのデータセットのどの変数を描画するかをGoogle Classroomのストリームに投稿する。（締切：6/4 13:20）
 
-2. 描画した画像ファイルとRコードをGoogle Classroomの課題3-2に提出する。(締切：6/11 23:49）
+2. 描画した画像ファイルとRコードをGoogle Classroomの課題3-2に提出する。(締切：6/11 13:20）
     - Rコードはkadai_presen_XXX.Rという名前をつけて保存する。XXXには自分の名前を英語で入れる。
 
-3. 描画した画像ファイルについて、2~3分のプレゼンテーションを行う（実施日：6/19 ゼミ）
+3. 描画した画像ファイルについて、2~3分のプレゼンテーションを行う（実施日：6/18 ゼミ）
     - 英語で作成したグラフの説明を行う2~3分のプレゼンを準備する。
     - 提出された画像からスライドを作るのでスライドは用意しなくて良い。
     - 画像だけで自分で英語で説明する。どういうデータなのか、何を説明しているのか、グラフから何が言えそうか。
@@ -540,10 +540,10 @@ data_kanto <- data_ssdse |>
 
 ```{r}
 
-plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=合計特殊出生率, col=都道府県)) + 
+plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=合計特殊出生率, color=都道府県)) + 
   geom_line() +
   geom_point() +
-  theme_bw(base_family = "HiraKakuPro-W3")
+  theme_bw(base_family = "YuGothic")
 
 plot_f_rate
 
@@ -554,16 +554,12 @@ plot_f_rate
 
 ```{r}
 
-plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=合計特殊出生率, col=都道府県)) + 
+plot_f_rate <- ggplot(data=data_kanto,aes(x=年度, y=合計特殊出生率, color=都道府県)) + 
   geom_line() +
   geom_point() +
-  theme_bw(base_family = "HiraKakuPro-W3") +
+  theme_bw(base_family = "YuGothic") +
   # ラベルを変換
-  labs(x="Fiscal Year", y="Total Fertility Rate", col="Pref.") +
-  # カテゴリの名前（都道府県を変換）
-  scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県"),
-                       labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi")) +
-  theme(text = element_text(size=15)) # スライドで見やすくするために字を大きくする
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") 
 
 plot_f_rate
   
@@ -578,4 +574,230 @@ ggsave("fig/fertility_rate_by_pref_2010_2021.png",plot_f_rate,
 ```
 
 
+## よくある問題と対策 {#makefigFAQ}
 
+Q1.[軸の数値がおかしい](#axisnum)  
+Q2.[字が小さい](#smallletter)  
+Q3.[軸の数値がいい感じにならない](#axisnumadjust)  
+Q4.[軸の目盛りラベルを調整する](#axislabeladjust)  
+Q5.[凡例や目盛りラベルも日本語化したい](#jpntrans)  
+
+### 軸の数値がおかしい {#axisnum}
+
+下の図のY軸ように、やたら数値の表示が多かったり、変な順番になっている場合は、数値として使っている変数が数値型ではなく文字列型になっている可能性が高いです。
+
+```{r, echo =FALSE}
+ggplot(data=data_kanto,aes(x=年度, y=as.character(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  theme(text = element_text(size=15)) 
+```
+その場合は、文字列型のデータを数値型に変換します。
+`mutate`を使って、データを編集するのが妥当ですが、アドホックな対応としては、ggplotの中で`as.numeric()`を使ってしまう方法です。以下のコードの`y=`のところに注目してください。
+
+```{r}
+# yの変数を指定するときにas.numeric()で囲み、数値型にする
+ggplot(data=data_kanto,aes(x=年度, y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  theme(text = element_text(size=15)) 
+```
+
+### 字が小さい {#smallletter}
+
+上のコードでも触れていますが、字が小さい図はプレゼンテーションでは読みにくく効果的ではありません。
+
+```{r, echo=FALSE}
+ggplot(data=data_kanto,aes(x=年度, y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  theme(text = element_text(size=10)) 
+```
+
+字を一括で大きくするには、`theme()`関数の中で、`text`という引数で設定します。その際、`element_text()`という関数の中で指定します。
+
+```{r, echo=FALSE}
+ggplot(data=data_kanto,aes(x=年度, y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  # 字を一括で大きくする
+  theme(text = element_text(size=18)) 
+```
+
+より細かくそれぞれの部分の字のサイズなどを設定したい場合は、以下の表に基づいて、`theme()`関数の中の引数で指定してください。
+
+```{r, echo = FALSE}
+theme_elements <- data.frame(
+  要素名 = c("axis.title", "axis.title.x", "axis.title.y", 
+           "axis.text", "axis.text.x", "axis.text.y",
+           "legend.title", "plot.title", "strip.text",
+           "strip.text.x", "strip.text.y"),
+  説明 = c("両軸ラベルの体裁", "x軸ラベルの体裁", "y軸ラベルの体裁",
+         "両軸目盛ラベルの体裁", "x軸目盛ラベルの体裁", "y軸目盛ラベルの体裁",
+         "凡例項目の体裁", "タイトルの体裁", "両方向ファセットラベルの体裁",
+         "水平方向ファセットラベルの体裁", "垂直方向ファセットラベルの体裁")
+)
+
+knitr::kable(theme_elements)
+```
+
+### 軸の数値がいい感じにならない{#axisnumadjust}
+
+例えば以下の図では、年度なのに2012.5とか2015.0みたいな小数がついた表記になることもあります。間違ってはいないですが、いい感じではないですね。
+
+
+```{r, echo=FALSE}
+ggplot(data=data_kanto,aes(x=as.numeric(年度), y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  scale_x_continuous(n.breaks=6) +
+  theme(text = element_text(size=15)) 
+```
+
+
+`scale_x_continuous()`というレイヤーを追加して、この中の引数で`n.breaks`を指定すると、目盛りをいくつに設定したいかを変更できます。例えば8にすると以下のように2年ごとに整数で表記ができます。
+
+```{r}
+ggplot(data=data_kanto,aes(x=as.numeric(年度), y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  # 目盛りを８つ表示するようにする。
+  scale_x_continuous(n.breaks=8) +
+  theme(text = element_text(size=15)) 
+```
+
+ 目盛りの数はggplotによって調整される場合もあります。
+  
+もしくは、`breaks`で直接表示したい数値だけ指定することもできます。この場合は2010年から2021年のすべてを表示しています。
+
+```{r}
+ggplot(data=data_kanto,aes(x=as.numeric(年度), y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  # x軸に2010, 2015だけを表示する
+  scale_x_continuous(breaks=2010:2021) +
+  theme(text = element_text(size=15)) 
+```
+
+
+y軸にも同じようなことができます。その場合は`scale_y_continous`を使ってください。
+
+
+### 軸の目盛りラベルを調整する {#axislabeladjust}
+
+軸の数字同士が重なったりして読みにくくなっているケースがあります。
+
+```{r, echo=FALSE}
+ggplot(data=data_kanto,aes(x=as.numeric(年度), y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  # x軸の目盛りラベルの字の大きさを変える。
+  scale_x_continuous(breaks=2010:2021) +
+  theme(axis.text.x = element_text(size=18)) 
+```
+
+対策として、たとえば、数字を小さくして重ならないようにできます。
+このときも、字の大きさを変えたときと同じように`theme`を使いますが、引数で`axis.text.x`を使います。
+
+```{r}
+ggplot(data=data_kanto,aes(x=as.numeric(年度), y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  # x軸の目盛りラベルの字の大きさを変える。
+  scale_x_continuous(breaks=2010:2021) +
+  theme(text = element_text(size=15),
+        axis.text.x = element_text(size=10)) 
+```
+
+もしくは、目盛りラベルを傾けることもできます。
+
+```{r}
+ggplot(data=data_kanto,aes(x=as.numeric(年度), y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  # x軸の目盛りラベルの傾きを変える。
+  scale_x_continuous(breaks=2010:2021) +
+  theme(text = element_text(size=15),
+        axis.text.x = element_text(angle = 45)) 
+```
+
+傾きましたが、ちょっと軸にラベルがかかっていて、美しくないですね。
+
+こういうときは、`hjust`という引数を変えて位置を調整しましょう。`hjust`は水平方向の位置を調整する引数で0から1の間の数値を取ります。
+
+```{r}
+ggplot(data=data_kanto,aes(x=as.numeric(年度), y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  # x軸の目盛りラベルの傾きを変える。
+  scale_x_continuous(breaks=2010:2021) +
+  theme(text = element_text(size=15),
+        axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+
+### ラベルだけではなく、凡例や目盛りラベルも日本語化したい {#jpntrans}
+
+もともとのデータが日本語なので、凡例や、棒グラフなどを使っている人は軸の目盛りラベルが日本語になっていると思います。
+
+```{r,echo=FALSE}
+ggplot(data=data_kanto,aes(x=as.numeric(年度), y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+  scale_x_continuous(breaks=2010:2021) +
+  theme(text = element_text(size=15),
+        axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+これを英語化するには、少し手間がかかります。
+
+一つは、エクセルなどで手動で対応表を作り、それを読みこんで、`left_join`で結合して新たな英語の列を作成する方法です。
+
+この意味がわからない場合は、ggplotの中で手作業で指定しましょう。
+
+例えば、この図ではcolorで都道府県を指定しています。
+ですので、`scale_color_discrete`というレイヤーを追加して指定します。もし棒グラフなどでx軸やy軸の目盛ラベルを日本語化したい場合は、`scale_x_discrete`や`scale_y_discrete`を使ってください。
+
+`scale_color_discrete`の中では、まず`breaks`という引数で、今存在する日本語の項目をすべて列挙します。ここで指定し忘れると、図から消えてしまうので気を付けてください。
+
+次に`labels`という引数で、変更したい形（今回はアルファベット表記）を指定します。このとき、順番を`breaks`で指定した順番と同じにしてください。
+
+
+
+```{r}
+ggplot(data=data_kanto,aes(x=as.numeric(年度), y=as.numeric(合計特殊出生率), color=都道府県)) + 
+  geom_line() +
+  geom_point() +
+  theme_bw(base_family = "YuGothic") +
+  labs(x="Fiscal Year", y="Total Fertility Rate", color="Pref.") +
+    # ラベルも英語化する。
+  scale_color_discrete(breaks = c("千葉県","埼玉県","東京都","栃木県","神奈川県","群馬県","茨城県"),
+                       labels = c("Chiba","Saitama","Tokyo","Tochigi","Kanagawa","Gumma","Ibaragi")) +
+  scale_x_continuous(breaks=2010:2021) +
+  theme(text = element_text(size=15),
+        axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
