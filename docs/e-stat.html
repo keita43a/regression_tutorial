@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2025-06-11" />
+<meta name="date" content="2025-07-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -564,6 +564,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.4.3" data-path="regressionreporting.html"><a href="regressionreporting.html#エクセルへの出力"><i class="fa fa-check"></i><b>18.4.3</b> エクセルへの出力</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html"><i class="fa fa-check"></i><b>19</b> ゼミ演習解答</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#課題"><i class="fa fa-check"></i><b>19.1</b> 課題</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル１データを読み込む"><i class="fa fa-check"></i><b>19.1.1</b> レベル１：データを読み込む</a></li>
+<li class="chapter" data-level="19.1.2" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル２折れ線グラフを描く"><i class="fa fa-check"></i><b>19.1.2</b> レベル２：折れ線グラフを描く</a></li>
+<li class="chapter" data-level="19.1.3" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル３データを絞る"><i class="fa fa-check"></i><b>19.1.3</b> レベル３：データを絞る</a></li>
+<li class="chapter" data-level="19.1.4" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル４色を追加する"><i class="fa fa-check"></i><b>19.1.4</b> レベル４：色を追加する</a></li>
+<li class="chapter" data-level="19.1.5" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル５単位の調整"><i class="fa fa-check"></i><b>19.1.5</b> レベル５：単位の調整</a></li>
+<li class="chapter" data-level="19.1.6" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル６２軸目の追加"><i class="fa fa-check"></i><b>19.1.6</b> レベル６：２軸目の追加</a></li>
+<li class="chapter" data-level="19.1.7" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル7日本語のラベルなどの追加"><i class="fa fa-check"></i><b>19.1.7</b> レベル7：日本語のラベルなどの追加</a></li>
+<li class="chapter" data-level="19.1.8" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル８細かい見た目の調整"><i class="fa fa-check"></i><b>19.1.8</b> レベル８：細かい見た目の調整</a></li>
+<li class="chapter" data-level="19.1.9" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル９図を保存する"><i class="fa fa-check"></i><b>19.1.9</b> レベル９：図を保存する</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -661,19 +676,21 @@ e-Statのウェブサイト上で、漁業センサスを検索し、「デー�
 <p>データを見てみる。</p>
 <div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="e-stat.html#cb391-1" tabindex="-1"></a><span class="fu">head</span>(dat, <span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 7
-##    cat01_code (J118-30-2-001)全国・都…¹ cat02_code (J118-30-1-064)基本的…² unit   value annotation
-##    &lt;chr&gt;      &lt;chr&gt;                     &lt;chr&gt;      &lt;chr&gt;                   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     
-##  1 001        全国                      001        漁業経営体数            経営… 7.91e4 &lt;NA&gt;      
-##  2 001        全国                      002        漁船_無動力漁船隻数     隻    3.08e3 &lt;NA&gt;      
-##  3 001        全国                      003        漁船_船外機付漁船隻数   隻    5.92e4 &lt;NA&gt;      
-##  4 001        全国                      004        漁船_動力漁船_隻数      隻    6.99e4 &lt;NA&gt;      
-##  5 001        全国                      005        漁船_動力漁船_ﾄﾝ数      T     5.48e5 &lt;NA&gt;      
-##  6 002        北海道                    001        漁業経営体数            経営… 1.11e4 &lt;NA&gt;      
-##  7 002        北海道                    002        漁船_無動力漁船隻数     隻    7.7 e1 &lt;NA&gt;      
-##  8 002        北海道                    003        漁船_船外機付漁船隻数   隻    1.27e4 &lt;NA&gt;      
-##  9 002        北海道                    004        漁船_動力漁船_隻数      隻    6.38e3 &lt;NA&gt;      
-## 10 002        北海道                    005        漁船_動力漁船_ﾄﾝ数      T     5.88e4 &lt;NA&gt;      
-## # ℹ abbreviated names: ¹​`(J118-30-2-001)全国・都道府県・大海区`, ²​`(J118-30-1-064)基本的項目`</code></pre>
+##    cat01_code (J118-30-2-001)全国…¹ cat02_code (J118-30-1-064)基本的…²
+##    &lt;chr&gt;      &lt;chr&gt;                 &lt;chr&gt;      &lt;chr&gt;                  
+##  1 001        全国                  001        漁業経営体数           
+##  2 001        全国                  002        漁船_無動力漁船隻数    
+##  3 001        全国                  003        漁船_船外機付漁船隻数  
+##  4 001        全国                  004        漁船_動力漁船_隻数     
+##  5 001        全国                  005        漁船_動力漁船_ﾄﾝ数     
+##  6 002        北海道                001        漁業経営体数           
+##  7 002        北海道                002        漁船_無動力漁船隻数    
+##  8 002        北海道                003        漁船_船外機付漁船隻数  
+##  9 002        北海道                004        漁船_動力漁船_隻数     
+## 10 002        北海道                005        漁船_動力漁船_ﾄﾝ数     
+## # ℹ abbreviated names: ¹​`(J118-30-2-001)全国・都道府県・大海区`,
+## #   ²​`(J118-30-1-064)基本的項目`
+## # ℹ 3 more variables: unit &lt;chr&gt;, value &lt;dbl&gt;, annotation &lt;chr&gt;</code></pre>
 <p><code>value</code>という列には異なる変数（経営体数や漁船数）が一気に入ってしまっているので、整然データにはなっていない。</p>
 </div>
 <div id="データ加工の例" class="section level3 hasAnchor" number="17.3.3">

@@ -1,0 +1,248 @@
+# ゼミ演習解答 {#seminar1_2025_answer}
+
+
+## 課題
+
+2025年の春学期最後のゼミでは、課題として、阿部が描いた図を、同じデータで再現するという課題でした。
+
+```{r, echo = FALSE}
+plot_ts_sales_salmon <- ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT/10000), col = "blue", size = 1.2) +
+    geom_line(aes(y = values_BilNOK*2), col = "orange", size = 1.2) +
+    scale_y_continuous(limits = c(0,250), 
+                       breaks = c(0,50,100,150,200,250), 
+                       expand = c(0,0), 
+      sec.axis = sec_axis(~./2, name="販売額(10億クローネ)",
+                          breaks = c(0,25,50,75,100,125,150))) +
+    labs(x = "年", y ="販売量(万トン)",col="",
+         title = "ノルウェーのアトランティックサーモン販売量・販売額",
+         caption = "データ：ノルウェー水産局") +
+    theme_bw(base_family = "YuGothic") +
+    theme(panel.grid.minor = element_blank(),
+          text = element_text(size=15), 
+          axis.title.y.left = element_text(color="blue"), 
+          axis.title.y.right = element_text(color="orange")) 
+
+plot_ts_sales_salmon
+
+```
+
+レベル別に解説していきます。
+
+### レベル１：データを読み込む
+
+データを読み込むのは、RStudioの機能を使ってクリックで読み込むこともできます。
+
+コードで書く場合は、`readRDS()`という関数を使います。
+データは、`.csv`ファイルではなく、R独特のデータ形式である`.rds`なので、`read_csv()`の代わりに、`readRDS()`というRに標準装備の関数を使います。
+
+しかし、後で`ggplot`を使うので`library(tidyverse)`でライブラリを読み込んでおきましょう。
+
+```{r}
+library(tidyverse)
+
+data_salmon <- readRDS("data/sales_in_volume_and_value_1998_2024_by_species.rds")
+
+```
+
+### レベル２：折れ線グラフを描く
+
+`geom_line`を使って折れ線グラフを描きます。
+
+グラフに利用するデータを`aes()`の中で指定するわけですが、グラフを通じて共通する項目（この場合はx軸の`year`）は、ggplot()の中で指定するが、それぞれ異なる変数（販売量と販売額）は異なるレイヤーで`geom_line`を利用するという形です。
+
+このままそれぞれの変数を描くと以下のようなギザギザのグラフになりますが、この解消法は次節で解説します。
+
+
+```{r}
+ggplot(data_salmon, aes(x = year)) +
+    geom_line(aes(y = volumes_MT)) +
+    geom_line(aes(y = values_BilNOK))
+```
+
+### レベル３：データを絞る
+
+図には「アトランティックサーモン」と書いていますが、`species_EN`というところにはAtlantic SalmonとRainbow Trout, すなわちアトランティックサーモンとニジマスの二種類がいるので、データをアトランティックサーモンのみに絞りましょう。
+
+```{r}
+# データを絞る
+data_atlan <- data_salmon |>
+  filter(species_EN == "Atlantic salmon")
+
+ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT)) +
+    geom_line(aes(y = values_BilNOK))
+
+```
+
+### レベル４：色を追加する
+
+これで２本の折れ線グラフがかけました。
+元の図は青とオレンジの色で分けられていたので、同じく色分けをしましょう
+
+```{r}
+# 色を追加
+ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT), col="blue") +
+    geom_line(aes(y = values_BilNOK), col="orange")
+
+```
+
+
+### レベル５：単位の調整
+
+これで２本の色別の折れ線グラフがかけましたが、数値が違うのに同じ軸で描いているため、金額のほうがほぼ直線になってしまっています。
+
+まず、販売量の数値を「小さく」しましょう。
+具体的には、volume_MTなので、Metric Tonnes、すなわち「トン」になっている単位を元の図と同じ「万トン」にするために、1万で割ります。
+
+
+```{r}
+# 量の数値を調整
+ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT/10000), col="blue") +
+    geom_line(aes(y = values_BilNOK), col="orange")
+
+```
+いい感じになってきました。
+もう少し重ねたいので、今度は金額の方を少し「大きく」しましょう。
+2をかけて2倍にします。
+
+```{r}
+# 金額の数値を調整
+ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT/10000), col="blue") +
+    geom_line(aes(y = values_BilNOK*2), col="orange")
+
+```
+これで、元の図と同じような折れ線グラフを描くことができました。
+
+### レベル６：２軸目の追加
+
+ここからは少し応用編になってきます。
+Googleで「ggplot 2軸」などで検索すると、いくつか方法を解説したブログ記事が出てきます。
+
+基本的には、scale_y_continuous()というy軸を設定するレイヤーを使います。
+この中で、`sec.axis`という引数に`sec_axis()`という関数を指定して、`~./2`と書きます。これは、２軸目に使いたい数値(`.`)を2で割る(`/2`)という意味です。これは、上で販売額に2を掛けたので、本来の数値に戻す意味で2で割っています。
+
+```{r}
+# 2軸目のy軸（右）を追加
+ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT/10000), col="blue") +
+    geom_line(aes(y = values_BilNOK*2), col="orange") +
+    scale_y_continuous(sec.axis=sec_axis(~./2)) 
+
+  
+```
+これで２軸目が書けました。
+
+### レベル7：日本語のラベルなどの追加
+
+軸のラベルを追加していきましょう。
+ラベルを指定するレイヤーは`labs()`でした。
+
+```{r}
+# ラベルの追加
+ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT/10000), col="blue") +
+    geom_line(aes(y = values_BilNOK*2), col="orange") +
+    scale_y_continuous(sec.axis=sec_axis(~./2)) +
+    labs(x = "年", y ="販売量(万トン)",
+         title ="ノルウェーのアトランティックサーモン販売量・販売額",
+         caption = "データ：ノルウェー水産局")
+
+  
+```
+
+そう、日本語を何も指定せずに使うとMacだと文字化け（豆腐化）のするんでしたね。
+Windowsを使っている人は、ここで日本語が出ていると思います。
+日本語が出ている場合はする必要は必ずしも必要ないですが、テーマを変えるために以下のレイヤーを追加しておきましょう。
+
+```{r}
+# ラベルの追加
+ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT/10000), col="blue") +
+    geom_line(aes(y = values_BilNOK*2), col="orange") +
+    scale_y_continuous(sec.axis=sec_axis(~./2)) +
+    labs(x = "年", y ="販売量(万トン)",
+         title ="ノルウェーのアトランティックサーモン販売量・販売額",
+         caption = "データ：ノルウェー水産局") +
+    theme_bw(base_family="YuGothic")
+  
+```
+
+```{r}
+# ２軸目のラベルの追加
+ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT/10000), col="blue") +
+    geom_line(aes(y = values_BilNOK*2), col="orange") +
+    scale_y_continuous(sec.axis=sec_axis(~./2, name="販売額(10億クローネ)")) + # <- ここでラベルを指定
+    labs(x = "年", y ="販売量(万トン)",
+         title ="ノルウェーのアトランティックサーモン販売量・販売額",
+         caption = "データ：ノルウェー水産局") +
+    theme_bw(base_family="YuGothic")
+  
+```
+しかし、左の軸にはラベルが出ていません。
+左の軸は、`labs`の中ではなく、`sec_axis()`の中で`name`という引数でしています。
+
+### レベル８：細かい見た目の調整
+
+ほぼグラフは完成しました。
+あとは、細かい見た目の調整ができればOKです。
+
+
+```{r}
+
+  
+ggplot(data_atlan, aes(x = year)) +
+    # ↓ sizeを指定することで、少し線を太くする
+    geom_line(aes(y = volumes_MT/10000), col = "blue", size = 1.2) +
+    geom_line(aes(y = values_BilNOK*2), col = "orange", size = 1.2) +
+    scale_y_continuous(limits = c(0,250), # <- 縦軸の上限と下限を決める
+                       breaks = c(0,50,100,150,200,250), # <- 目盛りの表示を決める
+                       expand = c(0,0), # <- 0と軸が一致するように余白をなくす
+      sec.axis = sec_axis(~./2, name="販売額(10億クローネ)",
+                          breaks = c(0,25,50,75,100,125,150))) +
+    labs(x = "年", y ="販売量(万トン)",col="",
+         title = "ノルウェーのアトランティックサーモン販売量・販売額",
+         caption = "データ：ノルウェー水産局") +
+   # scale_color_discrete_c4a_cat(palette = "seaborn.colorblind") +
+    theme_bw(base_family = "YuGothic") +
+   # ↓ theme()で細かい見た目を設定する
+    theme(panel.grid.minor = element_blank(), # 細いグリッド線を非表示
+          text = element_text(size=15), # 字の大きさを調整
+          axis.title.y.left = element_text(color="blue"), # 左の縦軸のラベルの字の色を一致させる
+          axis.title.y.right = element_text(color="orange")) # 右の縦軸のラベルの字の色を一致させる 
+
+  
+```
+
+### レベル９：図を保存する
+
+最後に図を保存しましょう。
+保存するには、描画したggplotをオブジェクトに保存し、それを`ggsave()`を使って保存します。
+
+```{r, eval=FALSE}
+  plot_ts_sales_salmon <- ggplot(data_atlan, aes(x = year)) +
+    geom_line(aes(y = volumes_MT/10000), col = "blue", size = 1.2) +
+    geom_line(aes(y = values_BilNOK*2), col = "orange", size = 1.2) +
+    scale_y_continuous(limits = c(0,250), 
+                       breaks = c(0,50,100,150,200,250), 
+                       expand = c(0,0), 
+      sec.axis = sec_axis(~./2, name="販売額(10億クローネ)",
+                          breaks = c(0,25,50,75,100,125,150))) +
+    labs(x = "年", y ="販売量(万トン)",col="",
+         title = "ノルウェーのアトランティックサーモン販売量・販売額",
+         caption = "データ：ノルウェー水産局") +
+    theme_bw(base_family = "YuGothic") +
+    theme(panel.grid.minor = element_blank(),
+          text = element_text(size=15), 
+          axis.title.y.left = element_text(color="blue"), 
+          axis.title.y.right = element_text(color="orange")) 
+  
+
+  # ggsaveで保存。まず保存する場所とファイル名をパスで指定し、保存するオブジェクトをplotで指定する。heightとwidthで画像ファイルの大きさを指定できる
+  ggsave("output/plot_ts_sales_salmon.png", plot=plot_ts_sales_salmon, height=9, width=16)
+```
+
