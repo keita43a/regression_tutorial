@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 20 総合復習問題：回帰分析 | 武蔵大生のためのRによる実証分析入門</title>
+  <title>Chapter 20 総合復習問題：回帰分析 | Rによる実証分析入門</title>
   <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 20 総合復習問題：回帰分析 | 武蔵大生のためのRによる実証分析入門" />
+  <meta property="og:title" content="Chapter 20 総合復習問題：回帰分析 | Rによる実証分析入門" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 20 総合復習問題：回帰分析 | 武蔵大生のためのRによる実証分析入門" />
+  <meta name="twitter:title" content="Chapter 20 総合復習問題：回帰分析 | Rによる実証分析入門" />
   
   <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   
@@ -609,7 +609,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">武蔵大生のためのRによる実証分析入門</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rによる実証分析入門</a>
           </h1>
         </div>
 
@@ -619,7 +619,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="regressionpractice" class="section level1 hasAnchor" number="20">
 <h1><span class="header-section-number">Chapter 20</span> 総合復習問題：回帰分析<a href="regressionpractice.html#regressionpractice" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>この復習問題では、第6章〜第13章・第19章の内容を総合的に練習する。
+<p>この復習問題では、第6章〜第13章の内容を総合的に復習する。
 使用するデータは <code>gapminder</code> データである。
 このデータには、1952年から2007年にかけての国別の人口・平均寿命・一人当たりGDPが収録されている。</p>
 <table>
@@ -756,7 +756,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="prac-q8" class="section level2 hasAnchor" number="20.9">
 <h2><span class="header-section-number">20.9</span> 問8：回帰分析表の作成<a href="regressionpractice.html#prac-q8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>第19章（<a href="regressionreporting.html#regressionreporting">18</a>）の内容に基づき、問5〜7で推定した3つのモデル（<code>model1</code>〜<code>model3</code>）の回帰分析表を作成せよ。</p>
+<p>第<a href="regressionreporting.html#regressionreporting">18</a>章の内容に基づき、問5〜7で推定した3つのモデル（<code>model1</code>〜<code>model3</code>）の回帰分析表を作成せよ。</p>
 <div id="問8-1変数名の設定と表の作成" class="section level3 hasAnchor" number="20.9.1">
 <h3><span class="header-section-number">20.9.1</span> 問8-1：変数名の設定と表の作成<a href="regressionpractice.html#%E5%95%8F8-1%E5%A4%89%E6%95%B0%E5%90%8D%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%A8%E8%A1%A8%E3%81%AE%E4%BD%9C%E6%88%90" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>modelsummary()</code> 関数を使い、以下の条件をすべて満たす回帰分析表を作成せよ。</p>
@@ -787,6 +787,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="問8-3発展etable-を使った出力" class="section level3 hasAnchor" number="20.9.3">
 <h3><span class="header-section-number">20.9.3</span> 問8-3（発展）：etable() を使った出力<a href="regressionpractice.html#%E5%95%8F8-3%E7%99%BA%E5%B1%95etable-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E5%87%BA%E5%8A%9B" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>希望者のみ以下の問題にも取り組むこと。</p>
 <p><code>etable()</code> を使って同じ3モデルの表を作成し、Excelファイル（<code>results/reg_table.xlsx</code>）に出力せよ。</p>
 <ul>
 <li><code>setFixest_dict()</code> で変数名を日本語に設定する</li>

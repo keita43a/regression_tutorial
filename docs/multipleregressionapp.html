@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 回帰分析の応用 | 武蔵大生のためのRによる実証分析入門</title>
+  <title>Chapter 13 回帰分析の応用 | Rによる実証分析入門</title>
   <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 回帰分析の応用 | 武蔵大生のためのRによる実証分析入門" />
+  <meta property="og:title" content="Chapter 13 回帰分析の応用 | Rによる実証分析入門" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 回帰分析の応用 | 武蔵大生のためのRによる実証分析入門" />
+  <meta name="twitter:title" content="Chapter 13 回帰分析の応用 | Rによる実証分析入門" />
   
   <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   
@@ -609,7 +609,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">武蔵大生のためのRによる実証分析入門</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rによる実証分析入門</a>
           </h1>
         </div>
 
@@ -629,12 +629,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb307-3"><a href="multipleregressionapp.html#cb307-3" tabindex="-1"></a></span>
 <span id="cb307-4"><a href="multipleregressionapp.html#cb307-4" tabindex="-1"></a><span class="fu">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                               model1               model2
-## Dependent Var.:                sales                sales
+## Dependent Var.:      支店の売上      支店の売上
 ##                                                          
 ## Constant            499.6*** (6.860)     499.6*** (6.860)
-## ads                 49.66*** (4.028)     49.66*** (4.028)
-## age                4.985*** (0.1299)    4.985*** (0.1299)
-## income            0.0899*** (0.0078)                     
+## 広告ダミー     49.66*** (4.028)     49.66*** (4.028)
+## 店長の年齢(歳)  4.985*** (0.1299)    4.985*** (0.1299)
+## 地域の平均所得(万円) 0.0899*** (0.0078)                     
 ## I(income x 10000)                    8.99e-6*** (1.26e-6)
 ## _________________ __________________ ____________________
 ## S.E. type                        IID                  IID
