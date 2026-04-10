@@ -349,3 +349,16 @@ seminar1_2025_answer
 レベル7日本語のラベルなどの追加
 レベル８細かい見た目の調整
 レベル９図を保存する
+regressionpractice
+準備-6
+prac-q1
+prac-q2
+prac-q3
+prac-q4
+prac-q5
+prac-q6
+prac-q7
+prac-q8
+問8-1変数名の設定と表の作成
+問8-2ファイルへの出力
+問8-3発展etable-を使った出力

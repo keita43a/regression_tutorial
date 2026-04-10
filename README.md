@@ -12,4 +12,9 @@
 [武蔵大生のためのRによる実証分析入門](https://keita43a.github.io/regression_tutorial/)
 
 
+## 製本方法
+
+`bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook", output_dir="./docs")`
+で製本
+
 

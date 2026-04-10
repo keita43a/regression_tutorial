@@ -34,6 +34,13 @@ pacman::p_load(
 # bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook", output_dir="./docs")
 # で製本
 
+#  製本完了後、以下の順番でpushすると公開
+#  git add docs/                                                                 
+#  git commit -m "XXXX"       
+#  git push                                                                      
+  
+
+
 options(scipen=999)
 ```
 
