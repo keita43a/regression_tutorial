@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2026-05-13" />
+<meta name="date" content="2026-05-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -727,16 +727,13 @@ y_i = \alpha + \beta \hat{x}_i + \varepsilon_i
 <div id="パッケージの準備-3" class="section level3 hasAnchor" number="17.2.2">
 <h3><span class="header-section-number">17.2.2</span> パッケージの準備<a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E6%BA%96%E5%82%99-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="iv.html#cb389-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, fixest, wooldridge)</span></code></pre></div>
-<pre><code>## 
-## The downloaded binary packages are in
-##  /var/folders/65/ww8t14cj3t3dd50zxt0x__r00000gn/T//RtmpSFXpB4/downloaded_packages</code></pre>
 </div>
 <div id="データの準備-3" class="section level3 hasAnchor" number="17.2.3">
 <h3><span class="header-section-number">17.2.3</span> データの準備<a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%BA%96%E5%82%99-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Card（1995）のデータは <code>wooldridge</code> パッケージに含まれている。</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="iv.html#cb391-1" tabindex="-1"></a><span class="fu">data</span>(card)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="iv.html#cb390-1" tabindex="-1"></a><span class="fu">data</span>(card)</span></code></pre></div>
 <p>データの中身を確認しよう。</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="iv.html#cb392-1" tabindex="-1"></a><span class="fu">head</span>(card[, <span class="fu">c</span>(<span class="st">&quot;wage&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;nearc4&quot;</span>, <span class="st">&quot;exper&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;smsa&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="iv.html#cb391-1" tabindex="-1"></a><span class="fu">head</span>(card[, <span class="fu">c</span>(<span class="st">&quot;wage&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;nearc4&quot;</span>, <span class="st">&quot;exper&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;smsa&quot;</span>)])</span></code></pre></div>
 <pre><code>##   wage educ nearc4 exper black smsa
 ## 1  548    7      0    16     1    1
 ## 2  481   12      0     9     0    1
@@ -780,8 +777,8 @@ y_i = \alpha + \beta \hat{x}_i + \varepsilon_i
 </tbody>
 </table>
 <p>目的変数の賃金は対数変換して使う。また、コントロール変数として経験年数・人種・居住地を加える。</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="iv.html#cb394-1" tabindex="-1"></a><span class="co"># 記述統計</span></span>
-<span id="cb394-2"><a href="iv.html#cb394-2" tabindex="-1"></a><span class="fu">summary</span>(card[, <span class="fu">c</span>(<span class="st">&quot;wage&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;nearc4&quot;</span>, <span class="st">&quot;exper&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;smsa&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="iv.html#cb393-1" tabindex="-1"></a><span class="co"># 記述統計</span></span>
+<span id="cb393-2"><a href="iv.html#cb393-2" tabindex="-1"></a><span class="fu">summary</span>(card[, <span class="fu">c</span>(<span class="st">&quot;wage&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;nearc4&quot;</span>, <span class="st">&quot;exper&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;smsa&quot;</span>)])</span></code></pre></div>
 <pre><code>##       wage             educ           nearc4           exper       
 ##  Min.   : 100.0   Min.   : 1.00   Min.   :0.0000   Min.   : 0.000  
 ##  1st Qu.: 394.2   1st Qu.:12.00   1st Qu.:0.0000   1st Qu.: 6.000  
@@ -800,9 +797,9 @@ y_i = \alpha + \beta \hat{x}_i + \varepsilon_i
 <div id="操作変数の妥当性の確認第1段階" class="section level3 hasAnchor" number="17.2.4">
 <h3><span class="header-section-number">17.2.4</span> 操作変数の妥当性の確認（第1段階）<a href="#%E6%93%8D%E4%BD%9C%E5%A4%89%E6%95%B0%E3%81%AE%E5%A6%A5%E5%BD%93%E6%80%A7%E3%81%AE%E7%A2%BA%E8%AA%8D%E7%AC%AC1%E6%AE%B5%E9%9A%8E" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>まず、操作変数（大学への近さ）が内生変数（教育年数）と十分に相関しているかを確認する。これが条件1：関連性の確認である。</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="iv.html#cb396-1" tabindex="-1"></a><span class="co"># 第1段階回帰</span></span>
-<span id="cb396-2"><a href="iv.html#cb396-2" tabindex="-1"></a>first_stage <span class="ot">&lt;-</span> <span class="fu">feols</span>(educ <span class="sc">~</span> nearc4 <span class="sc">+</span> exper <span class="sc">+</span> black <span class="sc">+</span> smsa, <span class="at">data =</span> card)</span>
-<span id="cb396-3"><a href="iv.html#cb396-3" tabindex="-1"></a><span class="fu">etable</span>(first_stage)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="iv.html#cb395-1" tabindex="-1"></a><span class="co"># 第1段階回帰</span></span>
+<span id="cb395-2"><a href="iv.html#cb395-2" tabindex="-1"></a>first_stage <span class="ot">&lt;-</span> <span class="fu">feols</span>(educ <span class="sc">~</span> nearc4 <span class="sc">+</span> exper <span class="sc">+</span> black <span class="sc">+</span> smsa, <span class="at">data =</span> card)</span>
+<span id="cb395-3"><a href="iv.html#cb395-3" tabindex="-1"></a><span class="fu">etable</span>(first_stage)</span></code></pre></div>
 <pre><code>##                         first_stage
 ## Dependent Var.:                educ
 ##                                    
@@ -820,15 +817,15 @@ y_i = \alpha + \beta \hat{x}_i + \varepsilon_i
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><code>nearc4</code> の係数が正で統計的に有意であれば、大学が近いほど教育年数が長いことが確認できる。</p>
 <p><strong>弱い操作変数の問題</strong>：操作変数が内生変数と弱い相関しか持たない場合（弱い操作変数, weak instrument）、2SLSの推定値は不安定になる。目安として、第1段階のF統計量が10を超えていることが望ましいとされる。</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="iv.html#cb398-1" tabindex="-1"></a><span class="co"># 第1段階のF統計量</span></span>
-<span id="cb398-2"><a href="iv.html#cb398-2" tabindex="-1"></a><span class="fu">fitstat</span>(first_stage, <span class="st">&quot;f&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="iv.html#cb397-1" tabindex="-1"></a><span class="co"># 第1段階のF統計量</span></span>
+<span id="cb397-2"><a href="iv.html#cb397-2" tabindex="-1"></a><span class="fu">fitstat</span>(first_stage, <span class="st">&quot;f&quot;</span>)</span></code></pre></div>
 <pre><code>## F-test: stat = 671.8, p &lt; 2.2e-16, on 4 and 3,005 DoF.</code></pre>
 </div>
 <div id="ols推定比較用" class="section level3 hasAnchor" number="17.2.5">
 <h3><span class="header-section-number">17.2.5</span> OLS推定（比較用）<a href="#ols%E6%8E%A8%E5%AE%9A%E6%AF%94%E8%BC%83%E7%94%A8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>次に、通常のOLSで教育の収益を推定する。</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="iv.html#cb400-1" tabindex="-1"></a>reg_ols <span class="ot">&lt;-</span> <span class="fu">feols</span>(<span class="fu">log</span>(wage) <span class="sc">~</span> educ <span class="sc">+</span> exper <span class="sc">+</span> black <span class="sc">+</span> smsa, <span class="at">data =</span> card)</span>
-<span id="cb400-2"><a href="iv.html#cb400-2" tabindex="-1"></a><span class="fu">etable</span>(reg_ols)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="iv.html#cb399-1" tabindex="-1"></a>reg_ols <span class="ot">&lt;-</span> <span class="fu">feols</span>(<span class="fu">log</span>(wage) <span class="sc">~</span> educ <span class="sc">+</span> exper <span class="sc">+</span> black <span class="sc">+</span> smsa, <span class="at">data =</span> card)</span>
+<span id="cb399-2"><a href="iv.html#cb399-2" tabindex="-1"></a><span class="fu">etable</span>(reg_ols)</span></code></pre></div>
 <pre><code>##                             reg_ols
 ## Dependent Var.:           log(wage)
 ##                                    
@@ -848,8 +845,8 @@ y_i = \alpha + \beta \hat{x}_i + \varepsilon_i
 <div id="iv推定2sls" class="section level3 hasAnchor" number="17.2.6">
 <h3><span class="header-section-number">17.2.6</span> IV推定（2SLS）<a href="#iv%E6%8E%A8%E5%AE%9A2sls" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>feols()</code> では、<code>|</code> の後に <code>内生変数 ~ 操作変数</code> の形式で指定することで、IV推定（2SLS）が実行できる。</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="iv.html#cb402-1" tabindex="-1"></a>reg_iv <span class="ot">&lt;-</span> <span class="fu">feols</span>(<span class="fu">log</span>(wage) <span class="sc">~</span> exper <span class="sc">+</span> black <span class="sc">+</span> smsa <span class="sc">|</span> educ <span class="sc">~</span> nearc4, <span class="at">data =</span> card)</span>
-<span id="cb402-2"><a href="iv.html#cb402-2" tabindex="-1"></a><span class="fu">etable</span>(reg_iv)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="iv.html#cb401-1" tabindex="-1"></a>reg_iv <span class="ot">&lt;-</span> <span class="fu">feols</span>(<span class="fu">log</span>(wage) <span class="sc">~</span> exper <span class="sc">+</span> black <span class="sc">+</span> smsa <span class="sc">|</span> educ <span class="sc">~</span> nearc4, <span class="at">data =</span> card)</span>
+<span id="cb401-2"><a href="iv.html#cb401-2" tabindex="-1"></a><span class="fu">etable</span>(reg_iv)</span></code></pre></div>
 <pre><code>##                             reg_iv
 ## Dependent Var.:          log(wage)
 ##                                   
@@ -872,7 +869,7 @@ y_i = \alpha + \beta \hat{x}_i + \varepsilon_i
 <div id="olsとivの比較" class="section level3 hasAnchor" number="17.2.7">
 <h3><span class="header-section-number">17.2.7</span> OLSとIVの比較<a href="#ols%E3%81%A8iv%E3%81%AE%E6%AF%94%E8%BC%83" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>2つの推定結果を並べて比較しよう。</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="iv.html#cb405-1" tabindex="-1"></a><span class="fu">etable</span>(reg_ols, reg_iv, <span class="at">headers =</span> <span class="fu">c</span>(<span class="st">&quot;OLS&quot;</span>, <span class="st">&quot;IV（大学距離）&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="iv.html#cb404-1" tabindex="-1"></a><span class="fu">etable</span>(reg_ols, reg_iv, <span class="at">headers =</span> <span class="fu">c</span>(<span class="st">&quot;OLS&quot;</span>, <span class="st">&quot;IV（大学距離）&quot;</span>))</span></code></pre></div>
 <pre><code>##                             reg_ols             reg_iv
 ##                                 OLS IV（大学距離）
 ## Dependent Var.:           log(wage)          log(wage)

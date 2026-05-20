@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2026-05-13" />
+<meta name="date" content="2026-05-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -727,7 +727,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>csvを読み込むには<code>read_csv()</code>関数を使う。この関数は<code>readr</code>パッケージ含まれている。</p>
 <ol style="list-style-type: decimal">
 <li><p><code>readr</code>パッケージをインストールする。(<code>tidyverse</code>をインストールしたならば、新たにインストールする必要はない。)</p></li>
-<li><p><code>r_renshu</code>フォルダに<code>data</code>フォルダを作成し、武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2025.xlsx" download="musashi_keizai_students_2025.xlsx">こちら</a>からダウンロードして保存するか、以下のコードを実行する。</p></li>
+<li><p><code>r_renshu</code>フォルダに<code>data</code>フォルダを作成し、武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2025.csv" download="musashi_keizai_students_2025.csv">こちら</a>からダウンロードして保存するか、以下のコードを実行する。</p></li>
 </ol>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="datahandling.html#cb109-1" tabindex="-1"></a><span class="co"># data ディレクトリの作成</span></span>
 <span id="cb109-2"><a href="datahandling.html#cb109-2" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_create</span>(<span class="st">&quot;data&quot;</span>)</span></code></pre></div>
@@ -1465,7 +1465,7 @@ RStudioではdata.frameオブジェクトは右上ペーンにも表示されて
 <h3><span class="header-section-number">6.13.1</span> 準備<a href="#%E6%BA%96%E5%82%99-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>新たにデータを2つダウンロードする</p>
 <p>人文学部の学生数データ。
-人文学部のデータは<a href="https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2023.xlsx" download="musashi_jinbun_students_2023.xlsx">こちら</a>からもダウンロードできる。</p>
+人文学部のデータは<a href="https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2025.csv" download="musashi_jinbun_students_2025.csv">こちら</a>からもダウンロードできる。</p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="datahandling.html#cb169-1" tabindex="-1"></a><span class="co"># データのダウンロードと保存</span></span>
 <span id="cb169-2"><a href="datahandling.html#cb169-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="at">url=</span><span class="st">&quot;https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2025.csv&quot;</span>,</span>
 <span id="cb169-3"><a href="datahandling.html#cb169-3" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;data/musashi_jinbun_students_2025.csv&quot;</span>)</span></code></pre></div>
