@@ -821,7 +821,9 @@ MWTP_k = -\frac{\beta_k}{\beta_{\text{price}}}
 </div>
 <div id="パッケージの準備-5" class="section level3 hasAnchor" number="19.2.3">
 <h3><span class="header-section-number">19.2.3</span> パッケージの準備<a href="dce.html#パッケージの準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>選択実験の分析には <code>support.CEs</code> パッケージを使う。日本の研究者である相崎英樹氏らが開発したパッケージで、選択肢集合の設計から限界支払意思額の計算までを一貫して扱える。推定そのものは <code>survival</code> パッケージの <code>clogit()</code> が担う。</p>
+<p>選択実験の分析には <code>support.CEs</code> パッケージを使う。合崎英男氏が開発した日本発のパッケージで、選択肢集合の設計・データの整形・限界支払意思額の計算までを一貫して扱える。</p>
+<p>注意してほしいのは、<strong><code>support.CEs</code> は推定そのものを行わない</strong>という点である。条件付きロジットの推定は <code>survival</code> パッケージの <code>clogit()</code> が担い、<code>support.CEs</code> はその前後——実験計画の作成と、推定結果からのMWTPの計算——を受け持つ、という分担になっている。</p>
+<p>選択実験に使えるRパッケージは他にもある。国際的な研究で広く使われているのは <code>apollo</code> や <code>mlogit</code> で、本章で扱う条件付きロジットだけでなく、混合ロジットや潜在クラスモデルといったより柔軟なモデルを推定できる。<code>support.CEs</code> はそこまでの機能を持たないが、<strong>実験計画の作成からMWTPの計算までを一続きで追える</strong>ため、選択実験を初めて学ぶには適している。日本語の解説書があることも学習の助けになる。研究として本格的に取り組む段階になったら <code>apollo</code> に移ることを勧める。</p>
 <div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="dce.html#cb421-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, support.CEs, survival)</span></code></pre></div>
 </div>
 <div id="選択肢集合の設計" class="section level3 hasAnchor" number="19.2.4">
@@ -1121,7 +1123,9 @@ MWTP_k = -\frac{\beta_k}{\beta_{\text{price}}}
 <p><strong>属性の選び方が結果を左右する</strong></p>
 <p>提示されなかった属性は、当然ながら評価されない。重要な属性を落とすと、その価値は他の属性の係数に混入してしまう。これは第<a href="hedonic.html#hedonic">18</a>章で見た欠落変数バイアスと同じ構造の問題である。</p>
 <p><strong>IIA（無関係な選択肢からの独立性）</strong></p>
-<p>条件付きロジットは、「選択肢AとBの選ばれやすさの比は、第3の選択肢Cが存在するかどうかに影響されない」という強い仮定を置いている。現実にはこの仮定が成り立たない場面も多く、その場合は<strong>混合ロジットモデル（mixed logit）</strong>などのより柔軟なモデルを使う。本書では扱わないが、選択実験を本格的に使うなら次に学ぶべき手法である。</p>
+<p>条件付きロジットは、「選択肢AとBの選ばれやすさの比は、第3の選択肢Cが存在するかどうかに影響されない」という強い仮定を置いている。現実にはこの仮定が成り立たない場面も多い。</p>
+<p>また条件付きロジットは、<strong>全員が同じ選好を持つ</strong>と仮定している点にも注意が必要である。実際にはエコラベルを重視する人とまったく気にしない人がいるはずで、その違いは推定に反映されない。</p>
+<p>これらの制約を緩めるには<strong>混合ロジットモデル（mixed logit）</strong>や<strong>潜在クラスモデル（latent class model）</strong>を使う。本書では扱わないが、選択実験を本格的に使うなら次に学ぶべき手法である。Rでは <code>apollo</code> パッケージがこれらを一通り推定でき、選択モデルの研究では事実上の標準になっている。</p>
 </div>
 <div id="まとめ-2" class="section level2 hasAnchor" number="19.4">
 <h2><span class="header-section-number">19.4</span> まとめ<a href="dce.html#まとめ-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
