@@ -1,0 +1,241 @@
+---
+title: "パネルデータ分析"
+subtitle: "固定効果モデルと双方向固定効果モデル"
+author: "阿部景太"
+date: ""
+output:
+  beamer_presentation:
+    theme: "metropolis"
+    latex_engine: xelatex
+    keep_tex: false
+    slide_level: 2
+classoption: "aspectratio=169"
+header-includes:
+  - \usepackage{xeCJK}
+  - \setCJKmainfont{Hiragino Kaku Gothic Pro}
+  - \setCJKsansfont{Hiragino Kaku Gothic Pro}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
+                      fig.height = 3, fig.width = 7)
+pacman::p_load(tidyverse, AER, fixest)
+
+data(Fatalities)
+data_f2 <- Fatalities |> mutate(fatal_rate = fatal / pop * 10000)
+data_f2_1988 <- data_f2 |> filter(year == 1988)
+
+# 全回帰をsetupで実行
+reg_ols  <- feols(fatal_rate ~ beertax, data = data_f2)
+reg_sfe  <- feols(fatal_rate ~ beertax | state, data = data_f2)
+reg_tfe  <- feols(fatal_rate ~ beertax | year,  data = data_f2)
+reg_twfe <- feols(fatal_rate ~ beertax | state + year, data = data_f2)
+```
+
+## 今日の内容
+
+1. パネルデータとは
+2. クロスセクション分析の限界（欠落変数バイアス）
+3. **個体固定効果モデル**：州FE
+4. **時間固定効果**が必要な理由
+5. **双方向固定効果モデル**：4モデルの比較
+6. まとめ：モデルの使い分け
+
+# パネルデータとは
+
+## クロスセクションデータ vs パネルデータ
+
+**クロスセクションデータ**
+
+- ある一時点における複数の個体の観察
+- 添字は $i$（個体）のみ
+- 例：2020年の47都道府県データ
+
+**パネルデータ**
+
+- 複数の個体を複数時点にわたって追跡
+- 添字は $i$（個体）と $t$（時点）
+- 例：2010〜2020年の47都道府県データ
+
+パネルデータでは、個体の**時間的な変化**を観察できる。
+
+# 事例：ビール税と交通事故死亡率
+
+## 研究設問
+
+**ビール税率を上げると交通事故死亡率は下がるか？**
+
+- データ：アメリカ48州 $\times$ 1982〜1988年
+- 被説明変数：$y_{it}$ = 交通事故死亡率（1万人当たり）
+- 説明変数：$x_{it}$ = ビール税率
+
+まずクロスセクションデータ（1988年のみ）で推定
+
+$$y_i = \alpha + \beta x_i + \varepsilon_i$$
+
+仮説：ビール税 $\uparrow$ $\rightarrow$ 飲酒 $\downarrow$ $\rightarrow$ 飲酒運転 $\downarrow$ $\rightarrow$ $\beta < 0$
+
+## クロスセクション分析の結果
+
+```{r cs-plot, echo=FALSE, fig.height=3.8}
+ggplot(data_f2_1988, aes(x = beertax, y = fatal_rate)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Beer Tax", y = "Traffic Fatalities (per 10,000)") +
+  theme_bw()
+```
+
+**結果：正の相関** $\rightarrow$ 直感に反する！なぜ？
+
+## 欠落変数バイアス（OVB）
+
+**交絡変数（欠落変数）：飲酒文化**
+
+$$\text{飲酒文化（強）} \rightarrow \begin{cases} \text{ビール税（高）} \\ \text{死亡率（高）} \end{cases}$$
+
+- 飲酒文化が強い州はビール消費が多い → 州政府が対策として税率を高く設定
+- 飲酒文化が強い州は飲酒運転も多い → 死亡率も高い
+
+ビール税と死亡率の正の相関は**見せかけの相関**（spurious correlation）。
+
+この「飲酒文化」は**時間不変の州固有効果** → 固定効果で除去できる！
+
+# 固定効果モデル
+
+## 固定効果モデルのアイデア
+
+州ごとの時間不変の特性（飲酒文化など）を $\gamma_i$ で表す。
+
+$$y_{it} = \gamma_i + \beta x_{it} + \varepsilon_{it}$$
+
+- $\gamma_i$：州ごとに異なる切片（州固定効果）
+- $\beta$：**州内の時間変動**からのみ推定される
+- 州間の違いはすべて $\gamma_i$ に吸収される
+
+実質的には、各州にダミー変数を用意することと同じ。
+
+$$y_{it} = \beta x_{it} + \gamma_{AL}D_{AL} + \gamma_{AZ}D_{AZ} + \cdots + \varepsilon_{it}$$
+
+## 固定効果のビジュアルイメージ
+
+```{r fe-visual, echo=FALSE, fig.height=3.8}
+ggplot(data_f2, aes(x = beertax, y = fatal_rate, col = state)) +
+  geom_point(size = 0.5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Beer Tax", y = "Fatality Rate") +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+州ごと（同じ色）の中では右下がり → 州間の違いを除くと本当の効果が見える。
+
+# 時間固定効果と双方向固定効果
+
+## 時間固定効果が必要な理由
+
+州固定効果で「州間の違い」は除去できた。しかし…
+
+**全州に共通した時間的ショック**はどうか？
+
+- 1980年代：MADD（飲酒運転反対運動）が全国に拡大
+- 連邦政府の飲酒運転規制強化
+- 自動車安全技術の向上
+
+これらは特定の州ではなく、**全州に共通して**死亡率を下げる方向に働く。
+
+**時間固定効果** $\delta_t$：各年に共通のダミー変数
+
+$$y_{it} = \gamma_i + \delta_t + \beta x_{it} + \varepsilon_{it}$$
+
+**双方向固定効果モデル（Two-way Fixed Effects）**
+
+## 年ごとの共通トレンド
+
+```{r time-trend, echo=FALSE, fig.height=3.8}
+data_f2 |>
+  group_by(year) |>
+  summarise(mean_fatal = mean(fatal_rate)) |>
+  ggplot(aes(x = as.integer(as.character(year)),
+             y = mean_fatal)) +
+  geom_line() +
+  geom_point(size = 2) +
+  labs(x = "Year", y = "Avg. Fatality Rate (per 10,000)") +
+  theme_bw()
+```
+
+1980年代を通じて全州共通の低下トレンド → 時間固定効果で除去すべき共通ショックが存在
+
+## 4モデルの比較 {shrink=15}
+
+```{r four-models}
+reg_ols  <- feols(fatal_rate ~ beertax, data = data_f2)
+reg_sfe  <- feols(fatal_rate ~ beertax | state, data = data_f2)
+reg_tfe  <- feols(fatal_rate ~ beertax | year,  data = data_f2)
+reg_twfe <- feols(fatal_rate ~ beertax | state + year, data = data_f2)
+
+etable(reg_ols, reg_sfe, reg_tfe, reg_twfe,
+       headers = c("OLS", "州FE", "年FEのみ", "双方向FE"),
+       se = "IID")
+```
+
+## 結果の解釈
+
+| モデル | 係数 | 解釈 |
+|--------|------|------|
+| OLS | $+0.365^{***}$ | 見せかけの正（飲酒文化の交絡） |
+| 州FE | $-0.656^{***}$ | 符号反転：州の飲酒文化を除去 |
+| 年FEのみ | $+0.366^{***}$ | まだ正：年FEだけでは不十分 |
+| **双方向FE** | $\mathbf{-0.640^{**}}$ | **州FEと近似 → 頑健な結果** |
+
+\vspace{0.5em}
+
+- 年FEのみで正 → 問題の本質は**州レベル**にあった
+- 双方向FEで係数がほぼ不変 → 州FEの結論が**頑健（robust）**であることの確認
+
+Rの実装：`|` の後に `+` で繋ぐだけ
+
+```r
+feols(fatal_rate ~ beertax | state + year, data = data_f2)
+```
+
+# まとめ
+
+## モデルの使い分け
+
+\begin{table}
+\centering
+\begin{tabular}{lll}
+\toprule
+モデル & 除去できる交絡 & 必要なデータ \\
+\midrule
+OLS & なし & クロスセクション可 \\
+個体FE & 時間不変の個体差 & 同一個体の複数時点 \\
+時間FE & 個体間共通の時間変動 & 複数時点 \\
+双方向FE & 個体差＋時間変動 & パネルデータ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+**固定効果の限界**
+
+- **時間不変の変数**（性別・地理条件など）は推定不可
+- **逆の因果関係**は固定効果では除去できない
+
+次章：差の差（DiD）でより強い因果推論へ
+
+## 本章のRコード：まとめ
+
+```r
+pacman::p_load(tidyverse, AER, fixest)
+
+# 州固定効果
+feols(fatal_rate ~ beertax | state, data = data_f2)
+
+# 双方向固定効果（州 + 年）
+feols(fatal_rate ~ beertax | state + year, data = data_f2)
+
+# 4モデルの比較表
+etable(reg_ols, reg_sfe, reg_tfe, reg_twfe,
+       headers = c("OLS", "州FE", "年FEのみ", "双方向FE"))
+```

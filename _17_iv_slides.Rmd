@@ -1,0 +1,374 @@
+---
+title: "操作変数法（IV）"
+subtitle: "内生性問題への対処"
+author: "阿部景太"
+date: ""
+output:
+  beamer_presentation:
+    theme: "metropolis"
+    latex_engine: xelatex
+    keep_tex: false
+    slide_level: 2
+classoption: "aspectratio=169"
+header-includes:
+  - \usepackage{xeCJK}
+  - \setCJKmainfont{Hiragino Kaku Gothic Pro}
+  - \setCJKsansfont{Hiragino Kaku Gothic Pro}
+  - \usepackage{booktabs}
+  - \usepackage{tikz}
+  - \usetikzlibrary{arrows.meta,positioning}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
+                      fig.height = 3, fig.width = 7)
+pacman::p_load(tidyverse, fixest, wooldridge)
+
+data(card)
+```
+
+## 今日の内容
+
+1. なぜOLSでは不十分か：**内生性の問題**
+2. **操作変数法（IV）**のアイデア
+3. 操作変数の2つの条件
+4. **2段階最小二乗法（2SLS）**の仕組み
+5. 事例：教育の収益（Card, 1995）
+6. OLSとIVの比較と解釈
+7. まとめ：因果推論ツールの全体像
+
+# 内生性の問題
+
+## 固定効果モデルでも解決できない問題
+
+固定効果（FE）モデルは**時間不変の交絡変数**を除去できる。
+
+しかし…
+
+**逆の因果関係（Reverse Causality）**
+
+- 原因 → 結果 だけでなく
+- 結果 → 原因 という経路も存在する場合
+
+**例：警察官の数と犯罪件数**
+
+- 警察官を増やす → 犯罪が減る（と期待する）
+- でも犯罪が多い地域ほど警察官を配置する → 相関が逆になる
+
+## 具体例：教育の収益
+
+$$\log(\text{賃金}_i) = \alpha + \beta \cdot \text{教育年数}_i + \varepsilon_i$$
+
+直感：教育年数が長いほど賃金が高い → $\beta > 0$ を期待。
+
+**問題：能力（ability）という観察されない変数**
+
+$$
+\text{能力（高）} \rightarrow \begin{cases} \text{教育年数（長）} \\ \text{賃金（高）} \end{cases}
+$$
+
+能力が高い人 → 進学しやすい かつ 賃金も高い
+
+OLSで推定される $\beta$ には**能力の影響が混入**してしまう。
+→ **欠落変数バイアス（OVB）**
+
+## 固定効果でも対処できない理由
+
+固定効果モデル：
+
+$$y_{it} = \alpha_i + \beta x_{it} + \varepsilon_{it}$$
+
+**「能力」は個人の時間不変の特性**
+
+→ 個人固定効果 $\alpha_i$ に吸収されるはずでは？
+
+しかし：
+
+- 個人レベルの**繰り返し観察データ**（個人パネルデータ）が必要
+- 多くの場合、個人を長期間追跡したデータは入手困難
+- 横断面データのみ → 固定効果で対処できない
+
+**別のアプローチが必要 → 操作変数法**
+
+# 操作変数法のアイデア
+
+## 外生的な変動を利用する
+
+**操作変数法のアイデア**
+
+内生変数（教育年数）の変動のうち、
+**外生的な変動だけを使って**係数を推定する。
+
+**外生的な変動とは？**
+
+- 能力などの観察されない要因とは**無関係**に生じる変動
+- そのような変動を引き起こす変数 → **操作変数（Instrument）**
+
+**良い操作変数のイメージ**
+
+- 「運」のような要因で生じる変動
+- 本人の能力や努力とは無関係
+
+## Card (1995)：大学の近さを操作変数に
+
+**操作変数：出身地の近くに4年制大学があるか（`nearc4`）**
+
+| | 教育年数との関係 | 賃金との関係 |
+|--|:---:|:---:|
+| 大学が近い | 通いやすい → 進学しやすい | **教育を通じてのみ**影響 |
+| 大学が遠い | 進学しにくい → 教育年数短い | 直接の影響はない |
+
+「大学が近くにあるかどうか」という「運」を利用して、
+能力の影響を排除した上で教育の収益を推定する。
+
+## DAGによる整理
+
+\begin{columns}
+\begin{column}{0.62\textwidth}
+\centering
+\begin{tikzpicture}[
+  >=Stealth,
+  obs/.style={draw, rounded corners=4pt, fill=blue!8,
+              minimum width=1.9cm, minimum height=0.75cm,
+              align=center, font=\small\bfseries},
+  unobs/.style={draw=gray!60, dashed, rounded corners=4pt, fill=gray!12,
+                minimum width=1.9cm, minimum height=0.75cm,
+                align=center, font=\small\bfseries}
+]
+
+\node[obs]   (Z) at (0,   0)   {$Z$\\\footnotesize 操作変数};
+\node[obs]   (X) at (3.5, 0)   {$X$\\\footnotesize 内生変数};
+\node[obs]   (Y) at (7,   0)   {$Y$\\\footnotesize 目的変数};
+\node[unobs] (U) at (3.5, 2.2) {$U$\\\footnotesize 観察不能};
+
+\draw[->, thick, blue!60!black] (Z) -- (X)
+    node[midway, below, font=\scriptsize] {関連性（条件1）};
+\draw[->, thick] (X) -- (Y)
+    node[midway, below, font=\scriptsize] {因果効果};
+\draw[->, thick, gray!70, dashed] (U) -- (X);
+\draw[->, thick, gray!70, dashed] (U) -- (Y);
+\draw[->, thick, red!70, dashed] (Z) to[bend right=28]
+    node[midway, font=\scriptsize, text=red!80,
+         fill=white, inner sep=1pt] {$\times$\,除外制約（条件2）} (Y);
+
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.36\textwidth}
+
+\textbf{Card (1995)の場合}
+
+\vspace{0.8em}
+
+\begin{tabular}{@{}cl@{}}
+$Z$ & 大学の近さ \\[5pt]
+$X$ & 教育年数   \\[5pt]
+$Y$ & 賃金       \\[5pt]
+$U$ & 能力（不観測）\\
+\end{tabular}
+
+\vspace{1em}
+
+$U$が観察できないため\\
+OLSはバイアスを持つ
+
+\vspace{0.5em}
+
+$Z \to X \to Y$ の経路のみを\\
+使って$\beta$を推定する
+
+\end{column}
+\end{columns}
+
+# 操作変数の2つの条件
+
+## 条件1：関連性（Relevance）
+
+操作変数は内生変数と**相関していなければならない**。
+
+$$\text{Cov}(z_i,\ x_i) \neq 0$$
+
+**Card (1995) の場合**
+
+- 大学が近い → 通いやすい → 教育年数が長い
+- **データで検証できる**（第1段階回帰のF統計量）
+
+**弱い操作変数（Weak Instrument）の問題**
+
+操作変数と内生変数の相関が弱い場合、2SLSの推定値は不安定になる。
+
+目安：**第1段階のF統計量 $\geq$ 10**
+
+## 条件2：除外制約（Exclusion Restriction）
+
+操作変数は、**内生変数を通じてのみ**目的変数に影響する。
+
+$$\text{Cov}(z_i,\ \varepsilon_i) = 0$$
+
+**Card (1995) の場合**
+
+大学への近さは、教育年数を通じてのみ賃金に影響し、
+それ以外の経路では賃金に影響しない。
+
+**重要：この条件はデータから直接検証できない。**
+
+経済学的な理論と常識的な判断に基づいて主張する必要がある。
+
+# 2段階最小二乗法（2SLS）
+
+## 2SLSの仕組み
+
+**名前の通り、2段階に分けて推定する。**
+
+**第1段階（First Stage）**
+
+内生変数を操作変数に回帰し、外生的な変動分（予測値）を取り出す。
+
+$$x_i = \pi_0 + \pi_1 z_i + \eta_i \quad \Rightarrow \quad \hat{x}_i = \hat{\pi}_0 + \hat{\pi}_1 z_i$$
+
+**第2段階（Second Stage）**
+
+予測値 $\hat{x}_i$ を内生変数の代わりに使って、目的変数に回帰する。
+
+$$y_i = \alpha + \beta \hat{x}_i + \varepsilon_i$$
+
+$\hat{x}_i$ は能力と無関係な外生的変動のみを含む → **バイアスが除去される**
+
+# 事例：教育の収益
+
+## データの確認
+
+Card (1995) のデータは `wooldridge` パッケージに含まれる。
+
+```{r data-head, echo=FALSE}
+head(card[, c("wage", "educ", "nearc4", "exper", "black", "smsa")])
+```
+
+| 変数 | 内容 |
+|------|------|
+| `wage` | 時間当たり賃金（セント） |
+| `educ` | 教育年数 |
+| `nearc4` | 4年制大学が近くにある場合1 |
+| `exper` | 労働経験年数 |
+
+## 第1段階：操作変数の妥当性確認
+
+**条件1（関連性）の検証**：大学への近さ → 教育年数
+
+```{r first-stage}
+first_stage <- feols(educ ~ nearc4 + exper + black + smsa,
+                     data = card)
+etable(first_stage)
+```
+
+## 第1段階のF統計量
+
+```{r f-stat}
+fitstat(first_stage, "f")
+```
+
+- `nearc4` の係数が正で有意 → **大学が近いほど教育年数が長い**
+- F統計量 $\geq$ 10 → **弱い操作変数の問題なし**
+
+条件1（関連性）が満たされていることを確認。
+
+## OLS推定（比較用）
+
+まず、通常のOLSで教育の収益を推定する。
+
+```{r ols}
+reg_ols <- feols(log(wage) ~ educ + exper + black + smsa,
+                 data = card)
+etable(reg_ols)
+```
+
+## IV推定（2SLS）
+
+`feols()` では `|` の後に `内生変数 ~ 操作変数` を指定する。
+
+```{r iv}
+reg_iv <- feols(log(wage) ~ exper + black + smsa | educ ~ nearc4,
+                data = card)
+etable(reg_iv)
+```
+
+`feols()` のIV構文：
+```
+feols(目的変数 ~ 外生コントロール | 内生変数 ~ 操作変数, data = ...)
+```
+
+## OLSとIVの比較
+
+```{r compare, echo=FALSE}
+etable(reg_ols, reg_iv, headers = c("OLS", "IV（大学距離）"))
+```
+
+## 結果の解釈
+
+| 手法 | 教育年数1年の効果 | 解釈 |
+|------|:----------------:|------|
+| **OLS** | 約 $+7.6\%$ | 能力バイアス含む |
+| **IV** | 約 $+17.9\%$ | 外生的な変動のみ使用 |
+
+**なぜIVの推定値がOLSより大きいのか？**
+
+1. **測定誤差バイアス**：教育年数は記憶に頼るため誤差が生じる。
+   誤差があるとOLSは真の値より小さく推定される（減衰バイアス）。
+
+2. **局所平均処置効果（LATE）**：IVは大学の近さによって
+   進学行動が変わった人々（compliers）に対する効果を推定する。
+   このグループの教育の収益が平均より高い可能性がある。
+
+# まとめ
+
+## 操作変数法の活用と限界
+
+**IVの強み**
+
+- 逆の因果関係・欠落変数バイアスに対処できる
+- 観察データから因果効果を推定できる
+
+**前提条件（仮定）**
+
+- 条件1（関連性）：第1段階のF統計量で確認可能
+- 条件2（除外制約）：**データでは検証できない** → 理論的に正当化
+
+**IVの限界**
+
+- 良い操作変数を見つけることが難しい
+- LATEを推定する（局所的な効果）
+- 弱い操作変数の場合、推定値が不安定になる
+
+## 因果推論ツールの全体像
+
+| 手法 | 解決する問題 | 必要な条件 |
+|------|------------|-----------|
+| 固定効果（FE） | 時間不変の交絡変数 | パネルデータ |
+| 差の差法（DiD） | 共通トレンドを除いた処置効果 | 平行トレンドの仮定 |
+| 回帰不連続（RDD） | 閾値近傍での局所的な処置効果 | 閾値付近の連続性 |
+| **操作変数法（IV）** | **内生性・逆の因果関係** | **関連性＋除外制約** |
+
+これらの手法を組み合わせることで、
+観察データから因果効果を推定するための基本的な分析ツールが揃う。
+
+## 本章のRコード：まとめ
+
+```r
+pacman::p_load(tidyverse, fixest, wooldridge)
+data(card)
+
+# 第1段階：操作変数の関連性を確認
+first_stage <- feols(educ ~ nearc4 + exper + black + smsa,
+                     data = card)
+fitstat(first_stage, "f")  # F統計量を確認
+
+# OLS推定
+reg_ols <- feols(log(wage) ~ educ + exper + black + smsa,
+                 data = card)
+
+# IV推定（2SLS）
+reg_iv <- feols(log(wage) ~ exper + black + smsa | educ ~ nearc4,
+                data = card)
+
+# 比較
+etable(reg_ols, reg_iv, headers = c("OLS", "IV（大学距離）"))
+```
