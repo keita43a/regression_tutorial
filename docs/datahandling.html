@@ -726,7 +726,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>csvを読み込むには<code>read_csv()</code>関数を使う。この関数は<code>readr</code>パッケージ含まれている。</p>
 <ol style="list-style-type: decimal">
 <li><p><code>readr</code>パッケージをインストールする。(<code>tidyverse</code>をインストールしたならば、新たにインストールする必要はない。)</p></li>
-<li><p><code>r_renshu</code>フォルダに<code>data</code>フォルダを作成し、武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2025.csv" download="musashi_keizai_students_2025.csv">こちら</a>からダウンロードして保存するか、以下のコードを実行する。</p></li>
+<li><p><code>r_practice</code>フォルダに<code>data</code>フォルダを作成し、武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2025.csv" download="musashi_keizai_students_2025.csv">こちら</a>からダウンロードして保存するか、以下のコードを実行する。</p></li>
 </ol>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="datahandling.html#cb109-1"></a><span class="co"># data ディレクトリの作成</span></span>
 <span id="cb109-2"><a href="datahandling.html#cb109-2"></a>fs<span class="op">::</span><span class="kw">dir_create</span>(<span class="st">&quot;data&quot;</span>)</span></code></pre></div>
@@ -747,7 +747,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>Error: path does not exist:’</code>というエラーが出る場合は、ファイルの相対パスが間違っている可能性がある
 <ul>
 <li><code>r_practice</code>プロジェクトを開いていることを確認する</li>
-<li><code>getwd()</code>で自分がr_renshuフォルダにいることを確認する</li>
+<li><code>getwd()</code>で自分が<code>r_practice</code>フォルダにいることを確認する</li>
 <li><code>musashi_keizai_students_2025.csv</code>がきちんとdataフォルダに入っていることを確認する</li>
 </ul></li>
 </ul>
