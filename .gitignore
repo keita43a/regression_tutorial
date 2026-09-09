@@ -29,3 +29,6 @@ CLAUDE.md
 *.pptx
 .DS_Store
 .claude/settings.local.json
+
+# bookdown のマージ済み中間ファイル
+/r_basics_musashi.*
