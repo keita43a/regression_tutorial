@@ -656,7 +656,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="課題" class="section level2 hasAnchor" number="20.1">
 <h2><span class="header-section-number">20.1</span> 課題<a href="seminar1_2025_answer.html#課題" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>2025年の春学期最後のゼミでは、課題として、阿部が描いた図を、同じデータで再現するという課題でした。</p>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-348-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-347-1.png" width="672" /></p>
 <p>レベル別に解説していきます。</p>
 <div id="レベル１データを読み込む" class="section level3 hasAnchor" number="20.1.1">
 <h3><span class="header-section-number">20.1.1</span> レベル１：データを読み込む<a href="seminar1_2025_answer.html#レベル１データを読み込む" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -676,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="seminar1_2025_answer.html#cb443-1"></a><span class="kw">ggplot</span>(data_salmon, <span class="kw">aes</span>(<span class="dt">x =</span> year)) <span class="op">+</span></span>
 <span id="cb443-2"><a href="seminar1_2025_answer.html#cb443-2"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> volumes_MT)) <span class="op">+</span></span>
 <span id="cb443-3"><a href="seminar1_2025_answer.html#cb443-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> values_BilNOK))</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-350-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-349-1.png" width="672" /></p>
 </div>
 <div id="レベル３データを絞る" class="section level3 hasAnchor" number="20.1.3">
 <h3><span class="header-section-number">20.1.3</span> レベル３：データを絞る<a href="seminar1_2025_answer.html#レベル３データを絞る" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -688,7 +688,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb444-5"><a href="seminar1_2025_answer.html#cb444-5"></a><span class="kw">ggplot</span>(data_atlan, <span class="kw">aes</span>(<span class="dt">x =</span> year)) <span class="op">+</span></span>
 <span id="cb444-6"><a href="seminar1_2025_answer.html#cb444-6"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> volumes_MT)) <span class="op">+</span></span>
 <span id="cb444-7"><a href="seminar1_2025_answer.html#cb444-7"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> values_BilNOK))</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-351-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-350-1.png" width="672" /></p>
 </div>
 <div id="レベル４色を追加する" class="section level3 hasAnchor" number="20.1.4">
 <h3><span class="header-section-number">20.1.4</span> レベル４：色を追加する<a href="seminar1_2025_answer.html#レベル４色を追加する" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -698,7 +698,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb445-2"><a href="seminar1_2025_answer.html#cb445-2"></a><span class="kw">ggplot</span>(data_atlan, <span class="kw">aes</span>(<span class="dt">x =</span> year)) <span class="op">+</span></span>
 <span id="cb445-3"><a href="seminar1_2025_answer.html#cb445-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> volumes_MT), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
 <span id="cb445-4"><a href="seminar1_2025_answer.html#cb445-4"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> values_BilNOK), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-352-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-351-1.png" width="672" /></p>
 </div>
 <div id="レベル５単位の調整" class="section level3 hasAnchor" number="20.1.5">
 <h3><span class="header-section-number">20.1.5</span> レベル５：単位の調整<a href="seminar1_2025_answer.html#レベル５単位の調整" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -709,7 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb446-2"><a href="seminar1_2025_answer.html#cb446-2"></a><span class="kw">ggplot</span>(data_atlan, <span class="kw">aes</span>(<span class="dt">x =</span> year)) <span class="op">+</span></span>
 <span id="cb446-3"><a href="seminar1_2025_answer.html#cb446-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> volumes_MT<span class="op">/</span><span class="dv">10000</span>), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
 <span id="cb446-4"><a href="seminar1_2025_answer.html#cb446-4"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> values_BilNOK), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-353-1.png" width="672" />
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-352-1.png" width="672" />
 いい感じになってきました。
 もう少し重ねたいので、今度は金額の方を少し「大きく」しましょう。
 2をかけて2倍にします。</p>
@@ -717,7 +717,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb447-2"><a href="seminar1_2025_answer.html#cb447-2"></a><span class="kw">ggplot</span>(data_atlan, <span class="kw">aes</span>(<span class="dt">x =</span> year)) <span class="op">+</span></span>
 <span id="cb447-3"><a href="seminar1_2025_answer.html#cb447-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> volumes_MT<span class="op">/</span><span class="dv">10000</span>), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
 <span id="cb447-4"><a href="seminar1_2025_answer.html#cb447-4"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> values_BilNOK<span class="op">*</span><span class="dv">2</span>), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-354-1.png" width="672" />
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-353-1.png" width="672" />
 これで、元の図と同じような折れ線グラフを描くことができました。</p>
 </div>
 <div id="レベル６２軸目の追加" class="section level3 hasAnchor" number="20.1.6">
@@ -731,7 +731,7 @@ Googleで「ggplot 2軸」などで検索すると、いくつか方法を解説
 <span id="cb448-3"><a href="seminar1_2025_answer.html#cb448-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> volumes_MT<span class="op">/</span><span class="dv">10000</span>), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
 <span id="cb448-4"><a href="seminar1_2025_answer.html#cb448-4"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> values_BilNOK<span class="op">*</span><span class="dv">2</span>), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>) <span class="op">+</span></span>
 <span id="cb448-5"><a href="seminar1_2025_answer.html#cb448-5"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">sec.axis=</span><span class="kw">sec_axis</span>(<span class="op">~</span>.<span class="op">/</span><span class="dv">2</span>)) </span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-355-1.png" width="672" />
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-354-1.png" width="672" />
 これで２軸目が書けました。</p>
 </div>
 <div id="レベル7日本語のラベルなどの追加" class="section level3 hasAnchor" number="20.1.7">
@@ -746,7 +746,7 @@ Googleで「ggplot 2軸」などで検索すると、いくつか方法を解説
 <span id="cb449-6"><a href="seminar1_2025_answer.html#cb449-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;年&quot;</span>, <span class="dt">y =</span><span class="st">&quot;販売量(万トン)&quot;</span>,</span>
 <span id="cb449-7"><a href="seminar1_2025_answer.html#cb449-7"></a>         <span class="dt">title =</span><span class="st">&quot;ノルウェーのアトランティックサーモン販売量・販売額&quot;</span>,</span>
 <span id="cb449-8"><a href="seminar1_2025_answer.html#cb449-8"></a>         <span class="dt">caption =</span> <span class="st">&quot;データ：ノルウェー水産局&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-356-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-355-1.png" width="672" /></p>
 <p>そう、日本語を何も指定せずに使うとMacだと文字化け（豆腐化）のするんでしたね。
 Windowsを使っている人は、ここで日本語が出ていると思います。
 日本語が出ている場合はする必要は必ずしも必要ないですが、テーマを変えるために以下のレイヤーを追加しておきましょう。</p>
@@ -759,7 +759,7 @@ Windowsを使っている人は、ここで日本語が出ていると思いま�
 <span id="cb450-7"><a href="seminar1_2025_answer.html#cb450-7"></a>         <span class="dt">title =</span><span class="st">&quot;ノルウェーのアトランティックサーモン販売量・販売額&quot;</span>,</span>
 <span id="cb450-8"><a href="seminar1_2025_answer.html#cb450-8"></a>         <span class="dt">caption =</span> <span class="st">&quot;データ：ノルウェー水産局&quot;</span>) <span class="op">+</span></span>
 <span id="cb450-9"><a href="seminar1_2025_answer.html#cb450-9"></a><span class="st">    </span><span class="kw">theme_bw</span>(<span class="dt">base_family=</span><span class="st">&quot;YuGothic&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-357-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-356-1.png" width="672" /></p>
 <div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="seminar1_2025_answer.html#cb451-1"></a><span class="co"># ２軸目のラベルの追加</span></span>
 <span id="cb451-2"><a href="seminar1_2025_answer.html#cb451-2"></a><span class="kw">ggplot</span>(data_atlan, <span class="kw">aes</span>(<span class="dt">x =</span> year)) <span class="op">+</span></span>
 <span id="cb451-3"><a href="seminar1_2025_answer.html#cb451-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> volumes_MT<span class="op">/</span><span class="dv">10000</span>), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
@@ -769,7 +769,7 @@ Windowsを使っている人は、ここで日本語が出ていると思いま�
 <span id="cb451-7"><a href="seminar1_2025_answer.html#cb451-7"></a>         <span class="dt">title =</span><span class="st">&quot;ノルウェーのアトランティックサーモン販売量・販売額&quot;</span>,</span>
 <span id="cb451-8"><a href="seminar1_2025_answer.html#cb451-8"></a>         <span class="dt">caption =</span> <span class="st">&quot;データ：ノルウェー水産局&quot;</span>) <span class="op">+</span></span>
 <span id="cb451-9"><a href="seminar1_2025_answer.html#cb451-9"></a><span class="st">    </span><span class="kw">theme_bw</span>(<span class="dt">base_family=</span><span class="st">&quot;YuGothic&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-358-1.png" width="672" />
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-357-1.png" width="672" />
 しかし、左の軸にはラベルが出ていません。
 左の軸は、<code>labs</code>の中ではなく、<code>sec_axis()</code>の中で<code>name</code>という引数でしています。</p>
 </div>
@@ -796,7 +796,7 @@ Windowsを使っている人は、ここで日本語が出ていると思いま�
 <span id="cb452-17"><a href="seminar1_2025_answer.html#cb452-17"></a>          <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">15</span>), <span class="co"># 字の大きさを調整</span></span>
 <span id="cb452-18"><a href="seminar1_2025_answer.html#cb452-18"></a>          <span class="dt">axis.title.y.left =</span> <span class="kw">element_text</span>(<span class="dt">color=</span><span class="st">&quot;blue&quot;</span>), <span class="co"># 左の縦軸のラベルの字の色を一致させる</span></span>
 <span id="cb452-19"><a href="seminar1_2025_answer.html#cb452-19"></a>          <span class="dt">axis.title.y.right =</span> <span class="kw">element_text</span>(<span class="dt">color=</span><span class="st">&quot;orange&quot;</span>)) <span class="co"># 右の縦軸のラベルの字の色を一致させる </span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-359-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-358-1.png" width="672" /></p>
 </div>
 <div id="レベル９図を保存する" class="section level3 hasAnchor" number="20.1.9">
 <h3><span class="header-section-number">20.1.9</span> レベル９：図を保存する<a href="seminar1_2025_answer.html#レベル９図を保存する" class="anchor-section" aria-label="Anchor link to header"></a></h3>

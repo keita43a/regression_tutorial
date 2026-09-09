@@ -855,7 +855,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>skimr</code>パッケージの<code>skim()</code>関数は、カテゴリ変数と連続変数を区別して記述統計を示してくれる。</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="paneldata.html#cb339-1"></a><span class="kw">skim</span>(data_f)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-243">Table 14.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-242">Table 14.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -1421,7 +1421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb345-3"><a href="paneldata.html#cb345-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span></span>
 <span id="cb345-4"><a href="paneldata.html#cb345-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;ビール税率&quot;</span>, <span class="dt">y=</span><span class="st">&quot;交通事故死亡率(10000人当たり）&quot;</span>) <span class="op">+</span></span>
 <span id="cb345-5"><a href="paneldata.html#cb345-5"></a><span class="st">  </span><span class="kw">theme_gray</span>(<span class="dt">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>) <span class="co">#&lt;- このレイヤーはWindowsならいらない</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
 <p>むしろ税率と交通事故死亡率には正の関係がある。</p>
 <p>このアプローチには問題がないだろうか？この結果を素直に解釈すれば「ビール税が高い州ほど交通事故死亡率が高い」となるが、これは直感に反する。</p>
 <p>問題は<strong>交絡変数（omitted variable）</strong>である。例えば、もともと飲酒文化が強い州ではビール消費量が多く、州政府はその対策としてビール税を高く設定しているかもしれない。そして飲酒文化が強い州では飲酒運転も多いため、交通事故死亡率も高くなる。この関係を図で示すと以下のようになる。</p>
@@ -1510,7 +1510,7 @@ y_{it} = \gamma_{i} + \beta x_{it} + \varepsilon_{it}
 <span id="cb353-2"><a href="paneldata.html#cb353-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
 <span id="cb353-3"><a href="paneldata.html#cb353-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="dt">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="op">+</span></span>
 <span id="cb353-4"><a href="paneldata.html#cb353-4"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
 <p>これだけを見ると、やはり右肩上がりの傾向があるように見える。
 <code>geom_smooth(method="lm")</code>というレイヤーを加えて、回帰線を描いてみよう。</p>
 <div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="paneldata.html#cb354-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>data_f2, <span class="kw">aes</span>(<span class="dt">x=</span>beertax,<span class="dt">y=</span>fatal_rate)) <span class="op">+</span></span>
@@ -1518,7 +1518,7 @@ y_{it} = \gamma_{i} + \beta x_{it} + \varepsilon_{it}
 <span id="cb354-3"><a href="paneldata.html#cb354-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;ビール税率&quot;</span>, <span class="dt">y=</span><span class="st">&quot;死亡率&quot;</span>) <span class="op">+</span></span>
 <span id="cb354-4"><a href="paneldata.html#cb354-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
 <span id="cb354-5"><a href="paneldata.html#cb354-5"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
 <p>やはり右肩あがりになっている。</p>
 <p>では、今度は州ごとに色分けしてみよう。<code>aes()</code>の中で色カテゴリに州を指定する<code>col=state</code>。</p>
 <div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="paneldata.html#cb355-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>data_f2, <span class="kw">aes</span>(<span class="dt">x=</span>beertax,<span class="dt">y=</span>fatal_rate,<span class="dt">col=</span>state)) <span class="op">+</span></span>
@@ -1527,7 +1527,7 @@ y_{it} = \gamma_{i} + \beta x_{it} + \varepsilon_{it}
 <span id="cb355-4"><a href="paneldata.html#cb355-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb355-5"><a href="paneldata.html#cb355-5"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_family =</span> <span class="st">&quot;HirakakuPro-W3&quot;</span>) <span class="op">+</span></span>
 <span id="cb355-6"><a href="paneldata.html#cb355-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># &lt;- もし凡例が大きすぎて図が見えない場合はこのレイヤーを追加して凡例を消す</span></span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-255-1.png" width="672" />
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-254-1.png" width="672" />
 すると、州ごと分けた点と線が描かれる。州ごとに見ると、州の中での時間的な変動ではビール税率が高いときに死亡率が下がっている傾向が見られるだろう。このように、州間の違いと州内の違いを分けて推定できるのが固定効果モデルである。</p>
 </div>
 </div>
@@ -1555,7 +1555,7 @@ y_{it} = \gamma_{i} + \delta_{t} + \beta x_{it} + \varepsilon_{it}
 <span id="cb356-6"><a href="paneldata.html#cb356-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb356-7"><a href="paneldata.html#cb356-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;年&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;平均死亡率（1万人当たり）&quot;</span>) <span class="op">+</span></span>
 <span id="cb356-8"><a href="paneldata.html#cb356-8"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
-<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
 <p>年によって全州の平均死亡率が変化していることがわかる。特に1980年代を通じて全体的に低下傾向にあり、これは全州共通のショック（飲酒運転規制の強化、自動車安全技術の向上など）の影響と考えられる。</p>
 </div>
 <div id="つのモデルの比較" class="section level3 hasAnchor" number="14.4.3">
