@@ -78,13 +78,6 @@ csvを読み込むには`read_csv()`関数を使う。この関数は`readr`パ�
 fs::dir_create("data")
 ```
 
-```{r, eval=FALSE, echo=FALSE}
-# データのダウンロードと保存
-download.file(url="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx",
-              destfile = "data/musashi_keizai_students_2023.xlsx")
-```
-
-
 ```{r, eval=FALSE}
 # データのダウンロードと保存
 download.file(url="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2025.csv",
@@ -112,7 +105,7 @@ data_634 <- read_csv("data/musashi_keizai_students_2025.csv")
 - `Error: path does not exist:’`というエラーが出る場合は、ファイルの相対パスが間違っている可能性がある
   - `r_practice`プロジェクトを開いていることを確認する
   - `getwd()`で自分がr_renshuフォルダにいることを確認する
-  - `musashi_keizai_students_2023.xlsx`がきちんとdataフォルダに入っていることを確認する
+  - `musashi_keizai_students_2025.csv`がきちんとdataフォルダに入っていることを確認する
 
 
 ### 日本語のデータを読み込む際の注意点 {#datajpn}

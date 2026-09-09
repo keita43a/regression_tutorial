@@ -307,8 +307,8 @@ plot_634
 
 - `fig`という名前のフォルダを作っておく。
 - `ggsave`という関数で、ファイルパスを指定して保存
-  - `file`という引数に、`"fig/musashi_students_2023.png"`と指定
-    - `fig`ディレクトリの下に`musashi_students_2023`という名前で`png`形式ファイルとして保存するという意味
+  - `file`という引数に、`"fig/musashi_students_2025.png"`と指定
+    - `fig`ディレクトリの下に`musashi_students_2025`という名前で`png`形式ファイルとして保存するという意味
   - `plot`に保存したいggplotオブジェクト（描画したもの）を指定
   - `device`に保存したい画像形式を指定。ここでは`png`を指定している。他には`tiff`,`pdf`,`jpg`など。
   
@@ -322,7 +322,7 @@ fs::dir_create("fig")
 ```{r}
 # ggsave()関数を使って、図を保存
 # file: 保存する場所, plot: 図のオブジェクト, device: 保存する形式
-ggsave(file="fig/musashi_students_2023.png", plot=plot_634, device="png")
+ggsave(file="fig/musashi_students_2025.png", plot=plot_634, device="png")
 
 ```
 
