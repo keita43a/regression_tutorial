@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 18 ヘドニック法 | Rによる実証分析入門</title>
+  <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 18 ヘドニック法 | Rによる実証分析入門" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 18 ヘドニック法 | Rによる実証分析入門" />
+  
+  <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  
+
+<meta name="author" content="Keita Abe" />
+
+
+<meta name="date" content="2026-09-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="iv.html"/>
+<link rel="next" href="dce.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R入門</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> この資料について</a></li>
+<li class="chapter" data-level="2" data-path="whatsr.html"><a href="whatsr.html"><i class="fa fa-check"></i><b>2</b> Rとはなにか？</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="whatsr.html"><a href="whatsr.html#r"><i class="fa fa-check"></i><b>2.1</b> R?</a></li>
+<li class="chapter" data-level="2.2" data-path="whatsr.html"><a href="whatsr.html#excelじゃだめなのか"><i class="fa fa-check"></i><b>2.2</b> Excelじゃだめなのか</a></li>
+<li class="chapter" data-level="2.3" data-path="whatsr.html"><a href="whatsr.html#rのよいところ"><i class="fa fa-check"></i><b>2.3</b> Rのよいところ</a></li>
+<li class="chapter" data-level="2.4" data-path="whatsr.html"><a href="whatsr.html#例えばrでできること図表"><i class="fa fa-check"></i><b>2.4</b> 例えばRでできること：図表</a></li>
+<li class="chapter" data-level="2.5" data-path="whatsr.html"><a href="whatsr.html#例えばrでできることウェブアプリ"><i class="fa fa-check"></i><b>2.5</b> 例えばRでできること：ウェブアプリ</a></li>
+<li class="chapter" data-level="2.6" data-path="whatsr.html"><a href="whatsr.html#例えばrでできることウェブスクレイピング"><i class="fa fa-check"></i><b>2.6</b> 例えばRでできること：ウェブスクレイピング</a></li>
+<li class="chapter" data-level="2.7" data-path="whatsr.html"><a href="whatsr.html#地図の分析活用"><i class="fa fa-check"></i><b>2.7</b> 地図の分析・活用</a></li>
+<li class="chapter" data-level="2.8" data-path="whatsr.html"><a href="whatsr.html#rの欠点"><i class="fa fa-check"></i><b>2.8</b> Rの欠点</a></li>
+<li class="chapter" data-level="2.9" data-path="whatsr.html"><a href="whatsr.html#cuiとgui"><i class="fa fa-check"></i><b>2.9</b> CUIとGUI</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="whatsr.html"><a href="whatsr.html#guiの方が楽"><i class="fa fa-check"></i><b>2.9.1</b> GUIの方が楽？</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="whatsr.html"><a href="whatsr.html#プログラミング"><i class="fa fa-check"></i><b>2.10</b> プログラミング</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="howtostart.html"><a href="howtostart.html"><i class="fa fa-check"></i><b>3</b> Rのはじめかた</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="howtostart.html"><a href="howtostart.html#rをどうやって使う"><i class="fa fa-check"></i><b>3.1</b> Rをどうやって使う？</a></li>
+<li class="chapter" data-level="3.2" data-path="howtostart.html"><a href="howtostart.html#rstudioを使う3つの方法"><i class="fa fa-check"></i><b>3.2</b> Rstudioを使う3つの方法</a></li>
+<li class="chapter" data-level="3.3" data-path="howtostart.html"><a href="howtostart.html#rのインストール"><i class="fa fa-check"></i><b>3.3</b> Rのインストール</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windowsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windowsへのインストール</a></li>
+<li class="chapter" data-level="3.3.2" data-path="howtostart.html"><a href="howtostart.html#mac-osへのインストール"><i class="fa fa-check"></i><b>3.3.2</b> Mac OSへのインストール</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="howtostart.html"><a href="howtostart.html#rstudioのインストール"><i class="fa fa-check"></i><b>3.4</b> Rstudioのインストール</a></li>
+<li class="chapter" data-level="3.5" data-path="howtostart.html"><a href="howtostart.html#rstudioのインターフェース"><i class="fa fa-check"></i><b>3.5</b> Rstudioのインターフェース</a></li>
+<li class="chapter" data-level="3.6" data-path="howtostart.html"><a href="howtostart.html#コンピュータのディレクトリ構造"><i class="fa fa-check"></i><b>3.6</b> コンピュータのディレクトリ構造</a></li>
+<li class="chapter" data-level="3.7" data-path="howtostart.html"><a href="howtostart.html#演習作業フォルダを作ろう"><i class="fa fa-check"></i><b>3.7</b> <strong>演習</strong>：作業フォルダを作ろう</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="howtostart.html"><a href="howtostart.html#自分のパソコン"><i class="fa fa-check"></i><b>3.7.1</b> 自分のパソコン</a></li>
+<li class="chapter" data-level="3.7.2" data-path="howtostart.html"><a href="howtostart.html#学校のパソコン"><i class="fa fa-check"></i><b>3.7.2</b> 学校のパソコン</a></li>
+<li class="chapter" data-level="3.7.3" data-path="howtostart.html"><a href="howtostart.html#posit.cloud"><i class="fa fa-check"></i><b>3.7.3</b> Posit.cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="howtostart.html"><a href="howtostart.html#作業スペース"><i class="fa fa-check"></i><b>3.8</b> 作業スペース</a></li>
+<li class="chapter" data-level="3.9" data-path="howtostart.html"><a href="howtostart.html#プロジェクトの作成"><i class="fa fa-check"></i><b>3.9</b> プロジェクトの作成</a></li>
+<li class="chapter" data-level="3.10" data-path="howtostart.html"><a href="howtostart.html#演習-rプロジェクトを作成してみよう"><i class="fa fa-check"></i><b>3.10</b> <strong>演習</strong>: Rプロジェクトを作成してみよう</a></li>
+<li class="chapter" data-level="3.11" data-path="howtostart.html"><a href="howtostart.html#とりあえず触ってみる"><i class="fa fa-check"></i><b>3.11</b> とりあえず触ってみる</a></li>
+<li class="chapter" data-level="3.12" data-path="howtostart.html"><a href="howtostart.html#scriptmake"><i class="fa fa-check"></i><b>3.12</b> スクリプトの作成</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="howtostart.html"><a href="howtostart.html#演習スクリプトを作成してみる"><i class="fa fa-check"></i><b>3.12.1</b> <strong>演習</strong>：スクリプトを作成してみる</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="howtostart.html"><a href="howtostart.html#実行してみる"><i class="fa fa-check"></i><b>3.13</b> 実行してみる</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="howtostart.html"><a href="howtostart.html#コードを実行する際のポイント"><i class="fa fa-check"></i><b>3.13.1</b> コードを実行する際のポイント</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="howtostart.html"><a href="howtostart.html#スクリプトを書く際の注意点"><i class="fa fa-check"></i><b>3.14</b> スクリプトを書く際の注意点</a>
+<ul>
+<li class="chapter" data-level="3.14.1" data-path="howtostart.html"><a href="howtostart.html#コメント"><i class="fa fa-check"></i><b>3.14.1</b> コメント</a></li>
+<li class="chapter" data-level="3.14.2" data-path="howtostart.html"><a href="howtostart.html#スクリプトは読みやすく"><i class="fa fa-check"></i><b>3.14.2</b> スクリプトは読みやすく</a></li>
+</ul></li>
+<li class="chapter" data-level="3.15" data-path="howtostart.html"><a href="howtostart.html#エラーを恐れるな"><i class="fa fa-check"></i><b>3.15</b> エラーを恐れるな！</a>
+<ul>
+<li class="chapter" data-level="3.15.1" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー1"><i class="fa fa-check"></i><b>3.15.1</b> よくあるエラー1</a></li>
+<li class="chapter" data-level="3.15.2" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー2"><i class="fa fa-check"></i><b>3.15.2</b> よくあるエラー2</a></li>
+<li class="chapter" data-level="3.15.3" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー3というかトラブル"><i class="fa fa-check"></i><b>3.15.3</b> よくあるエラー3（というかトラブル）</a></li>
+</ul></li>
+<li class="chapter" data-level="3.16" data-path="howtostart.html"><a href="howtostart.html#rstudioの補完機能"><i class="fa fa-check"></i><b>3.16</b> Rstudioの補完機能</a></li>
+<li class="chapter" data-level="3.17" data-path="howtostart.html"><a href="howtostart.html#rstudioのオプション"><i class="fa fa-check"></i><b>3.17</b> Rstudioのオプション</a>
+<ul>
+<li class="chapter" data-level="3.17.1" data-path="howtostart.html"><a href="howtostart.html#例外観の変更"><i class="fa fa-check"></i><b>3.17.1</b> 例：外観の変更</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="letsuse.html"><a href="letsuse.html"><i class="fa fa-check"></i><b>4</b> Rを使ってみる</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="letsuse.html"><a href="letsuse.html#計算機としてのr"><i class="fa fa-check"></i><b>4.1</b> 計算機としてのR</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="letsuse.html"><a href="letsuse.html#演習r-scriptの作成"><i class="fa fa-check"></i><b>4.1.1</b> 演習：R Scriptの作成</a></li>
+<li class="chapter" data-level="4.1.2" data-path="letsuse.html"><a href="letsuse.html#足し算引き算"><i class="fa fa-check"></i><b>4.1.2</b> 足し算・引き算</a></li>
+<li class="chapter" data-level="4.1.3" data-path="letsuse.html"><a href="letsuse.html#かけ算割り算"><i class="fa fa-check"></i><b>4.1.3</b> かけ算・割り算</a></li>
+<li class="chapter" data-level="4.1.4" data-path="letsuse.html"><a href="letsuse.html#practicecalc"><i class="fa fa-check"></i><b>4.1.4</b> <strong>練習問題</strong>：以下の演算をRを使ってやってみよう</a></li>
+<li class="chapter" data-level="4.1.5" data-path="letsuse.html"><a href="letsuse.html#論理演算"><i class="fa fa-check"></i><b>4.1.5</b> 論理演算</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング言語としてのr"><i class="fa fa-check"></i><b>4.2</b> プログラミング言語としてのR</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="letsuse.html"><a href="letsuse.html#変数へのオブジェクトの代入"><i class="fa fa-check"></i><b>4.2.1</b> 変数へのオブジェクトの代入</a></li>
+<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#loop"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
+<li class="chapter" data-level="4.2.3" data-path="letsuse.html"><a href="letsuse.html#practiceloop"><i class="fa fa-check"></i><b>4.2.3</b> <strong>練習問題</strong>：ループを用いた計算</a></li>
+<li class="chapter" data-level="4.2.4" data-path="letsuse.html"><a href="letsuse.html#プログラミングif文"><i class="fa fa-check"></i><b>4.2.4</b> プログラミング：if文</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="letsuse.html"><a href="letsuse.html#データ型"><i class="fa fa-check"></i><b>4.3</b> データ型</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="letsuse.html"><a href="letsuse.html#データ型注意点"><i class="fa fa-check"></i><b>4.3.1</b> データ型：注意点</a></li>
+<li class="chapter" data-level="4.3.2" data-path="letsuse.html"><a href="letsuse.html#データ型の変換"><i class="fa fa-check"></i><b>4.3.2</b> データ型の変換</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="letsuse.html"><a href="letsuse.html#ベクトル"><i class="fa fa-check"></i><b>4.4</b> ベクトル</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="letsuse.html"><a href="letsuse.html#ベクトルの型"><i class="fa fa-check"></i><b>4.4.1</b> ベクトルの型</a></li>
+<li class="chapter" data-level="4.4.2" data-path="letsuse.html"><a href="letsuse.html#ベクトル連続した数値"><i class="fa fa-check"></i><b>4.4.2</b> ベクトル：連続した数値</a></li>
+<li class="chapter" data-level="4.4.3" data-path="letsuse.html"><a href="letsuse.html#vectormake"><i class="fa fa-check"></i><b>4.4.3</b> <strong>練習問題</strong>: 数列の作成</a></li>
+<li class="chapter" data-level="4.4.4" data-path="letsuse.html"><a href="letsuse.html#ベクトル同じ数値が並ぶベクトル"><i class="fa fa-check"></i><b>4.4.4</b> ベクトル：同じ数値が並ぶベクトル</a></li>
+<li class="chapter" data-level="4.4.5" data-path="letsuse.html"><a href="letsuse.html#vectormake2"><i class="fa fa-check"></i><b>4.4.5</b> <strong>練習問題</strong>：ベクトルの作成</a></li>
+<li class="chapter" data-level="4.4.6" data-path="letsuse.html"><a href="letsuse.html#ベクトル要素の参照"><i class="fa fa-check"></i><b>4.4.6</b> ベクトル要素の参照</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="letsuse.html"><a href="letsuse.html#リスト"><i class="fa fa-check"></i><b>4.5</b> リスト</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="letsuse.html"><a href="letsuse.html#リストの参照"><i class="fa fa-check"></i><b>4.5.1</b> リストの参照</a></li>
+<li class="chapter" data-level="4.5.2" data-path="letsuse.html"><a href="letsuse.html#リストの参照-1"><i class="fa fa-check"></i><b>4.5.2</b> リストの参照</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> パッケージとは</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#パッケージについて"><i class="fa fa-check"></i><b>5.1</b> パッケージについて</a></li>
+<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#パッケージのインストール"><i class="fa fa-check"></i><b>5.2</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#よく使うパッケージのインストール"><i class="fa fa-check"></i><b>5.3</b> よく使うパッケージのインストール</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="packages.html"><a href="packages.html#tidyverseについて"><i class="fa fa-check"></i><b>5.3.1</b> Tidyverseについて</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#パッケージの使い方1"><i class="fa fa-check"></i><b>5.4</b> パッケージの使い方1</a></li>
+<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#パッケージの使い方2"><i class="fa fa-check"></i><b>5.5</b> パッケージの使い方2</a></li>
+<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#発展pacmanパッケージによる効率的な管理"><i class="fa fa-check"></i><b>5.6</b> 発展：pacmanパッケージによる効率的な管理</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="packages.html"><a href="packages.html#pacmanパッケージとは"><i class="fa fa-check"></i><b>5.6.1</b> pacmanパッケージとは</a></li>
+<li class="chapter" data-level="5.6.2" data-path="packages.html"><a href="packages.html#インストール-1"><i class="fa fa-check"></i><b>5.6.2</b> インストール</a></li>
+<li class="chapter" data-level="5.6.3" data-path="packages.html"><a href="packages.html#使い方"><i class="fa fa-check"></i><b>5.6.3</b> 使い方</a></li>
+<li class="chapter" data-level="5.6.4" data-path="packages.html"><a href="packages.html#どんなときに使うか"><i class="fa fa-check"></i><b>5.6.4</b> どんなときに使うか</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#パッケージの注意点"><i class="fa fa-check"></i><b>5.7</b> パッケージの注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datahandling.html"><a href="datahandling.html"><i class="fa fa-check"></i><b>6</b> データのハンドリング</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="datahandling.html"><a href="datahandling.html#データ"><i class="fa fa-check"></i><b>6.1</b> データ</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="datahandling.html"><a href="datahandling.html#データとは"><i class="fa fa-check"></i><b>6.1.1</b> データとは？</a></li>
+<li class="chapter" data-level="6.1.2" data-path="datahandling.html"><a href="datahandling.html#データフレーム"><i class="fa fa-check"></i><b>6.1.2</b> データフレーム</a></li>
+<li class="chapter" data-level="6.1.3" data-path="datahandling.html"><a href="datahandling.html#行と列"><i class="fa fa-check"></i><b>6.1.3</b> 行と列</a></li>
+<li class="chapter" data-level="6.1.4" data-path="datahandling.html"><a href="datahandling.html#きれいなデータ"><i class="fa fa-check"></i><b>6.1.4</b> きれいなデータ？</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="datahandling.html"><a href="datahandling.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="datahandling.html"><a href="datahandling.html#演習-データの読み込み"><i class="fa fa-check"></i><b>6.2.1</b> <strong>演習</strong>: データの読み込み</a></li>
+<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#datajpn"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
+<li class="chapter" data-level="6.2.3" data-path="datahandling.html"><a href="datahandling.html#readrのその他のオプション"><i class="fa fa-check"></i><b>6.2.3</b> readrのその他のオプション</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="datahandling.html"><a href="datahandling.html#tidy-data-整然データ"><i class="fa fa-check"></i><b>6.3</b> tidy data (整然データ)</a></li>
+<li class="chapter" data-level="6.4" data-path="datahandling.html"><a href="datahandling.html#データフレームを扱うテクニックパイプ"><i class="fa fa-check"></i><b>6.4</b> データフレームを扱うテクニック：パイプ</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="datahandling.html"><a href="datahandling.html#パイプ"><i class="fa fa-check"></i><b>6.4.1</b> パイプ</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="datahandling.html"><a href="datahandling.html#tidyでないデータとtidyデータの変換"><i class="fa fa-check"></i><b>6.5</b> tidyでないデータとtidyデータの変換</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="datahandling.html"><a href="datahandling.html#long型データへの変換"><i class="fa fa-check"></i><b>6.5.1</b> long型データへの変換</a></li>
+<li class="chapter" data-level="6.5.2" data-path="datahandling.html"><a href="datahandling.html#データを見てみる"><i class="fa fa-check"></i><b>6.5.2</b> データを見てみる</a></li>
+<li class="chapter" data-level="6.5.3" data-path="datahandling.html"><a href="datahandling.html#データを一部だけみたい場合"><i class="fa fa-check"></i><b>6.5.3</b> データを一部だけみたい場合</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="datahandling.html"><a href="datahandling.html#データの大きさ"><i class="fa fa-check"></i><b>6.6</b> データの「大きさ」</a></li>
+<li class="chapter" data-level="6.7" data-path="datahandling.html"><a href="datahandling.html#列の名前一覧"><i class="fa fa-check"></i><b>6.7</b> 列の名前一覧</a></li>
+<li class="chapter" data-level="6.8" data-path="datahandling.html"><a href="datahandling.html#変数の要約"><i class="fa fa-check"></i><b>6.8</b> 変数の要約</a></li>
+<li class="chapter" data-level="6.9" data-path="datahandling.html"><a href="datahandling.html#変数の取り出し"><i class="fa fa-check"></i><b>6.9</b> 変数の取り出し</a></li>
+<li class="chapter" data-level="6.10" data-path="datahandling.html"><a href="datahandling.html#変数の取り出しと計算"><i class="fa fa-check"></i><b>6.10</b> 変数の取り出しと計算</a></li>
+<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.11</b> データの操作</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.11.1</b> データの操作</a></li>
+<li class="chapter" data-level="6.11.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.11.2</b> 元のデータの見た目確認</a></li>
+<li class="chapter" data-level="6.11.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.11.3</b> 列の名前を変えたい: rename()</a></li>
+<li class="chapter" data-level="6.11.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.11.4</b> 特定の列だけ抽出する: select()</a></li>
+<li class="chapter" data-level="6.11.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.11.5</b> 特定の行だけ抽出する: filter()</a></li>
+<li class="chapter" data-level="6.11.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.11.6</b> データの順番を並び替える: arrange()</a></li>
+<li class="chapter" data-level="6.11.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.11.7</b> データの列を並び替える: relocate()</a></li>
+<li class="chapter" data-level="6.11.8" data-path="datahandling.html"><a href="datahandling.html#datamgcolumnadd"><i class="fa fa-check"></i><b>6.11.8</b> データの列を追加する: mutate()</a></li>
+<li class="chapter" data-level="6.11.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.11.9</b> データの列を編集する: mutate()</a></li>
+<li class="chapter" data-level="6.11.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.11.10</b> データを集計する</a></li>
+<li class="chapter" data-level="6.11.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.11.11</b> データ操作の応用：パイプによる引き渡し</a></li>
+<li class="chapter" data-level="6.11.12" data-path="datahandling.html"><a href="datahandling.html#groupagg"><i class="fa fa-check"></i><b>6.11.12</b> データ操作の応用：グループごとの集計</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.12</b> <strong>練習問題</strong>: データ操作</a></li>
+<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.13</b> データの結合</a>
+<ul>
+<li class="chapter" data-level="6.13.1" data-path="datahandling.html"><a href="datahandling.html#準備-1"><i class="fa fa-check"></i><b>6.13.1</b> 準備</a></li>
+<li class="chapter" data-level="6.13.2" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.13.2</b> データの縦の結合</a></li>
+<li class="chapter" data-level="6.13.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.13.3</b> データを横に統合</a></li>
+<li class="chapter" data-level="6.13.4" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.13.4</b> データを横に統合：join()関数</a></li>
+<li class="chapter" data-level="6.13.5" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.13.5</b> join関数一覧</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rstats.html"><a href="rstats.html"><i class="fa fa-check"></i><b>7</b> 記述統計</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="rstats.html"><a href="rstats.html#統計とは"><i class="fa fa-check"></i><b>7.1</b> 統計とは</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備-2"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
+<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.4.1</b> 数式</a></li>
+<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.4.2</b> 平均</a></li>
+<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.4.3</b> 中央値</a></li>
+<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.4.4</b> 最大値・最小値</a></li>
+<li class="chapter" data-level="7.4.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.4.5</b> 分散</a></li>
+<li class="chapter" data-level="7.4.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.4.6</b> もう一つの分散：不偏分散</a></li>
+<li class="chapter" data-level="7.4.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.4.7</b> 標準偏差</a></li>
+<li class="chapter" data-level="7.4.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.4.8</b> 不偏標準偏差</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.5</b> Rによる記述統計のテクニック</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.5.1</b> 使用するデータ</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.5.2</b> <code>summary</code>関数</a></li>
+<li class="chapter" data-level="7.5.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.5.3</b> <code>describe</code>関数</a></li>
+<li class="chapter" data-level="7.5.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.5.4</b> <code>skim</code>関数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-3"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
+<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
+<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
+<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.6</b> キャンバスを用意する</a></li>
+<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.7</b> グラフのレイヤーを追加する</a></li>
+<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.8</b> 文字化けに対処する</a></li>
+<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.9</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.10</b> 男女の置き方を変えたい</a></li>
+<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.11</b> 色を変えたい</a></li>
+<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.12</b> 学科別に分けたい</a></li>
+<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.13</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.14</b> テーマを変更する1</a>
+<ul>
+<li class="chapter" data-level="8.14.1" data-path="rviz.html"><a href="rviz.html#デフォルトテーマを使った変更"><i class="fa fa-check"></i><b>8.14.1</b> デフォルトテーマを使った変更</a></li>
+<li class="chapter" data-level="8.14.2" data-path="rviz.html"><a href="rviz.html#細かいテーマ設定"><i class="fa fa-check"></i><b>8.14.2</b> 細かいテーマ設定</a></li>
+</ul></li>
+<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.15</b> 完成形</a></li>
+<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.16</b> ggplot2による図の保存</a></li>
+<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.17</b> 他の描画レイヤー</a>
+<ul>
+<li class="chapter" data-level="8.17.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.17.1</b> <strong>練習問題</strong>：散布図</a></li>
+</ul></li>
+<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.18</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
+<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.19</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.20</b> ヴァイオリンプロット</a></li>
+<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.21</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#ゼミ課題データの描画"><i class="fa fa-check"></i><b>8.22</b> <strong>ゼミ課題</strong>：データの描画</a>
+<ul>
+<li class="chapter" data-level="8.22.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.22.1</b> 例：SSDSE-B県別推移のデータ</a></li>
+</ul></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#makefigFAQ"><i class="fa fa-check"></i><b>8.23</b> よくある問題と対策</a>
+<ul>
+<li class="chapter" data-level="8.23.1" data-path="rviz.html"><a href="rviz.html#axisnum"><i class="fa fa-check"></i><b>8.23.1</b> 軸の数値がおかしい</a></li>
+<li class="chapter" data-level="8.23.2" data-path="rviz.html"><a href="rviz.html#smallletter"><i class="fa fa-check"></i><b>8.23.2</b> 字が小さい</a></li>
+<li class="chapter" data-level="8.23.3" data-path="rviz.html"><a href="rviz.html#axisnumadjust"><i class="fa fa-check"></i><b>8.23.3</b> 軸の数値がいい感じにならない</a></li>
+<li class="chapter" data-level="8.23.4" data-path="rviz.html"><a href="rviz.html#axislabeladjust"><i class="fa fa-check"></i><b>8.23.4</b> 軸の目盛りラベルを調整する</a></li>
+<li class="chapter" data-level="8.23.5" data-path="rviz.html"><a href="rviz.html#jpntrans"><i class="fa fa-check"></i><b>8.23.5</b> ラベルだけではなく、凡例や目盛りラベルも日本語化したい</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.1</b> 母集団と標本</a></li>
+<li class="chapter" data-level="9.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#推定量"><i class="fa fa-check"></i><b>9.2</b> 推定量</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏性"><i class="fa fa-check"></i><b>9.2.1</b> 不偏性</a></li>
+<li class="chapter" data-level="9.2.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#一致性"><i class="fa fa-check"></i><b>9.2.2</b> 一致性</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母平均の信頼区間"><i class="fa fa-check"></i><b>9.3</b> 母平均の信頼区間</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#標準誤差"><i class="fa fa-check"></i><b>9.3.1</b> 標準誤差</a></li>
+<li class="chapter" data-level="9.3.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#信頼区間"><i class="fa fa-check"></i><b>9.3.2</b> 信頼区間</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#統計的仮説検定"><i class="fa fa-check"></i><b>9.4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#仮説設定"><i class="fa fa-check"></i><b>9.4.1</b> 仮説設定</a></li>
+<li class="chapter" data-level="9.4.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#有意水準"><i class="fa fa-check"></i><b>9.4.2</b> 有意水準</a></li>
+<li class="chapter" data-level="9.4.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#棄却域"><i class="fa fa-check"></i><b>9.4.3</b> 棄却域</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>10</b> 相関関係</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation.html"><a href="correlation.html#つの変数の関係"><i class="fa fa-check"></i><b>10.1</b> ２つの変数の関係</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="correlation.html"><a href="correlation.html#共分散"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="10.1.2" data-path="correlation.html"><a href="correlation.html#相関係数"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="10.1.3" data-path="correlation.html"><a href="correlation.html#散布図"><i class="fa fa-check"></i><b>10.1.3</b> 散布図</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="correlation.html"><a href="correlation.html#相関関係と因果関係"><i class="fa fa-check"></i><b>10.2</b> 相関関係と因果関係</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="correlation.html"><a href="correlation.html#偏相関係数"><i class="fa fa-check"></i><b>10.2.1</b> 偏相関係数</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="correlation.html"><a href="correlation.html#順位相関係数"><i class="fa fa-check"></i><b>10.3</b> 順位相関係数</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation.html"><a href="correlation.html#スピアマンの順位相関係数"><i class="fa fa-check"></i><b>10.3.1</b> スピアマンの順位相関係数</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation.html"><a href="correlation.html#ケンドールの順位相関係数"><i class="fa fa-check"></i><b>10.3.2</b> ケンドールの順位相関係数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="simpleregression.html"><a href="simpleregression.html"><i class="fa fa-check"></i><b>11</b> 単回帰分析</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析"><i class="fa fa-check"></i><b>11.1</b> 回帰分析</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="simpleregression.html"><a href="simpleregression.html#rによる単回帰モデルの推定"><i class="fa fa-check"></i><b>11.1.1</b> Rによる単回帰モデルの推定</a></li>
+<li class="chapter" data-level="11.1.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰係数の統計的な推定"><i class="fa fa-check"></i><b>11.1.2</b> 回帰係数の統計的な推定</a></li>
+<li class="chapter" data-level="11.1.3" data-path="simpleregression.html"><a href="simpleregression.html#見せかけの相関と単回帰分析"><i class="fa fa-check"></i><b>11.1.3</b> 見せかけの相関と単回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析の推定方法"><i class="fa fa-check"></i><b>11.2</b> 回帰分析の推定方法</a></li>
+<li class="chapter" data-level="11.3" data-path="simpleregression.html"><a href="simpleregression.html#演習問題単回帰分析"><i class="fa fa-check"></i><b>11.3</b> 演習問題：単回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>12</b> 重回帰分析</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="multipleregression.html"><a href="multipleregression.html#重回帰分析とは"><i class="fa fa-check"></i><b>12.1</b> 重回帰分析とは</a></li>
+<li class="chapter" data-level="12.2" data-path="multipleregression.html"><a href="multipleregression.html#回帰分析における真のモデル"><i class="fa fa-check"></i><b>12.2</b> 回帰分析における真のモデル</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="multipleregression.html"><a href="multipleregression.html#シミュレーション"><i class="fa fa-check"></i><b>12.2.1</b> シミュレーション</a></li>
+<li class="chapter" data-level="12.2.2" data-path="multipleregression.html"><a href="multipleregression.html#回帰モデルの推定"><i class="fa fa-check"></i><b>12.2.2</b> 回帰モデルの推定</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="multipleregression.html"><a href="multipleregression.html#モデルの当てはまり"><i class="fa fa-check"></i><b>12.3</b> モデルの当てはまり</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="multipleregression.html"><a href="multipleregression.html#決定係数"><i class="fa fa-check"></i><b>12.3.1</b> 決定係数</a></li>
+<li class="chapter" data-level="12.3.2" data-path="multipleregression.html"><a href="multipleregression.html#自由度調整済み決定係数"><i class="fa fa-check"></i><b>12.3.2</b> 自由度調整済み決定係数</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="multipleregression.html"><a href="multipleregression.html#係数の検定"><i class="fa fa-check"></i><b>12.4</b> 係数の検定</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html"><i class="fa fa-check"></i><b>13</b> 回帰分析の応用</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#変数の変換"><i class="fa fa-check"></i><b>13.1</b> 変数の変換</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#測定単位の変更"><i class="fa fa-check"></i><b>13.1.1</b> 測定単位の変更</a></li>
+<li class="chapter" data-level="13.1.2" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#中心化"><i class="fa fa-check"></i><b>13.1.2</b> 中心化</a></li>
+<li class="chapter" data-level="13.1.3" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#対数変換"><i class="fa fa-check"></i><b>13.1.3</b> 対数変換</a></li>
+<li class="chapter" data-level="13.1.4" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#変数の単位と傾きパラメータの解釈"><i class="fa fa-check"></i><b>13.1.4</b> 変数の単位と、傾きパラメータの解釈</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#より複雑な効果をモデル化"><i class="fa fa-check"></i><b>13.2</b> より複雑な効果をモデル化</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#関数形の変更二次関数"><i class="fa fa-check"></i><b>13.2.1</b> 関数形の変更：二次関数</a></li>
+<li class="chapter" data-level="13.2.2" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#例経験年数の年収への効果"><i class="fa fa-check"></i><b>13.2.2</b> 例：経験年数の年収への効果</a></li>
+<li class="chapter" data-level="13.2.3" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#ダミー変数を使った分析"><i class="fa fa-check"></i><b>13.2.3</b> ダミー変数を使った分析</a></li>
+<li class="chapter" data-level="13.2.4" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#交差項"><i class="fa fa-check"></i><b>13.2.4</b> 交差項</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>14</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータとは"><i class="fa fa-check"></i><b>14.1</b> パネルデータとは</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>14.1.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="14.1.2" data-path="paneldata.html"><a href="paneldata.html#パッケージの準備"><i class="fa fa-check"></i><b>14.1.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="14.1.3" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>14.1.3</b> データの準備</a></li>
+<li class="chapter" data-level="14.1.4" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>14.1.4</b> データの記述統計</a></li>
+<li class="chapter" data-level="14.1.5" data-path="paneldata.html"><a href="paneldata.html#データの加工"><i class="fa fa-check"></i><b>14.1.5</b> データの加工</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="paneldata.html"><a href="paneldata.html#パネルデータ分析"><i class="fa fa-check"></i><b>14.2</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="paneldata.html"><a href="paneldata.html#事例交通事故死亡率とアルコール税の関係"><i class="fa fa-check"></i><b>14.2.1</b> 事例：交通事故死亡率とアルコール税の関係</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="paneldata.html"><a href="paneldata.html#固定効果モデル"><i class="fa fa-check"></i><b>14.3</b> 固定効果モデル</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="paneldata.html"><a href="paneldata.html#固定効果モデルのビジュアルイメージ"><i class="fa fa-check"></i><b>14.3.1</b> 固定効果モデルのビジュアルイメージ</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="paneldata.html"><a href="paneldata.html#時間固定効果と双方向固定効果モデル"><i class="fa fa-check"></i><b>14.4</b> 時間固定効果と双方向固定効果モデル</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="paneldata.html"><a href="paneldata.html#時間固定効果が必要な理由"><i class="fa fa-check"></i><b>14.4.1</b> 時間固定効果が必要な理由</a></li>
+<li class="chapter" data-level="14.4.2" data-path="paneldata.html"><a href="paneldata.html#年ごとのトレンドの確認"><i class="fa fa-check"></i><b>14.4.2</b> 年ごとのトレンドの確認</a></li>
+<li class="chapter" data-level="14.4.3" data-path="paneldata.html"><a href="paneldata.html#つのモデルの比較"><i class="fa fa-check"></i><b>14.4.3</b> 4つのモデルの比較</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="paneldata.html"><a href="paneldata.html#まとめパネルデータ分析の使い分け"><i class="fa fa-check"></i><b>14.5</b> まとめ：パネルデータ分析の使い分け</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="did.html"><a href="did.html"><i class="fa fa-check"></i><b>15</b> 差の差法</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="did.html"><a href="did.html#差の差法とは"><i class="fa fa-check"></i><b>15.1</b> 差の差法とは</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="did.html"><a href="did.html#差の差法のアイデア"><i class="fa fa-check"></i><b>15.1.1</b> 差の差法のアイデア</a></li>
+<li class="chapter" data-level="15.1.2" data-path="did.html"><a href="did.html#差の差法の仮定"><i class="fa fa-check"></i><b>15.1.2</b> 差の差法の仮定</a></li>
+<li class="chapter" data-level="15.1.3" data-path="did.html"><a href="did.html#回帰分析を使って行う方法"><i class="fa fa-check"></i><b>15.1.3</b> 回帰分析を使って行う方法</a></li>
+<li class="chapter" data-level="15.1.4" data-path="did.html"><a href="did.html#演習問題差の差法の回帰分析アプローチ"><i class="fa fa-check"></i><b>15.1.4</b> <strong>演習問題</strong>：差の差法の回帰分析アプローチ</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="did.html"><a href="did.html#rでの演習"><i class="fa fa-check"></i><b>15.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="did.html"><a href="did.html#スクリプトの準備-1"><i class="fa fa-check"></i><b>15.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="15.2.2" data-path="did.html"><a href="did.html#パッケージの準備-1"><i class="fa fa-check"></i><b>15.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="15.2.3" data-path="did.html"><a href="did.html#データの準備-1"><i class="fa fa-check"></i><b>15.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="15.2.4" data-path="did.html"><a href="did.html#データの確認-1"><i class="fa fa-check"></i><b>15.2.4</b> データの確認</a></li>
+<li class="chapter" data-level="15.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>15.2.5</b> データの記述統計</a></li>
+<li class="chapter" data-level="15.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>15.2.6</b> 政策変更の確認</a></li>
+<li class="chapter" data-level="15.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>15.2.7</b> 差の差法</a></li>
+<li class="chapter" data-level="15.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>15.2.8</b> 回帰分析による差の差法</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="rdd.html"><a href="rdd.html"><i class="fa fa-check"></i><b>16</b> 回帰不連続デザイン</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインとは"><i class="fa fa-check"></i><b>16.1</b> 回帰不連続デザインとは</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインのアイデア"><i class="fa fa-check"></i><b>16.1.1</b> 回帰不連続デザインのアイデア</a></li>
+<li class="chapter" data-level="16.1.2" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインの仮定"><i class="fa fa-check"></i><b>16.1.2</b> 回帰不連続デザインの仮定</a></li>
+<li class="chapter" data-level="16.1.3" data-path="rdd.html"><a href="rdd.html#回帰分析を使って行う方法-1"><i class="fa fa-check"></i><b>16.1.3</b> 回帰分析を使って行う方法</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="rdd.html"><a href="rdd.html#rでの演習-1"><i class="fa fa-check"></i><b>16.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="rdd.html"><a href="rdd.html#スクリプトの準備-2"><i class="fa fa-check"></i><b>16.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="16.2.2" data-path="rdd.html"><a href="rdd.html#パッケージの準備-2"><i class="fa fa-check"></i><b>16.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="16.2.3" data-path="rdd.html"><a href="rdd.html#データの準備-2"><i class="fa fa-check"></i><b>16.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="16.2.4" data-path="rdd.html"><a href="rdd.html#データの確認-2"><i class="fa fa-check"></i><b>16.2.4</b> データの確認</a></li>
+<li class="chapter" data-level="16.2.5" data-path="rdd.html"><a href="rdd.html#データの記述統計-2"><i class="fa fa-check"></i><b>16.2.5</b> データの記述統計</a></li>
+<li class="chapter" data-level="16.2.6" data-path="rdd.html"><a href="rdd.html#データの加工-1"><i class="fa fa-check"></i><b>16.2.6</b> データの加工</a></li>
+<li class="chapter" data-level="16.2.7" data-path="rdd.html"><a href="rdd.html#政策による行動への影響"><i class="fa fa-check"></i><b>16.2.7</b> 政策による行動への影響</a></li>
+<li class="chapter" data-level="16.2.8" data-path="rdd.html"><a href="rdd.html#政策による結果への影響"><i class="fa fa-check"></i><b>16.2.8</b> 政策による結果への影響</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="rdd.html"><a href="rdd.html#演習問題アメリカの飲酒年齢と死亡率"><i class="fa fa-check"></i><b>16.3</b> 演習問題：アメリカの飲酒年齢と死亡率</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="iv.html"><a href="iv.html"><i class="fa fa-check"></i><b>17</b> 操作変数法</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="iv.html"><a href="iv.html#操作変数法とは"><i class="fa fa-check"></i><b>17.1</b> 操作変数法とは</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="iv.html"><a href="iv.html#なぜ操作変数法が必要か"><i class="fa fa-check"></i><b>17.1.1</b> なぜ操作変数法が必要か</a></li>
+<li class="chapter" data-level="17.1.2" data-path="iv.html"><a href="iv.html#操作変数法のアイデア"><i class="fa fa-check"></i><b>17.1.2</b> 操作変数法のアイデア</a></li>
+<li class="chapter" data-level="17.1.3" data-path="iv.html"><a href="iv.html#操作変数の2つの条件"><i class="fa fa-check"></i><b>17.1.3</b> 操作変数の2つの条件</a></li>
+<li class="chapter" data-level="17.1.4" data-path="iv.html"><a href="iv.html#段階最小二乗法2sls"><i class="fa fa-check"></i><b>17.1.4</b> 2段階最小二乗法（2SLS）</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="iv.html"><a href="iv.html#rでの演習-2"><i class="fa fa-check"></i><b>17.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="iv.html"><a href="iv.html#スクリプトの準備-3"><i class="fa fa-check"></i><b>17.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="17.2.2" data-path="iv.html"><a href="iv.html#パッケージの準備-3"><i class="fa fa-check"></i><b>17.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="17.2.3" data-path="iv.html"><a href="iv.html#データの準備-3"><i class="fa fa-check"></i><b>17.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="17.2.4" data-path="iv.html"><a href="iv.html#操作変数の妥当性の確認第1段階"><i class="fa fa-check"></i><b>17.2.4</b> 操作変数の妥当性の確認（第1段階）</a></li>
+<li class="chapter" data-level="17.2.5" data-path="iv.html"><a href="iv.html#ols推定比較用"><i class="fa fa-check"></i><b>17.2.5</b> OLS推定（比較用）</a></li>
+<li class="chapter" data-level="17.2.6" data-path="iv.html"><a href="iv.html#iv推定2sls"><i class="fa fa-check"></i><b>17.2.6</b> IV推定（2SLS）</a></li>
+<li class="chapter" data-level="17.2.7" data-path="iv.html"><a href="iv.html#olsとivの比較"><i class="fa fa-check"></i><b>17.2.7</b> OLSとIVの比較</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="iv.html"><a href="iv.html#まとめ"><i class="fa fa-check"></i><b>17.3</b> まとめ</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="hedonic.html"><a href="hedonic.html"><i class="fa fa-check"></i><b>18</b> ヘドニック法</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="hedonic.html"><a href="hedonic.html#ヘドニック法とは"><i class="fa fa-check"></i><b>18.1</b> ヘドニック法とは</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="hedonic.html"><a href="hedonic.html#環境の価値をどう測るか"><i class="fa fa-check"></i><b>18.1.1</b> 環境の価値をどう測るか</a></li>
+<li class="chapter" data-level="18.1.2" data-path="hedonic.html"><a href="hedonic.html#ヘドニック価格関数"><i class="fa fa-check"></i><b>18.1.2</b> ヘドニック価格関数</a></li>
+<li class="chapter" data-level="18.1.3" data-path="hedonic.html"><a href="hedonic.html#対数線形モデルと係数の解釈"><i class="fa fa-check"></i><b>18.1.3</b> 対数線形モデルと係数の解釈</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="hedonic.html"><a href="hedonic.html#rでの演習-3"><i class="fa fa-check"></i><b>18.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="hedonic.html"><a href="hedonic.html#スクリプトの準備-4"><i class="fa fa-check"></i><b>18.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="18.2.2" data-path="hedonic.html"><a href="hedonic.html#パッケージの準備-4"><i class="fa fa-check"></i><b>18.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="18.2.3" data-path="hedonic.html"><a href="hedonic.html#データの準備-4"><i class="fa fa-check"></i><b>18.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="18.2.4" data-path="hedonic.html"><a href="hedonic.html#単回帰から始める"><i class="fa fa-check"></i><b>18.2.4</b> 単回帰から始める</a></li>
+<li class="chapter" data-level="18.2.5" data-path="hedonic.html"><a href="hedonic.html#変数を加える"><i class="fa fa-check"></i><b>18.2.5</b> 変数を加える</a></li>
+<li class="chapter" data-level="18.2.6" data-path="hedonic.html"><a href="hedonic.html#ヘドニック価格関数の推定"><i class="fa fa-check"></i><b>18.2.6</b> ヘドニック価格関数の推定</a></li>
+<li class="chapter" data-level="18.2.7" data-path="hedonic.html"><a href="hedonic.html#限界価値の計算"><i class="fa fa-check"></i><b>18.2.7</b> 限界価値の計算</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="hedonic.html"><a href="hedonic.html#ヘドニック法の注意点"><i class="fa fa-check"></i><b>18.3</b> ヘドニック法の注意点</a></li>
+<li class="chapter" data-level="18.4" data-path="hedonic.html"><a href="hedonic.html#まとめ-1"><i class="fa fa-check"></i><b>18.4</b> まとめ</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="dce.html"><a href="dce.html"><i class="fa fa-check"></i><b>19</b> 選択実験</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="dce.html"><a href="dce.html#選択実験とは"><i class="fa fa-check"></i><b>19.1</b> 選択実験とは</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="dce.html"><a href="dce.html#市場のない財の価値を測る"><i class="fa fa-check"></i><b>19.1.1</b> 市場のない財の価値を測る</a></li>
+<li class="chapter" data-level="19.1.2" data-path="dce.html"><a href="dce.html#選択実験の考え方"><i class="fa fa-check"></i><b>19.1.2</b> 選択実験の考え方</a></li>
+<li class="chapter" data-level="19.1.3" data-path="dce.html"><a href="dce.html#属性水準選択肢集合"><i class="fa fa-check"></i><b>19.1.3</b> 属性・水準・選択肢集合</a></li>
+<li class="chapter" data-level="19.1.4" data-path="dce.html"><a href="dce.html#ランダム効用理論"><i class="fa fa-check"></i><b>19.1.4</b> ランダム効用理論</a></li>
+<li class="chapter" data-level="19.1.5" data-path="dce.html"><a href="dce.html#条件付きロジットモデル"><i class="fa fa-check"></i><b>19.1.5</b> 条件付きロジットモデル</a></li>
+<li class="chapter" data-level="19.1.6" data-path="dce.html"><a href="dce.html#限界支払意思額mwtp"><i class="fa fa-check"></i><b>19.1.6</b> 限界支払意思額（MWTP）</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="dce.html"><a href="dce.html#rでの演習-4"><i class="fa fa-check"></i><b>19.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="dce.html"><a href="dce.html#この演習で使うデータについて"><i class="fa fa-check"></i><b>19.2.1</b> この演習で使うデータについて</a></li>
+<li class="chapter" data-level="19.2.2" data-path="dce.html"><a href="dce.html#スクリプトの準備-5"><i class="fa fa-check"></i><b>19.2.2</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="19.2.3" data-path="dce.html"><a href="dce.html#パッケージの準備-5"><i class="fa fa-check"></i><b>19.2.3</b> パッケージの準備</a></li>
+<li class="chapter" data-level="19.2.4" data-path="dce.html"><a href="dce.html#選択肢集合の設計"><i class="fa fa-check"></i><b>19.2.4</b> 選択肢集合の設計</a></li>
+<li class="chapter" data-level="19.2.5" data-path="dce.html"><a href="dce.html#回答データの読み込み"><i class="fa fa-check"></i><b>19.2.5</b> 回答データの読み込み</a></li>
+<li class="chapter" data-level="19.2.6" data-path="dce.html"><a href="dce.html#分析用データの作成"><i class="fa fa-check"></i><b>19.2.6</b> 分析用データの作成</a></li>
+<li class="chapter" data-level="19.2.7" data-path="dce.html"><a href="dce.html#条件付きロジットの推定"><i class="fa fa-check"></i><b>19.2.7</b> 条件付きロジットの推定</a></li>
+<li class="chapter" data-level="19.2.8" data-path="dce.html"><a href="dce.html#モデルの適合度"><i class="fa fa-check"></i><b>19.2.8</b> モデルの適合度</a></li>
+<li class="chapter" data-level="19.2.9" data-path="dce.html"><a href="dce.html#限界支払意思額の計算"><i class="fa fa-check"></i><b>19.2.9</b> 限界支払意思額の計算</a></li>
+<li class="chapter" data-level="19.2.10" data-path="dce.html"><a href="dce.html#真の値と比べてみる"><i class="fa fa-check"></i><b>19.2.10</b> 真の値と比べてみる</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="dce.html"><a href="dce.html#選択実験の注意点"><i class="fa fa-check"></i><b>19.3</b> 選択実験の注意点</a></li>
+<li class="chapter" data-level="19.4" data-path="dce.html"><a href="dce.html#まとめ-2"><i class="fa fa-check"></i><b>19.4</b> まとめ</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="e-stat.html"><a href="e-stat.html"><i class="fa fa-check"></i><b>20</b> e-statの利用方法</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="e-stat.html"><a href="e-stat.html#e-statとは"><i class="fa fa-check"></i><b>20.1</b> e-statとは</a></li>
+<li class="chapter" data-level="20.2" data-path="e-stat.html"><a href="e-stat.html#e-statの使い方"><i class="fa fa-check"></i><b>20.2</b> e-statの使い方</a></li>
+<li class="chapter" data-level="20.3" data-path="e-stat.html"><a href="e-stat.html#e-stat-apiの使い方"><i class="fa fa-check"></i><b>20.3</b> e-stat APIの使い方</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="e-stat.html"><a href="e-stat.html#apiの準備"><i class="fa fa-check"></i><b>20.3.1</b> APIの準備</a></li>
+<li class="chapter" data-level="20.3.2" data-path="e-stat.html"><a href="e-stat.html#estatapiパッケージでデータを利用する"><i class="fa fa-check"></i><b>20.3.2</b> estatapiパッケージでデータを利用する</a></li>
+<li class="chapter" data-level="20.3.3" data-path="e-stat.html"><a href="e-stat.html#データ加工の例"><i class="fa fa-check"></i><b>20.3.3</b> データ加工の例</a></li>
+<li class="chapter" data-level="20.3.4" data-path="e-stat.html"><a href="e-stat.html#データ描画の例"><i class="fa fa-check"></i><b>20.3.4</b> データ描画の例</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="regressionreporting.html"><a href="regressionreporting.html"><i class="fa fa-check"></i><b>21</b> 回帰分析結果のレポーティング</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析結果の報告"><i class="fa fa-check"></i><b>21.1</b> 回帰分析結果の報告</a></li>
+<li class="chapter" data-level="21.2" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析の結果の報告"><i class="fa fa-check"></i><b>21.2</b> 回帰分析の結果の報告</a></li>
+<li class="chapter" data-level="21.3" data-path="regressionreporting.html"><a href="regressionreporting.html#modelsummaryによる表作成"><i class="fa fa-check"></i><b>21.3</b> modelsummary()による表作成</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="regressionreporting.html"><a href="regressionreporting.html#表の出力"><i class="fa fa-check"></i><b>21.3.1</b> 表の出力</a></li>
+<li class="chapter" data-level="21.3.2" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定"><i class="fa fa-check"></i><b>21.3.2</b> 変数名の設定</a></li>
+<li class="chapter" data-level="21.3.3" data-path="regressionreporting.html"><a href="regressionreporting.html#有意水準を示す星の表示"><i class="fa fa-check"></i><b>21.3.3</b> 有意水準を示す星の表示</a></li>
+<li class="chapter" data-level="21.3.4" data-path="regressionreporting.html"><a href="regressionreporting.html#不必要な統計量の非表示"><i class="fa fa-check"></i><b>21.3.4</b> 不必要な統計量の非表示</a></li>
+<li class="chapter" data-level="21.3.5" data-path="regressionreporting.html"><a href="regressionreporting.html#モデルに名前をつける"><i class="fa fa-check"></i><b>21.3.5</b> モデルに名前をつける</a></li>
+<li class="chapter" data-level="21.3.6" data-path="regressionreporting.html"><a href="regressionreporting.html#固定効果の表示"><i class="fa fa-check"></i><b>21.3.6</b> 固定効果の表示</a></li>
+<li class="chapter" data-level="21.3.7" data-path="regressionreporting.html"><a href="regressionreporting.html#ファイルへの出力"><i class="fa fa-check"></i><b>21.3.7</b> ファイルへの出力</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="regressionreporting.html"><a href="regressionreporting.html#etableによる表作成"><i class="fa fa-check"></i><b>21.4</b> etable()による表作成</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定-1"><i class="fa fa-check"></i><b>21.4.1</b> 変数名の設定</a></li>
+<li class="chapter" data-level="21.4.2" data-path="regressionreporting.html"><a href="regressionreporting.html#標準誤差の数値を係数の下に表示"><i class="fa fa-check"></i><b>21.4.2</b> 標準誤差の数値を係数の下に表示</a></li>
+<li class="chapter" data-level="21.4.3" data-path="regressionreporting.html"><a href="regressionreporting.html#エクセルへの出力"><i class="fa fa-check"></i><b>21.4.3</b> エクセルへの出力</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html"><i class="fa fa-check"></i><b>22</b> ゼミ演習解答</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#課題"><i class="fa fa-check"></i><b>22.1</b> 課題</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル１データを読み込む"><i class="fa fa-check"></i><b>22.1.1</b> レベル１：データを読み込む</a></li>
+<li class="chapter" data-level="22.1.2" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル２折れ線グラフを描く"><i class="fa fa-check"></i><b>22.1.2</b> レベル２：折れ線グラフを描く</a></li>
+<li class="chapter" data-level="22.1.3" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル３データを絞る"><i class="fa fa-check"></i><b>22.1.3</b> レベル３：データを絞る</a></li>
+<li class="chapter" data-level="22.1.4" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル４色を追加する"><i class="fa fa-check"></i><b>22.1.4</b> レベル４：色を追加する</a></li>
+<li class="chapter" data-level="22.1.5" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル５単位の調整"><i class="fa fa-check"></i><b>22.1.5</b> レベル５：単位の調整</a></li>
+<li class="chapter" data-level="22.1.6" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル６２軸目の追加"><i class="fa fa-check"></i><b>22.1.6</b> レベル６：２軸目の追加</a></li>
+<li class="chapter" data-level="22.1.7" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル7日本語のラベルなどの追加"><i class="fa fa-check"></i><b>22.1.7</b> レベル7：日本語のラベルなどの追加</a></li>
+<li class="chapter" data-level="22.1.8" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル８細かい見た目の調整"><i class="fa fa-check"></i><b>22.1.8</b> レベル８：細かい見た目の調整</a></li>
+<li class="chapter" data-level="22.1.9" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル９図を保存する"><i class="fa fa-check"></i><b>22.1.9</b> レベル９：図を保存する</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="regressionpractice.html"><a href="regressionpractice.html"><i class="fa fa-check"></i><b>23</b> 総合復習問題：回帰分析</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="regressionpractice.html"><a href="regressionpractice.html#準備-6"><i class="fa fa-check"></i><b>23.1</b> 準備</a></li>
+<li class="chapter" data-level="23.2" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q1"><i class="fa fa-check"></i><b>23.2</b> 問1：データの読み込みと確認</a></li>
+<li class="chapter" data-level="23.3" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q2"><i class="fa fa-check"></i><b>23.3</b> 問2：データ操作</a></li>
+<li class="chapter" data-level="23.4" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q3"><i class="fa fa-check"></i><b>23.4</b> 問3：記述統計</a></li>
+<li class="chapter" data-level="23.5" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q4"><i class="fa fa-check"></i><b>23.5</b> 問4：散布図</a></li>
+<li class="chapter" data-level="23.6" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q5"><i class="fa fa-check"></i><b>23.6</b> 問5：単回帰分析</a></li>
+<li class="chapter" data-level="23.7" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q6"><i class="fa fa-check"></i><b>23.7</b> 問6：重回帰分析</a></li>
+<li class="chapter" data-level="23.8" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q7"><i class="fa fa-check"></i><b>23.8</b> 問7：説明変数の追加</a></li>
+<li class="chapter" data-level="23.9" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q8"><i class="fa fa-check"></i><b>23.9</b> 問8：回帰分析表の作成</a>
+<ul>
+<li class="chapter" data-level="23.9.1" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-1変数名の設定と表の作成"><i class="fa fa-check"></i><b>23.9.1</b> 問8-1：変数名の設定と表の作成</a></li>
+<li class="chapter" data-level="23.9.2" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-2ファイルへの出力"><i class="fa fa-check"></i><b>23.9.2</b> 問8-2：ファイルへの出力</a></li>
+<li class="chapter" data-level="23.9.3" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-3発展etable-を使った出力"><i class="fa fa-check"></i><b>23.9.3</b> 問8-3（発展）：etable() を使った出力</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rによる実証分析入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hedonic" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">Chapter 18</span> ヘドニック法<a href="hedonic.html#hedonic" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ヘドニック法とは" class="section level2 hasAnchor" number="18.1">
+<h2><span class="header-section-number">18.1</span> ヘドニック法とは<a href="hedonic.html#ヘドニック法とは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="環境の価値をどう測るか" class="section level3 hasAnchor" number="18.1.1">
+<h3><span class="header-section-number">18.1.1</span> 環境の価値をどう測るか<a href="hedonic.html#環境の価値をどう測るか" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>第<a href="paneldata.html#paneldata">14</a>章から第<a href="iv.html#iv">17</a>章では、ある政策や出来事が結果に与えた<strong>因果効果</strong>をどう推定するかを学んできた。この章と次章では、少し違う問いを扱う。<strong>市場で売買されていないものの価値を、どうやって金額で測るか</strong>という問いである。</p>
+<p>きれいな空気、静かな住環境、近所の公園、豊かな漁場。これらはどれも人々にとって価値があるが、値札はついていない。値札がないから価値がゼロだということにしてしまうと、環境を守るための政策の便益は常にゼロと評価されてしまい、費用便益分析が成り立たない。</p>
+<p>そこで、市場価格を持たない財（<strong>非市場財</strong>）の価値を推定する手法が発達してきた。大きく2つの考え方がある。</p>
+<ul>
+<li><strong>顕示選好法（revealed preference）</strong>：人々の<strong>実際の行動</strong>から価値を読み取る。環境の良し悪しが、住宅価格や旅行費用といった観察できる金額に反映されていることを利用する</li>
+<li><strong>表明選好法（stated preference）</strong>：仮想的な状況を提示して<strong>「いくらまでなら払うか」を直接たずねる</strong>。市場での行動が存在しない場合にも使える</li>
+</ul>
+<p>本章で扱う<strong>ヘドニック法（hedonic method）</strong>は顕示選好法の代表である。次章の選択実験は表明選好法の代表となる。</p>
+</div>
+<div id="ヘドニック価格関数" class="section level3 hasAnchor" number="18.1.2">
+<h3><span class="header-section-number">18.1.2</span> ヘドニック価格関数<a href="hedonic.html#ヘドニック価格関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ヘドニック法の出発点は、<strong>住宅は属性の束である</strong>という考え方である。</p>
+<p>私たちが住宅を買うとき、「住宅」という単一の商品を買っているわけではない。部屋の広さ、駅からの距離、学区の質、周辺の治安、そして空気のきれいさ——こうした属性の組み合わせに対してお金を払っている。したがって住宅価格は、これらの属性の関数として書けるはずである。</p>
+<p><span class="math display">\[
+P_i = f(\text{構造属性}_i, \ \text{近隣属性}_i, \ \text{環境属性}_i)
+\]</span></p>
+<p>この関数 <span class="math inline">\(f\)</span> を<strong>ヘドニック価格関数</strong>と呼ぶ。構造属性は部屋数や築年数、近隣属性は学区や犯罪率、環境属性は大気汚染や騒音といったものである。</p>
+<p>ここで重要なのは、<strong>環境属性の係数が環境の価値を表す</strong>という点である。他の条件が同じ2軒の住宅があり、片方だけ空気が汚れているとしよう。人々がきれいな空気に価値を認めているなら、汚れている方の価格は安くなるはずだ。その価格差こそが、人々が空気のきれいさに支払っている金額である。</p>
+<p><span class="math display">\[
+\frac{\partial P}{\partial (\text{環境属性})} = \text{環境属性1単位あたりの限界支払意思額}
+\]</span></p>
+<p>これを<strong>限界支払意思額（marginal willingness to pay, MWTP）</strong>と呼ぶ。アンケートで「いくら払いますか」と聞かなくても、実際の住宅市場の取引から環境の価値が読み取れる、というのがヘドニック法の魅力である。</p>
+</div>
+<div id="対数線形モデルと係数の解釈" class="section level3 hasAnchor" number="18.1.3">
+<h3><span class="header-section-number">18.1.3</span> 対数線形モデルと係数の解釈<a href="hedonic.html#対数線形モデルと係数の解釈" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>実際の推定では、価格と環境属性の両方を対数変換した<strong>対数線形モデル（log-log モデル）</strong>がよく使われる。</p>
+<p><span class="math display">\[
+\log(P_i) = \beta_0 + \beta_1 \log(\text{環境属性}_i) + \gamma&#39; \mathbf{x}_i + \varepsilon_i
+\]</span></p>
+<p>両辺が対数なので、<span class="math inline">\(\beta_1\)</span> は<strong>弾力性</strong>として解釈できる。すなわち「環境属性が1%変化したときに住宅価格が何%変化するか」を表す。</p>
+<p><span class="math display">\[
+\beta_1 = \frac{\partial \log P}{\partial \log(\text{環境属性})} = \frac{\% \ \text{の価格変化}}{\% \ \text{の環境属性の変化}}
+\]</span></p>
+<p>弾力性は単位に依存しないので解釈しやすいが、政策評価では「1単位の改善が何円の価値を持つか」という金額表示が必要になることも多い。対数線形モデルの推定値から限界価値を求めるには、次のように変換する。</p>
+<p><span class="math display">\[
+\frac{\partial P}{\partial (\text{環境属性})} = \beta_1 \times \frac{\bar{P}}{\overline{\text{環境属性}}}
+\]</span></p>
+<p>ここで <span class="math inline">\(\bar{P}\)</span> と <span class="math inline">\(\overline{\text{環境属性}}\)</span> はそれぞれの平均値である。この計算は演習で実際に行う。</p>
+</div>
+</div>
+<div id="rでの演習-3" class="section level2 hasAnchor" number="18.2">
+<h2><span class="header-section-number">18.2</span> Rでの演習<a href="hedonic.html#rでの演習-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="スクリプトの準備-4" class="section level3 hasAnchor" number="18.2.1">
+<h3><span class="header-section-number">18.2.1</span> スクリプトの準備<a href="hedonic.html#スクリプトの準備-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>新しいスクリプトを作成し、<code>hedonic_analysis.R</code> という名前をつけて保存する。</p>
+</div>
+<div id="パッケージの準備-4" class="section level3 hasAnchor" number="18.2.2">
+<h3><span class="header-section-number">18.2.2</span> パッケージの準備<a href="hedonic.html#パッケージの準備-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="hedonic.html#cb407-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, fixest, wooldridge)</span></code></pre></div>
+</div>
+<div id="データの準備-4" class="section level3 hasAnchor" number="18.2.3">
+<h3><span class="header-section-number">18.2.3</span> データの準備<a href="hedonic.html#データの準備-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ここでは Harrison and Rubinfeld (1978) が用いたボストン都市圏の住宅データを使う。このデータは大気汚染の価値をヘドニック法で推定した古典的な研究のもので、<code>wooldridge</code> パッケージに <code>hprice2</code> として含まれている。</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="hedonic.html#cb408-1"></a><span class="kw">data</span>(hprice2)</span></code></pre></div>
+<p>主な変数は以下の通りである。</p>
+<table>
+<thead>
+<tr class="header">
+<th>変数</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>price</code></td>
+<td>住宅価格の中央値（ドル、1970年代）</td>
+</tr>
+<tr class="even">
+<td><code>nox</code></td>
+<td>大気中の窒素酸化物濃度（pphm, parts per hundred million）</td>
+</tr>
+<tr class="odd">
+<td><code>rooms</code></td>
+<td>平均部屋数</td>
+</tr>
+<tr class="even">
+<td><code>dist</code></td>
+<td>5つの雇用中心地までの加重距離（マイル）</td>
+</tr>
+<tr class="odd">
+<td><code>stratio</code></td>
+<td>生徒・教員比率（学校の混雑度）</td>
+</tr>
+<tr class="even">
+<td><code>crime</code></td>
+<td>人口1人あたりの犯罪発生件数</td>
+</tr>
+<tr class="odd">
+<td><code>lowstat</code></td>
+<td>低所得層の人口比率（%）</td>
+</tr>
+<tr class="even">
+<td><code>lprice</code>, <code>lnox</code></td>
+<td><code>price</code>, <code>nox</code> の対数</td>
+</tr>
+</tbody>
+</table>
+<p>このデータには対数変換済みの <code>lprice</code> と <code>lnox</code> があらかじめ入っているので、そのまま使える。</p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="hedonic.html#cb409-1"></a><span class="kw">head</span>(hprice2[, <span class="kw">c</span>(<span class="st">&quot;price&quot;</span>, <span class="st">&quot;nox&quot;</span>, <span class="st">&quot;rooms&quot;</span>, <span class="st">&quot;dist&quot;</span>, <span class="st">&quot;stratio&quot;</span>, <span class="st">&quot;crime&quot;</span>, <span class="st">&quot;lowstat&quot;</span>)])</span></code></pre></div>
+<pre><code>##   price  nox rooms dist stratio crime lowstat
+## 1 24000 5.38  6.57 4.09    15.3 0.006    4.98
+## 2 21599 4.69  6.42 4.97    17.8 0.027    9.14
+## 3 34700 4.69  7.18 4.97    17.8 0.027    4.03
+## 4 33400 4.58  7.00 6.06    18.7 0.032    2.94
+## 5 36199 4.58  7.15 6.06    18.7 0.069    5.33
+## 6 28701 4.58  6.43 6.06    18.7 0.030    5.21</code></pre>
+<p>記述統計を確認しよう。</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="hedonic.html#cb411-1"></a><span class="kw">summary</span>(hprice2[, <span class="kw">c</span>(<span class="st">&quot;price&quot;</span>, <span class="st">&quot;nox&quot;</span>, <span class="st">&quot;rooms&quot;</span>, <span class="st">&quot;dist&quot;</span>, <span class="st">&quot;stratio&quot;</span>, <span class="st">&quot;crime&quot;</span>, <span class="st">&quot;lowstat&quot;</span>)])</span></code></pre></div>
+<pre><code>##      price            nox           rooms            dist       
+##  Min.   : 5000   Min.   :3.85   Min.   :3.560   Min.   : 1.130  
+##  1st Qu.:16850   1st Qu.:4.49   1st Qu.:5.883   1st Qu.: 2.100  
+##  Median :21200   Median :5.38   Median :6.210   Median : 3.210  
+##  Mean   :22512   Mean   :5.55   Mean   :6.284   Mean   : 3.796  
+##  3rd Qu.:24999   3rd Qu.:6.24   3rd Qu.:6.620   3rd Qu.: 5.188  
+##  Max.   :50001   Max.   :8.71   Max.   :8.780   Max.   :12.130  
+##     stratio          crime            lowstat      
+##  Min.   :12.60   Min.   : 0.0060   Min.   : 1.730  
+##  1st Qu.:17.40   1st Qu.: 0.0820   1st Qu.: 6.923  
+##  Median :19.10   Median : 0.2565   Median :11.360  
+##  Mean   :18.46   Mean   : 3.6115   Mean   :12.701  
+##  3rd Qu.:20.20   3rd Qu.: 3.6770   3rd Qu.:17.058  
+##  Max.   :22.00   Max.   :88.9760   Max.   :39.070</code></pre>
+<p>窒素酸化物濃度の平均は約5.5 pphm、住宅価格の平均は約22,500ドルである。1970年代のドルなので、現在の感覚とはかなり違う点に注意してほしい。</p>
+</div>
+<div id="単回帰から始める" class="section level3 hasAnchor" number="18.2.4">
+<h3><span class="header-section-number">18.2.4</span> 単回帰から始める<a href="hedonic.html#単回帰から始める" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>まず、大気汚染と住宅価格の関係だけを見てみよう。</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="hedonic.html#cb413-1"></a>reg1 &lt;-<span class="st"> </span><span class="kw">feols</span>(lprice <span class="op">~</span><span class="st"> </span>lnox, <span class="dt">data =</span> hprice2)</span>
+<span id="cb413-2"><a href="hedonic.html#cb413-2"></a><span class="kw">etable</span>(reg1)</span></code></pre></div>
+<pre><code>##                               reg1
+## Dependent Var.:             lprice
+##                                   
+## Constant         11.71*** (0.1324)
+## lnox            -1.043*** (0.0777)
+## _______________ __________________
+## S.E. type                      IID
+## Observations                   506
+## R2                         0.26355
+## Adj. R2                    0.26209
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><code>lnox</code> の係数は約 <span class="math inline">\(-1.04\)</span> である。両辺が対数なので「窒素酸化物濃度が1%上昇すると住宅価格が約1.04%下落する」と読める。符号は予想通り負であり、汚れた空気は住宅価格を下げている。</p>
+<p>しかし、この推定値をそのまま「大気汚染の価値」と解釈してよいだろうか。</p>
+</div>
+<div id="変数を加える" class="section level3 hasAnchor" number="18.2.5">
+<h3><span class="header-section-number">18.2.5</span> 変数を加える<a href="hedonic.html#変数を加える" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>第<a href="paneldata.html#paneldata">14</a>章で学んだ<strong>欠落変数バイアス</strong>を思い出そう。大気汚染がひどい地域は、工業地帯や幹線道路の近くであることが多い。そうした地域は住宅そのものが小さかったり、治安が悪かったりする。つまり以下のような構造がある。</p>
+<p><span class="math display">\[
+\text{工業地帯に近い} \rightarrow \begin{cases} \text{大気汚染（悪）} \\ \text{住宅の質・治安（悪）} \end{cases}
+\]</span></p>
+<p>住宅の質をコントロールしないと、<code>lnox</code> の係数は「大気汚染の効果」と「住宅の質の効果」を混ぜて拾ってしまう。実際に部屋数を加えてみよう。</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="hedonic.html#cb415-1"></a>reg2 &lt;-<span class="st"> </span><span class="kw">feols</span>(lprice <span class="op">~</span><span class="st"> </span>lnox <span class="op">+</span><span class="st"> </span>rooms, <span class="dt">data =</span> hprice2)</span>
+<span id="cb415-2"><a href="hedonic.html#cb415-2"></a><span class="kw">etable</span>(reg1, reg2)</span></code></pre></div>
+<pre><code>##                               reg1                reg2
+## Dependent Var.:             lprice              lprice
+##                                                       
+## Constant         11.71*** (0.1324)   9.234*** (0.1877)
+## lnox            -1.043*** (0.0777) -0.7177*** (0.0663)
+## rooms                               0.3059*** (0.0190)
+## _______________ __________________ ___________________
+## S.E. type                      IID                 IID
+## Observations                   506                 506
+## R2                         0.26355             0.51372
+## Adj. R2                    0.26209             0.51178
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>部屋数を加えただけで <code>lnox</code> の係数は <span class="math inline">\(-1.04\)</span> から <span class="math inline">\(-0.72\)</span> へと大きく縮んだ。単回帰の推定値には、部屋数を通じたバイアスがかなり含まれていたことがわかる。</p>
+</div>
+<div id="ヘドニック価格関数の推定" class="section level3 hasAnchor" number="18.2.6">
+<h3><span class="header-section-number">18.2.6</span> ヘドニック価格関数の推定<a href="hedonic.html#ヘドニック価格関数の推定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>近隣属性も加えて、ヘドニック価格関数を推定しよう。</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="hedonic.html#cb417-1"></a>reg3 &lt;-<span class="st"> </span><span class="kw">feols</span>(lprice <span class="op">~</span><span class="st"> </span>lnox <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(dist) <span class="op">+</span><span class="st"> </span>rooms <span class="op">+</span><span class="st"> </span>stratio, <span class="dt">data =</span> hprice2)</span>
+<span id="cb417-2"><a href="hedonic.html#cb417-2"></a>reg_full &lt;-<span class="st"> </span><span class="kw">feols</span>(lprice <span class="op">~</span><span class="st"> </span>lnox <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(dist) <span class="op">+</span><span class="st"> </span>rooms <span class="op">+</span><span class="st"> </span>stratio <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>lowstat,</span>
+<span id="cb417-3"><a href="hedonic.html#cb417-3"></a>                  <span class="dt">data =</span> hprice2)</span>
+<span id="cb417-4"><a href="hedonic.html#cb417-4"></a><span class="kw">etable</span>(reg1, reg2, reg3, reg_full)</span></code></pre></div>
+<pre><code>##                               reg1                reg2                reg3
+## Dependent Var.:             lprice              lprice              lprice
+##                                                                           
+## Constant         11.71*** (0.1324)   9.234*** (0.1877)   11.08*** (0.3181)
+## lnox            -1.043*** (0.0777) -0.7177*** (0.0663) -0.9535*** (0.1167)
+## rooms                               0.3059*** (0.0190)  0.2545*** (0.0185)
+## log(dist)                                               -0.1343** (0.0431)
+## stratio                                                -0.0524*** (0.0059)
+## crime                                                                     
+## lowstat                                                                   
+## _______________ __________________ ___________________ ___________________
+## S.E. type                      IID                 IID                 IID
+## Observations                   506                 506                 506
+## R2                         0.26355             0.51372             0.58403
+## Adj. R2                    0.26209             0.51178             0.58071
+## 
+##                            reg_full
+## Dependent Var.:              lprice
+##                                    
+## Constant          11.61*** (0.2446)
+## lnox            -0.6177*** (0.0906)
+## rooms            0.1177*** (0.0165)
+## log(dist)       -0.2627*** (0.0335)
+## stratio         -0.0349*** (0.0046)
+## crime           -0.0111*** (0.0012)
+## lowstat         -0.0288*** (0.0019)
+## _______________ ___________________
+## S.E. type                       IID
+## Observations                    506
+## R2                          0.76190
+## Adj. R2                     0.75904
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>フルモデルの結果を見ていこう。すべての係数の符号が直感と整合的である。</p>
+<table>
+<thead>
+<tr class="header">
+<th>変数</th>
+<th>係数</th>
+<th>解釈</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>lnox</code></td>
+<td><span class="math inline">\(-0.62\)</span></td>
+<td>大気汚染がひどいほど価格は下がる</td>
+</tr>
+<tr class="even">
+<td><code>rooms</code></td>
+<td><span class="math inline">\(+0.12\)</span></td>
+<td>部屋数が多いほど価格は上がる</td>
+</tr>
+<tr class="odd">
+<td><code>log(dist)</code></td>
+<td><span class="math inline">\(-0.26\)</span></td>
+<td>雇用中心地から遠いほど価格は下がる</td>
+</tr>
+<tr class="even">
+<td><code>stratio</code></td>
+<td><span class="math inline">\(-0.03\)</span></td>
+<td>学校が混雑しているほど価格は下がる</td>
+</tr>
+<tr class="odd">
+<td><code>crime</code></td>
+<td><span class="math inline">\(-0.01\)</span></td>
+<td>犯罪が多いほど価格は下がる</td>
+</tr>
+<tr class="even">
+<td><code>lowstat</code></td>
+<td><span class="math inline">\(-0.03\)</span></td>
+<td>低所得層比率が高い地域ほど価格は低い</td>
+</tr>
+</tbody>
+</table>
+<p>注目すべきは <code>lnox</code> の係数の変化である。単回帰の <span class="math inline">\(-1.04\)</span> から、フルモデルでは <span class="math inline">\(-0.62\)</span> まで縮小した。<strong>単回帰の推定値は、大気汚染の効果を4割ほど過大評価していた</strong>ことになる。これは欠落変数バイアスの典型例である。</p>
+<p>フルモデルの解釈は「他の条件を一定として、窒素酸化物濃度が1%上昇すると住宅価格が約0.62%下落する」となる。</p>
+</div>
+<div id="限界価値の計算" class="section level3 hasAnchor" number="18.2.7">
+<h3><span class="header-section-number">18.2.7</span> 限界価値の計算<a href="hedonic.html#限界価値の計算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>弾力性を金額に換算してみよう。先ほどの変換式を使う。</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="hedonic.html#cb419-1"></a>b_nox &lt;-<span class="st"> </span><span class="kw">coef</span>(reg_full)[<span class="st">&quot;lnox&quot;</span>]</span>
+<span id="cb419-2"><a href="hedonic.html#cb419-2"></a>mean_price &lt;-<span class="st"> </span><span class="kw">mean</span>(hprice2<span class="op">$</span>price)</span>
+<span id="cb419-3"><a href="hedonic.html#cb419-3"></a>mean_nox &lt;-<span class="st"> </span><span class="kw">mean</span>(hprice2<span class="op">$</span>nox)</span>
+<span id="cb419-4"><a href="hedonic.html#cb419-4"></a></span>
+<span id="cb419-5"><a href="hedonic.html#cb419-5"></a><span class="co"># NOx 1 pphm あたりの限界価値</span></span>
+<span id="cb419-6"><a href="hedonic.html#cb419-6"></a>mwtp_nox &lt;-<span class="st"> </span>b_nox <span class="op">*</span><span class="st"> </span>mean_price <span class="op">/</span><span class="st"> </span>mean_nox</span>
+<span id="cb419-7"><a href="hedonic.html#cb419-7"></a>mwtp_nox</span></code></pre></div>
+<pre><code>##      lnox 
+## -2505.624</code></pre>
+<p>平均的な住宅（価格22,512ドル、NOx濃度5.55 pphm）において、<strong>窒素酸化物濃度を1 pphm 削減することは約2,500ドルの価値を持つ</strong>という推定になる。平均価格の1割強にあたる金額であり、大気の質が住宅価値のかなりの部分を説明していることがわかる。</p>
+<p>この数字があれば、大気汚染対策の便益を金額で表現できる。たとえばある地域の住宅が10,000戸あり、政策によってNOx濃度が1 pphm 改善するなら、便益はおよそ2,500ドル × 10,000戸 = 2,500万ドルと見積もれる。費用便益分析ではこのように使われる。</p>
+</div>
+</div>
+<div id="ヘドニック法の注意点" class="section level2 hasAnchor" number="18.3">
+<h2><span class="header-section-number">18.3</span> ヘドニック法の注意点<a href="hedonic.html#ヘドニック法の注意点" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ヘドニック法は実際の市場取引を使うため説得力があるが、いくつか注意すべき点がある。</p>
+<p><strong>内生性の問題</strong></p>
+<p>大気汚染の水準はランダムに割り当てられたものではない。工場は地価の安い場所に立地するかもしれず、その場合は「汚染が価格を下げた」のか「地価が安いから工場が来た」のかを区別できない。これは第<a href="iv.html#iv">17</a>章で学んだ<strong>逆の因果関係</strong>の問題である。厳密な研究では、風向きや地形など汚染に影響するが住宅価格には直接影響しない変数を操作変数として用いる。</p>
+<p><strong>空間的自己相関</strong></p>
+<p>近くにある住宅どうしは、観察できない要因（街並みの雰囲気など）を共有している。この場合、誤差項が地域内で相関し、通常の標準誤差は過小になる。地域単位でクラスター標準誤差を使うか、空間計量経済学の手法を用いる必要がある。</p>
+<p><strong>測れるのは「市場に現れる価値」だけ</strong></p>
+<p>ヘドニック法が捉えるのは、住宅を買う人が認識し、価格に反映させた価値だけである。その地域に住んでいない人が感じる価値（たとえば「見たこともない森が守られていること自体に価値を感じる」といった<strong>存在価値</strong>）は原理的に捉えられない。</p>
+<p><strong>市場が機能していることが前提</strong></p>
+<p>人々が住宅の属性を正しく認識し、自由に住み替えられることが前提になっている。情報が不完全だったり、住み替えの費用が大きかったりすると、価格は属性の価値を正しく反映しない。</p>
+</div>
+<div id="まとめ-1" class="section level2 hasAnchor" number="18.4">
+<h2><span class="header-section-number">18.4</span> まとめ<a href="hedonic.html#まとめ-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ヘドニック法は、住宅価格という<strong>実際に観察できる金額</strong>から、値札のない環境の価値を読み取る手法である。推定の道具は第<a href="paneldata.html#paneldata">14</a>章までに学んだ重回帰そのものであり、新しい推定手法は必要ない。難しいのは推定ではなく、<strong>どの変数をコントロールすべきかを考えること</strong>である。</p>
+<p>一方で、ヘドニック法には限界もある。住宅市場という「代理の市場」が存在しなければ使えないのだ。まだ存在しない政策の価値や、市場で取引されない財の価値——たとえば「持続可能な方法で獲られた水産物」に消費者がいくら払うのか——は、この方法では測れない。</p>
+<p>そうした場合に使うのが、次章で学ぶ<strong>選択実験</strong>である。</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="iv.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dce.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/18_hedonic.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r_basics_musashi.pdf", "r_basics_musashi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
