@@ -6,6 +6,13 @@
 2025年の春学期最後のゼミでは、課題として、阿部が描いた図を、同じデータで再現するという課題でした。
 
 ```{r, echo = FALSE}
+library(tidyverse)
+
+data_salmon <- readRDS("data/sales_in_volume_and_value_1998_2024_by_species.rds")
+
+data_atlan <- data_salmon |>
+  filter(species_EN == "Atlantic salmon")
+
 plot_ts_sales_salmon <- ggplot(data_atlan, aes(x = year)) +
     geom_line(aes(y = volumes_MT/10000), col = "blue", size = 1.2) +
     geom_line(aes(y = values_BilNOK*2), col = "orange", size = 1.2) +
