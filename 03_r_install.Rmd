@@ -212,7 +212,7 @@ knitr::include_graphics("docs/fig/Rstudio_look-2.png")
 
 コンピュータ上においては、ファイルの場所は**path**で表現される。これはコンピュータ上の住所のようなものである。
 
-`j:`というドライブの下の`abezemi`というフォルダの下にある`r_renshu`というフォルダにある`kadai1.R`というファイルがあるとする。そのファイルのpathは`j:/abezemi/r_renshu/kadai1.R`となる。
+`j:`というドライブの下の`abezemi`というフォルダの下にある`r_practice`というフォルダにある`kadai1.R`というファイルがあるとする。そのファイルのpathは`j:/abezemi/r_practice/kadai1.R`となる。
 
 コンピュータ上では、このように文字でファイルの場所と名前を指定することがよくある。
 
@@ -324,8 +324,8 @@ Rとの"対話"は、Rstudioの左下のペイン(コンソール)で行われ�
   - 上のメニューのFile -> New File -> R script
   - もしくは左上の区画の![](fig/newfile.png)から、「R Script」
 2. "Untitled1"というRスクリプトが作成されるので名前をつけて保存する
-  - File -> Save As... -> `r_renshu.R`という名前をつけて保存
-  - もしくは右上のフロッピー![](fig/floppy.png)を押して`r_renshu.R`という名前をつけて保存 
+  - File -> Save As... -> `practice.R`という名前をつけて保存
+  - もしくは右上のフロッピー![](fig/floppy.png)を押して`practice.R`という名前をつけて保存 
 
 
 ## 実行してみる
