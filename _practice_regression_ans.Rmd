@@ -1,0 +1,260 @@
+---
+title: "回帰分析 復習問題【解答例】"
+subtitle: "gapminder データを用いた実証分析の練習"
+author: ""
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# はじめに
+
+```{r}
+library(tidyverse)
+library(fixest)
+library(skimr)
+library(modelsummary)
+library(openxlsx)
+```
+
+---
+
+# 問1：データの読み込みと確認
+
+```{r}
+# 1. データの読み込み
+dat_gap <- read_csv("data/gapminder.csv")
+
+# 2. データの確認
+head(dat_gap)
+dim(dat_gap)
+names(dat_gap)
+```
+
+---
+
+# 問2：データ操作
+
+```{r}
+# 1. 2007年のデータのみ抽出
+dat_2007 <- dat_gap |>
+  filter(year == 2007)
+
+# 2. 対数変数を追加
+dat_2007 <- dat_2007 |>
+  mutate(
+    log_gdp = log(gdpPercap),
+    log_pop = log(pop)
+  )
+
+# 3. 大陸ごとの平均寿命・平均GDPを計算
+dat_2007 |>
+  group_by(continent) |>
+  summarise(
+    avg_lifeExp = mean(lifeExp),
+    avg_gdpPercap = mean(gdpPercap)
+  )
+```
+
+---
+
+# 問3：記述統計
+
+```{r}
+skim(dat_2007)
+```
+
+```{r}
+# コメント例：
+# 平均寿命の平均は約67年、中央値は約71.9年。
+# 中央値より平均が小さいことから、低い平均寿命の国が引き下げていることがわかる（左歪み分布）。
+#
+# 一人当たりGDPの標準偏差は約1万ドルと非常に大きい。
+# 最小値は約277ドル、最大値は約49,000ドルと国家間の格差が非常に大きいことが原因と考えられる。
+```
+
+---
+
+# 問4：散布図
+
+```{r}
+ggplot(dat_2007, aes(x = log_gdp, y = lifeExp, color = continent)) +
+  geom_point(size = 2) +
+  labs(
+    x = "一人当たりGDP（対数）",
+    y = "平均寿命（年）",
+    color = "大陸",
+    title = "一人当たりGDPと平均寿命の関係（2007年）"
+  ) +
+  theme_bw()
+```
+
+---
+
+# 問5：単回帰分析
+
+```{r}
+# 1. 単回帰モデルの推定
+model1 <- feols(lifeExp ~ log_gdp, data = dat_2007)
+
+# 2. 結果の表示
+etable(model1)
+```
+
+```{r}
+# 3. 解釈のコメント例：
+# log_gdp の係数は約7.2。
+# 対数変換した説明変数の係数の解釈：
+# 一人当たりGDPが1%上昇すると、平均寿命はおよそ 7.2 / 100 = 0.072年（約26日）上昇する。
+# p値は非常に小さく（***）、係数は統計的に有意である。
+```
+
+---
+
+# 問6：重回帰分析
+
+```{r}
+# 1. 大陸ダミーを加えた重回帰モデル
+model2 <- feols(lifeExp ~ log_gdp + continent, data = dat_2007)
+
+# 2. 2モデルの比較
+etable(model1, model2)
+```
+
+```{r}
+# 3. 解釈のコメント例：
+# log_gdp の係数は model1 の約7.2 から model2 では約5.0 に低下した。
+# 自由度調整済み決定係数は model1 の約0.65 から model2 では約0.76 に上昇した。
+#
+# 欠落変数バイアス（OVB）の観点：
+# 大陸はGDPにも平均寿命にも相関している（例：アフリカはGDPが低く平均寿命も低い）。
+# model1 では大陸の効果が log_gdp の係数に混入していたため、係数が過大推定されていた。
+# 大陸ダミーを加えることで、GDPと平均寿命の「大陸内での」関係を推定できるようになった。
+```
+
+---
+
+# 問7：説明変数の追加
+
+```{r}
+# 1. 人口の対数を加えたモデル
+model3 <- feols(lifeExp ~ log_gdp + log_pop + continent, data = dat_2007)
+
+# 2. 3モデルの比較
+etable(model1, model2, model3)
+```
+
+```{r}
+# 3. 解釈のコメント例：
+# log_pop の係数は約0.9程度で、統計的には有意（*または**）。
+# 人口が多い国ほど平均寿命がやや高い傾向がある。
+#
+# log_pop を追加することで log_gdp の係数はほとんど変化しない。
+# これは人口規模は GDP と平均寿命の両方と独立した関係を持つことを示唆している。
+```
+
+---
+
+# 問8：回帰分析表の作成
+
+## 8-1：変数名の設定と表の作成
+
+```{r}
+# 変数名の辞書を作成
+varname_dict <- c(
+  log_gdp              = "一人当たりGDP（対数）",
+  log_pop              = "人口（対数）",
+  continentAmericas    = "大陸：アメリカ",
+  continentAsia        = "大陸：アジア",
+  continentEurope      = "大陸：ヨーロッパ",
+  continentOceania     = "大陸：オセアニア",
+  `(Intercept)`        = "切片"
+)
+
+# 回帰分析表の作成
+modelsummary(
+  list(
+    "単回帰"             = model1,
+    "重回帰（大陸）"     = model2,
+    "重回帰（大陸＋人口）" = model3
+  ),
+  coef_rename = varname_dict,
+  coef_omit   = "Intercept",
+  stars       = TRUE,
+  gof_omit    = "BIC|AIC|RMSE|Std.Errors"
+)
+```
+
+## 8-2：ファイルへの出力
+
+```{r}
+# results フォルダの作成（存在しない場合）
+fs::dir_create("results")
+
+# 画像ファイルへの出力
+modelsummary(
+  list(
+    "単回帰"             = model1,
+    "重回帰（大陸）"     = model2,
+    "重回帰（大陸＋人口）" = model3
+  ),
+  coef_rename = varname_dict,
+  coef_omit   = "Intercept",
+  stars       = TRUE,
+  gof_omit    = "BIC|AIC|RMSE|Std.Errors",
+  output      = "results/reg_table.png"
+)
+
+# Word ファイルへの出力（変数名を英語にする：日本語はWordで文字化けする場合がある）
+varname_dict_eng <- c(
+  log_gdp              = "GDP per capita (log)",
+  log_pop              = "Population (log)",
+  continentAmericas    = "Americas",
+  continentAsia        = "Asia",
+  continentEurope      = "Europe",
+  continentOceania     = "Oceania",
+  `(Intercept)`        = "Intercept"
+)
+
+modelsummary(
+  list(
+    "Model 1" = model1,
+    "Model 2" = model2,
+    "Model 3" = model3
+  ),
+  coef_rename = varname_dict_eng,
+  coef_omit   = "Intercept",
+  stars       = TRUE,
+  gof_omit    = "BIC|AIC|RMSE|Std.Errors",
+  output      = "results/reg_table.docx"
+)
+```
+
+## 8-3（発展）：etable() を使った出力
+
+```{r}
+# 変数名の辞書を設定
+setFixest_dict(c(
+  lifeExp           = "平均寿命（年）",
+  log_gdp           = "一人当たりGDP（対数）",
+  log_pop           = "人口（対数）",
+  continentAmericas = "大陸：アメリカ",
+  continentAsia     = "大陸：アジア",
+  continentEurope   = "大陸：ヨーロッパ",
+  continentOceania  = "大陸：オセアニア"
+))
+
+# 結果の表示
+etable(model1, model2, model3, se.below = TRUE)
+
+# Excel ファイルへの出力
+results <- etable(model1, model2, model3, se.below = TRUE)
+write.xlsx(results, "results/reg_table.xlsx")
+```

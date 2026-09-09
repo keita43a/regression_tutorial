@@ -1,0 +1,153 @@
+# 総合復習問題：回帰分析 {#regressionpractice}
+
+```{r, include=FALSE}
+library(tidyverse)
+library(fixest)
+library(skimr)
+library(modelsummary)
+library(openxlsx)
+```
+
+この復習問題では、第6章〜第13章の内容を総合的に復習する。
+使用するデータは `gapminder` データである。
+このデータには、1952年から2007年にかけての国別の人口・平均寿命・一人当たりGDPが収録されている。
+
+| 変数名 | 内容 |
+|--------|------|
+| `country` | 国名 |
+| `continent` | 大陸 |
+| `year` | 年 |
+| `lifeExp` | 平均寿命（年） |
+| `pop` | 人口 |
+| `gdpPercap` | 一人当たりGDP（米ドル） |
+
+## 準備
+
+`practice_regression.R` というRスクリプトを作成し、以下のパッケージを読み込む。
+インストールしていないパッケージがある場合は先にインストールすること。
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(fixest)
+library(skimr)
+library(modelsummary)
+library(openxlsx)
+```
+
+## 問1：データの読み込みと確認 {#prac-q1}
+
+1. `data/gapminder.csv` を読み込み、`dat_gap` というオブジェクトに保存せよ。
+
+2. 以下の関数を用いてデータの内容を確認せよ。
+   - `head()` で最初の6行を表示する
+   - `dim()` で行数・列数を確認する
+   - `names()` で変数名の一覧を表示する
+
+## 問2：データ操作 {#prac-q2}
+
+1. `dat_gap` から2007年のデータのみを `filter()` で抽出し、`dat_2007` として保存せよ。
+
+2. `dat_2007` に対して `mutate()` を用いて以下の2つの変数を追加し、`dat_2007` を上書きして保存せよ。
+   - `log_gdp`: `gdpPercap` の自然対数（`log()` 関数を使う）
+   - `log_pop`: `pop` の自然対数
+
+3. `dat_2007` を使い、大陸（`continent`）ごとの平均寿命（`lifeExp`）の平均と一人当たりGDP（`gdpPercap`）の平均を `group_by()` と `summarise()` を用いて計算せよ。結果をコンソールに表示せよ。
+
+## 問3：記述統計 {#prac-q3}
+
+1. `dat_2007` に対して `skim()` 関数を用いて記述統計を表示せよ。
+
+2. コメント（`#`）として以下について記述せよ。
+   - 平均寿命（`lifeExp`）の平均と中央値の差はどれくらいか？
+   - 一人当たりGDP（`gdpPercap`）の標準偏差は大きいか小さいか？その理由を考えよ。
+
+## 問4：散布図 {#prac-q4}
+
+`ggplot2` を用いて以下の散布図を作成せよ。
+
+- x軸: `log_gdp`（一人当たりGDPの対数）
+- y軸: `lifeExp`（平均寿命）
+- 大陸（`continent`）ごとに点の色を変える（`aes(color = continent)` を使う）
+- 軸ラベルをわかりやすい日本語にする（`labs()` を使う）
+
+## 問5：単回帰分析 {#prac-q5}
+
+`fixest` パッケージの `feols()` 関数を用いて、以下のモデルを推定せよ。
+
+$$\text{lifeExp}_i = \alpha + \beta_1 \log(\text{gdpPercap}_i) + \varepsilon_i$$
+
+1. `log_gdp` を説明変数、`lifeExp` を目的変数とする単回帰モデルを推定し、`model1` として保存せよ。
+
+2. `etable(model1)` で結果を表示せよ。
+
+3. 推定された $\hat{\beta}_1$ の値を確認し、以下をコメントとして記述せよ。
+   - 一人当たりGDPが1%上昇すると、平均寿命はおよそ何年変化するか？（ヒント：第13章の対数変換の解釈を参照）
+   - この係数は統計的に有意か？
+
+## 問6：重回帰分析 {#prac-q6}
+
+問5のモデルに大陸ダミー（`continent`）を加えた重回帰モデルを推定せよ。
+
+$$\text{lifeExp}_i = \alpha + \beta_1 \log(\text{gdpPercap}_i) + \beta_2 \text{continent}_i + \varepsilon_i$$
+
+1. 上記のモデルを推定し、`model2` として保存せよ。
+
+2. `etable(model1, model2)` で2つのモデルを並べて表示せよ。
+
+3. 以下についてコメントとして記述せよ。
+   - `log_gdp` の係数は `model1` と比べてどのように変化したか？
+   - 大陸ダミーを加えることで、モデルの当てはまり（自由度調整済み決定係数）はどう変わったか？
+   - なぜ係数が変化したと考えられるか？（欠落変数バイアスの観点から）
+
+## 問7：説明変数の追加 {#prac-q7}
+
+問6のモデルにさらに人口の対数（`log_pop`）を加えたモデルを推定せよ。
+
+$$\text{lifeExp}_i = \alpha + \beta_1 \log(\text{gdpPercap}_i) + \beta_2 \log(\text{pop}_i) + \beta_3 \text{continent}_i + \varepsilon_i$$
+
+1. 上記のモデルを推定し、`model3` として保存せよ。
+
+2. `etable(model1, model2, model3)` で3つのモデルを並べて表示せよ。
+
+3. 以下についてコメントとして記述せよ。
+   - `log_pop` の係数は統計的に有意か？
+   - `log_pop` を追加することで他の係数はどのように変化したか？
+
+## 問8：回帰分析表の作成 {#prac-q8}
+
+第\@ref(regressionreporting)章の内容に基づき、問5〜7で推定した3つのモデル（`model1`〜`model3`）の回帰分析表を作成せよ。
+
+### 問8-1：変数名の設定と表の作成
+
+`modelsummary()` 関数を使い、以下の条件をすべて満たす回帰分析表を作成せよ。
+
+- 3つのモデルを「単回帰」「重回帰（大陸）」「重回帰（大陸＋人口）」という名前で並べる
+- 変数名を以下のように日本語に変換する（`coef_rename` を使う）
+  - `log_gdp` → `"一人当たりGDP（対数）"`
+  - `log_pop` → `"人口（対数）"`
+  - `continentAmericas` → `"大陸：アメリカ"`
+  - `continentAsia` → `"大陸：アジア"`
+  - `continentEurope` → `"大陸：ヨーロッパ"`
+  - `continentOceania` → `"大陸：オセアニア"`
+- 切片を非表示にする（`coef_omit` を使う）
+- 有意水準の星を表示する（`stars = TRUE`）
+- 不要な統計量（BIC, AIC, RMSE, Std.Errors）を非表示にする（`gof_omit` を使う）
+
+### 問8-2：ファイルへの出力
+
+作成した回帰分析表を以下の2つの形式で出力せよ。
+
+1. `results/reg_table.png` という画像ファイルに出力する
+2. `results/reg_table.docx` というWordファイルに出力する（変数名は英語にすること。理由：Wordへの日本語出力は文字化けする場合がある）
+
+※ `results` フォルダが存在しない場合は、`fs::dir_create("results")` で作成すること。
+
+### 問8-3（発展）：etable() を使った出力
+
+希望者のみ以下の問題にも取り組むこと。
+
+`etable()` を使って同じ3モデルの表を作成し、Excelファイル（`results/reg_table.xlsx`）に出力せよ。
+
+- `setFixest_dict()` で変数名を日本語に設定する
+- `se.below = TRUE` で標準誤差を係数の下に表示する
+- `openxlsx` パッケージの `write.xlsx()` でExcelに出力する
