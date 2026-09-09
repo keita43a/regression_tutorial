@@ -4,6 +4,28 @@
 .Ruserdata
 .Rproj
 
-.pptx
-
 CLAUDE.md
+
+# bookdown / knitr build artifacts
+/_book/
+/_bookdown_files/
+/libs/
+/figure/
+/*_files/
+
+# Beamer / LaTeX intermediates
+*.log
+/_*_slides.html
+
+# Dropbox conflict copies
+*の競合コピー*
+*conflicted copy*
+
+# 19章コードの実行結果（読者が各自生成するもの）
+/reg_output1.*
+/results_table.xlsx
+
+# misc
+*.pptx
+.DS_Store
+.claude/settings.local.json
