@@ -71,7 +71,7 @@ csvを読み込むには`read_csv()`関数を使う。この関数は`readr`パ�
 
 1. `readr`パッケージをインストールする。(`tidyverse`をインストールしたならば、新たにインストールする必要はない。)
 
-2. `r_renshu`フォルダに`data`フォルダを作成し、武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2023.xlsx" download="musashi_keizai_students_2023.xlsx">こちら</a>からダウンロードして保存するか、以下のコードを実行する。
+2. `r_renshu`フォルダに`data`フォルダを作成し、武蔵大学経済学部の学生数データを<a href="https://keita43a.github.io/regression_tutorial/data/musashi_keizai_students_2025.csv" download="musashi_keizai_students_2025.csv">こちら</a>からダウンロードして保存するか、以下のコードを実行する。
 
 ```{r, eval=FALSE}
 # data ディレクトリの作成
@@ -110,7 +110,7 @@ data_634 <- read_csv("data/musashi_keizai_students_2025.csv")
 ```
 
 - `Error: path does not exist:’`というエラーが出る場合は、ファイルの相対パスが間違っている可能性がある
-  - `r_renshu`プロジェクトを開いていることを確認する
+  - `r_practice`プロジェクトを開いていることを確認する
   - `getwd()`で自分がr_renshuフォルダにいることを確認する
   - `musashi_keizai_students_2023.xlsx`がきちんとdataフォルダに入っていることを確認する
 
@@ -630,7 +630,7 @@ print(data_634_long_dept)
 新たにデータを2つダウンロードする
 
 人文学部の学生数データ。
-人文学部のデータは<a href="https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2023.xlsx" download="musashi_jinbun_students_2023.xlsx">こちら</a>からもダウンロードできる。
+人文学部のデータは<a href="https://keita43a.github.io/regression_tutorial/data/musashi_jinbun_students_2025.csv" download="musashi_jinbun_students_2025.csv">こちら</a>からもダウンロードできる。
 
 ```{r, eval=FALSE}
 # データのダウンロードと保存

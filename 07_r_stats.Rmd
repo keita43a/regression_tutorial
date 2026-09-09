@@ -24,7 +24,7 @@
 
 ## 準備
 
-あらたにRスクリプトを作成し、`stats.R`という名前をつけて保存する。
+あらたにRスクリプトを作成し、`stats.R`という名前をつけて`r_practice`フォルダに保存する。
 
 そして、以下のライブラリを読み込んでおく。ライブラリがなくてエラーが出る場合はインストールしてから再度読み込む。
 
@@ -36,6 +36,16 @@ library(skimr)
 # もしインストールしてない場合は、Rstudioの右下ペーンのPackagesタブからインストールするか、以下のコード
 install.packages("psych")
 install.packages("skimr")
+```
+
+もしくは、`pacman`パッケージを使う場合は
+
+```{r, eval=FALSE}
+pacman::p_load(
+  tidyverse,
+  psych,
+  skimr
+)
 ```
 
 
