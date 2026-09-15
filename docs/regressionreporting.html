@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 21 回帰分析結果のレポーティング | Rによる実証分析入門</title>
+  <title>Chapter 22 回帰分析結果のレポーティング | Rによる実証分析入門</title>
   <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 21 回帰分析結果のレポーティング | Rによる実証分析入門" />
+  <meta property="og:title" content="Chapter 22 回帰分析結果のレポーティング | Rによる実証分析入門" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 21 回帰分析結果のレポーティング | Rによる実証分析入門" />
+  <meta name="twitter:title" content="Chapter 22 回帰分析結果のレポーティング | Rによる実証分析入門" />
   
   <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Keita Abe" />
 
 
-<meta name="date" content="2026-09-09" />
+<meta name="date" content="2026-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -524,161 +524,184 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>15.2.8</b> 回帰分析による差の差法</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="rdd.html"><a href="rdd.html"><i class="fa fa-check"></i><b>16</b> 回帰不連続デザイン</a>
+<li class="chapter" data-level="16" data-path="synth.html"><a href="synth.html"><i class="fa fa-check"></i><b>16</b> 合成コントロール法</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインとは"><i class="fa fa-check"></i><b>16.1</b> 回帰不連続デザインとは</a>
+<li class="chapter" data-level="16.1" data-path="synth.html"><a href="synth.html#合成コントロール法とは"><i class="fa fa-check"></i><b>16.1</b> 合成コントロール法とは</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインのアイデア"><i class="fa fa-check"></i><b>16.1.1</b> 回帰不連続デザインのアイデア</a></li>
-<li class="chapter" data-level="16.1.2" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインの仮定"><i class="fa fa-check"></i><b>16.1.2</b> 回帰不連続デザインの仮定</a></li>
-<li class="chapter" data-level="16.1.3" data-path="rdd.html"><a href="rdd.html#回帰分析を使って行う方法-1"><i class="fa fa-check"></i><b>16.1.3</b> 回帰分析を使って行う方法</a></li>
+<li class="chapter" data-level="16.1.1" data-path="synth.html"><a href="synth.html#差の差法で足りない場面"><i class="fa fa-check"></i><b>16.1.1</b> 差の差法で足りない場面</a></li>
+<li class="chapter" data-level="16.1.2" data-path="synth.html"><a href="synth.html#合成コントロール法のアイデア"><i class="fa fa-check"></i><b>16.1.2</b> 合成コントロール法のアイデア</a></li>
+<li class="chapter" data-level="16.1.3" data-path="synth.html"><a href="synth.html#合成コントロール法の式"><i class="fa fa-check"></i><b>16.1.3</b> 合成コントロール法の式</a></li>
+<li class="chapter" data-level="16.1.4" data-path="synth.html"><a href="synth.html#重みの選び方"><i class="fa fa-check"></i><b>16.1.4</b> 重みの選び方</a></li>
+<li class="chapter" data-level="16.1.5" data-path="synth.html"><a href="synth.html#合成コントロール法の仮定"><i class="fa fa-check"></i><b>16.1.5</b> 合成コントロール法の仮定</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="rdd.html"><a href="rdd.html#rでの演習-1"><i class="fa fa-check"></i><b>16.2</b> Rでの演習</a>
+<li class="chapter" data-level="16.2" data-path="synth.html"><a href="synth.html#rでの演習-1"><i class="fa fa-check"></i><b>16.2</b> Rでの演習</a>
 <ul>
-<li class="chapter" data-level="16.2.1" data-path="rdd.html"><a href="rdd.html#スクリプトの準備-2"><i class="fa fa-check"></i><b>16.2.1</b> スクリプトの準備</a></li>
-<li class="chapter" data-level="16.2.2" data-path="rdd.html"><a href="rdd.html#パッケージの準備-2"><i class="fa fa-check"></i><b>16.2.2</b> パッケージの準備</a></li>
-<li class="chapter" data-level="16.2.3" data-path="rdd.html"><a href="rdd.html#データの準備-2"><i class="fa fa-check"></i><b>16.2.3</b> データの準備</a></li>
-<li class="chapter" data-level="16.2.4" data-path="rdd.html"><a href="rdd.html#データの確認-2"><i class="fa fa-check"></i><b>16.2.4</b> データの確認</a></li>
-<li class="chapter" data-level="16.2.5" data-path="rdd.html"><a href="rdd.html#データの記述統計-2"><i class="fa fa-check"></i><b>16.2.5</b> データの記述統計</a></li>
-<li class="chapter" data-level="16.2.6" data-path="rdd.html"><a href="rdd.html#データの加工-1"><i class="fa fa-check"></i><b>16.2.6</b> データの加工</a></li>
-<li class="chapter" data-level="16.2.7" data-path="rdd.html"><a href="rdd.html#政策による行動への影響"><i class="fa fa-check"></i><b>16.2.7</b> 政策による行動への影響</a></li>
-<li class="chapter" data-level="16.2.8" data-path="rdd.html"><a href="rdd.html#政策による結果への影響"><i class="fa fa-check"></i><b>16.2.8</b> 政策による結果への影響</a></li>
+<li class="chapter" data-level="16.2.1" data-path="synth.html"><a href="synth.html#スクリプトの準備-2"><i class="fa fa-check"></i><b>16.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="16.2.2" data-path="synth.html"><a href="synth.html#パッケージの準備-2"><i class="fa fa-check"></i><b>16.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="16.2.3" data-path="synth.html"><a href="synth.html#データの準備-2"><i class="fa fa-check"></i><b>16.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="16.2.4" data-path="synth.html"><a href="synth.html#カリフォルニア州とほかの州の比較"><i class="fa fa-check"></i><b>16.2.4</b> カリフォルニア州とほかの州の比較</a></li>
+<li class="chapter" data-level="16.2.5" data-path="synth.html"><a href="synth.html#合成コントロールの作成"><i class="fa fa-check"></i><b>16.2.5</b> 合成コントロールの作成</a></li>
+<li class="chapter" data-level="16.2.6" data-path="synth.html"><a href="synth.html#結果の確認"><i class="fa fa-check"></i><b>16.2.6</b> 結果の確認</a></li>
+<li class="chapter" data-level="16.2.7" data-path="synth.html"><a href="synth.html#プラセボ検定による統計的推測"><i class="fa fa-check"></i><b>16.2.7</b> プラセボ検定による統計的推測</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="rdd.html"><a href="rdd.html#演習問題アメリカの飲酒年齢と死亡率"><i class="fa fa-check"></i><b>16.3</b> 演習問題：アメリカの飲酒年齢と死亡率</a></li>
+<li class="chapter" data-level="16.3" data-path="synth.html"><a href="synth.html#合成コントロール法の注意点"><i class="fa fa-check"></i><b>16.3</b> 合成コントロール法の注意点</a></li>
+<li class="chapter" data-level="16.4" data-path="synth.html"><a href="synth.html#まとめ"><i class="fa fa-check"></i><b>16.4</b> まとめ</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="iv.html"><a href="iv.html"><i class="fa fa-check"></i><b>17</b> 操作変数法</a>
+<li class="chapter" data-level="17" data-path="rdd.html"><a href="rdd.html"><i class="fa fa-check"></i><b>17</b> 回帰不連続デザイン</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="iv.html"><a href="iv.html#操作変数法とは"><i class="fa fa-check"></i><b>17.1</b> 操作変数法とは</a>
+<li class="chapter" data-level="17.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインとは"><i class="fa fa-check"></i><b>17.1</b> 回帰不連続デザインとは</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="iv.html"><a href="iv.html#なぜ操作変数法が必要か"><i class="fa fa-check"></i><b>17.1.1</b> なぜ操作変数法が必要か</a></li>
-<li class="chapter" data-level="17.1.2" data-path="iv.html"><a href="iv.html#操作変数法のアイデア"><i class="fa fa-check"></i><b>17.1.2</b> 操作変数法のアイデア</a></li>
-<li class="chapter" data-level="17.1.3" data-path="iv.html"><a href="iv.html#操作変数の2つの条件"><i class="fa fa-check"></i><b>17.1.3</b> 操作変数の2つの条件</a></li>
-<li class="chapter" data-level="17.1.4" data-path="iv.html"><a href="iv.html#段階最小二乗法2sls"><i class="fa fa-check"></i><b>17.1.4</b> 2段階最小二乗法（2SLS）</a></li>
+<li class="chapter" data-level="17.1.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインのアイデア"><i class="fa fa-check"></i><b>17.1.1</b> 回帰不連続デザインのアイデア</a></li>
+<li class="chapter" data-level="17.1.2" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインの仮定"><i class="fa fa-check"></i><b>17.1.2</b> 回帰不連続デザインの仮定</a></li>
+<li class="chapter" data-level="17.1.3" data-path="rdd.html"><a href="rdd.html#回帰分析を使って行う方法-1"><i class="fa fa-check"></i><b>17.1.3</b> 回帰分析を使って行う方法</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="iv.html"><a href="iv.html#rでの演習-2"><i class="fa fa-check"></i><b>17.2</b> Rでの演習</a>
+<li class="chapter" data-level="17.2" data-path="rdd.html"><a href="rdd.html#rでの演習-2"><i class="fa fa-check"></i><b>17.2</b> Rでの演習</a>
 <ul>
-<li class="chapter" data-level="17.2.1" data-path="iv.html"><a href="iv.html#スクリプトの準備-3"><i class="fa fa-check"></i><b>17.2.1</b> スクリプトの準備</a></li>
-<li class="chapter" data-level="17.2.2" data-path="iv.html"><a href="iv.html#パッケージの準備-3"><i class="fa fa-check"></i><b>17.2.2</b> パッケージの準備</a></li>
-<li class="chapter" data-level="17.2.3" data-path="iv.html"><a href="iv.html#データの準備-3"><i class="fa fa-check"></i><b>17.2.3</b> データの準備</a></li>
-<li class="chapter" data-level="17.2.4" data-path="iv.html"><a href="iv.html#操作変数の妥当性の確認第1段階"><i class="fa fa-check"></i><b>17.2.4</b> 操作変数の妥当性の確認（第1段階）</a></li>
-<li class="chapter" data-level="17.2.5" data-path="iv.html"><a href="iv.html#ols推定比較用"><i class="fa fa-check"></i><b>17.2.5</b> OLS推定（比較用）</a></li>
-<li class="chapter" data-level="17.2.6" data-path="iv.html"><a href="iv.html#iv推定2sls"><i class="fa fa-check"></i><b>17.2.6</b> IV推定（2SLS）</a></li>
-<li class="chapter" data-level="17.2.7" data-path="iv.html"><a href="iv.html#olsとivの比較"><i class="fa fa-check"></i><b>17.2.7</b> OLSとIVの比較</a></li>
+<li class="chapter" data-level="17.2.1" data-path="rdd.html"><a href="rdd.html#スクリプトの準備-3"><i class="fa fa-check"></i><b>17.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="17.2.2" data-path="rdd.html"><a href="rdd.html#パッケージの準備-3"><i class="fa fa-check"></i><b>17.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="17.2.3" data-path="rdd.html"><a href="rdd.html#データの準備-3"><i class="fa fa-check"></i><b>17.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="17.2.4" data-path="rdd.html"><a href="rdd.html#データの確認-2"><i class="fa fa-check"></i><b>17.2.4</b> データの確認</a></li>
+<li class="chapter" data-level="17.2.5" data-path="rdd.html"><a href="rdd.html#データの記述統計-2"><i class="fa fa-check"></i><b>17.2.5</b> データの記述統計</a></li>
+<li class="chapter" data-level="17.2.6" data-path="rdd.html"><a href="rdd.html#データの加工-1"><i class="fa fa-check"></i><b>17.2.6</b> データの加工</a></li>
+<li class="chapter" data-level="17.2.7" data-path="rdd.html"><a href="rdd.html#政策による行動への影響"><i class="fa fa-check"></i><b>17.2.7</b> 政策による行動への影響</a></li>
+<li class="chapter" data-level="17.2.8" data-path="rdd.html"><a href="rdd.html#政策による結果への影響"><i class="fa fa-check"></i><b>17.2.8</b> 政策による結果への影響</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="iv.html"><a href="iv.html#まとめ"><i class="fa fa-check"></i><b>17.3</b> まとめ</a></li>
+<li class="chapter" data-level="17.3" data-path="rdd.html"><a href="rdd.html#演習問題アメリカの飲酒年齢と死亡率"><i class="fa fa-check"></i><b>17.3</b> 演習問題：アメリカの飲酒年齢と死亡率</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="hedonic.html"><a href="hedonic.html"><i class="fa fa-check"></i><b>18</b> ヘドニック法</a>
+<li class="chapter" data-level="18" data-path="iv.html"><a href="iv.html"><i class="fa fa-check"></i><b>18</b> 操作変数法</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="hedonic.html"><a href="hedonic.html#ヘドニック法とは"><i class="fa fa-check"></i><b>18.1</b> ヘドニック法とは</a>
+<li class="chapter" data-level="18.1" data-path="iv.html"><a href="iv.html#操作変数法とは"><i class="fa fa-check"></i><b>18.1</b> 操作変数法とは</a>
 <ul>
-<li class="chapter" data-level="18.1.1" data-path="hedonic.html"><a href="hedonic.html#環境の価値をどう測るか"><i class="fa fa-check"></i><b>18.1.1</b> 環境の価値をどう測るか</a></li>
-<li class="chapter" data-level="18.1.2" data-path="hedonic.html"><a href="hedonic.html#ヘドニック価格関数"><i class="fa fa-check"></i><b>18.1.2</b> ヘドニック価格関数</a></li>
-<li class="chapter" data-level="18.1.3" data-path="hedonic.html"><a href="hedonic.html#同じような部屋なのに家賃が違う"><i class="fa fa-check"></i><b>18.1.3</b> 同じような部屋なのに家賃が違う</a></li>
-<li class="chapter" data-level="18.1.4" data-path="hedonic.html"><a href="hedonic.html#なぜ引き算では足りないのか"><i class="fa fa-check"></i><b>18.1.4</b> なぜ引き算では足りないのか</a></li>
-<li class="chapter" data-level="18.1.5" data-path="hedonic.html"><a href="hedonic.html#対数線形モデルと係数の解釈"><i class="fa fa-check"></i><b>18.1.5</b> 対数線形モデルと係数の解釈</a></li>
+<li class="chapter" data-level="18.1.1" data-path="iv.html"><a href="iv.html#なぜ操作変数法が必要か"><i class="fa fa-check"></i><b>18.1.1</b> なぜ操作変数法が必要か</a></li>
+<li class="chapter" data-level="18.1.2" data-path="iv.html"><a href="iv.html#操作変数法のアイデア"><i class="fa fa-check"></i><b>18.1.2</b> 操作変数法のアイデア</a></li>
+<li class="chapter" data-level="18.1.3" data-path="iv.html"><a href="iv.html#操作変数の2つの条件"><i class="fa fa-check"></i><b>18.1.3</b> 操作変数の2つの条件</a></li>
+<li class="chapter" data-level="18.1.4" data-path="iv.html"><a href="iv.html#段階最小二乗法2sls"><i class="fa fa-check"></i><b>18.1.4</b> 2段階最小二乗法（2SLS）</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="hedonic.html"><a href="hedonic.html#rでの演習-3"><i class="fa fa-check"></i><b>18.2</b> Rでの演習</a>
+<li class="chapter" data-level="18.2" data-path="iv.html"><a href="iv.html#rでの演習-3"><i class="fa fa-check"></i><b>18.2</b> Rでの演習</a>
 <ul>
-<li class="chapter" data-level="18.2.1" data-path="hedonic.html"><a href="hedonic.html#スクリプトの準備-4"><i class="fa fa-check"></i><b>18.2.1</b> スクリプトの準備</a></li>
-<li class="chapter" data-level="18.2.2" data-path="hedonic.html"><a href="hedonic.html#パッケージの準備-4"><i class="fa fa-check"></i><b>18.2.2</b> パッケージの準備</a></li>
-<li class="chapter" data-level="18.2.3" data-path="hedonic.html"><a href="hedonic.html#データの準備-4"><i class="fa fa-check"></i><b>18.2.3</b> データの準備</a></li>
-<li class="chapter" data-level="18.2.4" data-path="hedonic.html"><a href="hedonic.html#単回帰から始める"><i class="fa fa-check"></i><b>18.2.4</b> 単回帰から始める</a></li>
-<li class="chapter" data-level="18.2.5" data-path="hedonic.html"><a href="hedonic.html#変数を加える"><i class="fa fa-check"></i><b>18.2.5</b> 変数を加える</a></li>
-<li class="chapter" data-level="18.2.6" data-path="hedonic.html"><a href="hedonic.html#ヘドニック価格関数の推定"><i class="fa fa-check"></i><b>18.2.6</b> ヘドニック価格関数の推定</a></li>
-<li class="chapter" data-level="18.2.7" data-path="hedonic.html"><a href="hedonic.html#限界価値の計算"><i class="fa fa-check"></i><b>18.2.7</b> 限界価値の計算</a></li>
+<li class="chapter" data-level="18.2.1" data-path="iv.html"><a href="iv.html#スクリプトの準備-4"><i class="fa fa-check"></i><b>18.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="18.2.2" data-path="iv.html"><a href="iv.html#パッケージの準備-4"><i class="fa fa-check"></i><b>18.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="18.2.3" data-path="iv.html"><a href="iv.html#データの準備-4"><i class="fa fa-check"></i><b>18.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="18.2.4" data-path="iv.html"><a href="iv.html#操作変数の妥当性の確認第1段階"><i class="fa fa-check"></i><b>18.2.4</b> 操作変数の妥当性の確認（第1段階）</a></li>
+<li class="chapter" data-level="18.2.5" data-path="iv.html"><a href="iv.html#ols推定比較用"><i class="fa fa-check"></i><b>18.2.5</b> OLS推定（比較用）</a></li>
+<li class="chapter" data-level="18.2.6" data-path="iv.html"><a href="iv.html#iv推定2sls"><i class="fa fa-check"></i><b>18.2.6</b> IV推定（2SLS）</a></li>
+<li class="chapter" data-level="18.2.7" data-path="iv.html"><a href="iv.html#olsとivの比較"><i class="fa fa-check"></i><b>18.2.7</b> OLSとIVの比較</a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="hedonic.html"><a href="hedonic.html#ヘドニック法の注意点"><i class="fa fa-check"></i><b>18.3</b> ヘドニック法の注意点</a></li>
-<li class="chapter" data-level="18.4" data-path="hedonic.html"><a href="hedonic.html#まとめ-1"><i class="fa fa-check"></i><b>18.4</b> まとめ</a></li>
+<li class="chapter" data-level="18.3" data-path="iv.html"><a href="iv.html#まとめ-1"><i class="fa fa-check"></i><b>18.3</b> まとめ</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="dce.html"><a href="dce.html"><i class="fa fa-check"></i><b>19</b> 選択実験</a>
+<li class="chapter" data-level="19" data-path="hedonic.html"><a href="hedonic.html"><i class="fa fa-check"></i><b>19</b> ヘドニック法</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="dce.html"><a href="dce.html#選択実験とは"><i class="fa fa-check"></i><b>19.1</b> 選択実験とは</a>
+<li class="chapter" data-level="19.1" data-path="hedonic.html"><a href="hedonic.html#ヘドニック法とは"><i class="fa fa-check"></i><b>19.1</b> ヘドニック法とは</a>
 <ul>
-<li class="chapter" data-level="19.1.1" data-path="dce.html"><a href="dce.html#市場のない財の価値を測る"><i class="fa fa-check"></i><b>19.1.1</b> 市場のない財の価値を測る</a></li>
-<li class="chapter" data-level="19.1.2" data-path="dce.html"><a href="dce.html#選択実験の考え方"><i class="fa fa-check"></i><b>19.1.2</b> 選択実験の考え方</a></li>
-<li class="chapter" data-level="19.1.3" data-path="dce.html"><a href="dce.html#属性水準選択肢集合"><i class="fa fa-check"></i><b>19.1.3</b> 属性・水準・選択肢集合</a></li>
-<li class="chapter" data-level="19.1.4" data-path="dce.html"><a href="dce.html#ランダム効用理論"><i class="fa fa-check"></i><b>19.1.4</b> ランダム効用理論</a></li>
-<li class="chapter" data-level="19.1.5" data-path="dce.html"><a href="dce.html#条件付きロジットモデル"><i class="fa fa-check"></i><b>19.1.5</b> 条件付きロジットモデル</a></li>
-<li class="chapter" data-level="19.1.6" data-path="dce.html"><a href="dce.html#限界支払意思額mwtp"><i class="fa fa-check"></i><b>19.1.6</b> 限界支払意思額（MWTP）</a></li>
+<li class="chapter" data-level="19.1.1" data-path="hedonic.html"><a href="hedonic.html#環境の価値をどう測るか"><i class="fa fa-check"></i><b>19.1.1</b> 環境の価値をどう測るか</a></li>
+<li class="chapter" data-level="19.1.2" data-path="hedonic.html"><a href="hedonic.html#ヘドニック価格関数"><i class="fa fa-check"></i><b>19.1.2</b> ヘドニック価格関数</a></li>
+<li class="chapter" data-level="19.1.3" data-path="hedonic.html"><a href="hedonic.html#同じような部屋なのに家賃が違う"><i class="fa fa-check"></i><b>19.1.3</b> 同じような部屋なのに家賃が違う</a></li>
+<li class="chapter" data-level="19.1.4" data-path="hedonic.html"><a href="hedonic.html#なぜ引き算では足りないのか"><i class="fa fa-check"></i><b>19.1.4</b> なぜ引き算では足りないのか</a></li>
+<li class="chapter" data-level="19.1.5" data-path="hedonic.html"><a href="hedonic.html#対数線形モデルと係数の解釈"><i class="fa fa-check"></i><b>19.1.5</b> 対数線形モデルと係数の解釈</a></li>
 </ul></li>
-<li class="chapter" data-level="19.2" data-path="dce.html"><a href="dce.html#rでの演習-4"><i class="fa fa-check"></i><b>19.2</b> Rでの演習</a>
+<li class="chapter" data-level="19.2" data-path="hedonic.html"><a href="hedonic.html#rでの演習-4"><i class="fa fa-check"></i><b>19.2</b> Rでの演習</a>
 <ul>
-<li class="chapter" data-level="19.2.1" data-path="dce.html"><a href="dce.html#この演習で使うデータについて"><i class="fa fa-check"></i><b>19.2.1</b> この演習で使うデータについて</a></li>
-<li class="chapter" data-level="19.2.2" data-path="dce.html"><a href="dce.html#スクリプトの準備-5"><i class="fa fa-check"></i><b>19.2.2</b> スクリプトの準備</a></li>
-<li class="chapter" data-level="19.2.3" data-path="dce.html"><a href="dce.html#パッケージの準備-5"><i class="fa fa-check"></i><b>19.2.3</b> パッケージの準備</a></li>
-<li class="chapter" data-level="19.2.4" data-path="dce.html"><a href="dce.html#選択肢集合の設計"><i class="fa fa-check"></i><b>19.2.4</b> 選択肢集合の設計</a></li>
-<li class="chapter" data-level="19.2.5" data-path="dce.html"><a href="dce.html#回答データの読み込み"><i class="fa fa-check"></i><b>19.2.5</b> 回答データの読み込み</a></li>
-<li class="chapter" data-level="19.2.6" data-path="dce.html"><a href="dce.html#分析用データの作成"><i class="fa fa-check"></i><b>19.2.6</b> 分析用データの作成</a></li>
-<li class="chapter" data-level="19.2.7" data-path="dce.html"><a href="dce.html#条件付きロジットの推定"><i class="fa fa-check"></i><b>19.2.7</b> 条件付きロジットの推定</a></li>
-<li class="chapter" data-level="19.2.8" data-path="dce.html"><a href="dce.html#モデルの適合度"><i class="fa fa-check"></i><b>19.2.8</b> モデルの適合度</a></li>
-<li class="chapter" data-level="19.2.9" data-path="dce.html"><a href="dce.html#限界支払意思額の計算"><i class="fa fa-check"></i><b>19.2.9</b> 限界支払意思額の計算</a></li>
-<li class="chapter" data-level="19.2.10" data-path="dce.html"><a href="dce.html#真の値と比べてみる"><i class="fa fa-check"></i><b>19.2.10</b> 真の値と比べてみる</a></li>
+<li class="chapter" data-level="19.2.1" data-path="hedonic.html"><a href="hedonic.html#スクリプトの準備-5"><i class="fa fa-check"></i><b>19.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="19.2.2" data-path="hedonic.html"><a href="hedonic.html#パッケージの準備-5"><i class="fa fa-check"></i><b>19.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="19.2.3" data-path="hedonic.html"><a href="hedonic.html#データの準備-5"><i class="fa fa-check"></i><b>19.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="19.2.4" data-path="hedonic.html"><a href="hedonic.html#単回帰から始める"><i class="fa fa-check"></i><b>19.2.4</b> 単回帰から始める</a></li>
+<li class="chapter" data-level="19.2.5" data-path="hedonic.html"><a href="hedonic.html#変数を加える"><i class="fa fa-check"></i><b>19.2.5</b> 変数を加える</a></li>
+<li class="chapter" data-level="19.2.6" data-path="hedonic.html"><a href="hedonic.html#ヘドニック価格関数の推定"><i class="fa fa-check"></i><b>19.2.6</b> ヘドニック価格関数の推定</a></li>
+<li class="chapter" data-level="19.2.7" data-path="hedonic.html"><a href="hedonic.html#限界価値の計算"><i class="fa fa-check"></i><b>19.2.7</b> 限界価値の計算</a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="dce.html"><a href="dce.html#選択実験の注意点"><i class="fa fa-check"></i><b>19.3</b> 選択実験の注意点</a></li>
-<li class="chapter" data-level="19.4" data-path="dce.html"><a href="dce.html#まとめ-2"><i class="fa fa-check"></i><b>19.4</b> まとめ</a></li>
+<li class="chapter" data-level="19.3" data-path="hedonic.html"><a href="hedonic.html#ヘドニック法の注意点"><i class="fa fa-check"></i><b>19.3</b> ヘドニック法の注意点</a></li>
+<li class="chapter" data-level="19.4" data-path="hedonic.html"><a href="hedonic.html#まとめ-2"><i class="fa fa-check"></i><b>19.4</b> まとめ</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="e-stat.html"><a href="e-stat.html"><i class="fa fa-check"></i><b>20</b> e-statの利用方法</a>
+<li class="chapter" data-level="20" data-path="dce.html"><a href="dce.html"><i class="fa fa-check"></i><b>20</b> 選択実験</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="e-stat.html"><a href="e-stat.html#e-statとは"><i class="fa fa-check"></i><b>20.1</b> e-statとは</a></li>
-<li class="chapter" data-level="20.2" data-path="e-stat.html"><a href="e-stat.html#e-statの使い方"><i class="fa fa-check"></i><b>20.2</b> e-statの使い方</a></li>
-<li class="chapter" data-level="20.3" data-path="e-stat.html"><a href="e-stat.html#e-stat-apiの使い方"><i class="fa fa-check"></i><b>20.3</b> e-stat APIの使い方</a>
+<li class="chapter" data-level="20.1" data-path="dce.html"><a href="dce.html#選択実験とは"><i class="fa fa-check"></i><b>20.1</b> 選択実験とは</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="e-stat.html"><a href="e-stat.html#apiの準備"><i class="fa fa-check"></i><b>20.3.1</b> APIの準備</a></li>
-<li class="chapter" data-level="20.3.2" data-path="e-stat.html"><a href="e-stat.html#estatapiパッケージでデータを利用する"><i class="fa fa-check"></i><b>20.3.2</b> estatapiパッケージでデータを利用する</a></li>
-<li class="chapter" data-level="20.3.3" data-path="e-stat.html"><a href="e-stat.html#データ加工の例"><i class="fa fa-check"></i><b>20.3.3</b> データ加工の例</a></li>
-<li class="chapter" data-level="20.3.4" data-path="e-stat.html"><a href="e-stat.html#データ描画の例"><i class="fa fa-check"></i><b>20.3.4</b> データ描画の例</a></li>
+<li class="chapter" data-level="20.1.1" data-path="dce.html"><a href="dce.html#市場のない財の価値を測る"><i class="fa fa-check"></i><b>20.1.1</b> 市場のない財の価値を測る</a></li>
+<li class="chapter" data-level="20.1.2" data-path="dce.html"><a href="dce.html#選択実験の考え方"><i class="fa fa-check"></i><b>20.1.2</b> 選択実験の考え方</a></li>
+<li class="chapter" data-level="20.1.3" data-path="dce.html"><a href="dce.html#属性水準選択肢集合"><i class="fa fa-check"></i><b>20.1.3</b> 属性・水準・選択肢集合</a></li>
+<li class="chapter" data-level="20.1.4" data-path="dce.html"><a href="dce.html#ランダム効用理論"><i class="fa fa-check"></i><b>20.1.4</b> ランダム効用理論</a></li>
+<li class="chapter" data-level="20.1.5" data-path="dce.html"><a href="dce.html#条件付きロジットモデル"><i class="fa fa-check"></i><b>20.1.5</b> 条件付きロジットモデル</a></li>
+<li class="chapter" data-level="20.1.6" data-path="dce.html"><a href="dce.html#限界支払意思額mwtp"><i class="fa fa-check"></i><b>20.1.6</b> 限界支払意思額（MWTP）</a></li>
 </ul></li>
+<li class="chapter" data-level="20.2" data-path="dce.html"><a href="dce.html#rでの演習-5"><i class="fa fa-check"></i><b>20.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="dce.html"><a href="dce.html#この演習で使うデータについて"><i class="fa fa-check"></i><b>20.2.1</b> この演習で使うデータについて</a></li>
+<li class="chapter" data-level="20.2.2" data-path="dce.html"><a href="dce.html#スクリプトの準備-6"><i class="fa fa-check"></i><b>20.2.2</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="20.2.3" data-path="dce.html"><a href="dce.html#パッケージの準備-6"><i class="fa fa-check"></i><b>20.2.3</b> パッケージの準備</a></li>
+<li class="chapter" data-level="20.2.4" data-path="dce.html"><a href="dce.html#選択肢集合の設計"><i class="fa fa-check"></i><b>20.2.4</b> 選択肢集合の設計</a></li>
+<li class="chapter" data-level="20.2.5" data-path="dce.html"><a href="dce.html#回答データの読み込み"><i class="fa fa-check"></i><b>20.2.5</b> 回答データの読み込み</a></li>
+<li class="chapter" data-level="20.2.6" data-path="dce.html"><a href="dce.html#分析用データの作成"><i class="fa fa-check"></i><b>20.2.6</b> 分析用データの作成</a></li>
+<li class="chapter" data-level="20.2.7" data-path="dce.html"><a href="dce.html#条件付きロジットの推定"><i class="fa fa-check"></i><b>20.2.7</b> 条件付きロジットの推定</a></li>
+<li class="chapter" data-level="20.2.8" data-path="dce.html"><a href="dce.html#モデルの適合度"><i class="fa fa-check"></i><b>20.2.8</b> モデルの適合度</a></li>
+<li class="chapter" data-level="20.2.9" data-path="dce.html"><a href="dce.html#限界支払意思額の計算"><i class="fa fa-check"></i><b>20.2.9</b> 限界支払意思額の計算</a></li>
+<li class="chapter" data-level="20.2.10" data-path="dce.html"><a href="dce.html#真の値と比べてみる"><i class="fa fa-check"></i><b>20.2.10</b> 真の値と比べてみる</a></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="regressionreporting.html"><a href="regressionreporting.html"><i class="fa fa-check"></i><b>21</b> 回帰分析結果のレポーティング</a>
-<ul>
-<li class="chapter" data-level="21.1" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析結果の報告"><i class="fa fa-check"></i><b>21.1</b> 回帰分析結果の報告</a></li>
-<li class="chapter" data-level="21.2" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析の結果の報告"><i class="fa fa-check"></i><b>21.2</b> 回帰分析の結果の報告</a></li>
-<li class="chapter" data-level="21.3" data-path="regressionreporting.html"><a href="regressionreporting.html#modelsummaryによる表作成"><i class="fa fa-check"></i><b>21.3</b> modelsummary()による表作成</a>
-<ul>
-<li class="chapter" data-level="21.3.1" data-path="regressionreporting.html"><a href="regressionreporting.html#表の出力"><i class="fa fa-check"></i><b>21.3.1</b> 表の出力</a></li>
-<li class="chapter" data-level="21.3.2" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定"><i class="fa fa-check"></i><b>21.3.2</b> 変数名の設定</a></li>
-<li class="chapter" data-level="21.3.3" data-path="regressionreporting.html"><a href="regressionreporting.html#有意水準を示す星の表示"><i class="fa fa-check"></i><b>21.3.3</b> 有意水準を示す星の表示</a></li>
-<li class="chapter" data-level="21.3.4" data-path="regressionreporting.html"><a href="regressionreporting.html#不必要な統計量の非表示"><i class="fa fa-check"></i><b>21.3.4</b> 不必要な統計量の非表示</a></li>
-<li class="chapter" data-level="21.3.5" data-path="regressionreporting.html"><a href="regressionreporting.html#モデルに名前をつける"><i class="fa fa-check"></i><b>21.3.5</b> モデルに名前をつける</a></li>
-<li class="chapter" data-level="21.3.6" data-path="regressionreporting.html"><a href="regressionreporting.html#固定効果の表示"><i class="fa fa-check"></i><b>21.3.6</b> 固定効果の表示</a></li>
-<li class="chapter" data-level="21.3.7" data-path="regressionreporting.html"><a href="regressionreporting.html#ファイルへの出力"><i class="fa fa-check"></i><b>21.3.7</b> ファイルへの出力</a></li>
+<li class="chapter" data-level="20.3" data-path="dce.html"><a href="dce.html#選択実験の注意点"><i class="fa fa-check"></i><b>20.3</b> 選択実験の注意点</a></li>
+<li class="chapter" data-level="20.4" data-path="dce.html"><a href="dce.html#まとめ-3"><i class="fa fa-check"></i><b>20.4</b> まとめ</a></li>
 </ul></li>
-<li class="chapter" data-level="21.4" data-path="regressionreporting.html"><a href="regressionreporting.html#etableによる表作成"><i class="fa fa-check"></i><b>21.4</b> etable()による表作成</a>
+<li class="chapter" data-level="21" data-path="e-stat.html"><a href="e-stat.html"><i class="fa fa-check"></i><b>21</b> e-statの利用方法</a>
 <ul>
-<li class="chapter" data-level="21.4.1" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定-1"><i class="fa fa-check"></i><b>21.4.1</b> 変数名の設定</a></li>
-<li class="chapter" data-level="21.4.2" data-path="regressionreporting.html"><a href="regressionreporting.html#標準誤差の数値を係数の下に表示"><i class="fa fa-check"></i><b>21.4.2</b> 標準誤差の数値を係数の下に表示</a></li>
-<li class="chapter" data-level="21.4.3" data-path="regressionreporting.html"><a href="regressionreporting.html#エクセルへの出力"><i class="fa fa-check"></i><b>21.4.3</b> エクセルへの出力</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="22" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html"><i class="fa fa-check"></i><b>22</b> ゼミ演習解答</a>
+<li class="chapter" data-level="21.1" data-path="e-stat.html"><a href="e-stat.html#e-statとは"><i class="fa fa-check"></i><b>21.1</b> e-statとは</a></li>
+<li class="chapter" data-level="21.2" data-path="e-stat.html"><a href="e-stat.html#e-statの使い方"><i class="fa fa-check"></i><b>21.2</b> e-statの使い方</a></li>
+<li class="chapter" data-level="21.3" data-path="e-stat.html"><a href="e-stat.html#e-stat-apiの使い方"><i class="fa fa-check"></i><b>21.3</b> e-stat APIの使い方</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#課題"><i class="fa fa-check"></i><b>22.1</b> 課題</a>
-<ul>
-<li class="chapter" data-level="22.1.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル１データを読み込む"><i class="fa fa-check"></i><b>22.1.1</b> レベル１：データを読み込む</a></li>
-<li class="chapter" data-level="22.1.2" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル２折れ線グラフを描く"><i class="fa fa-check"></i><b>22.1.2</b> レベル２：折れ線グラフを描く</a></li>
-<li class="chapter" data-level="22.1.3" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル３データを絞る"><i class="fa fa-check"></i><b>22.1.3</b> レベル３：データを絞る</a></li>
-<li class="chapter" data-level="22.1.4" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル４色を追加する"><i class="fa fa-check"></i><b>22.1.4</b> レベル４：色を追加する</a></li>
-<li class="chapter" data-level="22.1.5" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル５単位の調整"><i class="fa fa-check"></i><b>22.1.5</b> レベル５：単位の調整</a></li>
-<li class="chapter" data-level="22.1.6" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル６２軸目の追加"><i class="fa fa-check"></i><b>22.1.6</b> レベル６：２軸目の追加</a></li>
-<li class="chapter" data-level="22.1.7" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル7日本語のラベルなどの追加"><i class="fa fa-check"></i><b>22.1.7</b> レベル7：日本語のラベルなどの追加</a></li>
-<li class="chapter" data-level="22.1.8" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル８細かい見た目の調整"><i class="fa fa-check"></i><b>22.1.8</b> レベル８：細かい見た目の調整</a></li>
-<li class="chapter" data-level="22.1.9" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル９図を保存する"><i class="fa fa-check"></i><b>22.1.9</b> レベル９：図を保存する</a></li>
+<li class="chapter" data-level="21.3.1" data-path="e-stat.html"><a href="e-stat.html#apiの準備"><i class="fa fa-check"></i><b>21.3.1</b> APIの準備</a></li>
+<li class="chapter" data-level="21.3.2" data-path="e-stat.html"><a href="e-stat.html#estatapiパッケージでデータを利用する"><i class="fa fa-check"></i><b>21.3.2</b> estatapiパッケージでデータを利用する</a></li>
+<li class="chapter" data-level="21.3.3" data-path="e-stat.html"><a href="e-stat.html#データ加工の例"><i class="fa fa-check"></i><b>21.3.3</b> データ加工の例</a></li>
+<li class="chapter" data-level="21.3.4" data-path="e-stat.html"><a href="e-stat.html#データ描画の例"><i class="fa fa-check"></i><b>21.3.4</b> データ描画の例</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="regressionpractice.html"><a href="regressionpractice.html"><i class="fa fa-check"></i><b>23</b> 総合復習問題：回帰分析</a>
+<li class="chapter" data-level="22" data-path="regressionreporting.html"><a href="regressionreporting.html"><i class="fa fa-check"></i><b>22</b> 回帰分析結果のレポーティング</a>
 <ul>
-<li class="chapter" data-level="23.1" data-path="regressionpractice.html"><a href="regressionpractice.html#準備-6"><i class="fa fa-check"></i><b>23.1</b> 準備</a></li>
-<li class="chapter" data-level="23.2" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q1"><i class="fa fa-check"></i><b>23.2</b> 問1：データの読み込みと確認</a></li>
-<li class="chapter" data-level="23.3" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q2"><i class="fa fa-check"></i><b>23.3</b> 問2：データ操作</a></li>
-<li class="chapter" data-level="23.4" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q3"><i class="fa fa-check"></i><b>23.4</b> 問3：記述統計</a></li>
-<li class="chapter" data-level="23.5" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q4"><i class="fa fa-check"></i><b>23.5</b> 問4：散布図</a></li>
-<li class="chapter" data-level="23.6" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q5"><i class="fa fa-check"></i><b>23.6</b> 問5：単回帰分析</a></li>
-<li class="chapter" data-level="23.7" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q6"><i class="fa fa-check"></i><b>23.7</b> 問6：重回帰分析</a></li>
-<li class="chapter" data-level="23.8" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q7"><i class="fa fa-check"></i><b>23.8</b> 問7：説明変数の追加</a></li>
-<li class="chapter" data-level="23.9" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q8"><i class="fa fa-check"></i><b>23.9</b> 問8：回帰分析表の作成</a>
+<li class="chapter" data-level="22.1" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析結果の報告"><i class="fa fa-check"></i><b>22.1</b> 回帰分析結果の報告</a></li>
+<li class="chapter" data-level="22.2" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析の結果の報告"><i class="fa fa-check"></i><b>22.2</b> 回帰分析の結果の報告</a></li>
+<li class="chapter" data-level="22.3" data-path="regressionreporting.html"><a href="regressionreporting.html#modelsummaryによる表作成"><i class="fa fa-check"></i><b>22.3</b> modelsummary()による表作成</a>
 <ul>
-<li class="chapter" data-level="23.9.1" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-1変数名の設定と表の作成"><i class="fa fa-check"></i><b>23.9.1</b> 問8-1：変数名の設定と表の作成</a></li>
-<li class="chapter" data-level="23.9.2" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-2ファイルへの出力"><i class="fa fa-check"></i><b>23.9.2</b> 問8-2：ファイルへの出力</a></li>
-<li class="chapter" data-level="23.9.3" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-3発展etable-を使った出力"><i class="fa fa-check"></i><b>23.9.3</b> 問8-3（発展）：etable() を使った出力</a></li>
+<li class="chapter" data-level="22.3.1" data-path="regressionreporting.html"><a href="regressionreporting.html#表の出力"><i class="fa fa-check"></i><b>22.3.1</b> 表の出力</a></li>
+<li class="chapter" data-level="22.3.2" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定"><i class="fa fa-check"></i><b>22.3.2</b> 変数名の設定</a></li>
+<li class="chapter" data-level="22.3.3" data-path="regressionreporting.html"><a href="regressionreporting.html#有意水準を示す星の表示"><i class="fa fa-check"></i><b>22.3.3</b> 有意水準を示す星の表示</a></li>
+<li class="chapter" data-level="22.3.4" data-path="regressionreporting.html"><a href="regressionreporting.html#不必要な統計量の非表示"><i class="fa fa-check"></i><b>22.3.4</b> 不必要な統計量の非表示</a></li>
+<li class="chapter" data-level="22.3.5" data-path="regressionreporting.html"><a href="regressionreporting.html#モデルに名前をつける"><i class="fa fa-check"></i><b>22.3.5</b> モデルに名前をつける</a></li>
+<li class="chapter" data-level="22.3.6" data-path="regressionreporting.html"><a href="regressionreporting.html#固定効果の表示"><i class="fa fa-check"></i><b>22.3.6</b> 固定効果の表示</a></li>
+<li class="chapter" data-level="22.3.7" data-path="regressionreporting.html"><a href="regressionreporting.html#ファイルへの出力"><i class="fa fa-check"></i><b>22.3.7</b> ファイルへの出力</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="regressionreporting.html"><a href="regressionreporting.html#etableによる表作成"><i class="fa fa-check"></i><b>22.4</b> etable()による表作成</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定-1"><i class="fa fa-check"></i><b>22.4.1</b> 変数名の設定</a></li>
+<li class="chapter" data-level="22.4.2" data-path="regressionreporting.html"><a href="regressionreporting.html#標準誤差の数値を係数の下に表示"><i class="fa fa-check"></i><b>22.4.2</b> 標準誤差の数値を係数の下に表示</a></li>
+<li class="chapter" data-level="22.4.3" data-path="regressionreporting.html"><a href="regressionreporting.html#エクセルへの出力"><i class="fa fa-check"></i><b>22.4.3</b> エクセルへの出力</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html"><i class="fa fa-check"></i><b>23</b> ゼミ演習解答</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#課題"><i class="fa fa-check"></i><b>23.1</b> 課題</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル１データを読み込む"><i class="fa fa-check"></i><b>23.1.1</b> レベル１：データを読み込む</a></li>
+<li class="chapter" data-level="23.1.2" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル２折れ線グラフを描く"><i class="fa fa-check"></i><b>23.1.2</b> レベル２：折れ線グラフを描く</a></li>
+<li class="chapter" data-level="23.1.3" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル３データを絞る"><i class="fa fa-check"></i><b>23.1.3</b> レベル３：データを絞る</a></li>
+<li class="chapter" data-level="23.1.4" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル４色を追加する"><i class="fa fa-check"></i><b>23.1.4</b> レベル４：色を追加する</a></li>
+<li class="chapter" data-level="23.1.5" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル５単位の調整"><i class="fa fa-check"></i><b>23.1.5</b> レベル５：単位の調整</a></li>
+<li class="chapter" data-level="23.1.6" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル６２軸目の追加"><i class="fa fa-check"></i><b>23.1.6</b> レベル６：２軸目の追加</a></li>
+<li class="chapter" data-level="23.1.7" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル7日本語のラベルなどの追加"><i class="fa fa-check"></i><b>23.1.7</b> レベル7：日本語のラベルなどの追加</a></li>
+<li class="chapter" data-level="23.1.8" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル８細かい見た目の調整"><i class="fa fa-check"></i><b>23.1.8</b> レベル８：細かい見た目の調整</a></li>
+<li class="chapter" data-level="23.1.9" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル９図を保存する"><i class="fa fa-check"></i><b>23.1.9</b> レベル９：図を保存する</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="regressionpractice.html"><a href="regressionpractice.html"><i class="fa fa-check"></i><b>24</b> 総合復習問題：回帰分析</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="regressionpractice.html"><a href="regressionpractice.html#準備-6"><i class="fa fa-check"></i><b>24.1</b> 準備</a></li>
+<li class="chapter" data-level="24.2" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q1"><i class="fa fa-check"></i><b>24.2</b> 問1：データの読み込みと確認</a></li>
+<li class="chapter" data-level="24.3" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q2"><i class="fa fa-check"></i><b>24.3</b> 問2：データ操作</a></li>
+<li class="chapter" data-level="24.4" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q3"><i class="fa fa-check"></i><b>24.4</b> 問3：記述統計</a></li>
+<li class="chapter" data-level="24.5" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q4"><i class="fa fa-check"></i><b>24.5</b> 問4：散布図</a></li>
+<li class="chapter" data-level="24.6" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q5"><i class="fa fa-check"></i><b>24.6</b> 問5：単回帰分析</a></li>
+<li class="chapter" data-level="24.7" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q6"><i class="fa fa-check"></i><b>24.7</b> 問6：重回帰分析</a></li>
+<li class="chapter" data-level="24.8" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q7"><i class="fa fa-check"></i><b>24.8</b> 問7：説明変数の追加</a></li>
+<li class="chapter" data-level="24.9" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q8"><i class="fa fa-check"></i><b>24.9</b> 問8：回帰分析表の作成</a>
+<ul>
+<li class="chapter" data-level="24.9.1" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-1変数名の設定と表の作成"><i class="fa fa-check"></i><b>24.9.1</b> 問8-1：変数名の設定と表の作成</a></li>
+<li class="chapter" data-level="24.9.2" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-2ファイルへの出力"><i class="fa fa-check"></i><b>24.9.2</b> 問8-2：ファイルへの出力</a></li>
+<li class="chapter" data-level="24.9.3" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-3発展etable-を使った出力"><i class="fa fa-check"></i><b>24.9.3</b> 問8-3（発展）：etable() を使った出力</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -701,22 +724,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="regressionreporting" class="section level1 hasAnchor" number="21">
-<h1><span class="header-section-number">Chapter 21</span> 回帰分析結果のレポーティング<a href="regressionreporting.html#regressionreporting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="回帰分析結果の報告" class="section level2 hasAnchor" number="21.1">
-<h2><span class="header-section-number">21.1</span> 回帰分析結果の報告<a href="regressionreporting.html#回帰分析結果の報告" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="regressionreporting" class="section level1 hasAnchor" number="22">
+<h1><span class="header-section-number">Chapter 22</span> 回帰分析結果のレポーティング<a href="regressionreporting.html#regressionreporting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="回帰分析結果の報告" class="section level2 hasAnchor" number="22.1">
+<h2><span class="header-section-number">22.1</span> 回帰分析結果の報告<a href="regressionreporting.html#回帰分析結果の報告" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>回帰分析を行ったら、その結果を報告する。報告の際には、結果を<strong>表にして報告</strong>するのがスタンダードである。これは、プレゼンテーションやレポート・論文でも同じである。</p>
 <p>複数のモデルを比較しやすいようにして表にして見せるのがよい。この見せ方は、結果をきちんと伝える上で大変重要である。この章では、回帰分析の表のアウトプットについて解説する。</p>
 </div>
-<div id="回帰分析の結果の報告" class="section level2 hasAnchor" number="21.2">
-<h2><span class="header-section-number">21.2</span> 回帰分析の結果の報告<a href="regressionreporting.html#回帰分析の結果の報告" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="回帰分析の結果の報告" class="section level2 hasAnchor" number="22.2">
+<h2><span class="header-section-number">22.2</span> 回帰分析の結果の報告<a href="regressionreporting.html#回帰分析の結果の報告" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>引き続き<a href="multipleregression.html#multipleregression">重回帰分析の章</a>の例を使ってみよう。
 「# シミュレーションデータの作成」部分を実行して<code>dat_sim</code>というデータを作成しよう。</p>
 <p>そのデータを使って、以下のような２つのモデルを推定する。ここでは<code>fixest</code>パッケージの<code>feols()</code>関数を使っている。</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="regressionreporting.html#cb453-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">feols</span>(sales <span class="op">~</span><span class="st"> </span>ads <span class="op">+</span><span class="st"> </span>age, <span class="dt">data =</span> dat_sim)</span>
-<span id="cb453-2"><a href="regressionreporting.html#cb453-2"></a>model2 &lt;-<span class="st"> </span><span class="kw">feols</span>(sales <span class="op">~</span><span class="st"> </span>ads <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>income, <span class="dt">data =</span> dat_sim)</span>
-<span id="cb453-3"><a href="regressionreporting.html#cb453-3"></a></span>
-<span id="cb453-4"><a href="regressionreporting.html#cb453-4"></a><span class="kw">etable</span>(model1,model2)</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="regressionreporting.html#cb479-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">feols</span>(sales <span class="op">~</span><span class="st"> </span>ads <span class="op">+</span><span class="st"> </span>age, <span class="dt">data =</span> dat_sim)</span>
+<span id="cb479-2"><a href="regressionreporting.html#cb479-2"></a>model2 &lt;-<span class="st"> </span><span class="kw">feols</span>(sales <span class="op">~</span><span class="st"> </span>ads <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>income, <span class="dt">data =</span> dat_sim)</span>
+<span id="cb479-3"><a href="regressionreporting.html#cb479-3"></a></span>
+<span id="cb479-4"><a href="regressionreporting.html#cb479-4"></a><span class="kw">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
 ## Dependent Var.:             sales              sales
 ##                                                     
@@ -732,152 +755,152 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><code>fixest</code>パッケージを使っている場合は、<code>etable()</code>関数で回帰分析表をコンソールに表示できることはすでに解説した。</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="regressionreporting.html#cb455-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;fig/etable_result.png&quot;</span>)</span></code></pre></div>
-<p><img src="fig/etable_result.png" width="560" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="regressionreporting.html#cb481-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;fig/etable_result.png&quot;</span>)</span></code></pre></div>
+<p><img src="fig/etable_result.png" alt="" width="560" style="display: block; margin: auto;" /></p>
 <p>このような結果が出る。</p>
 <p>もしくは、<code>etable()</code>を使わなかったり、<code>lm()</code>や<code>lm_robust()</code>などを使って<code>summary()</code>関数で結果を表示していると、このような結果がコンソールに出るだろう。</p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="regressionreporting.html#cb456-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;fig/summary_result.png&quot;</span>)</span></code></pre></div>
-<p><img src="fig/summary_result.png" width="572" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="regressionreporting.html#cb482-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;fig/summary_result.png&quot;</span>)</span></code></pre></div>
+<p><img src="fig/summary_result.png" alt="" width="572" style="display: block; margin: auto;" /></p>
 <p>この結果を、テキストとしてコピペしてワードに貼り付けたり、スクリーンショットを撮って図として貼り付けたりするケースが見られるが、そのまま見せるのは良くない。なぜなら、ひとことでいうと<strong>美しくない</strong>からである。</p>
 <p>美しさはバカにはできない。美しくない図表は読者の見る気、理解しようとする気を失わせる。きちんと理解してもらうためには、最低限の「身だしなみ」を整える必要がある。</p>
 <p>身だしなみを整える方法として、２つのステップがある。１つは、表としての体裁を整えること。これで8割は決まる。必要な情報を提供することが大事であり、例えば最低限の比較として、<code>summary()</code>を使った結果を並べるより<code>etable()</code>で比較しやすく見せるのは最初に一歩である。しかし、それだけではだめで、さらに見やすく整える必要がある。</p>
 <p>もう一つは、Wordなどの形式にきちんと出力することである。スクリーンショットというアドホックな手法ではなく、きちんとファイル名を指定してファイルを書き出すことで、再現性を高めることができるし、どのファイルがどのようにして生成されたかをコードに残すことができる。さらに、画像ファイルの他にWordやHTML, 上級者向けにはTexなどにも出力することが可能だ。</p>
 <p>ここでは、<code>lm()</code>などにも対応した表作成パッケージの<code>modelsummary</code>の使い方を解説し、その後<code>etable()</code>を使った表作成も解説する。</p>
 </div>
-<div id="modelsummaryによる表作成" class="section level2 hasAnchor" number="21.3">
-<h2><span class="header-section-number">21.3</span> modelsummary()による表作成<a href="regressionreporting.html#modelsummaryによる表作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="modelsummaryによる表作成" class="section level2 hasAnchor" number="22.3">
+<h2><span class="header-section-number">22.3</span> modelsummary()による表作成<a href="regressionreporting.html#modelsummaryによる表作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>まず、<code>modelsummary</code>というパッケージをインストールする。</p>
 <p>例によって、RStudioの右下ペーンのPackagesタブからInstallを押してインストールするか、<code>install.packages("modelsummary")</code>を実行してインストールする。</p>
 <p>インストールしたら、コード上部に<code>library(modelsummary)</code>と追加して読み込むのを忘れずに。</p>
-<div id="表の出力" class="section level3 hasAnchor" number="21.3.1">
-<h3><span class="header-section-number">21.3.1</span> 表の出力<a href="regressionreporting.html#表の出力" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="表の出力" class="section level3 hasAnchor" number="22.3.1">
+<h3><span class="header-section-number">22.3.1</span> 表の出力<a href="regressionreporting.html#表の出力" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>まず、<code>modelsummary()</code>では、出力したい回帰分析オブジェクトを<code>list()</code>でまとめる必要がある。
 例えば、<code>model1</code>と<code>model2</code>を表示したい場合は、<code>list(model1,model2)</code>という形でまとめる。</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="regressionreporting.html#cb457-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2))</span></code></pre></div>
-<p><img src="fig/msummary1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="regressionreporting.html#cb483-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2))</span></code></pre></div>
+<p><img src="fig/msummary1.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p>これを実行すると、右下ペーンのViewerに回帰分析表が表示される。</p>
 <p>これから、この表を見やすく整えていく。</p>
 </div>
-<div id="変数名の設定" class="section level3 hasAnchor" number="21.3.2">
-<h3><span class="header-section-number">21.3.2</span> 変数名の設定<a href="regressionreporting.html#変数名の設定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="変数名の変換" class="section level4 hasAnchor" number="21.3.2.1">
-<h4><span class="header-section-number">21.3.2.1</span> 変数名の変換<a href="regressionreporting.html#変数名の変換" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="変数名の設定" class="section level3 hasAnchor" number="22.3.2">
+<h3><span class="header-section-number">22.3.2</span> 変数名の設定<a href="regressionreporting.html#変数名の設定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="変数名の変換" class="section level4 hasAnchor" number="22.3.2.1">
+<h4><span class="header-section-number">22.3.2.1</span> 変数名の変換<a href="regressionreporting.html#変数名の変換" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>モデル推定に直接使用した説明変数の変数名は、読者にとってはわかりにくい。
 もっとわかりやすい名前に変えて表に示すほうが親切である。</p>
 <p>そのためには、変数名と変換したい名前の「辞書」を作成する。
 具体的には、以下のように変数名と変換したい名前を<code>=</code>つなぎ、<code>c()</code>でまとめ、オブジェクトに保存する。</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="regressionreporting.html#cb458-1"></a>varname_dict &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">sales =</span> <span class="st">&quot;支店の売上&quot;</span>,</span>
-<span id="cb458-2"><a href="regressionreporting.html#cb458-2"></a>                  <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;切片&quot;</span>,</span>
-<span id="cb458-3"><a href="regressionreporting.html#cb458-3"></a>                  <span class="dt">ads =</span> <span class="st">&quot;広告ダミー&quot;</span>,</span>
-<span id="cb458-4"><a href="regressionreporting.html#cb458-4"></a>                  <span class="dt">age =</span> <span class="st">&quot;店長の年齢(歳)&quot;</span>,</span>
-<span id="cb458-5"><a href="regressionreporting.html#cb458-5"></a>                  <span class="dt">income =</span> <span class="st">&quot;地域の平均所得(万円)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="regressionreporting.html#cb484-1"></a>varname_dict &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">sales =</span> <span class="st">&quot;支店の売上&quot;</span>,</span>
+<span id="cb484-2"><a href="regressionreporting.html#cb484-2"></a>                  <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;切片&quot;</span>,</span>
+<span id="cb484-3"><a href="regressionreporting.html#cb484-3"></a>                  <span class="dt">ads =</span> <span class="st">&quot;広告ダミー&quot;</span>,</span>
+<span id="cb484-4"><a href="regressionreporting.html#cb484-4"></a>                  <span class="dt">age =</span> <span class="st">&quot;店長の年齢(歳)&quot;</span>,</span>
+<span id="cb484-5"><a href="regressionreporting.html#cb484-5"></a>                  <span class="dt">income =</span> <span class="st">&quot;地域の平均所得(万円)&quot;</span>)</span></code></pre></div>
 <p>そして、<code>coef_rename</code>という引数にこの辞書を指定する。</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="regressionreporting.html#cb459-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2),</span>
-<span id="cb459-2"><a href="regressionreporting.html#cb459-2"></a>             <span class="dt">coef_rename =</span> varname_dict)</span></code></pre></div>
-<p><img src="fig/msummary2.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="regressionreporting.html#cb485-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2),</span>
+<span id="cb485-2"><a href="regressionreporting.html#cb485-2"></a>             <span class="dt">coef_rename =</span> varname_dict)</span></code></pre></div>
+<p><img src="fig/msummary2.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p>すると、対応する変数の名前が変換された表が表示される。</p>
 </div>
-<div id="変数の削除" class="section level4 hasAnchor" number="21.3.2.2">
-<h4><span class="header-section-number">21.3.2.2</span> 変数の削除<a href="regressionreporting.html#変数の削除" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="変数の削除" class="section level4 hasAnchor" number="22.3.2.2">
+<h4><span class="header-section-number">22.3.2.2</span> 変数の削除<a href="regressionreporting.html#変数の削除" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>変数が多すぎたり、結果に重要な変数ではない場合はそれを非表示にすることもできる。
 例えば、切片は特に解釈するわけではなく、重要ではないので非表示にするとしよう。</p>
 <p>この場合は<code>coef_omit</code>を指定する。</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="regressionreporting.html#cb460-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2),</span>
-<span id="cb460-2"><a href="regressionreporting.html#cb460-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
-<span id="cb460-3"><a href="regressionreporting.html#cb460-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>)</span></code></pre></div>
-<p><img src="fig/msummary3.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="regressionreporting.html#cb486-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2),</span>
+<span id="cb486-2"><a href="regressionreporting.html#cb486-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
+<span id="cb486-3"><a href="regressionreporting.html#cb486-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>)</span></code></pre></div>
+<p><img src="fig/msummary3.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="有意水準を示す星の表示" class="section level3 hasAnchor" number="21.3.3">
-<h3><span class="header-section-number">21.3.3</span> 有意水準を示す星の表示<a href="regressionreporting.html#有意水準を示す星の表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="有意水準を示す星の表示" class="section level3 hasAnchor" number="22.3.3">
+<h3><span class="header-section-number">22.3.3</span> 有意水準を示す星の表示<a href="regressionreporting.html#有意水準を示す星の表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>デフォルトでは、<code>modelsummary</code>は有意水準を示す星(<code>*</code>)が<strong>非表示</strong>になっている。
 表示させるためには、<code>stars</code>という引数に<code>TRUE</code>を指定する。</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="regressionreporting.html#cb461-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2),</span>
-<span id="cb461-2"><a href="regressionreporting.html#cb461-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
-<span id="cb461-3"><a href="regressionreporting.html#cb461-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb461-4"><a href="regressionreporting.html#cb461-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="fig/msummary4.png" width="60%" style="display: block; margin: auto;" />
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="regressionreporting.html#cb487-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2),</span>
+<span id="cb487-2"><a href="regressionreporting.html#cb487-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
+<span id="cb487-3"><a href="regressionreporting.html#cb487-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb487-4"><a href="regressionreporting.html#cb487-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="fig/msummary4.png" alt="" width="60%" style="display: block; margin: auto;" />
 ここでは、有意水準が10%以下で<code>+</code>, 5%以下で<code>*</code>, 1%以下で<code>**</code>, 10%以下で<code>***</code>と表示される設定になっている。この基準も自動的に表の下部に表示される。</p>
 </div>
-<div id="不必要な統計量の非表示" class="section level3 hasAnchor" number="21.3.4">
-<h3><span class="header-section-number">21.3.4</span> 不必要な統計量の非表示<a href="regressionreporting.html#不必要な統計量の非表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="不必要な統計量の非表示" class="section level3 hasAnchor" number="22.3.4">
+<h3><span class="header-section-number">22.3.4</span> 不必要な統計量の非表示<a href="regressionreporting.html#不必要な統計量の非表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>気づいている人もいるかもしれないが、表示された表の下部をみると、モデルの決定係数<code>R2</code>や調整済み決定係数<code>R2 Adj.</code>の他にも<code>AIC</code>などの統計量が表示されている。これは、もっと違う手法を使う場合は表示する必要だが、最小二乗法を使う基本的な回帰分析では表示する必要はない。</p>
 <p>これをどうすれば非表示にできるかというと、<code>gof_omit</code>という引数で指定する。</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="regressionreporting.html#cb462-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2),</span>
-<span id="cb462-2"><a href="regressionreporting.html#cb462-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
-<span id="cb462-3"><a href="regressionreporting.html#cb462-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb462-4"><a href="regressionreporting.html#cb462-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb462-5"><a href="regressionreporting.html#cb462-5"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>)</span></code></pre></div>
-<p><img src="fig/msummary5.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="regressionreporting.html#cb488-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(model1,model2),</span>
+<span id="cb488-2"><a href="regressionreporting.html#cb488-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
+<span id="cb488-3"><a href="regressionreporting.html#cb488-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb488-4"><a href="regressionreporting.html#cb488-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb488-5"><a href="regressionreporting.html#cb488-5"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>)</span></code></pre></div>
+<p><img src="fig/msummary5.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p>データの観察数、決定係数、調整済み決定係数以外の統計量が非表示になった。</p>
 </div>
-<div id="モデルに名前をつける" class="section level3 hasAnchor" number="21.3.5">
-<h3><span class="header-section-number">21.3.5</span> モデルに名前をつける<a href="regressionreporting.html#モデルに名前をつける" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="モデルに名前をつける" class="section level3 hasAnchor" number="22.3.5">
+<h3><span class="header-section-number">22.3.5</span> モデルに名前をつける<a href="regressionreporting.html#モデルに名前をつける" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>各モデルの列は、入力された順番に(1),(2)という数字が自動でつくようになっているが、これに名前をつけることができる。</p>
 <p>名前をつけるには、<code>list()</code>で入力するときに名前を指定する。</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="regressionreporting.html#cb463-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(<span class="st">&quot;モデル1&quot;</span>=model1,<span class="st">&quot;モデル2&quot;</span>=model2),</span>
-<span id="cb463-2"><a href="regressionreporting.html#cb463-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
-<span id="cb463-3"><a href="regressionreporting.html#cb463-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb463-4"><a href="regressionreporting.html#cb463-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb463-5"><a href="regressionreporting.html#cb463-5"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>)</span></code></pre></div>
-<p><img src="fig/msummary6.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="regressionreporting.html#cb489-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(<span class="st">&quot;モデル1&quot;</span>=model1,<span class="st">&quot;モデル2&quot;</span>=model2),</span>
+<span id="cb489-2"><a href="regressionreporting.html#cb489-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
+<span id="cb489-3"><a href="regressionreporting.html#cb489-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb489-4"><a href="regressionreporting.html#cb489-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb489-5"><a href="regressionreporting.html#cb489-5"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>)</span></code></pre></div>
+<p><img src="fig/msummary6.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="固定効果の表示" class="section level3 hasAnchor" number="21.3.6">
-<h3><span class="header-section-number">21.3.6</span> 固定効果の表示<a href="regressionreporting.html#固定効果の表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="固定効果の表示" class="section level3 hasAnchor" number="22.3.6">
+<h3><span class="header-section-number">22.3.6</span> 固定効果の表示<a href="regressionreporting.html#固定効果の表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>固定効果の場合は、固定効果自体をテーブルに表示することは数が多すぎて難しい。しかし、モデルに固定効果を含めているかどうかを表示することは重要だ。
 <code>modelsummary()</code>では固定効果が含まれているかをX印で表示することを自動でやってくれる。</p>
 <p>ここでは<a href="paneldata.html#paneldata">パネルデータの章</a>の例を使って、表の出力を見てみる。</p>
 <p>単回帰モデルと固定効果モデルの両方を推定してオブジェクトにそれぞれ保存する。</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="regressionreporting.html#cb464-1"></a>reg1_panel &lt;-<span class="st"> </span><span class="kw">feols</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax, <span class="dt">data=</span>data_f2)</span>
-<span id="cb464-2"><a href="regressionreporting.html#cb464-2"></a></span>
-<span id="cb464-3"><a href="regressionreporting.html#cb464-3"></a>reg1_panel_fe =<span class="st"> </span><span class="kw">feols</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">|</span><span class="st"> </span>state, <span class="dt">data =</span> data_f2)</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="regressionreporting.html#cb490-1"></a>reg1_panel &lt;-<span class="st"> </span><span class="kw">feols</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax, <span class="dt">data=</span>data_f2)</span>
+<span id="cb490-2"><a href="regressionreporting.html#cb490-2"></a></span>
+<span id="cb490-3"><a href="regressionreporting.html#cb490-3"></a>reg1_panel_fe =<span class="st"> </span><span class="kw">feols</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">|</span><span class="st"> </span>state, <span class="dt">data =</span> data_f2)</span></code></pre></div>
 <p>２つのモデルを並べた表を作成する。
 ここでは単回帰モデル(<code>reg1_panel</code>)を「単回帰」, 固定効果モデル(<code>reg1_panel</code>)を「固定効果」と名前をつけている。</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="regressionreporting.html#cb465-1"></a>varname_dict2 =<span class="st"> </span><span class="kw">c</span>(<span class="dt">beertax=</span><span class="st">&quot;ビール税&quot;</span>)</span>
-<span id="cb465-2"><a href="regressionreporting.html#cb465-2"></a></span>
-<span id="cb465-3"><a href="regressionreporting.html#cb465-3"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(<span class="st">&quot;単回帰&quot;</span>=reg1_panel, <span class="st">&quot;固定効果&quot;</span>=reg1_panel_fe),</span>
-<span id="cb465-4"><a href="regressionreporting.html#cb465-4"></a>             <span class="dt">coef_rename =</span> varname_dict2,</span>
-<span id="cb465-5"><a href="regressionreporting.html#cb465-5"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb465-6"><a href="regressionreporting.html#cb465-6"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb465-7"><a href="regressionreporting.html#cb465-7"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span></span>
-<span id="cb465-8"><a href="regressionreporting.html#cb465-8"></a>             )</span></code></pre></div>
-<p><img src="fig/msummary7.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="regressionreporting.html#cb491-1"></a>varname_dict2 =<span class="st"> </span><span class="kw">c</span>(<span class="dt">beertax=</span><span class="st">&quot;ビール税&quot;</span>)</span>
+<span id="cb491-2"><a href="regressionreporting.html#cb491-2"></a></span>
+<span id="cb491-3"><a href="regressionreporting.html#cb491-3"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(<span class="st">&quot;単回帰&quot;</span>=reg1_panel, <span class="st">&quot;固定効果&quot;</span>=reg1_panel_fe),</span>
+<span id="cb491-4"><a href="regressionreporting.html#cb491-4"></a>             <span class="dt">coef_rename =</span> varname_dict2,</span>
+<span id="cb491-5"><a href="regressionreporting.html#cb491-5"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb491-6"><a href="regressionreporting.html#cb491-6"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb491-7"><a href="regressionreporting.html#cb491-7"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span></span>
+<span id="cb491-8"><a href="regressionreporting.html#cb491-8"></a>             )</span></code></pre></div>
+<p><img src="fig/msummary7.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p>一番下にFE: stateという行が作成され、固定効果を含まないモデルは空欄、含むモデルにはX印がついている。</p>
 </div>
-<div id="ファイルへの出力" class="section level3 hasAnchor" number="21.3.7">
-<h3><span class="header-section-number">21.3.7</span> ファイルへの出力<a href="regressionreporting.html#ファイルへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ファイルへの出力" class="section level3 hasAnchor" number="22.3.7">
+<h3><span class="header-section-number">22.3.7</span> ファイルへの出力<a href="regressionreporting.html#ファイルへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>modelsummary</code>では<code>output</code>という引数にファイル名を指定することで表をファイルに出力することができる。
 ファイル形式は、.docx, .html, .tex, .md, .txt, .csv, .xlsx, .png, .jpgなどが対応している。</p>
-<div id="画像ファイルへの出力" class="section level4 hasAnchor" number="21.3.7.1">
-<h4><span class="header-section-number">21.3.7.1</span> 画像ファイルへの出力<a href="regressionreporting.html#画像ファイルへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="画像ファイルへの出力" class="section level4 hasAnchor" number="22.3.7.1">
+<h4><span class="header-section-number">22.3.7.1</span> 画像ファイルへの出力<a href="regressionreporting.html#画像ファイルへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>output</code>引数に画像ファイルの拡張子で終わるファイル名をつけると、画像ファイルが出力される。</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="regressionreporting.html#cb466-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(<span class="st">&quot;モデル1&quot;</span>=model1,<span class="st">&quot;モデル2&quot;</span>=model2),</span>
-<span id="cb466-2"><a href="regressionreporting.html#cb466-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
-<span id="cb466-3"><a href="regressionreporting.html#cb466-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb466-4"><a href="regressionreporting.html#cb466-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb466-5"><a href="regressionreporting.html#cb466-5"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>,</span>
-<span id="cb466-6"><a href="regressionreporting.html#cb466-6"></a>             <span class="dt">output=</span><span class="st">&quot;reg_output1.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="regressionreporting.html#cb492-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(<span class="st">&quot;モデル1&quot;</span>=model1,<span class="st">&quot;モデル2&quot;</span>=model2),</span>
+<span id="cb492-2"><a href="regressionreporting.html#cb492-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
+<span id="cb492-3"><a href="regressionreporting.html#cb492-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb492-4"><a href="regressionreporting.html#cb492-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb492-5"><a href="regressionreporting.html#cb492-5"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>,</span>
+<span id="cb492-6"><a href="regressionreporting.html#cb492-6"></a>             <span class="dt">output=</span><span class="st">&quot;reg_output1.png&quot;</span>)</span></code></pre></div>
 <p>上のコードを実行してエラーが出なければ、作業ディレクトリの直下に“reg_output1.png”という画像ファイルが出力されているはずである。</p>
 </div>
-<div id="ワードへの出力" class="section level4 hasAnchor" number="21.3.7.2">
-<h4><span class="header-section-number">21.3.7.2</span> ワードへの出力<a href="regressionreporting.html#ワードへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="ワードへの出力" class="section level4 hasAnchor" number="22.3.7.2">
+<h4><span class="header-section-number">22.3.7.2</span> ワードへの出力<a href="regressionreporting.html#ワードへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Mircosoft Wordへの出力も画像と同様に<code>output</code>引数にファイル名を指定し、拡張子を“.docx”とすれば、出力することができる。</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="regressionreporting.html#cb467-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(<span class="st">&quot;モデル1&quot;</span>=model1,<span class="st">&quot;モデル2&quot;</span>=model2),</span>
-<span id="cb467-2"><a href="regressionreporting.html#cb467-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
-<span id="cb467-3"><a href="regressionreporting.html#cb467-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb467-4"><a href="regressionreporting.html#cb467-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb467-5"><a href="regressionreporting.html#cb467-5"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>,</span>
-<span id="cb467-6"><a href="regressionreporting.html#cb467-6"></a>             <span class="dt">output=</span><span class="st">&quot;reg_output1.docx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="regressionreporting.html#cb493-1"></a><span class="kw">modelsummary</span>(<span class="kw">list</span>(<span class="st">&quot;モデル1&quot;</span>=model1,<span class="st">&quot;モデル2&quot;</span>=model2),</span>
+<span id="cb493-2"><a href="regressionreporting.html#cb493-2"></a>             <span class="dt">coef_rename =</span> varname_dict,</span>
+<span id="cb493-3"><a href="regressionreporting.html#cb493-3"></a>             <span class="dt">coef_omit =</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb493-4"><a href="regressionreporting.html#cb493-4"></a>             <span class="dt">stars =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb493-5"><a href="regressionreporting.html#cb493-5"></a>             <span class="dt">gof_omit =</span> <span class="st">&quot;BIC|AIC|RMSE|Std.Errors&quot;</span>,</span>
+<span id="cb493-6"><a href="regressionreporting.html#cb493-6"></a>             <span class="dt">output=</span><span class="st">&quot;reg_output1.docx&quot;</span>)</span></code></pre></div>
 <p>ここで注意点は、ワードファイルに日本語を含む表を出力するとうまくいかないという点である。
 これは一般的には英語などはsingle-byte文字という半角アルファベットなどが使われるが、日本語はmulti-byte文字であり、開発者が日本語などを含むことを想定していないことから来ていると考えられる。</p>
 <p>現状では日本語を使わないか、Wordファイルにした後に手作業で日本語に変換する、もしくは画像ファイルをWordに挿入するなどの対応になるだろう。</p>
 </div>
 </div>
 </div>
-<div id="etableによる表作成" class="section level2 hasAnchor" number="21.4">
-<h2><span class="header-section-number">21.4</span> etable()による表作成<a href="regressionreporting.html#etableによる表作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="etableによる表作成" class="section level2 hasAnchor" number="22.4">
+<h2><span class="header-section-number">22.4</span> etable()による表作成<a href="regressionreporting.html#etableによる表作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>上述の通り、<code>fixest</code>の<code>feols()</code>などで推定した結果のオブジェクトであれば、<code>etable()</code>を使って回帰分析表の形式で出力させることができる。</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="regressionreporting.html#cb468-1"></a><span class="kw">etable</span>(model1,model2)</span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="regressionreporting.html#cb494-1"></a><span class="kw">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
 ## Dependent Var.:             sales              sales
 ##                                                     
@@ -893,19 +916,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>しかし、<code>etable()</code>の弱点として、Wordのファイルに出力しにくいという欠点がある。</p>
-<div id="変数名の設定-1" class="section level3 hasAnchor" number="21.4.1">
-<h3><span class="header-section-number">21.4.1</span> 変数名の設定<a href="regressionreporting.html#変数名の設定-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="変数名の設定-1" class="section level3 hasAnchor" number="22.4.1">
+<h3><span class="header-section-number">22.4.1</span> 変数名の設定<a href="regressionreporting.html#変数名の設定-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>ここで、モデル推定に直接使用した説明変数の変数名は、読者にとってはわかりにくい。
 もっとわかりやすい名前に変えて表に示すほうが親切である。</p>
 <p>これは、<code>setFixest_dict()</code>という関数で設定することができる。</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="regressionreporting.html#cb470-1"></a><span class="kw">setFixest_dict</span>(<span class="kw">c</span>(<span class="dt">sales =</span> <span class="st">&quot;支店の売上&quot;</span>,</span>
-<span id="cb470-2"><a href="regressionreporting.html#cb470-2"></a>                 <span class="dt">ads =</span> <span class="st">&quot;広告ダミー&quot;</span>,</span>
-<span id="cb470-3"><a href="regressionreporting.html#cb470-3"></a>                 <span class="dt">age =</span> <span class="st">&quot;店長の年齢(歳)&quot;</span>,</span>
-<span id="cb470-4"><a href="regressionreporting.html#cb470-4"></a>                 <span class="dt">income =</span> <span class="st">&quot;地域の平均所得(万円)&quot;</span></span>
-<span id="cb470-5"><a href="regressionreporting.html#cb470-5"></a>                 ))</span></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="regressionreporting.html#cb496-1"></a><span class="kw">setFixest_dict</span>(<span class="kw">c</span>(<span class="dt">sales =</span> <span class="st">&quot;支店の売上&quot;</span>,</span>
+<span id="cb496-2"><a href="regressionreporting.html#cb496-2"></a>                 <span class="dt">ads =</span> <span class="st">&quot;広告ダミー&quot;</span>,</span>
+<span id="cb496-3"><a href="regressionreporting.html#cb496-3"></a>                 <span class="dt">age =</span> <span class="st">&quot;店長の年齢(歳)&quot;</span>,</span>
+<span id="cb496-4"><a href="regressionreporting.html#cb496-4"></a>                 <span class="dt">income =</span> <span class="st">&quot;地域の平均所得(万円)&quot;</span></span>
+<span id="cb496-5"><a href="regressionreporting.html#cb496-5"></a>                 ))</span></code></pre></div>
 <p>変数名と変換したい名前を<code>=</code>つなぎ、<code>c()</code>でまとめたものを<code>setFixest_dict()</code>で囲ってやればよい。</p>
 <p>これを設定したら、該当箇所が変換された表が出力される。</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="regressionreporting.html#cb471-1"></a><span class="kw">etable</span>(model1,model2)</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="regressionreporting.html#cb497-1"></a><span class="kw">etable</span>(model1,model2)</span></code></pre></div>
 <pre><code>##                            model1             model2
 ## Dependent Var.:   支店の売上    支店の売上
 ##                                                     
@@ -921,11 +944,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
-<div id="標準誤差の数値を係数の下に表示" class="section level3 hasAnchor" number="21.4.2">
-<h3><span class="header-section-number">21.4.2</span> 標準誤差の数値を係数の下に表示<a href="regressionreporting.html#標準誤差の数値を係数の下に表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="標準誤差の数値を係数の下に表示" class="section level3 hasAnchor" number="22.4.2">
+<h3><span class="header-section-number">22.4.2</span> 標準誤差の数値を係数の下に表示<a href="regressionreporting.html#標準誤差の数値を係数の下に表示" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>se.below = TRUE</code>を追加すると、標準誤差の数値を係数の下に表示する。
 横幅をあまり取らないし、一般的にはこのような形で表示するのがスタンダードである。</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="regressionreporting.html#cb473-1"></a><span class="kw">etable</span>(model1,model2, <span class="dt">se.below =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="regressionreporting.html#cb499-1"></a><span class="kw">etable</span>(model1,model2, <span class="dt">se.below =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##                     model1      model2
 ## Dependent Var.: 支店の売上 支店の売上
 ##                                       
@@ -945,14 +968,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
-<div id="エクセルへの出力" class="section level3 hasAnchor" number="21.4.3">
-<h3><span class="header-section-number">21.4.3</span> エクセルへの出力<a href="regressionreporting.html#エクセルへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="エクセルへの出力" class="section level3 hasAnchor" number="22.4.3">
+<h3><span class="header-section-number">22.4.3</span> エクセルへの出力<a href="regressionreporting.html#エクセルへの出力" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>etable()</code>は現状では簡単にWordに出力する方法はないが、きれいな形でエクセルに出力することはできるため、それをWordに貼り付けて編集することはできる。</p>
 <p><code>openxlsx</code>パッケージをインストールして、<code>library(openxlsx)</code>をコードの上部のlibraryセクションに追加しよう。</p>
 <p>準備ができたら、以下のように<code>etable()</code>の結果をオブジェクトに格納し、そのオブジェクトを<code>write.xlsx</code>という関数でエクセルファイルに書き出す。</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="regressionreporting.html#cb475-1"></a>results &lt;-<span class="st"> </span><span class="kw">etable</span>(model1,model2, <span class="dt">se.below =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb475-2"><a href="regressionreporting.html#cb475-2"></a></span>
-<span id="cb475-3"><a href="regressionreporting.html#cb475-3"></a><span class="kw">write.xlsx</span>(results,<span class="st">&quot;results_table.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="regressionreporting.html#cb501-1"></a>results &lt;-<span class="st"> </span><span class="kw">etable</span>(model1,model2, <span class="dt">se.below =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb501-2"><a href="regressionreporting.html#cb501-2"></a></span>
+<span id="cb501-3"><a href="regressionreporting.html#cb501-3"></a><span class="kw">write.xlsx</span>(results,<span class="st">&quot;results_table.xlsx&quot;</span>)</span></code></pre></div>
 <p>生成されたエクセルファイル<code>results_table.xlsx</code>を見てみると、結果が格納されている。</p>
 
 </div>
@@ -978,42 +1001,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/21_regression_reporting.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["r_basics_musashi.pdf", "r_basics_musashi.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/22_regression_reporting.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["r_basics_musashi.pdf", "r_basics_musashi.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

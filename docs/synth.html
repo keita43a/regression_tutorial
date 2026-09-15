@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 16 合成コントロール法 | Rによる実証分析入門</title>
+  <meta name="description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 16 合成コントロール法 | Rによる実証分析入門" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 16 合成コントロール法 | Rによる実証分析入門" />
+  
+  <meta name="twitter:description" content="Rと計量経済学を用いた基本的な実証分析を説明する資料" />
+  
+
+<meta name="author" content="Keita Abe" />
+
+
+<meta name="date" content="2026-09-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="did.html"/>
+<link rel="next" href="rdd.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R入門</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> この資料について</a></li>
+<li class="chapter" data-level="2" data-path="whatsr.html"><a href="whatsr.html"><i class="fa fa-check"></i><b>2</b> Rとはなにか？</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="whatsr.html"><a href="whatsr.html#r"><i class="fa fa-check"></i><b>2.1</b> R?</a></li>
+<li class="chapter" data-level="2.2" data-path="whatsr.html"><a href="whatsr.html#excelじゃだめなのか"><i class="fa fa-check"></i><b>2.2</b> Excelじゃだめなのか</a></li>
+<li class="chapter" data-level="2.3" data-path="whatsr.html"><a href="whatsr.html#rのよいところ"><i class="fa fa-check"></i><b>2.3</b> Rのよいところ</a></li>
+<li class="chapter" data-level="2.4" data-path="whatsr.html"><a href="whatsr.html#例えばrでできること図表"><i class="fa fa-check"></i><b>2.4</b> 例えばRでできること：図表</a></li>
+<li class="chapter" data-level="2.5" data-path="whatsr.html"><a href="whatsr.html#例えばrでできることウェブアプリ"><i class="fa fa-check"></i><b>2.5</b> 例えばRでできること：ウェブアプリ</a></li>
+<li class="chapter" data-level="2.6" data-path="whatsr.html"><a href="whatsr.html#例えばrでできることウェブスクレイピング"><i class="fa fa-check"></i><b>2.6</b> 例えばRでできること：ウェブスクレイピング</a></li>
+<li class="chapter" data-level="2.7" data-path="whatsr.html"><a href="whatsr.html#地図の分析活用"><i class="fa fa-check"></i><b>2.7</b> 地図の分析・活用</a></li>
+<li class="chapter" data-level="2.8" data-path="whatsr.html"><a href="whatsr.html#rの欠点"><i class="fa fa-check"></i><b>2.8</b> Rの欠点</a></li>
+<li class="chapter" data-level="2.9" data-path="whatsr.html"><a href="whatsr.html#cuiとgui"><i class="fa fa-check"></i><b>2.9</b> CUIとGUI</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="whatsr.html"><a href="whatsr.html#guiの方が楽"><i class="fa fa-check"></i><b>2.9.1</b> GUIの方が楽？</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="whatsr.html"><a href="whatsr.html#プログラミング"><i class="fa fa-check"></i><b>2.10</b> プログラミング</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="howtostart.html"><a href="howtostart.html"><i class="fa fa-check"></i><b>3</b> Rのはじめかた</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="howtostart.html"><a href="howtostart.html#rをどうやって使う"><i class="fa fa-check"></i><b>3.1</b> Rをどうやって使う？</a></li>
+<li class="chapter" data-level="3.2" data-path="howtostart.html"><a href="howtostart.html#rstudioを使う3つの方法"><i class="fa fa-check"></i><b>3.2</b> Rstudioを使う3つの方法</a></li>
+<li class="chapter" data-level="3.3" data-path="howtostart.html"><a href="howtostart.html#rのインストール"><i class="fa fa-check"></i><b>3.3</b> Rのインストール</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="howtostart.html"><a href="howtostart.html#windowsへのインストール"><i class="fa fa-check"></i><b>3.3.1</b> Windowsへのインストール</a></li>
+<li class="chapter" data-level="3.3.2" data-path="howtostart.html"><a href="howtostart.html#mac-osへのインストール"><i class="fa fa-check"></i><b>3.3.2</b> Mac OSへのインストール</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="howtostart.html"><a href="howtostart.html#rstudioのインストール"><i class="fa fa-check"></i><b>3.4</b> Rstudioのインストール</a></li>
+<li class="chapter" data-level="3.5" data-path="howtostart.html"><a href="howtostart.html#rstudioのインターフェース"><i class="fa fa-check"></i><b>3.5</b> Rstudioのインターフェース</a></li>
+<li class="chapter" data-level="3.6" data-path="howtostart.html"><a href="howtostart.html#コンピュータのディレクトリ構造"><i class="fa fa-check"></i><b>3.6</b> コンピュータのディレクトリ構造</a></li>
+<li class="chapter" data-level="3.7" data-path="howtostart.html"><a href="howtostart.html#演習作業フォルダを作ろう"><i class="fa fa-check"></i><b>3.7</b> <strong>演習</strong>：作業フォルダを作ろう</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="howtostart.html"><a href="howtostart.html#自分のパソコン"><i class="fa fa-check"></i><b>3.7.1</b> 自分のパソコン</a></li>
+<li class="chapter" data-level="3.7.2" data-path="howtostart.html"><a href="howtostart.html#学校のパソコン"><i class="fa fa-check"></i><b>3.7.2</b> 学校のパソコン</a></li>
+<li class="chapter" data-level="3.7.3" data-path="howtostart.html"><a href="howtostart.html#posit.cloud"><i class="fa fa-check"></i><b>3.7.3</b> Posit.cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="howtostart.html"><a href="howtostart.html#作業スペース"><i class="fa fa-check"></i><b>3.8</b> 作業スペース</a></li>
+<li class="chapter" data-level="3.9" data-path="howtostart.html"><a href="howtostart.html#プロジェクトの作成"><i class="fa fa-check"></i><b>3.9</b> プロジェクトの作成</a></li>
+<li class="chapter" data-level="3.10" data-path="howtostart.html"><a href="howtostart.html#演習-rプロジェクトを作成してみよう"><i class="fa fa-check"></i><b>3.10</b> <strong>演習</strong>: Rプロジェクトを作成してみよう</a></li>
+<li class="chapter" data-level="3.11" data-path="howtostart.html"><a href="howtostart.html#とりあえず触ってみる"><i class="fa fa-check"></i><b>3.11</b> とりあえず触ってみる</a></li>
+<li class="chapter" data-level="3.12" data-path="howtostart.html"><a href="howtostart.html#scriptmake"><i class="fa fa-check"></i><b>3.12</b> スクリプトの作成</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="howtostart.html"><a href="howtostart.html#演習スクリプトを作成してみる"><i class="fa fa-check"></i><b>3.12.1</b> <strong>演習</strong>：スクリプトを作成してみる</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="howtostart.html"><a href="howtostart.html#実行してみる"><i class="fa fa-check"></i><b>3.13</b> 実行してみる</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="howtostart.html"><a href="howtostart.html#コードを実行する際のポイント"><i class="fa fa-check"></i><b>3.13.1</b> コードを実行する際のポイント</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="howtostart.html"><a href="howtostart.html#スクリプトを書く際の注意点"><i class="fa fa-check"></i><b>3.14</b> スクリプトを書く際の注意点</a>
+<ul>
+<li class="chapter" data-level="3.14.1" data-path="howtostart.html"><a href="howtostart.html#コメント"><i class="fa fa-check"></i><b>3.14.1</b> コメント</a></li>
+<li class="chapter" data-level="3.14.2" data-path="howtostart.html"><a href="howtostart.html#スクリプトは読みやすく"><i class="fa fa-check"></i><b>3.14.2</b> スクリプトは読みやすく</a></li>
+</ul></li>
+<li class="chapter" data-level="3.15" data-path="howtostart.html"><a href="howtostart.html#エラーを恐れるな"><i class="fa fa-check"></i><b>3.15</b> エラーを恐れるな！</a>
+<ul>
+<li class="chapter" data-level="3.15.1" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー1"><i class="fa fa-check"></i><b>3.15.1</b> よくあるエラー1</a></li>
+<li class="chapter" data-level="3.15.2" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー2"><i class="fa fa-check"></i><b>3.15.2</b> よくあるエラー2</a></li>
+<li class="chapter" data-level="3.15.3" data-path="howtostart.html"><a href="howtostart.html#よくあるエラー3というかトラブル"><i class="fa fa-check"></i><b>3.15.3</b> よくあるエラー3（というかトラブル）</a></li>
+</ul></li>
+<li class="chapter" data-level="3.16" data-path="howtostart.html"><a href="howtostart.html#rstudioの補完機能"><i class="fa fa-check"></i><b>3.16</b> Rstudioの補完機能</a></li>
+<li class="chapter" data-level="3.17" data-path="howtostart.html"><a href="howtostart.html#rstudioのオプション"><i class="fa fa-check"></i><b>3.17</b> Rstudioのオプション</a>
+<ul>
+<li class="chapter" data-level="3.17.1" data-path="howtostart.html"><a href="howtostart.html#例外観の変更"><i class="fa fa-check"></i><b>3.17.1</b> 例：外観の変更</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="letsuse.html"><a href="letsuse.html"><i class="fa fa-check"></i><b>4</b> Rを使ってみる</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="letsuse.html"><a href="letsuse.html#計算機としてのr"><i class="fa fa-check"></i><b>4.1</b> 計算機としてのR</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="letsuse.html"><a href="letsuse.html#演習r-scriptの作成"><i class="fa fa-check"></i><b>4.1.1</b> 演習：R Scriptの作成</a></li>
+<li class="chapter" data-level="4.1.2" data-path="letsuse.html"><a href="letsuse.html#足し算引き算"><i class="fa fa-check"></i><b>4.1.2</b> 足し算・引き算</a></li>
+<li class="chapter" data-level="4.1.3" data-path="letsuse.html"><a href="letsuse.html#かけ算割り算"><i class="fa fa-check"></i><b>4.1.3</b> かけ算・割り算</a></li>
+<li class="chapter" data-level="4.1.4" data-path="letsuse.html"><a href="letsuse.html#practicecalc"><i class="fa fa-check"></i><b>4.1.4</b> <strong>練習問題</strong>：以下の演算をRを使ってやってみよう</a></li>
+<li class="chapter" data-level="4.1.5" data-path="letsuse.html"><a href="letsuse.html#論理演算"><i class="fa fa-check"></i><b>4.1.5</b> 論理演算</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="letsuse.html"><a href="letsuse.html#プログラミング言語としてのr"><i class="fa fa-check"></i><b>4.2</b> プログラミング言語としてのR</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="letsuse.html"><a href="letsuse.html#変数へのオブジェクトの代入"><i class="fa fa-check"></i><b>4.2.1</b> 変数へのオブジェクトの代入</a></li>
+<li class="chapter" data-level="4.2.2" data-path="letsuse.html"><a href="letsuse.html#loop"><i class="fa fa-check"></i><b>4.2.2</b> プログラミング：繰り返し</a></li>
+<li class="chapter" data-level="4.2.3" data-path="letsuse.html"><a href="letsuse.html#practiceloop"><i class="fa fa-check"></i><b>4.2.3</b> <strong>練習問題</strong>：ループを用いた計算</a></li>
+<li class="chapter" data-level="4.2.4" data-path="letsuse.html"><a href="letsuse.html#プログラミングif文"><i class="fa fa-check"></i><b>4.2.4</b> プログラミング：if文</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="letsuse.html"><a href="letsuse.html#データ型"><i class="fa fa-check"></i><b>4.3</b> データ型</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="letsuse.html"><a href="letsuse.html#データ型注意点"><i class="fa fa-check"></i><b>4.3.1</b> データ型：注意点</a></li>
+<li class="chapter" data-level="4.3.2" data-path="letsuse.html"><a href="letsuse.html#データ型の変換"><i class="fa fa-check"></i><b>4.3.2</b> データ型の変換</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="letsuse.html"><a href="letsuse.html#ベクトル"><i class="fa fa-check"></i><b>4.4</b> ベクトル</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="letsuse.html"><a href="letsuse.html#ベクトルの型"><i class="fa fa-check"></i><b>4.4.1</b> ベクトルの型</a></li>
+<li class="chapter" data-level="4.4.2" data-path="letsuse.html"><a href="letsuse.html#ベクトル連続した数値"><i class="fa fa-check"></i><b>4.4.2</b> ベクトル：連続した数値</a></li>
+<li class="chapter" data-level="4.4.3" data-path="letsuse.html"><a href="letsuse.html#vectormake"><i class="fa fa-check"></i><b>4.4.3</b> <strong>練習問題</strong>: 数列の作成</a></li>
+<li class="chapter" data-level="4.4.4" data-path="letsuse.html"><a href="letsuse.html#ベクトル同じ数値が並ぶベクトル"><i class="fa fa-check"></i><b>4.4.4</b> ベクトル：同じ数値が並ぶベクトル</a></li>
+<li class="chapter" data-level="4.4.5" data-path="letsuse.html"><a href="letsuse.html#vectormake2"><i class="fa fa-check"></i><b>4.4.5</b> <strong>練習問題</strong>：ベクトルの作成</a></li>
+<li class="chapter" data-level="4.4.6" data-path="letsuse.html"><a href="letsuse.html#ベクトル要素の参照"><i class="fa fa-check"></i><b>4.4.6</b> ベクトル要素の参照</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="letsuse.html"><a href="letsuse.html#リスト"><i class="fa fa-check"></i><b>4.5</b> リスト</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="letsuse.html"><a href="letsuse.html#リストの参照"><i class="fa fa-check"></i><b>4.5.1</b> リストの参照</a></li>
+<li class="chapter" data-level="4.5.2" data-path="letsuse.html"><a href="letsuse.html#リストの参照-1"><i class="fa fa-check"></i><b>4.5.2</b> リストの参照</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>5</b> パッケージとは</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="packages.html"><a href="packages.html#パッケージについて"><i class="fa fa-check"></i><b>5.1</b> パッケージについて</a></li>
+<li class="chapter" data-level="5.2" data-path="packages.html"><a href="packages.html#パッケージのインストール"><i class="fa fa-check"></i><b>5.2</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="5.3" data-path="packages.html"><a href="packages.html#よく使うパッケージのインストール"><i class="fa fa-check"></i><b>5.3</b> よく使うパッケージのインストール</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="packages.html"><a href="packages.html#tidyverseについて"><i class="fa fa-check"></i><b>5.3.1</b> Tidyverseについて</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="packages.html"><a href="packages.html#パッケージの使い方1"><i class="fa fa-check"></i><b>5.4</b> パッケージの使い方1</a></li>
+<li class="chapter" data-level="5.5" data-path="packages.html"><a href="packages.html#パッケージの使い方2"><i class="fa fa-check"></i><b>5.5</b> パッケージの使い方2</a></li>
+<li class="chapter" data-level="5.6" data-path="packages.html"><a href="packages.html#発展pacmanパッケージによる効率的な管理"><i class="fa fa-check"></i><b>5.6</b> 発展：pacmanパッケージによる効率的な管理</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="packages.html"><a href="packages.html#pacmanパッケージとは"><i class="fa fa-check"></i><b>5.6.1</b> pacmanパッケージとは</a></li>
+<li class="chapter" data-level="5.6.2" data-path="packages.html"><a href="packages.html#インストール-1"><i class="fa fa-check"></i><b>5.6.2</b> インストール</a></li>
+<li class="chapter" data-level="5.6.3" data-path="packages.html"><a href="packages.html#使い方"><i class="fa fa-check"></i><b>5.6.3</b> 使い方</a></li>
+<li class="chapter" data-level="5.6.4" data-path="packages.html"><a href="packages.html#どんなときに使うか"><i class="fa fa-check"></i><b>5.6.4</b> どんなときに使うか</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="packages.html"><a href="packages.html#パッケージの注意点"><i class="fa fa-check"></i><b>5.7</b> パッケージの注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datahandling.html"><a href="datahandling.html"><i class="fa fa-check"></i><b>6</b> データのハンドリング</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="datahandling.html"><a href="datahandling.html#データ"><i class="fa fa-check"></i><b>6.1</b> データ</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="datahandling.html"><a href="datahandling.html#データとは"><i class="fa fa-check"></i><b>6.1.1</b> データとは？</a></li>
+<li class="chapter" data-level="6.1.2" data-path="datahandling.html"><a href="datahandling.html#データフレーム"><i class="fa fa-check"></i><b>6.1.2</b> データフレーム</a></li>
+<li class="chapter" data-level="6.1.3" data-path="datahandling.html"><a href="datahandling.html#行と列"><i class="fa fa-check"></i><b>6.1.3</b> 行と列</a></li>
+<li class="chapter" data-level="6.1.4" data-path="datahandling.html"><a href="datahandling.html#きれいなデータ"><i class="fa fa-check"></i><b>6.1.4</b> きれいなデータ？</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="datahandling.html"><a href="datahandling.html#データの読み込み"><i class="fa fa-check"></i><b>6.2</b> データの読み込み</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="datahandling.html"><a href="datahandling.html#演習-データの読み込み"><i class="fa fa-check"></i><b>6.2.1</b> <strong>演習</strong>: データの読み込み</a></li>
+<li class="chapter" data-level="6.2.2" data-path="datahandling.html"><a href="datahandling.html#datajpn"><i class="fa fa-check"></i><b>6.2.2</b> 日本語のデータを読み込む際の注意点</a></li>
+<li class="chapter" data-level="6.2.3" data-path="datahandling.html"><a href="datahandling.html#readrのその他のオプション"><i class="fa fa-check"></i><b>6.2.3</b> readrのその他のオプション</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="datahandling.html"><a href="datahandling.html#tidy-data-整然データ"><i class="fa fa-check"></i><b>6.3</b> tidy data (整然データ)</a></li>
+<li class="chapter" data-level="6.4" data-path="datahandling.html"><a href="datahandling.html#データフレームを扱うテクニックパイプ"><i class="fa fa-check"></i><b>6.4</b> データフレームを扱うテクニック：パイプ</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="datahandling.html"><a href="datahandling.html#パイプ"><i class="fa fa-check"></i><b>6.4.1</b> パイプ</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="datahandling.html"><a href="datahandling.html#tidyでないデータとtidyデータの変換"><i class="fa fa-check"></i><b>6.5</b> tidyでないデータとtidyデータの変換</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="datahandling.html"><a href="datahandling.html#long型データへの変換"><i class="fa fa-check"></i><b>6.5.1</b> long型データへの変換</a></li>
+<li class="chapter" data-level="6.5.2" data-path="datahandling.html"><a href="datahandling.html#データを見てみる"><i class="fa fa-check"></i><b>6.5.2</b> データを見てみる</a></li>
+<li class="chapter" data-level="6.5.3" data-path="datahandling.html"><a href="datahandling.html#データを一部だけみたい場合"><i class="fa fa-check"></i><b>6.5.3</b> データを一部だけみたい場合</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="datahandling.html"><a href="datahandling.html#データの大きさ"><i class="fa fa-check"></i><b>6.6</b> データの「大きさ」</a></li>
+<li class="chapter" data-level="6.7" data-path="datahandling.html"><a href="datahandling.html#列の名前一覧"><i class="fa fa-check"></i><b>6.7</b> 列の名前一覧</a></li>
+<li class="chapter" data-level="6.8" data-path="datahandling.html"><a href="datahandling.html#変数の要約"><i class="fa fa-check"></i><b>6.8</b> 変数の要約</a></li>
+<li class="chapter" data-level="6.9" data-path="datahandling.html"><a href="datahandling.html#変数の取り出し"><i class="fa fa-check"></i><b>6.9</b> 変数の取り出し</a></li>
+<li class="chapter" data-level="6.10" data-path="datahandling.html"><a href="datahandling.html#変数の取り出しと計算"><i class="fa fa-check"></i><b>6.10</b> 変数の取り出しと計算</a></li>
+<li class="chapter" data-level="6.11" data-path="datahandling.html"><a href="datahandling.html#データの操作"><i class="fa fa-check"></i><b>6.11</b> データの操作</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="datahandling.html"><a href="datahandling.html#データの操作-1"><i class="fa fa-check"></i><b>6.11.1</b> データの操作</a></li>
+<li class="chapter" data-level="6.11.2" data-path="datahandling.html"><a href="datahandling.html#元のデータの見た目確認"><i class="fa fa-check"></i><b>6.11.2</b> 元のデータの見た目確認</a></li>
+<li class="chapter" data-level="6.11.3" data-path="datahandling.html"><a href="datahandling.html#列の名前を変えたい-rename"><i class="fa fa-check"></i><b>6.11.3</b> 列の名前を変えたい: rename()</a></li>
+<li class="chapter" data-level="6.11.4" data-path="datahandling.html"><a href="datahandling.html#特定の列だけ抽出する-select"><i class="fa fa-check"></i><b>6.11.4</b> 特定の列だけ抽出する: select()</a></li>
+<li class="chapter" data-level="6.11.5" data-path="datahandling.html"><a href="datahandling.html#特定の行だけ抽出する-filter"><i class="fa fa-check"></i><b>6.11.5</b> 特定の行だけ抽出する: filter()</a></li>
+<li class="chapter" data-level="6.11.6" data-path="datahandling.html"><a href="datahandling.html#データの順番を並び替える-arrange"><i class="fa fa-check"></i><b>6.11.6</b> データの順番を並び替える: arrange()</a></li>
+<li class="chapter" data-level="6.11.7" data-path="datahandling.html"><a href="datahandling.html#データの列を並び替える-relocate"><i class="fa fa-check"></i><b>6.11.7</b> データの列を並び替える: relocate()</a></li>
+<li class="chapter" data-level="6.11.8" data-path="datahandling.html"><a href="datahandling.html#datamgcolumnadd"><i class="fa fa-check"></i><b>6.11.8</b> データの列を追加する: mutate()</a></li>
+<li class="chapter" data-level="6.11.9" data-path="datahandling.html"><a href="datahandling.html#データの列を編集する-mutate"><i class="fa fa-check"></i><b>6.11.9</b> データの列を編集する: mutate()</a></li>
+<li class="chapter" data-level="6.11.10" data-path="datahandling.html"><a href="datahandling.html#データを集計する"><i class="fa fa-check"></i><b>6.11.10</b> データを集計する</a></li>
+<li class="chapter" data-level="6.11.11" data-path="datahandling.html"><a href="datahandling.html#データ操作の応用パイプによる引き渡し"><i class="fa fa-check"></i><b>6.11.11</b> データ操作の応用：パイプによる引き渡し</a></li>
+<li class="chapter" data-level="6.11.12" data-path="datahandling.html"><a href="datahandling.html#groupagg"><i class="fa fa-check"></i><b>6.11.12</b> データ操作の応用：グループごとの集計</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="datahandling.html"><a href="datahandling.html#datamgtpractice"><i class="fa fa-check"></i><b>6.12</b> <strong>練習問題</strong>: データ操作</a></li>
+<li class="chapter" data-level="6.13" data-path="datahandling.html"><a href="datahandling.html#データの結合"><i class="fa fa-check"></i><b>6.13</b> データの結合</a>
+<ul>
+<li class="chapter" data-level="6.13.1" data-path="datahandling.html"><a href="datahandling.html#準備-1"><i class="fa fa-check"></i><b>6.13.1</b> 準備</a></li>
+<li class="chapter" data-level="6.13.2" data-path="datahandling.html"><a href="datahandling.html#データの縦の結合"><i class="fa fa-check"></i><b>6.13.2</b> データの縦の結合</a></li>
+<li class="chapter" data-level="6.13.3" data-path="datahandling.html"><a href="datahandling.html#データを横に統合"><i class="fa fa-check"></i><b>6.13.3</b> データを横に統合</a></li>
+<li class="chapter" data-level="6.13.4" data-path="datahandling.html"><a href="datahandling.html#データを横に統合join関数"><i class="fa fa-check"></i><b>6.13.4</b> データを横に統合：join()関数</a></li>
+<li class="chapter" data-level="6.13.5" data-path="datahandling.html"><a href="datahandling.html#join関数一覧"><i class="fa fa-check"></i><b>6.13.5</b> join関数一覧</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rstats.html"><a href="rstats.html"><i class="fa fa-check"></i><b>7</b> 記述統計</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="rstats.html"><a href="rstats.html#統計とは"><i class="fa fa-check"></i><b>7.1</b> 統計とは</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="rstats.html"><a href="rstats.html#記述統計"><i class="fa fa-check"></i><b>7.1.1</b> 記述統計</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rstats.html"><a href="rstats.html#infstats"><i class="fa fa-check"></i><b>7.1.2</b> 推測統計</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="rstats.html"><a href="rstats.html#準備-2"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.3" data-path="rstats.html"><a href="rstats.html#データとは-1"><i class="fa fa-check"></i><b>7.3</b> データとは</a></li>
+<li class="chapter" data-level="7.4" data-path="rstats.html"><a href="rstats.html#代表的な統計量"><i class="fa fa-check"></i><b>7.4</b> 代表的な統計量</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="rstats.html"><a href="rstats.html#数式"><i class="fa fa-check"></i><b>7.4.1</b> 数式</a></li>
+<li class="chapter" data-level="7.4.2" data-path="rstats.html"><a href="rstats.html#平均"><i class="fa fa-check"></i><b>7.4.2</b> 平均</a></li>
+<li class="chapter" data-level="7.4.3" data-path="rstats.html"><a href="rstats.html#中央値"><i class="fa fa-check"></i><b>7.4.3</b> 中央値</a></li>
+<li class="chapter" data-level="7.4.4" data-path="rstats.html"><a href="rstats.html#最大値最小値"><i class="fa fa-check"></i><b>7.4.4</b> 最大値・最小値</a></li>
+<li class="chapter" data-level="7.4.5" data-path="rstats.html"><a href="rstats.html#分散"><i class="fa fa-check"></i><b>7.4.5</b> 分散</a></li>
+<li class="chapter" data-level="7.4.6" data-path="rstats.html"><a href="rstats.html#もう一つの分散不偏分散"><i class="fa fa-check"></i><b>7.4.6</b> もう一つの分散：不偏分散</a></li>
+<li class="chapter" data-level="7.4.7" data-path="rstats.html"><a href="rstats.html#標準偏差"><i class="fa fa-check"></i><b>7.4.7</b> 標準偏差</a></li>
+<li class="chapter" data-level="7.4.8" data-path="rstats.html"><a href="rstats.html#不偏標準偏差"><i class="fa fa-check"></i><b>7.4.8</b> 不偏標準偏差</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="rstats.html"><a href="rstats.html#rによる記述統計のテクニック"><i class="fa fa-check"></i><b>7.5</b> Rによる記述統計のテクニック</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="rstats.html"><a href="rstats.html#使用するデータ"><i class="fa fa-check"></i><b>7.5.1</b> 使用するデータ</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rstats.html"><a href="rstats.html#summary関数"><i class="fa fa-check"></i><b>7.5.2</b> <code>summary</code>関数</a></li>
+<li class="chapter" data-level="7.5.3" data-path="rstats.html"><a href="rstats.html#describe関数"><i class="fa fa-check"></i><b>7.5.3</b> <code>describe</code>関数</a></li>
+<li class="chapter" data-level="7.5.4" data-path="rstats.html"><a href="rstats.html#skim関数"><i class="fa fa-check"></i><b>7.5.4</b> <code>skim</code>関数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rviz.html"><a href="rviz.html"><i class="fa fa-check"></i><b>8</b> ビジュアライゼーションの基本</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rviz.html"><a href="rviz.html#rにおける描画"><i class="fa fa-check"></i><b>8.1</b> Rにおける描画</a></li>
+<li class="chapter" data-level="8.2" data-path="rviz.html"><a href="rviz.html#準備-3"><i class="fa fa-check"></i><b>8.2</b> 準備</a></li>
+<li class="chapter" data-level="8.3" data-path="rviz.html"><a href="rviz.html#描画をしてみよう"><i class="fa fa-check"></i><b>8.3</b> 描画をしてみよう</a></li>
+<li class="chapter" data-level="8.4" data-path="rviz.html"><a href="rviz.html#復習データ読み込み"><i class="fa fa-check"></i><b>8.4</b> 復習：データ読み込み</a></li>
+<li class="chapter" data-level="8.5" data-path="rviz.html"><a href="rviz.html#描画の前に"><i class="fa fa-check"></i><b>8.5</b> 描画の前に</a></li>
+<li class="chapter" data-level="8.6" data-path="rviz.html"><a href="rviz.html#キャンバスを用意する"><i class="fa fa-check"></i><b>8.6</b> キャンバスを用意する</a></li>
+<li class="chapter" data-level="8.7" data-path="rviz.html"><a href="rviz.html#グラフのレイヤーを追加する"><i class="fa fa-check"></i><b>8.7</b> グラフのレイヤーを追加する</a></li>
+<li class="chapter" data-level="8.8" data-path="rviz.html"><a href="rviz.html#文字化けに対処する"><i class="fa fa-check"></i><b>8.8</b> 文字化けに対処する</a></li>
+<li class="chapter" data-level="8.9" data-path="rviz.html"><a href="rviz.html#aesに色を追加する"><i class="fa fa-check"></i><b>8.9</b> aesに色を追加する</a></li>
+<li class="chapter" data-level="8.10" data-path="rviz.html"><a href="rviz.html#男女の置き方を変えたい"><i class="fa fa-check"></i><b>8.10</b> 男女の置き方を変えたい</a></li>
+<li class="chapter" data-level="8.11" data-path="rviz.html"><a href="rviz.html#色を変えたい"><i class="fa fa-check"></i><b>8.11</b> 色を変えたい</a></li>
+<li class="chapter" data-level="8.12" data-path="rviz.html"><a href="rviz.html#学科別に分けたい"><i class="fa fa-check"></i><b>8.12</b> 学科別に分けたい</a></li>
+<li class="chapter" data-level="8.13" data-path="rviz.html"><a href="rviz.html#ラベルを変更するタイトルを追加する"><i class="fa fa-check"></i><b>8.13</b> ラベルを変更する・タイトルを追加する</a></li>
+<li class="chapter" data-level="8.14" data-path="rviz.html"><a href="rviz.html#テーマを変更する1"><i class="fa fa-check"></i><b>8.14</b> テーマを変更する1</a>
+<ul>
+<li class="chapter" data-level="8.14.1" data-path="rviz.html"><a href="rviz.html#デフォルトテーマを使った変更"><i class="fa fa-check"></i><b>8.14.1</b> デフォルトテーマを使った変更</a></li>
+<li class="chapter" data-level="8.14.2" data-path="rviz.html"><a href="rviz.html#細かいテーマ設定"><i class="fa fa-check"></i><b>8.14.2</b> 細かいテーマ設定</a></li>
+</ul></li>
+<li class="chapter" data-level="8.15" data-path="rviz.html"><a href="rviz.html#完成形"><i class="fa fa-check"></i><b>8.15</b> 完成形</a></li>
+<li class="chapter" data-level="8.16" data-path="rviz.html"><a href="rviz.html#ggplot2による図の保存"><i class="fa fa-check"></i><b>8.16</b> ggplot2による図の保存</a></li>
+<li class="chapter" data-level="8.17" data-path="rviz.html"><a href="rviz.html#他の描画レイヤー"><i class="fa fa-check"></i><b>8.17</b> 他の描画レイヤー</a>
+<ul>
+<li class="chapter" data-level="8.17.1" data-path="rviz.html"><a href="rviz.html#scatterpractice"><i class="fa fa-check"></i><b>8.17.1</b> <strong>練習問題</strong>：散布図</a></li>
+</ul></li>
+<li class="chapter" data-level="8.18" data-path="rviz.html"><a href="rviz.html#lineplotpractice"><i class="fa fa-check"></i><b>8.18</b> <strong>練習問題</strong>: 折れ線グラフ</a></li>
+<li class="chapter" data-level="8.19" data-path="rviz.html"><a href="rviz.html#箱ひげ図"><i class="fa fa-check"></i><b>8.19</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="8.20" data-path="rviz.html"><a href="rviz.html#ヴァイオリンプロット"><i class="fa fa-check"></i><b>8.20</b> ヴァイオリンプロット</a></li>
+<li class="chapter" data-level="8.21" data-path="rviz.html"><a href="rviz.html#適した描画"><i class="fa fa-check"></i><b>8.21</b> 適した描画？</a></li>
+<li class="chapter" data-level="8.22" data-path="rviz.html"><a href="rviz.html#ゼミ課題データの描画"><i class="fa fa-check"></i><b>8.22</b> <strong>ゼミ課題</strong>：データの描画</a>
+<ul>
+<li class="chapter" data-level="8.22.1" data-path="rviz.html"><a href="rviz.html#例ssdse-b県別推移のデータ"><i class="fa fa-check"></i><b>8.22.1</b> 例：SSDSE-B県別推移のデータ</a></li>
+</ul></li>
+<li class="chapter" data-level="8.23" data-path="rviz.html"><a href="rviz.html#makefigFAQ"><i class="fa fa-check"></i><b>8.23</b> よくある問題と対策</a>
+<ul>
+<li class="chapter" data-level="8.23.1" data-path="rviz.html"><a href="rviz.html#axisnum"><i class="fa fa-check"></i><b>8.23.1</b> 軸の数値がおかしい</a></li>
+<li class="chapter" data-level="8.23.2" data-path="rviz.html"><a href="rviz.html#smallletter"><i class="fa fa-check"></i><b>8.23.2</b> 字が小さい</a></li>
+<li class="chapter" data-level="8.23.3" data-path="rviz.html"><a href="rviz.html#axisnumadjust"><i class="fa fa-check"></i><b>8.23.3</b> 軸の数値がいい感じにならない</a></li>
+<li class="chapter" data-level="8.23.4" data-path="rviz.html"><a href="rviz.html#axislabeladjust"><i class="fa fa-check"></i><b>8.23.4</b> 軸の目盛りラベルを調整する</a></li>
+<li class="chapter" data-level="8.23.5" data-path="rviz.html"><a href="rviz.html#jpntrans"><i class="fa fa-check"></i><b>8.23.5</b> ラベルだけではなく、凡例や目盛りラベルも日本語化したい</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="rstatsinfe.html"><a href="rstatsinfe.html"><i class="fa fa-check"></i><b>9</b> 推測統計のおさらい</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母集団と標本"><i class="fa fa-check"></i><b>9.1</b> 母集団と標本</a></li>
+<li class="chapter" data-level="9.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#推定量"><i class="fa fa-check"></i><b>9.2</b> 推定量</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#不偏性"><i class="fa fa-check"></i><b>9.2.1</b> 不偏性</a></li>
+<li class="chapter" data-level="9.2.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#一致性"><i class="fa fa-check"></i><b>9.2.2</b> 一致性</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#母平均の信頼区間"><i class="fa fa-check"></i><b>9.3</b> 母平均の信頼区間</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#標準誤差"><i class="fa fa-check"></i><b>9.3.1</b> 標準誤差</a></li>
+<li class="chapter" data-level="9.3.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#信頼区間"><i class="fa fa-check"></i><b>9.3.2</b> 信頼区間</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="rstatsinfe.html"><a href="rstatsinfe.html#統計的仮説検定"><i class="fa fa-check"></i><b>9.4</b> 統計的仮説検定</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="rstatsinfe.html"><a href="rstatsinfe.html#仮説設定"><i class="fa fa-check"></i><b>9.4.1</b> 仮説設定</a></li>
+<li class="chapter" data-level="9.4.2" data-path="rstatsinfe.html"><a href="rstatsinfe.html#有意水準"><i class="fa fa-check"></i><b>9.4.2</b> 有意水準</a></li>
+<li class="chapter" data-level="9.4.3" data-path="rstatsinfe.html"><a href="rstatsinfe.html#棄却域"><i class="fa fa-check"></i><b>9.4.3</b> 棄却域</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>10</b> 相関関係</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation.html"><a href="correlation.html#つの変数の関係"><i class="fa fa-check"></i><b>10.1</b> ２つの変数の関係</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="correlation.html"><a href="correlation.html#共分散"><i class="fa fa-check"></i><b>10.1.1</b> 共分散</a></li>
+<li class="chapter" data-level="10.1.2" data-path="correlation.html"><a href="correlation.html#相関係数"><i class="fa fa-check"></i><b>10.1.2</b> 相関係数</a></li>
+<li class="chapter" data-level="10.1.3" data-path="correlation.html"><a href="correlation.html#散布図"><i class="fa fa-check"></i><b>10.1.3</b> 散布図</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="correlation.html"><a href="correlation.html#相関関係と因果関係"><i class="fa fa-check"></i><b>10.2</b> 相関関係と因果関係</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="correlation.html"><a href="correlation.html#偏相関係数"><i class="fa fa-check"></i><b>10.2.1</b> 偏相関係数</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="correlation.html"><a href="correlation.html#順位相関係数"><i class="fa fa-check"></i><b>10.3</b> 順位相関係数</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation.html"><a href="correlation.html#スピアマンの順位相関係数"><i class="fa fa-check"></i><b>10.3.1</b> スピアマンの順位相関係数</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation.html"><a href="correlation.html#ケンドールの順位相関係数"><i class="fa fa-check"></i><b>10.3.2</b> ケンドールの順位相関係数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="simpleregression.html"><a href="simpleregression.html"><i class="fa fa-check"></i><b>11</b> 単回帰分析</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析"><i class="fa fa-check"></i><b>11.1</b> 回帰分析</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="simpleregression.html"><a href="simpleregression.html#rによる単回帰モデルの推定"><i class="fa fa-check"></i><b>11.1.1</b> Rによる単回帰モデルの推定</a></li>
+<li class="chapter" data-level="11.1.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰係数の統計的な推定"><i class="fa fa-check"></i><b>11.1.2</b> 回帰係数の統計的な推定</a></li>
+<li class="chapter" data-level="11.1.3" data-path="simpleregression.html"><a href="simpleregression.html#見せかけの相関と単回帰分析"><i class="fa fa-check"></i><b>11.1.3</b> 見せかけの相関と単回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="simpleregression.html"><a href="simpleregression.html#回帰分析の推定方法"><i class="fa fa-check"></i><b>11.2</b> 回帰分析の推定方法</a></li>
+<li class="chapter" data-level="11.3" data-path="simpleregression.html"><a href="simpleregression.html#演習問題単回帰分析"><i class="fa fa-check"></i><b>11.3</b> 演習問題：単回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="multipleregression.html"><a href="multipleregression.html"><i class="fa fa-check"></i><b>12</b> 重回帰分析</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="multipleregression.html"><a href="multipleregression.html#重回帰分析とは"><i class="fa fa-check"></i><b>12.1</b> 重回帰分析とは</a></li>
+<li class="chapter" data-level="12.2" data-path="multipleregression.html"><a href="multipleregression.html#回帰分析における真のモデル"><i class="fa fa-check"></i><b>12.2</b> 回帰分析における真のモデル</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="multipleregression.html"><a href="multipleregression.html#シミュレーション"><i class="fa fa-check"></i><b>12.2.1</b> シミュレーション</a></li>
+<li class="chapter" data-level="12.2.2" data-path="multipleregression.html"><a href="multipleregression.html#回帰モデルの推定"><i class="fa fa-check"></i><b>12.2.2</b> 回帰モデルの推定</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="multipleregression.html"><a href="multipleregression.html#モデルの当てはまり"><i class="fa fa-check"></i><b>12.3</b> モデルの当てはまり</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="multipleregression.html"><a href="multipleregression.html#決定係数"><i class="fa fa-check"></i><b>12.3.1</b> 決定係数</a></li>
+<li class="chapter" data-level="12.3.2" data-path="multipleregression.html"><a href="multipleregression.html#自由度調整済み決定係数"><i class="fa fa-check"></i><b>12.3.2</b> 自由度調整済み決定係数</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="multipleregression.html"><a href="multipleregression.html#係数の検定"><i class="fa fa-check"></i><b>12.4</b> 係数の検定</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html"><i class="fa fa-check"></i><b>13</b> 回帰分析の応用</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#変数の変換"><i class="fa fa-check"></i><b>13.1</b> 変数の変換</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#測定単位の変更"><i class="fa fa-check"></i><b>13.1.1</b> 測定単位の変更</a></li>
+<li class="chapter" data-level="13.1.2" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#中心化"><i class="fa fa-check"></i><b>13.1.2</b> 中心化</a></li>
+<li class="chapter" data-level="13.1.3" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#対数変換"><i class="fa fa-check"></i><b>13.1.3</b> 対数変換</a></li>
+<li class="chapter" data-level="13.1.4" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#変数の単位と傾きパラメータの解釈"><i class="fa fa-check"></i><b>13.1.4</b> 変数の単位と、傾きパラメータの解釈</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#より複雑な効果をモデル化"><i class="fa fa-check"></i><b>13.2</b> より複雑な効果をモデル化</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#関数形の変更二次関数"><i class="fa fa-check"></i><b>13.2.1</b> 関数形の変更：二次関数</a></li>
+<li class="chapter" data-level="13.2.2" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#例経験年数の年収への効果"><i class="fa fa-check"></i><b>13.2.2</b> 例：経験年数の年収への効果</a></li>
+<li class="chapter" data-level="13.2.3" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#ダミー変数を使った分析"><i class="fa fa-check"></i><b>13.2.3</b> ダミー変数を使った分析</a></li>
+<li class="chapter" data-level="13.2.4" data-path="multipleregressionapp.html"><a href="multipleregressionapp.html#交差項"><i class="fa fa-check"></i><b>13.2.4</b> 交差項</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>14</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="paneldata.html"><a href="paneldata.html#パネルデータとは"><i class="fa fa-check"></i><b>14.1</b> パネルデータとは</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="paneldata.html"><a href="paneldata.html#スクリプトの準備"><i class="fa fa-check"></i><b>14.1.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="14.1.2" data-path="paneldata.html"><a href="paneldata.html#パッケージの準備"><i class="fa fa-check"></i><b>14.1.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="14.1.3" data-path="paneldata.html"><a href="paneldata.html#データの準備"><i class="fa fa-check"></i><b>14.1.3</b> データの準備</a></li>
+<li class="chapter" data-level="14.1.4" data-path="paneldata.html"><a href="paneldata.html#データの記述統計"><i class="fa fa-check"></i><b>14.1.4</b> データの記述統計</a></li>
+<li class="chapter" data-level="14.1.5" data-path="paneldata.html"><a href="paneldata.html#データの加工"><i class="fa fa-check"></i><b>14.1.5</b> データの加工</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="paneldata.html"><a href="paneldata.html#パネルデータ分析"><i class="fa fa-check"></i><b>14.2</b> パネルデータ分析</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="paneldata.html"><a href="paneldata.html#事例交通事故死亡率とアルコール税の関係"><i class="fa fa-check"></i><b>14.2.1</b> 事例：交通事故死亡率とアルコール税の関係</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="paneldata.html"><a href="paneldata.html#固定効果モデル"><i class="fa fa-check"></i><b>14.3</b> 固定効果モデル</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="paneldata.html"><a href="paneldata.html#固定効果モデルのビジュアルイメージ"><i class="fa fa-check"></i><b>14.3.1</b> 固定効果モデルのビジュアルイメージ</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="paneldata.html"><a href="paneldata.html#時間固定効果と双方向固定効果モデル"><i class="fa fa-check"></i><b>14.4</b> 時間固定効果と双方向固定効果モデル</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="paneldata.html"><a href="paneldata.html#時間固定効果が必要な理由"><i class="fa fa-check"></i><b>14.4.1</b> 時間固定効果が必要な理由</a></li>
+<li class="chapter" data-level="14.4.2" data-path="paneldata.html"><a href="paneldata.html#年ごとのトレンドの確認"><i class="fa fa-check"></i><b>14.4.2</b> 年ごとのトレンドの確認</a></li>
+<li class="chapter" data-level="14.4.3" data-path="paneldata.html"><a href="paneldata.html#つのモデルの比較"><i class="fa fa-check"></i><b>14.4.3</b> 4つのモデルの比較</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="paneldata.html"><a href="paneldata.html#まとめパネルデータ分析の使い分け"><i class="fa fa-check"></i><b>14.5</b> まとめ：パネルデータ分析の使い分け</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="did.html"><a href="did.html"><i class="fa fa-check"></i><b>15</b> 差の差法</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="did.html"><a href="did.html#差の差法とは"><i class="fa fa-check"></i><b>15.1</b> 差の差法とは</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="did.html"><a href="did.html#差の差法のアイデア"><i class="fa fa-check"></i><b>15.1.1</b> 差の差法のアイデア</a></li>
+<li class="chapter" data-level="15.1.2" data-path="did.html"><a href="did.html#差の差法の仮定"><i class="fa fa-check"></i><b>15.1.2</b> 差の差法の仮定</a></li>
+<li class="chapter" data-level="15.1.3" data-path="did.html"><a href="did.html#回帰分析を使って行う方法"><i class="fa fa-check"></i><b>15.1.3</b> 回帰分析を使って行う方法</a></li>
+<li class="chapter" data-level="15.1.4" data-path="did.html"><a href="did.html#演習問題差の差法の回帰分析アプローチ"><i class="fa fa-check"></i><b>15.1.4</b> <strong>演習問題</strong>：差の差法の回帰分析アプローチ</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="did.html"><a href="did.html#rでの演習"><i class="fa fa-check"></i><b>15.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="did.html"><a href="did.html#スクリプトの準備-1"><i class="fa fa-check"></i><b>15.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="15.2.2" data-path="did.html"><a href="did.html#パッケージの準備-1"><i class="fa fa-check"></i><b>15.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="15.2.3" data-path="did.html"><a href="did.html#データの準備-1"><i class="fa fa-check"></i><b>15.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="15.2.4" data-path="did.html"><a href="did.html#データの確認-1"><i class="fa fa-check"></i><b>15.2.4</b> データの確認</a></li>
+<li class="chapter" data-level="15.2.5" data-path="did.html"><a href="did.html#データの記述統計-1"><i class="fa fa-check"></i><b>15.2.5</b> データの記述統計</a></li>
+<li class="chapter" data-level="15.2.6" data-path="did.html"><a href="did.html#政策変更の確認"><i class="fa fa-check"></i><b>15.2.6</b> 政策変更の確認</a></li>
+<li class="chapter" data-level="15.2.7" data-path="did.html"><a href="did.html#差の差法"><i class="fa fa-check"></i><b>15.2.7</b> 差の差法</a></li>
+<li class="chapter" data-level="15.2.8" data-path="did.html"><a href="did.html#回帰分析による差の差法"><i class="fa fa-check"></i><b>15.2.8</b> 回帰分析による差の差法</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="synth.html"><a href="synth.html"><i class="fa fa-check"></i><b>16</b> 合成コントロール法</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="synth.html"><a href="synth.html#合成コントロール法とは"><i class="fa fa-check"></i><b>16.1</b> 合成コントロール法とは</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="synth.html"><a href="synth.html#差の差法で足りない場面"><i class="fa fa-check"></i><b>16.1.1</b> 差の差法で足りない場面</a></li>
+<li class="chapter" data-level="16.1.2" data-path="synth.html"><a href="synth.html#合成コントロール法のアイデア"><i class="fa fa-check"></i><b>16.1.2</b> 合成コントロール法のアイデア</a></li>
+<li class="chapter" data-level="16.1.3" data-path="synth.html"><a href="synth.html#合成コントロール法の式"><i class="fa fa-check"></i><b>16.1.3</b> 合成コントロール法の式</a></li>
+<li class="chapter" data-level="16.1.4" data-path="synth.html"><a href="synth.html#重みの選び方"><i class="fa fa-check"></i><b>16.1.4</b> 重みの選び方</a></li>
+<li class="chapter" data-level="16.1.5" data-path="synth.html"><a href="synth.html#合成コントロール法の仮定"><i class="fa fa-check"></i><b>16.1.5</b> 合成コントロール法の仮定</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="synth.html"><a href="synth.html#rでの演習-1"><i class="fa fa-check"></i><b>16.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="synth.html"><a href="synth.html#スクリプトの準備-2"><i class="fa fa-check"></i><b>16.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="16.2.2" data-path="synth.html"><a href="synth.html#パッケージの準備-2"><i class="fa fa-check"></i><b>16.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="16.2.3" data-path="synth.html"><a href="synth.html#データの準備-2"><i class="fa fa-check"></i><b>16.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="16.2.4" data-path="synth.html"><a href="synth.html#カリフォルニア州とほかの州の比較"><i class="fa fa-check"></i><b>16.2.4</b> カリフォルニア州とほかの州の比較</a></li>
+<li class="chapter" data-level="16.2.5" data-path="synth.html"><a href="synth.html#合成コントロールの作成"><i class="fa fa-check"></i><b>16.2.5</b> 合成コントロールの作成</a></li>
+<li class="chapter" data-level="16.2.6" data-path="synth.html"><a href="synth.html#結果の確認"><i class="fa fa-check"></i><b>16.2.6</b> 結果の確認</a></li>
+<li class="chapter" data-level="16.2.7" data-path="synth.html"><a href="synth.html#プラセボ検定による統計的推測"><i class="fa fa-check"></i><b>16.2.7</b> プラセボ検定による統計的推測</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="synth.html"><a href="synth.html#合成コントロール法の注意点"><i class="fa fa-check"></i><b>16.3</b> 合成コントロール法の注意点</a></li>
+<li class="chapter" data-level="16.4" data-path="synth.html"><a href="synth.html#まとめ"><i class="fa fa-check"></i><b>16.4</b> まとめ</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="rdd.html"><a href="rdd.html"><i class="fa fa-check"></i><b>17</b> 回帰不連続デザイン</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインとは"><i class="fa fa-check"></i><b>17.1</b> 回帰不連続デザインとは</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインのアイデア"><i class="fa fa-check"></i><b>17.1.1</b> 回帰不連続デザインのアイデア</a></li>
+<li class="chapter" data-level="17.1.2" data-path="rdd.html"><a href="rdd.html#回帰不連続デザインの仮定"><i class="fa fa-check"></i><b>17.1.2</b> 回帰不連続デザインの仮定</a></li>
+<li class="chapter" data-level="17.1.3" data-path="rdd.html"><a href="rdd.html#回帰分析を使って行う方法-1"><i class="fa fa-check"></i><b>17.1.3</b> 回帰分析を使って行う方法</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="rdd.html"><a href="rdd.html#rでの演習-2"><i class="fa fa-check"></i><b>17.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="rdd.html"><a href="rdd.html#スクリプトの準備-3"><i class="fa fa-check"></i><b>17.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="17.2.2" data-path="rdd.html"><a href="rdd.html#パッケージの準備-3"><i class="fa fa-check"></i><b>17.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="17.2.3" data-path="rdd.html"><a href="rdd.html#データの準備-3"><i class="fa fa-check"></i><b>17.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="17.2.4" data-path="rdd.html"><a href="rdd.html#データの確認-2"><i class="fa fa-check"></i><b>17.2.4</b> データの確認</a></li>
+<li class="chapter" data-level="17.2.5" data-path="rdd.html"><a href="rdd.html#データの記述統計-2"><i class="fa fa-check"></i><b>17.2.5</b> データの記述統計</a></li>
+<li class="chapter" data-level="17.2.6" data-path="rdd.html"><a href="rdd.html#データの加工-1"><i class="fa fa-check"></i><b>17.2.6</b> データの加工</a></li>
+<li class="chapter" data-level="17.2.7" data-path="rdd.html"><a href="rdd.html#政策による行動への影響"><i class="fa fa-check"></i><b>17.2.7</b> 政策による行動への影響</a></li>
+<li class="chapter" data-level="17.2.8" data-path="rdd.html"><a href="rdd.html#政策による結果への影響"><i class="fa fa-check"></i><b>17.2.8</b> 政策による結果への影響</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="rdd.html"><a href="rdd.html#演習問題アメリカの飲酒年齢と死亡率"><i class="fa fa-check"></i><b>17.3</b> 演習問題：アメリカの飲酒年齢と死亡率</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="iv.html"><a href="iv.html"><i class="fa fa-check"></i><b>18</b> 操作変数法</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="iv.html"><a href="iv.html#操作変数法とは"><i class="fa fa-check"></i><b>18.1</b> 操作変数法とは</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="iv.html"><a href="iv.html#なぜ操作変数法が必要か"><i class="fa fa-check"></i><b>18.1.1</b> なぜ操作変数法が必要か</a></li>
+<li class="chapter" data-level="18.1.2" data-path="iv.html"><a href="iv.html#操作変数法のアイデア"><i class="fa fa-check"></i><b>18.1.2</b> 操作変数法のアイデア</a></li>
+<li class="chapter" data-level="18.1.3" data-path="iv.html"><a href="iv.html#操作変数の2つの条件"><i class="fa fa-check"></i><b>18.1.3</b> 操作変数の2つの条件</a></li>
+<li class="chapter" data-level="18.1.4" data-path="iv.html"><a href="iv.html#段階最小二乗法2sls"><i class="fa fa-check"></i><b>18.1.4</b> 2段階最小二乗法（2SLS）</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="iv.html"><a href="iv.html#rでの演習-3"><i class="fa fa-check"></i><b>18.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="iv.html"><a href="iv.html#スクリプトの準備-4"><i class="fa fa-check"></i><b>18.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="18.2.2" data-path="iv.html"><a href="iv.html#パッケージの準備-4"><i class="fa fa-check"></i><b>18.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="18.2.3" data-path="iv.html"><a href="iv.html#データの準備-4"><i class="fa fa-check"></i><b>18.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="18.2.4" data-path="iv.html"><a href="iv.html#操作変数の妥当性の確認第1段階"><i class="fa fa-check"></i><b>18.2.4</b> 操作変数の妥当性の確認（第1段階）</a></li>
+<li class="chapter" data-level="18.2.5" data-path="iv.html"><a href="iv.html#ols推定比較用"><i class="fa fa-check"></i><b>18.2.5</b> OLS推定（比較用）</a></li>
+<li class="chapter" data-level="18.2.6" data-path="iv.html"><a href="iv.html#iv推定2sls"><i class="fa fa-check"></i><b>18.2.6</b> IV推定（2SLS）</a></li>
+<li class="chapter" data-level="18.2.7" data-path="iv.html"><a href="iv.html#olsとivの比較"><i class="fa fa-check"></i><b>18.2.7</b> OLSとIVの比較</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="iv.html"><a href="iv.html#まとめ-1"><i class="fa fa-check"></i><b>18.3</b> まとめ</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="hedonic.html"><a href="hedonic.html"><i class="fa fa-check"></i><b>19</b> ヘドニック法</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="hedonic.html"><a href="hedonic.html#ヘドニック法とは"><i class="fa fa-check"></i><b>19.1</b> ヘドニック法とは</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="hedonic.html"><a href="hedonic.html#環境の価値をどう測るか"><i class="fa fa-check"></i><b>19.1.1</b> 環境の価値をどう測るか</a></li>
+<li class="chapter" data-level="19.1.2" data-path="hedonic.html"><a href="hedonic.html#ヘドニック価格関数"><i class="fa fa-check"></i><b>19.1.2</b> ヘドニック価格関数</a></li>
+<li class="chapter" data-level="19.1.3" data-path="hedonic.html"><a href="hedonic.html#同じような部屋なのに家賃が違う"><i class="fa fa-check"></i><b>19.1.3</b> 同じような部屋なのに家賃が違う</a></li>
+<li class="chapter" data-level="19.1.4" data-path="hedonic.html"><a href="hedonic.html#なぜ引き算では足りないのか"><i class="fa fa-check"></i><b>19.1.4</b> なぜ引き算では足りないのか</a></li>
+<li class="chapter" data-level="19.1.5" data-path="hedonic.html"><a href="hedonic.html#対数線形モデルと係数の解釈"><i class="fa fa-check"></i><b>19.1.5</b> 対数線形モデルと係数の解釈</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="hedonic.html"><a href="hedonic.html#rでの演習-4"><i class="fa fa-check"></i><b>19.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="hedonic.html"><a href="hedonic.html#スクリプトの準備-5"><i class="fa fa-check"></i><b>19.2.1</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="19.2.2" data-path="hedonic.html"><a href="hedonic.html#パッケージの準備-5"><i class="fa fa-check"></i><b>19.2.2</b> パッケージの準備</a></li>
+<li class="chapter" data-level="19.2.3" data-path="hedonic.html"><a href="hedonic.html#データの準備-5"><i class="fa fa-check"></i><b>19.2.3</b> データの準備</a></li>
+<li class="chapter" data-level="19.2.4" data-path="hedonic.html"><a href="hedonic.html#単回帰から始める"><i class="fa fa-check"></i><b>19.2.4</b> 単回帰から始める</a></li>
+<li class="chapter" data-level="19.2.5" data-path="hedonic.html"><a href="hedonic.html#変数を加える"><i class="fa fa-check"></i><b>19.2.5</b> 変数を加える</a></li>
+<li class="chapter" data-level="19.2.6" data-path="hedonic.html"><a href="hedonic.html#ヘドニック価格関数の推定"><i class="fa fa-check"></i><b>19.2.6</b> ヘドニック価格関数の推定</a></li>
+<li class="chapter" data-level="19.2.7" data-path="hedonic.html"><a href="hedonic.html#限界価値の計算"><i class="fa fa-check"></i><b>19.2.7</b> 限界価値の計算</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="hedonic.html"><a href="hedonic.html#ヘドニック法の注意点"><i class="fa fa-check"></i><b>19.3</b> ヘドニック法の注意点</a></li>
+<li class="chapter" data-level="19.4" data-path="hedonic.html"><a href="hedonic.html#まとめ-2"><i class="fa fa-check"></i><b>19.4</b> まとめ</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="dce.html"><a href="dce.html"><i class="fa fa-check"></i><b>20</b> 選択実験</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="dce.html"><a href="dce.html#選択実験とは"><i class="fa fa-check"></i><b>20.1</b> 選択実験とは</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="dce.html"><a href="dce.html#市場のない財の価値を測る"><i class="fa fa-check"></i><b>20.1.1</b> 市場のない財の価値を測る</a></li>
+<li class="chapter" data-level="20.1.2" data-path="dce.html"><a href="dce.html#選択実験の考え方"><i class="fa fa-check"></i><b>20.1.2</b> 選択実験の考え方</a></li>
+<li class="chapter" data-level="20.1.3" data-path="dce.html"><a href="dce.html#属性水準選択肢集合"><i class="fa fa-check"></i><b>20.1.3</b> 属性・水準・選択肢集合</a></li>
+<li class="chapter" data-level="20.1.4" data-path="dce.html"><a href="dce.html#ランダム効用理論"><i class="fa fa-check"></i><b>20.1.4</b> ランダム効用理論</a></li>
+<li class="chapter" data-level="20.1.5" data-path="dce.html"><a href="dce.html#条件付きロジットモデル"><i class="fa fa-check"></i><b>20.1.5</b> 条件付きロジットモデル</a></li>
+<li class="chapter" data-level="20.1.6" data-path="dce.html"><a href="dce.html#限界支払意思額mwtp"><i class="fa fa-check"></i><b>20.1.6</b> 限界支払意思額（MWTP）</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="dce.html"><a href="dce.html#rでの演習-5"><i class="fa fa-check"></i><b>20.2</b> Rでの演習</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="dce.html"><a href="dce.html#この演習で使うデータについて"><i class="fa fa-check"></i><b>20.2.1</b> この演習で使うデータについて</a></li>
+<li class="chapter" data-level="20.2.2" data-path="dce.html"><a href="dce.html#スクリプトの準備-6"><i class="fa fa-check"></i><b>20.2.2</b> スクリプトの準備</a></li>
+<li class="chapter" data-level="20.2.3" data-path="dce.html"><a href="dce.html#パッケージの準備-6"><i class="fa fa-check"></i><b>20.2.3</b> パッケージの準備</a></li>
+<li class="chapter" data-level="20.2.4" data-path="dce.html"><a href="dce.html#選択肢集合の設計"><i class="fa fa-check"></i><b>20.2.4</b> 選択肢集合の設計</a></li>
+<li class="chapter" data-level="20.2.5" data-path="dce.html"><a href="dce.html#回答データの読み込み"><i class="fa fa-check"></i><b>20.2.5</b> 回答データの読み込み</a></li>
+<li class="chapter" data-level="20.2.6" data-path="dce.html"><a href="dce.html#分析用データの作成"><i class="fa fa-check"></i><b>20.2.6</b> 分析用データの作成</a></li>
+<li class="chapter" data-level="20.2.7" data-path="dce.html"><a href="dce.html#条件付きロジットの推定"><i class="fa fa-check"></i><b>20.2.7</b> 条件付きロジットの推定</a></li>
+<li class="chapter" data-level="20.2.8" data-path="dce.html"><a href="dce.html#モデルの適合度"><i class="fa fa-check"></i><b>20.2.8</b> モデルの適合度</a></li>
+<li class="chapter" data-level="20.2.9" data-path="dce.html"><a href="dce.html#限界支払意思額の計算"><i class="fa fa-check"></i><b>20.2.9</b> 限界支払意思額の計算</a></li>
+<li class="chapter" data-level="20.2.10" data-path="dce.html"><a href="dce.html#真の値と比べてみる"><i class="fa fa-check"></i><b>20.2.10</b> 真の値と比べてみる</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="dce.html"><a href="dce.html#選択実験の注意点"><i class="fa fa-check"></i><b>20.3</b> 選択実験の注意点</a></li>
+<li class="chapter" data-level="20.4" data-path="dce.html"><a href="dce.html#まとめ-3"><i class="fa fa-check"></i><b>20.4</b> まとめ</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="e-stat.html"><a href="e-stat.html"><i class="fa fa-check"></i><b>21</b> e-statの利用方法</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="e-stat.html"><a href="e-stat.html#e-statとは"><i class="fa fa-check"></i><b>21.1</b> e-statとは</a></li>
+<li class="chapter" data-level="21.2" data-path="e-stat.html"><a href="e-stat.html#e-statの使い方"><i class="fa fa-check"></i><b>21.2</b> e-statの使い方</a></li>
+<li class="chapter" data-level="21.3" data-path="e-stat.html"><a href="e-stat.html#e-stat-apiの使い方"><i class="fa fa-check"></i><b>21.3</b> e-stat APIの使い方</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="e-stat.html"><a href="e-stat.html#apiの準備"><i class="fa fa-check"></i><b>21.3.1</b> APIの準備</a></li>
+<li class="chapter" data-level="21.3.2" data-path="e-stat.html"><a href="e-stat.html#estatapiパッケージでデータを利用する"><i class="fa fa-check"></i><b>21.3.2</b> estatapiパッケージでデータを利用する</a></li>
+<li class="chapter" data-level="21.3.3" data-path="e-stat.html"><a href="e-stat.html#データ加工の例"><i class="fa fa-check"></i><b>21.3.3</b> データ加工の例</a></li>
+<li class="chapter" data-level="21.3.4" data-path="e-stat.html"><a href="e-stat.html#データ描画の例"><i class="fa fa-check"></i><b>21.3.4</b> データ描画の例</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="regressionreporting.html"><a href="regressionreporting.html"><i class="fa fa-check"></i><b>22</b> 回帰分析結果のレポーティング</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析結果の報告"><i class="fa fa-check"></i><b>22.1</b> 回帰分析結果の報告</a></li>
+<li class="chapter" data-level="22.2" data-path="regressionreporting.html"><a href="regressionreporting.html#回帰分析の結果の報告"><i class="fa fa-check"></i><b>22.2</b> 回帰分析の結果の報告</a></li>
+<li class="chapter" data-level="22.3" data-path="regressionreporting.html"><a href="regressionreporting.html#modelsummaryによる表作成"><i class="fa fa-check"></i><b>22.3</b> modelsummary()による表作成</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="regressionreporting.html"><a href="regressionreporting.html#表の出力"><i class="fa fa-check"></i><b>22.3.1</b> 表の出力</a></li>
+<li class="chapter" data-level="22.3.2" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定"><i class="fa fa-check"></i><b>22.3.2</b> 変数名の設定</a></li>
+<li class="chapter" data-level="22.3.3" data-path="regressionreporting.html"><a href="regressionreporting.html#有意水準を示す星の表示"><i class="fa fa-check"></i><b>22.3.3</b> 有意水準を示す星の表示</a></li>
+<li class="chapter" data-level="22.3.4" data-path="regressionreporting.html"><a href="regressionreporting.html#不必要な統計量の非表示"><i class="fa fa-check"></i><b>22.3.4</b> 不必要な統計量の非表示</a></li>
+<li class="chapter" data-level="22.3.5" data-path="regressionreporting.html"><a href="regressionreporting.html#モデルに名前をつける"><i class="fa fa-check"></i><b>22.3.5</b> モデルに名前をつける</a></li>
+<li class="chapter" data-level="22.3.6" data-path="regressionreporting.html"><a href="regressionreporting.html#固定効果の表示"><i class="fa fa-check"></i><b>22.3.6</b> 固定効果の表示</a></li>
+<li class="chapter" data-level="22.3.7" data-path="regressionreporting.html"><a href="regressionreporting.html#ファイルへの出力"><i class="fa fa-check"></i><b>22.3.7</b> ファイルへの出力</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="regressionreporting.html"><a href="regressionreporting.html#etableによる表作成"><i class="fa fa-check"></i><b>22.4</b> etable()による表作成</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="regressionreporting.html"><a href="regressionreporting.html#変数名の設定-1"><i class="fa fa-check"></i><b>22.4.1</b> 変数名の設定</a></li>
+<li class="chapter" data-level="22.4.2" data-path="regressionreporting.html"><a href="regressionreporting.html#標準誤差の数値を係数の下に表示"><i class="fa fa-check"></i><b>22.4.2</b> 標準誤差の数値を係数の下に表示</a></li>
+<li class="chapter" data-level="22.4.3" data-path="regressionreporting.html"><a href="regressionreporting.html#エクセルへの出力"><i class="fa fa-check"></i><b>22.4.3</b> エクセルへの出力</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html"><i class="fa fa-check"></i><b>23</b> ゼミ演習解答</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#課題"><i class="fa fa-check"></i><b>23.1</b> 課題</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル１データを読み込む"><i class="fa fa-check"></i><b>23.1.1</b> レベル１：データを読み込む</a></li>
+<li class="chapter" data-level="23.1.2" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル２折れ線グラフを描く"><i class="fa fa-check"></i><b>23.1.2</b> レベル２：折れ線グラフを描く</a></li>
+<li class="chapter" data-level="23.1.3" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル３データを絞る"><i class="fa fa-check"></i><b>23.1.3</b> レベル３：データを絞る</a></li>
+<li class="chapter" data-level="23.1.4" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル４色を追加する"><i class="fa fa-check"></i><b>23.1.4</b> レベル４：色を追加する</a></li>
+<li class="chapter" data-level="23.1.5" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル５単位の調整"><i class="fa fa-check"></i><b>23.1.5</b> レベル５：単位の調整</a></li>
+<li class="chapter" data-level="23.1.6" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル６２軸目の追加"><i class="fa fa-check"></i><b>23.1.6</b> レベル６：２軸目の追加</a></li>
+<li class="chapter" data-level="23.1.7" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル7日本語のラベルなどの追加"><i class="fa fa-check"></i><b>23.1.7</b> レベル7：日本語のラベルなどの追加</a></li>
+<li class="chapter" data-level="23.1.8" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル８細かい見た目の調整"><i class="fa fa-check"></i><b>23.1.8</b> レベル８：細かい見た目の調整</a></li>
+<li class="chapter" data-level="23.1.9" data-path="seminar1_2025_answer.html"><a href="seminar1_2025_answer.html#レベル９図を保存する"><i class="fa fa-check"></i><b>23.1.9</b> レベル９：図を保存する</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="regressionpractice.html"><a href="regressionpractice.html"><i class="fa fa-check"></i><b>24</b> 総合復習問題：回帰分析</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="regressionpractice.html"><a href="regressionpractice.html#準備-6"><i class="fa fa-check"></i><b>24.1</b> 準備</a></li>
+<li class="chapter" data-level="24.2" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q1"><i class="fa fa-check"></i><b>24.2</b> 問1：データの読み込みと確認</a></li>
+<li class="chapter" data-level="24.3" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q2"><i class="fa fa-check"></i><b>24.3</b> 問2：データ操作</a></li>
+<li class="chapter" data-level="24.4" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q3"><i class="fa fa-check"></i><b>24.4</b> 問3：記述統計</a></li>
+<li class="chapter" data-level="24.5" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q4"><i class="fa fa-check"></i><b>24.5</b> 問4：散布図</a></li>
+<li class="chapter" data-level="24.6" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q5"><i class="fa fa-check"></i><b>24.6</b> 問5：単回帰分析</a></li>
+<li class="chapter" data-level="24.7" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q6"><i class="fa fa-check"></i><b>24.7</b> 問6：重回帰分析</a></li>
+<li class="chapter" data-level="24.8" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q7"><i class="fa fa-check"></i><b>24.8</b> 問7：説明変数の追加</a></li>
+<li class="chapter" data-level="24.9" data-path="regressionpractice.html"><a href="regressionpractice.html#prac-q8"><i class="fa fa-check"></i><b>24.9</b> 問8：回帰分析表の作成</a>
+<ul>
+<li class="chapter" data-level="24.9.1" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-1変数名の設定と表の作成"><i class="fa fa-check"></i><b>24.9.1</b> 問8-1：変数名の設定と表の作成</a></li>
+<li class="chapter" data-level="24.9.2" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-2ファイルへの出力"><i class="fa fa-check"></i><b>24.9.2</b> 問8-2：ファイルへの出力</a></li>
+<li class="chapter" data-level="24.9.3" data-path="regressionpractice.html"><a href="regressionpractice.html#問8-3発展etable-を使った出力"><i class="fa fa-check"></i><b>24.9.3</b> 問8-3（発展）：etable() を使った出力</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rによる実証分析入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="synth" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Chapter 16</span> 合成コントロール法<a href="synth.html#synth" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="合成コントロール法とは" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> 合成コントロール法とは<a href="synth.html#合成コントロール法とは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="差の差法で足りない場面" class="section level3 hasAnchor" number="16.1.1">
+<h3><span class="header-section-number">16.1.1</span> 差の差法で足りない場面<a href="synth.html#差の差法で足りない場面" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>第<a href="did.html#did">15</a>章の差の差法では、政策の影響を受けた処置群と、影響を受けなかった対照群を比べた。ニュージャージー州の最低賃金の例では、隣のペンシルベニア州を対照群とし、「政策がなければ2つの州は平行に推移したはずだ」という<strong>平行トレンドの仮定</strong>を置いた。</p>
+<p>しかし、いつもちょうどよい対照群が見つかるとは限らない。特に次のような場合は難しい。</p>
+<ul>
+<li>政策を実施したのが<strong>1つの地域だけ</strong>である（1つの州、1つの県、1つの国）</li>
+<li>どの地域と比べても、政策前の推移が<strong>平行になっていない</strong></li>
+</ul>
+<p>例えば、1988年にアメリカのカリフォルニア州は<strong>Proposition 99（Prop 99）</strong>という住民投票によって、たばこ1箱あたりの税金を25セント引き上げ、その税収を禁煙キャンペーンに使うことを決めた。この政策で、カリフォルニア州のたばこの消費量は減ったのだろうか。</p>
+<p>政策を実施したのはカリフォルニア州だけなので、処置群は1つの州である。対照群として、ほかの州の平均を使えばよいだろうか。実は、カリフォルニア州のたばこ消費量は、政策の前からほかの州よりも速いペースで減っていた（演習で実際に図を描いて確認する）。この場合、平行トレンドの仮定は成り立たず、差の差法の推定値にはバイアスがかかってしまう。</p>
+</div>
+<div id="合成コントロール法のアイデア" class="section level3 hasAnchor" number="16.1.2">
+<h3><span class="header-section-number">16.1.2</span> 合成コントロール法のアイデア<a href="synth.html#合成コントロール法のアイデア" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>合成コントロール法（Synthetic Control Method, SCM）</strong>は、Abadie and Gardeazabal (2003) や Abadie, Diamond and Hainmueller (2010) によって開発された手法で、このような場面で使われる。</p>
+<p>アイデアは次の通りである。カリフォルニア州とそっくりな州は1つも存在しないかもしれない。しかし、<strong>いくつかの州を適切な割合で混ぜ合わせれば、カリフォルニア州の政策前の動きをうまく再現できる</strong>かもしれない。例えば「ユタ州を34%、ネバダ州を24%、モンタナ州を21%、……」というように、ほかの州の加重平均で作った架空の州を考える。これを<strong>合成カリフォルニア（synthetic California）</strong>と呼ぶ。</p>
+<p>合成カリフォルニアは政策前のカリフォルニア州とよく似た動きをするように作られている。そして、合成カリフォルニアを構成する州はどれもProp 99のような政策を実施していない。そこで、政策後の合成カリフォルニアの値を「<strong>もしカリフォルニア州が政策を実施していなかったら</strong>」という反実仮想とみなし、実際のカリフォルニア州との差を政策の効果として推定する。</p>
+<p>差の差法が「平行に動く対照群を<strong>探す</strong>」方法だとすれば、合成コントロール法は「よく似た動きをする対照群を<strong>作る</strong>」方法だと言える。</p>
+</div>
+<div id="合成コントロール法の式" class="section level3 hasAnchor" number="16.1.3">
+<h3><span class="header-section-number">16.1.3</span> 合成コントロール法の式<a href="synth.html#合成コントロール法の式" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>処置を受けたユニット（ここではカリフォルニア州）を <span class="math inline">\(j=1\)</span>、処置を受けていないユニット（ほかの州）を <span class="math inline">\(j = 2, \dots, J+1\)</span> とする。処置を受けていないユニットの集まりを<strong>ドナープール（donor pool）</strong>と呼ぶ。</p>
+<p>合成コントロールは、ドナープールの各ユニットの目的変数 <span class="math inline">\(Y_{jt}\)</span> を重み <span class="math inline">\(w_j\)</span> で加重平均したものである。</p>
+<p><span class="math display">\[
+\hat{Y}^N_{1t} = \sum_{j=2}^{J+1} w_j Y_{jt}
+\]</span></p>
+<p>ここで <span class="math inline">\(\hat{Y}^N_{1t}\)</span> は「処置がなかった場合（<span class="math inline">\(N\)</span> はno treatmentの意味）のユニット1の時点 <span class="math inline">\(t\)</span> の値」の推定値である。重みには次の2つの制約を置く。</p>
+<p><span class="math display">\[
+w_j \ge 0, \quad \sum_{j=2}^{J+1} w_j = 1
+\]</span></p>
+<p>つまり、重みはマイナスにならず、合計すると1になる。こうすることで、合成コントロールは実在する州の「混ぜ合わせ」になり、どの州をどれだけ使ったのかを解釈しやすくなる。</p>
+<p>処置後の各時点 <span class="math inline">\(t\)</span> における処置効果は、実際の値と合成コントロールの値の差として推定する。</p>
+<p><span class="math display">\[
+\hat{\tau}_{t} = Y_{1t} - \hat{Y}^N_{1t}
+\]</span></p>
+</div>
+<div id="重みの選び方" class="section level3 hasAnchor" number="16.1.4">
+<h3><span class="header-section-number">16.1.4</span> 重みの選び方<a href="synth.html#重みの選び方" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>では、重み <span class="math inline">\(w_j\)</span> はどうやって決めるのだろうか。</p>
+<p>基本的な考え方は、<strong>処置前の期間に、合成コントロールが処置ユニットとできるだけ似るように重みを選ぶ</strong>ことである。「似ている」かどうかは、次のような変数（<strong>予測変数</strong>）で判断する。</p>
+<ul>
+<li>処置前の目的変数の値（例：1975年、1980年、1988年のたばこ消費量）</li>
+<li>目的変数に影響しそうな変数の処置前の平均（例：所得、たばこの価格、若者の人口比率）</li>
+</ul>
+<p>これらの変数について、処置ユニットの値と合成コントロールの値の差が小さくなるように、コンピュータが重みを探す。どの予測変数をどれだけ重視するかも同時に決められるが、その詳細は本書の範囲を超えるので省略する。Rのパッケージがこの計算を自動で行ってくれる。</p>
+</div>
+<div id="合成コントロール法の仮定" class="section level3 hasAnchor" number="16.1.5">
+<h3><span class="header-section-number">16.1.5</span> 合成コントロール法の仮定<a href="synth.html#合成コントロール法の仮定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>合成コントロール法による推定では、以下のような仮定を置いている。</p>
+<ul>
+<li><strong>スピルオーバーがない</strong>：処置ユニットの政策が、ドナープールのユニットに影響しない。例えば、カリフォルニア州の人が隣のネバダ州でたばこを買うようになれば、ネバダ州の値も政策の影響を受けてしまう</li>
+<li><strong>事前の反応がない</strong>：政策の実施が決まる前に、人々がそれを見越して行動を変えていない</li>
+<li><strong>処置ユニットがドナープールの範囲内にある</strong>：重みは0以上で合計1なので、合成コントロールの値はドナープールの最小値と最大値の間にしかならない。処置ユニットがどの州よりも極端な値をとっていると、うまく再現できない</li>
+<li><strong>処置後にほかの大きなショックがない</strong>：処置ユニットだけに、政策以外の大きな出来事が同時に起きていない</li>
+</ul>
+</div>
+</div>
+<div id="rでの演習-1" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Rでの演習<a href="synth.html#rでの演習-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="スクリプトの準備-2" class="section level3 hasAnchor" number="16.2.1">
+<h3><span class="header-section-number">16.2.1</span> スクリプトの準備<a href="synth.html#スクリプトの準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>新しいスクリプトを作成し、<code>synth.R</code> という名前をつけて保存する。</p>
+</div>
+<div id="パッケージの準備-2" class="section level3 hasAnchor" number="16.2.2">
+<h3><span class="header-section-number">16.2.2</span> パッケージの準備<a href="synth.html#パッケージの準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>合成コントロール法には <code>tidysynth</code> パッケージを使う。パイプでつなげて書けるので、これまで学んだtidyverseの書き方と相性がよい。</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="synth.html#cb377-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, fixest, tidysynth)</span></code></pre></div>
+</div>
+<div id="データの準備-2" class="section level3 hasAnchor" number="16.2.3">
+<h3><span class="header-section-number">16.2.3</span> データの準備<a href="synth.html#データの準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>tidysynth</code> には、Abadie, Diamond and Hainmueller (2010) が用いたアメリカの州別のたばこ消費のデータが <code>smoking</code> として含まれている。</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="synth.html#cb378-1"></a><span class="kw">data</span>(smoking)</span></code></pre></div>
+<p>主な変数は以下の通りである。</p>
+<table>
+<thead>
+<tr class="header">
+<th>変数</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>state</code></td>
+<td>州の名前</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>年（1970〜2000年）</td>
+</tr>
+<tr class="odd">
+<td><code>cigsale</code></td>
+<td>1人あたりのたばこ販売量（箱）</td>
+</tr>
+<tr class="even">
+<td><code>lnincome</code></td>
+<td>1人あたり所得の対数</td>
+</tr>
+<tr class="odd">
+<td><code>beer</code></td>
+<td>1人あたりのビール消費量</td>
+</tr>
+<tr class="even">
+<td><code>age15to24</code></td>
+<td>15〜24歳の人口比率</td>
+</tr>
+<tr class="odd">
+<td><code>retprice</code></td>
+<td>たばこの小売価格（セント）</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="synth.html#cb379-1"></a><span class="kw">head</span>(smoking)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 7
+##   state         year cigsale lnincome  beer age15to24 retprice
+##   &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Rhode Island  1970   124.        NA    NA     0.183     39.3
+## 2 Tennessee     1970    99.8       NA    NA     0.178     39.9
+## 3 Indiana       1970   135.        NA    NA     0.177     30.6
+## 4 Nevada        1970   190.        NA    NA     0.162     38.9
+## 5 Louisiana     1970   116.        NA    NA     0.185     34.3
+## 6 Oklahoma      1970   108.        NA    NA     0.175     38.4</code></pre>
+<p>このデータには、カリフォルニア州と、ドナープールとなる38州の、合わせて39州が含まれている。元の研究では、期間中にたばこ税を大きく引き上げたり、大規模な禁煙政策を実施したりした州は、あらかじめドナープールから除かれている。</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="synth.html#cb381-1"></a><span class="kw">n_distinct</span>(smoking<span class="op">$</span>state)</span></code></pre></div>
+<pre><code>## [1] 39</code></pre>
+<p><code>lnincome</code> と <code>beer</code> は1970年代の初めの値が欠損している（<code>NA</code>）ことに注意しよう。</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="synth.html#cb383-1"></a><span class="kw">summary</span>(smoking)</span></code></pre></div>
+<pre><code>##     state                year         cigsale         lnincome     
+##  Length:1209        Min.   :1970   Min.   : 40.7   Min.   : 9.397  
+##  Class :character   1st Qu.:1977   1st Qu.:100.9   1st Qu.: 9.739  
+##  Mode  :character   Median :1985   Median :116.3   Median : 9.861  
+##                     Mean   :1985   Mean   :118.9   Mean   : 9.862  
+##                     3rd Qu.:1993   3rd Qu.:130.5   3rd Qu.: 9.973  
+##                     Max.   :2000   Max.   :296.2   Max.   :10.487  
+##                                                    NA&#39;s   :195     
+##       beer         age15to24         retprice    
+##  Min.   : 2.50   Min.   :0.1294   Min.   : 27.3  
+##  1st Qu.:20.90   1st Qu.:0.1658   1st Qu.: 50.0  
+##  Median :23.30   Median :0.1781   Median : 95.5  
+##  Mean   :23.43   Mean   :0.1755   Mean   :108.3  
+##  3rd Qu.:25.10   3rd Qu.:0.1867   3rd Qu.:158.4  
+##  Max.   :40.40   Max.   :0.2037   Max.   :351.2  
+##  NA&#39;s   :663     NA&#39;s   :390</code></pre>
+</div>
+<div id="カリフォルニア州とほかの州の比較" class="section level3 hasAnchor" number="16.2.4">
+<h3><span class="header-section-number">16.2.4</span> カリフォルニア州とほかの州の比較<a href="synth.html#カリフォルニア州とほかの州の比較" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>まず、差の差法の考え方で、カリフォルニア州とほかの38州の平均を比べてみよう。グループごとの平均を年ごとに計算して図にする。</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="synth.html#cb385-1"></a>smoking_avg &lt;-<span class="st"> </span>smoking <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb385-2"><a href="synth.html#cb385-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">group =</span> <span class="kw">if_else</span>(state <span class="op">==</span><span class="st"> &quot;California&quot;</span>, <span class="st">&quot;カリフォルニア州&quot;</span>, <span class="st">&quot;その他38州の平均&quot;</span>)) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb385-3"><a href="synth.html#cb385-3"></a><span class="st">  </span><span class="kw">group_by</span>(group, year) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb385-4"><a href="synth.html#cb385-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">cigsale =</span> <span class="kw">mean</span>(cigsale), <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb385-5"><a href="synth.html#cb385-5"></a></span>
+<span id="cb385-6"><a href="synth.html#cb385-6"></a><span class="kw">ggplot</span>(smoking_avg, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> cigsale, <span class="dt">linetype =</span> group)) <span class="op">+</span></span>
+<span id="cb385-7"><a href="synth.html#cb385-7"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb385-8"><a href="synth.html#cb385-8"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">1988</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb385-9"><a href="synth.html#cb385-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;年&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;1人あたりのたばこ販売量（箱）&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb385-10"><a href="synth.html#cb385-10"></a><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_family =</span> <span class="st">&quot;HiraKakuPro-W3&quot;</span>)</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-278-1.png" alt="" width="672" /></p>
+<p>赤い点線がProp 99の実施（1988年）である。1970年には2つのグループはほぼ同じ水準だったが、その後すぐに差が開き、1980年代にはカリフォルニア州の方が速いペースで減っている。<strong>政策の前から、2つのグループは平行に推移していない</strong>のである。</p>
+<div id="演習問題差の差法による推定" class="section level4 hasAnchor" number="16.2.4.1">
+<h4><span class="header-section-number">16.2.4.1</span> <strong>演習問題</strong>：差の差法による推定<a href="synth.html#演習問題差の差法による推定" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>第<a href="did.html#did">15</a>章と同じ方法で、差の差法を推定してみよう。</p>
+<ul>
+<li><code>smoking</code> に、カリフォルニア州なら1をとる <code>policy</code> と、1989年以降なら1をとる <code>time</code> という2つのダミー変数を加え、<code>smoking_did</code> というオブジェクトに格納しなさい</li>
+<li><code>feols()</code> で <code>cigsale ~ policy + time + policy:time</code> を推定し、<code>reg_did</code> というオブジェクトに格納して、<code>etable()</code> で表示しなさい</li>
+</ul>
+<pre><code>##                           reg_did
+## Dependent Var.:           cigsale
+##                                  
+## Constant         130.6*** (1.087)
+## policy            -14.36* (6.789)
+## time            -28.51*** (1.747)
+## policy x time     -27.35* (10.91)
+## _______________ _________________
+## S.E. type                     IID
+## Observations                1,209
+## R2                        0.20735
+## Adj. R2                   0.20538
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>結果は上のようになる。<code>policy x time</code> の係数は約 <span class="math inline">\(-27.4\)</span> であり、Prop 99によって1人あたりのたばこ販売量が年に約27箱減ったという推定になる。</p>
+<p>しかし、上の図で見たように、カリフォルニア州は政策の前からほかの州より速く減っていた。差の差法は「政策がなければ、カリフォルニア州もほかの州と同じペースで減ったはずだ」と考えるので、<strong>もともとあった減少のペースの違いまで政策の効果に含めてしまっている</strong>可能性がある。つまり、この推定値は効果を過大に見積もっているかもしれない。</p>
+</div>
+</div>
+<div id="合成コントロールの作成" class="section level3 hasAnchor" number="16.2.5">
+<h3><span class="header-section-number">16.2.5</span> 合成コントロールの作成<a href="synth.html#合成コントロールの作成" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>それでは、合成コントロール法で推定しよう。<code>tidysynth</code> では、次の4つのステップをパイプでつなげて書く。</p>
+<ol style="list-style-type: decimal">
+<li><code>synthetic_control()</code>：データと、処置ユニット・処置時点を指定する</li>
+<li><code>generate_predictor()</code>：重みを決めるときに使う予測変数を作る</li>
+<li><code>generate_weights()</code>：重みを計算する</li>
+<li><code>generate_control()</code>：合成コントロールを作る</li>
+</ol>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="synth.html#cb387-1"></a>smoking_out &lt;-<span class="st"> </span>smoking <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb387-2"><a href="synth.html#cb387-2"></a><span class="st">  </span><span class="co"># 1. データの指定</span></span>
+<span id="cb387-3"><a href="synth.html#cb387-3"></a><span class="st">  </span><span class="kw">synthetic_control</span>(</span>
+<span id="cb387-4"><a href="synth.html#cb387-4"></a>    <span class="dt">outcome =</span> cigsale,       <span class="co"># 目的変数</span></span>
+<span id="cb387-5"><a href="synth.html#cb387-5"></a>    <span class="dt">unit =</span> state,            <span class="co"># ユニット（州）を表す変数</span></span>
+<span id="cb387-6"><a href="synth.html#cb387-6"></a>    <span class="dt">time =</span> year,             <span class="co"># 時点を表す変数</span></span>
+<span id="cb387-7"><a href="synth.html#cb387-7"></a>    <span class="dt">i_unit =</span> <span class="st">&quot;California&quot;</span>,   <span class="co"># 処置ユニット</span></span>
+<span id="cb387-8"><a href="synth.html#cb387-8"></a>    <span class="dt">i_time =</span> <span class="dv">1988</span>,           <span class="co"># 処置が行われた時点</span></span>
+<span id="cb387-9"><a href="synth.html#cb387-9"></a>    <span class="dt">generate_placebos =</span> <span class="ot">TRUE</span> <span class="co"># 後で使うプラセボ検定の準備</span></span>
+<span id="cb387-10"><a href="synth.html#cb387-10"></a>  ) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb387-11"><a href="synth.html#cb387-11"></a><span class="st">  </span><span class="co"># 2. 予測変数の作成（1980〜88年の平均）</span></span>
+<span id="cb387-12"><a href="synth.html#cb387-12"></a><span class="st">  </span><span class="kw">generate_predictor</span>(</span>
+<span id="cb387-13"><a href="synth.html#cb387-13"></a>    <span class="dt">time_window =</span> <span class="dv">1980</span><span class="op">:</span><span class="dv">1988</span>,</span>
+<span id="cb387-14"><a href="synth.html#cb387-14"></a>    <span class="dt">ln_income =</span> <span class="kw">mean</span>(lnincome, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb387-15"><a href="synth.html#cb387-15"></a>    <span class="dt">ret_price =</span> <span class="kw">mean</span>(retprice, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb387-16"><a href="synth.html#cb387-16"></a>    <span class="dt">youth     =</span> <span class="kw">mean</span>(age15to24, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb387-17"><a href="synth.html#cb387-17"></a>  ) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb387-18"><a href="synth.html#cb387-18"></a><span class="st">  </span><span class="co"># ビールはデータがある1984〜88年の平均</span></span>
+<span id="cb387-19"><a href="synth.html#cb387-19"></a><span class="st">  </span><span class="kw">generate_predictor</span>(</span>
+<span id="cb387-20"><a href="synth.html#cb387-20"></a>    <span class="dt">time_window =</span> <span class="dv">1984</span><span class="op">:</span><span class="dv">1988</span>,</span>
+<span id="cb387-21"><a href="synth.html#cb387-21"></a>    <span class="dt">beer_sales =</span> <span class="kw">mean</span>(beer, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb387-22"><a href="synth.html#cb387-22"></a>  ) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb387-23"><a href="synth.html#cb387-23"></a><span class="st">  </span><span class="co"># 処置前のたばこ販売量そのもの</span></span>
+<span id="cb387-24"><a href="synth.html#cb387-24"></a><span class="st">  </span><span class="kw">generate_predictor</span>(<span class="dt">time_window =</span> <span class="dv">1975</span>, <span class="dt">cigsale_1975 =</span> cigsale) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb387-25"><a href="synth.html#cb387-25"></a><span class="st">  </span><span class="kw">generate_predictor</span>(<span class="dt">time_window =</span> <span class="dv">1980</span>, <span class="dt">cigsale_1980 =</span> cigsale) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb387-26"><a href="synth.html#cb387-26"></a><span class="st">  </span><span class="kw">generate_predictor</span>(<span class="dt">time_window =</span> <span class="dv">1988</span>, <span class="dt">cigsale_1988 =</span> cigsale) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb387-27"><a href="synth.html#cb387-27"></a><span class="st">  </span><span class="co"># 3. 重みの計算（1970〜88年の当てはまりがよくなるように）</span></span>
+<span id="cb387-28"><a href="synth.html#cb387-28"></a><span class="st">  </span><span class="kw">generate_weights</span>(</span>
+<span id="cb387-29"><a href="synth.html#cb387-29"></a>    <span class="dt">optimization_window =</span> <span class="dv">1970</span><span class="op">:</span><span class="dv">1988</span>,</span>
+<span id="cb387-30"><a href="synth.html#cb387-30"></a>    <span class="dt">margin_ipop =</span> <span class="fl">.02</span>, <span class="dt">sigf_ipop =</span> <span class="dv">7</span>, <span class="dt">bound_ipop =</span> <span class="dv">6</span> <span class="co"># 最適化の設定</span></span>
+<span id="cb387-31"><a href="synth.html#cb387-31"></a>  ) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb387-32"><a href="synth.html#cb387-32"></a><span class="st">  </span><span class="co"># 4. 合成コントロールの作成</span></span>
+<span id="cb387-33"><a href="synth.html#cb387-33"></a><span class="st">  </span><span class="kw">generate_control</span>()</span></code></pre></div>
+<p><code>generate_predictor()</code> の中では、<code>summarise()</code> と同じように「新しい変数名 = 計算式」の形で予測変数を作っている。<code>time_window</code> で、どの期間のデータを使うかを指定する。<code>generate_weights()</code> の最後の行は最適化の計算を安定させるための設定なので、そのまま書き写せばよい。</p>
+</div>
+<div id="結果の確認" class="section level3 hasAnchor" number="16.2.6">
+<h3><span class="header-section-number">16.2.6</span> 結果の確認<a href="synth.html#結果の確認" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="実際の値と合成コントロールの比較" class="section level4 hasAnchor" number="16.2.6.1">
+<h4><span class="header-section-number">16.2.6.1</span> 実際の値と合成コントロールの比較<a href="synth.html#実際の値と合成コントロールの比較" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>plot_trends()</code> で、実際のカリフォルニア州と合成カリフォルニアの推移を比較できる。</p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="synth.html#cb388-1"></a>smoking_out <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">plot_trends</span>()</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-281-1.png" alt="" width="672" /></p>
+<p>灰色の実線（Observed）が実際のカリフォルニア州、赤紫の一点鎖線（Synthetic）が合成カリフォルニアである。先ほどの「その他38州の平均」と違い、<strong>合成カリフォルニアは1988年までのカリフォルニア州の動きをほぼ完全に再現している</strong>。そして1989年以降、実際のカリフォルニア州は合成カリフォルニアを大きく下回っている。</p>
+<p>2つの差を直接図にするには <code>plot_differences()</code> を使う。</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="synth.html#cb389-1"></a>smoking_out <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">plot_differences</span>()</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-282-1.png" alt="" width="672" /></p>
+<p>1988年まではほぼゼロの周りにあった差が、1989年以降はマイナス方向に広がっていく。政策の効果が年を追うごとに大きくなっていることがわかる。</p>
+</div>
+<div id="重みの確認" class="section level4 hasAnchor" number="16.2.6.2">
+<h4><span class="header-section-number">16.2.6.2</span> 重みの確認<a href="synth.html#重みの確認" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>合成カリフォルニアがどの州で作られているのかを確認しよう。<code>grab_unit_weights()</code> で各州の重みを取り出せる。</p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="synth.html#cb390-1"></a>smoking_out <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb390-2"><a href="synth.html#cb390-2"></a><span class="st">  </span><span class="kw">grab_unit_weights</span>() <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb390-3"><a href="synth.html#cb390-3"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(weight)) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb390-4"><a href="synth.html#cb390-4"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   unit          weight
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 Utah        0.342   
+## 2 Nevada      0.238   
+## 3 Montana     0.209   
+## 4 Colorado    0.149   
+## 5 Connecticut 0.0617  
+## 6 New Mexico  0.000434</code></pre>
+<p>合成カリフォルニアは、ユタ州（約34%）、ネバダ州（約24%）、モンタナ州（約21%）、コロラド州（約15%）、コネチカット州（約6%）でほぼ構成されており、残りの州の重みはほとんどゼロである。38州すべてを平均するのではなく、<strong>カリフォルニア州に似た動きをする少数の州に重みを集中させている</strong>ことがわかる。</p>
+<p><code>plot_weights()</code> を使うと、州の重み（Control Unit Weights）と予測変数の重み（Variable Weights）を図で確認できる。</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="synth.html#cb392-1"></a>smoking_out <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">plot_weights</span>()</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-284-1.png" alt="" width="672" /></p>
+</div>
+<div id="予測変数のバランスの確認" class="section level4 hasAnchor" number="16.2.6.3">
+<h4><span class="header-section-number">16.2.6.3</span> 予測変数のバランスの確認<a href="synth.html#予測変数のバランスの確認" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>合成カリフォルニアが、予測変数の面でも本当にカリフォルニア州に似ているかを確認しよう。</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="synth.html#cb393-1"></a>smoking_out <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">grab_balance_table</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+##   variable     California synthetic_California donor_sample
+##   &lt;chr&gt;             &lt;dbl&gt;                &lt;dbl&gt;        &lt;dbl&gt;
+## 1 ln_income        10.1                  9.85         9.83 
+## 2 ret_price        89.4                 89.4         87.3  
+## 3 youth             0.174                0.174        0.173
+## 4 beer_sales       24.3                 24.2         23.7  
+## 5 cigsale_1975    127.                 127.         137.   
+## 6 cigsale_1980    120.                 120.         138.   
+## 7 cigsale_1988     90.1                 91.4        114.</code></pre>
+<p><code>California</code> が実際の値、<code>synthetic_California</code> が合成カリフォルニアの値、<code>donor_sample</code> がドナープール38州の単純平均である。たとえば1980年のたばこ販売量（<code>cigsale_1980</code>）は、38州の平均では約138箱とカリフォルニア州（約120箱）から大きく離れているが、合成カリフォルニアでは約120箱とほぼ一致している。単純な平均よりも、合成コントロールの方がずっとよい比較対象になっている。</p>
+</div>
+<div id="演習問題平均的な効果の計算" class="section level4 hasAnchor" number="16.2.6.4">
+<h4><span class="header-section-number">16.2.6.4</span> <strong>演習問題</strong>：平均的な効果の計算<a href="synth.html#演習問題平均的な効果の計算" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>grab_synthetic_control()</code> を使うと、年ごとの実際の値（<code>real_y</code>）と合成コントロールの値（<code>synth_y</code>）を取り出せる。</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="synth.html#cb395-1"></a>smoking_out <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb395-2"><a href="synth.html#cb395-2"></a><span class="st">  </span><span class="kw">grab_synthetic_control</span>() <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb395-3"><a href="synth.html#cb395-3"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   time_unit real_y synth_y
+##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1      1970   123     117.
+## 2      1971   121     119.
+## 3      1972   124.    124.
+## 4      1973   124.    125.
+## 5      1974   127.    127.
+## 6      1975   127.    127.</code></pre>
+<p>これを使って、次の問いに答えなさい。</p>
+<ul>
+<li>政策後の期間（1989〜2000年）について、実際の値と合成コントロールの値の差の平均を計算し、<code>effect_avg</code> というオブジェクトに格納して表示しなさい</li>
+<li>2000年時点での差はいくらか</li>
+</ul>
+<pre><code>## # A tibble: 1 × 1
+##   effect
+##    &lt;dbl&gt;
+## 1  -18.8</code></pre>
+<pre><code>## # A tibble: 1 × 4
+##   time_unit real_y synth_y effect
+##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1      2000   41.6    67.2  -25.6</code></pre>
+<p>結果は上のようになる。1989〜2000年の平均で、Prop 99は1人あたりのたばこ販売量を<strong>年に約19箱減らした</strong>という推定になる。2000年時点では約26箱の減少である。</p>
+<p>差の差法の推定値（約27箱）と比べると、効果は小さく推定されている。差の差法では、政策の前からあったカリフォルニア州の減少のペースの速さまで、政策の効果に含めてしまっていたのである。</p>
+</div>
+</div>
+<div id="プラセボ検定による統計的推測" class="section level3 hasAnchor" number="16.2.7">
+<h3><span class="header-section-number">16.2.7</span> プラセボ検定による統計的推測<a href="synth.html#プラセボ検定による統計的推測" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>合成コントロール法では、処置ユニットが1つしかないため、これまでの回帰分析のように標準誤差を計算して検定することが難しい。そこで、<strong>プラセボ検定</strong>という考え方を使う。</p>
+<p>プラセボ検定の手順は次の通りである。</p>
+<ol style="list-style-type: decimal">
+<li>ドナープールの州を1つ選び、「<strong>その州が1988年に政策を実施した</strong>」ことにする（実際には何もしていない）</li>
+<li>その州について、残りの州を使って合成コントロールを作り、差を計算する</li>
+<li>これをドナープールの38州すべてについて繰り返す</li>
+</ol>
+<p>実際には何もしていない州で計算した差は、「偶然生じる差」の大きさを表している。<strong>カリフォルニア州の差が、ほかの州の「偶然の差」と比べて極端に大きければ、それは偶然ではなく政策の効果だと考えられる。</strong></p>
+<p>最初に <code>generate_placebos = TRUE</code> と指定していたので、この計算はすでに終わっている。<code>plot_placebos()</code> で結果を見てみよう。</p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="synth.html#cb399-1"></a>smoking_out <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">plot_placebos</span>()</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-288-1.png" alt="" width="672" /></p>
+<p>赤紫の線がカリフォルニア州、灰色の線がプラセボの州である。1989年以降、カリフォルニア州の差はほとんどのプラセボの州よりも大きくマイナス方向に離れている。</p>
+<p>なお、この図では、政策前の当てはまりが悪い州（政策前のずれの大きさがカリフォルニア州の2倍を超える州）は自動的に除かれている。政策前から合成コントロールとずれている州は、政策後の差が大きくても比較の意味がないからである。</p>
+<div id="mspe比による順位" class="section level4 hasAnchor" number="16.2.7.1">
+<h4><span class="header-section-number">16.2.7.1</span> MSPE比による順位<a href="synth.html#mspe比による順位" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>図だけでなく、数値でも比べてみよう。ここでは、<strong>政策前と政策後の当てはまりの悪さの比</strong>を使う。当てはまりの悪さは、差の2乗の平均（<strong>MSPE</strong>, mean squared prediction error）で測る。</p>
+<p><span class="math display">\[
+\text{MSPE比} = \frac{\text{政策後のMSPE}}{\text{政策前のMSPE}}
+\]</span></p>
+<p>政策前はよく再現できていて（分母が小さい）、政策後に大きくずれる（分子が大きい）ほど、MSPE比は大きくなる。</p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="synth.html#cb400-1"></a>smoking_out <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">plot_mspe_ratio</span>()</span></code></pre></div>
+<p><img src="r_basics_musashi_files/figure-html/unnamed-chunk-289-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="synth.html#cb401-1"></a>smoking_out <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb401-2"><a href="synth.html#cb401-2"></a><span class="st">  </span><span class="kw">grab_significance</span>() <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb401-3"><a href="synth.html#cb401-3"></a><span class="st">  </span><span class="kw">select</span>(unit_name, type, pre_mspe, post_mspe, mspe_ratio, rank, fishers_exact_pvalue) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb401-4"><a href="synth.html#cb401-4"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 7
+##   unit_name     type    pre_mspe post_mspe mspe_ratio  rank fishers_exact_pvalue
+##   &lt;chr&gt;         &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;                &lt;dbl&gt;
+## 1 California    Treated     3.17     392.       124.      1               0.0256
+## 2 Georgia       Donor       3.79     179.        47.2     2               0.0513
+## 3 Indiana       Donor      25.2      770.        30.6     3               0.0769
+## 4 West Virginia Donor       9.52     284.        29.8     4               0.103 
+## 5 Wisconsin     Donor      11.1      268.        24.1     5               0.128 
+## 6 Missouri      Donor       3.03      67.8       22.4     6               0.154</code></pre>
+<p>カリフォルニア州のMSPE比は39州の中で<strong>1位</strong>である。もし政策に効果がなければ、カリフォルニア州が39州の中でたまたま1位になる確率は <span class="math inline">\(1/39 \approx 0.026\)</span> である。これが <code>fishers_exact_pvalue</code> の値であり、通常のp値と同じように解釈できる。5%水準で「政策の効果はゼロ」という仮説を棄却できる。</p>
+</div>
+</div>
+</div>
+<div id="合成コントロール法の注意点" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> 合成コントロール法の注意点<a href="synth.html#合成コントロール法の注意点" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>合成コントロール法は、政策を実施したユニットが1つしかない場合でも使える便利な手法だが、いくつか注意すべき点がある。</p>
+<p><strong>政策前の当てはまりが悪い場合は使えない</strong></p>
+<p>合成コントロール法の説得力は、「政策前はよく再現できていた」ことに支えられている。政策前の推移を再現できていなければ、政策後の差も信用できない。まず <code>plot_trends()</code> で政策前の当てはまりを必ず確認しよう。</p>
+<p><strong>予測変数やドナープールの選び方で結果が変わる</strong></p>
+<p>どの変数を予測変数に使うか、どの州をドナープールに入れるかによって、重みも推定値も変わりうる。分析者に都合のよい結果を選べてしまわないように、選び方の理由を説明し、選び方を変えても結果が大きく変わらないことを確認するのが望ましい。</p>
+<p><strong>スピルオーバーのあるユニットは除く</strong></p>
+<p>処置ユニットの近くにあって政策の影響を受けそうなユニットや、同じ時期に似た政策を実施したユニットは、ドナープールから除いておく必要がある。Abadie, Diamond and Hainmueller (2010) でも、期間中にたばこ税を大きく引き上げた州などを除いている。</p>
+<p><strong>推測は標準誤差ではなくプラセボで行う</strong></p>
+<p>処置ユニットが1つしかないので、通常の標準誤差やt検定は使えない。プラセボ検定のp値は、ドナープールの数に依存する点にも注意しよう。例えばドナープールが9ユニットしかなければ、1位になってもp値は <span class="math inline">\(1/10 = 0.1\)</span> より小さくならない。</p>
+</div>
+<div id="まとめ" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> まとめ<a href="synth.html#まとめ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>合成コントロール法は、ドナープールのユニットを重み付けして「処置ユニットによく似た架空のユニット」を作り、それを反実仮想として政策の効果を推定する手法である。差の差法が平行に動く対照群を<strong>探す</strong>のに対し、合成コントロール法はよく似た動きをする対照群を<strong>作る</strong>。そのため、処置ユニットが1つしかなく、平行トレンドを満たす対照群が見つからない場合にも使える。</p>
+<p>Prop 99の例では、差の差法の推定値（約27箱の減少）に比べて、合成コントロール法の推定値（約19箱の減少）は小さかった。適切な対照群を作ることで、政策前からあった違いを効果と取り違えずに済んだのである。</p>
+<p>次章では、疑似実験の別の手法として、ある基準（カットオフ）の前後を比較する<strong>回帰不連続デザイン</strong>（第<a href="rdd.html#rdd">17</a>章）を学ぶ。</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="did.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rdd.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/16_synth.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["r_basics_musashi.pdf", "r_basics_musashi.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
